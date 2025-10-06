@@ -1,0 +1,15 @@
+| Element                   | Font Size (Responsive)                      | Weight | Transform    | Line Height | Notes / Use                    |
+| ------------------------- | ------------------------------------------- | ------ | ------------ | ----------- | ------------------------------ |
+| **H1**                    | `clamp(2rem, 1.8rem + 2vw, 3rem)`           | `700`  | `uppercase`  | `1.15`      | Main blog title / hero heading |
+| **H2**                    | `clamp(1.5rem, 1.4rem + 1.5vw, 2.25rem)`    | `600`  | `capitalize` | `1.2`       | Section heading                |
+| **H3**                    | `clamp(1.25rem, 1.1rem + 1vw, 1.75rem)`     | `600`  | `none`       | `1.25`      | Subsection heading             |
+| **H4**                    | `clamp(1.125rem, 1rem + 0.6vw, 1.5rem)`     | `500`  | `none`       | `1.3`       | Minor section or content title |
+| **H5**                    | `clamp(1rem, 0.9rem + 0.4vw, 1.25rem)`      | `500`  | `none`       | `1.35`      | Card titles / small headers    |
+| **H6**                    | `clamp(0.95rem, 0.85rem + 0.2vw, 1rem)`     | `600`  | `uppercase`  | `1.4`       | Meta labels / captions         |
+| **Body / Paragraph**      | `clamp(0.95rem, 0.9rem + 0.2vw, 1rem)`      | `400`  | `none`       | `1.7`       | Main reading text              |
+| **List Items**            | `clamp(0.95rem, 0.9rem + 0.2vw, 1rem)`      | `400`  | `none`       | `1.7`       | Ordered & unordered lists      |
+| **Small Text / Captions** | `clamp(0.8rem, 0.75rem + 0.15vw, 0.875rem)` | `400`  | `none`       | `1.6`       | Footnotes, secondary info      |
+| **Links (in body)**       | `clamp(0.95rem, 0.9rem + 0.2vw, 1rem)`      | `500`  | `none`       | `1.6`       | Text links (hover underline)   |
+| **Nav / Inline Links**    | `clamp(0.9rem, 0.85rem + 0.15vw, 1rem)`     | `600`  | `uppercase`  | `1.6`       | Category or meta links         |
+| **Primary Button**        | `clamp(0.9rem, 0.85rem + 0.2vw, 1rem)`      | `600`  | `uppercase`  | `1.6`       | Calls-to-action, “Read More”   |
+| **Secondary Button**      | `clamp(0.9rem, 0.85rem + 0.2vw, 1rem)`      | `500`  | `capitalize` | `1.6`       | Outline / subtle CTAs          |

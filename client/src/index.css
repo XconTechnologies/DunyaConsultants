@@ -399,150 +399,256 @@ div[class*="from-[#1D50C9]"] button.mega-menu-button {
   color: #ffffff !important;
 }
 
-/* Blog content styling - Links, Bold text, Headings */
-.prose a,
-.text-gray-700 a,
-div[class*="text-gray-700"] a,
-p[class*="text-gray-700"] a,
-.blog-content a {
-  color: #1844AB !important;
-  text-decoration: underline;
-  text-decoration-color: #1844AB;
-  transition: all 0.2s ease;
-  font-weight: normal;
-}
+/* ============================================
+   COMPREHENSIVE BLOG POST TYPOGRAPHY SYSTEM
+   ============================================ */
 
-.prose a:hover,
-.text-gray-700 a:hover,
-div[class*="text-gray-700"] a:hover,
-p[class*="text-gray-700"] a:hover,
-.blog-content a:hover {
-  color: #1844AB !important;
-  text-decoration-color: #1844AB;
-}
-
-/* Blog content bold text styling */
-.blog-content strong,
-.blog-content b,
-.prose strong,
-.prose b {
-  font-weight: 700 !important;
+/* Base Blog Content Styling */
+.blog-content,
+.prose,
+.html-block,
+.integrated-content {
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.02em !important;
   color: #111827 !important;
 }
 
-/* Blog content headings styling */
+/* H1 - Main blog title / hero heading */
 .blog-content h1,
-.prose h1 {
-  font-size: 48px !important;
+.prose h1,
+.html-block h1,
+.integrated-content h1 {
+  font-size: clamp(2rem, 1.8rem + 2vw, 3rem) !important;
   font-weight: 700 !important;
+  text-transform: uppercase !important;
+  line-height: 1.15 !important;
   color: #111827 !important;
   margin-top: 2rem !important;
   margin-bottom: 1rem !important;
-  line-height: 1.3 !important;
-  text-transform: capitalize !important;
+  letter-spacing: 0.02em !important;
 }
 
+/* H2 - Section heading */
 .blog-content h2,
-.prose h2 {
-  font-size: 36px !important;
+.prose h2,
+.html-block h2,
+.integrated-content h2 {
+  font-size: clamp(1.5rem, 1.4rem + 1.5vw, 2.25rem) !important;
   font-weight: 600 !important;
+  text-transform: capitalize !important;
+  line-height: 1.2 !important;
   color: #111827 !important;
   margin-top: 2rem !important;
   margin-bottom: 1rem !important;
-  line-height: 1.3 !important;
-  text-transform: capitalize !important;
+  letter-spacing: 0.02em !important;
 }
 
+/* H3 - Subsection heading */
 .blog-content h3,
-.prose h3 {
-  font-size: 32px !important;
-  font-weight: 500 !important;
+.prose h3,
+.html-block h3,
+.integrated-content h3 {
+  font-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem) !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  line-height: 1.25 !important;
   color: #111827 !important;
   margin-top: 1.5rem !important;
   margin-bottom: 0.75rem !important;
-  line-height: 1.4 !important;
-  text-transform: capitalize !important;
+  letter-spacing: 0.02em !important;
 }
 
+/* H4 - Minor section or content title */
 .blog-content h4,
-.prose h4 {
-  font-size: 28px !important;
+.prose h4,
+.html-block h4,
+.integrated-content h4 {
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem) !important;
   font-weight: 500 !important;
+  text-transform: none !important;
+  line-height: 1.3 !important;
   color: #111827 !important;
   margin-top: 1.25rem !important;
   margin-bottom: 0.5rem !important;
-  line-height: 1.4 !important;
-  text-transform: capitalize !important;
+  letter-spacing: 0.02em !important;
 }
 
+/* H5 - Card titles / small headers */
 .blog-content h5,
-.prose h5 {
-  font-size: 24px !important;
+.prose h5,
+.html-block h5,
+.integrated-content h5 {
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem) !important;
   font-weight: 500 !important;
+  text-transform: none !important;
+  line-height: 1.35 !important;
   color: #111827 !important;
   margin-top: 1rem !important;
   margin-bottom: 0.5rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* H6 - Meta labels / captions */
+.blog-content h6,
+.prose h6,
+.html-block h6,
+.integrated-content h6 {
+  font-size: clamp(0.95rem, 0.85rem + 0.2vw, 1rem) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
   line-height: 1.4 !important;
-  text-transform: capitalize !important;
+  color: #111827 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  letter-spacing: 0.02em !important;
 }
 
-/* Blog content paragraphs */
+/* Body / Paragraph - Main reading text */
 .blog-content p,
-.prose p {
-  font-size: 16px !important;
-  font-weight: normal !important;
-  margin-bottom: 1rem !important;
+.prose p,
+.html-block p,
+.integrated-content p {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1rem) !important;
+  font-weight: 400 !important;
   line-height: 1.7 !important;
-  color: #374151 !important;
+  color: #111827 !important;
+  margin-bottom: 1rem !important;
+  letter-spacing: 0.02em !important;
 }
 
-/* Blog content lists */
+/* List Items - Ordered & unordered lists */
 .blog-content ul,
 .blog-content ol,
 .prose ul,
-.prose ol {
+.prose ol,
+.html-block ul,
+.html-block ol,
+.integrated-content ul,
+.integrated-content ol {
   margin-bottom: 1rem !important;
   padding-left: 1.5rem !important;
+  letter-spacing: 0.02em !important;
 }
 
 .blog-content li,
-.prose li {
+.prose li,
+.html-block li,
+.integrated-content li {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+  color: #111827 !important;
   margin-bottom: 0.5rem !important;
-  line-height: 1.6 !important;
-  color: #374151 !important;
+  letter-spacing: 0.02em !important;
 }
 
-/* Mobile responsiveness for blog typography */
-@media (max-width: 768px) {
-  .blog-content h1,
-  .prose h1 {
-    font-size: 36px !important;
-  }
+/* Small Text / Captions - Footnotes, secondary info */
+.blog-content small,
+.prose small,
+.html-block small,
+.integrated-content small,
+.blog-content .caption,
+.prose .caption {
+  font-size: clamp(0.8rem, 0.75rem + 0.15vw, 0.875rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: #111827 !important;
+  letter-spacing: 0.02em !important;
+}
 
-  .blog-content h2,
-  .prose h2 {
-    font-size: 28px !important;
-  }
+/* Links (in body) - Text links with hover underline */
+.blog-content a,
+.prose a,
+.html-block a,
+.integrated-content a,
+.text-gray-700 a,
+div[class*="text-gray-700"] a,
+p[class*="text-gray-700"] a {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  color: #0052cc !important;
+  text-decoration: underline;
+  text-decoration-color: #0052cc;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em !important;
+}
 
-  .blog-content h3,
-  .prose h3 {
-    font-size: 24px !important;
-  }
+.blog-content a:hover,
+.prose a:hover,
+.html-block a:hover,
+.integrated-content a:hover,
+.text-gray-700 a:hover,
+div[class*="text-gray-700"] a:hover,
+p[class*="text-gray-700"] a:hover {
+  color: #0073e6 !important;
+  text-decoration-color: #0073e6;
+}
 
-  .blog-content h4,
-  .prose h4 {
-    font-size: 22px !important;
-  }
+/* Bold text styling */
+.blog-content strong,
+.blog-content b,
+.prose strong,
+.prose b,
+.html-block strong,
+.html-block b,
+.integrated-content strong,
+.integrated-content b {
+  font-weight: 700 !important;
+  color: #111827 !important;
+}
 
-  .blog-content h5,
-  .prose h5 {
-    font-size: 20px !important;
-  }
+/* Images & Media - 8px border radius */
+.blog-content img,
+.prose img,
+.html-block img,
+.integrated-content img {
+  border-radius: 8px !important;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
 
-  .blog-content p,
-  .prose p {
-    font-size: 16px !important;
-  }
+/* Buttons - Primary CTA buttons */
+.blog-content button,
+.blog-content .btn-primary,
+.prose button,
+.prose .btn-primary {
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  line-height: 1.6 !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem;
+  letter-spacing: 0.02em !important;
+}
+
+/* Secondary Buttons - Outline / subtle CTAs */
+.blog-content .btn-secondary,
+.prose .btn-secondary {
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem) !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+  line-height: 1.6 !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem;
+  letter-spacing: 0.02em !important;
+}
+
+/* Blockquotes */
+.blog-content blockquote,
+.prose blockquote,
+.html-block blockquote,
+.integrated-content blockquote {
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1rem) !important;
+  line-height: 1.7 !important;
+  color: #111827 !important;
+  border-left: 4px solid #0052cc;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  letter-spacing: 0.02em !important;
 }
 
 /* Blog hero section styling - 800px max width, centered */
