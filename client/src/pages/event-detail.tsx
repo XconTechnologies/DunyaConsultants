@@ -185,24 +185,15 @@ export default function EventDetailPage() {
         </div>
       </section>
 
-      {/* Detail Image Section - 50/50 Split Overlapping */}
+      {/* Detail Image Section - Single Image Overlapping */}
       <section className="relative z-10">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-28">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-white rounded-xl shadow-2xl p-1"
+            className="bg-white rounded-xl shadow-2xl p-1"
           >
-            <div 
-              className="w-full h-64 lg:h-80 rounded-lg"
-              style={{ 
-                backgroundImage: `url(${event.detailImage || event.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
-            />
             <div 
               className="w-full h-64 lg:h-80 rounded-lg"
               style={{ 
