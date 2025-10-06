@@ -154,15 +154,15 @@ export default function EventDetailPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] overflow-hidden flex items-center justify-center py-16">
+      {/* Hero Section - 50% */}
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] overflow-hidden flex items-center justify-center py-12">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white"
+            className="text-white w-full"
           >
             {/* Date and Venue Tickers */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
@@ -179,20 +179,28 @@ export default function EventDetailPage() {
             </div>
 
             {/* Event Title */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-8">{event.title}</h1>
             
-            {/* Short Description */}
-            {event.shortDescription && (
-              <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-                {event.shortDescription}
-              </p>
-            )}
+            {/* Detail Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full max-w-[1200px] mx-auto"
+            >
+              <img
+                src={event.detailImage || event.image}
+                alt={event.title}
+                className="w-full h-auto object-cover rounded-lg shadow-2xl"
+                style={{ aspectRatio: '1200/500' }}
+              />
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Event Content */}
-      <section className="py-20">
+      <section className="py-20 shadow-lg" style={{ boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.1)' }}>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
@@ -202,11 +210,16 @@ export default function EventDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <img
-                  src={event.detailImage || event.image}
-                  alt={event.title}
-                  className="w-full h-96 object-cover rounded-xl shadow-lg mb-8"
-                />
+                {/* Short Description Ticker */}
+                {event.shortDescription && (
+                  <div className="mb-8">
+                    <div className="bg-[#FF6B35] px-6 py-4 md:px-8 md:py-5 rounded-xl shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
+                      <p className="text-white text-base md:text-lg font-medium leading-relaxed text-center">
+                        {event.shortDescription}
+                      </p>
+                    </div>
+                  </div>
+                )}
                 
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Details</h2>
                 
