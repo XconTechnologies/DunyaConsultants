@@ -367,7 +367,7 @@ export default function EventsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 mb-4" style={{ fontSize: '16px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
+                      <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
                       <Button
                         onClick={() => window.location.href = `/events/${event.slug}`}
                         className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
@@ -432,7 +432,7 @@ export default function EventsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 mb-4" style={{ fontSize: '16px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
+                      <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
                       <Button
                         onClick={() => window.location.href = `/events/${event.slug}`}
                         className="w-full bg-white border-0 shadow-md text-gray-900 hover:shadow-[0_10px_30px_rgba(29,80,201,0.2)] hover:animate-bob transition-all duration-300"
