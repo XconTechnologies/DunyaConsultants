@@ -2974,6 +2974,415 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ============================================
+  // TRASH MANAGEMENT ROUTES
+  // ============================================
+
+  // Get all trashed items (Admin access only)
+  app.get("/api/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { type } = req.query;
+      const trashedItems = await storage.getTrashedItems(type as string);
+      res.json(trashedItems);
+    } catch (error) {
+      console.error('Error fetching trashed items:', error);
+      res.status(500).json({ message: 'Failed to fetch trashed items' });
+    }
+  });
+
+  // Soft delete media (move to trash)
+  app.post("/api/admin/media/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const trashedMedia = await storage.softDeleteMedia(id, req.adminId!, reason);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'trash',
+        entity: 'media',
+        entityId: id,
+        after: { reason }
+      });
+      
+      res.json({ success: true, media: trashedMedia });
+    } catch (error) {
+      console.error('Error trashing media:', error);
+      res.status(500).json({ message: 'Failed to trash media' });
+    }
+  });
+
+  // Restore media from trash
+  app.post("/api/admin/media/:id/restore", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const restoredMedia = await storage.restoreMedia(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'restore',
+        entity: 'media',
+        entityId: id
+      });
+      
+      res.json({ success: true, media: restoredMedia });
+    } catch (error) {
+      console.error('Error restoring media:', error);
+      res.status(500).json({ message: 'Failed to restore media' });
+    }
+  });
+
+  // Permanently delete media (purge)
+  app.delete("/api/admin/media/:id/permanent", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      const media = await storage.getMediaById(id);
+      if (!media) {
+        return res.status(404).json({ message: 'Media not found' });
+      }
+      
+      if (!media.trashedAt) {
+        return res.status(400).json({ message: 'Media must be trashed before permanent deletion' });
+      }
+      
+      await storage.purgeMedia(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'purge',
+        entity: 'media',
+        entityId: id,
+        before: { filename: media.filename, url: media.url }
+      });
+      
+      res.json({ success: true, message: 'Media permanently deleted' });
+    } catch (error) {
+      console.error('Error purging media:', error);
+      res.status(500).json({ message: 'Failed to permanently delete media' });
+    }
+  });
+
+  // Soft delete blog post (move to trash)
+  app.post("/api/admin/blog-posts/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const trashedPost = await storage.softDeleteBlogPost(id, req.adminId!, reason);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'trash',
+        entity: 'blog_post',
+        entityId: id,
+        after: { reason }
+      });
+      
+      res.json({ success: true, post: trashedPost });
+    } catch (error) {
+      console.error('Error trashing blog post:', error);
+      res.status(500).json({ message: 'Failed to trash blog post' });
+    }
+  });
+
+  // Restore blog post from trash
+  app.post("/api/admin/blog-posts/:id/restore", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const restoredPost = await storage.restoreBlogPost(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'restore',
+        entity: 'blog_post',
+        entityId: id
+      });
+      
+      res.json({ success: true, post: restoredPost });
+    } catch (error) {
+      console.error('Error restoring blog post:', error);
+      res.status(500).json({ message: 'Failed to restore blog post' });
+    }
+  });
+
+  // Permanently delete blog post (purge)
+  app.delete("/api/admin/blog-posts/:id/permanent", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      if (!post.trashedAt) {
+        return res.status(400).json({ message: 'Blog post must be trashed before permanent deletion' });
+      }
+      
+      await storage.purgeBlogPost(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'purge',
+        entity: 'blog_post',
+        entityId: id,
+        before: { title: post.title, slug: post.slug }
+      });
+      
+      res.json({ success: true, message: 'Blog post permanently deleted' });
+    } catch (error) {
+      console.error('Error purging blog post:', error);
+      res.status(500).json({ message: 'Failed to permanently delete blog post' });
+    }
+  });
+
+  // Soft delete category (move to trash)
+  app.post("/api/admin/categories/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const trashedCategory = await storage.softDeleteCategory(id, req.adminId!, reason);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'trash',
+        entity: 'category',
+        entityId: id,
+        after: { reason }
+      });
+      
+      res.json({ success: true, category: trashedCategory });
+    } catch (error) {
+      console.error('Error trashing category:', error);
+      res.status(500).json({ message: 'Failed to trash category' });
+    }
+  });
+
+  // Restore category from trash
+  app.post("/api/admin/categories/:id/restore", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const restoredCategory = await storage.restoreCategory(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'restore',
+        entity: 'category',
+        entityId: id
+      });
+      
+      res.json({ success: true, category: restoredCategory });
+    } catch (error) {
+      console.error('Error restoring category:', error);
+      res.status(500).json({ message: 'Failed to restore category' });
+    }
+  });
+
+  // Permanently delete category (purge)
+  app.delete("/api/admin/categories/:id/permanent", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      const category = await storage.getCategory(id);
+      if (!category) {
+        return res.status(404).json({ message: 'Category not found' });
+      }
+      
+      if (!category.trashedAt) {
+        return res.status(400).json({ message: 'Category must be trashed before permanent deletion' });
+      }
+      
+      await storage.purgeCategory(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'purge',
+        entity: 'category',
+        entityId: id,
+        before: { name: category.name, slug: category.slug }
+      });
+      
+      res.json({ success: true, message: 'Category permanently deleted' });
+    } catch (error) {
+      console.error('Error purging category:', error);
+      res.status(500).json({ message: 'Failed to permanently delete category' });
+    }
+  });
+
+  // Soft delete event (move to trash)
+  app.post("/api/admin/events/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const trashedEvent = await storage.softDeleteEvent(id, req.adminId!, reason);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'trash',
+        entity: 'event',
+        entityId: id,
+        after: { reason }
+      });
+      
+      res.json({ success: true, event: trashedEvent });
+    } catch (error) {
+      console.error('Error trashing event:', error);
+      res.status(500).json({ message: 'Failed to trash event' });
+    }
+  });
+
+  // Restore event from trash
+  app.post("/api/admin/events/:id/restore", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const restoredEvent = await storage.restoreEvent(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'restore',
+        entity: 'event',
+        entityId: id
+      });
+      
+      res.json({ success: true, event: restoredEvent });
+    } catch (error) {
+      console.error('Error restoring event:', error);
+      res.status(500).json({ message: 'Failed to restore event' });
+    }
+  });
+
+  // Permanently delete event (purge)
+  app.delete("/api/admin/events/:id/permanent", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      const event = await storage.getEventById(id);
+      if (!event) {
+        return res.status(404).json({ message: 'Event not found' });
+      }
+      
+      if (!event.trashedAt) {
+        return res.status(400).json({ message: 'Event must be trashed before permanent deletion' });
+      }
+      
+      await storage.purgeEvent(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'purge',
+        entity: 'event',
+        entityId: id,
+        before: { title: event.title, slug: event.slug }
+      });
+      
+      res.json({ success: true, message: 'Event permanently deleted' });
+    } catch (error) {
+      console.error('Error purging event:', error);
+      res.status(500).json({ message: 'Failed to permanently delete event' });
+    }
+  });
+
+  // Soft delete admin user (move to trash)
+  app.post("/api/admin/users/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      if (id === req.adminId) {
+        return res.status(400).json({ message: 'Cannot trash your own account' });
+      }
+      
+      const trashedUser = await storage.softDeleteAdminUser(id, req.adminId!, reason);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'trash',
+        entity: 'admin_user',
+        entityId: id,
+        after: { reason }
+      });
+      
+      res.json({ success: true, user: trashedUser });
+    } catch (error) {
+      console.error('Error trashing admin user:', error);
+      res.status(500).json({ message: 'Failed to trash admin user' });
+    }
+  });
+
+  // Restore admin user from trash
+  app.post("/api/admin/users/:id/restore", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const restoredUser = await storage.restoreAdminUser(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'restore',
+        entity: 'admin_user',
+        entityId: id
+      });
+      
+      res.json({ success: true, user: restoredUser });
+    } catch (error) {
+      console.error('Error restoring admin user:', error);
+      res.status(500).json({ message: 'Failed to restore admin user' });
+    }
+  });
+
+  // Permanently delete admin user (purge)
+  app.delete("/api/admin/users/:id/permanent", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (id === req.adminId) {
+        return res.status(400).json({ message: 'Cannot permanently delete your own account' });
+      }
+      
+      const user = await storage.getAdminById(id);
+      if (!user) {
+        return res.status(404).json({ message: 'Admin user not found' });
+      }
+      
+      if (!user.trashedAt) {
+        return res.status(400).json({ message: 'Admin user must be trashed before permanent deletion' });
+      }
+      
+      await storage.purgeAdminUser(id);
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'purge',
+        entity: 'admin_user',
+        entityId: id,
+        before: { username: user.username, email: user.email }
+      });
+      
+      res.json({ success: true, message: 'Admin user permanently deleted' });
+    } catch (error) {
+      console.error('Error purging admin user:', error);
+      res.status(500).json({ message: 'Failed to permanently delete admin user' });
+    }
+  });
+
   // Get published services
   app.get("/api/services", async (req, res) => {
     try {
