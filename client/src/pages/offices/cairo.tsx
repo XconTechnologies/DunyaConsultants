@@ -148,7 +148,7 @@ export default function CairoOffice() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
               <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <span>+20 102 909 42 96</span>
+                <span>+201029094396</span>
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-5 h-5 mr-2" />
@@ -591,8 +591,8 @@ export default function CairoOffice() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
-                      <a href="tel:+201029094296" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +20 102 909 42 96
+                      <a href="tel:+201029094396" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +201029094396
                       </a>
                     </div>
                   </div>
