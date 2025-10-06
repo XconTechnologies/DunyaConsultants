@@ -7,7 +7,8 @@ import {
   BarChart3,
   LogOut,
   Image,
-  Calendar
+  Calendar,
+  Trash2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { canManageUsers } from "@/lib/permissions";
@@ -36,6 +37,12 @@ const sidebarItems = [
     href: "/admin/media",
     icon: Image,
     description: "Upload and manage media files"
+  },
+  {
+    title: "Trash",
+    href: "/admin/trash",
+    icon: Trash2,
+    description: "Manage deleted items"
   },
   {
     title: "User Management",
@@ -107,6 +114,10 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
             // Always show Dashboard, All Posts, Events, and Media for all users
             if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/events" || item.href === "/admin/media") {
               return true;
+            }
+            // Show Trash only for admin users (requires management permissions)
+            if (item.href === "/admin/trash") {
+              return canManageUsers(currentUser);
             }
             // Only show admin functions for users with management permissions
             return canManageUsers(currentUser);

@@ -74,6 +74,7 @@ import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
 import MediaManagement from "@/pages/admin/media";
 import EventsManagement from "@/pages/admin/events-management";
+import TrashManagement from "@/pages/admin/trash";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
 
@@ -182,6 +183,7 @@ function Router() {
       <Route path="/admin/posts" component={AllPosts} />
       <Route path="/admin/events" component={EventsManagement} />
       <Route path="/admin/media" component={MediaManagement} />
+      <Route path="/admin/trash" component={TrashManagement} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
