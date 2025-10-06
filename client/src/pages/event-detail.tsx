@@ -413,7 +413,7 @@ export default function EventDetailPage() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex-none w-[250px] md:w-[280px]"
+                  className="flex-none w-[250px] md:w-[280px] mb-8"
                 >
                   <Card className="bg-white hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer overflow-hidden">
                     <CardContent className="p-8 pb-[20px] text-center ml-[0px] mr-[0px] mt-[10px] mb-[10px]">
@@ -441,10 +441,6 @@ export default function EventDetailPage() {
               ))}
             </div>
           </div>
-
-          <p className="text-center text-gray-500 text-sm mt-8 italic">
-            Hover to pause • Auto-scrolling carousel
-          </p>
         </div>
       </section>
       {/* Registration Modal */}
