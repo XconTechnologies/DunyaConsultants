@@ -113,8 +113,11 @@ export default function MediaManagement() {
     },
   });
 
-  // Filter media files based on search and filter type
+  // Filter media files based on search and filter type (exclude trashed)
   const filteredMedia = mediaFiles.filter((media: Media) => {
+    // Exclude trashed media from main library
+    if (media.trashedAt) return false;
+    
     const matchesSearch = 
       media.originalName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       media.alt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -201,38 +204,41 @@ export default function MediaManagement() {
     },
   });
 
-  // Delete media mutation
-  const deleteMutation = useMutation({
-    mutationFn: async (id: number) => {
-      const response = await fetch(`/api/admin/media/${id}`, {
-        method: "DELETE",
+  // Trash media mutation (soft delete)
+  const trashMutation = useMutation({
+    mutationFn: async (data: { id: number; reason?: string }) => {
+      const response = await fetch(`/api/admin/media/${data.id}/trash`, {
+        method: "POST",
         headers: getAuthHeaders(),
+        body: JSON.stringify({ reason: data.reason }),
       });
-      if (!response.ok) throw new Error("Failed to delete media");
+      if (!response.ok) throw new Error("Failed to trash media");
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/media"] });
       toast({
         title: "Success",
-        description: "Media deleted successfully",
+        description: "Media moved to trash",
       });
     },
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to delete media",
+        description: "Failed to trash media",
         variant: "destructive",
       });
     },
   });
 
-  // Bulk delete mutation
-  const bulkDeleteMutation = useMutation({
+  // Bulk trash mutation (soft delete)
+  const bulkTrashMutation = useMutation({
     mutationFn: async (ids: number[]) => {
       const promises = ids.map(id => 
-        fetch(`/api/admin/media/${id}`, {
-          method: "DELETE",
+        fetch(`/api/admin/media/${id}/trash`, {
+          method: "POST",
           headers: getAuthHeaders(),
+          body: JSON.stringify({ reason: "Bulk trash" }),
         })
       );
       await Promise.all(promises);
@@ -242,13 +248,13 @@ export default function MediaManagement() {
       setSelectedMediaIds([]);
       toast({
         title: "Success",
-        description: "Selected media deleted successfully",
+        description: "Selected media moved to trash",
       });
     },
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to delete selected media",
+        description: "Failed to trash selected media",
         variant: "destructive",
       });
     },
@@ -308,17 +314,17 @@ export default function MediaManagement() {
     }
   };
 
-  // Handle delete media
+  // Handle trash media (soft delete)
   const handleDelete = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this media file?")) {
-      deleteMutation.mutate(id);
+    if (window.confirm("Move this media file to trash? You can restore it later.")) {
+      trashMutation.mutate({ id });
     }
   };
 
-  // Handle bulk delete
+  // Handle bulk trash (soft delete)
   const handleBulkDelete = () => {
-    if (window.confirm(`Are you sure you want to delete ${selectedMediaIds.length} selected media files?`)) {
-      bulkDeleteMutation.mutate(selectedMediaIds);
+    if (window.confirm(`Move ${selectedMediaIds.length} selected media files to trash? You can restore them later.`)) {
+      bulkTrashMutation.mutate(selectedMediaIds);
     }
   };
 
