@@ -155,7 +155,7 @@ export default function EventDetailPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-24 md:pt-28 lg:pt-32 pb-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-24 md:pt-28 lg:pt-32 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center text-white">
