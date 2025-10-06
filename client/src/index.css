@@ -855,16 +855,10 @@ p[class*="text-gray-700"] a:hover,
 
 /* ElevenLabs Conversational AI Widget - Border Radius */
 elevenlabs-convai {
-  border-radius: 50% !important;
-  overflow: hidden !important;
-}
-
-elevenlabs-convai * {
-  border-radius: inherit !important;
+  border-radius: 16px !important;
 }
 
 elevenlabs-convai iframe,
-elevenlabs-convai button,
-elevenlabs-convai div {
-  border-radius: 50% !important;
+elevenlabs-convai button {
+  border-radius: 16px !important;
 }
