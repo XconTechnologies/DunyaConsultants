@@ -45,6 +45,8 @@ export default function EventDetailPage() {
   const [, params] = useRoute("/events/:slug");
   const [, setLocation] = useLocation();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [registrationData, setRegistrationData] = useState<any>(null);
   const { toast } = useToast();
 
   const autoplayPlugin = Autoplay({ 
@@ -95,12 +97,10 @@ export default function EventDetailPage() {
       if (!response.ok) throw new Error("Failed to register");
       return response.json();
     },
-    onSuccess: () => {
-      toast({
-        title: "Registration Successful!",
-        description: "We'll contact you soon with more details.",
-      });
+    onSuccess: (data) => {
+      setRegistrationData(data.registration);
       setShowRegisterModal(false);
+      setShowSuccessModal(true);
       setFormData({
         name: "",
         email: "",
@@ -611,6 +611,70 @@ export default function EventDetailPage() {
               {registerMutation.isPending ? "Submitting..." : "Register"}
             </Button>
           </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Success Modal with QR Code */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="max-w-lg border-0 shadow-2xl">
+          <div className="text-center">
+            {/* Success Icon */}
+            <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] mb-4">
+              <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            
+            <DialogHeader>
+              <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
+                Registration Confirmed!
+              </DialogTitle>
+              <DialogDescription className="text-base mt-2">
+                Thank you for registering! Check your email for confirmation.
+              </DialogDescription>
+            </DialogHeader>
+
+            {/* QR Code Display */}
+            {registrationData?.qrCodeUrl && (
+              <div className="my-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">Your Event QR Code</h3>
+                <div className="bg-white p-4 rounded-lg shadow-md inline-block">
+                  <img 
+                    src={registrationData.qrCodeUrl} 
+                    alt="Event QR Code" 
+                    className="w-64 h-64 mx-auto"
+                  />
+                </div>
+                <p className="text-sm text-gray-600 mt-4 leading-relaxed">
+                  Save this QR code or check your email! Show it to our staff on the event date.
+                </p>
+              </div>
+            )}
+
+            {/* Prize Information */}
+            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-[#1D50C9] p-4 rounded-r-lg mb-6">
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <span className="text-2xl">🎁</span>
+                </div>
+                <div className="ml-3 text-left">
+                  <h3 className="text-sm font-semibold text-gray-900">Prize Eligibility</h3>
+                  <p className="text-sm text-gray-700 mt-1">
+                    Scan this QR code at the event to become eligible for a special prize!
+                    Prizes will be distributed within 7-10 days after the event.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Button */}
+            <Button
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all duration-300"
+            >
+              Got it, thanks!
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
       <Footer />
