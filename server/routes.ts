@@ -577,6 +577,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all event registrations
+  app.get("/api/events/registrations/all", async (req, res) => {
+    try {
+      const registrations = await storage.getAllEventRegistrations();
+      res.json(registrations);
+    } catch (error) {
+      console.error("Error fetching registrations:", error);
+      res.status(500).json({ message: "Failed to fetch registrations" });
+    }
+  });
+
   // Engagement tracking routes
   app.post("/api/engagement/track", async (req, res) => {
     try {

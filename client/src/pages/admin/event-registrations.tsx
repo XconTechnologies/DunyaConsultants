@@ -1,0 +1,212 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import AdminSidebar from "@/components/admin/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin } from "lucide-react";
+import type { Event, EventRegistration } from "@shared/schema";
+
+export default function EventRegistrationsPage() {
+  const { data: adminUser } = useQuery({
+    queryKey: ["/api/admin/me"],
+  });
+
+  const { data: events } = useQuery<Event[]>({
+    queryKey: ["/api/events"],
+  });
+
+  const { data: registrations } = useQuery<EventRegistration[]>({
+    queryKey: ["/api/events/registrations/all"],
+  });
+
+  if (!adminUser) {
+    return null;
+  }
+
+  // Group registrations by event
+  const registrationsByEvent = registrations?.reduce((acc, reg) => {
+    const eventId = reg.eventId;
+    if (!acc[eventId]) {
+      acc[eventId] = [];
+    }
+    acc[eventId].push(reg);
+    return acc;
+  }, {} as Record<number, EventRegistration[]>) || {};
+
+  // Get active events with registrations
+  const eventsWithRegistrations = (events || []).filter((event: Event) => 
+    registrationsByEvent[event.id]?.length > 0
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <AdminSidebar currentUser={adminUser} />
+      <div className="ml-64 p-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Event Registrations</h1>
+            <p className="text-gray-600">View all registrations organized by event</p>
+          </div>
+
+          {eventsWithRegistrations.length === 0 ? (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 text-lg">No registrations yet</p>
+                <p className="text-gray-400 text-sm mt-2">Registrations will appear here once users start signing up for events</p>
+              </CardContent>
+            </Card>
+          ) : (
+            <Tabs defaultValue={eventsWithRegistrations[0]?.id.toString()} className="space-y-6">
+              <TabsList className="bg-white p-1 shadow-sm">
+                {eventsWithRegistrations.map((event: Event) => (
+                  <TabsTrigger 
+                    key={event.id} 
+                    value={event.id.toString()}
+                    className="data-[state=active]:bg-[#1D50C9] data-[state=active]:text-white"
+                  >
+                    {event.title}
+                    <Badge variant="secondary" className="ml-2">
+                      {registrationsByEvent[event.id]?.length || 0}
+                    </Badge>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              {eventsWithRegistrations.map((event: Event) => {
+                const eventRegs = registrationsByEvent[event.id] || [];
+                const attendedCount = eventRegs.filter((r: EventRegistration) => r.attended).length;
+                const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
+
+                return (
+                  <TabsContent key={event.id} value={event.id.toString()} className="space-y-6">
+                    {/* Event Stats */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <Card>
+                        <CardHeader className="pb-3">
+                          <CardDescription>Total Registrations</CardDescription>
+                          <CardTitle className="text-3xl text-[#1D50C9]">{eventRegs.length}</CardTitle>
+                        </CardHeader>
+                      </Card>
+                      <Card>
+                        <CardHeader className="pb-3">
+                          <CardDescription>Attended</CardDescription>
+                          <CardTitle className="text-3xl text-green-600">{attendedCount}</CardTitle>
+                        </CardHeader>
+                      </Card>
+                      <Card>
+                        <CardHeader className="pb-3">
+                          <CardDescription>Not Attended</CardDescription>
+                          <CardTitle className="text-3xl text-gray-400">{eventRegs.length - attendedCount}</CardTitle>
+                        </CardHeader>
+                      </Card>
+                      <Card>
+                        <CardHeader className="pb-3">
+                          <CardDescription>Prize Eligible</CardDescription>
+                          <CardTitle className="text-3xl text-purple-600">{eligibleCount}</CardTitle>
+                        </CardHeader>
+                      </Card>
+                    </div>
+
+                    {/* Registrations Table */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>{event.title} - Registrations</CardTitle>
+                        <CardDescription>Complete list of all registrations for this event</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="overflow-x-auto">
+                          <Table>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead>Name</TableHead>
+                                <TableHead>Contact</TableHead>
+                                <TableHead>Education</TableHead>
+                                <TableHead>Destination</TableHead>
+                                <TableHead>Attendance</TableHead>
+                                <TableHead>Prize Status</TableHead>
+                                <TableHead>Registered</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {eventRegs.map((reg: EventRegistration) => (
+                                <TableRow key={reg.id}>
+                                  <TableCell>
+                                    <div className="font-medium">{reg.firstName} {reg.lastName}</div>
+                                  </TableCell>
+                                  <TableCell>
+                                    <div className="space-y-1 text-sm text-gray-600">
+                                      <div className="flex items-center gap-1">
+                                        <Mail className="h-3 w-3" />
+                                        {reg.email}
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Phone className="h-3 w-3" />
+                                        {reg.phone}
+                                      </div>
+                                    </div>
+                                  </TableCell>
+                                  <TableCell>
+                                    <div className="flex items-center gap-1 text-sm">
+                                      <GraduationCap className="h-3 w-3 text-gray-500" />
+                                      {reg.educationLevel}
+                                    </div>
+                                  </TableCell>
+                                  <TableCell>
+                                    <div className="flex items-center gap-1 text-sm">
+                                      <MapPin className="h-3 w-3 text-gray-500" />
+                                      {reg.destination || 'Not specified'}
+                                    </div>
+                                  </TableCell>
+                                  <TableCell>
+                                    {reg.attended ? (
+                                      <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                                        <CheckCircle2 className="h-3 w-3 mr-1" />
+                                        Attended
+                                      </Badge>
+                                    ) : (
+                                      <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                                        <XCircle className="h-3 w-3 mr-1" />
+                                        Not Attended
+                                      </Badge>
+                                    )}
+                                  </TableCell>
+                                  <TableCell>
+                                    {reg.prizeStatus === 'eligible' && (
+                                      <Badge className="bg-purple-100 text-purple-800 hover:bg-purple-100">
+                                        Eligible
+                                      </Badge>
+                                    )}
+                                    {reg.prizeStatus === 'distributed' && (
+                                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+                                        Distributed
+                                      </Badge>
+                                    )}
+                                    {reg.prizeStatus === 'pending' && (
+                                      <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                                        Pending
+                                      </Badge>
+                                    )}
+                                  </TableCell>
+                                  <TableCell className="text-sm text-gray-500">
+                                    {new Date(reg.createdAt).toLocaleDateString()}
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                );
+              })}
+            </Tabs>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

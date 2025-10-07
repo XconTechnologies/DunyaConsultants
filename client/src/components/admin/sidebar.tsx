@@ -8,7 +8,9 @@ import {
   LogOut,
   Image,
   Calendar,
-  Trash2
+  Trash2,
+  QrCode,
+  ClipboardList
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { canManageUsers } from "@/lib/permissions";
@@ -31,6 +33,18 @@ const sidebarItems = [
     href: "/admin/events",
     icon: Calendar,
     description: "Manage events and expos"
+  },
+  {
+    title: "QR Scanner",
+    href: "/admin/qr-scanner",
+    icon: QrCode,
+    description: "Scan attendee QR codes"
+  },
+  {
+    title: "Event Registrations",
+    href: "/admin/event-registrations",
+    icon: ClipboardList,
+    description: "View all event registrations"
   },
   {
     title: "Media",
@@ -111,12 +125,12 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
       <nav className="flex-1 p-4 space-y-2">
         {sidebarItems
           .filter((item) => {
-            // Always show Dashboard, All Posts, Events, and Media for all users
-            if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/events" || item.href === "/admin/media") {
+            // Always show Dashboard, All Posts, Events, Media, and QR Scanner for all users
+            if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/events" || item.href === "/admin/media" || item.href === "/admin/qr-scanner") {
               return true;
             }
-            // Show Trash only for admin users (requires management permissions)
-            if (item.href === "/admin/trash") {
+            // Show Event Registrations and Trash only for admin users (requires management permissions)
+            if (item.href === "/admin/event-registrations" || item.href === "/admin/trash") {
               return canManageUsers(currentUser);
             }
             // Only show admin functions for users with management permissions

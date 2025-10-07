@@ -77,6 +77,7 @@ import EventsManagement from "@/pages/admin/events-management";
 import EventEditor from "@/pages/admin/event-editor";
 import TrashManagement from "@/pages/admin/trash";
 import QRScannerPage from "@/pages/admin/qr-scanner";
+import EventRegistrationsPage from "@/pages/admin/event-registrations";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
 
@@ -185,6 +186,7 @@ function Router() {
       <Route path="/admin/posts" component={AllPosts} />
       <Route path="/admin/events" component={EventsManagement} />
       <Route path="/admin/qr-scanner" component={QRScannerPage} />
+      <Route path="/admin/event-registrations" component={EventRegistrationsPage} />
       <Route path="/admin/media" component={MediaManagement} />
       <Route path="/admin/trash" component={TrashManagement} />
       <Route path="/dashboard" component={UserDashboard} />

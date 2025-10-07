@@ -32,6 +32,7 @@ export interface IStorage {
   updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration>;
   markAttendance(token: string): Promise<EventRegistration | undefined>;
   getEventRegistrations(eventId?: number): Promise<EventRegistration[]>;
+  getAllEventRegistrations(): Promise<EventRegistration[]>;
   updatePrizeStatus(id: number, status: 'pending' | 'eligible' | 'distributed'): Promise<EventRegistration>;
   getAllEvents(): Promise<Event[]>;
   createEvent(event: InsertEvent): Promise<Event>;
@@ -286,6 +287,10 @@ export class DatabaseStorage implements IStorage {
     if (eventId) {
       return await db.select().from(eventRegistrations).where(eq(eventRegistrations.eventId, eventId)).orderBy(desc(eventRegistrations.createdAt));
     }
+    return await db.select().from(eventRegistrations).orderBy(desc(eventRegistrations.createdAt));
+  }
+
+  async getAllEventRegistrations(): Promise<EventRegistration[]> {
     return await db.select().from(eventRegistrations).orderBy(desc(eventRegistrations.createdAt));
   }
 
