@@ -41,7 +41,7 @@ interface EventFormData {
   image: string;
   detailImage: string;
   eventDate: string;
-  eventType: "latest" | "upcoming";
+  eventType: "Open Day" | "Expo";
   location: string;
   country: string[];
   studyLevel: string[];
@@ -63,6 +63,7 @@ const AVAILABLE_COUNTRIES = [
 ];
 
 const STUDY_LEVELS = [
+  "Intermediate",
   "Bachelors",
   "Masters",
   "PhD",
@@ -90,7 +91,7 @@ export default function EventsManagement() {
     image: "",
     detailImage: "",
     eventDate: "",
-    eventType: "upcoming",
+    eventType: "Open Day",
     location: "",
     country: [],
     studyLevel: [],
@@ -253,7 +254,7 @@ export default function EventsManagement() {
       image: "",
       detailImage: "",
       eventDate: "",
-      eventType: "upcoming",
+      eventType: "Open Day",
       location: "",
       country: [],
       studyLevel: [],
@@ -404,7 +405,7 @@ export default function EventsManagement() {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant={event.eventType === "upcoming" ? "default" : "secondary"}>
+                          <Badge variant={event.eventType === "Open Day" ? "default" : "secondary"}>
                             {event.eventType}
                           </Badge>
                         </TableCell>
@@ -499,12 +500,12 @@ export default function EventsManagement() {
               <select
                 id="eventType"
                 value={formData.eventType}
-                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "latest" | "upcoming" })}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" })}
                 className="w-full h-10 px-3 rounded-md border border-input bg-background"
                 data-testid="select-event-type"
               >
-                <option value="upcoming">Upcoming</option>
-                <option value="latest">Latest</option>
+                <option value="Open Day">Open Day</option>
+                <option value="Expo">Expo</option>
               </select>
             </div>
 
@@ -772,11 +773,11 @@ export default function EventsManagement() {
               <select
                 id="edit-eventType"
                 value={formData.eventType}
-                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "latest" | "upcoming" })}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" })}
                 className="w-full h-10 px-3 rounded-md border border-input bg-background"
               >
-                <option value="upcoming">Upcoming</option>
-                <option value="latest">Latest</option>
+                <option value="Open Day">Open Day</option>
+                <option value="Expo">Expo</option>
               </select>
             </div>
 

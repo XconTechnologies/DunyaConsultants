@@ -358,10 +358,11 @@ export const events = pgTable("events", {
   slug: text("slug").notNull().unique(),
   shortDescription: text("short_description").notNull(),
   fullDescription: text("full_description").notNull(),
-  image: text("image").notNull(),
-  detailImage: text("detail_image"),
+  contentBlocks: json("content_blocks").$type<ContentBlock[]>(),
+  image: text("image").notNull(), // Thumbnail
+  detailImage: text("detail_image"), // Banner image
   eventDate: timestamp("event_date").notNull(),
-  eventType: text("event_type", { enum: ["latest", "upcoming"] }).notNull(),
+  eventType: text("event_type", { enum: ["Open Day", "Expo"] }).notNull(),
   location: text("location"),
   country: text("country").array(),
   studyLevel: text("study_level").array(),
