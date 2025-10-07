@@ -455,7 +455,7 @@ export default function EventDetailPage() {
       </section>
       {/* Registration Modal */}
       <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
+        <DialogContent className="max-w-2xl border-0 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
               Register for {event.title}
@@ -466,25 +466,51 @@ export default function EventDetailPage() {
           </DialogHeader>
           <div className="space-y-5 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Full Name - Floating Label */}
+              {/* First Name - Floating Label */}
               <div className="relative">
                 <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  id="firstName"
+                  value={formData.name.split(' ')[0] || ''}
+                  onChange={(e) => {
+                    const lastName = formData.name.split(' ').slice(1).join(' ');
+                    setFormData({ ...formData, name: lastName ? `${e.target.value} ${lastName}` : e.target.value });
+                  }}
                   placeholder=" "
                   required
                   className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
-                  data-testid="input-name"
+                  data-testid="input-first-name"
                 />
                 <Label 
-                  htmlFor="name" 
+                  htmlFor="firstName" 
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
-                  Full Name *
+                  First Name *
                 </Label>
               </div>
 
+              {/* Last Name - Floating Label */}
+              <div className="relative">
+                <Input
+                  id="lastName"
+                  value={formData.name.split(' ').slice(1).join(' ') || ''}
+                  onChange={(e) => {
+                    const firstName = formData.name.split(' ')[0] || '';
+                    setFormData({ ...formData, name: `${firstName} ${e.target.value}`.trim() });
+                  }}
+                  placeholder=" "
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
+                  data-testid="input-last-name"
+                />
+                <Label 
+                  htmlFor="lastName" 
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Last Name
+                </Label>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Email - Floating Label */}
               <div className="relative">
                 <Input
@@ -504,9 +530,7 @@ export default function EventDetailPage() {
                   Email Address *
                 </Label>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Phone - Floating Label */}
               <div className="relative">
                 <Input
@@ -526,28 +550,28 @@ export default function EventDetailPage() {
                   Phone Number *
                 </Label>
               </div>
+            </div>
 
-              {/* Education Level - Dropdown */}
-              <div>
-                <Label htmlFor="education" className="text-gray-600 mb-2 block">
-                  Education Level
-                </Label>
-                <Select
-                  value={formData.education}
-                  onValueChange={(value) => setFormData({ ...formData, education: value })}
-                >
-                  <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-education">
-                    <SelectValue placeholder="Select your education level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {educationLevels.map((level) => (
-                      <SelectItem key={level} value={level}>
-                        {level}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+            {/* Education Level - Dropdown - Full Width */}
+            <div>
+              <Label htmlFor="education" className="text-gray-600 mb-2 block">
+                Education Level
+              </Label>
+              <Select
+                value={formData.education}
+                onValueChange={(value) => setFormData({ ...formData, education: value })}
+              >
+                <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-education">
+                  <SelectValue placeholder="Select your education level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {educationLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Preferred Study Destination - Dropdown */}
