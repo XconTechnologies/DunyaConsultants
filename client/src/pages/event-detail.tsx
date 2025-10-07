@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -29,6 +30,15 @@ const studyDestinations = [
   { name: "Turkey", code: "TR" },
   { name: "Germany", code: "DE" },
   { name: "Sweden", code: "SE" },
+];
+
+const educationLevels = [
+  "Intermediate",
+  "Bachelors",
+  "Masters",
+  "PhD",
+  "Diploma",
+  "Foundation"
 ];
 
 export default function EventDetailPage() {
@@ -445,7 +455,7 @@ export default function EventDetailPage() {
       </section>
       {/* Registration Modal */}
       <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
               Register for {event.title}
@@ -517,41 +527,49 @@ export default function EventDetailPage() {
                 </Label>
               </div>
 
-              {/* Education Level - Floating Label */}
-              <div className="relative">
-                <Input
-                  id="education"
-                  value={formData.education}
-                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  placeholder=" "
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
-                  data-testid="input-education"
-                />
-                <Label 
-                  htmlFor="education" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
-                >
+              {/* Education Level - Dropdown */}
+              <div>
+                <Label htmlFor="education" className="text-gray-600 mb-2 block">
                   Education Level
                 </Label>
+                <Select
+                  value={formData.education}
+                  onValueChange={(value) => setFormData({ ...formData, education: value })}
+                >
+                  <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-education">
+                    <SelectValue placeholder="Select your education level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {educationLevels.map((level) => (
+                      <SelectItem key={level} value={level}>
+                        {level}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
-            {/* Preferred Study Destination - Floating Label */}
-            <div className="relative">
-              <Input
-                id="destination"
-                value={formData.destination}
-                onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                placeholder=" "
-                className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
-                data-testid="input-destination"
-              />
-              <Label 
-                htmlFor="destination" 
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
-              >
+            {/* Preferred Study Destination - Dropdown */}
+            <div>
+              <Label htmlFor="destination" className="text-gray-600 mb-2 block">
                 Preferred Study Destination
               </Label>
+              <Select
+                value={formData.destination}
+                onValueChange={(value) => setFormData({ ...formData, destination: value })}
+              >
+                <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-destination">
+                  <SelectValue placeholder="Select your preferred destination" />
+                </SelectTrigger>
+                <SelectContent>
+                  {studyDestinations.map((dest) => (
+                    <SelectItem key={dest.code} value={dest.name}>
+                      {dest.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Additional Information - Floating Label */}
