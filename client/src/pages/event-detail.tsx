@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -29,6 +30,15 @@ const studyDestinations = [
   { name: "Turkey", code: "TR" },
   { name: "Germany", code: "DE" },
   { name: "Sweden", code: "SE" },
+];
+
+const educationLevels = [
+  "Intermediate",
+  "Bachelors",
+  "Masters",
+  "PhD",
+  "Diploma",
+  "Foundation"
 ];
 
 export default function EventDetailPage() {
@@ -464,7 +474,7 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
+                  className="h-14 border-0 shadow-lg focus:shadow-xl rounded-lg transition-all peer px-4"
                   data-testid="input-name"
                 />
                 <Label 
@@ -484,7 +494,7 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
+                  className="h-14 border-0 shadow-lg focus:shadow-xl rounded-lg transition-all peer px-4"
                   data-testid="input-email"
                 />
                 <Label 
@@ -506,7 +516,7 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
+                  className="h-14 border-0 shadow-lg focus:shadow-xl rounded-lg transition-all peer px-4"
                   data-testid="input-phone"
                 />
                 <Label 
@@ -517,41 +527,35 @@ export default function EventDetailPage() {
                 </Label>
               </div>
 
-              {/* Education Level - Floating Label */}
-              <div className="relative">
-                <Input
-                  id="education"
-                  value={formData.education}
-                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  placeholder=" "
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
-                  data-testid="input-education"
-                />
-                <Label 
-                  htmlFor="education" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
-                >
-                  Education Level
-                </Label>
+              {/* Education Level - Dropdown */}
+              <div>
+                <Label htmlFor="education" className="text-gray-600 text-sm mb-2 block">Education Level</Label>
+                <Select value={formData.education} onValueChange={(value) => setFormData({ ...formData, education: value })}>
+                  <SelectTrigger id="education" className="h-14 border-0 shadow-lg focus:shadow-xl rounded-lg" data-testid="select-education">
+                    <SelectValue placeholder="Select education level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {educationLevels.map((level) => (
+                      <SelectItem key={level} value={level}>{level}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
-            {/* Preferred Study Destination - Floating Label */}
-            <div className="relative">
-              <Input
-                id="destination"
-                value={formData.destination}
-                onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                placeholder=" "
-                className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
-                data-testid="input-destination"
-              />
-              <Label 
-                htmlFor="destination" 
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
-              >
-                Preferred Study Destination
-              </Label>
+            {/* Preferred Study Destination - Dropdown */}
+            <div>
+              <Label htmlFor="destination" className="text-gray-600 text-sm mb-2 block">Preferred Study Destination</Label>
+              <Select value={formData.destination} onValueChange={(value) => setFormData({ ...formData, destination: value })}>
+                <SelectTrigger id="destination" className="h-14 border-0 shadow-lg focus:shadow-xl rounded-lg" data-testid="select-destination">
+                  <SelectValue placeholder="Select study destination" />
+                </SelectTrigger>
+                <SelectContent>
+                  {studyDestinations.map((dest) => (
+                    <SelectItem key={dest.code} value={dest.name}>{dest.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Additional Information - Floating Label */}
@@ -562,7 +566,7 @@ export default function EventDetailPage() {
                 onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
                 placeholder=" "
                 rows={4}
-                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all resize-none peer px-4 pt-4"
+                className="border-0 shadow-lg focus:shadow-xl rounded-lg transition-all resize-none peer px-4 pt-4"
                 data-testid="textarea-additional-info"
               />
               <Label 
