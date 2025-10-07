@@ -648,38 +648,35 @@ export default function EventDetailPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Success Modal with QR Code - Compact Professional Card */}
+      {/* Success Modal with QR Code - Canva Style Card */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="max-w-md p-0 border-0 shadow-2xl overflow-hidden">
+          <DialogTitle className="sr-only">Registration Confirmation</DialogTitle>
           <div className="relative">
             {/* Downloadable Card */}
             <div ref={cardRef} className="bg-white">
-              {/* Blue Header with Orange Accent */}
-              <div className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] p-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full -mr-16 -mt-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-orange-500/20 rounded-full -ml-12 -mb-12"></div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-3">
-                    <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full">
-                      <CheckCircle className="h-8 w-8 text-white" />
-                    </div>
+              {/* Blue Header */}
+              <div className="bg-[#1D50C9] p-6 text-center">
+                <div className="flex items-center justify-center mb-3">
+                  <div className="bg-white rounded-full p-3">
+                    <CheckCircle className="h-8 w-8 text-[#1D50C9]" />
                   </div>
-                  <h1 className="text-2xl font-bold text-white text-center mb-1">
-                    Registration Confirmed!
-                  </h1>
-                  <p className="text-blue-100 text-center text-sm">
-                    Thank you for registering
-                  </p>
                 </div>
+                <h1 className="text-2xl font-bold text-white mb-1">
+                  Registration Confirmed!
+                </h1>
+                <p className="text-blue-100 text-sm">
+                  Thank you for registering
+                </p>
               </div>
 
               {/* Card Content */}
-              <div className="p-5">
+              <div className="p-6">
                 {/* Attendee Details Section */}
-                <div className="mb-4 pb-4 border-b-2 border-blue-100">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
-                    <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Attendee Details</h3>
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-1 h-5 bg-orange-500"></div>
+                    <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Attendee Details</h3>
                   </div>
                   <p className="text-xl font-bold text-gray-900 mb-1">{registrationData?.name}</p>
                   <p className="text-sm text-gray-600">{registrationData?.email}</p>
@@ -687,40 +684,28 @@ export default function EventDetailPage() {
                 </div>
 
                 {/* Event Details Section */}
-                <div className="mb-4 pb-4 border-b-2 border-blue-100">
+                <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
-                    <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Event Details</h3>
+                    <div className="w-1 h-5 bg-orange-500"></div>
+                    <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Event Details</h3>
                   </div>
                   <h2 className="text-lg font-bold text-gray-900 mb-3">{event?.title}</h2>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     <div className="flex items-center gap-3">
-                      <div className="bg-blue-50 p-2 rounded-lg">
-                        <Calendar className="h-4 w-4 text-[#1D50C9]" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
-                      </div>
+                      <Calendar className="h-5 w-5 text-[#1D50C9]" />
+                      <p className="text-sm text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
                     </div>
                     
                     <div className="flex items-center gap-3">
-                      <div className="bg-orange-50 p-2 rounded-lg">
-                        <Clock className="h-4 w-4 text-orange-600" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'h:mm a')}</p>
-                      </div>
+                      <Clock className="h-5 w-5 text-orange-500" />
+                      <p className="text-sm text-gray-900">10:00 AM to 5:00 PM</p>
                     </div>
                     
                     {event?.venue && (
                       <div className="flex items-center gap-3">
-                        <div className="bg-blue-50 p-2 rounded-lg">
-                          <MapPin className="h-4 w-4 text-[#1D50C9]" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900">{event.venue}</p>
-                        </div>
+                        <MapPin className="h-5 w-5 text-[#1D50C9]" />
+                        <p className="text-sm text-gray-900">{event.venue}</p>
                       </div>
                     )}
                   </div>
@@ -728,30 +713,53 @@ export default function EventDetailPage() {
 
                 {/* QR Code Section */}
                 {registrationData?.qrCodeUrl && (
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
-                      <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Your Entry Pass</h3>
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-1 h-5 bg-orange-500"></div>
+                      <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Your Entry Pass</h3>
                     </div>
-                    <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 p-4 rounded-xl border-2 border-blue-100 inline-block">
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                       <img 
                         src={registrationData.qrCodeUrl} 
                         alt="Event QR Code" 
                         className="w-40 h-40 mx-auto"
                       />
                     </div>
-                    <p className="text-xs text-gray-600 mt-3">
+                    <p className="text-xs text-gray-600 mt-3 text-center">
                       Show this QR code at the event entrance
                     </p>
                   </div>
                 )}
 
                 {/* Prize Info */}
-                <div className="mt-4 bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-3 rounded-r-lg">
+                <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-md">
                   <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
-                    <span className="text-lg">🎁</span>
+                    <span className="text-base">🎁</span>
                     <span>Scan at event to win exciting prizes!</span>
                   </p>
+                </div>
+
+                {/* Dunya Consultants Branding */}
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="text-center">
+                    <h3 className="text-lg font-bold text-[#1D50C9] mb-2">DUNYA CONSULTANTS</h3>
+                    {event?.venue && (
+                      <p className="text-xs text-gray-600">
+                        {event.venue.includes('Bahawalpur') && 'Path Visa Consultants Office, Bahawalpur'}
+                        {event.venue.includes('Lahore') && 'Office 123, Main Boulevard, Lahore'}
+                        {event.venue.includes('Islamabad') && 'F-7 Markaz, Islamabad'}
+                        {event.venue.includes('Karachi') && 'Clifton Block 5, Karachi'}
+                        {!event.venue.includes('Bahawalpur') && !event.venue.includes('Lahore') && !event.venue.includes('Islamabad') && !event.venue.includes('Karachi') && event.venue}
+                      </p>
+                    )}
+                    <p className="text-xs text-gray-600 mt-1">
+                      {event?.venue?.includes('Bahawalpur') && '+92 326 1111947'}
+                      {event?.venue?.includes('Lahore') && '+92 300 1234567'}
+                      {event?.venue?.includes('Islamabad') && '+92 51 1234567'}
+                      {event?.venue?.includes('Karachi') && '+92 21 1234567'}
+                      {!event?.venue?.includes('Bahawalpur') && !event?.venue?.includes('Lahore') && !event?.venue?.includes('Islamabad') && !event?.venue?.includes('Karachi') && '+92 326 1111947'}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -769,7 +777,7 @@ export default function EventDetailPage() {
               </Button>
               <Button
                 onClick={() => setShowSuccessModal(false)}
-                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg"
+                className="flex-1 bg-[#1D50C9] text-white hover:bg-[#1640a3]"
               >
                 Close
               </Button>
