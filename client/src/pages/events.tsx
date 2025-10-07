@@ -369,7 +369,7 @@ export default function EventsPage() {
                     <CardContent>
                       <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
                       <Button
-                        onClick={() => window.location.href = `/events/${event.slug}`}
+                        onClick={() => window.location.href = `/events/register-now?event=${event.slug}`}
                         className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
                         data-testid={`button-register-${event.id}`}
                       >
