@@ -404,10 +404,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
                     <p style="margin: 0; color: #333;"><strong>🎁 Prize Eligibility:</strong> Scan this QR code at the event to become eligible for a prize. Prizes will be distributed within 7-10 days after the event.</p>
                   </div>
                   <p style="font-size: 14px; color: #666;">We look forward to seeing you at the event!</p>
-                  <p style="font-size: 14px; color: #666;">Best regards,<br><strong>Path Visa Consultants Team</strong></p>
+                  <p style="font-size: 14px; color: #666;">Best regards,<br><strong>Dunya Consultants Team</strong></p>
                 </div>
                 <div style="background: #333; padding: 20px; text-align: center; color: #999; font-size: 12px;">
-                  <p style="margin: 0;">© ${new Date().getFullYear()} Path Visa Consultants. All rights reserved.</p>
+                  <p style="margin: 0;">© ${new Date().getFullYear()} Dunya Consultants. All rights reserved.</p>
                 </div>
               </div>
             `,

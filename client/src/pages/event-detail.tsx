@@ -745,19 +745,15 @@ export default function EventDetailPage() {
                     <h3 className="text-lg font-bold text-[#1D50C9] mb-2">DUNYA CONSULTANTS</h3>
                     {event?.venue && (
                       <p className="text-xs text-gray-600">
-                        {event.venue.includes('Bahawalpur') && 'Path Visa Consultants Office, Bahawalpur'}
-                        {event.venue.includes('Lahore') && 'Office 123, Main Boulevard, Lahore'}
-                        {event.venue.includes('Islamabad') && 'F-7 Markaz, Islamabad'}
-                        {event.venue.includes('Karachi') && 'Clifton Block 5, Karachi'}
-                        {!event.venue.includes('Bahawalpur') && !event.venue.includes('Lahore') && !event.venue.includes('Islamabad') && !event.venue.includes('Karachi') && event.venue}
+                        {event.venue}
                       </p>
                     )}
                     <p className="text-xs text-gray-600 mt-1">
-                      {event?.venue?.includes('Bahawalpur') && '+92 326 1111947'}
+                      {event?.venue?.includes('Bahawalpur') && '+92 300-1731947'}
                       {event?.venue?.includes('Lahore') && '+92 300 1234567'}
                       {event?.venue?.includes('Islamabad') && '+92 51 1234567'}
                       {event?.venue?.includes('Karachi') && '+92 21 1234567'}
-                      {!event?.venue?.includes('Bahawalpur') && !event?.venue?.includes('Lahore') && !event?.venue?.includes('Islamabad') && !event?.venue?.includes('Karachi') && '+92 326 1111947'}
+                      {!event?.venue?.includes('Bahawalpur') && !event?.venue?.includes('Lahore') && !event?.venue?.includes('Islamabad') && !event?.venue?.includes('Karachi') && '+92 300-1731947'}
                     </p>
                   </div>
                 </div>

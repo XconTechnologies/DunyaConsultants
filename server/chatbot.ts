@@ -46,7 +46,7 @@ function getResponseForQuery(message: string): string {
     
     // Greetings
     if (chatbotResponses.greetings.some(word => lowerMessage.includes(word))) {
-        return "Hello! Welcome to Path Visa Consultants. I'm here to help you with your study abroad journey. You can ask me about:\n\n• Study destinations (USA, UK, Canada, Australia, Finland, Belgium, Turkey)\n• Visa requirements and applications\n• University selection and scholarships\n• IELTS and other English tests\n• Document requirements\n\nHow can I assist you today?";
+        return "Hello! Welcome to Dunya Consultants. I'm here to help you with your study abroad journey. You can ask me about:\n\n• Study destinations (USA, UK, Canada, Australia, Finland, Belgium, Turkey)\n• Visa requirements and applications\n• University selection and scholarships\n• IELTS and other English tests\n• Document requirements\n\nHow can I assist you today?";
     }
     
     // USA specific queries
@@ -116,7 +116,7 @@ export async function getChatbotResponse(message: string, context?: string): Pro
         
     } catch (error) {
         console.error("Chatbot error:", error);
-        return "I'm temporarily unable to assist you. Please contact Path Visa Consultants directly at our office for immediate help with your study abroad needs.";
+        return "I'm temporarily unable to assist you. Please contact Dunya Consultants directly at our office for immediate help with your study abroad needs.";
     }
 }
 

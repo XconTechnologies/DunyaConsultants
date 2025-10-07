@@ -1,7 +1,7 @@
-# Path Visa Consultants
+# Dunya Consultants
 
 ## Overview
-Path Visa Consultants is a full-stack web application for visa consultation services for students aiming to study abroad. Its vision is to be Pakistan's most trusted visa consultancy, leveraging technology to streamline the student journey from consultation to pre-departure. The application features a professional dark blue gradient design with custom branding.
+Dunya Consultants is a full-stack web application for visa consultation services for students aiming to study abroad. Its vision is to be Pakistan's most trusted visa consultancy, leveraging technology to streamline the student journey from consultation to pre-departure. The application features a professional dark blue gradient design with custom branding.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

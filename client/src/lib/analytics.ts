@@ -1,4 +1,4 @@
-// Google Analytics integration for Path Visa Consultants
+// Google Analytics integration for Dunya Consultants
 // Based on javascript_google_analytics blueprint
 
 // Define the gtag function globally

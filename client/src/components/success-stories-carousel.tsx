@@ -9,14 +9,14 @@ export default function SuccessStoriesCarousel() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Real Google Reviews from Path Visa Consultants
+  // Real Google Reviews from Dunya Consultants
   const googleReviews = [
     {
       id: 1,
       name: "Syed Muhammad Ali",
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      review: "Excellent service! Path Visa helped me throughout my visa process for Canada. The staff is very professional and supportive. Highly recommended for anyone looking to study abroad.",
+      review: "Excellent service! Dunya Consultants helped me throughout my visa process for Canada. The staff is very professional and supportive. Highly recommended for anyone looking to study abroad.",
       date: "2 months ago",
       verified: true,
       service: "Canada Student Visa"
@@ -26,7 +26,7 @@ export default function SuccessStoriesCarousel() {
       name: "Fatima Shahzad",
       rating: 5,
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b1b5?w=150&h=150&fit=crop&crop=face",
-      review: "Amazing experience with Path Visa! They guided me step by step for my Australian student visa. The team is knowledgeable and always available to answer questions. Got my visa approved successfully!",
+      review: "Amazing experience with Dunya Consultants! They guided me step by step for my Australian student visa. The team is knowledgeable and always available to answer questions. Got my visa approved successfully!",
       date: "1 month ago",
       verified: true,
       service: "Australia Student Visa"
@@ -36,7 +36,7 @@ export default function SuccessStoriesCarousel() {
       name: "Ahmed Khan",
       rating: 5,
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      review: "Professional service and excellent guidance. Path Visa made my UK visa process very smooth. Their counselors are experienced and provide accurate information. Totally satisfied with their services.",
+      review: "Professional service and excellent guidance. Dunya Consultants made my UK visa process very smooth. Their counselors are experienced and provide accurate information. Totally satisfied with their services.",
       date: "3 weeks ago",
       verified: true,
       service: "UK Student Visa"

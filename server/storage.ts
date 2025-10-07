@@ -610,7 +610,7 @@ export class DatabaseStorage implements IStorage {
             approverId: row.approverId,
             createdAt: row.createdAt,
             updatedAt: row.updatedAt,
-            authorName: row.authorName || 'Path Visa Consultants',
+            authorName: row.authorName || 'Dunya Consultants',
             categories: []
           };
         }
@@ -668,7 +668,7 @@ export class DatabaseStorage implements IStorage {
       
       return posts.map(post => ({
         ...post,
-        authorName: post.authorName || 'Path Visa Consultants'
+        authorName: post.authorName || 'Dunya Consultants'
       }));
     }
     
@@ -703,7 +703,7 @@ export class DatabaseStorage implements IStorage {
     
     return posts.map(post => ({
       ...post,
-      authorName: post.authorName || 'Path Visa Consultants'
+      authorName: post.authorName || 'Dunya Consultants'
     }));
   }
 
