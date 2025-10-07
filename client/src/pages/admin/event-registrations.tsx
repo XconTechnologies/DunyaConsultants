@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import AdminSidebar from "@/components/admin/sidebar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -9,9 +10,18 @@ import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin } f
 import type { Event, EventRegistration } from "@shared/schema";
 
 export default function EventRegistrationsPage() {
-  const { data: adminUser } = useQuery({
+  const [, setLocation] = useLocation();
+  
+  const { data: adminUser, isError } = useQuery({
     queryKey: ["/api/admin/me"],
   });
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (isError) {
+      setLocation("/admin/login");
+    }
+  }, [isError, setLocation]);
 
   const { data: events } = useQuery<Event[]>({
     queryKey: ["/api/events"],

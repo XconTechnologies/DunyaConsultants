@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,10 +14,18 @@ export default function QRScannerPage() {
   const [qrToken, setQrToken] = useState("");
   const [lastScan, setLastScan] = useState<any>(null);
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
 
-  const { data: adminUser } = useQuery({
+  const { data: adminUser, isError } = useQuery({
     queryKey: ["/api/admin/me"],
   });
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (isError) {
+      setLocation("/admin/login");
+    }
+  }, [isError, setLocation]);
 
   const scanMutation = useMutation({
     mutationFn: async (token: string) => {
