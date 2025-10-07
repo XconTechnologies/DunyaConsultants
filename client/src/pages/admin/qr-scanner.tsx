@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,23 +9,58 @@ import { useToast } from "@/hooks/use-toast";
 import AdminSidebar from "@/components/admin/sidebar";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { QrCode, CheckCircle2 } from "lucide-react";
+import type { AdminUser } from "@shared/schema";
 
 export default function QRScannerPage() {
+  const [, setLocation] = useLocation();
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const [qrToken, setQrToken] = useState("");
   const [lastScan, setLastScan] = useState<any>(null);
   const { toast } = useToast();
 
-  const { data: adminUser } = useQuery({
-    queryKey: ["/api/admin/me"],
-  });
+  // Check authentication
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+    const adminUserStr = localStorage.getItem("adminUser");
+    const userToken = localStorage.getItem("userToken");
+    const userStr = localStorage.getItem("user");
+
+    const token = adminToken || userToken;
+    const user = adminUserStr || userStr;
+
+    if (!token || !user) {
+      setLocation("/admin/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setAdminUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/admin/login");
+    }
+  }, [setLocation]);
 
   const scanMutation = useMutation({
     mutationFn: async (token: string) => {
-      return await apiRequest({
-        url: "/api/admin/scan-attendance",
+      const adminToken = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
+      const response = await fetch("/api/admin/scan-attendance", {
         method: "POST",
-        body: { token }
+        headers: {
+          "Content-Type": "application/json",
+          ...(adminToken && { "Authorization": `Bearer ${adminToken}` })
+        },
+        body: JSON.stringify({ token })
       });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to scan");
+      }
+      
+      return response.json();
     },
     onSuccess: (data) => {
       setLastScan(data);
@@ -68,7 +104,7 @@ export default function QRScannerPage() {
     scanMutation.mutate(qrToken.trim());
   };
 
-  if (!adminUser) {
+  if (!authChecked || !adminUser) {
     return null;
   }
 

@@ -1,27 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import AdminSidebar from "@/components/admin/sidebar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin } from "lucide-react";
-import type { Event, EventRegistration } from "@shared/schema";
+import type { Event, EventRegistration, AdminUser } from "@shared/schema";
 
 export default function EventRegistrationsPage() {
-  const { data: adminUser } = useQuery({
-    queryKey: ["/api/admin/me"],
-  });
+  const [, setLocation] = useLocation();
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  // Check authentication
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+    const adminUserStr = localStorage.getItem("adminUser");
+    const userToken = localStorage.getItem("userToken");
+    const userStr = localStorage.getItem("user");
+
+    const token = adminToken || userToken;
+    const user = adminUserStr || userStr;
+
+    if (!token || !user) {
+      setLocation("/admin/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setAdminUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/admin/login");
+    }
+  }, [setLocation]);
 
   const { data: events } = useQuery<Event[]>({
     queryKey: ["/api/events"],
+    enabled: authChecked,
   });
 
   const { data: registrations } = useQuery<EventRegistration[]>({
     queryKey: ["/api/events/registrations/all"],
+    enabled: authChecked,
   });
 
-  if (!adminUser) {
+  if (!authChecked || !adminUser) {
     return null;
   }
 
@@ -77,7 +104,7 @@ export default function EventRegistrationsPage() {
 
               {eventsWithRegistrations.map((event: Event) => {
                 const eventRegs = registrationsByEvent[event.id] || [];
-                const attendedCount = eventRegs.filter((r: EventRegistration) => r.attended).length;
+                const attendedCount = eventRegs.filter((r: EventRegistration) => r.isAttended).length;
                 const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
 
                 return (
@@ -134,7 +161,7 @@ export default function EventRegistrationsPage() {
                               {eventRegs.map((reg: EventRegistration) => (
                                 <TableRow key={reg.id}>
                                   <TableCell>
-                                    <div className="font-medium">{reg.firstName} {reg.lastName}</div>
+                                    <div className="font-medium">{reg.name}</div>
                                   </TableCell>
                                   <TableCell>
                                     <div className="space-y-1 text-sm text-gray-600">
@@ -151,7 +178,7 @@ export default function EventRegistrationsPage() {
                                   <TableCell>
                                     <div className="flex items-center gap-1 text-sm">
                                       <GraduationCap className="h-3 w-3 text-gray-500" />
-                                      {reg.educationLevel}
+                                      {reg.education || 'Not specified'}
                                     </div>
                                   </TableCell>
                                   <TableCell>
@@ -161,7 +188,7 @@ export default function EventRegistrationsPage() {
                                     </div>
                                   </TableCell>
                                   <TableCell>
-                                    {reg.attended ? (
+                                    {reg.isAttended ? (
                                       <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
                                         <CheckCircle2 className="h-3 w-3 mr-1" />
                                         Attended
