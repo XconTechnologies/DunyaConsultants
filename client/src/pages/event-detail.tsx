@@ -616,7 +616,7 @@ export default function EventDetailPage() {
 
       {/* Success Modal with QR Code */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-0 shadow-2xl p-4 sm:p-6">
+        <DialogContent className="max-w-md max-h-[85vh] overflow-y-auto border-0 shadow-2xl p-4 sm:p-6">
           <div className="text-center">
             {/* Success Icon */}
             <div className="mx-auto flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] mb-3 sm:mb-4">
@@ -636,30 +636,30 @@ export default function EventDetailPage() {
 
             {/* QR Code Display */}
             {registrationData?.qrCodeUrl && (
-              <div className="my-4 sm:my-6 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3">Your Event QR Code</h3>
-                <div className="bg-white p-3 sm:p-4 rounded-lg shadow-md inline-block w-full max-w-[280px] sm:max-w-none">
+              <div className="my-3 sm:my-4 p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Your Event QR Code</h3>
+                <div className="bg-white p-2 sm:p-3 rounded-lg shadow-md inline-block">
                   <img 
                     src={registrationData.qrCodeUrl} 
                     alt="Event QR Code" 
-                    className="w-full max-w-[200px] sm:max-w-[256px] h-auto mx-auto"
+                    className="w-40 h-40 sm:w-48 sm:h-48 mx-auto"
                   />
                 </div>
-                <p className="text-xs sm:text-sm text-gray-600 mt-3 sm:mt-4 leading-relaxed px-2">
+                <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                   Save this QR code or check your email! Show it to our staff on the event date.
                 </p>
               </div>
             )}
 
             {/* Prize Information */}
-            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-[#1D50C9] p-3 sm:p-4 rounded-r-lg mb-4 sm:mb-6">
+            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-[#1D50C9] p-3 rounded-r-lg mb-3 sm:mb-4">
               <div className="flex items-start">
                 <div className="flex-shrink-0">
-                  <span className="text-xl sm:text-2xl">🎁</span>
+                  <span className="text-xl">🎁</span>
                 </div>
-                <div className="ml-2 sm:ml-3 text-left">
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-900">Prize Eligibility</h3>
-                  <p className="text-xs sm:text-sm text-gray-700 mt-1">
+                <div className="ml-2 text-left">
+                  <h3 className="text-xs font-semibold text-gray-900">Prize Eligibility</h3>
+                  <p className="text-xs text-gray-700 mt-1">
                     Scan this QR code at the event to become eligible for a special prize!
                     Prizes will be distributed within 7-10 days after the event.
                   </p>

@@ -28,6 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 // Serve attached assets statically
 app.use('/attached_assets', express.static('attached_assets'));
 
+// Serve QR codes statically
+app.use('/qr-codes', express.static('public/qr-codes'));
+
 // Serve robots.txt before other routes
 app.get("/robots.txt", (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
