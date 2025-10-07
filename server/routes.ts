@@ -377,39 +377,131 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // Send confirmation email using SendGrid
         if (process.env.SENDGRID_API_KEY) {
+          const cityName = event.venue?.split(',')[0] || event.location || 'your city';
+          const eventDateFormatted = new Date(event.eventDate).toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          });
+          const baseUrl = process.env.REPL_ID 
+            ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` 
+            : 'http://localhost:5000';
+          
           const emailData = {
             to: registration.email,
-            from: process.env.SENDGRID_FROM_EMAIL || 'noreply@pathvisaconsultants.com',
-            subject: `Registration Confirmed: ${event.title}`,
+            from: process.env.SENDGRID_FROM_EMAIL || 'noreply@dunyaconsultants.com',
+            subject: `Registration Confirmed: ${event.title} - Dunya Consultants`,
             html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <div style="background: linear-gradient(135deg, #1D50C9 0%, #0f3a8a 100%); padding: 30px; text-align: center;">
-                  <h1 style="color: white; margin: 0;">Registration Confirmed!</h1>
-                </div>
-                <div style="padding: 30px; background: #f9f9f9;">
-                  <p style="font-size: 16px; color: #333;">Dear ${registration.name},</p>
-                  <p style="font-size: 14px; color: #666;">Thank you for registering for <strong>${event.title}</strong>!</p>
-                  <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
-                    <h2 style="color: #1D50C9; margin-top: 0;">Your Event QR Code</h2>
-                    <img src="${process.env.REPL_ID ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co${qrCodeUrl}` : `http://localhost:5000${qrCodeUrl}`}" alt="QR Code" style="max-width: 300px;" />
-                    <p style="color: #666; margin-top: 15px;">Please show this QR code to our staff on the event date to receive your special prize!</p>
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              </head>
+              <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+                  
+                  <!-- Logo Header -->
+                  <div style="background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 3px solid #1D50C9;">
+                    <h1 style="color: #1D50C9; font-size: 32px; font-weight: bold; margin: 0; letter-spacing: 1px;">DUNYA CONSULTANTS</h1>
+                    <p style="color: #666; font-size: 12px; margin: 5px 0 0 0; letter-spacing: 0.5px;">Turning Ambition into Admission</p>
                   </div>
-                  <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                    <h3 style="color: #1D50C9; margin-top: 0;">Event Details</h3>
-                    <p style="margin: 5px 0;"><strong>Event:</strong> ${event.title}</p>
-                    <p style="margin: 5px 0;"><strong>Date:</strong> ${new Date(event.eventDate).toLocaleDateString()}</p>
-                    <p style="margin: 5px 0;"><strong>Venue:</strong> ${event.venue || 'TBA'}</p>
+
+                  <!-- Event Banner -->
+                  ${event.bannerImage ? `
+                  <div style="width: 100%; overflow: hidden;">
+                    <img src="${baseUrl}${event.bannerImage}" alt="${event.title}" style="width: 100%; height: auto; display: block;" />
                   </div>
-                  <div style="background: #e8f4f8; padding: 15px; border-left: 4px solid #1D50C9; margin: 20px 0;">
-                    <p style="margin: 0; color: #333;"><strong>🎁 Prize Eligibility:</strong> Scan this QR code at the event to become eligible for a prize. Prizes will be distributed within 7-10 days after the event.</p>
+                  ` : ''}
+
+                  <!-- Main Content -->
+                  <div style="padding: 40px 30px;">
+                    
+                    <!-- Greeting -->
+                    <p style="font-size: 16px; color: #333; margin: 0 0 20px 0;">Hi ${registration.name},</p>
+                    
+                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 15px 0;">
+                      Congratulations, you've registered for <strong>Dunya Consultants ${event.title}</strong> in <strong>${cityName}</strong>; Turning Ambition into Admission
+                    </p>
+                    
+                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 15px 0;">
+                      All the details you need to attend the event can be found below.
+                    </p>
+                    
+                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 30px 0;">
+                      We look forward to meeting you there.
+                    </p>
+
+                    <!-- User Details Box -->
+                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                      <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">Your Details</h3>
+                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Name:</strong> ${registration.name}</p>
+                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Email:</strong> ${registration.email}</p>
+                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Phone:</strong> ${registration.phone}</p>
+                      ${registration.education ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Education Level:</strong> ${registration.education}</p>` : ''}
+                      ${registration.destination ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Study Destination:</strong> ${registration.destination}</p>` : ''}
+                    </div>
+
+                    <!-- Event Details Box -->
+                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                      <h2 style="color: #1D50C9; font-size: 18px; font-weight: bold; margin: 0 0 15px 0;">${event.title}</h2>
+                      
+                      <div style="margin: 12px 0;">
+                        <div style="display: inline-block; vertical-align: top; width: 20px;">
+                          <span style="color: #1D50C9;">📅</span>
+                        </div>
+                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
+                          <p style="margin: 0; color: #333; font-size: 14px;">${eventDateFormatted}</p>
+                        </div>
+                      </div>
+                      
+                      <div style="margin: 12px 0;">
+                        <div style="display: inline-block; vertical-align: top; width: 20px;">
+                          <span style="color: #FF6B35;">🕐</span>
+                        </div>
+                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
+                          <p style="margin: 0; color: #333; font-size: 14px;">10:00 AM to 5:00 PM</p>
+                        </div>
+                      </div>
+                      
+                      ${event.venue ? `
+                      <div style="margin: 12px 0;">
+                        <div style="display: inline-block; vertical-align: top; width: 20px;">
+                          <span style="color: #1D50C9;">📍</span>
+                        </div>
+                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
+                          <p style="margin: 0; color: #333; font-size: 14px;">${event.venue}</p>
+                        </div>
+                      </div>
+                      ` : ''}
+                    </div>
+
+                    <!-- QR Code Section -->
+                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 20px;">
+                      <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">Your QR Code</h3>
+                      <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px;">
+                        <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 200px; height: 200px; display: block;" />
+                      </div>
+                      <p style="color: #666; font-size: 13px; margin: 15px 0 0 0;">Check in with this QR code upon arrival at the event.</p>
+                    </div>
+
                   </div>
-                  <p style="font-size: 14px; color: #666;">We look forward to seeing you at the event!</p>
-                  <p style="font-size: 14px; color: #666;">Best regards,<br><strong>Dunya Consultants Team</strong></p>
+
+                  <!-- Blue Footer -->
+                  <div style="background-color: #1D50C9; padding: 30px 20px; text-align: center;">
+                    <p style="color: #ffffff; font-size: 12px; line-height: 1.6; margin: 0 0 15px 0;">
+                      This is an auto-generated service email triggered by your event registration.<br>
+                      If you no longer wish to be registered for this event, please contact us.
+                    </p>
+                    <p style="color: #ffffff; font-size: 12px; margin: 0;">
+                      © 2025 Dunya Consultants All rights reserved
+                    </p>
+                  </div>
+
                 </div>
-                <div style="background: #333; padding: 20px; text-align: center; color: #999; font-size: 12px;">
-                  <p style="margin: 0;">© ${new Date().getFullYear()} Dunya Consultants. All rights reserved.</p>
-                </div>
-              </div>
+              </body>
+              </html>
             `,
           };
 
