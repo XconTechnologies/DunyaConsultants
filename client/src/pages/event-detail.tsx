@@ -455,7 +455,7 @@ export default function EventDetailPage() {
       </section>
       {/* Registration Modal */}
       <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
-        <DialogContent className="max-w-2xl border-0 shadow-2xl">
+        <DialogContent className="max-w-2xl border-0 shadow-2xl overflow-hidden">
           <DialogHeader>
             <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
               Register for {event.title}
@@ -464,7 +464,7 @@ export default function EventDetailPage() {
               Fill in your details below to secure your spot at this event.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-5 mt-4">
+          <div className="space-y-5 mt-4 overflow-visible">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* First Name - Floating Label */}
               <div className="relative">
