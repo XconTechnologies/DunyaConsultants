@@ -650,7 +650,7 @@ export default function EventDetailPage() {
 
       {/* Success Modal with QR Code - Canva Style Card */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="max-w-md p-0 border-0 shadow-2xl overflow-hidden">
+        <DialogContent className="max-w-3xl p-0 border-0 shadow-2xl overflow-hidden">
           <DialogTitle className="sr-only">Registration Confirmation</DialogTitle>
           <div className="relative">
             {/* Downloadable Card */}
@@ -670,77 +670,85 @@ export default function EventDetailPage() {
                 </p>
               </div>
 
-              {/* Card Content */}
-              <div className="p-6">
-                {/* Attendee Details Section */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-1 h-5 bg-orange-500"></div>
-                    <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Attendee Details</h3>
-                  </div>
-                  <p className="text-xl font-bold text-gray-900 mb-1">{registrationData?.name}</p>
-                  <p className="text-sm text-gray-600">{registrationData?.email}</p>
-                  <p className="text-sm text-gray-600">{registrationData?.phone}</p>
-                </div>
-
-                {/* Event Details Section */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-1 h-5 bg-orange-500"></div>
-                    <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Event Details</h3>
-                  </div>
-                  <h2 className="text-lg font-bold text-gray-900 mb-3">{event?.title}</h2>
-                  
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-3">
-                      <Calendar className="h-5 w-5 text-[#1D50C9]" />
-                      <p className="text-sm text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
-                    </div>
-                    
-                    <div className="flex items-center gap-3">
-                      <Clock className="h-5 w-5 text-orange-500" />
-                      <p className="text-sm text-gray-900">10:00 AM to 5:00 PM</p>
-                    </div>
-                    
-                    {event?.venue && (
-                      <div className="flex items-center gap-3">
-                        <MapPin className="h-5 w-5 text-[#1D50C9]" />
-                        <p className="text-sm text-gray-900">{event.venue}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* QR Code Section */}
-                {registrationData?.qrCodeUrl && (
+              {/* Card Content - Two Column Layout */}
+              <div className="p-6 flex gap-6">
+                {/* Left Column: Attendee & Event Details */}
+                <div className="flex-1">
+                  {/* Attendee Details Section */}
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-5 bg-orange-500"></div>
-                      <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Your Entry Pass</h3>
+                      <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Attendee Details</h3>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                      <img 
-                        src={registrationData.qrCodeUrl} 
-                        alt="Event QR Code" 
-                        className="w-40 h-40 mx-auto"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-600 mt-3 text-center">
-                      Show this QR code at the event entrance
-                    </p>
+                    <p className="text-xl font-bold text-gray-900 mb-1">{registrationData?.name}</p>
+                    <p className="text-sm text-gray-600">{registrationData?.email}</p>
+                    <p className="text-sm text-gray-600">{registrationData?.phone}</p>
                   </div>
-                )}
 
-                {/* Prize Info */}
-                <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-md">
-                  <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
-                    <span className="text-base">🎁</span>
-                    <span>Scan at event to win exciting prizes!</span>
-                  </p>
+                  {/* Event Details Section */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-1 h-5 bg-orange-500"></div>
+                      <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Event Details</h3>
+                    </div>
+                    <h2 className="text-lg font-bold text-gray-900 mb-3">{event?.title}</h2>
+                    
+                    <div className="space-y-2.5">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="h-5 w-5 text-[#1D50C9]" />
+                        <p className="text-sm text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <Clock className="h-5 w-5 text-orange-500" />
+                        <p className="text-sm text-gray-900">10:00 AM to 5:00 PM</p>
+                      </div>
+                      
+                      {event?.venue && (
+                        <div className="flex items-center gap-3">
+                          <MapPin className="h-5 w-5 text-[#1D50C9]" />
+                          <p className="text-sm text-gray-900">{event.venue}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Dunya Consultants Branding */}
-                <div className="mt-6 pt-4 border-t border-gray-200">
+                {/* Right Column: QR Code & Prize Info */}
+                <div className="w-72 flex flex-col">
+                  {/* QR Code Section */}
+                  {registrationData?.qrCodeUrl && (
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-1 h-5 bg-orange-500"></div>
+                        <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Your Entry Pass</h3>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img 
+                          src={registrationData.qrCodeUrl} 
+                          alt="Event QR Code" 
+                          className="w-full h-auto mx-auto"
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 mt-2 text-center">
+                        Show this QR code at the event entrance
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Prize Info */}
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-md">
+                    <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
+                      <span className="text-base">🎁</span>
+                      <span>Scan at event to win exciting prizes!</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dunya Consultants Branding */}
+              <div className="px-6 pb-6">
+                <div className="pt-4 border-t border-gray-200">
                   <div className="text-center">
                     <h3 className="text-lg font-bold text-[#1D50C9] mb-2">DUNYA CONSULTANTS</h3>
                     {event?.venue && (
