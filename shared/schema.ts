@@ -383,8 +383,15 @@ export const eventRegistrations = pgTable("event_registrations", {
   phone: text("phone").notNull(),
   education: text("education"),
   destination: text("destination"),
-  additionalInfo: text("additional_info"),
-  status: text("status").default("pending"),
+  token: text("token").notNull().unique(), // Unique token for QR code validation
+  qrCodeUrl: text("qr_code_url"), // URL/path to generated QR code image
+  sheetRowId: text("sheet_row_id"), // Row ID in Google Sheets
+  isAttended: boolean("is_attended").default(false).notNull(),
+  attendedAt: timestamp("attended_at"),
+  prizeStatus: text("prize_status", { enum: ["pending", "eligible", "distributed"] }).default("pending").notNull(),
+  prizeReadyAt: timestamp("prize_ready_at"), // Date when prize becomes available (event date + 1-2 weeks)
+  prizeDistributedAt: timestamp("prize_distributed_at"),
+  status: text("status").default("confirmed").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -606,6 +613,15 @@ export const insertEventSchema = createInsertSchema(events).omit({
 
 export const insertEventRegistrationSchema = createInsertSchema(eventRegistrations).omit({
   id: true,
+  token: true, // Server-generated
+  qrCodeUrl: true, // Server-generated
+  sheetRowId: true, // Server-generated
+  isAttended: true,
+  attendedAt: true,
+  prizeStatus: true,
+  prizeReadyAt: true,
+  prizeDistributedAt: true,
+  status: true,
   createdAt: true,
 });
 
