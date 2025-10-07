@@ -648,98 +648,116 @@ export default function EventDetailPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Success Modal with QR Code - Full Size Card */}
+      {/* Success Modal with QR Code - Compact Professional Card */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto border-0 shadow-2xl p-0">
+        <DialogContent className="max-w-md p-0 border-0 shadow-2xl overflow-hidden">
           <div className="relative">
             {/* Downloadable Card */}
-            <div ref={cardRef} className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] p-8 sm:p-12">
-              {/* Header */}
-              <div className="text-center mb-8">
-                <div className="mx-auto flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-white/20 mb-4">
-                  <CheckCircle className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+            <div ref={cardRef} className="bg-white">
+              {/* Blue Header with Orange Accent */}
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] p-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-orange-500/20 rounded-full -ml-12 -mb-12"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full">
+                      <CheckCircle className="h-8 w-8 text-white" />
+                    </div>
+                  </div>
+                  <h1 className="text-2xl font-bold text-white text-center mb-1">
+                    Registration Confirmed!
+                  </h1>
+                  <p className="text-blue-100 text-center text-sm">
+                    Thank you for registering
+                  </p>
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-                  Registration Confirmed!
-                </h1>
-                <p className="text-blue-100 text-lg">
-                  You're all set for the event
-                </p>
               </div>
 
-              {/* Main Card Content */}
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-2xl">
-                {/* Attendee Info */}
-                <div className="mb-6 pb-6 border-b border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Attendee Details</h3>
-                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{registrationData?.name}</p>
-                  <p className="text-gray-600">{registrationData?.email}</p>
-                  <p className="text-gray-600">{registrationData?.phone}</p>
+              {/* Card Content */}
+              <div className="p-5">
+                {/* Attendee Details Section */}
+                <div className="mb-4 pb-4 border-b-2 border-blue-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
+                    <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Attendee Details</h3>
+                  </div>
+                  <p className="text-xl font-bold text-gray-900 mb-1">{registrationData?.name}</p>
+                  <p className="text-sm text-gray-600">{registrationData?.email}</p>
+                  <p className="text-sm text-gray-600">{registrationData?.phone}</p>
                 </div>
 
-                {/* Event Details */}
-                <div className="mb-6 pb-6 border-b border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Event Details</h3>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">{event?.title}</h2>
+                {/* Event Details Section */}
+                <div className="mb-4 pb-4 border-b-2 border-blue-100">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
+                    <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Event Details</h3>
+                  </div>
+                  <h2 className="text-lg font-bold text-gray-900 mb-3">{event?.title}</h2>
                   
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <Calendar className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
-                        <p className="text-gray-600 text-sm">Event Date</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-blue-50 p-2 rounded-lg">
+                        <Calendar className="h-4 w-4 text-[#1D50C9]" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start gap-3">
-                      <Clock className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'h:mm a')}</p>
-                        <p className="text-gray-600 text-sm">Time</p>
+                    <div className="flex items-center gap-3">
+                      <div className="bg-orange-50 p-2 rounded-lg">
+                        <Clock className="h-4 w-4 text-orange-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'h:mm a')}</p>
                       </div>
                     </div>
                     
                     {event?.venue && (
-                      <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
-                        <div>
-                          <p className="font-semibold text-gray-900">{event.venue}</p>
-                          <p className="text-gray-600 text-sm">Venue</p>
+                      <div className="flex items-center gap-3">
+                        <div className="bg-blue-50 p-2 rounded-lg">
+                          <MapPin className="h-4 w-4 text-[#1D50C9]" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold text-gray-900">{event.venue}</p>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* QR Code */}
+                {/* QR Code Section */}
                 {registrationData?.qrCodeUrl && (
                   <div className="text-center">
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Your Entry Pass</h3>
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl inline-block">
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
+                      <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide">Your Entry Pass</h3>
+                    </div>
+                    <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 p-4 rounded-xl border-2 border-blue-100 inline-block">
                       <img 
                         src={registrationData.qrCodeUrl} 
                         alt="Event QR Code" 
-                        className="w-48 h-48 sm:w-56 sm:h-56 mx-auto"
+                        className="w-40 h-40 mx-auto"
                       />
                     </div>
-                    <p className="text-sm text-gray-600 mt-4">
+                    <p className="text-xs text-gray-600 mt-3">
                       Show this QR code at the event entrance
                     </p>
                   </div>
                 )}
-              </div>
 
-              {/* Prize Banner */}
-              <div className="mt-6 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-xl p-4 text-center">
-                <p className="text-gray-900 font-semibold flex items-center justify-center gap-2">
-                  <span className="text-2xl">🎁</span>
-                  Scan this QR code at the event to win exciting prizes!
-                </p>
+                {/* Prize Info */}
+                <div className="mt-4 bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-3 rounded-r-lg">
+                  <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
+                    <span className="text-lg">🎁</span>
+                    <span>Scan at event to win exciting prizes!</span>
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Action Buttons - Outside the card */}
-            <div className="p-6 flex flex-col sm:flex-row gap-3">
+            {/* Action Buttons */}
+            <div className="p-4 bg-gray-50 flex gap-2">
               <Button
                 onClick={downloadCard}
                 variant="outline"
@@ -747,13 +765,13 @@ export default function EventDetailPage() {
                 data-testid="button-download-card"
               >
                 <Download className="h-4 w-4 mr-2" />
-                Download Card
+                Download
               </Button>
               <Button
                 onClick={() => setShowSuccessModal(false)}
-                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all duration-300"
+                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg"
               >
-                Got it, thanks!
+                Close
               </Button>
             </div>
           </div>
