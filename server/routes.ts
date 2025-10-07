@@ -18,9 +18,17 @@ import fs from "fs";
 import multer from "multer";
 import { Resend } from "resend";
 import { google } from 'googleapis';
+import { generateUniqueToken, generateRegistrationQRCode } from "./qr-service";
+import { appendToSheet } from "./google-sheets-service";
+import sgMail from '@sendgrid/mail';
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
 
 // Extend Request interface to include adminId and user info
 interface AuthenticatedRequest extends Request {
@@ -326,9 +334,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/events/register", async (req, res) => {
     try {
       const registrationData = insertEventRegistrationSchema.parse(req.body);
-      const registration = await storage.createEventRegistration(registrationData);
-      res.json({ success: true, registration });
+      
+      // Generate unique token for QR code
+      const token = generateUniqueToken();
+      
+      // Create registration with token
+      const registration = await storage.createEventRegistration({
+        ...registrationData,
+        token
+      });
+
+      // Generate QR code
+      const { qrCodeUrl } = await generateRegistrationQRCode(
+        registration.id,
+        token,
+        registration.eventId
+      );
+
+      // Update registration with QR code URL
+      await storage.updateEventRegistrationQR(registration.id, qrCodeUrl);
+
+      // Get event details for email and Google Sheets
+      const event = await storage.getEventById(registration.eventId);
+      
+      if (event) {
+        // Sync to Google Sheets (async, don't block response)
+        if (process.env.GOOGLE_SHEETS_SPREADSHEET_ID) {
+          appendToSheet(process.env.GOOGLE_SHEETS_SPREADSHEET_ID, {
+            eventTitle: event.title,
+            name: registration.name,
+            email: registration.email,
+            phone: registration.phone,
+            education: registration.education,
+            destination: registration.destination,
+            registrationDate: new Date().toISOString(),
+            qrToken: token,
+          }).catch(err => console.error('Google Sheets sync error:', err));
+        }
+
+        // Send confirmation email using SendGrid
+        if (process.env.SENDGRID_API_KEY) {
+          const emailData = {
+            to: registration.email,
+            from: process.env.SENDGRID_FROM_EMAIL || 'noreply@pathvisaconsultants.com',
+            subject: `Registration Confirmed: ${event.title}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #1D50C9 0%, #0f3a8a 100%); padding: 30px; text-align: center;">
+                  <h1 style="color: white; margin: 0;">Registration Confirmed!</h1>
+                </div>
+                <div style="padding: 30px; background: #f9f9f9;">
+                  <p style="font-size: 16px; color: #333;">Dear ${registration.name},</p>
+                  <p style="font-size: 14px; color: #666;">Thank you for registering for <strong>${event.title}</strong>!</p>
+                  <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+                    <h2 style="color: #1D50C9; margin-top: 0;">Your Event QR Code</h2>
+                    <img src="${process.env.REPL_ID ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co${qrCodeUrl}` : `http://localhost:5000${qrCodeUrl}`}" alt="QR Code" style="max-width: 300px;" />
+                    <p style="color: #666; margin-top: 15px;">Please show this QR code to our staff on the event date to receive your special prize!</p>
+                  </div>
+                  <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #1D50C9; margin-top: 0;">Event Details</h3>
+                    <p style="margin: 5px 0;"><strong>Event:</strong> ${event.title}</p>
+                    <p style="margin: 5px 0;"><strong>Date:</strong> ${new Date(event.eventDate).toLocaleDateString()}</p>
+                    <p style="margin: 5px 0;"><strong>Venue:</strong> ${event.venue || 'TBA'}</p>
+                  </div>
+                  <div style="background: #e8f4f8; padding: 15px; border-left: 4px solid #1D50C9; margin: 20px 0;">
+                    <p style="margin: 0; color: #333;"><strong>🎁 Prize Eligibility:</strong> Scan this QR code at the event to become eligible for a prize. Prizes will be distributed within 7-10 days after the event.</p>
+                  </div>
+                  <p style="font-size: 14px; color: #666;">We look forward to seeing you at the event!</p>
+                  <p style="font-size: 14px; color: #666;">Best regards,<br><strong>Path Visa Consultants Team</strong></p>
+                </div>
+                <div style="background: #333; padding: 20px; text-align: center; color: #999; font-size: 12px;">
+                  <p style="margin: 0;">© ${new Date().getFullYear()} Path Visa Consultants. All rights reserved.</p>
+                </div>
+              </div>
+            `,
+          };
+
+          sgMail.send(emailData).catch(err => console.error('SendGrid email error:', err));
+        }
+      }
+
+      // Return registration with QR code
+      const updatedRegistration = await storage.getEventRegistrationByToken(token);
+      res.json({ success: true, registration: updatedRegistration });
     } catch (error) {
+      console.error('Registration error:', error);
       if (error instanceof z.ZodError) {
         res.status(400).json({ 
           success: false, 
@@ -408,6 +498,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting event:", error);
       res.status(500).json({ message: "Failed to delete event" });
+    }
+  });
+
+  // Event Registration Management
+  app.get("/api/admin/events/:eventId/registrations", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const eventId = parseInt(req.params.eventId);
+      const registrations = await storage.getEventRegistrations(eventId);
+      res.json(registrations);
+    } catch (error) {
+      console.error("Error fetching registrations:", error);
+      res.status(500).json({ message: "Failed to fetch registrations" });
+    }
+  });
+
+  app.get("/api/admin/registrations", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const registrations = await storage.getEventRegistrations();
+      res.json(registrations);
+    } catch (error) {
+      console.error("Error fetching all registrations:", error);
+      res.status(500).json({ message: "Failed to fetch registrations" });
+    }
+  });
+
+  // QR Code Scanning for Attendance
+  app.post("/api/admin/scan-attendance", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { token } = req.body;
+      
+      if (!token) {
+        return res.status(400).json({ success: false, message: "QR token is required" });
+      }
+
+      const registration = await storage.markAttendance(token);
+      
+      if (!registration) {
+        return res.status(404).json({ success: false, message: "Invalid QR code or registration not found" });
+      }
+
+      if (registration.isAttended && registration.attendedAt && 
+          new Date(registration.attendedAt).getTime() < Date.now() - 60000) {
+        return res.json({ 
+          success: true, 
+          message: "Attendance already marked",
+          registration,
+          alreadyScanned: true
+        });
+      }
+
+      res.json({ 
+        success: true, 
+        message: "Attendance marked successfully! User is now eligible for prize.",
+        registration 
+      });
+    } catch (error) {
+      console.error("Error marking attendance:", error);
+      res.status(500).json({ success: false, message: "Failed to mark attendance" });
+    }
+  });
+
+  // Prize Management
+  app.patch("/api/admin/registrations/:id/prize", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      
+      if (!['pending', 'eligible', 'distributed'].includes(status)) {
+        return res.status(400).json({ message: "Invalid prize status" });
+      }
+
+      const registration = await storage.updatePrizeStatus(id, status);
+      res.json(registration);
+    } catch (error) {
+      console.error("Error updating prize status:", error);
+      res.status(500).json({ message: "Failed to update prize status" });
     }
   });
 
