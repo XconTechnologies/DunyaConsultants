@@ -332,6 +332,33 @@ export default function QRScannerPage() {
           </CardContent>
         </Card>
         </div>
+
+        {/* Camera Scanner Dialog */}
+        <Dialog open={showCamera} onOpenChange={stopCamera}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Camera className="h-5 w-5 text-[#1D50C9]" />
+                Scan QR Code with Camera
+              </DialogTitle>
+              <DialogDescription>
+                Point your camera at the QR code to scan it
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div id="qr-reader" className="w-full rounded-lg overflow-hidden"></div>
+              <Button
+                onClick={stopCamera}
+                variant="outline"
+                className="w-full"
+                data-testid="button-close-camera"
+              >
+                <X className="h-4 w-4 mr-2" />
+                Close Camera
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
