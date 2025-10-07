@@ -67,8 +67,7 @@ export default function EventDetailPage() {
     email: "",
     phone: "",
     education: "",
-    destination: "",
-    additionalInfo: ""
+    destination: ""
   });
 
   const { data: event, isLoading } = useQuery<Event>({
@@ -107,8 +106,7 @@ export default function EventDetailPage() {
         email: "",
         phone: "",
         education: "",
-        destination: "",
-        additionalInfo: ""
+        destination: ""
       });
     },
     onError: () => {
@@ -594,25 +592,6 @@ export default function EventDetailPage() {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-
-            {/* Additional Information - Floating Label */}
-            <div className="relative">
-              <Textarea
-                id="additionalInfo"
-                value={formData.additionalInfo}
-                onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
-                placeholder=" "
-                rows={4}
-                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all resize-none peer px-4 pt-4"
-                data-testid="textarea-additional-info"
-              />
-              <Label 
-                htmlFor="additionalInfo" 
-                className="absolute left-3 top-6 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
-              >
-                Additional Information
-              </Label>
             </div>
           </div>
           <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-center mt-6 flex-shrink-0">
