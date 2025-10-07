@@ -27,7 +27,12 @@ export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEventById(id: number): Promise<Event | undefined>;
   getEventBySlug(slug: string): Promise<Event | undefined>;
-  createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration>;
+  createEventRegistration(registration: InsertEventRegistration & { token: string }): Promise<EventRegistration>;
+  getEventRegistrationByToken(token: string): Promise<EventRegistration | undefined>;
+  updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration>;
+  markAttendance(token: string): Promise<EventRegistration | undefined>;
+  getEventRegistrations(eventId?: number): Promise<EventRegistration[]>;
+  updatePrizeStatus(id: number, status: 'pending' | 'eligible' | 'distributed'): Promise<EventRegistration>;
   getAllEvents(): Promise<Event[]>;
   createEvent(event: InsertEvent): Promise<Event>;
   updateEvent(id: number, updates: Partial<InsertEvent>): Promise<Event>;
@@ -241,8 +246,61 @@ export class DatabaseStorage implements IStorage {
     return event || undefined;
   }
 
-  async createEventRegistration(insertRegistration: InsertEventRegistration): Promise<EventRegistration> {
+  async createEventRegistration(insertRegistration: InsertEventRegistration & { token: string }): Promise<EventRegistration> {
     const [registration] = await db.insert(eventRegistrations).values(insertRegistration).returning();
+    return registration;
+  }
+
+  async getEventRegistrationByToken(token: string): Promise<EventRegistration | undefined> {
+    const [registration] = await db.select().from(eventRegistrations).where(eq(eventRegistrations.token, token));
+    return registration || undefined;
+  }
+
+  async updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration> {
+    const [registration] = await db.update(eventRegistrations)
+      .set({ qrCodeUrl, sheetRowId })
+      .where(eq(eventRegistrations.id, id))
+      .returning();
+    return registration;
+  }
+
+  async markAttendance(token: string): Promise<EventRegistration | undefined> {
+    const registration = await this.getEventRegistrationByToken(token);
+    if (!registration) {
+      return undefined;
+    }
+
+    const [updated] = await db.update(eventRegistrations)
+      .set({ 
+        isAttended: true, 
+        attendedAt: new Date(),
+        prizeStatus: 'eligible'
+      })
+      .where(eq(eventRegistrations.token, token))
+      .returning();
+    
+    return updated;
+  }
+
+  async getEventRegistrations(eventId?: number): Promise<EventRegistration[]> {
+    if (eventId) {
+      return await db.select().from(eventRegistrations).where(eq(eventRegistrations.eventId, eventId)).orderBy(desc(eventRegistrations.createdAt));
+    }
+    return await db.select().from(eventRegistrations).orderBy(desc(eventRegistrations.createdAt));
+  }
+
+  async updatePrizeStatus(id: number, status: 'pending' | 'eligible' | 'distributed'): Promise<EventRegistration> {
+    const updates: any = { prizeStatus: status };
+    
+    if (status === 'distributed') {
+      updates.prizeDistributedAt = new Date();
+    }
+    
+    const [registration] = await db.update(eventRegistrations)
+      .set(updates)
+      .where(eq(eventRegistrations.id, id))
+      .returning();
+    
     return registration;
   }
 
