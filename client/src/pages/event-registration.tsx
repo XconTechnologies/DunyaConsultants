@@ -4,7 +4,6 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,18 +14,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Loader2, Calendar, MapPin, GraduationCap } from "lucide-react";
+import { Loader2, Calendar, MapPin, GraduationCap, X } from "lucide-react";
 import type { Event } from "@shared/schema";
 
 const registrationSchema = z.object({
@@ -159,6 +150,8 @@ export default function EventRegistration() {
     day: 'numeric'
   });
 
+  const watchedValues = form.watch();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12 px-4">
       <div className="max-w-3xl mx-auto">
@@ -191,194 +184,203 @@ export default function EventRegistration() {
         </div>
 
         {/* Registration Form */}
-        <Card className="shadow-xl">
-          <CardHeader>
-            <CardTitle className="text-2xl flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-2xl p-8">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold flex items-center gap-2 text-gray-900">
               <GraduationCap className="h-6 w-6 text-[#1D50C9]" />
               Event Registration
-            </CardTitle>
-            <CardDescription>
+            </h2>
+            <p className="text-gray-600 mt-2">
               Fill out the form below to register for this event
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                
-                {/* Full Name */}
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name *</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter your full name" 
-                          {...field} 
-                          data-testid="input-fullname"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+            </p>
+          </div>
+
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            
+            {/* Full Name - Floating Label */}
+            <div className="relative">
+              <Input 
+                id="fullName"
+                {...form.register("fullName")}
+                placeholder=" "
+                className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                data-testid="input-fullname"
+              />
+              <Label 
+                htmlFor="fullName" 
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
+              >
+                Full Name *
+              </Label>
+              {form.formState.errors.fullName && (
+                <p className="text-red-500 text-sm mt-1">{form.formState.errors.fullName.message}</p>
+              )}
+            </div>
+
+            {/* Email and Phone */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Email - Floating Label */}
+              <div className="relative">
+                <Input 
+                  id="email"
+                  type="email"
+                  {...form.register("email")}
+                  placeholder=" "
+                  className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                  data-testid="input-email"
                 />
-
-                {/* Email and Phone */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email *</FormLabel>
-                        <FormControl>
-                          <Input 
-                            type="email" 
-                            placeholder="your@email.com" 
-                            {...field} 
-                            data-testid="input-email"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number *</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="+92 300 1234567" 
-                            {...field} 
-                            data-testid="input-phone"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                {/* City */}
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>City *</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter your city" 
-                          {...field} 
-                          data-testid="input-city"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Education Level */}
-                <FormField
-                  control={form.control}
-                  name="education"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Education Level *</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl>
-                          <SelectTrigger data-testid="select-education">
-                            <SelectValue placeholder="Select your education level" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {educationLevels.map((level) => (
-                            <SelectItem key={level} value={level}>
-                              {level}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Study Destinations - Multiple Select */}
-                <FormField
-                  control={form.control}
-                  name="destinations"
-                  render={() => (
-                    <FormItem>
-                      <div className="mb-4">
-                        <FormLabel>Study Destinations (Select all that apply) *</FormLabel>
-                      </div>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {studyDestinations.map((destination) => (
-                          <FormField
-                            key={destination}
-                            control={form.control}
-                            name="destinations"
-                            render={({ field }) => {
-                              return (
-                                <FormItem
-                                  key={destination}
-                                  className="flex flex-row items-start space-x-3 space-y-0"
-                                >
-                                  <FormControl>
-                                    <Checkbox
-                                      checked={field.value?.includes(destination)}
-                                      onCheckedChange={(checked) => {
-                                        return checked
-                                          ? field.onChange([...field.value, destination])
-                                          : field.onChange(
-                                              field.value?.filter(
-                                                (value) => value !== destination
-                                              )
-                                            );
-                                      }}
-                                      data-testid={`checkbox-${destination.toLowerCase()}`}
-                                    />
-                                  </FormControl>
-                                  <FormLabel className="font-normal cursor-pointer">
-                                    {destination}
-                                  </FormLabel>
-                                </FormItem>
-                              );
-                            }}
-                          />
-                        ))}
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={registerMutation.isPending}
-                  className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg"
-                  data-testid="button-register"
+                <Label 
+                  htmlFor="email" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
-                  {registerMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Registering...
-                    </>
-                  ) : (
-                    "Register Now"
-                  )}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
+                  Email *
+                </Label>
+                {form.formState.errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.email.message}</p>
+                )}
+              </div>
+
+              {/* Phone - Floating Label */}
+              <div className="relative">
+                <Input 
+                  id="phone"
+                  {...form.register("phone")}
+                  placeholder=" "
+                  className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                  data-testid="input-phone"
+                />
+                <Label 
+                  htmlFor="phone" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Phone Number *
+                </Label>
+                {form.formState.errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.phone.message}</p>
+                )}
+              </div>
+            </div>
+
+            {/* City - Floating Label */}
+            <div className="relative">
+              <Input 
+                id="city"
+                {...form.register("city")}
+                placeholder=" "
+                className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                data-testid="input-city"
+              />
+              <Label 
+                htmlFor="city" 
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
+              >
+                City *
+              </Label>
+              {form.formState.errors.city && (
+                <p className="text-red-500 text-sm mt-1">{form.formState.errors.city.message}</p>
+              )}
+            </div>
+
+            {/* Education Level - Select with Floating Label */}
+            <div className="relative">
+              <Select 
+                onValueChange={(value) => form.setValue("education", value)}
+                value={form.watch("education")}
+              >
+                <SelectTrigger 
+                  className="h-14 border-[#dadada] bg-white rounded-lg pt-4"
+                  data-testid="select-education"
+                >
+                  <SelectValue placeholder=" " />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  {educationLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Label 
+                className={`absolute left-4 bg-white px-1 transition-all duration-200 pointer-events-none ${
+                  watchedValues.education 
+                    ? 'top-0 text-sm text-gray-600' 
+                    : 'top-1/2 -translate-y-1/2 text-gray-500'
+                }`}
+              >
+                Education Level *
+              </Label>
+              {form.formState.errors.education && (
+                <p className="text-red-500 text-sm mt-1">{form.formState.errors.education.message}</p>
+              )}
+            </div>
+
+            {/* Study Destinations - Multiple Select */}
+            <div>
+              <Label className="text-gray-700 font-medium mb-3 block">
+                Study Destinations (Select all that apply) *
+              </Label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 border border-[#dadada] rounded-lg bg-white">
+                {studyDestinations.map((destination) => (
+                  <div key={destination} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={destination}
+                      checked={watchedValues.destinations?.includes(destination)}
+                      onCheckedChange={(checked) => {
+                        const current = watchedValues.destinations || [];
+                        if (checked) {
+                          form.setValue("destinations", [...current, destination]);
+                        } else {
+                          form.setValue("destinations", current.filter(d => d !== destination));
+                        }
+                      }}
+                      data-testid={`checkbox-${destination.toLowerCase()}`}
+                    />
+                    <label
+                      htmlFor={destination}
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                    >
+                      {destination}
+                    </label>
+                  </div>
+                ))}
+              </div>
+              {form.formState.errors.destinations && (
+                <p className="text-red-500 text-sm mt-1">{form.formState.errors.destinations.message}</p>
+              )}
+            </div>
+
+            {/* Submit and Cancel Buttons */}
+            <div className="flex gap-4 pt-4">
+              <Button
+                type="submit"
+                disabled={registerMutation.isPending}
+                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-shadow"
+                data-testid="button-register"
+              >
+                {registerMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Registering...
+                  </>
+                ) : (
+                  "Register Now"
+                )}
+              </Button>
+              
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setLocation(`/events/${eventSlug}`)}
+                className="px-6 py-6 border-[#dadada] hover:bg-gray-50"
+                data-testid="button-cancel"
+              >
+                <X className="h-5 w-5 mr-2" />
+                Cancel
+              </Button>
+            </div>
+          </form>
+        </div>
 
         {/* Additional Info */}
         <div className="mt-8 text-center text-gray-600">
