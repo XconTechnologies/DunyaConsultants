@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRoute, useLocation } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -9,7 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Calendar, MapPin, GraduationCap } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Download, CheckCircle, Clock } from "lucide-react";
+import html2canvas from "html2canvas";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Event } from "@shared/schema";
@@ -48,6 +49,7 @@ export default function EventDetailPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [registrationData, setRegistrationData] = useState<any>(null);
   const { toast } = useToast();
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const autoplayPlugin = Autoplay({ 
     delay: 3000, 
@@ -124,6 +126,34 @@ export default function EventDetailPage() {
       ...formData,
       eventId: event.id
     });
+  };
+
+  const downloadCard = async () => {
+    if (!cardRef.current) return;
+    
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 2,
+        backgroundColor: '#ffffff',
+        logging: false,
+      });
+      
+      const link = document.createElement('a');
+      link.download = `${event?.title?.replace(/\s+/g, '-')}-registration.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      
+      toast({
+        title: "Downloaded!",
+        description: "Your registration card has been saved.",
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   useEffect(() => {
@@ -614,66 +644,114 @@ export default function EventDetailPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Success Modal with QR Code */}
+      {/* Success Modal with QR Code - Full Size Card */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="max-w-md max-h-[85vh] overflow-y-auto border-0 shadow-2xl p-4 sm:p-6">
-          <div className="text-center">
-            {/* Success Icon */}
-            <div className="mx-auto flex items-center justify-center h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] mb-3 sm:mb-4">
-              <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-            
-            <DialogHeader className="mb-2">
-              <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
-                Registration Confirmed!
-              </DialogTitle>
-              <DialogDescription className="text-sm sm:text-base mt-2 px-2">
-                Thank you for registering! Check your email for confirmation.
-              </DialogDescription>
-            </DialogHeader>
-
-            {/* QR Code Display */}
-            {registrationData?.qrCodeUrl && (
-              <div className="my-3 sm:my-4 p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
-                <h3 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Your Event QR Code</h3>
-                <div className="bg-white p-2 sm:p-3 rounded-lg shadow-md inline-block">
-                  <img 
-                    src={registrationData.qrCodeUrl} 
-                    alt="Event QR Code" 
-                    className="w-40 h-40 sm:w-48 sm:h-48 mx-auto"
-                  />
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto border-0 shadow-2xl p-0">
+          <div className="relative">
+            {/* Downloadable Card */}
+            <div ref={cardRef} className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] p-8 sm:p-12">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-white/20 mb-4">
+                  <CheckCircle className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                 </div>
-                <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                  Save this QR code or check your email! Show it to our staff on the event date.
+                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                  Registration Confirmed!
+                </h1>
+                <p className="text-blue-100 text-lg">
+                  You're all set for the event
                 </p>
               </div>
-            )}
 
-            {/* Prize Information */}
-            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-l-4 border-[#1D50C9] p-3 rounded-r-lg mb-3 sm:mb-4">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <span className="text-xl">🎁</span>
+              {/* Main Card Content */}
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-2xl">
+                {/* Attendee Info */}
+                <div className="mb-6 pb-6 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Attendee Details</h3>
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{registrationData?.name}</p>
+                  <p className="text-gray-600">{registrationData?.email}</p>
+                  <p className="text-gray-600">{registrationData?.phone}</p>
                 </div>
-                <div className="ml-2 text-left">
-                  <h3 className="text-xs font-semibold text-gray-900">Prize Eligibility</h3>
-                  <p className="text-xs text-gray-700 mt-1">
-                    Scan this QR code at the event to become eligible for a special prize!
-                    Prizes will be distributed within 7-10 days after the event.
-                  </p>
+
+                {/* Event Details */}
+                <div className="mb-6 pb-6 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Event Details</h3>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">{event?.title}</h2>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <Calendar className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'EEEE, MMMM d, yyyy')}</p>
+                        <p className="text-gray-600 text-sm">Event Date</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <Clock className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-gray-900">{format(new Date(event?.eventDate || ''), 'h:mm a')}</p>
+                        <p className="text-gray-600 text-sm">Time</p>
+                      </div>
+                    </div>
+                    
+                    {event?.venue && (
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-semibold text-gray-900">{event.venue}</p>
+                          <p className="text-gray-600 text-sm">Venue</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
+
+                {/* QR Code */}
+                {registrationData?.qrCodeUrl && (
+                  <div className="text-center">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Your Entry Pass</h3>
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl inline-block">
+                      <img 
+                        src={registrationData.qrCodeUrl} 
+                        alt="Event QR Code" 
+                        className="w-48 h-48 sm:w-56 sm:h-56 mx-auto"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-600 mt-4">
+                      Show this QR code at the event entrance
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Prize Banner */}
+              <div className="mt-6 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-xl p-4 text-center">
+                <p className="text-gray-900 font-semibold flex items-center justify-center gap-2">
+                  <span className="text-2xl">🎁</span>
+                  Scan this QR code at the event to win exciting prizes!
+                </p>
               </div>
             </div>
 
-            {/* Action Button */}
-            <Button
-              onClick={() => setShowSuccessModal(false)}
-              className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all duration-300"
-            >
-              Got it, thanks!
-            </Button>
+            {/* Action Buttons - Outside the card */}
+            <div className="p-6 flex flex-col sm:flex-row gap-3">
+              <Button
+                onClick={downloadCard}
+                variant="outline"
+                className="flex-1 border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50"
+                data-testid="button-download-card"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Download Card
+              </Button>
+              <Button
+                onClick={() => setShowSuccessModal(false)}
+                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all duration-300"
+              >
+                Got it, thanks!
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
