@@ -686,7 +686,7 @@ export default function EventDetailPage() {
                   </div>
 
                   {/* Event Details Section */}
-                  <div>
+                  <div className="mb-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-5 bg-orange-500"></div>
                       <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Event Details</h3>
@@ -712,13 +712,21 @@ export default function EventDetailPage() {
                       )}
                     </div>
                   </div>
+
+                  {/* Prize Info */}
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-md">
+                    <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
+                      <span className="text-base">🎁</span>
+                      <span>Scan at event to win exciting prizes!</span>
+                    </p>
+                  </div>
                 </div>
 
-                {/* Right Column: QR Code & Prize Info */}
+                {/* Right Column: QR Code */}
                 <div className="w-72 flex flex-col">
                   {/* QR Code Section */}
                   {registrationData?.qrCodeUrl && (
-                    <div className="mb-4">
+                    <div>
                       <div className="flex items-center gap-2 mb-3">
                         <div className="w-1 h-5 bg-orange-500"></div>
                         <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Your Entry Pass</h3>
@@ -735,14 +743,6 @@ export default function EventDetailPage() {
                       </p>
                     </div>
                   )}
-
-                  {/* Prize Info */}
-                  <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-md">
-                    <p className="text-xs font-medium text-gray-800 flex items-center gap-2">
-                      <span className="text-base">🎁</span>
-                      <span>Scan at event to win exciting prizes!</span>
-                    </p>
-                  </div>
                 </div>
               </div>
 
