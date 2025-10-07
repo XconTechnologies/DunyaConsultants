@@ -101,8 +101,10 @@ export default function QRScannerPage() {
     }
   });
 
-  const handleScan = () => {
-    if (!qrToken.trim()) {
+  const handleScan = (tokenValue?: string) => {
+    const tokenToScan = tokenValue || qrToken;
+    
+    if (!tokenToScan.trim()) {
       toast({
         title: "Error",
         description: "Please enter a QR code token",
@@ -111,7 +113,18 @@ export default function QRScannerPage() {
       return;
     }
     
-    scanMutation.mutate(qrToken.trim());
+    // Try to parse as JSON first (in case full QR data was pasted)
+    let finalToken = tokenToScan.trim();
+    try {
+      const parsed = JSON.parse(tokenToScan);
+      if (parsed.token) {
+        finalToken = parsed.token;
+      }
+    } catch {
+      // Not JSON, use as-is
+    }
+    
+    scanMutation.mutate(finalToken);
   };
 
   const startCamera = async () => {
@@ -130,16 +143,16 @@ export default function QRScannerPage() {
               qrbox: { width: 250, height: 250 }
             },
             (decodedText) => {
+              stopCamera();
               try {
                 const qrData = JSON.parse(decodedText);
                 if (qrData.token) {
-                  setQrToken(qrData.token);
-                  stopCamera();
-                  handleScan();
+                  handleScan(qrData.token);
+                } else {
+                  handleScan(decodedText);
                 }
               } catch {
-                setQrToken(decodedText);
-                stopCamera();
+                handleScan(decodedText);
               }
             },
             () => {}
@@ -233,7 +246,7 @@ export default function QRScannerPage() {
               
               <div className="flex gap-2">
                 <Button
-                  onClick={handleScan}
+                  onClick={() => handleScan()}
                   disabled={scanMutation.isPending || !qrToken.trim()}
                   className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
                   data-testid="button-scan"
