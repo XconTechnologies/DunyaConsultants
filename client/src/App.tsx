@@ -78,6 +78,7 @@ import EventEditor from "@/pages/admin/event-editor";
 import TrashManagement from "@/pages/admin/trash";
 import QRScannerPage from "@/pages/admin/qr-scanner";
 import EventRegistrationsPage from "@/pages/admin/event-registrations";
+import AdminIndex from "@/pages/admin/index";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
 
@@ -181,6 +182,7 @@ function Router() {
       
       {/* Admin Routes */}
       <Route path="/login" component={UserLogin} />
+      <Route path="/admin" component={AdminIndex} />
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/posts" component={AllPosts} />
