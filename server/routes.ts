@@ -375,8 +375,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }).catch(err => console.error('Google Sheets sync error:', err));
         }
 
-        // Send confirmation email using SendGrid
-        if (process.env.SENDGRID_API_KEY) {
+        // Send confirmation email using Resend
+        if (resend) {
           const cityName = event.venue?.split(',')[0] || event.location || 'your city';
           const eventDateFormatted = new Date(event.eventDate).toLocaleDateString('en-US', { 
             weekday: 'long', 
@@ -388,9 +388,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` 
             : 'http://localhost:5000';
           
-          const emailData = {
+          resend.emails.send({
+            from: 'no-reply@dunyaconsultants.com',
             to: registration.email,
-            from: process.env.SENDGRID_FROM_EMAIL || 'noreply@dunyaconsultants.com',
             subject: `Registration Confirmed: ${event.title} - Dunya Consultants`,
             html: `
               <!DOCTYPE html>
@@ -503,9 +503,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               </body>
               </html>
             `,
-          };
-
-          sgMail.send(emailData).catch(err => console.error('SendGrid email error:', err));
+          }).catch(err => console.error('Resend email error:', err));
         }
       }
 

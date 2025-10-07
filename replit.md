@@ -23,6 +23,7 @@ Preferred communication style: Simple, everyday language.
 - **API Design**: RESTful API (JSON responses)
 - **Middleware**: Express for parsing and logging
 - **Error Handling**: Centralized middleware
+- **Email Service**: Resend (configured with RESEND_API_KEY secret, using no-reply@dunyaconsultants.com)
 
 ### Data Storage
 - **Database**: PostgreSQL 16 (Replit modules)
