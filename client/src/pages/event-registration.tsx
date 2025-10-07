@@ -76,7 +76,7 @@ export default function EventRegistration() {
   }, [setLocation]);
 
   const { data: event, isLoading: eventLoading } = useQuery<Event>({
-    queryKey: ["/api/events/slug", eventSlug],
+    queryKey: [`/api/events/slug/${eventSlug}`],
     enabled: !!eventSlug,
   });
 
