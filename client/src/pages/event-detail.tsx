@@ -492,10 +492,10 @@ export default function EventDetailPage() {
               Fill in your details below to secure your spot at this event.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-5 mt-4 overflow-y-auto flex-1 pr-2">
+          <div className="space-y-5 mt-6 overflow-y-auto flex-1 pr-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* First Name - Floating Label */}
-              <div className="relative">
+              <div className="relative pt-2">
                 <Input
                   id="firstName"
                   value={formData.name.split(' ')[0] || ''}
@@ -510,14 +510,14 @@ export default function EventDetailPage() {
                 />
                 <Label 
                   htmlFor="firstName" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   First Name *
                 </Label>
               </div>
 
               {/* Last Name - Floating Label */}
-              <div className="relative">
+              <div className="relative pt-2">
                 <Input
                   id="lastName"
                   value={formData.name.split(' ').slice(1).join(' ') || ''}
@@ -531,7 +531,7 @@ export default function EventDetailPage() {
                 />
                 <Label 
                   htmlFor="lastName" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Last Name
                 </Label>
@@ -540,7 +540,7 @@ export default function EventDetailPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Email - Floating Label */}
-              <div className="relative">
+              <div className="relative pt-2">
                 <Input
                   id="email"
                   type="email"
@@ -553,14 +553,14 @@ export default function EventDetailPage() {
                 />
                 <Label 
                   htmlFor="email" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Email Address *
                 </Label>
               </div>
 
               {/* Phone - Floating Label */}
-              <div className="relative">
+              <div className="relative pt-2">
                 <Input
                   id="phone"
                   type="tel"
@@ -573,55 +573,58 @@ export default function EventDetailPage() {
                 />
                 <Label 
                   htmlFor="phone" 
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Phone Number *
                 </Label>
               </div>
             </div>
 
-            {/* Education Level - Dropdown - Full Width */}
-            <div>
-              <Label htmlFor="education" className="text-gray-600 mb-2 block">
-                Education Level
-              </Label>
-              <Select
-                value={formData.education}
-                onValueChange={(value) => setFormData({ ...formData, education: value })}
-              >
-                <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-education">
-                  <SelectValue placeholder="Select your education level" />
-                </SelectTrigger>
-                <SelectContent>
-                  {educationLevels.map((level) => (
-                    <SelectItem key={level} value={level}>
-                      {level}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {/* Education Level and Study Destination - In One Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Education Level - Dropdown */}
+              <div>
+                <Label htmlFor="education" className="text-gray-600 mb-2 block">
+                  Education Level
+                </Label>
+                <Select
+                  value={formData.education}
+                  onValueChange={(value) => setFormData({ ...formData, education: value })}
+                >
+                  <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-education">
+                    <SelectValue placeholder="Select your education level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {educationLevels.map((level) => (
+                      <SelectItem key={level} value={level}>
+                        {level}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-            {/* Preferred Study Destination - Dropdown */}
-            <div>
-              <Label htmlFor="destination" className="text-gray-600 mb-2 block">
-                Preferred Study Destination
-              </Label>
-              <Select
-                value={formData.destination}
-                onValueChange={(value) => setFormData({ ...formData, destination: value })}
-              >
-                <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-destination">
-                  <SelectValue placeholder="Select your preferred destination" />
-                </SelectTrigger>
-                <SelectContent>
-                  {studyDestinations.map((dest) => (
-                    <SelectItem key={dest.code} value={dest.name}>
-                      {dest.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {/* Preferred Study Destination - Dropdown */}
+              <div>
+                <Label htmlFor="destination" className="text-gray-600 mb-2 block">
+                  Preferred Study Destination
+                </Label>
+                <Select
+                  value={formData.destination}
+                  onValueChange={(value) => setFormData({ ...formData, destination: value })}
+                >
+                  <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg" data-testid="select-destination">
+                    <SelectValue placeholder="Select your preferred destination" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {studyDestinations.map((dest) => (
+                      <SelectItem key={dest.code} value={dest.name}>
+                        {dest.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
           <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-center mt-6 flex-shrink-0">
