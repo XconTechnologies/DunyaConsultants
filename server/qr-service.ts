@@ -23,6 +23,8 @@ export async function generateQRCode(data: string, filename: string): Promise<st
     
     const filePath = path.join(QR_CODES_DIR, `${filename}.png`);
     
+    console.log('Generating QR code:', { filePath, QR_CODES_DIR, filename });
+    
     await QRCode.toFile(filePath, data, {
       errorCorrectionLevel: 'H',
       type: 'png',
@@ -32,6 +34,8 @@ export async function generateQRCode(data: string, filename: string): Promise<st
         light: '#FFFFFF'
       }
     });
+    
+    console.log('QR code generated successfully:', filePath);
     
     return `/qr-codes/${filename}.png`;
   } catch (error) {

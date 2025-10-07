@@ -345,14 +345,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Generate QR code
+      console.log('About to generate QR code for registration:', registration.id);
       const { qrCodeUrl } = await generateRegistrationQRCode(
         registration.id,
         token,
         registration.eventId
       );
+      console.log('QR code generated, URL:', qrCodeUrl);
 
       // Update registration with QR code URL
       await storage.updateEventRegistrationQR(registration.id, qrCodeUrl);
+      console.log('Registration updated with QR code URL');
 
       // Get event details for email and Google Sheets
       const event = await storage.getEventById(registration.eventId);
