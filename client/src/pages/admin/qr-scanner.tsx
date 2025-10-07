@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,8 +8,16 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import AdminSidebar from "@/components/admin/sidebar";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { QrCode, CheckCircle2 } from "lucide-react";
+import { QrCode, CheckCircle2, Camera, X } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
+import { Html5Qrcode } from "html5-qrcode";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function QRScannerPage() {
   const [, setLocation] = useLocation();
@@ -17,7 +25,9 @@ export default function QRScannerPage() {
   const [authChecked, setAuthChecked] = useState(false);
   const [qrToken, setQrToken] = useState("");
   const [lastScan, setLastScan] = useState<any>(null);
+  const [showCamera, setShowCamera] = useState(false);
   const { toast } = useToast();
+  const scannerRef = useRef<Html5Qrcode | null>(null);
 
   // Check authentication
   useEffect(() => {
@@ -104,6 +114,76 @@ export default function QRScannerPage() {
     scanMutation.mutate(qrToken.trim());
   };
 
+  const startCamera = async () => {
+    try {
+      setShowCamera(true);
+      
+      setTimeout(async () => {
+        try {
+          const html5QrCode = new Html5Qrcode("qr-reader");
+          scannerRef.current = html5QrCode;
+
+          await html5QrCode.start(
+            { facingMode: "environment" },
+            {
+              fps: 10,
+              qrbox: { width: 250, height: 250 }
+            },
+            (decodedText) => {
+              try {
+                const qrData = JSON.parse(decodedText);
+                if (qrData.token) {
+                  setQrToken(qrData.token);
+                  stopCamera();
+                  handleScan();
+                }
+              } catch {
+                setQrToken(decodedText);
+                stopCamera();
+              }
+            },
+            () => {}
+          );
+        } catch (err: any) {
+          console.error("Camera start error:", err);
+          toast({
+            title: "Camera Error",
+            description: err?.message || "Could not access camera. Please check permissions.",
+            variant: "destructive",
+          });
+          setShowCamera(false);
+        }
+      }, 300);
+    } catch (err: any) {
+      toast({
+        title: "Camera Error",
+        description: "Could not start camera scanner",
+        variant: "destructive",
+      });
+      setShowCamera(false);
+    }
+  };
+
+  const stopCamera = async () => {
+    if (scannerRef.current) {
+      try {
+        await scannerRef.current.stop();
+        scannerRef.current = null;
+      } catch (err) {
+        console.error("Error stopping camera:", err);
+      }
+    }
+    setShowCamera(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (scannerRef.current) {
+        scannerRef.current.stop().catch(() => {});
+      }
+    };
+  }, []);
+
   if (!authChecked || !adminUser) {
     return null;
   }
@@ -151,14 +231,24 @@ export default function QRScannerPage() {
                 </p>
               </div>
               
-              <Button
-                onClick={handleScan}
-                disabled={scanMutation.isPending || !qrToken.trim()}
-                className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
-                data-testid="button-scan"
-              >
-                {scanMutation.isPending ? "Scanning..." : "Scan & Mark Attendance"}
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={handleScan}
+                  disabled={scanMutation.isPending || !qrToken.trim()}
+                  className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+                  data-testid="button-scan"
+                >
+                  {scanMutation.isPending ? "Scanning..." : "Scan & Mark Attendance"}
+                </Button>
+                <Button
+                  onClick={startCamera}
+                  variant="outline"
+                  className="px-4"
+                  data-testid="button-camera"
+                >
+                  <Camera className="h-5 w-5" />
+                </Button>
+              </div>
 
               <div className="text-center text-sm text-gray-500">
                 <p>Tip: Use Enter key to quickly scan multiple codes</p>
