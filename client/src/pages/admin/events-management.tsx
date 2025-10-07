@@ -359,7 +359,7 @@ export default function EventsManagement() {
               <h1 className="text-3xl font-bold text-gray-900">Events Management</h1>
               <p className="text-gray-600 mt-2">Create and manage events & expos</p>
             </div>
-            <Button onClick={() => setIsCreateDialogOpen(true)} data-testid="button-create-event">
+            <Button onClick={() => setLocation("/admin/event-editor")} data-testid="button-create-event">
               <Plus className="w-4 h-4 mr-2" />
               Create Event
             </Button>
@@ -428,7 +428,7 @@ export default function EventsManagement() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => handleEdit(event)}
+                              onClick={() => setLocation(`/admin/event-editor/${event.id}`)}
                               data-testid={`button-edit-${event.id}`}
                             >
                               <Edit2 className="w-4 h-4" />
