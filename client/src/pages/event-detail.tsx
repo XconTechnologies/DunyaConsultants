@@ -35,6 +35,7 @@ const studyDestinations = [
 
 const educationLevels = [
   "Intermediate",
+  "Associate Degree",
   "Bachelors",
   "Masters",
   "PhD",
