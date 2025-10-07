@@ -74,6 +74,7 @@ import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
 import MediaManagement from "@/pages/admin/media";
 import EventsManagement from "@/pages/admin/events-management";
+import EventEditor from "@/pages/admin/event-editor";
 import TrashManagement from "@/pages/admin/trash";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
@@ -193,6 +194,8 @@ function Router() {
       <Route path="/blog-editor/:id?" component={BlogEditor} />
       <Route path="/blog-editor" component={BlogEditor} />
       <Route path="/admin/blog-preview/:id" component={AdminBlogPreview} />
+      <Route path="/admin/event-editor/:id?" component={EventEditor} />
+      <Route path="/admin/event-editor" component={EventEditor} />
       
       
       <Route component={NotFound} />
