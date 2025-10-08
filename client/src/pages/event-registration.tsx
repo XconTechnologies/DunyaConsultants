@@ -581,6 +581,7 @@ export default function EventRegistration() {
 
                     // Load and draw logo first
                     const logoImage = new Image();
+                    logoImage.crossOrigin = 'anonymous'; // Enable CORS
                     
                     await new Promise<void>((resolve) => {
                       logoImage.onload = () => {
@@ -656,6 +657,7 @@ export default function EventRegistration() {
 
                     // Load and draw QR code
                     const qrImage = new Image();
+                    qrImage.crossOrigin = 'anonymous'; // Enable CORS
                     
                     await new Promise<void>((resolve, reject) => {
                       qrImage.onload = () => {
