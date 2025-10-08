@@ -69,6 +69,7 @@ export default function EventRegistration() {
   const [eventSlug, setEventSlug] = useState<string>("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -129,6 +130,7 @@ export default function EventRegistration() {
   });
 
   const onSubmit = (data: RegistrationForm) => {
+    setUserName(data.fullName);
     registerMutation.mutate(data);
   };
 
@@ -416,16 +418,16 @@ export default function EventRegistration() {
 
       {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-md border-[#dadada]">
+          <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-6 rounded-t-lg">
             <div className="mx-auto mb-4">
-              <CheckCircle2 className="h-16 w-16 text-green-500" />
+              <CheckCircle2 className="h-16 w-16 text-white" />
             </div>
-            <DialogTitle className="text-center text-2xl">
-              Registration Successful!
+            <DialogTitle className="text-center text-2xl text-white">
+              Thank You {userName}!
             </DialogTitle>
-            <DialogDescription className="text-center text-base pt-2">
-              Thank you for registering for <strong>{event?.title}</strong>
+            <DialogDescription className="text-center text-base pt-2 text-white/90">
+              for registering for <strong>{event?.title}</strong>
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -443,21 +445,27 @@ export default function EventRegistration() {
                 📧 Check your email for confirmation and your QR code
               </p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
               <p className="text-sm text-gray-700 text-center">
-                🎫 Show your QR code at the event for check-in
+                🎁 Selected users will be eligible for prize distribution
               </p>
             </div>
           </div>
           <div className="flex gap-3">
             <Button
               onClick={() => {
-                setShowSuccessModal(false);
-                setLocation(`/events/${eventSlug}`);
+                if (qrCodeUrl) {
+                  const link = document.createElement('a');
+                  link.href = qrCodeUrl;
+                  link.download = `qr-code-${event?.title}.png`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
               }}
-              className="flex-1 bg-[#1D50C9] hover:bg-[#0f3a8a]"
+              className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all"
             >
-              View Event Details
+              Download QR
             </Button>
             <Button
               onClick={() => {
@@ -465,7 +473,7 @@ export default function EventRegistration() {
                 setLocation("/events");
               }}
               variant="outline"
-              className="flex-1"
+              className="flex-1 border-[#dadada] shadow-md hover:bg-gray-50"
             >
               Browse Events
             </Button>
