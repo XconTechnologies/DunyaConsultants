@@ -68,6 +68,7 @@ export default function EventRegistration() {
   const { toast } = useToast();
   const [eventSlug, setEventSlug] = useState<string>("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -100,7 +101,8 @@ export default function EventRegistration() {
     mutationFn: async (data: RegistrationForm) => {
       if (!event) throw new Error("Event not found");
       
-      return apiRequest(`/api/events/${event.id}/register`, "POST", {
+      return apiRequest("/api/events/register", "POST", {
+        eventId: event.id,
         name: data.fullName,
         email: data.email,
         phone: data.whatsapp,
@@ -109,7 +111,10 @@ export default function EventRegistration() {
         destination: data.destinations.join(", "),
       });
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
+      if (data.registration?.qrCodeUrl) {
+        setQrCodeUrl(data.registration.qrCodeUrl);
+      }
       setShowSuccessModal(true);
       form.reset();
     },
@@ -423,6 +428,15 @@ export default function EventRegistration() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            {qrCodeUrl && (
+              <div className="bg-white border-2 border-[#1D50C9] rounded-lg p-4 text-center">
+                <p className="text-sm font-semibold text-[#1D50C9] mb-3">Your Event QR Code</p>
+                <div className="bg-white p-3 inline-block rounded-lg">
+                  <img src={qrCodeUrl} alt="Event QR Code" className="w-48 h-48 mx-auto" />
+                </div>
+                <p className="text-xs text-gray-600 mt-3">Show this QR code at the event entrance</p>
+              </div>
+            )}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="text-sm text-gray-700 text-center">
                 📧 Check your email for confirmation and your QR code
