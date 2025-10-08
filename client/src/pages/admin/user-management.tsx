@@ -180,6 +180,13 @@ export default function UserManagement() {
       const response = await fetch("/api/admin/users", {
         headers: getAuthHeaders(),
       });
+      if (response.status === 401) {
+        // Token expired or invalid - redirect to login
+        localStorage.removeItem("adminToken");
+        localStorage.removeItem("adminUser");
+        setLocation("/admin/login");
+        throw new Error("Session expired. Please login again.");
+      }
       if (!response.ok) {
         throw new Error(`${response.status}: ${await response.text()}`);
       }
