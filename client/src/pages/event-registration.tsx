@@ -27,6 +27,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import html2canvas from "html2canvas";
 import type { Event } from "@shared/schema";
+import dcLogo from "@assets/DC Blue Logo (1)_1750668538365.png";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -581,7 +582,6 @@ export default function EventRegistration() {
 
                     // Load and draw logo first
                     const logoImage = new Image();
-                    logoImage.crossOrigin = 'anonymous';
                     
                     await new Promise<void>((resolve) => {
                       logoImage.onload = () => {
@@ -591,6 +591,7 @@ export default function EventRegistration() {
                           const logoHeight = 50 * scale;
                           const logoX = (canvas.width - logoWidth) / 2;
                           ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
+                          console.log('Logo loaded successfully');
                           resolve();
                         } catch (err) {
                           console.error('Error drawing logo:', err);
@@ -601,14 +602,15 @@ export default function EventRegistration() {
                         console.error('Logo loading failed, continuing without logo:', e);
                         resolve(); // Continue anyway without logo
                       };
-                      logoImage.src = 'https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png';
+                      // Use the imported logo file
+                      logoImage.src = dcLogo;
                     });
 
-                    // Event Name Heading
+                    // Event Name Heading - centered below logo
                     ctx.font = `bold ${16 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.textAlign = 'left';
-                    ctx.fillText(event.title, 40 * scale, 110 * scale);
+                    ctx.textAlign = 'center';
+                    ctx.fillText(event.title, canvas.width / 2, 110 * scale);
 
                     // Event Details subtitle
                     ctx.font = `bold ${14 * scale}px system-ui`;
