@@ -656,7 +656,6 @@ export default function EventRegistration() {
 
                     // Load and draw QR code
                     const qrImage = new Image();
-                    qrImage.crossOrigin = 'anonymous';
                     
                     await new Promise<void>((resolve, reject) => {
                       qrImage.onload = () => {
@@ -676,15 +675,18 @@ export default function EventRegistration() {
                           ctx.textAlign = 'center';
                           ctx.fillText('YOUR QR CODE', 485 * scale, 280 * scale);
                           
+                          console.log('QR code loaded successfully');
                           resolve();
                         } catch (err) {
+                          console.error('Error drawing QR code:', err);
                           reject(err);
                         }
                       };
                       qrImage.onerror = (e) => {
-                        console.error('QR code loading failed:', e);
+                        console.error('QR code loading failed:', e, 'URL:', qrCodeUrl);
                         reject(new Error('QR code failed to load'));
                       };
+                      console.log('Loading QR code from:', qrCodeUrl);
                       qrImage.src = qrCodeUrl;
                     });
 
@@ -704,10 +706,17 @@ export default function EventRegistration() {
                         link.click();
                         document.body.removeChild(link);
                         URL.revokeObjectURL(url);
+                        console.log('Download triggered successfully');
+                      } else {
+                        console.error('Failed to create blob from canvas');
                       }
                     });
                   } catch (error) {
                     console.error('Error downloading event card:', error);
+                    if (error instanceof Error) {
+                      console.error('Error message:', error.message);
+                      console.error('Error stack:', error.stack);
+                    }
                   }
                 }
               }}
