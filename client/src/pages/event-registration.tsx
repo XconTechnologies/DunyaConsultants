@@ -26,7 +26,7 @@ const registrationSchema = z.object({
   whatsapp: z.string().min(10, "WhatsApp number must be at least 10 digits"),
   city: z.string().min(2, "City is required"),
   education: z.string().min(1, "Please select your education level"),
-  destinations: z.array(z.string()).min(1, "Please select at least one study destination"),
+  destinations: z.array(z.string()).min(1, "Please select at least one study destination").max(3, "You can select up to 3 destinations only"),
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -323,32 +323,41 @@ export default function EventRegistration() {
             {/* Study Destinations - Multiple Select */}
             <div>
               <Label className="text-gray-700 font-medium mb-3 block">
-                Study Destinations (Select all that apply) *
+                Study Destinations (Select up to 3) *
               </Label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 border border-[#dadada] rounded-lg bg-white">
-                {studyDestinations.map((destination) => (
-                  <div key={destination} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={destination}
-                      checked={watchedValues.destinations?.includes(destination)}
-                      onCheckedChange={(checked) => {
-                        const current = watchedValues.destinations || [];
-                        if (checked) {
-                          form.setValue("destinations", [...current, destination]);
-                        } else {
-                          form.setValue("destinations", current.filter(d => d !== destination));
-                        }
-                      }}
-                      data-testid={`checkbox-${destination.toLowerCase()}`}
-                    />
-                    <label
-                      htmlFor={destination}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                    >
-                      {destination}
-                    </label>
-                  </div>
-                ))}
+                {studyDestinations.map((destination) => {
+                  const isChecked = watchedValues.destinations?.includes(destination);
+                  const isMaxReached = (watchedValues.destinations?.length || 0) >= 3;
+                  const isDisabled = !isChecked && isMaxReached;
+                  
+                  return (
+                    <div key={destination} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={destination}
+                        checked={isChecked}
+                        disabled={isDisabled}
+                        onCheckedChange={(checked) => {
+                          const current = watchedValues.destinations || [];
+                          if (checked) {
+                            form.setValue("destinations", [...current, destination]);
+                          } else {
+                            form.setValue("destinations", current.filter(d => d !== destination));
+                          }
+                        }}
+                        data-testid={`checkbox-${destination.toLowerCase()}`}
+                      />
+                      <label
+                        htmlFor={destination}
+                        className={`text-sm font-medium leading-none cursor-pointer ${
+                          isDisabled ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                      >
+                        {destination}
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
               {form.formState.errors.destinations && (
                 <p className="text-red-500 text-sm mt-1">{form.formState.errors.destinations.message}</p>
