@@ -27,7 +27,6 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import html2canvas from "html2canvas";
 import type { Event } from "@shared/schema";
-import dcLogo from "@assets/DC Blue Logo (1)_1750668538365.png";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -587,8 +586,8 @@ export default function EventRegistration() {
                       logoImage.onload = () => {
                         try {
                           // Draw logo centered at top
-                          const logoWidth = 180 * scale;
-                          const logoHeight = 50 * scale;
+                          const logoWidth = 200 * scale;
+                          const logoHeight = 55 * scale;
                           const logoX = (canvas.width - logoWidth) / 2;
                           ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
                           console.log('Logo loaded successfully');
@@ -602,15 +601,17 @@ export default function EventRegistration() {
                         console.error('Logo loading failed, continuing without logo:', e);
                         resolve(); // Continue anyway without logo
                       };
-                      // Use the imported logo file
-                      logoImage.src = dcLogo;
+                      // Use the correct Dunya Consultants logo URL
+                      logoImage.src = 'https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png';
                     });
 
-                    // Event Name Heading - centered below logo
+                    // Event Name Heading - centered below logo on single line
                     ctx.font = `bold ${16 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
                     ctx.textAlign = 'center';
-                    ctx.fillText(event.title, canvas.width / 2, 110 * scale);
+                    
+                    // Draw title on single line, centered
+                    ctx.fillText(event.title, canvas.width / 2, 115 * scale);
 
                     // Event Details subtitle
                     ctx.font = `bold ${14 * scale}px system-ui`;
