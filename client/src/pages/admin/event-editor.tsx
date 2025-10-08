@@ -220,7 +220,7 @@ export default function EventEditor() {
         title: "Success",
         description: isEditing ? "Event updated successfully" : "Event created successfully",
       });
-      setLocation("/admin/events-management");
+      setLocation("/admin/events");
     },
     onError: (error: Error) => {
       toast({
@@ -290,7 +290,7 @@ export default function EventEditor() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setLocation("/admin/events-management")}
+                onClick={() => setLocation("/admin/events")}
                 data-testid="button-back"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
