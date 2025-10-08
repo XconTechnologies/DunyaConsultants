@@ -622,19 +622,33 @@ export default function EventEditor() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {form.watch("image") ? (
-                    <div className="relative">
-                      <img
-                        src={form.watch("image")}
-                        alt="Thumbnail"
-                        className="w-full h-48 object-cover rounded-lg"
-                      />
+                    <div className="space-y-3">
+                      <div className="relative">
+                        <img
+                          src={form.watch("image")}
+                          alt="Thumbnail"
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-2 right-2"
+                          onClick={() => form.setValue("image", "")}
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
+                      </div>
                       <Button
-                        variant="destructive"
-                        size="icon"
-                        className="absolute top-2 right-2"
-                        onClick={() => form.setValue("image", "")}
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => {
+                          setMediaTarget('thumbnail');
+                          setShowMediaModal(true);
+                        }}
+                        data-testid="button-change-thumbnail"
                       >
-                        <X className="w-4 h-4" />
+                        <Upload className="w-4 h-4 mr-2" />
+                        Change Thumbnail
                       </Button>
                     </div>
                   ) : (
@@ -667,19 +681,33 @@ export default function EventEditor() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {form.watch("detailImage") ? (
-                    <div className="relative">
-                      <img
-                        src={form.watch("detailImage")}
-                        alt="Banner"
-                        className="w-full h-48 object-cover rounded-lg"
-                      />
+                    <div className="space-y-3">
+                      <div className="relative">
+                        <img
+                          src={form.watch("detailImage")}
+                          alt="Banner"
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-2 right-2"
+                          onClick={() => form.setValue("detailImage", "")}
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
+                      </div>
                       <Button
-                        variant="destructive"
-                        size="icon"
-                        className="absolute top-2 right-2"
-                        onClick={() => form.setValue("detailImage", "")}
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => {
+                          setMediaTarget('banner');
+                          setShowMediaModal(true);
+                        }}
+                        data-testid="button-change-banner"
                       >
-                        <X className="w-4 h-4" />
+                        <Upload className="w-4 h-4 mr-2" />
+                        Change Banner
                       </Button>
                     </div>
                   ) : (
