@@ -377,7 +377,7 @@ export default function EventRegistration() {
                 type="button"
                 variant="outline"
                 onClick={() => setLocation(`/events/${eventSlug}`)}
-                className="px-6 py-6 border-[#dadada] hover:bg-gray-50"
+                className="flex-1 py-6 text-lg border-[#dadada] hover:bg-gray-50"
                 data-testid="button-cancel"
               >
                 <X className="h-5 w-5 mr-2" />
