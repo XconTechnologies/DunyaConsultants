@@ -42,7 +42,9 @@ import {
   Crown,
   FileEdit,
   Upload,
-  Settings
+  Settings,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
 import { canManageUsers } from "@/lib/permissions";
@@ -138,6 +140,10 @@ export default function UserManagement() {
     role: "editor",
     permissions: {}
   });
+  const [showCreatePassword, setShowCreatePassword] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
+  const [editUsername, setEditUsername] = useState("");
+  const [editPassword, setEditPassword] = useState("");
 
   // Check authentication
   useEffect(() => {
@@ -226,10 +232,18 @@ export default function UserManagement() {
       }
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsEditDialogOpen(false);
       setEditingUser(null);
+      
+      // If user updated their own info, update localStorage
+      if (data.updatedSelf) {
+        const { updatedSelf, ...userData } = data;
+        localStorage.setItem("adminUser", JSON.stringify(userData));
+        setCurrentUser(userData);
+      }
+      
       toast({
         title: "Success",
         description: "User updated successfully",
@@ -293,6 +307,9 @@ export default function UserManagement() {
 
   const handleEditUser = (user: AdminUser) => {
     setEditingUser(user);
+    setEditUsername(user.username);
+    setEditPassword("");
+    setShowEditPassword(false);
     setIsEditDialogOpen(true);
   };
 
@@ -379,13 +396,29 @@ export default function UserManagement() {
               </div>
               <div>
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={createForm.password}
-                  onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
-                  placeholder="Enter password"
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showCreatePassword ? "text" : "password"}
+                    value={createForm.password}
+                    onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
+                    placeholder="Enter password"
+                    className="pr-10"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    onClick={() => setShowCreatePassword(!showCreatePassword)}
+                  >
+                    {showCreatePassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-500" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-500" />
+                    )}
+                  </Button>
+                </div>
               </div>
               <div>
                 <Label htmlFor="role">Role</Label>
@@ -589,12 +622,45 @@ export default function UserManagement() {
           {editingUser && (
             <div className="space-y-4">
               <div>
-                <Label>Username</Label>
-                <Input value={editingUser.username} disabled />
+                <Label htmlFor="edit-username">Username</Label>
+                <Input
+                  id="edit-username"
+                  value={editUsername}
+                  onChange={(e) => setEditUsername(e.target.value)}
+                  placeholder="Enter username"
+                />
               </div>
               <div>
                 <Label>Email</Label>
-                <Input value={editingUser.email} disabled />
+                <Input value={editingUser.email} disabled className="bg-gray-100" />
+                <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+              </div>
+              <div>
+                <Label htmlFor="edit-password">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="edit-password"
+                    type={showEditPassword ? "text" : "password"}
+                    value={editPassword}
+                    onChange={(e) => setEditPassword(e.target.value)}
+                    placeholder="Leave blank to keep current password"
+                    className="pr-10"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    onClick={() => setShowEditPassword(!showEditPassword)}
+                  >
+                    {showEditPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-500" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-500" />
+                    )}
+                  </Button>
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Only enter a password if you want to change it</p>
               </div>
               <div>
                 <Label htmlFor="edit-role">Role</Label>
@@ -676,10 +742,24 @@ export default function UserManagement() {
                   Cancel
                 </Button>
                 <Button 
-                  onClick={() => handleUpdateUser({ 
-                    role: editingUser.role,
-                    permissions: editingUser.role === 'custom' ? editingUser.permissions : null
-                  })}
+                  onClick={() => {
+                    const updates: any = { 
+                      role: editingUser.role,
+                      permissions: editingUser.role === 'custom' ? editingUser.permissions : null
+                    };
+                    
+                    // Add username if changed
+                    if (editUsername && editUsername !== editingUser.username) {
+                      updates.username = editUsername;
+                    }
+                    
+                    // Add password if provided
+                    if (editPassword) {
+                      updates.password = editPassword;
+                    }
+                    
+                    handleUpdateUser(updates);
+                  }}
                   disabled={updateUserMutation.isPending}
                 >
                   {updateUserMutation.isPending ? "Updating..." : "Update User"}

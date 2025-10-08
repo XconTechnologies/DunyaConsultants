@@ -118,6 +118,7 @@ export interface IStorage {
   
   // User Management (Admin Operations)
   getAllAdminUsers(): Promise<AdminUser[]>;
+  getAdminUserById(id: number): Promise<AdminUser | undefined>;
   updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser>;
   deleteAdminUser(id: number): Promise<void>;
   
@@ -994,6 +995,13 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(adminUsers)
       .where(eq(adminUsers.isActive, true))
       .orderBy(desc(adminUsers.createdAt));
+  }
+  
+  async getAdminUserById(id: number): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers)
+      .where(eq(adminUsers.id, id))
+      .limit(1);
+    return user;
   }
   
   async updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser> {

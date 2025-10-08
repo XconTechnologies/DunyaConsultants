@@ -1461,19 +1461,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update admin user (role and permissions)
-  app.put("/api/admin/users/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+  // Update admin user (role, permissions, username, password)
+  app.put("/api/admin/users/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const userId = parseInt(req.params.id);
-      const { role, permissions, isActive } = req.body;
+      const { role, permissions, isActive, username, password } = req.body;
 
       if (isNaN(userId)) {
         return res.status(400).json({ message: 'Invalid user ID' });
       }
 
+      // Get current user from storage to check permissions
+      const currentUser = await storage.getAdminUserById(req.adminId!);
+      const isAdmin = currentUser?.role === 'admin';
+      const isSelf = req.adminId === userId;
+
+      // Check permissions: admin can edit anyone, users can only edit themselves
+      if (!isAdmin && !isSelf) {
+        return res.status(403).json({ message: 'Not authorized to edit this user' });
+      }
+
       // Prevent admin from deactivating themselves
-      if (req.adminId === userId && isActive === false) {
+      if (isSelf && isActive === false) {
         return res.status(400).json({ message: 'Cannot deactivate your own account' });
+      }
+
+      // Only admins can change role, permissions, or isActive
+      if (!isAdmin && (role !== undefined || permissions !== undefined || isActive !== undefined)) {
+        return res.status(403).json({ message: 'Only admins can change role, permissions, or status' });
       }
 
       const updates: any = {};
@@ -1486,12 +1501,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       if (permissions !== undefined) updates.permissions = permissions;
       if (isActive !== undefined) updates.isActive = isActive;
+      if (username !== undefined) updates.username = username;
+      if (password !== undefined) {
+        // Hash the password before storing
+        const bcrypt = await import('bcryptjs');
+        updates.password = await bcrypt.hash(password, 10);
+      }
 
       const updatedUser = await storage.updateAdminUser(userId, updates);
       
-      // Remove password from response
-      const { password: _, ...userResponse } = updatedUser;
-      res.json(userResponse);
+      // If user updated their own info, update localStorage
+      if (isSelf) {
+        const { password: _, ...userResponse } = updatedUser;
+        res.json({ ...userResponse, updatedSelf: true });
+      } else {
+        const { password: _, ...userResponse } = updatedUser;
+        res.json(userResponse);
+      }
     } catch (error) {
       console.error('Error updating admin user:', error);
       res.status(500).json({ message: 'Failed to update user' });
