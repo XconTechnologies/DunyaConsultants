@@ -48,6 +48,8 @@ const studyDestinations = [
   "Finland",
   "Belgium",
   "Turkey",
+  "Sweden",
+  "Cyprus",
   "Other"
 ];
 
