@@ -25,6 +25,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
+import html2canvas from "html2canvas";
 import type { Event } from "@shared/schema";
 
 const registrationSchema = z.object({
@@ -489,7 +490,7 @@ export default function EventRegistration() {
           </DialogHeader>
           <div className="space-y-4 py-4">
             {qrCodeUrl && event && (
-              <div className="bg-white border-2 border-[#1D50C9] rounded-lg p-5">
+              <div id="event-card-download" className="bg-white border-2 border-[#1D50C9] rounded-lg p-5">
                 <div className="flex items-center gap-6">
                   {/* Left: Event Details */}
                   <div className="flex-1">
@@ -530,18 +531,35 @@ export default function EventRegistration() {
           </div>
           <div className="flex gap-3">
             <Button
-              onClick={() => {
-                if (qrCodeUrl && event) {
-                  const eventName = event.title
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '');
-                  const link = document.createElement('a');
-                  link.href = qrCodeUrl;
-                  link.download = `${eventName}-qr-code.png`;
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
+              onClick={async () => {
+                if (event) {
+                  const eventCard = document.getElementById('event-card-download');
+                  if (eventCard) {
+                    try {
+                      const canvas = await html2canvas(eventCard, {
+                        scale: 2,
+                        backgroundColor: '#ffffff',
+                      });
+                      const eventName = event.title
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                      canvas.toBlob((blob) => {
+                        if (blob) {
+                          const url = URL.createObjectURL(blob);
+                          const link = document.createElement('a');
+                          link.href = url;
+                          link.download = `${eventName}-event-card.png`;
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                          URL.revokeObjectURL(url);
+                        }
+                      });
+                    } catch (error) {
+                      console.error('Error downloading event card:', error);
+                    }
+                  }
                 }
               }}
               className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all"
