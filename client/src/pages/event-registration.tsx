@@ -374,7 +374,7 @@ export default function EventRegistration() {
               <Button
                 type="submit"
                 disabled={registerMutation.isPending}
-                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-shadow"
+                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
                 data-testid="button-register"
               >
                 {registerMutation.isPending ? (
@@ -391,7 +391,7 @@ export default function EventRegistration() {
                 type="button"
                 variant="outline"
                 onClick={() => setLocation(`/events/${eventSlug}`)}
-                className="flex-1 py-6 text-lg border-[#dadada] hover:bg-gray-50"
+                className="flex-1 py-6 text-lg border-[#dadada] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 hover:scale-105"
                 data-testid="button-cancel"
               >
                 Back to Details
