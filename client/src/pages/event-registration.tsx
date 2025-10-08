@@ -532,26 +532,30 @@ export default function EventRegistration() {
           <div className="flex gap-3">
             <Button
               onClick={async () => {
-                if (event) {
+                if (event && qrCodeUrl) {
                   const eventCard = document.getElementById('event-card-download');
                   if (eventCard) {
                     try {
-                      // Convert QR image to data URL first
+                      // Fetch QR image and convert to data URL
                       const qrImg = eventCard.querySelector('img') as HTMLImageElement;
-                      if (qrImg) {
-                        const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d');
-                        canvas.width = qrImg.naturalWidth;
-                        canvas.height = qrImg.naturalHeight;
-                        if (ctx) {
-                          ctx.drawImage(qrImg, 0, 0);
-                          const dataURL = canvas.toDataURL('image/png');
-                          qrImg.src = dataURL;
-                        }
+                      const originalSrc = qrImg?.src;
+                      
+                      if (qrImg && qrCodeUrl) {
+                        const response = await fetch(qrCodeUrl);
+                        const blob = await response.blob();
+                        const reader = new FileReader();
+                        
+                        await new Promise((resolve) => {
+                          reader.onloadend = () => {
+                            qrImg.src = reader.result as string;
+                            resolve(true);
+                          };
+                          reader.readAsDataURL(blob);
+                        });
+                        
+                        // Wait for image to load
+                        await new Promise(resolve => setTimeout(resolve, 200));
                       }
-
-                      // Small delay to ensure image is updated
-                      await new Promise(resolve => setTimeout(resolve, 100));
 
                       const captureCanvas = await html2canvas(eventCard, {
                         scale: 2,
@@ -577,9 +581,9 @@ export default function EventRegistration() {
                         }
                       });
 
-                      // Restore original QR image source
-                      if (qrImg && qrCodeUrl) {
-                        qrImg.src = qrCodeUrl;
+                      // Restore original image source
+                      if (qrImg && originalSrc) {
+                        qrImg.src = originalSrc;
                       }
                     } catch (error) {
                       console.error('Error downloading event card:', error);
