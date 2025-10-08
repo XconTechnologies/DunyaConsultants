@@ -583,16 +583,24 @@ export default function EventRegistration() {
                     const logoImage = new Image();
                     logoImage.crossOrigin = 'anonymous';
                     
-                    await new Promise((resolve, reject) => {
+                    await new Promise<void>((resolve) => {
                       logoImage.onload = () => {
-                        // Draw logo centered at top
-                        const logoWidth = 180 * scale;
-                        const logoHeight = 50 * scale;
-                        const logoX = (canvas.width - logoWidth) / 2;
-                        ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
-                        resolve(true);
+                        try {
+                          // Draw logo centered at top
+                          const logoWidth = 180 * scale;
+                          const logoHeight = 50 * scale;
+                          const logoX = (canvas.width - logoWidth) / 2;
+                          ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
+                          resolve();
+                        } catch (err) {
+                          console.error('Error drawing logo:', err);
+                          resolve(); // Continue anyway
+                        }
                       };
-                      logoImage.onerror = reject;
+                      logoImage.onerror = (e) => {
+                        console.error('Logo loading failed, continuing without logo:', e);
+                        resolve(); // Continue anyway without logo
+                      };
                       logoImage.src = 'https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png';
                     });
 
@@ -647,30 +655,37 @@ export default function EventRegistration() {
                     const qrImage = new Image();
                     qrImage.crossOrigin = 'anonymous';
                     
-                    await new Promise((resolve, reject) => {
+                    await new Promise<void>((resolve, reject) => {
                       qrImage.onload = () => {
-                        // Draw QR border
-                        ctx.strokeStyle = '#1D50C9';
-                        ctx.lineWidth = 2 * scale;
-                        drawRoundRect(410 * scale, 110 * scale, 150 * scale, 150 * scale, 8 * scale);
-                        ctx.stroke();
+                        try {
+                          // Draw QR border
+                          ctx.strokeStyle = '#1D50C9';
+                          ctx.lineWidth = 2 * scale;
+                          drawRoundRect(410 * scale, 110 * scale, 150 * scale, 150 * scale, 8 * scale);
+                          ctx.stroke();
 
-                        // Draw QR code
-                        ctx.drawImage(qrImage, 420 * scale, 120 * scale, 130 * scale, 130 * scale);
+                          // Draw QR code
+                          ctx.drawImage(qrImage, 420 * scale, 120 * scale, 130 * scale, 130 * scale);
 
-                        // Draw "YOUR QR CODE" text
-                        ctx.font = `bold ${11 * scale}px system-ui`;
-                        ctx.fillStyle = '#1D50C9';
-                        ctx.textAlign = 'center';
-                        ctx.fillText('YOUR QR CODE', 485 * scale, 280 * scale);
-                        
-                        resolve(true);
+                          // Draw "YOUR QR CODE" text
+                          ctx.font = `bold ${11 * scale}px system-ui`;
+                          ctx.fillStyle = '#1D50C9';
+                          ctx.textAlign = 'center';
+                          ctx.fillText('YOUR QR CODE', 485 * scale, 280 * scale);
+                          
+                          resolve();
+                        } catch (err) {
+                          reject(err);
+                        }
                       };
-                      qrImage.onerror = reject;
+                      qrImage.onerror = (e) => {
+                        console.error('QR code loading failed:', e);
+                        reject(new Error('QR code failed to load'));
+                      };
                       qrImage.src = qrCodeUrl;
                     });
 
-                    // Download the canvas
+                    // Download the canvas - only after all images are loaded
                     const eventName = event.title
                       .toLowerCase()
                       .replace(/[^a-z0-9]+/g, '-')
