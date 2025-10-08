@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
+import * as XLSX from 'xlsx';
 import AdminSidebar from "@/components/admin/sidebar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -45,8 +46,8 @@ export default function EventRegistrationsPage() {
     URL.revokeObjectURL(url);
   };
 
-  // Export to Google Sheets
-  const exportToSheets = async (eventRegs: EventRegistration[], eventTitle: string) => {
+  // Export to Excel
+  const exportToSheets = (eventRegs: EventRegistration[], eventTitle: string) => {
     const sheetData = eventRegs.map(reg => ({
       Name: reg.name,
       Email: reg.email,
@@ -58,9 +59,16 @@ export default function EventRegistrationsPage() {
       Registered: new Date(reg.createdAt).toLocaleDateString()
     }));
 
-    // For now, we'll download as CSV since Google Sheets API integration requires OAuth
-    // This can be enhanced later with direct Google Sheets API
-    exportToCSV(eventRegs, eventTitle);
+    // Create a new workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(sheetData);
+
+    // Add worksheet to workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Registrations');
+
+    // Generate Excel file and download
+    const fileName = `${eventTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-registrations.xlsx`;
+    XLSX.writeFile(workbook, fileName);
   };
 
   // Check authentication
