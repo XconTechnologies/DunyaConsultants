@@ -483,9 +483,9 @@ export default function EventRegistration() {
               />
             </div>
             
-            <div className="flex items-start gap-4">
+            <div className="flex items-center gap-4">
               <CheckCircle2 className="h-16 w-16 text-white flex-shrink-0" />
-              <div className="flex-1 pt-2">
+              <div className="flex-1">
                 <DialogTitle className="text-2xl text-white mb-2">
                   Thank You {userName}!
                 </DialogTitle>
