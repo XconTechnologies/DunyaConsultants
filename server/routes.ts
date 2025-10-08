@@ -405,7 +405,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   <!-- Logo Header -->
                   <div style="background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 3px solid #1D50C9;">
                     <h1 style="color: #1D50C9; font-size: 32px; font-weight: bold; margin: 0; letter-spacing: 1px;">DUNYA CONSULTANTS</h1>
-                    <p style="color: #666; font-size: 12px; margin: 5px 0 0 0; letter-spacing: 0.5px;">Turning Ambition into Admission</p>
+                    <p style="color: #666; font-size: 12px; margin: 5px 0 10px 0; letter-spacing: 0.5px;">Turning Ambition into Admission</p>
+                    <p style="color: #1D50C9; font-size: 13px; margin: 10px 0 0 0;">📧 Check your email for confirmation and your QR code</p>
                   </div>
 
                   <!-- Event Banner -->
@@ -473,13 +474,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
                       </table>
                     </div>
 
-                    <!-- QR Code Section -->
-                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 20px;">
-                      <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">Your QR Code</h3>
-                      <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px;">
-                        <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 200px; height: 200px; display: block;" />
-                      </div>
-                      <p style="color: #666; font-size: 13px; margin: 15px 0 0 0;">Check in with this QR code upon arrival at the event.</p>
+                    <!-- Event Details & QR Code Section -->
+                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Left: Event Details -->
+                          <td style="width: 60%; vertical-align: middle; padding-right: 20px;">
+                            <h3 style="color: #1D50C9; font-size: 16px; font-weight: bold; margin: 0 0 15px 0;">${event.title}</h3>
+                            
+                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
+                              <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
+                              <span style="margin-left: 24px;">${eventDateFormatted}</span>
+                            </p>
+                            
+                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
+                              <span style="color: #FF6B35;">🕐</span> <strong>Time:</strong><br/>
+                              <span style="margin-left: 24px;">10:00 AM to 5:00 PM</span>
+                            </p>
+                            
+                            ${event.venue ? `
+                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
+                              <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
+                              <span style="margin-left: 24px;">${event.venue}</span>
+                            </p>
+                            ` : ''}
+                          </td>
+                          
+                          <!-- Right: QR Code (Smaller) -->
+                          <td style="width: 40%; vertical-align: middle; text-align: center;">
+                            <div style="background: white; padding: 10px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
+                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 120px; height: 120px; display: block;" />
+                            </div>
+                            <p style="color: #1D50C9; font-size: 11px; font-weight: bold; margin: 10px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
 
                   </div>
