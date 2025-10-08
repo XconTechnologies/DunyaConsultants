@@ -536,18 +536,35 @@ export default function EventRegistration() {
                   const eventCard = document.getElementById('event-card-download');
                   if (eventCard) {
                     try {
-                      const canvas = await html2canvas(eventCard, {
+                      // Convert QR image to data URL first
+                      const qrImg = eventCard.querySelector('img') as HTMLImageElement;
+                      if (qrImg) {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = qrImg.naturalWidth;
+                        canvas.height = qrImg.naturalHeight;
+                        if (ctx) {
+                          ctx.drawImage(qrImg, 0, 0);
+                          const dataURL = canvas.toDataURL('image/png');
+                          qrImg.src = dataURL;
+                        }
+                      }
+
+                      // Small delay to ensure image is updated
+                      await new Promise(resolve => setTimeout(resolve, 100));
+
+                      const captureCanvas = await html2canvas(eventCard, {
                         scale: 2,
                         backgroundColor: '#ffffff',
-                        useCORS: true,
-                        allowTaint: true,
                         logging: false,
                       });
+                      
                       const eventName = event.title
                         .toLowerCase()
                         .replace(/[^a-z0-9]+/g, '-')
                         .replace(/^-+|-+$/g, '');
-                      canvas.toBlob((blob) => {
+                      
+                      captureCanvas.toBlob((blob) => {
                         if (blob) {
                           const url = URL.createObjectURL(blob);
                           const link = document.createElement('a');
@@ -559,6 +576,11 @@ export default function EventRegistration() {
                           URL.revokeObjectURL(url);
                         }
                       });
+
+                      // Restore original QR image source
+                      if (qrImg && qrCodeUrl) {
+                        qrImg.src = qrCodeUrl;
+                      }
                     } catch (error) {
                       console.error('Error downloading event card:', error);
                     }
