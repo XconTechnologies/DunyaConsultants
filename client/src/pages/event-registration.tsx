@@ -14,10 +14,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Loader2, Calendar, MapPin, GraduationCap, X } from "lucide-react";
+import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import type { Event } from "@shared/schema";
 
 const registrationSchema = z.object({
@@ -60,6 +67,7 @@ export default function EventRegistration() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const [eventSlug, setEventSlug] = useState<string>("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -102,14 +110,8 @@ export default function EventRegistration() {
       });
     },
     onSuccess: (data) => {
-      toast({
-        title: "Registration Successful! 🎉",
-        description: "Check your email for confirmation and QR code.",
-      });
-      
-      setTimeout(() => {
-        setLocation(`/events/${eventSlug}`);
-      }, 2000);
+      setShowSuccessModal(true);
+      form.reset();
     },
     onError: (error: any) => {
       toast({
@@ -392,7 +394,6 @@ export default function EventRegistration() {
                 className="flex-1 py-6 text-lg border-[#dadada] hover:bg-gray-50"
                 data-testid="button-cancel"
               >
-                <X className="h-5 w-5 mr-2" />
                 Cancel
               </Button>
             </div>
@@ -406,6 +407,56 @@ export default function EventRegistration() {
           </p>
         </div>
       </div>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="mx-auto mb-4">
+              <CheckCircle2 className="h-16 w-16 text-green-500" />
+            </div>
+            <DialogTitle className="text-center text-2xl">
+              Registration Successful!
+            </DialogTitle>
+            <DialogDescription className="text-center text-base pt-2">
+              Thank you for registering for <strong>{event?.title}</strong>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm text-gray-700 text-center">
+                📧 Check your email for confirmation and your QR code
+              </p>
+            </div>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-sm text-gray-700 text-center">
+                🎫 Show your QR code at the event for check-in
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <Button
+              onClick={() => {
+                setShowSuccessModal(false);
+                setLocation(`/events/${eventSlug}`);
+              }}
+              className="flex-1 bg-[#1D50C9] hover:bg-[#0f3a8a]"
+            >
+              View Event Details
+            </Button>
+            <Button
+              onClick={() => {
+                setShowSuccessModal(false);
+                setLocation("/events");
+              }}
+              variant="outline"
+              className="flex-1"
+            >
+              Browse Events
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -409,9 +409,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   </div>
 
                   <!-- Event Banner -->
-                  ${event.bannerImage ? `
+                  ${event.detailImage || event.image ? `
                   <div style="width: 100%; overflow: hidden;">
-                    <img src="${baseUrl}${event.bannerImage}" alt="${event.title}" style="width: 100%; height: auto; display: block;" />
+                    <img src="${baseUrl}${event.detailImage || event.image}" alt="${event.title}" style="width: 100%; height: auto; display: block;" />
                   </div>
                   ` : ''}
 
