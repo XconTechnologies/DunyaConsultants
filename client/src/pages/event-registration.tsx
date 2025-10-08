@@ -394,7 +394,7 @@ export default function EventRegistration() {
                 className="flex-1 py-6 text-lg border-[#dadada] hover:bg-gray-50"
                 data-testid="button-cancel"
               >
-                Cancel
+                Back to Details
               </Button>
             </div>
           </form>
