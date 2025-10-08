@@ -587,7 +587,7 @@ export default function EventRegistration() {
                     ctx.font = `bold ${14 * scale}px system-ui`;
                     ctx.fillText('Date:', 80 * scale, 110 * scale);
                     ctx.font = `${14 * scale}px system-ui`;
-                    ctx.fillText(dateStr, 80 * scale, 135 * scale);
+                    ctx.fillText(dateStr, 50 * scale, 135 * scale);
 
                     // Time
                     ctx.fillStyle = '#f97316';
@@ -596,7 +596,7 @@ export default function EventRegistration() {
                     ctx.font = `bold ${14 * scale}px system-ui`;
                     ctx.fillText('Time:', 80 * scale, 175 * scale);
                     ctx.font = `${14 * scale}px system-ui`;
-                    ctx.fillText('10:00 AM to 5:00 PM', 80 * scale, 200 * scale);
+                    ctx.fillText('10:00 AM to 5:00 PM', 50 * scale, 200 * scale);
 
                     // Venue
                     if (event.venue) {
@@ -606,7 +606,7 @@ export default function EventRegistration() {
                       ctx.font = `bold ${14 * scale}px system-ui`;
                       ctx.fillText('Venue:', 80 * scale, 240 * scale);
                       ctx.font = `${14 * scale}px system-ui`;
-                      ctx.fillText(event.venue, 80 * scale, 265 * scale);
+                      ctx.fillText(event.venue, 50 * scale, 265 * scale);
                     }
 
                     // Load and draw QR code
