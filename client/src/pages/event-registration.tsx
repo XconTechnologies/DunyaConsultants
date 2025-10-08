@@ -501,7 +501,7 @@ export default function EventRegistration() {
                         <span className="ml-5">{new Date(event.eventDate).toLocaleDateString('en-US', { 
                           weekday: 'long', 
                           year: 'numeric', 
-                          month: 'long', 
+                          month: 'short', 
                           day: 'numeric' 
                         })}</span>
                       </p>
