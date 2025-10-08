@@ -474,8 +474,13 @@ export default function EventRegistration() {
       {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="sm:max-w-md border-[#dadada]">
-          <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-6 rounded-t-lg">
+          <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-8 rounded-t-lg">
             <div className="mx-auto mb-4">
+              <img 
+                src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
+                alt="Dunya Consultants" 
+                className="h-12 mx-auto mb-4"
+              />
               <CheckCircle2 className="h-16 w-16 text-white" />
             </div>
             <DialogTitle className="text-center text-2xl text-white">
