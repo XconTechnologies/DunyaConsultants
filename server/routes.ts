@@ -433,48 +433,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
                       We look forward to meeting you there.
                     </p>
 
-                    <!-- User Details Box -->
-                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                      <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">Your Details</h3>
-                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Name:</strong> ${registration.name}</p>
-                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Email:</strong> ${registration.email}</p>
-                      <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Phone:</strong> ${registration.phone}</p>
-                      ${registration.education ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Education Level:</strong> ${registration.education}</p>` : ''}
-                      ${registration.destination ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Study Destination:</strong> ${registration.destination}</p>` : ''}
-                    </div>
-
-                    <!-- Event Details Box -->
+                    <!-- Combined Details Card with 2 Columns -->
                     <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
-                      <h2 style="color: #1D50C9; font-size: 18px; font-weight: bold; margin: 0 0 15px 0;">${event.title}</h2>
-                      
-                      <div style="margin: 12px 0;">
-                        <div style="display: inline-block; vertical-align: top; width: 20px;">
-                          <span style="color: #1D50C9;">📅</span>
-                        </div>
-                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
-                          <p style="margin: 0; color: #333; font-size: 14px;">${eventDateFormatted}</p>
-                        </div>
-                      </div>
-                      
-                      <div style="margin: 12px 0;">
-                        <div style="display: inline-block; vertical-align: top; width: 20px;">
-                          <span style="color: #FF6B35;">🕐</span>
-                        </div>
-                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
-                          <p style="margin: 0; color: #333; font-size: 14px;">10:00 AM to 5:00 PM</p>
-                        </div>
-                      </div>
-                      
-                      ${event.venue ? `
-                      <div style="margin: 12px 0;">
-                        <div style="display: inline-block; vertical-align: top; width: 20px;">
-                          <span style="color: #1D50C9;">📍</span>
-                        </div>
-                        <div style="display: inline-block; vertical-align: top; width: calc(100% - 30px);">
-                          <p style="margin: 0; color: #333; font-size: 14px;">${event.venue}</p>
-                        </div>
-                      </div>
-                      ` : ''}
+                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Column 1: Your Details -->
+                          <td style="width: 48%; vertical-align: top; padding-right: 2%;">
+                            <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">YOUR DETAILS</h3>
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Name:</strong> ${registration.name}</p>
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Email:</strong> <a href="mailto:${registration.email}" style="color: #1D50C9; text-decoration: none;">${registration.email}</a></p>
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Phone:</strong> ${registration.phone}</p>
+                            ${registration.education ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Education Level:</strong> ${registration.education}</p>` : ''}
+                            ${registration.destination ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Study Destination:</strong> ${registration.destination}</p>` : ''}
+                          </td>
+                          
+                          <!-- Column 2: Event Details -->
+                          <td style="width: 48%; vertical-align: top; padding-left: 2%; border-left: 1px solid #e0e0e0;">
+                            <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">EVENT DETAILS</h3>
+                            <h4 style="color: #1D50C9; font-size: 16px; font-weight: bold; margin: 0 0 12px 0;">${event.title}</h4>
+                            
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
+                              <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
+                              ${eventDateFormatted}
+                            </p>
+                            
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
+                              <span style="color: #FF6B35;">🕐</span> <strong>Timings:</strong><br/>
+                              10:00 AM to 5:00 PM
+                            </p>
+                            
+                            ${event.venue ? `
+                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
+                              <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
+                              ${event.venue}
+                            </p>
+                            ` : ''}
+                          </td>
+                        </tr>
+                      </table>
                     </div>
 
                     <!-- QR Code Section -->
