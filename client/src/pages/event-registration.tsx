@@ -101,7 +101,7 @@ export default function EventRegistration() {
     mutationFn: async (data: RegistrationForm) => {
       if (!event) throw new Error("Event not found");
       
-      return apiRequest("/api/events/register", "POST", {
+      const response = await apiRequest("POST", "/api/events/register", {
         eventId: event.id,
         name: data.fullName,
         email: data.email,
@@ -110,6 +110,7 @@ export default function EventRegistration() {
         education: data.education,
         destination: data.destinations.join(", "),
       });
+      return response.json();
     },
     onSuccess: (data: any) => {
       if (data.registration?.qrCodeUrl) {
