@@ -539,10 +539,10 @@ export default function EventRegistration() {
                     const ctx = canvas.getContext('2d');
                     if (!ctx) return;
 
-                    // Set canvas dimensions (2x for high resolution)
+                    // Set canvas dimensions (2x for high resolution) - smaller width
                     const scale = 2;
-                    canvas.width = 800 * scale;
-                    canvas.height = 320 * scale;
+                    canvas.width = 600 * scale;
+                    canvas.height = 280 * scale;
 
                     // Fill white background
                     ctx.fillStyle = '#ffffff';
@@ -551,7 +551,7 @@ export default function EventRegistration() {
                     // Draw blue border
                     ctx.strokeStyle = '#1D50C9';
                     ctx.lineWidth = 4 * scale;
-                    ctx.strokeRect(10 * scale, 10 * scale, (800 - 20) * scale, (320 - 20) * scale);
+                    ctx.strokeRect(10 * scale, 10 * scale, (600 - 20) * scale, (280 - 20) * scale);
 
                     // Draw rounded rectangle for content
                     const drawRoundRect = (x: number, y: number, width: number, height: number, radius: number) => {
@@ -568,45 +568,51 @@ export default function EventRegistration() {
                       ctx.closePath();
                     };
 
-                    // Title
-                    ctx.font = `bold ${18 * scale}px system-ui`;
+                    // Event Name Heading
+                    ctx.font = `bold ${16 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('Event Details', 50 * scale, 70 * scale);
+                    ctx.textAlign = 'left';
+                    ctx.fillText(event.title, 40 * scale, 50 * scale);
 
-                    // Date
+                    // Event Details subtitle
+                    ctx.font = `bold ${14 * scale}px system-ui`;
+                    ctx.fillStyle = '#1D50C9';
+                    ctx.fillText('Event Details', 40 * scale, 80 * scale);
+
+                    // Date (inline)
                     const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
                       weekday: 'long', 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
                     });
-                    ctx.font = `${14 * scale}px system-ui`;
+                    ctx.font = `${13 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('📅', 50 * scale, 110 * scale);
+                    ctx.fillText('📅', 40 * scale, 115 * scale);
                     ctx.fillStyle = '#374151';
-                    ctx.font = `bold ${14 * scale}px system-ui`;
-                    ctx.fillText('Date:', 80 * scale, 110 * scale);
-                    ctx.font = `${14 * scale}px system-ui`;
-                    ctx.fillText(dateStr, 50 * scale, 135 * scale);
+                    ctx.font = `bold ${13 * scale}px system-ui`;
+                    ctx.fillText('Date:', 65 * scale, 115 * scale);
+                    ctx.font = `${13 * scale}px system-ui`;
+                    ctx.fillText(dateStr, 110 * scale, 115 * scale);
 
-                    // Time
+                    // Time (inline)
                     ctx.fillStyle = '#f97316';
-                    ctx.fillText('🕐', 50 * scale, 175 * scale);
+                    ctx.fillText('🕐', 40 * scale, 150 * scale);
                     ctx.fillStyle = '#374151';
-                    ctx.font = `bold ${14 * scale}px system-ui`;
-                    ctx.fillText('Time:', 80 * scale, 175 * scale);
-                    ctx.font = `${14 * scale}px system-ui`;
-                    ctx.fillText('10:00 AM to 5:00 PM', 50 * scale, 200 * scale);
+                    ctx.font = `bold ${13 * scale}px system-ui`;
+                    ctx.fillText('Time:', 65 * scale, 150 * scale);
+                    ctx.font = `${13 * scale}px system-ui`;
+                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 150 * scale);
 
-                    // Venue
+                    // Venue (inline)
                     if (event.venue) {
                       ctx.fillStyle = '#1D50C9';
-                      ctx.fillText('📍', 50 * scale, 240 * scale);
+                      ctx.fillText('📍', 40 * scale, 185 * scale);
                       ctx.fillStyle = '#374151';
-                      ctx.font = `bold ${14 * scale}px system-ui`;
-                      ctx.fillText('Venue:', 80 * scale, 240 * scale);
-                      ctx.font = `${14 * scale}px system-ui`;
-                      ctx.fillText(event.venue, 50 * scale, 265 * scale);
+                      ctx.font = `bold ${13 * scale}px system-ui`;
+                      ctx.fillText('Venue:', 65 * scale, 185 * scale);
+                      ctx.font = `${13 * scale}px system-ui`;
+                      ctx.fillText(event.venue, 120 * scale, 185 * scale);
                     }
 
                     // Load and draw QR code
@@ -618,17 +624,17 @@ export default function EventRegistration() {
                         // Draw QR border
                         ctx.strokeStyle = '#1D50C9';
                         ctx.lineWidth = 2 * scale;
-                        drawRoundRect(555 * scale, 50 * scale, 180 * scale, 180 * scale, 8 * scale);
+                        drawRoundRect(410 * scale, 50 * scale, 150 * scale, 150 * scale, 8 * scale);
                         ctx.stroke();
 
                         // Draw QR code
-                        ctx.drawImage(qrImage, 565 * scale, 60 * scale, 160 * scale, 160 * scale);
+                        ctx.drawImage(qrImage, 420 * scale, 60 * scale, 130 * scale, 130 * scale);
 
                         // Draw "YOUR QR CODE" text
-                        ctx.font = `bold ${12 * scale}px system-ui`;
+                        ctx.font = `bold ${11 * scale}px system-ui`;
                         ctx.fillStyle = '#1D50C9';
                         ctx.textAlign = 'center';
-                        ctx.fillText('YOUR QR CODE', 645 * scale, 255 * scale);
+                        ctx.fillText('YOUR QR CODE', 485 * scale, 220 * scale);
                         
                         resolve(true);
                       };
