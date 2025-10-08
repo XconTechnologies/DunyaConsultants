@@ -131,6 +131,7 @@ export default function UserManagement() {
   const [, setLocation] = useLocation();
   const [authChecked, setAuthChecked] = useState(false);
   const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
@@ -360,14 +361,19 @@ export default function UserManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Sidebar */}
-      <AdminSidebar currentUser={currentUser} />
+      <AdminSidebar 
+        currentUser={currentUser} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       
       {/* Main Content */}
-      <div className="ml-64">
+      <div className="lg:ml-64">
         <AdminHeader 
           currentUser={currentUser}
           title="User Management"
           subtitle="Manage system users and their permissions"
+          onMenuClick={() => setSidebarOpen(true)}
         />
         
         <div className="p-6 space-y-6">

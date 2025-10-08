@@ -26,6 +26,7 @@ export default function QRScannerPage() {
   const [qrToken, setQrToken] = useState("");
   const [lastScan, setLastScan] = useState<any>(null);
   const [showCamera, setShowCamera] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
   const scannerRef = useRef<Html5Qrcode | null>(null);
 
@@ -203,12 +204,28 @@ export default function QRScannerPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <AdminSidebar currentUser={adminUser} />
-      <div className="ml-64 p-8">
+      <AdminSidebar 
+        currentUser={adminUser} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+      <div className="lg:ml-64">
+        <div className="p-4 lg:p-8">
         <div className="max-w-4xl mx-auto">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">QR Code Scanner</h1>
-          <p className="text-gray-600">Scan attendee QR codes to mark attendance and prize eligibility</p>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">QR Code Scanner</h1>
+            <p className="text-gray-600">Scan attendee QR codes to mark attendance and prize eligibility</p>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setSidebarOpen(true)}
+            className="lg:hidden"
+            data-testid="button-menu-mobile"
+          >
+            <QrCode className="w-5 h-5" />
+          </Button>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -372,6 +389,7 @@ export default function QRScannerPage() {
             </div>
           </DialogContent>
         </Dialog>
+      </div>
       </div>
     </div>
   );

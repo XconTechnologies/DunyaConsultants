@@ -16,6 +16,7 @@ export default function EventRegistrationsPage() {
   const [, setLocation] = useLocation();
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Export to CSV
   const exportToCSV = (eventRegs: EventRegistration[], eventTitle: string) => {
@@ -127,12 +128,17 @@ export default function EventRegistrationsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <AdminSidebar currentUser={adminUser} />
-      <div className="ml-64">
+      <AdminSidebar 
+        currentUser={adminUser} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+      <div className="lg:ml-64">
         <AdminHeader 
           currentUser={adminUser}
           title="Event Registrations"
           subtitle="View all registrations organized by event"
+          onMenuClick={() => setSidebarOpen(true)}
         />
         <div className="max-w-7xl mx-auto p-8">
 

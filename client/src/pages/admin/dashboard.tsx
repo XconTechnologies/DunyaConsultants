@@ -84,6 +84,7 @@ export default function AdminDashboard() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -672,15 +673,20 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Sidebar */}
-      <AdminSidebar currentUser={adminUser} />
+      <AdminSidebar 
+        currentUser={adminUser} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       
       {/* Main Content */}
-      <div className="ml-64">
+      <div className="lg:ml-64">
         {/* Header */}
         <AdminHeader 
           currentUser={adminUser}
           title="Content Dashboard"
           subtitle={adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
+          onMenuClick={() => setSidebarOpen(true)}
         />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
