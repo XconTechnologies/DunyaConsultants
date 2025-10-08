@@ -494,40 +494,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
                       </table>
                     </div>
 
-                    <!-- Event Details & QR Code Section -->
-                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                        <tr>
-                          <!-- Event Details (Full Width) -->
-                          <td class="mobile-full-width" style="vertical-align: middle;">
-                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
-                              <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
-                              <span style="margin-left: 24px;">${eventDateFormatted}</span>
-                            </p>
-                            
-                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
-                              <span style="color: #FF6B35;">🕐</span> <strong>Time:</strong><br/>
-                              <span style="margin-left: 24px;">10:00 AM to 5:00 PM</span>
-                            </p>
-                            
-                            ${event.venue ? `
-                            <p style="margin: 10px 0; color: #333; font-size: 14px;">
-                              <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
-                              <span style="margin-left: 24px;">${event.venue}</span>
-                            </p>
-                            ` : ''}
-                          </td>
-                        </tr>
-                        <tr>
-                          <!-- QR Code (Full Width, Centered) -->
-                          <td class="mobile-full-width" style="vertical-align: middle; text-align: center; padding-top: 20px;">
-                            <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
-                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 150px; height: 150px; display: block;" />
-                            </div>
-                            <p style="color: #1D50C9; font-size: 12px; font-weight: bold; margin: 15px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
-                          </td>
-                        </tr>
-                      </table>
+                    <!-- QR Code Section -->
+                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center;">
+                      <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
+                        <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 150px; height: 150px; display: block;" />
+                      </div>
+                      <p style="color: #1D50C9; font-size: 12px; font-weight: bold; margin: 15px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
                     </div>
 
                   </div>
