@@ -32,8 +32,8 @@ const registrationSchema = z.object({
 type RegistrationForm = z.infer<typeof registrationSchema>;
 
 const educationLevels = [
-  "Matric/SSC",
-  "Intermediate/HSSC",
+  "O Level/Matric/SSC",
+  "A Level/Intermediate/HSSC",
   "Associate Degree",
   "Bachelors",
   "Masters",
