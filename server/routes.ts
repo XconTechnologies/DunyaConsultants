@@ -384,8 +384,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             month: 'long', 
             day: 'numeric' 
           });
-          const baseUrl = process.env.REPL_ID 
-            ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` 
+          const baseUrl = process.env.REPLIT_DOMAINS
+            ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
             : 'http://localhost:5000';
           
           resend.emails.send({
