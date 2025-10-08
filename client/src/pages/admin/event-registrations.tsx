@@ -17,12 +17,11 @@ export default function EventRegistrationsPage() {
 
   // Export to CSV
   const exportToCSV = (eventRegs: EventRegistration[], eventTitle: string) => {
-    const headers = ['Name', 'Email', 'Phone', 'City', 'Education', 'Destinations', 'Attendance', 'Prize Status', 'Registered'];
+    const headers = ['Name', 'Email', 'Phone', 'Education', 'Destinations', 'Attendance', 'Prize Status', 'Registered'];
     const rows = eventRegs.map(reg => [
       reg.name,
       reg.email,
       reg.phone,
-      reg.city,
       reg.education || 'Not specified',
       reg.destination || 'Not specified',
       reg.isAttended ? 'Attended' : 'Not Attended',
@@ -52,7 +51,6 @@ export default function EventRegistrationsPage() {
       Name: reg.name,
       Email: reg.email,
       Phone: reg.phone,
-      City: reg.city,
       Education: reg.education || 'Not specified',
       Destinations: reg.destination || 'Not specified',
       Attendance: reg.isAttended ? 'Attended' : 'Not Attended',
@@ -226,7 +224,6 @@ export default function EventRegistrationsPage() {
                                 <TableHead>Name</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead>Phone</TableHead>
-                                <TableHead>City</TableHead>
                                 <TableHead>Education</TableHead>
                                 <TableHead>Destination</TableHead>
                                 <TableHead>Attendance</TableHead>
@@ -252,7 +249,6 @@ export default function EventRegistrationsPage() {
                                       {reg.phone}
                                     </div>
                                   </TableCell>
-                                  <TableCell className="text-sm">{reg.city}</TableCell>
                                   <TableCell>
                                     <div className="flex items-center gap-1 text-sm">
                                       <GraduationCap className="h-3 w-3 text-gray-500" />
