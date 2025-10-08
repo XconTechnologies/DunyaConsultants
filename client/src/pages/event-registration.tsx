@@ -533,61 +533,129 @@ export default function EventRegistration() {
             <Button
               onClick={async () => {
                 if (event && qrCodeUrl) {
-                  const eventCard = document.getElementById('event-card-download');
-                  if (eventCard) {
-                    try {
-                      // Fetch QR image and convert to data URL
-                      const qrImg = eventCard.querySelector('img') as HTMLImageElement;
-                      const originalSrc = qrImg?.src;
-                      
-                      if (qrImg && qrCodeUrl) {
-                        const response = await fetch(qrCodeUrl);
-                        const blob = await response.blob();
-                        const reader = new FileReader();
-                        
-                        await new Promise((resolve) => {
-                          reader.onloadend = () => {
-                            qrImg.src = reader.result as string;
-                            resolve(true);
-                          };
-                          reader.readAsDataURL(blob);
-                        });
-                        
-                        // Wait for image to load
-                        await new Promise(resolve => setTimeout(resolve, 200));
-                      }
+                  try {
+                    // Create canvas manually with better control
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    if (!ctx) return;
 
-                      const captureCanvas = await html2canvas(eventCard, {
-                        scale: 2,
-                        backgroundColor: '#ffffff',
-                        logging: false,
-                      });
-                      
-                      const eventName = event.title
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]+/g, '-')
-                        .replace(/^-+|-+$/g, '');
-                      
-                      captureCanvas.toBlob((blob) => {
-                        if (blob) {
-                          const url = URL.createObjectURL(blob);
-                          const link = document.createElement('a');
-                          link.href = url;
-                          link.download = `${eventName}-event-card.png`;
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                          URL.revokeObjectURL(url);
-                        }
-                      });
+                    // Set canvas dimensions (2x for high resolution)
+                    const scale = 2;
+                    canvas.width = 800 * scale;
+                    canvas.height = 320 * scale;
 
-                      // Restore original image source
-                      if (qrImg && originalSrc) {
-                        qrImg.src = originalSrc;
-                      }
-                    } catch (error) {
-                      console.error('Error downloading event card:', error);
+                    // Fill white background
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    // Draw blue border
+                    ctx.strokeStyle = '#1D50C9';
+                    ctx.lineWidth = 4 * scale;
+                    ctx.strokeRect(10 * scale, 10 * scale, (800 - 20) * scale, (320 - 20) * scale);
+
+                    // Draw rounded rectangle for content
+                    const drawRoundRect = (x: number, y: number, width: number, height: number, radius: number) => {
+                      ctx.beginPath();
+                      ctx.moveTo(x + radius, y);
+                      ctx.lineTo(x + width - radius, y);
+                      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                      ctx.lineTo(x + width, y + height - radius);
+                      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                      ctx.lineTo(x + radius, y + height);
+                      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                      ctx.lineTo(x, y + radius);
+                      ctx.quadraticCurveTo(x, y, x + radius, y);
+                      ctx.closePath();
+                    };
+
+                    // Title
+                    ctx.font = `bold ${18 * scale}px system-ui`;
+                    ctx.fillStyle = '#1D50C9';
+                    ctx.fillText('Event Details', 50 * scale, 70 * scale);
+
+                    // Date
+                    const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'short', 
+                      day: 'numeric' 
+                    });
+                    ctx.font = `${14 * scale}px system-ui`;
+                    ctx.fillStyle = '#1D50C9';
+                    ctx.fillText('📅', 50 * scale, 110 * scale);
+                    ctx.fillStyle = '#374151';
+                    ctx.font = `bold ${14 * scale}px system-ui`;
+                    ctx.fillText('Date:', 80 * scale, 110 * scale);
+                    ctx.font = `${14 * scale}px system-ui`;
+                    ctx.fillText(dateStr, 80 * scale, 135 * scale);
+
+                    // Time
+                    ctx.fillStyle = '#f97316';
+                    ctx.fillText('🕐', 50 * scale, 175 * scale);
+                    ctx.fillStyle = '#374151';
+                    ctx.font = `bold ${14 * scale}px system-ui`;
+                    ctx.fillText('Time:', 80 * scale, 175 * scale);
+                    ctx.font = `${14 * scale}px system-ui`;
+                    ctx.fillText('10:00 AM to 5:00 PM', 80 * scale, 200 * scale);
+
+                    // Venue
+                    if (event.venue) {
+                      ctx.fillStyle = '#1D50C9';
+                      ctx.fillText('📍', 50 * scale, 240 * scale);
+                      ctx.fillStyle = '#374151';
+                      ctx.font = `bold ${14 * scale}px system-ui`;
+                      ctx.fillText('Venue:', 80 * scale, 240 * scale);
+                      ctx.font = `${14 * scale}px system-ui`;
+                      ctx.fillText(event.venue, 80 * scale, 265 * scale);
                     }
+
+                    // Load and draw QR code
+                    const qrImage = new Image();
+                    qrImage.crossOrigin = 'anonymous';
+                    
+                    await new Promise((resolve, reject) => {
+                      qrImage.onload = () => {
+                        // Draw QR border
+                        ctx.strokeStyle = '#1D50C9';
+                        ctx.lineWidth = 2 * scale;
+                        drawRoundRect(555 * scale, 50 * scale, 180 * scale, 180 * scale, 8 * scale);
+                        ctx.stroke();
+
+                        // Draw QR code
+                        ctx.drawImage(qrImage, 565 * scale, 60 * scale, 160 * scale, 160 * scale);
+
+                        // Draw "YOUR QR CODE" text
+                        ctx.font = `bold ${12 * scale}px system-ui`;
+                        ctx.fillStyle = '#1D50C9';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('YOUR QR CODE', 645 * scale, 255 * scale);
+                        
+                        resolve(true);
+                      };
+                      qrImage.onerror = reject;
+                      qrImage.src = qrCodeUrl;
+                    });
+
+                    // Download the canvas
+                    const eventName = event.title
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, '-')
+                      .replace(/^-+|-+$/g, '');
+
+                    canvas.toBlob((blob) => {
+                      if (blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = `${eventName}-event-card.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                      }
+                    });
+                  } catch (error) {
+                    console.error('Error downloading event card:', error);
                   }
                 }
               }}
