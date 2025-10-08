@@ -23,7 +23,7 @@ import type { Event } from "@shared/schema";
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  whatsapp: z.string().min(10, "WhatsApp number must be at least 10 digits"),
   city: z.string().min(2, "City is required"),
   education: z.string().min(1, "Please select your education level"),
   destinations: z.array(z.string()).min(1, "Please select at least one study destination"),
@@ -76,7 +76,7 @@ export default function EventRegistration() {
     defaultValues: {
       fullName: "",
       email: "",
-      phone: "",
+      whatsapp: "",
       city: "",
       education: "",
       destinations: [],
@@ -90,7 +90,7 @@ export default function EventRegistration() {
       return apiRequest(`/api/events/${event.id}/register`, "POST", {
         name: data.fullName,
         email: data.email,
-        phone: data.phone,
+        phone: data.whatsapp,
         city: data.city,
         education: data.education,
         destination: data.destinations.join(", "),
@@ -197,27 +197,50 @@ export default function EventRegistration() {
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             
-            {/* Full Name - Floating Label */}
-            <div className="relative">
-              <Input 
-                id="fullName"
-                {...form.register("fullName")}
-                placeholder=" "
-                className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
-                data-testid="input-fullname"
-              />
-              <Label 
-                htmlFor="fullName" 
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
-              >
-                Full Name *
-              </Label>
-              {form.formState.errors.fullName && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.fullName.message}</p>
-              )}
+            {/* Row 1: Full Name and WhatsApp Number */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Full Name - Floating Label */}
+              <div className="relative">
+                <Input 
+                  id="fullName"
+                  {...form.register("fullName")}
+                  placeholder=" "
+                  className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                  data-testid="input-fullname"
+                />
+                <Label 
+                  htmlFor="fullName" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Full Name *
+                </Label>
+                {form.formState.errors.fullName && (
+                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.fullName.message}</p>
+                )}
+              </div>
+
+              {/* WhatsApp Number - Floating Label */}
+              <div className="relative">
+                <Input 
+                  id="whatsapp"
+                  {...form.register("whatsapp")}
+                  placeholder=" "
+                  className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
+                  data-testid="input-whatsapp"
+                />
+                <Label 
+                  htmlFor="whatsapp" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  WhatsApp Number *
+                </Label>
+                {form.formState.errors.whatsapp && (
+                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.whatsapp.message}</p>
+                )}
+              </div>
             </div>
 
-            {/* Email and Phone */}
+            {/* Row 2: Email and City */}
             <div className="grid md:grid-cols-2 gap-4">
               {/* Email - Floating Label */}
               <div className="relative">
@@ -240,45 +263,25 @@ export default function EventRegistration() {
                 )}
               </div>
 
-              {/* Phone - Floating Label */}
+              {/* City - Floating Label */}
               <div className="relative">
                 <Input 
-                  id="phone"
-                  {...form.register("phone")}
+                  id="city"
+                  {...form.register("city")}
                   placeholder=" "
                   className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
-                  data-testid="input-phone"
+                  data-testid="input-city"
                 />
                 <Label 
-                  htmlFor="phone" 
+                  htmlFor="city" 
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
-                  Phone Number *
+                  City *
                 </Label>
-                {form.formState.errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.phone.message}</p>
+                {form.formState.errors.city && (
+                  <p className="text-red-500 text-sm mt-1">{form.formState.errors.city.message}</p>
                 )}
               </div>
-            </div>
-
-            {/* City - Floating Label */}
-            <div className="relative">
-              <Input 
-                id="city"
-                {...form.register("city")}
-                placeholder=" "
-                className="h-14 border-[#dadada] bg-white rounded-lg transition-all peer px-4 pt-4"
-                data-testid="input-city"
-              />
-              <Label 
-                htmlFor="city" 
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
-              >
-                City *
-              </Label>
-              {form.formState.errors.city && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.city.message}</p>
-              )}
             </div>
 
             {/* Education Level - Select with Floating Label */}
