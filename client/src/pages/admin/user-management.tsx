@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -362,13 +363,16 @@ export default function UserManagement() {
       <AdminSidebar currentUser={currentUser} />
       
       {/* Main Content */}
-      <div className="ml-64 p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-          <p className="text-gray-600 mt-1">Manage system users and their permissions</p>
-        </div>
+      <div className="ml-64">
+        <AdminHeader 
+          currentUser={currentUser}
+          title="User Management"
+          subtitle="Manage system users and their permissions"
+        />
+        
+        <div className="p-6 space-y-6">
+      {/* Create User Dialog Button */}
+      <div className="flex items-center justify-end">
         
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
           <DialogTrigger asChild>
@@ -776,6 +780,7 @@ export default function UserManagement() {
           )}
         </DialogContent>
       </Dialog>
+      </div>
       </div>
     </div>
   );

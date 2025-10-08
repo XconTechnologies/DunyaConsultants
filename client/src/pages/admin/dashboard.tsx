@@ -43,6 +43,7 @@ import {
   CheckCircle,
   AlertTriangle,
   Tag,
+  ExternalLink,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -56,6 +57,7 @@ import {
 } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 
 interface BlogPost {
   id: number;
@@ -675,40 +677,11 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="ml-64">
         {/* Header */}
-        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-6">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                    <BarChart3 className="w-8 h-8 text-white" />
-                  </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-white">Content Dashboard</h1>
-                  <p className="text-blue-100 text-sm">
-                    {adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-sm text-blue-100">Welcome back,</div>
-                <div className="font-medium text-white">{adminUser.username}</div>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleLogout}
-                className="flex items-center space-x-2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
-              >
-                <LogOut className="w-4 h-4" />
-                <span>Logout</span>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+        <AdminHeader 
+          currentUser={adminUser}
+          title="Content Dashboard"
+          subtitle={adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
+        />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards - Only visible for users with analytics permission */}

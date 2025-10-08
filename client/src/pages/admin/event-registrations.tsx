@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import * as XLSX from 'xlsx';
 import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -127,12 +128,13 @@ export default function EventRegistrationsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminSidebar currentUser={adminUser} />
-      <div className="ml-64 p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Event Registrations</h1>
-            <p className="text-gray-600">View all registrations organized by event</p>
-          </div>
+      <div className="ml-64">
+        <AdminHeader 
+          currentUser={adminUser}
+          title="Event Registrations"
+          subtitle="View all registrations organized by event"
+        />
+        <div className="max-w-7xl mx-auto p-8">
 
           {eventsWithRegistrations.length === 0 ? (
             <Card>
