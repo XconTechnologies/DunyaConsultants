@@ -27,6 +27,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import html2canvas from "html2canvas";
 import type { Event } from "@shared/schema";
+import dunyaLogo from "@assets/dunya-logo-blue.png";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -581,7 +582,6 @@ export default function EventRegistration() {
 
                     // Load and draw logo first
                     const logoImage = new Image();
-                    logoImage.crossOrigin = 'anonymous'; // Enable CORS
                     
                     await new Promise<void>((resolve) => {
                       logoImage.onload = () => {
@@ -602,22 +602,33 @@ export default function EventRegistration() {
                         console.error('Logo loading failed, continuing without logo:', e);
                         resolve(); // Continue anyway without logo
                       };
-                      // Use the correct Dunya Consultants logo URL
-                      logoImage.src = 'https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png';
+                      // Use the local logo file
+                      logoImage.src = dunyaLogo;
                     });
 
                     // Event Name Heading - centered below logo on single line
-                    ctx.font = `bold ${16 * scale}px system-ui`;
+                    ctx.font = `bold ${15 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
                     ctx.textAlign = 'center';
                     
                     // Draw title on single line, centered
-                    ctx.fillText(event.title, canvas.width / 2, 115 * scale);
+                    const titleY = 120 * scale;
+                    ctx.fillText(event.title, canvas.width / 2, titleY);
+                    
+                    // Draw underline for title
+                    const titleWidth = ctx.measureText(event.title).width;
+                    ctx.strokeStyle = '#1D50C9';
+                    ctx.lineWidth = 2 * scale;
+                    ctx.beginPath();
+                    ctx.moveTo((canvas.width - titleWidth) / 2, titleY + 5 * scale);
+                    ctx.lineTo((canvas.width + titleWidth) / 2, titleY + 5 * scale);
+                    ctx.stroke();
 
                     // Event Details subtitle
                     ctx.font = `bold ${14 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('Event Details', 40 * scale, 140 * scale);
+                    ctx.textAlign = 'left';
+                    ctx.fillText('Event Details', 40 * scale, 155 * scale);
 
                     // Date (inline)
                     const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
@@ -628,31 +639,31 @@ export default function EventRegistration() {
                     });
                     ctx.font = `${13 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('📅', 40 * scale, 175 * scale);
+                    ctx.fillText('📅', 40 * scale, 190 * scale);
                     ctx.fillStyle = '#374151';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Date:', 65 * scale, 175 * scale);
+                    ctx.fillText('Date:', 65 * scale, 190 * scale);
                     ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText(dateStr, 110 * scale, 175 * scale);
+                    ctx.fillText(dateStr, 110 * scale, 190 * scale);
 
                     // Time (inline)
                     ctx.fillStyle = '#f97316';
-                    ctx.fillText('🕐', 40 * scale, 210 * scale);
+                    ctx.fillText('🕐', 40 * scale, 225 * scale);
                     ctx.fillStyle = '#374151';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Time:', 65 * scale, 210 * scale);
+                    ctx.fillText('Time:', 65 * scale, 225 * scale);
                     ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 210 * scale);
+                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 225 * scale);
 
                     // Venue (inline)
                     if (event.venue) {
                       ctx.fillStyle = '#1D50C9';
-                      ctx.fillText('📍', 40 * scale, 245 * scale);
+                      ctx.fillText('📍', 40 * scale, 260 * scale);
                       ctx.fillStyle = '#374151';
                       ctx.font = `bold ${13 * scale}px system-ui`;
-                      ctx.fillText('Venue:', 65 * scale, 245 * scale);
+                      ctx.fillText('Venue:', 65 * scale, 260 * scale);
                       ctx.font = `${13 * scale}px system-ui`;
-                      ctx.fillText(event.venue, 120 * scale, 245 * scale);
+                      ctx.fillText(event.venue, 120 * scale, 260 * scale);
                     }
 
                     // Load and draw QR code
