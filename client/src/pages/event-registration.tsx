@@ -454,10 +454,14 @@ export default function EventRegistration() {
           <div className="flex gap-3">
             <Button
               onClick={() => {
-                if (qrCodeUrl) {
+                if (qrCodeUrl && event) {
+                  const eventName = event.title
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
                   const link = document.createElement('a');
                   link.href = qrCodeUrl;
-                  link.download = `qr-code-${event?.title}.png`;
+                  link.download = `${eventName}-qr-code.png`;
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
