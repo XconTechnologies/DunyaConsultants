@@ -495,6 +495,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
                               <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
                               <span style="margin-left: 24px;">${event.venue}</span>
                             </p>
+                            ${event.title.toLowerCase().includes('bahawalpur') ? `
+                            <p style="margin: 10px 0 0 24px; color: #333; font-size: 14px;">
+                              <a href="https://maps.app.goo.gl/prH7W87aqmgs2JGMA" target="_blank" style="color: #1D50C9; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                <span style="text-decoration: underline;">View Location on Google Maps</span> →
+                              </a>
+                            </p>
+                            ` : ''}
                             ` : ''}
                           </td>
                           
