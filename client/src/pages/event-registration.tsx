@@ -475,21 +475,27 @@ export default function EventRegistration() {
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="sm:max-w-md border-[#dadada]">
           <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-8 rounded-t-lg">
-            <div className="mx-auto mb-4">
+            <div className="text-center mb-6">
               <img 
                 src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
                 alt="Dunya Consultants" 
-                className="h-12 mx-auto mb-4"
+                className="h-12 mx-auto"
               />
-              <CheckCircle2 className="h-16 w-16 text-white" />
             </div>
-            <DialogTitle className="text-center text-2xl text-white">
-              Thank You {userName}!
-            </DialogTitle>
-            <DialogDescription className="text-center text-base pt-2 text-white/90">
-              for registering for <strong>{event?.title}</strong>
-            </DialogDescription>
-            <p className="text-center text-sm pt-3 text-white/90">
+            
+            <div className="flex items-start gap-4">
+              <CheckCircle2 className="h-16 w-16 text-white flex-shrink-0" />
+              <div className="flex-1 pt-2">
+                <DialogTitle className="text-2xl text-white mb-2">
+                  Thank You {userName}!
+                </DialogTitle>
+                <DialogDescription className="text-base text-white/90">
+                  for registering for <strong>{event?.title}</strong>
+                </DialogDescription>
+              </div>
+            </div>
+            
+            <p className="text-center text-sm pt-4 text-white/90">
               📧 Check your email for confirmation and your QR code
             </p>
           </DialogHeader>
