@@ -402,11 +402,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
               <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
                 <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
                   
-                  <!-- Logo Header -->
-                  <div style="background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 3px solid #1D50C9;">
-                    <h1 style="color: #1D50C9; font-size: 32px; font-weight: bold; margin: 0; letter-spacing: 1px;">DUNYA CONSULTANTS</h1>
-                    <p style="color: #666; font-size: 12px; margin: 5px 0 10px 0; letter-spacing: 0.5px;">Turning Ambition into Admission</p>
-                    <p style="color: #1D50C9; font-size: 13px; margin: 10px 0 0 0;">📧 Check your email for confirmation and your QR code</p>
+                  <!-- Logo -->
+                  <div style="background-color: #ffffff; padding: 40px 20px 20px 20px; text-align: center;">
+                    <img src="https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png" alt="Dunya Consultants" style="max-width: 250px; height: auto; display: inline-block;" />
                   </div>
 
                   <!-- Event Banner -->
