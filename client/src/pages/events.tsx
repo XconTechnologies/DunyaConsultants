@@ -368,14 +368,24 @@ export default function EventsPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
-                      <Button
-                        onClick={() => window.location.href = `/events/register-now?event=${event.slug}`}
-                        className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
-                        data-testid={`button-register-${event.id}`}
-                      >
-                        <span className="relative z-10">Register Now</span>
-                        <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                      </Button>
+                      <div className="flex gap-3">
+                        <Button
+                          onClick={() => window.location.href = `/events/${event.slug}`}
+                          variant="outline"
+                          className="flex-1 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
+                          data-testid={`button-details-${event.id}`}
+                        >
+                          See Details
+                        </Button>
+                        <Button
+                          onClick={() => window.location.href = `/events/register-now?event=${event.slug}`}
+                          className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
+                          data-testid={`button-register-${event.id}`}
+                        >
+                          <span className="relative z-10">Register Now</span>
+                          <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -433,13 +443,23 @@ export default function EventsPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
-                      <Button
-                        onClick={() => window.location.href = `/events/${event.slug}`}
-                        className="w-full bg-white border-0 shadow-md text-gray-900 hover:shadow-[0_10px_30px_rgba(29,80,201,0.2)] hover:animate-bob transition-all duration-300"
-                        data-testid={`button-view-details-${event.id}`}
-                      >
-                        Watch Recording
-                      </Button>
+                      <div className="flex gap-3">
+                        <Button
+                          onClick={() => window.location.href = `/events/${event.slug}`}
+                          variant="outline"
+                          className="flex-1 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
+                          data-testid={`button-details-past-${event.id}`}
+                        >
+                          See Details
+                        </Button>
+                        <Button
+                          onClick={() => window.location.href = `/events/${event.slug}`}
+                          className="flex-1 bg-white border-0 shadow-md text-gray-900 hover:shadow-[0_10px_30px_rgba(29,80,201,0.2)] hover:animate-bob transition-all duration-300"
+                          data-testid={`button-view-details-${event.id}`}
+                        >
+                          Watch Recording
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
