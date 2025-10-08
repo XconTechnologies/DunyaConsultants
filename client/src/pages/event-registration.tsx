@@ -74,12 +74,15 @@ export default function EventRegistration() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get("event");
-    if (!slug) {
-      setLocation("/events");
-      return;
+    if (slug) {
+      setEventSlug(slug);
     }
-    setEventSlug(slug);
-  }, [setLocation]);
+  }, []);
+
+  // Fetch all upcoming events for dropdown
+  const { data: allEvents, isLoading: eventsLoading } = useQuery<Event[]>({
+    queryKey: ["/api/events"],
+  });
 
   const { data: event, isLoading: eventLoading } = useQuery<Event>({
     queryKey: [`/api/events/slug/${eventSlug}`],
@@ -134,10 +137,63 @@ export default function EventRegistration() {
     registerMutation.mutate(data);
   };
 
-  if (eventLoading) {
+  const handleEventSelect = (slug: string) => {
+    setEventSlug(slug);
+    window.history.pushState({}, '', `/events/register-now?event=${slug}`);
+  };
+
+  if (eventsLoading || eventLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-[#1D50C9]" />
+      </div>
+    );
+  }
+
+  // Show event selector if no event is selected
+  if (!eventSlug) {
+    const upcomingEvents = allEvents?.filter(e => new Date(e.eventDate) >= new Date()) || [];
+    
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
+              Event Registration
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Select an event to register
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <label className="block text-sm font-semibold text-gray-700 mb-3">
+              Choose Event
+            </label>
+            <Select onValueChange={handleEventSelect}>
+              <SelectTrigger className="w-full h-14 text-lg border-[#dadada]" data-testid="select-event">
+                <SelectValue placeholder="Select an upcoming event..." />
+              </SelectTrigger>
+              <SelectContent>
+                {upcomingEvents.length === 0 ? (
+                  <SelectItem value="no-events" disabled>
+                    No upcoming events available
+                  </SelectItem>
+                ) : (
+                  upcomingEvents.map((evt) => (
+                    <SelectItem key={evt.id} value={evt.slug}>
+                      {evt.title} - {new Date(evt.eventDate).toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                      })}
+                    </SelectItem>
+                  ))
+                )}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </div>
     );
   }
@@ -148,10 +204,13 @@ export default function EventRegistration() {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900">Event Not Found</h2>
           <Button 
-            onClick={() => setLocation("/events")} 
+            onClick={() => {
+              setEventSlug("");
+              window.history.pushState({}, '', '/events/register-now');
+            }} 
             className="mt-4 bg-[#1D50C9]"
           >
-            View All Events
+            Select Another Event
           </Button>
         </div>
       </div>
