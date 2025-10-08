@@ -539,10 +539,10 @@ export default function EventRegistration() {
                     const ctx = canvas.getContext('2d');
                     if (!ctx) return;
 
-                    // Set canvas dimensions (2x for high resolution) - smaller width
+                    // Set canvas dimensions (2x for high resolution) - smaller width with space for logo
                     const scale = 2;
                     canvas.width = 600 * scale;
-                    canvas.height = 280 * scale;
+                    canvas.height = 340 * scale;
 
                     // Fill white background
                     ctx.fillStyle = '#ffffff';
@@ -551,7 +551,7 @@ export default function EventRegistration() {
                     // Draw blue border
                     ctx.strokeStyle = '#1D50C9';
                     ctx.lineWidth = 4 * scale;
-                    ctx.strokeRect(10 * scale, 10 * scale, (600 - 20) * scale, (280 - 20) * scale);
+                    ctx.strokeRect(10 * scale, 10 * scale, (600 - 20) * scale, (340 - 20) * scale);
 
                     // Draw rounded rectangle for content
                     const drawRoundRect = (x: number, y: number, width: number, height: number, radius: number) => {
@@ -568,16 +568,33 @@ export default function EventRegistration() {
                       ctx.closePath();
                     };
 
+                    // Load and draw logo first
+                    const logoImage = new Image();
+                    logoImage.crossOrigin = 'anonymous';
+                    
+                    await new Promise((resolve, reject) => {
+                      logoImage.onload = () => {
+                        // Draw logo centered at top
+                        const logoWidth = 180 * scale;
+                        const logoHeight = 50 * scale;
+                        const logoX = (canvas.width - logoWidth) / 2;
+                        ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
+                        resolve(true);
+                      };
+                      logoImage.onerror = reject;
+                      logoImage.src = 'https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png';
+                    });
+
                     // Event Name Heading
                     ctx.font = `bold ${16 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
                     ctx.textAlign = 'left';
-                    ctx.fillText(event.title, 40 * scale, 50 * scale);
+                    ctx.fillText(event.title, 40 * scale, 110 * scale);
 
                     // Event Details subtitle
                     ctx.font = `bold ${14 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('Event Details', 40 * scale, 80 * scale);
+                    ctx.fillText('Event Details', 40 * scale, 140 * scale);
 
                     // Date (inline)
                     const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
@@ -588,31 +605,31 @@ export default function EventRegistration() {
                     });
                     ctx.font = `${13 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('📅', 40 * scale, 115 * scale);
+                    ctx.fillText('📅', 40 * scale, 175 * scale);
                     ctx.fillStyle = '#374151';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Date:', 65 * scale, 115 * scale);
+                    ctx.fillText('Date:', 65 * scale, 175 * scale);
                     ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText(dateStr, 110 * scale, 115 * scale);
+                    ctx.fillText(dateStr, 110 * scale, 175 * scale);
 
                     // Time (inline)
                     ctx.fillStyle = '#f97316';
-                    ctx.fillText('🕐', 40 * scale, 150 * scale);
+                    ctx.fillText('🕐', 40 * scale, 210 * scale);
                     ctx.fillStyle = '#374151';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Time:', 65 * scale, 150 * scale);
+                    ctx.fillText('Time:', 65 * scale, 210 * scale);
                     ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 150 * scale);
+                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 210 * scale);
 
                     // Venue (inline)
                     if (event.venue) {
                       ctx.fillStyle = '#1D50C9';
-                      ctx.fillText('📍', 40 * scale, 185 * scale);
+                      ctx.fillText('📍', 40 * scale, 245 * scale);
                       ctx.fillStyle = '#374151';
                       ctx.font = `bold ${13 * scale}px system-ui`;
-                      ctx.fillText('Venue:', 65 * scale, 185 * scale);
+                      ctx.fillText('Venue:', 65 * scale, 245 * scale);
                       ctx.font = `${13 * scale}px system-ui`;
-                      ctx.fillText(event.venue, 120 * scale, 185 * scale);
+                      ctx.fillText(event.venue, 120 * scale, 245 * scale);
                     }
 
                     // Load and draw QR code
@@ -624,17 +641,17 @@ export default function EventRegistration() {
                         // Draw QR border
                         ctx.strokeStyle = '#1D50C9';
                         ctx.lineWidth = 2 * scale;
-                        drawRoundRect(410 * scale, 50 * scale, 150 * scale, 150 * scale, 8 * scale);
+                        drawRoundRect(410 * scale, 110 * scale, 150 * scale, 150 * scale, 8 * scale);
                         ctx.stroke();
 
                         // Draw QR code
-                        ctx.drawImage(qrImage, 420 * scale, 60 * scale, 130 * scale, 130 * scale);
+                        ctx.drawImage(qrImage, 420 * scale, 120 * scale, 130 * scale, 130 * scale);
 
                         // Draw "YOUR QR CODE" text
                         ctx.font = `bold ${11 * scale}px system-ui`;
                         ctx.fillStyle = '#1D50C9';
                         ctx.textAlign = 'center';
-                        ctx.fillText('YOUR QR CODE', 485 * scale, 220 * scale);
+                        ctx.fillText('YOUR QR CODE', 485 * scale, 280 * scale);
                         
                         resolve(true);
                       };
