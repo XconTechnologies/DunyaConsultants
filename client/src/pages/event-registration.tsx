@@ -483,27 +483,50 @@ export default function EventRegistration() {
             <DialogDescription className="text-center text-base pt-2 text-white/90">
               for registering for <strong>{event?.title}</strong>
             </DialogDescription>
+            <p className="text-center text-sm pt-3 text-white/90">
+              📧 Check your email for confirmation and your QR code
+            </p>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            {qrCodeUrl && (
-              <div className="bg-white border-2 border-[#1D50C9] rounded-lg p-4 text-center">
-                <p className="text-sm font-semibold text-[#1D50C9] mb-3">Your Event QR Code</p>
-                <div className="bg-white p-3 inline-block rounded-lg">
-                  <img src={qrCodeUrl} alt="Event QR Code" className="w-48 h-48 mx-auto" />
+            {qrCodeUrl && event && (
+              <div className="bg-white border-2 border-[#1D50C9] rounded-lg p-5">
+                <div className="flex items-center gap-6">
+                  {/* Left: Event Details */}
+                  <div className="flex-1">
+                    <h3 className="font-bold text-[#1D50C9] text-lg mb-3">Event Details</h3>
+                    <div className="space-y-2">
+                      <p className="text-sm text-gray-700">
+                        <span className="text-[#1D50C9]">📅</span> <strong>Date:</strong><br />
+                        <span className="ml-5">{new Date(event.eventDate).toLocaleDateString('en-US', { 
+                          weekday: 'long', 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}</span>
+                      </p>
+                      <p className="text-sm text-gray-700">
+                        <span className="text-orange-500">🕐</span> <strong>Time:</strong><br />
+                        <span className="ml-5">10:00 AM to 5:00 PM</span>
+                      </p>
+                      {event.venue && (
+                        <p className="text-sm text-gray-700">
+                          <span className="text-[#1D50C9]">📍</span> <strong>Venue:</strong><br />
+                          <span className="ml-5">{event.venue}</span>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Right: QR Code (Smaller) */}
+                  <div className="text-center">
+                    <div className="bg-white p-2 inline-block rounded-lg border border-[#1D50C9]">
+                      <img src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" />
+                    </div>
+                    <p className="text-xs text-[#1D50C9] font-semibold mt-2">YOUR QR CODE</p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-600 mt-3">Show this QR code at the event entrance</p>
               </div>
             )}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-gray-700 text-center">
-                📧 Check your email for confirmation and your QR code
-              </p>
-            </div>
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <p className="text-sm text-gray-700 text-center">
-                🎁 Selected users will be eligible for prize distribution
-              </p>
-            </div>
           </div>
           <div className="flex gap-3">
             <Button
