@@ -5,14 +5,12 @@ import {
   FileText, 
   Tag, 
   BarChart3,
-  LogOut,
   Image,
   Calendar,
   Trash2,
   QrCode,
   ClipboardList
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { canManageUsers } from "@/lib/permissions";
 
 const sidebarItems = [
@@ -85,12 +83,6 @@ interface AdminSidebarProps {
 export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
   const [location] = useLocation();
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
-    window.location.href = "/admin/login";
-  };
-
   return (
     <div className="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-[#1D50C9] to-[#1845B3] text-white shadow-xl z-50">
       {/* Header */}
@@ -102,21 +94,6 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
           <div>
             <h1 className="text-lg font-bold">Admin Panel</h1>
             <p className="text-blue-100 text-sm">Content Management</p>
-          </div>
-        </div>
-      </div>
-
-      {/* User Info */}
-      <div className="p-4 border-b border-white/20">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-            <span className="text-sm font-medium">
-              {currentUser?.username?.charAt(0)?.toUpperCase() || 'A'}
-            </span>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium">{currentUser?.username || 'Admin'}</p>
-            <p className="text-blue-100 text-xs capitalize">{currentUser?.role || 'Admin'}</p>
           </div>
         </div>
       </div>
@@ -163,18 +140,6 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
           })}
       </nav>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-white/20">
-        <Button
-          onClick={handleLogout}
-          variant="outline"
-          className="w-full text-white border-white/20 hover:bg-white/10"
-          data-testid="button-logout"
-        >
-          <LogOut className="w-4 h-4 mr-2" />
-          Logout
-        </Button>
-      </div>
     </div>
   );
 }
