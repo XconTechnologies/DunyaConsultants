@@ -539,6 +539,9 @@ export default function EventRegistration() {
                       const canvas = await html2canvas(eventCard, {
                         scale: 2,
                         backgroundColor: '#ffffff',
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
                       });
                       const eventName = event.title
                         .toLowerCase()
@@ -564,7 +567,7 @@ export default function EventRegistration() {
               }}
               className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all"
             >
-              Download QR
+              Download Card
             </Button>
             <Button
               onClick={() => {
