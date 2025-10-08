@@ -398,6 +398,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
               <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                  @media only screen and (max-width: 600px) {
+                    .mobile-stack {
+                      display: block !important;
+                      width: 100% !important;
+                      padding: 0 !important;
+                      border-left: none !important;
+                      border-top: 1px solid #e0e0e0 !important;
+                      padding-top: 15px !important;
+                      margin-top: 15px !important;
+                    }
+                    .mobile-full-width {
+                      display: block !important;
+                      width: 100% !important;
+                      padding: 0 !important;
+                      text-align: center !important;
+                    }
+                    .mobile-padding {
+                      padding: 20px 15px !important;
+                    }
+                  }
+                </style>
               </head>
               <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
                 <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
@@ -415,7 +437,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   ` : ''}
 
                   <!-- Main Content -->
-                  <div style="padding: 40px 30px;">
+                  <div class="mobile-padding" style="padding: 40px 30px;">
                     
                     <!-- Greeting -->
                     <p style="font-size: 16px; color: #333; margin: 0 0 20px 0;">Hi ${registration.name},</p>
@@ -437,7 +459,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
                           <!-- Column 1: Your Details -->
-                          <td style="width: 48%; vertical-align: top; padding-right: 2%;">
+                          <td class="mobile-stack" style="width: 48%; vertical-align: top; padding-right: 2%;">
                             <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">YOUR DETAILS</h3>
                             <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Name:</strong> ${registration.name}</p>
                             <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Email:</strong> <a href="mailto:${registration.email}" style="color: #1D50C9; text-decoration: none;">${registration.email}</a></p>
@@ -447,9 +469,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
                           </td>
                           
                           <!-- Column 2: Event Details -->
-                          <td style="width: 48%; vertical-align: top; padding-left: 2%; border-left: 1px solid #e0e0e0;">
+                          <td class="mobile-stack" style="width: 48%; vertical-align: top; padding-left: 2%; border-left: 1px solid #e0e0e0;">
                             <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">EVENT DETAILS</h3>
-                            <h4 style="color: #1D50C9; font-size: 16px; font-weight: bold; margin: 0 0 12px 0;">${event.title}</h4>
                             
                             <p style="margin: 8px 0; color: #333; font-size: 14px;">
                               <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
@@ -465,6 +486,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                             <p style="margin: 8px 0; color: #333; font-size: 14px;">
                               <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
                               ${event.venue}
+                              ${event.title.toLowerCase().includes('bahawalpur') ? `<br/><a href="https://maps.app.goo.gl/prH7W87aqmgs2JGMA" target="_blank" style="color: #1D50C9; text-decoration: underline;">View Map</a>` : ''}
                             </p>
                             ` : ''}
                           </td>
@@ -476,10 +498,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
                     <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
-                          <!-- Left: Event Details -->
-                          <td style="width: 60%; vertical-align: middle; padding-right: 20px;">
-                            <h3 style="color: #1D50C9; font-size: 16px; font-weight: bold; margin: 0 0 15px 0;">${event.title}</h3>
-                            
+                          <!-- Event Details (Full Width) -->
+                          <td class="mobile-full-width" style="vertical-align: middle;">
                             <p style="margin: 10px 0; color: #333; font-size: 14px;">
                               <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
                               <span style="margin-left: 24px;">${eventDateFormatted}</span>
@@ -495,22 +515,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
                               <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
                               <span style="margin-left: 24px;">${event.venue}</span>
                             </p>
-                            ${event.title.toLowerCase().includes('bahawalpur') ? `
-                            <p style="margin: 10px 0 0 24px; color: #333; font-size: 14px;">
-                              <a href="https://maps.app.goo.gl/prH7W87aqmgs2JGMA" target="_blank" style="color: #1D50C9; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-                                <span style="text-decoration: underline;">View Location on Google Maps</span> →
-                              </a>
-                            </p>
-                            ` : ''}
                             ` : ''}
                           </td>
-                          
-                          <!-- Right: QR Code (Smaller) -->
-                          <td style="width: 40%; vertical-align: middle; text-align: center;">
-                            <div style="background: white; padding: 10px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
-                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 120px; height: 120px; display: block;" />
+                        </tr>
+                        <tr>
+                          <!-- QR Code (Full Width, Centered) -->
+                          <td class="mobile-full-width" style="vertical-align: middle; text-align: center; padding-top: 20px;">
+                            <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
+                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 150px; height: 150px; display: block;" />
                             </div>
-                            <p style="color: #1D50C9; font-size: 11px; font-weight: bold; margin: 10px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
+                            <p style="color: #1D50C9; font-size: 12px; font-weight: bold; margin: 15px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
                           </td>
                         </tr>
                       </table>
