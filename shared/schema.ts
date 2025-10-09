@@ -401,6 +401,22 @@ export const eventRegistrations = pgTable("event_registrations", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// QR Codes for admin-generated custom QR codes
+export const qrCodes = pgTable("qr_codes", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  link: text("link").notNull(),
+  embedType: text("embed_type", { enum: ["none", "text", "image"] }).default("none").notNull(),
+  embedContent: text("embed_content"), // Text or image URL to embed in QR
+  scanCount: integer("scan_count").default(0).notNull(),
+  qrImageUrl: text("qr_image_url"), // Generated QR code image path
+  createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // User sessions for reader authentication
 export const userSessions = pgTable("user_sessions", {
   id: serial("id").primaryKey(),
@@ -634,6 +650,16 @@ export const insertEventRegistrationSchema = createInsertSchema(eventRegistratio
   createdAt: true,
 });
 
+export const insertQrCodeSchema = createInsertSchema(qrCodes).omit({
+  id: true,
+  scanCount: true,
+  qrImageUrl: true,
+  trashedAt: true,
+  trashedBy: true,
+  trashReason: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -688,3 +714,5 @@ export type InsertEvent = z.infer<typeof insertEventSchema>;
 export type Event = typeof events.$inferSelect;
 export type InsertEventRegistration = z.infer<typeof insertEventRegistrationSchema>;
 export type EventRegistration = typeof eventRegistrations.$inferSelect;
+export type InsertQrCode = z.infer<typeof insertQrCodeSchema>;
+export type QrCode = typeof qrCodes.$inferSelect;
