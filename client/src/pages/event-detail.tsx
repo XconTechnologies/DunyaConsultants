@@ -273,7 +273,7 @@ export default function EventDetailPage() {
             <img 
               src={event.detailImage || event.image}
               alt={event.title}
-              className="w-full aspect-video object-cover"
+              className="w-full aspect-[2.4/1] object-cover"
             />
           </motion.div>
         </div>
