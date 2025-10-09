@@ -2656,6 +2656,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Verify blog post (for editors)
+  app.patch("/api/admin/blog-posts/:id/verify", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const verifiedBy = req.adminId;
+      
+      if (!verifiedBy) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      console.log(`Verifying blog post ${id} by admin user ${verifiedBy}`);
+      
+      const blogPost = await storage.verifyBlogPost(id, verifiedBy);
+      
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      console.log(`Successfully verified blog post: ${blogPost.title}`);
+      res.json(blogPost);
+    } catch (error: unknown) {
+      console.error('Error verifying blog post:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      res.status(500).json({ message: 'Failed to verify blog post', error: errorMessage });
+    }
+  });
+
+  // Unverify blog post (remove verification)
+  app.patch("/api/admin/blog-posts/:id/unverify", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      console.log(`Unverifying blog post ${id}`);
+      
+      const blogPost = await storage.unverifyBlogPost(id);
+      
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      console.log(`Successfully unverified blog post: ${blogPost.title}`);
+      res.json(blogPost);
+    } catch (error: unknown) {
+      console.error('Error unverifying blog post:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      res.status(500).json({ message: 'Failed to unverify blog post', error: errorMessage });
+    }
+  });
+
   // ==============================================
   // SERVICES MANAGEMENT ROUTES
   // ==============================================

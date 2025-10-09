@@ -30,6 +30,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
   FileText, 
   UserPlus, 
@@ -85,7 +87,7 @@ export default function PostAssignments() {
   const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
-  const [selectedPostId, setSelectedPostId] = useState<string>("");
+  const [selectedPostIds, setSelectedPostIds] = useState<string[]>([]);
 
   // Check authentication
   useEffect(() => {
@@ -183,34 +185,38 @@ export default function PostAssignments() {
     enabled: users.length > 0
   });
 
-  // Create assignment mutation
+  // Create assignment mutation (now supports multiple posts)
   const createAssignmentMutation = useMutation({
-    mutationFn: async ({ userId, postId }: { userId: number; postId: number }) => {
-      const response = await fetch("/api/admin/post-assignments", {
-        method: "POST",
-        headers: getAuthHeaders(),
-        body: JSON.stringify({ userId, postId }),
-      });
-      if (!response.ok) {
-        throw new Error(`${response.status}: ${await response.text()}`);
+    mutationFn: async ({ userId, postIds }: { userId: number; postIds: number[] }) => {
+      const results = [];
+      for (const postId of postIds) {
+        const response = await fetch("/api/admin/post-assignments", {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ userId, postId }),
+        });
+        if (!response.ok) {
+          throw new Error(`${response.status}: ${await response.text()}`);
+        }
+        results.push(await response.json());
       }
-      return response.json();
+      return results;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/all-post-assignments"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsAssignDialogOpen(false);
       setSelectedUserId("");
-      setSelectedPostId("");
+      setSelectedPostIds([]);
       toast({
         title: "Success",
-        description: "Post assigned to user successfully",
+        description: `${data.length} post(s) assigned to user successfully`,
       });
     },
     onError: (error: any) => {
       toast({
         title: "Error",
-        description: error.message || "Failed to assign post",
+        description: error.message || "Failed to assign posts",
         variant: "destructive",
       });
     },
@@ -246,10 +252,10 @@ export default function PostAssignments() {
   });
 
   const handleCreateAssignment = () => {
-    if (!selectedUserId || !selectedPostId) {
+    if (!selectedUserId || selectedPostIds.length === 0) {
       toast({
         title: "Error",
-        description: "Please select both a user and a post",
+        description: "Please select a user and at least one post",
         variant: "destructive",
       });
       return;
@@ -257,8 +263,24 @@ export default function PostAssignments() {
 
     createAssignmentMutation.mutate({
       userId: parseInt(selectedUserId),
-      postId: parseInt(selectedPostId)
+      postIds: selectedPostIds.map(id => parseInt(id))
     });
+  };
+
+  const togglePostSelection = (postId: string) => {
+    setSelectedPostIds(prev => 
+      prev.includes(postId) 
+        ? prev.filter(id => id !== postId)
+        : [...prev, postId]
+    );
+  };
+
+  const toggleAllPosts = () => {
+    if (selectedPostIds.length === blogPosts.length) {
+      setSelectedPostIds([]);
+    } else {
+      setSelectedPostIds(blogPosts.map(post => post.id.toString()));
+    }
   };
 
   const handleDeleteAssignment = (userId: number, postId: number) => {
@@ -309,9 +331,9 @@ export default function PostAssignments() {
               Assign Post
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="sm:max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Assign Post to User</DialogTitle>
+              <DialogTitle>Assign Posts to User</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
@@ -335,22 +357,43 @@ export default function PostAssignments() {
               </div>
               
               <div>
-                <Label htmlFor="post">Select Post</Label>
-                <Select value={selectedPostId} onValueChange={setSelectedPostId}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose a post" />
-                  </SelectTrigger>
-                  <SelectContent>
+                <div className="flex items-center justify-between mb-2">
+                  <Label>Select Posts</Label>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={toggleAllPosts}
+                    className="text-xs"
+                  >
+                    {selectedPostIds.length === blogPosts.length ? "Deselect All" : "Select All"}
+                  </Button>
+                </div>
+                <ScrollArea className="h-[300px] border rounded-md p-4">
+                  <div className="space-y-2">
                     {blogPosts.map((post) => (
-                      <SelectItem key={post.id} value={post.id.toString()}>
-                        <div className="flex items-center space-x-2">
-                          <span className="truncate max-w-[200px]">{post.title}</span>
-                          {getStatusBadge(post.isPublished)}
-                        </div>
-                      </SelectItem>
+                      <div key={post.id} className="flex items-start space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox 
+                          id={`post-${post.id}`}
+                          checked={selectedPostIds.includes(post.id.toString())}
+                          onCheckedChange={() => togglePostSelection(post.id.toString())}
+                        />
+                        <label 
+                          htmlFor={`post-${post.id}`}
+                          className="flex-1 cursor-pointer"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium text-sm">{post.title}</span>
+                            {getStatusBadge(post.isPublished)}
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">ID: {post.id}</p>
+                        </label>
+                      </div>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </div>
+                </ScrollArea>
+                <p className="text-sm text-gray-500 mt-2">
+                  {selectedPostIds.length} post(s) selected
+                </p>
               </div>
               
               <div className="flex justify-end space-x-2 pt-4">
@@ -359,9 +402,9 @@ export default function PostAssignments() {
                 </Button>
                 <Button 
                   onClick={handleCreateAssignment}
-                  disabled={createAssignmentMutation.isPending}
+                  disabled={createAssignmentMutation.isPending || selectedPostIds.length === 0}
                 >
-                  {createAssignmentMutation.isPending ? "Assigning..." : "Assign Post"}
+                  {createAssignmentMutation.isPending ? "Assigning..." : `Assign ${selectedPostIds.length} Post(s)`}
                 </Button>
               </div>
             </div>

@@ -67,6 +67,8 @@ export interface IStorage {
   updateBlogPost(id: number, updates: Partial<BlogPost>): Promise<BlogPost>;
   deleteBlogPost(id: number): Promise<void>;
   publishBlogPost(id: number): Promise<BlogPost>;
+  verifyBlogPost(id: number, verifiedBy: number): Promise<BlogPost | undefined>;
+  unverifyBlogPost(id: number): Promise<BlogPost | undefined>;
   incrementBlogViews(id: number): Promise<void>;
   
   // Services Management
@@ -744,6 +746,22 @@ export class DatabaseStorage implements IStorage {
       .where(eq(blogPosts.id, id))
       .returning();
     return post;
+  }
+
+  async verifyBlogPost(id: number, verifiedBy: number): Promise<BlogPost | undefined> {
+    const [post] = await db.update(blogPosts)
+      .set({ isVerified: true, verifiedAt: new Date(), verifiedBy, updatedAt: new Date() })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post || undefined;
+  }
+
+  async unverifyBlogPost(id: number): Promise<BlogPost | undefined> {
+    const [post] = await db.update(blogPosts)
+      .set({ isVerified: false, verifiedAt: null, verifiedBy: null, updatedAt: new Date() })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post || undefined;
   }
 
   // Note: Views functionality removed - views column doesn't exist in database
