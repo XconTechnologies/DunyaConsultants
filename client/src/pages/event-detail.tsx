@@ -271,14 +271,20 @@ export default function EventDetailPage() {
             className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden"
           >
             <div 
-              className="w-full h-64 lg:h-80 rounded-lg overflow-hidden"
-              style={{ 
-                backgroundImage: `url(${event.detailImage || event.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
-            />
+              className="w-full rounded-lg overflow-hidden relative group"
+              style={{ height: '500px' }}
+            >
+              <div
+                className="w-full h-full"
+                style={{ 
+                  backgroundImage: `url(${event.detailImage || event.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+              <div className="absolute inset-0 bg-[#1D50C9] opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+            </div>
           </motion.div>
         </div>
       </section>
