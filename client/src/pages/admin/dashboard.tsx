@@ -44,6 +44,8 @@ import {
   AlertTriangle,
   Tag,
   ExternalLink,
+  Calendar,
+  UserCheck,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -55,7 +57,7 @@ import {
   canViewAnalytics,
   isAdmin 
 } from "@/lib/permissions";
-import type { AdminUser } from "@shared/schema";
+import type { AdminUser, Event, EventRegistration } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
 
@@ -101,6 +103,18 @@ export default function AdminDashboard() {
       }
       return response.json();
     },
+  });
+
+  // Fetch events
+  const { data: events = [] } = useQuery<Event[]>({
+    queryKey: ["/api/events"],
+    enabled: authChecked && !!adminUser,
+  });
+
+  // Fetch event registrations
+  const { data: registrations = [] } = useQuery<EventRegistration[]>({
+    queryKey: ["/api/events/registrations/all"],
+    enabled: authChecked && !!adminUser,
   });
   
   // Edit conflict state management
@@ -759,6 +773,54 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+        )}
+
+        {/* Event Registration Cards - Only visible for users with analytics permission */}
+        {canViewAnalytics(adminUser) && events.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Calendar className="h-6 w-6 text-[#1D50C9]" />
+              Event Registrations
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {events
+                .filter((event) => !event.trashedAt)
+                .map((event) => {
+                  const eventRegs = registrations?.filter(
+                    (reg) => reg.eventId === event.id && !reg.trashedAt
+                  ) || [];
+                  const attendedCount = eventRegs.filter((r) => r.isAttended).length;
+                  
+                  return (
+                    <Card 
+                      key={event.id} 
+                      className="border-0 shadow-lg bg-gradient-to-br from-white to-indigo-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                      onClick={() => setLocation('/admin/event-registrations')}
+                    >
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium text-gray-700 line-clamp-1">
+                          {event.title}
+                        </CardTitle>
+                        <div className="p-2 bg-indigo-500 rounded-lg">
+                          <UserCheck className="h-4 w-4 text-white" />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-3xl font-bold text-indigo-600">{eventRegs.length}</div>
+                        <p className="text-xs text-gray-600 mt-1">
+                          {attendedCount} attended · {eventRegs.length - attendedCount} pending
+                        </p>
+                        <div className="mt-2">
+                          <Badge variant="secondary" className="text-xs">
+                            {new Date(event.eventDate).toLocaleDateString()}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+            </div>
+          </div>
         )}
 
       </div>
