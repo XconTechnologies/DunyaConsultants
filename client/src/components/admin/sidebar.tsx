@@ -208,7 +208,6 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                           <Icon className="w-5 h-5 flex-shrink-0" />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium truncate">{item.title}</p>
-                            <p className="text-xs opacity-80 truncate">{item.description}</p>
                           </div>
                           {hasSubItems && (
                             <button
@@ -242,7 +241,6 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                       <Icon className="w-5 h-5 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{item.title}</p>
-                        <p className="text-xs opacity-80 truncate">{item.description}</p>
                       </div>
                       {hasSubItems && (
                         isExpanded ? 
