@@ -253,7 +253,7 @@ export default function EventRegistration() {
               <img 
                 src={event.detailImage || event.image} 
                 alt={event.title} 
-                className="w-full aspect-[2.4/1] object-cover border-[3px] border-white"
+                className="w-full aspect-[2.4/1] object-cover border-[5px] border-white rounded-lg"
               />
             </div>
           )}
