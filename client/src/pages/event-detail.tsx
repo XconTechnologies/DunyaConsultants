@@ -271,8 +271,8 @@ export default function EventDetailPage() {
             className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden"
           >
             <div 
-              className="w-full rounded-lg overflow-hidden relative group"
-              style={{ height: '350px' }}
+              className="rounded-lg overflow-hidden relative group mx-auto"
+              style={{ width: '768px', height: '320px', maxWidth: '100%' }}
             >
               <div
                 className="w-full h-full"
