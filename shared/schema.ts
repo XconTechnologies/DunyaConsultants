@@ -395,6 +395,9 @@ export const eventRegistrations = pgTable("event_registrations", {
   prizeReadyAt: timestamp("prize_ready_at"), // Date when prize becomes available (event date + 1-2 weeks)
   prizeDistributedAt: timestamp("prize_distributed_at"),
   status: text("status").default("confirmed").notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -625,6 +628,9 @@ export const insertEventRegistrationSchema = createInsertSchema(eventRegistratio
   prizeReadyAt: true,
   prizeDistributedAt: true,
   status: true,
+  trashedAt: true,
+  trashedBy: true,
+  trashReason: true,
   createdAt: true,
 });
 
