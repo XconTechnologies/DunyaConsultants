@@ -10,12 +10,30 @@ import {
   Trash2,
   QrCode,
   ClipboardList,
-  X
+  X,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
-const sidebarItems = [
+interface SidebarSubItem {
+  title: string;
+  href: string;
+  icon: any;
+  description: string;
+}
+
+interface SidebarItem {
+  title: string;
+  href?: string;
+  icon: any;
+  description: string;
+  subItems?: SidebarSubItem[];
+}
+
+const sidebarItems: SidebarItem[] = [
   {
     title: "Dashboard",
     href: "/admin/dashboard",
@@ -26,25 +44,15 @@ const sidebarItems = [
     title: "All Posts",
     href: "/admin/posts",
     icon: FileText,
-    description: "Manage all blog posts"
-  },
-  {
-    title: "Events",
-    href: "/admin/events",
-    icon: Calendar,
-    description: "Manage events and expos"
-  },
-  {
-    title: "QR Scanner",
-    href: "/admin/qr-scanner",
-    icon: QrCode,
-    description: "Scan attendee QR codes"
-  },
-  {
-    title: "Event Registrations",
-    href: "/admin/event-registrations",
-    icon: ClipboardList,
-    description: "View all event registrations"
+    description: "Manage all blog posts",
+    subItems: [
+      {
+        title: "Categories",
+        href: "/admin/categories",
+        icon: Tag,
+        description: "Manage blog categories"
+      }
+    ]
   },
   {
     title: "Media",
@@ -53,16 +61,24 @@ const sidebarItems = [
     description: "Upload and manage media files"
   },
   {
-    title: "Trash",
-    href: "/admin/trash",
-    icon: Trash2,
-    description: "Manage deleted items"
-  },
-  {
-    title: "User Management",
-    href: "/admin/users",
-    icon: Users,
-    description: "Manage users and permissions"
+    title: "Events",
+    href: "/admin/events",
+    icon: Calendar,
+    description: "Manage events and expos",
+    subItems: [
+      {
+        title: "Event Registrations",
+        href: "/admin/event-registrations",
+        icon: ClipboardList,
+        description: "View all event registrations"
+      },
+      {
+        title: "QR Scanner",
+        href: "/admin/qr-scanner",
+        icon: QrCode,
+        description: "Scan attendee QR codes"
+      }
+    ]
   },
   {
     title: "Post Assignments",
@@ -71,10 +87,16 @@ const sidebarItems = [
     description: "Manage post access control"
   },
   {
-    title: "Categories",
-    href: "/admin/categories",
-    icon: Tag,
-    description: "Manage blog categories"
+    title: "Users",
+    href: "/admin/users",
+    icon: Users,
+    description: "Manage users and permissions"
+  },
+  {
+    title: "Trash",
+    href: "/admin/trash",
+    icon: Trash2,
+    description: "Manage deleted items"
   }
 ];
 
@@ -86,6 +108,27 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ currentUser, isOpen = true, onClose }: AdminSidebarProps) {
   const [location] = useLocation();
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events"]));
+
+  const toggleItem = (title: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(title)) {
+      newExpanded.delete(title);
+    } else {
+      newExpanded.add(title);
+    }
+    setExpandedItems(newExpanded);
+  };
+
+  const isItemOrSubItemActive = (item: SidebarItem) => {
+    if (item.href && (location === item.href || (item.href === "/admin/dashboard" && location === "/dashboard"))) {
+      return true;
+    }
+    if (item.subItems) {
+      return item.subItems.some(subItem => location === subItem.href);
+    }
+    return false;
+  };
 
   return (
     <>
@@ -129,41 +172,111 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/events" || item.href === "/admin/media" || item.href === "/admin/qr-scanner") {
+              // Dashboard, posts, events, media are always visible
+              if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || 
+                  item.href === "/admin/events" || item.href === "/admin/media") {
                 return true;
               }
-              if (item.href === "/admin/event-registrations" || item.href === "/admin/trash") {
-                return canManageUsers(currentUser);
-              }
+              // Other items require user management permission
               return canManageUsers(currentUser);
             })
             .map((item) => {
-              const isActive = location === item.href || 
-                (item.href === "/admin/dashboard" && location === "/dashboard");
+              const isActive = isItemOrSubItemActive(item);
               const Icon = item.icon;
+              const isExpanded = expandedItems.has(item.title);
+              const hasSubItems = item.subItems && item.subItems.length > 0;
               
               return (
-                <Link key={item.href} href={item.href}>
-                  <div
-                    onClick={onClose}
-                    className={cn(
-                      "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer",
-                      isActive
-                        ? "bg-white/20 text-white shadow-lg"
-                        : "text-blue-100 hover:bg-white/10 hover:text-white"
-                    )}
-                    data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{item.title}</p>
-                      <p className="text-xs opacity-80">{item.description}</p>
+                <div key={item.title}>
+                  {/* Main item */}
+                  {item.href ? (
+                    <Link href={item.href}>
+                      <div
+                        onClick={(e) => {
+                          if (hasSubItems) {
+                            e.preventDefault();
+                            toggleItem(item.title);
+                          } else {
+                            onClose?.();
+                          }
+                        }}
+                        className={cn(
+                          "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer group",
+                          isActive
+                            ? "bg-white/20 text-white shadow-lg"
+                            : "text-blue-100 hover:bg-white/10 hover:text-white"
+                        )}
+                        data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      >
+                        <Icon className="w-5 h-5 flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate">{item.title}</p>
+                          <p className="text-xs opacity-80 truncate">{item.description}</p>
+                        </div>
+                        {hasSubItems && (
+                          isExpanded ? 
+                            <ChevronDown className="w-4 h-4 flex-shrink-0" /> : 
+                            <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                        )}
+                      </div>
+                    </Link>
+                  ) : (
+                    <div
+                      onClick={() => hasSubItems && toggleItem(item.title)}
+                      className={cn(
+                        "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer group",
+                        isActive
+                          ? "bg-white/20 text-white shadow-lg"
+                          : "text-blue-100 hover:bg-white/10 hover:text-white"
+                      )}
+                      data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      <Icon className="w-5 h-5 flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{item.title}</p>
+                        <p className="text-xs opacity-80 truncate">{item.description}</p>
+                      </div>
+                      {hasSubItems && (
+                        isExpanded ? 
+                          <ChevronDown className="w-4 h-4 flex-shrink-0" /> : 
+                          <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                      )}
                     </div>
-                  </div>
-                </Link>
+                  )}
+
+                  {/* Sub items */}
+                  {hasSubItems && isExpanded && (
+                    <div className="ml-4 mt-1 space-y-1">
+                      {item.subItems!.map((subItem) => {
+                        const isSubActive = location === subItem.href;
+                        const SubIcon = subItem.icon;
+                        
+                        return (
+                          <Link key={subItem.href} href={subItem.href}>
+                            <div
+                              onClick={onClose}
+                              className={cn(
+                                "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer",
+                                isSubActive
+                                  ? "bg-white/20 text-white shadow-md"
+                                  : "text-blue-100 hover:bg-white/10 hover:text-white"
+                              )}
+                              data-testid={`sidebar-link-${subItem.title.toLowerCase().replace(/\s+/g, '-')}`}
+                            >
+                              <SubIcon className="w-4 h-4 flex-shrink-0" />
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium truncate">{subItem.title}</p>
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               );
             })}
         </nav>
