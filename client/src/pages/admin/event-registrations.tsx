@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import * as XLSX from 'xlsx';
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
+import MobileNav from "@/components/admin/mobile-nav";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -176,6 +177,10 @@ export default function EventRegistrationsPage() {
           subtitle="View all registrations organized by event"
           onMenuClick={() => setSidebarOpen(true)}
         />
+
+        {/* Mobile Navigation */}
+        <MobileNav currentUser={adminUser} />
+
         <div className="max-w-7xl mx-auto p-8">
 
           {eventsWithRegistrations.length === 0 ? (

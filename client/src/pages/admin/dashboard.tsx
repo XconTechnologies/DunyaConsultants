@@ -60,6 +60,7 @@ import {
 import type { AdminUser, Event, EventRegistration } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
+import MobileNav from "@/components/admin/mobile-nav";
 
 interface BlogPost {
   id: number;
@@ -702,6 +703,9 @@ export default function AdminDashboard() {
           subtitle={adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
           onMenuClick={() => setSidebarOpen(true)}
         />
+
+        {/* Mobile Navigation */}
+        <MobileNav currentUser={adminUser} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards - Only visible for users with analytics permission */}
