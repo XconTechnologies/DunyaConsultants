@@ -67,6 +67,10 @@ const ROLE_CONFIG = {
       canManageCategories: true,
       canViewAnalytics: true,
       canManageMedia: true,
+      canAccessEvents: true,
+      canAccessQRScanner: true,
+      canDownloadRegistrations: true,
+      canDeleteRegistrations: true,
     }
   },
   editor: {
@@ -83,6 +87,10 @@ const ROLE_CONFIG = {
       canManageCategories: false,
       canViewAnalytics: false,
       canManageMedia: true,
+      canAccessEvents: true,
+      canAccessQRScanner: false,
+      canDownloadRegistrations: true,
+      canDeleteRegistrations: false,
     }
   },
   publisher: {
@@ -99,6 +107,10 @@ const ROLE_CONFIG = {
       canManageCategories: false,
       canViewAnalytics: true,
       canManageMedia: true,
+      canAccessEvents: true,
+      canAccessQRScanner: true,
+      canDownloadRegistrations: true,
+      canDeleteRegistrations: false,
     }
   },
   custom: {
