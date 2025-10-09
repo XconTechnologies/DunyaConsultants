@@ -51,6 +51,7 @@ export interface IStorage {
   createQrCode(qrCode: InsertQrCode): Promise<QrCode>;
   getQrCodes(): Promise<QrCode[]>;
   getQrCode(id: number): Promise<QrCode | undefined>;
+  updateQrCodeImage(id: number, qrImageUrl: string): Promise<QrCode>;
   incrementQrScan(id: number): Promise<QrCode>;
   trashQrCode(id: number, trashedBy: number, reason?: string): Promise<QrCode>;
   restoreQrCode(id: number): Promise<QrCode>;
@@ -424,6 +425,14 @@ export class DatabaseStorage implements IStorage {
   async getQrCode(id: number): Promise<QrCode | undefined> {
     const [qrCode] = await db.select().from(qrCodes).where(eq(qrCodes.id, id));
     return qrCode || undefined;
+  }
+
+  async updateQrCodeImage(id: number, qrImageUrl: string): Promise<QrCode> {
+    const [qrCode] = await db.update(qrCodes)
+      .set({ qrImageUrl })
+      .where(eq(qrCodes.id, id))
+      .returning();
+    return qrCode;
   }
 
   async incrementQrScan(id: number): Promise<QrCode> {

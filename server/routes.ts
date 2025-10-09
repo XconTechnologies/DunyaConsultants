@@ -840,7 +840,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Invalid QR code data", details: result.error });
       }
 
-      // Generate QR code image
+      // First create the QR code record to get an ID
+      const qrCode = await storage.createQrCode({
+        ...result.data,
+        qrImageUrl: null as any // Will be updated after generating the QR image
+      });
+
+      // Generate QR code image with redirect URL
       const qrDir = path.join(process.cwd(), 'public', 'qr-codes');
       if (!fs.existsSync(qrDir)) {
         fs.mkdirSync(qrDir, { recursive: true });
@@ -850,8 +856,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const filepath = path.join(qrDir, filename);
       const qrImageUrl = `/qr-codes/${filename}`;
 
-      // Generate QR code with optional embedded content
-      await QRCode.toFile(filepath, result.data.link, {
+      // Generate redirect URL that will track scans
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : 'http://localhost:5000';
+      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
+
+      // Generate QR code with tracking redirect URL
+      await QRCode.toFile(filepath, redirectUrl, {
         width: 400,
         margin: 2,
         color: {
@@ -860,13 +872,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
 
-      // Create QR code record with generated image URL
-      const qrCode = await storage.createQrCode({
-        ...result.data,
-        qrImageUrl: qrImageUrl as any // qrImageUrl is added after validation
-      });
+      // Update QR code with image URL
+      const updatedQrCode = await storage.updateQrCodeImage(qrCode.id, qrImageUrl);
 
-      res.json(qrCode);
+      res.json(updatedQrCode);
     } catch (error) {
       console.error("Error creating QR code:", error);
       res.status(500).json({ message: "Failed to create QR code" });
@@ -909,7 +918,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Track QR code scan (Public endpoint)
+  // QR Code redirect endpoint - tracks scan and redirects to destination
+  app.get("/qr/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode || qrCode.trashedAt) {
+        return res.status(404).send("QR code not found");
+      }
+
+      // Increment scan count
+      await storage.incrementQrScan(id);
+      
+      // Redirect to the actual link
+      res.redirect(qrCode.link);
+    } catch (error) {
+      console.error("Error processing QR redirect:", error);
+      res.status(500).send("Error processing QR code");
+    }
+  });
+
+  // Track QR code scan (Public endpoint - for API tracking)
   app.post("/api/qr/:id/scan", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
