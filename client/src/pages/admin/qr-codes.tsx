@@ -130,8 +130,6 @@ export default function QrCodesPage() {
     },
   });
 
-  const embedType = form.watch("embedType");
-
   // Create QR code mutation - must be called before any conditional returns
   const createMutation = useMutation({
     mutationFn: async (data: QrCodeFormData) => {
@@ -256,7 +254,11 @@ export default function QrCodesPage() {
   };
 
   const onSubmit = (data: QrCodeFormData) => {
-    createMutation.mutate(data);
+    createMutation.mutate({
+      ...data,
+      embedType: "none",
+      embedContent: "",
+    });
   };
 
   return (
@@ -286,7 +288,7 @@ export default function QrCodesPage() {
               <DialogHeader>
                 <DialogTitle>Create New QR Code</DialogTitle>
                 <DialogDescription>
-                  Generate a custom QR code with optional embedded content
+                  Generate a custom QR code for any URL
                 </DialogDescription>
               </DialogHeader>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -315,37 +317,6 @@ export default function QrCodesPage() {
                     <p className="text-sm text-red-500 mt-1">{form.formState.errors.link.message}</p>
                   )}
                 </div>
-
-                <div>
-                  <Label htmlFor="embedType">Embed Content Type</Label>
-                  <Select
-                    value={form.watch("embedType")}
-                    onValueChange={(value) => form.setValue("embedType", value as "none" | "text" | "image")}
-                  >
-                    <SelectTrigger data-testid="select-embed-type">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="none">None</SelectItem>
-                      <SelectItem value="text">Text</SelectItem>
-                      <SelectItem value="image">Image URL</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {embedType !== "none" && (
-                  <div>
-                    <Label htmlFor="embedContent">
-                      {embedType === "text" ? "Text Content" : "Image URL"}
-                    </Label>
-                    <Input
-                      id="embedContent"
-                      {...form.register("embedContent")}
-                      placeholder={embedType === "text" ? "Enter text" : "https://example.com/logo.png"}
-                      data-testid="input-embed-content"
-                    />
-                  </div>
-                )}
 
                 <Button 
                   type="submit" 
