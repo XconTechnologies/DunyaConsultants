@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import * as XLSX from 'xlsx';
 import AdminSidebar from "@/components/admin/sidebar";
@@ -9,7 +9,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet } from "lucide-react";
+import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { queryClient } from "@/lib/queryClient";
 import type { Event, EventRegistration, AdminUser } from "@shared/schema";
 
 export default function EventRegistrationsPage() {
@@ -17,6 +19,38 @@ export default function EventRegistrationsPage() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { toast } = useToast();
+
+  // Helper function to get auth headers
+  const getAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+  };
+
+  // Trash registration mutation
+  const trashMutation = useMutation({
+    mutationFn: async ({ id, reason }: { id: number; reason?: string }) => {
+      const response = await fetch(`/api/admin/registrations/${id}/trash`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ reason }),
+      });
+      if (!response.ok) throw new Error('Failed to trash registration');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Registration moved to trash." });
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to trash registration.", variant: "destructive" });
+    },
+  });
 
   // Export to CSV
   const exportToCSV = (eventRegs: EventRegistration[], eventTitle: string) => {
@@ -111,15 +145,17 @@ export default function EventRegistrationsPage() {
     return null;
   }
 
-  // Group registrations by event
-  const registrationsByEvent = registrations?.reduce((acc, reg) => {
-    const eventId = reg.eventId;
-    if (!acc[eventId]) {
-      acc[eventId] = [];
-    }
-    acc[eventId].push(reg);
-    return acc;
-  }, {} as Record<number, EventRegistration[]>) || {};
+  // Group registrations by event (filter out trashed)
+  const registrationsByEvent = registrations
+    ?.filter((reg) => !reg.trashedAt)
+    .reduce((acc, reg) => {
+      const eventId = reg.eventId;
+      if (!acc[eventId]) {
+        acc[eventId] = [];
+      }
+      acc[eventId].push(reg);
+      return acc;
+    }, {} as Record<number, EventRegistration[]>) || {};
 
   // Get active events with registrations
   const eventsWithRegistrations = (events || []).filter((event: Event) => 
@@ -245,6 +281,7 @@ export default function EventRegistrationsPage() {
                                 <TableHead>Attendance</TableHead>
                                 <TableHead>Prize Status</TableHead>
                                 <TableHead>Registered</TableHead>
+                                <TableHead>Actions</TableHead>
                               </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -309,6 +346,21 @@ export default function EventRegistrationsPage() {
                                   </TableCell>
                                   <TableCell className="text-sm text-gray-500">
                                     {new Date(reg.createdAt).toLocaleDateString()}
+                                  </TableCell>
+                                  <TableCell>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => {
+                                        if (window.confirm(`Are you sure you want to move this registration to trash?`)) {
+                                          trashMutation.mutate({ id: reg.id });
+                                        }
+                                      }}
+                                      data-testid={`button-trash-registration-${reg.id}`}
+                                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                    >
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
                                   </TableCell>
                                 </TableRow>
                               ))}

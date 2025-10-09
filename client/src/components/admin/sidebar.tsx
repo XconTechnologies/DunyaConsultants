@@ -193,36 +193,41 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                 <div key={item.title}>
                   {/* Main item */}
                   {item.href ? (
-                    <Link href={item.href}>
-                      <div
-                        onClick={(e) => {
-                          if (hasSubItems) {
-                            e.preventDefault();
-                            toggleItem(item.title);
-                          } else {
-                            onClose?.();
-                          }
-                        }}
-                        className={cn(
-                          "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer group",
-                          isActive
-                            ? "bg-white/20 text-white shadow-lg"
-                            : "text-blue-100 hover:bg-white/10 hover:text-white"
-                        )}
-                        data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      >
-                        <Icon className="w-5 h-5 flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate">{item.title}</p>
-                          <p className="text-xs opacity-80 truncate">{item.description}</p>
+                    <div className="relative">
+                      <Link href={item.href}>
+                        <div
+                          onClick={onClose}
+                          className={cn(
+                            "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer group",
+                            isActive
+                              ? "bg-white/20 text-white shadow-lg"
+                              : "text-blue-100 hover:bg-white/10 hover:text-white"
+                          )}
+                          data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        >
+                          <Icon className="w-5 h-5 flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium truncate">{item.title}</p>
+                            <p className="text-xs opacity-80 truncate">{item.description}</p>
+                          </div>
+                          {hasSubItems && (
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleItem(item.title);
+                              }}
+                              className="p-1 hover:bg-white/10 rounded"
+                            >
+                              {isExpanded ? 
+                                <ChevronDown className="w-4 h-4 flex-shrink-0" /> : 
+                                <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                              }
+                            </button>
+                          )}
                         </div>
-                        {hasSubItems && (
-                          isExpanded ? 
-                            <ChevronDown className="w-4 h-4 flex-shrink-0" /> : 
-                            <ChevronRight className="w-4 h-4 flex-shrink-0" />
-                        )}
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   ) : (
                     <div
                       onClick={() => hasSubItems && toggleItem(item.title)}
