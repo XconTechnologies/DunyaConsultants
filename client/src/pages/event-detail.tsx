@@ -272,7 +272,7 @@ export default function EventDetailPage() {
           >
             <div 
               className="w-full rounded-lg overflow-hidden relative group"
-              style={{ height: '500px' }}
+              style={{ height: '350px' }}
             >
               <div
                 className="w-full h-full"
