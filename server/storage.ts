@@ -34,6 +34,9 @@ export interface IStorage {
   getEventRegistrations(eventId?: number): Promise<EventRegistration[]>;
   getAllEventRegistrations(): Promise<EventRegistration[]>;
   updatePrizeStatus(id: number, status: 'pending' | 'eligible' | 'distributed'): Promise<EventRegistration>;
+  trashEventRegistration(id: number, trashedBy: number, reason?: string): Promise<EventRegistration>;
+  restoreEventRegistration(id: number): Promise<EventRegistration>;
+  getTrashedEventRegistrations(): Promise<EventRegistration[]>;
   getAllEvents(): Promise<Event[]>;
   createEvent(event: InsertEvent): Promise<Event>;
   updateEvent(id: number, updates: Partial<InsertEvent>): Promise<Event>;
@@ -310,6 +313,39 @@ export class DatabaseStorage implements IStorage {
       .returning();
     
     return registration;
+  }
+
+  async trashEventRegistration(id: number, trashedBy: number, reason?: string): Promise<EventRegistration> {
+    const [registration] = await db.update(eventRegistrations)
+      .set({ 
+        trashedAt: new Date(), 
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(eventRegistrations.id, id))
+      .returning();
+    
+    return registration;
+  }
+
+  async restoreEventRegistration(id: number): Promise<EventRegistration> {
+    const [registration] = await db.update(eventRegistrations)
+      .set({ 
+        trashedAt: null, 
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(eventRegistrations.id, id))
+      .returning();
+    
+    return registration;
+  }
+
+  async getTrashedEventRegistrations(): Promise<EventRegistration[]> {
+    return await db.select()
+      .from(eventRegistrations)
+      .where(sql`${eventRegistrations.trashedAt} IS NOT NULL`)
+      .orderBy(desc(eventRegistrations.trashedAt));
   }
 
   async getAllEvents(): Promise<Event[]> {
