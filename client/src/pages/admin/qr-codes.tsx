@@ -67,6 +67,7 @@ export default function QrCodesPage() {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [viewQrCode, setViewQrCode] = useState<QrCodeType | null>(null);
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
   // Auth check
   useEffect(() => {
@@ -394,14 +395,25 @@ export default function QrCodesPage() {
                     {qrCodes.map((qr) => (
                       <TableRow key={qr.id}>
                         <TableCell>
-                          {qr.qrImageUrl && (
+                          {qr.qrImageUrl && !imageErrors.has(qr.id) ? (
                             <img 
                               src={qr.qrImageUrl} 
                               alt={qr.title} 
-                              className="h-12 w-12 object-contain cursor-pointer"
+                              className="h-12 w-12 object-contain cursor-pointer border border-gray-200 rounded p-1"
                               onClick={() => setViewQrCode(qr)}
+                              onError={() => {
+                                setImageErrors(prev => new Set(prev).add(qr.id));
+                              }}
                               data-testid={`img-qr-${qr.id}`}
                             />
+                          ) : (
+                            <div 
+                              className="h-12 w-12 bg-gray-100 border border-gray-200 rounded flex items-center justify-center cursor-pointer"
+                              onClick={() => setViewQrCode(qr)}
+                              title="QR Code Preview"
+                            >
+                              <QrCode className="h-7 w-7 text-gray-400" />
+                            </div>
                           )}
                         </TableCell>
                         <TableCell className="font-medium">{qr.title}</TableCell>
@@ -494,13 +506,22 @@ export default function QrCodesPage() {
               <DialogTitle>{viewQrCode?.title}</DialogTitle>
               <DialogDescription>{viewQrCode?.link}</DialogDescription>
             </DialogHeader>
-            {viewQrCode?.qrImageUrl && (
+            {viewQrCode?.qrImageUrl && !imageErrors.has(viewQrCode.id) ? (
               <div className="flex justify-center p-4">
                 <img 
                   src={viewQrCode.qrImageUrl} 
                   alt={viewQrCode.title} 
-                  className="max-w-full h-auto"
+                  className="max-w-full h-auto border border-gray-200 rounded-lg"
+                  onError={() => {
+                    setImageErrors(prev => new Set(prev).add(viewQrCode.id));
+                  }}
                 />
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg">
+                <QrCode className="h-24 w-24 text-gray-300 mb-4" />
+                <p className="text-gray-500 text-sm">QR Code preview unavailable</p>
+                <p className="text-gray-400 text-xs mt-1">You can still download the QR code</p>
               </div>
             )}
           </DialogContent>
