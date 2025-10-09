@@ -755,7 +755,7 @@ export default function EventEditor() {
               <img
                 src={form.watch("detailImage")}
                 alt="Banner"
-                className="w-full h-64 object-cover rounded-lg"
+                className="w-full h-48 md:h-64 lg:h-80 object-contain rounded-lg bg-white"
               />
             )}
             <h1 className="text-3xl font-bold">{form.watch("title") || "Untitled Event"}</h1>
