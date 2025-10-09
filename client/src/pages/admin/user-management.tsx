@@ -4,6 +4,7 @@ import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
+import MobileNav from "@/components/admin/mobile-nav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -375,6 +376,9 @@ export default function UserManagement() {
           subtitle="Manage system users and their permissions"
           onMenuClick={() => setSidebarOpen(true)}
         />
+
+        {/* Mobile Navigation */}
+        <MobileNav currentUser={currentUser} />
         
         <div className="p-6 space-y-6">
       {/* Create User Dialog Button */}
