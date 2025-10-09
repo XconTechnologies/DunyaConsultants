@@ -30,6 +30,7 @@ import { Tag, Plus, Trash2, LogOut, Edit, Search } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import type { AdminUser, Category } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 
 interface EnhancedCategory extends Category {
   count: number;
@@ -323,6 +324,9 @@ export default function CategoriesPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Sidebar */}
       <AdminSidebar currentUser={adminUser} />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={adminUser} />
       
       {/* Main Content */}
       <div className="ml-64">

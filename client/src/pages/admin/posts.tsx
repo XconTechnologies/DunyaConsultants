@@ -25,6 +25,7 @@ import {
 } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 
 interface BlogPost {
   id: number;
@@ -225,6 +226,9 @@ export default function AllPosts() {
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminSidebar currentUser={adminUser} />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={adminUser} />
       
       <div className="ml-64 p-8">
         <div className="max-w-7xl mx-auto space-y-8">
