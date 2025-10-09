@@ -181,9 +181,10 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              // Dashboard, posts, events, media are always visible
+              // Dashboard, posts, events, media, qr-codes are always visible
               if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || 
-                  item.href === "/admin/events" || item.href === "/admin/media") {
+                  item.href === "/admin/events" || item.href === "/admin/media" ||
+                  item.href === "/admin/qr-codes") {
                 return true;
               }
               // Other items require user management permission
