@@ -965,7 +965,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      const buffer = await QRCode.toBuffer(qrCode.link, {
+      // Generate redirect URL that will track scans
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : 'http://localhost:5000';
+      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
+
+      const buffer = await QRCode.toBuffer(redirectUrl, {
         width: 800,
         margin: 2,
         color: {
@@ -997,7 +1003,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      const svg = await QRCode.toString(qrCode.link, {
+      // Generate redirect URL that will track scans
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : 'http://localhost:5000';
+      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
+
+      const svg = await QRCode.toString(redirectUrl, {
         type: 'svg',
         width: 800,
         margin: 2,
