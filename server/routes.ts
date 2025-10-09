@@ -2020,6 +2020,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ==============================================
+  // Event Assignment Routes
+  // ==============================================
+
+  // Assign event to user
+  app.post("/api/admin/event-assignments", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { userId, eventId } = req.body;
+
+      if (!userId || !eventId) {
+        return res.status(400).json({ message: 'User ID and Event ID are required' });
+      }
+
+      const assignment = await storage.assignEventToUser({
+        userId,
+        eventId,
+        assignedBy: req.adminId!
+      });
+
+      res.status(201).json(assignment);
+    } catch (error) {
+      console.error('Error assigning event to user:', error);
+      res.status(500).json({ message: 'Failed to assign event' });
+    }
+  });
+
+  // Remove event assignment
+  app.delete("/api/admin/event-assignments/:userId/:eventId", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const eventId = parseInt(req.params.eventId);
+
+      if (isNaN(userId) || isNaN(eventId)) {
+        return res.status(400).json({ message: 'Invalid user ID or event ID' });
+      }
+
+      await storage.removeEventAssignment(userId, eventId);
+      res.json({ success: true, message: 'Event assignment removed' });
+    } catch (error) {
+      console.error('Error removing event assignment:', error);
+      res.status(500).json({ message: 'Failed to remove assignment' });
+    }
+  });
+
+  // Get user's assigned events
+  app.get("/api/admin/users/:id/events", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Allow users to see their own events, admins can see any user's events
+      if (req.adminRole !== 'admin' && req.adminId !== userId) {
+        return res.status(403).json({ message: 'Access denied' });
+      }
+
+      const events = await storage.getUserAssignedEvents(userId);
+      res.json(events);
+    } catch (error) {
+      console.error('Error fetching user events:', error);
+      res.status(500).json({ message: 'Failed to fetch events' });
+    }
+  });
+
   // Editing Session Management Endpoints
   
   // Start editing session for a post

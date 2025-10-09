@@ -7,6 +7,7 @@ import {
   BarChart3,
   Image,
   Calendar,
+  CalendarCheck,
   Trash2,
   QrCode,
   ClipboardList,
@@ -85,6 +86,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/post-assignments",
     icon: FileText,
     description: "Manage post access control"
+  },
+  {
+    title: "Event Assignments",
+    href: "/admin/event-assignments",
+    icon: CalendarCheck,
+    description: "Manage event access control"
   },
   {
     title: "Users",

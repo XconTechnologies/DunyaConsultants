@@ -71,6 +71,7 @@ import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
 import PostAssignments from "@/pages/admin/post-assignments";
+import EventAssignments from "@/pages/admin/event-assignments";
 import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
 import MediaManagement from "@/pages/admin/media";
@@ -198,6 +199,7 @@ function Router() {
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
+      <Route path="/admin/event-assignments" component={EventAssignments} />
       <Route path="/admin/categories" component={AdminCategoriesPage} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />

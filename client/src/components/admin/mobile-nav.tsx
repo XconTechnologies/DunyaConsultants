@@ -7,6 +7,7 @@ import {
   BarChart3,
   Image,
   Calendar,
+  CalendarCheck,
   Trash2,
   QrCode,
   ClipboardList
@@ -57,9 +58,14 @@ const navItems: NavItem[] = [
     icon: QrCode
   },
   {
-    title: "Assignments",
+    title: "Post Assigns",
     href: "/admin/post-assignments",
     icon: FileText
+  },
+  {
+    title: "Event Assigns",
+    href: "/admin/event-assignments",
+    icon: CalendarCheck
   },
   {
     title: "Users",
