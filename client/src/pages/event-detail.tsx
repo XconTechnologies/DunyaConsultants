@@ -268,12 +268,12 @@ export default function EventDetailPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden transition-transform duration-500 ease-in-out hover:scale-95"
+            className="bg-white rounded-xl shadow-2xl overflow-hidden transition-transform duration-500 ease-in-out hover:scale-95"
           >
             <img 
               src={event.detailImage || event.image}
               alt={event.title}
-              className="w-full h-auto object-contain rounded-lg"
+              className="w-full aspect-video object-cover"
             />
           </motion.div>
         </div>
