@@ -248,10 +248,10 @@ export default function EventRegistration() {
               </div>
             )}
           </div>
-          {event.image && (
+          {(event.detailImage || event.image) && (
             <div className="rounded-lg overflow-hidden mb-6 shadow-lg">
               <img 
-                src={event.image} 
+                src={event.detailImage || event.image} 
                 alt={event.title} 
                 className="w-full h-64 object-cover"
               />
