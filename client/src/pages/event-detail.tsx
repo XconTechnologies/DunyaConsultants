@@ -268,10 +268,10 @@ export default function EventDetailPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden"
+            className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden transition-transform duration-500 ease-in-out hover:scale-95"
           >
             <div 
-              className="w-full h-64 lg:h-80 rounded-lg transition-transform duration-500 ease-in-out hover:scale-95"
+              className="w-full h-64 lg:h-80 rounded-lg"
               style={{ 
                 backgroundImage: `url(${event.detailImage || event.image})`,
                 backgroundSize: 'cover',
