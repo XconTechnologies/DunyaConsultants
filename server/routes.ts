@@ -686,6 +686,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Trash Event Registration
+  app.post("/api/admin/registrations/:id/trash", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const registration = await storage.trashEventRegistration(id, req.adminId, reason);
+      res.json(registration);
+    } catch (error) {
+      console.error("Error trashing registration:", error);
+      res.status(500).json({ message: "Failed to trash registration" });
+    }
+  });
+
+  // Restore Event Registration
+  app.post("/api/admin/registrations/:id/restore", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const registration = await storage.restoreEventRegistration(id);
+      res.json(registration);
+    } catch (error) {
+      console.error("Error restoring registration:", error);
+      res.status(500).json({ message: "Failed to restore registration" });
+    }
+  });
+
+  // Get trashed event registrations
+  app.get("/api/admin/registrations/trashed", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const registrations = await storage.getTrashedEventRegistrations();
+      res.json(registrations);
+    } catch (error) {
+      console.error("Error fetching trashed registrations:", error);
+      res.status(500).json({ message: "Failed to fetch trashed registrations" });
+    }
+  });
+
   // Get all event registrations
   app.get("/api/events/registrations/all", async (req, res) => {
     try {
