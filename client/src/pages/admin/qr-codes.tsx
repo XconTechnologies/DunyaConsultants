@@ -43,6 +43,7 @@ import {
   Plus,
   ExternalLink,
   Image,
+  RefreshCw,
   Type
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -189,6 +190,36 @@ export default function QrCodesPage() {
       toast({
         title: "Error",
         description: "Failed to delete QR code",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Regenerate QR code mutation - must be called before any conditional returns
+  const regenerateMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/admin/qr-codes/${id}/regenerate`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to regenerate QR code');
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/qr-codes"] });
+      toast({
+        title: "Success",
+        description: "QR code regenerated with scan tracking enabled",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to regenerate QR code",
         variant: "destructive",
       });
     },
@@ -406,7 +437,18 @@ export default function QrCodesPage() {
                           {new Date(qr.createdAt).toLocaleDateString()}
                         </TableCell>
                         <TableCell>
-                          <div className="flex gap-2">
+                          <div className="flex gap-2 flex-wrap">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="bg-blue-50 hover:bg-blue-100 border-blue-200"
+                              onClick={() => regenerateMutation.mutate(qr.id)}
+                              disabled={regenerateMutation.isPending}
+                              data-testid={`button-regenerate-${qr.id}`}
+                              title="Regenerate QR with scan tracking"
+                            >
+                              <RefreshCw className="h-4 w-4" />
+                            </Button>
                             <Button
                               size="sm"
                               variant="outline"

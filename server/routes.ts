@@ -1065,6 +1065,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Regenerate QR code with tracking (Admin only)
+  app.post("/api/admin/qr-codes/:id/regenerate", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode) {
+        return res.status(404).json({ message: "QR code not found" });
+      }
+
+      // Generate new QR code image with tracking redirect URL
+      const qrDir = path.join(process.cwd(), 'public', 'qr-codes');
+      if (!fs.existsSync(qrDir)) {
+        fs.mkdirSync(qrDir, { recursive: true });
+      }
+
+      const filename = `qr-${Date.now()}-${crypto.randomBytes(8).toString('hex')}.png`;
+      const filepath = path.join(qrDir, filename);
+      const qrImageUrl = `/qr-codes/${filename}`;
+
+      // Generate redirect URL that will track scans
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : 'http://localhost:5000';
+      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
+
+      // Generate QR code with tracking redirect URL
+      await QRCode.toFile(filepath, redirectUrl, {
+        width: 400,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      });
+
+      // Update QR code with new image URL
+      const updatedQrCode = await storage.updateQrCodeImage(qrCode.id, qrImageUrl);
+
+      res.json(updatedQrCode);
+    } catch (error) {
+      console.error("Error regenerating QR code:", error);
+      res.status(500).json({ message: "Failed to regenerate QR code" });
+    }
+  });
+
   // Engagement tracking routes
   app.post("/api/engagement/track", async (req, res) => {
     try {
