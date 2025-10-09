@@ -57,11 +57,6 @@ const navItems: NavItem[] = [
     icon: QrCode
   },
   {
-    title: "QR Codes",
-    href: "/admin/qr-codes",
-    icon: QrCode
-  },
-  {
     title: "Assignments",
     href: "/admin/post-assignments",
     icon: FileText
@@ -70,6 +65,11 @@ const navItems: NavItem[] = [
     title: "Users",
     href: "/admin/users",
     icon: Users
+  },
+  {
+    title: "QR Codes",
+    href: "/admin/qr-codes",
+    icon: QrCode
   },
   {
     title: "Trash",

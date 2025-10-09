@@ -81,12 +81,6 @@ const sidebarItems: SidebarItem[] = [
     ]
   },
   {
-    title: "QR Codes",
-    href: "/admin/qr-codes",
-    icon: QrCode,
-    description: "Generate custom QR codes"
-  },
-  {
     title: "Post Assignments",
     href: "/admin/post-assignments",
     icon: FileText,
@@ -97,6 +91,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/users",
     icon: Users,
     description: "Manage users and permissions"
+  },
+  {
+    title: "QR Codes",
+    href: "/admin/qr-codes",
+    icon: QrCode,
+    description: "Generate custom QR codes"
   },
   {
     title: "Trash",
