@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -314,6 +315,9 @@ export default function PostAssignments() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Sidebar */}
       <AdminSidebar currentUser={currentUser} />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={currentUser} />
       
       {/* Main Content */}
       <div className="ml-64 p-6 space-y-6">

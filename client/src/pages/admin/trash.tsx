@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import type { AdminUser, Media, BlogPost, Category, Event } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 
 export default function TrashManagement() {
   const [, setLocation] = useLocation();
@@ -223,6 +224,9 @@ export default function TrashManagement() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Sidebar */}
       <AdminSidebar currentUser={adminUser} />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={adminUser} />
       
       {/* Main Content */}
       <div className="ml-64">

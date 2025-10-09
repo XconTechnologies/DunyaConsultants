@@ -30,6 +30,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Calendar, Plus, Edit2, Trash2, MapPin, Eye, EyeOff } from "lucide-react";
 import type { AdminUser, Event } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 import MediaSelectionModal from "@/components/admin/media-selection-modal";
 import { format } from "date-fns";
 
@@ -351,6 +352,9 @@ export default function EventsManagement() {
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminSidebar currentUser={adminUser} />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={adminUser} />
       
       <div className="ml-64 p-8">
         <div className="max-w-7xl mx-auto">

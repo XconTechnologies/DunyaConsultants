@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import AdminSidebar from "@/components/admin/sidebar";
+import MobileNav from "@/components/admin/mobile-nav";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { QrCode, CheckCircle2, Camera, X } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
@@ -209,6 +210,10 @@ export default function QRScannerPage() {
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />
+      
+      {/* Mobile Navigation */}
+      <MobileNav currentUser={adminUser} />
+      
       <div className="lg:ml-64">
         <div className="p-4 lg:p-8">
         <div className="max-w-4xl mx-auto">
