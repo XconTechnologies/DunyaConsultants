@@ -251,6 +251,10 @@ export const adminUsers = pgTable("admin_users", {
     canManageCategories?: boolean;
     canViewAnalytics?: boolean;
     canManageMedia?: boolean;
+    canAccessEvents?: boolean;
+    canAccessQRScanner?: boolean;
+    canDownloadRegistrations?: boolean;
+    canDeleteRegistrations?: boolean;
   }>(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),

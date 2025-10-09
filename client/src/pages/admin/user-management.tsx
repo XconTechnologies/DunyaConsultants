@@ -115,6 +115,10 @@ const ROLE_CONFIG = {
       canManageCategories: false,
       canViewAnalytics: false,
       canManageMedia: false,
+      canAccessEvents: false,
+      canAccessQRScanner: false,
+      canDownloadRegistrations: false,
+      canDeleteRegistrations: false,
     }
   }
 } as const;
@@ -488,7 +492,11 @@ export default function UserManagement() {
                         canManageUsers: "Manage Users",
                         canManageCategories: "Manage Categories", 
                         canViewAnalytics: "View Analytics",
-                        canManageMedia: "Manage Media"
+                        canManageMedia: "Manage Media",
+                        canAccessEvents: "Access Events",
+                        canAccessQRScanner: "Access QR Scanner",
+                        canDownloadRegistrations: "Download Registrations",
+                        canDeleteRegistrations: "Delete Registrations"
                       };
                       
                       return (
@@ -727,7 +735,11 @@ export default function UserManagement() {
                         canManageUsers: "Manage Users",
                         canManageCategories: "Manage Categories", 
                         canViewAnalytics: "View Analytics",
-                        canManageMedia: "Manage Media"
+                        canManageMedia: "Manage Media",
+                        canAccessEvents: "Access Events",
+                        canAccessQRScanner: "Access QR Scanner",
+                        canDownloadRegistrations: "Download Registrations",
+                        canDeleteRegistrations: "Delete Registrations"
                       };
                       
                       return (
