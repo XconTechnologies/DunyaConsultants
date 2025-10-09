@@ -6,7 +6,7 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema
+  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql } from "drizzle-orm";
@@ -21,6 +21,7 @@ import { google } from 'googleapis';
 import { generateUniqueToken, generateRegistrationQRCode } from "./qr-service";
 import { appendToSheet } from "./google-sheets-service";
 import sgMail from '@sendgrid/mail';
+import QRCode from 'qrcode';
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -820,6 +821,217 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching registrations:", error);
       res.status(500).json({ message: "Failed to fetch registrations" });
+    }
+  });
+
+  // ==============================================
+  // QR CODE MANAGEMENT ROUTES
+  // ==============================================
+
+  // Create QR Code (Admin only)
+  app.post("/api/admin/qr-codes", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const result = insertQrCodeSchema.safeParse({...req.body, createdBy: req.adminId});
+      if (!result.success) {
+        return res.status(400).json({ error: "Invalid QR code data", details: result.error });
+      }
+
+      // Generate QR code image
+      const qrDir = path.join(process.cwd(), 'public', 'qr-codes');
+      if (!fs.existsSync(qrDir)) {
+        fs.mkdirSync(qrDir, { recursive: true });
+      }
+
+      const filename = `qr-${Date.now()}-${crypto.randomBytes(8).toString('hex')}.png`;
+      const filepath = path.join(qrDir, filename);
+      const qrImageUrl = `/qr-codes/${filename}`;
+
+      // Generate QR code with optional embedded content
+      await QRCode.toFile(filepath, result.data.link, {
+        width: 400,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      });
+
+      // Create QR code record
+      const qrCode = await storage.createQrCode({
+        ...result.data,
+        qrImageUrl
+      });
+
+      res.json(qrCode);
+    } catch (error) {
+      console.error("Error creating QR code:", error);
+      res.status(500).json({ message: "Failed to create QR code" });
+    }
+  });
+
+  // Get all QR codes (Admin only)
+  app.get("/api/admin/qr-codes", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const qrCodes = await storage.getQrCodes();
+      res.json(qrCodes);
+    } catch (error) {
+      console.error("Error fetching QR codes:", error);
+      res.status(500).json({ message: "Failed to fetch QR codes" });
+    }
+  });
+
+  // Get single QR code (Admin only)
+  app.get("/api/admin/qr-codes/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode) {
+        return res.status(404).json({ message: "QR code not found" });
+      }
+
+      res.json(qrCode);
+    } catch (error) {
+      console.error("Error fetching QR code:", error);
+      res.status(500).json({ message: "Failed to fetch QR code" });
+    }
+  });
+
+  // Track QR code scan (Public endpoint)
+  app.post("/api/qr/:id/scan", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.incrementQrScan(id);
+      res.json({ success: true, scanCount: qrCode.scanCount });
+    } catch (error) {
+      console.error("Error tracking QR scan:", error);
+      res.status(500).json({ message: "Failed to track scan" });
+    }
+  });
+
+  // Download QR code as PNG (Admin only)
+  app.get("/api/admin/qr-codes/:id/download/png", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode) {
+        return res.status(404).json({ message: "QR code not found" });
+      }
+
+      const buffer = await QRCode.toBuffer(qrCode.link, {
+        width: 800,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      });
+
+      res.setHeader('Content-Type', 'image/png');
+      res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.png"`);
+      res.send(buffer);
+    } catch (error) {
+      console.error("Error downloading QR code:", error);
+      res.status(500).json({ message: "Failed to download QR code" });
+    }
+  });
+
+  // Download QR code as SVG (Admin only)
+  app.get("/api/admin/qr-codes/:id/download/svg", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode) {
+        return res.status(404).json({ message: "QR code not found" });
+      }
+
+      const svg = await QRCode.toString(qrCode.link, {
+        type: 'svg',
+        width: 800,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      });
+
+      res.setHeader('Content-Type', 'image/svg+xml');
+      res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.svg"`);
+      res.send(svg);
+    } catch (error) {
+      console.error("Error downloading QR code:", error);
+      res.status(500).json({ message: "Failed to download QR code" });
+    }
+  });
+
+  // Trash QR code (Admin only)
+  app.post("/api/admin/qr-codes/:id/trash", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const qrCode = await storage.trashQrCode(id, req.adminId, reason);
+      res.json(qrCode);
+    } catch (error) {
+      console.error("Error trashing QR code:", error);
+      res.status(500).json({ message: "Failed to trash QR code" });
+    }
+  });
+
+  // Restore QR code (Admin only)
+  app.post("/api/admin/qr-codes/:id/restore", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const qrCode = await storage.restoreQrCode(id);
+      res.json(qrCode);
+    } catch (error) {
+      console.error("Error restoring QR code:", error);
+      res.status(500).json({ message: "Failed to restore QR code" });
+    }
+  });
+
+  // Get trashed QR codes (Admin only)
+  app.get("/api/admin/qr-codes/trashed", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const qrCodes = await storage.getTrashedQrCodes();
+      res.json(qrCodes);
+    } catch (error) {
+      console.error("Error fetching trashed QR codes:", error);
+      res.status(500).json({ message: "Failed to fetch trashed QR codes" });
     }
   });
 
