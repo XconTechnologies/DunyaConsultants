@@ -69,38 +69,40 @@ export default function QrCodesPage() {
 
   // Auth check
   useEffect(() => {
-    const checkAuth = async () => {
-      const token = localStorage.getItem('adminToken');
-      if (!token) {
-        setLocation('/admin/login');
-        return;
-      }
+    // Check for admin token first
+    let token = localStorage.getItem("adminToken");
+    let user = localStorage.getItem("adminUser");
+    
+    // If no admin token, check for user token
+    if (!token || !user) {
+      token = localStorage.getItem("userToken");
+      user = localStorage.getItem("user");
+    }
+    
+    if (!token || !user) {
+      setLocation("/login");
+      return;
+    }
 
-      try {
-        const response = await fetch('/api/admin/auth/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          localStorage.removeItem('adminToken');
-          setLocation('/admin/login');
-          return;
-        }
-
-        const data = await response.json();
-        setAdminUser(data.admin);
-        setAuthChecked(true);
-      } catch (error) {
-        console.error('Auth check failed:', error);
-        localStorage.removeItem('adminToken');
-        setLocation('/admin/login');
-      }
-    };
-
-    checkAuth();
+    try {
+      const userData = JSON.parse(user);
+      setAdminUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/login");
+    }
   }, [setLocation]);
+
+  // Get auth headers helper
+  const getAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return {
+      'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` })
+    };
+  };
 
   if (!authChecked) {
     return (
@@ -116,6 +118,7 @@ export default function QrCodesPage() {
   // Fetch QR codes
   const { data: qrCodes = [], isLoading } = useQuery<QrCodeType[]>({
     queryKey: ["/api/admin/qr-codes"],
+    enabled: authChecked && !!adminUser,
   });
 
   // Form setup
