@@ -134,8 +134,19 @@ export default function QrCodesPage() {
 
   // Create QR code mutation - must be called before any conditional returns
   const createMutation = useMutation({
-    mutationFn: async (data: QrCodeFormData) => 
-      apiRequest("/api/admin/qr-codes", "POST", data),
+    mutationFn: async (data: QrCodeFormData) => {
+      const response = await fetch('/api/admin/qr-codes', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to create QR code');
+      }
+      
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/qr-codes"] });
       toast({
@@ -156,8 +167,19 @@ export default function QrCodesPage() {
 
   // Trash QR code mutation - must be called before any conditional returns
   const trashMutation = useMutation({
-    mutationFn: async (id: number) => 
-      apiRequest(`/api/admin/qr-codes/${id}/trash`, "POST", { reason: "Deleted from admin" }),
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/admin/qr-codes/${id}/trash`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ reason: "Deleted from admin" }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to trash QR code');
+      }
+      
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/qr-codes"] });
       toast({
@@ -180,10 +202,13 @@ export default function QrCodesPage() {
   const downloadPNG = async (id: number, title: string) => {
     try {
       const response = await fetch(`/api/admin/qr-codes/${id}/download/png`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
-        },
+        headers: getAuthHeaders(),
       });
+      
+      if (!response.ok) {
+        throw new Error('Download failed');
+      }
+      
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -205,10 +230,13 @@ export default function QrCodesPage() {
   const downloadSVG = async (id: number, title: string) => {
     try {
       const response = await fetch(`/api/admin/qr-codes/${id}/download/svg`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
-        },
+        headers: getAuthHeaders(),
       });
+      
+      if (!response.ok) {
+        throw new Error('Download failed');
+      }
+      
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -236,11 +264,11 @@ export default function QrCodesPage() {
       <AdminSidebar 
         isOpen={sidebarOpen} 
         onClose={() => setSidebarOpen(false)} 
-        adminUser={adminUser!} 
+        currentUser={adminUser!} 
       />
       <div className="flex-1 flex flex-col lg:ml-64">
-        <AdminHeader onMenuClick={() => setSidebarOpen(true)} adminUser={adminUser!} />
-        <MobileNav />
+        <AdminHeader onMenuClick={() => setSidebarOpen(true)} currentUser={adminUser!} />
+        <MobileNav currentUser={adminUser} />
         <div className="flex-1 p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
