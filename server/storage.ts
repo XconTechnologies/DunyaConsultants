@@ -1,7 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions, editRequests,
-  categories, blogPostCategories, events, eventRegistrations,
+  categories, blogPostCategories, events, eventRegistrations, qrCodes,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -13,7 +13,8 @@ import {
   type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
   type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
-  type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration
+  type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
+  type QrCode, type InsertQrCode
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -45,6 +46,16 @@ export interface IStorage {
   createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   getConsultations(): Promise<Consultation[]>;
+  
+  // QR Code Management
+  createQrCode(qrCode: InsertQrCode): Promise<QrCode>;
+  getQrCodes(): Promise<QrCode[]>;
+  getQrCode(id: number): Promise<QrCode | undefined>;
+  incrementQrScan(id: number): Promise<QrCode>;
+  trashQrCode(id: number, trashedBy: number, reason?: string): Promise<QrCode>;
+  restoreQrCode(id: number): Promise<QrCode>;
+  getTrashedQrCodes(): Promise<QrCode[]>;
+  
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
   getUserStats(sessionId: string): Promise<UserStats | undefined>;
@@ -395,6 +406,63 @@ export class DatabaseStorage implements IStorage {
 
   async getConsultations(): Promise<Consultation[]> {
     return await db.select().from(consultations).orderBy(desc(consultations.createdAt));
+  }
+
+  // QR Code Management
+  async createQrCode(insertQrCode: InsertQrCode): Promise<QrCode> {
+    const [qrCode] = await db.insert(qrCodes).values(insertQrCode).returning();
+    return qrCode;
+  }
+
+  async getQrCodes(): Promise<QrCode[]> {
+    return await db.select()
+      .from(qrCodes)
+      .where(sql`${qrCodes.trashedAt} IS NULL`)
+      .orderBy(desc(qrCodes.createdAt));
+  }
+
+  async getQrCode(id: number): Promise<QrCode | undefined> {
+    const [qrCode] = await db.select().from(qrCodes).where(eq(qrCodes.id, id));
+    return qrCode || undefined;
+  }
+
+  async incrementQrScan(id: number): Promise<QrCode> {
+    const [qrCode] = await db.update(qrCodes)
+      .set({ scanCount: sql`${qrCodes.scanCount} + 1` })
+      .where(eq(qrCodes.id, id))
+      .returning();
+    return qrCode;
+  }
+
+  async trashQrCode(id: number, trashedBy: number, reason?: string): Promise<QrCode> {
+    const [qrCode] = await db.update(qrCodes)
+      .set({ 
+        trashedAt: new Date(), 
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(qrCodes.id, id))
+      .returning();
+    return qrCode;
+  }
+
+  async restoreQrCode(id: number): Promise<QrCode> {
+    const [qrCode] = await db.update(qrCodes)
+      .set({ 
+        trashedAt: null, 
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(qrCodes.id, id))
+      .returning();
+    return qrCode;
+  }
+
+  async getTrashedQrCodes(): Promise<QrCode[]> {
+    return await db.select()
+      .from(qrCodes)
+      .where(sql`${qrCodes.trashedAt} IS NOT NULL`)
+      .orderBy(desc(qrCodes.trashedAt));
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {
