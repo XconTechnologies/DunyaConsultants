@@ -776,20 +776,31 @@ export default function AdminDashboard() {
         )}
 
         {/* Event Registration Cards - Only visible for users with analytics permission */}
-        {canViewAnalytics(adminUser) && events.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Calendar className="h-6 w-6 text-[#1D50C9]" />
-              Event Registrations
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {events
-                .filter((event) => !event.trashedAt)
-                .map((event) => {
-                  const eventRegs = registrations?.filter(
-                    (reg) => reg.eventId === event.id && !reg.trashedAt
-                  ) || [];
+        {canViewAnalytics(adminUser) && events.length > 0 && (() => {
+          const eventsWithRegistrations = events
+            .filter((event) => !event.trashedAt)
+            .map((event) => {
+              const eventRegs = registrations?.filter(
+                (reg) => reg.eventId === event.id && !reg.trashedAt
+              ) || [];
+              return { event, registrations: eventRegs };
+            })
+            .filter(({ registrations }) => registrations.length > 0);
+
+          if (eventsWithRegistrations.length === 0) return null;
+
+          return (
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <Calendar className="h-6 w-6 text-[#1D50C9]" />
+                Event Registrations
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {eventsWithRegistrations.map(({ event, registrations: eventRegs }) => {
                   const attendedCount = eventRegs.filter((r) => r.isAttended).length;
+                  const eventDate = new Date(event.eventDate);
+                  const today = new Date();
+                  const daysUntil = Math.ceil((eventDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
                   
                   return (
                     <Card 
@@ -810,18 +821,28 @@ export default function AdminDashboard() {
                         <p className="text-xs text-gray-600 mt-1">
                           {attendedCount} attended · {eventRegs.length - attendedCount} pending
                         </p>
-                        <div className="mt-2">
+                        <div className="mt-2 flex items-center gap-2">
                           <Badge variant="secondary" className="text-xs">
-                            {new Date(event.eventDate).toLocaleDateString()}
+                            {eventDate.toLocaleDateString()}
                           </Badge>
+                          {daysUntil >= 0 ? (
+                            <Badge className="text-xs bg-blue-100 text-blue-800 hover:bg-blue-100">
+                              {daysUntil === 0 ? 'Today' : daysUntil === 1 ? 'Tomorrow' : `${daysUntil} days`}
+                            </Badge>
+                          ) : (
+                            <Badge className="text-xs bg-gray-100 text-gray-800 hover:bg-gray-100">
+                              Past Event
+                            </Badge>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
                   );
                 })}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
       </div>
       </div>
