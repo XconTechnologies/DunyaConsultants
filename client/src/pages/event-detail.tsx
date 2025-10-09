@@ -270,14 +270,10 @@ export default function EventDetailPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden transition-transform duration-500 ease-in-out hover:scale-95"
           >
-            <div 
-              className="w-full h-64 lg:h-80 rounded-lg"
-              style={{ 
-                backgroundImage: `url(${event.detailImage || event.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
+            <img 
+              src={event.detailImage || event.image}
+              alt={event.title}
+              className="w-full h-auto object-contain rounded-lg"
             />
           </motion.div>
         </div>
