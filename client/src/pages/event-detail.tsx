@@ -271,7 +271,7 @@ export default function EventDetailPage() {
             className="bg-white rounded-xl shadow-2xl p-1 overflow-hidden"
           >
             <div 
-              className="w-full h-64 lg:h-80 rounded-lg transition-transform duration-500 ease-in-out hover:scale-110"
+              className="w-full h-64 lg:h-80 rounded-lg overflow-hidden"
               style={{ 
                 backgroundImage: `url(${event.detailImage || event.image})`,
                 backgroundSize: 'cover',
