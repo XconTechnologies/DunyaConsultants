@@ -704,6 +704,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Bulk mark as attended
+  app.post("/api/admin/registrations/bulk-attend", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids } = req.body;
+      
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ message: "Invalid IDs array" });
+      }
+
+      const results = await Promise.all(
+        ids.map(id => storage.markAttendanceById(id))
+      );
+      
+      res.json({ success: true, count: results.length });
+    } catch (error) {
+      console.error("Error bulk marking attendance:", error);
+      res.status(500).json({ message: "Failed to mark attendance" });
+    }
+  });
+
+  // Bulk update prize status
+  app.post("/api/admin/registrations/bulk-prize", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids, status } = req.body;
+      
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ message: "Invalid IDs array" });
+      }
+
+      if (!['not_eligible', 'eligible', 'distributed'].includes(status)) {
+        return res.status(400).json({ message: "Invalid prize status" });
+      }
+
+      const results = await Promise.all(
+        ids.map(id => storage.updatePrizeStatus(id, status))
+      );
+      
+      res.json({ success: true, count: results.length });
+    } catch (error) {
+      console.error("Error bulk updating prize status:", error);
+      res.status(500).json({ message: "Failed to update prize status" });
+    }
+  });
+
+  // Bulk trash registrations
+  app.post("/api/admin/registrations/bulk-trash", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids } = req.body;
+      
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ message: "Invalid IDs array" });
+      }
+
+      const results = await Promise.all(
+        ids.map(id => storage.trashEventRegistration(id, req.adminId, 'Bulk delete'))
+      );
+      
+      res.json({ success: true, count: results.length });
+    } catch (error) {
+      console.error("Error bulk trashing registrations:", error);
+      res.status(500).json({ message: "Failed to trash registrations" });
+    }
+  });
+
   // Restore Event Registration
   app.post("/api/admin/registrations/:id/restore", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {

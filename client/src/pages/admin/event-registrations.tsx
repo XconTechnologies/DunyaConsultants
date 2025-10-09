@@ -10,7 +10,15 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2 } from "lucide-react";
+import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2, Check } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import type { Event, EventRegistration, AdminUser } from "@shared/schema";
@@ -20,6 +28,7 @@ export default function EventRegistrationsPage() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { toast } = useToast();
 
   // Helper function to get auth headers
@@ -50,6 +59,69 @@ export default function EventRegistrationsPage() {
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to trash registration.", variant: "destructive" });
+    },
+  });
+
+  // Bulk mark as attended mutation
+  const bulkAttendMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/registrations/bulk-attend', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to mark attendees');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Selected registrations marked as attended." });
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+      setSelectedIds([]);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to mark attendees.", variant: "destructive" });
+    },
+  });
+
+  // Bulk update prize status mutation
+  const bulkPrizeMutation = useMutation({
+    mutationFn: async ({ ids, status }: { ids: number[]; status: string }) => {
+      const response = await fetch('/api/admin/registrations/bulk-prize', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids, status }),
+      });
+      if (!response.ok) throw new Error('Failed to update prize status');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Prize status updated for selected registrations." });
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+      setSelectedIds([]);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to update prize status.", variant: "destructive" });
+    },
+  });
+
+  // Bulk trash mutation
+  const bulkTrashMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/registrations/bulk-trash', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to trash registrations');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Selected registrations moved to trash." });
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+      setSelectedIds([]);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to trash registrations.", variant: "destructive" });
     },
   });
 
@@ -274,10 +346,68 @@ export default function EventRegistrationsPage() {
                         </div>
                       </CardHeader>
                       <CardContent>
+                        {/* Bulk Actions Toolbar */}
+                        {selectedIds.length > 0 && (
+                          <div className="mb-4 p-4 bg-blue-50 rounded-lg flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Checkbox 
+                                checked={true}
+                                onCheckedChange={() => setSelectedIds([])}
+                              />
+                              <span className="font-medium">{selectedIds.length} selected</span>
+                            </div>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => bulkAttendMutation.mutate(selectedIds)}
+                                disabled={bulkAttendMutation.isPending}
+                                data-testid="button-bulk-attend"
+                              >
+                                <Check className="h-4 w-4 mr-2" />
+                                Mark Attended
+                              </Button>
+                              <Select onValueChange={(value) => bulkPrizeMutation.mutate({ ids: selectedIds, status: value })}>
+                                <SelectTrigger className="w-[180px]" disabled={bulkPrizeMutation.isPending}>
+                                  <SelectValue placeholder="Prize Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="not_eligible">Not Eligible</SelectItem>
+                                  <SelectItem value="eligible">Eligible</SelectItem>
+                                  <SelectItem value="distributed">Distributed</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => bulkTrashMutation.mutate(selectedIds)}
+                                disabled={bulkTrashMutation.isPending}
+                                data-testid="button-bulk-delete"
+                              >
+                                <Trash2 className="h-4 w-4 mr-2" />
+                                Delete
+                              </Button>
+                            </div>
+                          </div>
+                        )}
+                        
                         <div className="overflow-x-auto">
                           <Table>
                             <TableHeader>
                               <TableRow>
+                                <TableHead className="w-12">
+                                  <Checkbox
+                                    checked={eventRegs.length > 0 && selectedIds.length === eventRegs.length}
+                                    onCheckedChange={(checked) => {
+                                      if (checked) {
+                                        setSelectedIds(eventRegs.map(r => r.id));
+                                      } else {
+                                        setSelectedIds([]);
+                                      }
+                                    }}
+                                    data-testid="checkbox-select-all"
+                                  />
+                                </TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead>Phone</TableHead>
@@ -292,6 +422,19 @@ export default function EventRegistrationsPage() {
                             <TableBody>
                               {eventRegs.map((reg: EventRegistration) => (
                                 <TableRow key={reg.id}>
+                                  <TableCell>
+                                    <Checkbox
+                                      checked={selectedIds.includes(reg.id)}
+                                      onCheckedChange={(checked) => {
+                                        if (checked) {
+                                          setSelectedIds([...selectedIds, reg.id]);
+                                        } else {
+                                          setSelectedIds(selectedIds.filter(id => id !== reg.id));
+                                        }
+                                      }}
+                                      data-testid={`checkbox-select-${reg.id}`}
+                                    />
+                                  </TableCell>
                                   <TableCell>
                                     <div className="font-medium">{reg.name}</div>
                                   </TableCell>

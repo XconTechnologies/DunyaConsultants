@@ -31,6 +31,7 @@ export interface IStorage {
   getEventRegistrationByToken(token: string): Promise<EventRegistration | undefined>;
   updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration>;
   markAttendance(token: string): Promise<EventRegistration | undefined>;
+  markAttendanceById(id: number): Promise<EventRegistration | undefined>;
   getEventRegistrations(eventId?: number): Promise<EventRegistration[]>;
   getAllEventRegistrations(): Promise<EventRegistration[]>;
   updatePrizeStatus(id: number, status: 'pending' | 'eligible' | 'distributed'): Promise<EventRegistration>;
@@ -284,6 +285,19 @@ export class DatabaseStorage implements IStorage {
         prizeStatus: 'eligible'
       })
       .where(eq(eventRegistrations.token, token))
+      .returning();
+    
+    return updated;
+  }
+
+  async markAttendanceById(id: number): Promise<EventRegistration | undefined> {
+    const [updated] = await db.update(eventRegistrations)
+      .set({ 
+        isAttended: true, 
+        attendedAt: new Date(),
+        prizeStatus: 'eligible'
+      })
+      .where(eq(eventRegistrations.id, id))
       .returning();
     
     return updated;
