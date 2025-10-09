@@ -104,24 +104,22 @@ export default function QrCodesPage() {
     };
   };
 
-  if (!authChecked) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Fetch QR codes
+  // Fetch QR codes - must be called before any conditional returns
   const { data: qrCodes = [], isLoading } = useQuery<QrCodeType[]>({
     queryKey: ["/api/admin/qr-codes"],
     enabled: authChecked && !!adminUser,
+    queryFn: async () => {
+      const response = await fetch('/api/admin/qr-codes', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch QR codes');
+      }
+      return response.json();
+    },
   });
 
-  // Form setup
+  // Form setup - must be called before any conditional returns
   const form = useForm<QrCodeFormData>({
     resolver: zodResolver(qrCodeSchema),
     defaultValues: {
@@ -134,7 +132,7 @@ export default function QrCodesPage() {
 
   const embedType = form.watch("embedType");
 
-  // Create QR code mutation
+  // Create QR code mutation - must be called before any conditional returns
   const createMutation = useMutation({
     mutationFn: async (data: QrCodeFormData) => 
       apiRequest("/api/admin/qr-codes", "POST", data),
@@ -156,7 +154,7 @@ export default function QrCodesPage() {
     },
   });
 
-  // Trash QR code mutation
+  // Trash QR code mutation - must be called before any conditional returns
   const trashMutation = useMutation({
     mutationFn: async (id: number) => 
       apiRequest(`/api/admin/qr-codes/${id}/trash`, "POST", { reason: "Deleted from admin" }),
@@ -175,6 +173,8 @@ export default function QrCodesPage() {
       });
     },
   });
+
+  if (!authChecked) return null;
 
   // Download handlers
   const downloadPNG = async (id: number, title: string) => {
