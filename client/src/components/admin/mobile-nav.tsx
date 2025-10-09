@@ -57,6 +57,11 @@ const navItems: NavItem[] = [
     icon: QrCode
   },
   {
+    title: "QR Codes",
+    href: "/admin/qr-codes",
+    icon: QrCode
+  },
+  {
     title: "Assignments",
     href: "/admin/post-assignments",
     icon: FileText
@@ -81,7 +86,7 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
   const [location] = useLocation();
 
   const visibleItems = navItems.filter((item) => {
-    // Dashboard, posts, categories, events, media, registrations, QR scanner are always visible
+    // Dashboard, posts, categories, events, media, registrations, QR scanner, QR codes are always visible
     if (
       item.href === "/admin/dashboard" ||
       item.href === "/admin/posts" ||
@@ -89,7 +94,8 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
       item.href === "/admin/events" ||
       item.href === "/admin/media" ||
       item.href === "/admin/event-registrations" ||
-      item.href === "/admin/qr-scanner"
+      item.href === "/admin/qr-scanner" ||
+      item.href === "/admin/qr-codes"
     ) {
       return true;
     }

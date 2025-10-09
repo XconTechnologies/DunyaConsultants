@@ -77,6 +77,12 @@ const sidebarItems: SidebarItem[] = [
         href: "/admin/qr-scanner",
         icon: QrCode,
         description: "Scan attendee QR codes"
+      },
+      {
+        title: "QR Codes",
+        href: "/admin/qr-codes",
+        icon: QrCode,
+        description: "Generate custom QR codes"
       }
     ]
   },
