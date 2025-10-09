@@ -369,8 +369,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             name: registration.name,
             email: registration.email,
             phone: registration.phone,
-            education: registration.education,
-            destination: registration.destination,
+            education: registration.education || undefined,
+            destination: registration.destination || undefined,
             registrationDate: new Date().toISOString(),
             qrToken: token,
           }).catch(err => console.error('Google Sheets sync error:', err));
@@ -771,7 +771,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const results = await Promise.all(
-        ids.map(id => storage.trashEventRegistration(id, req.adminId, 'Bulk delete'))
+        ids.map(id => storage.trashEventRegistration(id, req.adminId!, 'Bulk delete'))
       );
       
       res.json({ success: true, count: results.length });
@@ -860,10 +860,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
 
-      // Create QR code record
+      // Create QR code record with generated image URL
       const qrCode = await storage.createQrCode({
         ...result.data,
-        qrImageUrl
+        qrImageUrl: qrImageUrl as any // qrImageUrl is added after validation
       });
 
       res.json(qrCode);
