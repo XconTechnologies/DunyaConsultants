@@ -147,6 +147,7 @@ export default function Navigation() {
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
     { name: "Blog", href: "/blog" },
+    { name: "Events", href: "/events" },
   ];
 
   return (
