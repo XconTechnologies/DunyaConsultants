@@ -253,7 +253,7 @@ export default function EventRegistration() {
               <img 
                 src={event.detailImage || event.image} 
                 alt={event.title} 
-                className="w-full h-48 md:h-64 lg:h-80 object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           )}
