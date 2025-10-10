@@ -34,7 +34,14 @@ const countries = [
   "Germany",
   "Finland",
   "Belgium",
-  "Turkey"
+  "Turkey",
+  "Sweden",
+  "Cyprus",
+  "Ireland",
+  "Dubai",
+  "Kyrgyzstan",
+  "Denmark",
+  "Other"
 ];
 
 export default function CompactConsultationForm({ isOpen, onClose }: CompactConsultationFormProps) {
