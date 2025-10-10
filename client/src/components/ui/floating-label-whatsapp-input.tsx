@@ -44,11 +44,11 @@ export function FloatingLabelWhatsAppInput({
         ${isActive ? 'border-[#1D50C9]' : ''}
       `}>
         {/* Country Flag Selector */}
-        <div className="relative border-r border-gray-300">
+        <div className="relative border-r border-gray-300" style={{ minWidth: '90px' }}>
           <select
             value={countryCode}
             onChange={(e) => onCountryCodeChange(e.target.value)}
-            className="pl-3 pr-8 py-3 bg-transparent focus:outline-none text-base cursor-pointer appearance-none opacity-0"
+            className="w-full pl-2 pr-6 py-3 bg-transparent focus:outline-none text-sm cursor-pointer appearance-none opacity-0"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
@@ -58,13 +58,14 @@ export function FloatingLabelWhatsAppInput({
               </option>
             ))}
           </select>
-          {/* Display only flag */}
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-2xl">
-            {selectedCountry.flag}
+          {/* Display flag + code */}
+          <div className="absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1 text-sm">
+            <span className="text-lg">{selectedCountry.flag}</span>
+            <span className="text-gray-700">{selectedCountry.code}</span>
           </div>
           {/* Dropdown arrow */}
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
