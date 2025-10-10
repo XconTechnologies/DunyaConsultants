@@ -9,17 +9,17 @@ interface FloatingLabelWhatsAppInputProps extends Omit<InputHTMLAttributes<HTMLI
 }
 
 const countryCodes = [
-  { code: "+92", country: "Pakistan" },
-  { code: "+1", country: "USA/Canada" },
-  { code: "+44", country: "UK" },
-  { code: "+61", country: "Australia" },
-  { code: "+49", country: "Germany" },
-  { code: "+358", country: "Finland" },
-  { code: "+32", country: "Belgium" },
-  { code: "+90", country: "Turkey" },
-  { code: "+971", country: "UAE" },
-  { code: "+966", country: "Saudi Arabia" },
-  { code: "+20", country: "Egypt" },
+  { code: "+92", country: "Pakistan", flag: "🇵🇰" },
+  { code: "+1", country: "USA/Canada", flag: "🇺🇸" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+358", country: "Finland", flag: "🇫🇮" },
+  { code: "+32", country: "Belgium", flag: "🇧🇪" },
+  { code: "+90", country: "Turkey", flag: "🇹🇷" },
+  { code: "+971", country: "UAE", flag: "🇦🇪" },
+  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "+20", country: "Egypt", flag: "🇪🇬" },
 ];
 
 export function FloatingLabelWhatsAppInput({
@@ -34,6 +34,8 @@ export function FloatingLabelWhatsAppInput({
   const [isFocused, setIsFocused] = useState(false);
   const isActive = isFocused || numberValue;
 
+  const selectedCountry = countryCodes.find(c => c.code === countryCode) || countryCodes[0];
+
   return (
     <div className="relative">
       <div className={`
@@ -41,19 +43,28 @@ export function FloatingLabelWhatsAppInput({
         ${isFocused ? 'border-[#1D50C9] ring-2 ring-[#1D50C9]/20' : 'border-gray-300'}
         ${isActive ? 'border-[#1D50C9]' : ''}
       `}>
-        <select
-          value={countryCode}
-          onChange={(e) => onCountryCodeChange(e.target.value)}
-          className="px-3 py-3 bg-transparent border-r border-gray-300 focus:outline-none text-sm w-[90px] cursor-pointer"
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        >
-          {countryCodes.map((item) => (
-            <option key={item.code} value={item.code}>
-              {item.code}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            value={countryCode}
+            onChange={(e) => onCountryCodeChange(e.target.value)}
+            className="pl-3 pr-2 py-3 bg-transparent border-r border-gray-300 focus:outline-none text-sm cursor-pointer appearance-none"
+            style={{ minWidth: '110px' }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          >
+            {countryCodes.map((item) => (
+              <option key={item.code} value={item.code}>
+                {item.flag} {item.code}
+              </option>
+            ))}
+          </select>
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-lg">
+            {selectedCountry.flag}
+          </div>
+          <div className="absolute left-11 top-1/2 -translate-y-1/2 pointer-events-none text-sm text-gray-700">
+            {selectedCountry.code}
+          </div>
+        </div>
         
         <input
           type="tel"
