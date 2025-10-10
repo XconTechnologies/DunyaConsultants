@@ -80,10 +80,11 @@ Preferred communication style: Simple, everyday language.
 - **Audit Trail**: Activity logging for user actions and content changes
 - **Database Backup System**: Comprehensive backup management with:
   - Manual and scheduled backups (daily, weekly, monthly)
-  - Cloud storage integration support (Google Drive, Dropbox, OneDrive)
+  - Cloud storage integration support (Google Drive, Dropbox, OneDrive) - requires API credentials to be configured
   - Backup history tracking with download capability
   - Automated backup configuration
   - Storage location management (local and cloud)
+  - Note: Cloud integrations available but user opted for local backups only
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.
