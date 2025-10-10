@@ -66,6 +66,11 @@ const navItems: NavItem[] = [
     icon: FileText
   },
   {
+    title: "Lead Assigns",
+    href: "/admin/lead-assignments",
+    icon: Mail
+  },
+  {
     title: "Event Assigns",
     href: "/admin/event-assignments",
     icon: CalendarCheck

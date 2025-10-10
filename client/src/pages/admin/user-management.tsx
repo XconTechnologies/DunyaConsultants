@@ -71,6 +71,7 @@ const ROLE_CONFIG = {
       canAccessQRScanner: true,
       canDownloadRegistrations: true,
       canDeleteRegistrations: true,
+      canManageLeads: true,
     }
   },
   editor: {
@@ -91,6 +92,7 @@ const ROLE_CONFIG = {
       canAccessQRScanner: false,
       canDownloadRegistrations: true,
       canDeleteRegistrations: false,
+      canManageLeads: false,
     }
   },
   publisher: {
@@ -111,6 +113,7 @@ const ROLE_CONFIG = {
       canAccessQRScanner: true,
       canDownloadRegistrations: true,
       canDeleteRegistrations: false,
+      canManageLeads: false,
     }
   },
   custom: {
@@ -129,6 +132,7 @@ const ROLE_CONFIG = {
       canManageMedia: false,
       canAccessEvents: false,
       canAccessQRScanner: false,
+      canManageLeads: false,
       canDownloadRegistrations: false,
       canDeleteRegistrations: false,
     }
@@ -507,6 +511,7 @@ export default function UserManagement() {
                         canManageMedia: "Manage Media",
                         canAccessEvents: "Access Events",
                         canAccessQRScanner: "Access QR Scanner",
+                        canManageLeads: "Manage Leads",
                         canDownloadRegistrations: "Download Registrations",
                         canDeleteRegistrations: "Delete Registrations"
                       };
@@ -750,6 +755,7 @@ export default function UserManagement() {
                         canManageMedia: "Manage Media",
                         canAccessEvents: "Access Events",
                         canAccessQRScanner: "Access QR Scanner",
+                        canManageLeads: "Manage Leads",
                         canDownloadRegistrations: "Download Registrations",
                         canDeleteRegistrations: "Delete Registrations"
                       };

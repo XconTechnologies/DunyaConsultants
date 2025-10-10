@@ -91,6 +91,12 @@ const sidebarItems: SidebarItem[] = [
     description: "Manage post access control"
   },
   {
+    title: "Lead Assignments",
+    href: "/admin/lead-assignments",
+    icon: Mail,
+    description: "Assign leads to users"
+  },
+  {
     title: "Event Assignments",
     href: "/admin/event-assignments",
     icon: CalendarCheck,

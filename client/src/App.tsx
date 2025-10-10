@@ -74,6 +74,7 @@ import UserActivity from "@/pages/admin/user-activity";
 import BackupManagement from "@/pages/admin/backup";
 import LeadsManagement from "@/pages/admin/leads";
 import PostAssignments from "@/pages/admin/post-assignments";
+import LeadAssignments from "@/pages/admin/lead-assignments";
 import EventAssignments from "@/pages/admin/event-assignments";
 import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
@@ -205,6 +206,7 @@ function Router() {
       <Route path="/admin/backup" component={BackupManagement} />
       <Route path="/admin/leads" component={LeadsManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
+      <Route path="/admin/lead-assignments" component={LeadAssignments} />
       <Route path="/admin/event-assignments" component={EventAssignments} />
       <Route path="/admin/categories" component={AdminCategoriesPage} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
