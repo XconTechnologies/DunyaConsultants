@@ -43,7 +43,7 @@ const FloatingLabelInput = forwardRef<HTMLInputElement, FloatingLabelInputProps>
           className={cn(
             "absolute left-3 transition-all duration-200 ease-out pointer-events-none",
             isLabelFloating
-              ? "top-1 text-xs text-[#1D50C9] bg-white px-1 -ml-1"
+              ? "-top-2.5 text-xs text-[#1D50C9] bg-white px-1"
               : "top-3.5 text-sm text-gray-500"
           )}
         >

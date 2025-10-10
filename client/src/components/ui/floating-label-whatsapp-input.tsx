@@ -48,18 +48,18 @@ export function FloatingLabelWhatsAppInput({
           <select
             value={countryCode}
             onChange={(e) => onCountryCodeChange(e.target.value)}
-            className="pl-3 pr-8 py-3 bg-transparent focus:outline-none text-lg cursor-pointer appearance-none"
+            className="pl-3 pr-8 py-3 bg-transparent focus:outline-none text-base cursor-pointer appearance-none opacity-0"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
             {countryCodes.map((item) => (
               <option key={item.code} value={item.code}>
-                {item.flag} {item.code}
+                {item.flag} {item.country}
               </option>
             ))}
           </select>
           {/* Display only flag */}
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xl">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-2xl">
             {selectedCountry.flag}
           </div>
           {/* Dropdown arrow */}
