@@ -10,7 +10,7 @@ import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calend
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadTurkey() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -416,7 +416,7 @@ Address: Alif Tower, Sargodha
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Award, TrendingUp, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function AchievementsSection() {
   const ref = useRef(null);
@@ -130,7 +130,7 @@ export default function AchievementsSection() {
       </div>
 
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen} 
         onClose={() => setIsPopupOpen(false)} 
       />

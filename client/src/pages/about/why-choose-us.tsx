@@ -375,7 +375,7 @@ export default function WhyChooseUs() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

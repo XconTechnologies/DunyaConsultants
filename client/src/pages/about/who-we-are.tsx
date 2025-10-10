@@ -8,7 +8,7 @@ import CalendlyButton from "@/components/calendly-button";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
@@ -531,7 +531,7 @@ export default function WhoWeAre() {
         </div>
       </section>
       <Footer />
-      <ConsultationFormPopup
+      <CompactConsultationForm
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

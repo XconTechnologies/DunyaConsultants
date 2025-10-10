@@ -421,7 +421,7 @@ export default function StudyInUSAGuide() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

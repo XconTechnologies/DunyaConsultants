@@ -5,7 +5,7 @@ import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 import { useState } from "react";
 
 // Import team member images
@@ -357,7 +357,7 @@ export default function TeamPage() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

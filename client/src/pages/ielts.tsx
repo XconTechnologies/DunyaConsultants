@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function IELTS() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -316,7 +316,7 @@ export default function IELTS() {
 
       <Footer />
       
-      <ConsultationFormPopup
+      <CompactConsultationForm
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

@@ -13,7 +13,7 @@ import CountryFlag from "@/components/CountryFlag";
 import ApplicationForm from "@/components/ApplicationForm";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadUSA() {
   const [showSmartTools, setShowSmartTools] = useState(false);
@@ -376,7 +376,7 @@ Address: Alif Tower, Sargodha
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />

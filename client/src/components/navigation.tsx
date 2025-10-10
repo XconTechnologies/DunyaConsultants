@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
-import ConsultationFormModal from "@/components/consultation-form-modal";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -565,7 +565,7 @@ export default function Navigation() {
       </AnimatePresence>
 
       {/* Consultation Form Modal */}
-      <ConsultationFormModal 
+      <CompactConsultationForm 
         isOpen={isConsultationModalOpen}
         onClose={() => setIsConsultationModalOpen(false)}
       />

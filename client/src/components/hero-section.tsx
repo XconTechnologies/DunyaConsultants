@@ -2,12 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Rocket, Play, Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ConsultationFormModal from "@/components/consultation-form-modal";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function HeroSection() {
-  const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -124,7 +122,7 @@ export default function HeroSection() {
           >
             <Button 
               size="default"
-              onClick={() => setIsConsultationModalOpen(true)}
+              onClick={() => setIsFormOpen(true)}
               className="bg-accent hover:bg-[#1D50C9] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
               data-testid="hero-free-consultation"
             >
@@ -141,7 +139,7 @@ export default function HeroSection() {
             </Button>
             <Button 
               size="default"
-              onClick={() => setIsPopupOpen(true)}
+              onClick={() => setIsFormOpen(true)}
               className="bg-white/20 border-2 border-white text-white px-6 py-3 text-sm font-semibold hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm"
             >
               <MessageCircle className="mr-2" size={16} />
@@ -160,16 +158,10 @@ export default function HeroSection() {
         </motion.div>
       </div>
       
-      {/* Consultation Form Modal */}
-      <ConsultationFormModal 
-        isOpen={isConsultationModalOpen}
-        onClose={() => setIsConsultationModalOpen(false)}
-      />
-      
-      {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+      {/* Consultation Form */}
+      <CompactConsultationForm 
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
       />
       
       {/* Enhanced Floating Elements */}

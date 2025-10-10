@@ -8,7 +8,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
-import ConsultationFormPopup from "@/components/consultation-form-popup";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function PTE() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -296,7 +296,7 @@ export default function PTE() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />
