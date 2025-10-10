@@ -264,8 +264,8 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         />
 
                         {/* Language Test Section */}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <div className="flex items-center gap-4">
+                          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
                             Have you done language test? *
                           </label>
                           <div className="flex gap-6">

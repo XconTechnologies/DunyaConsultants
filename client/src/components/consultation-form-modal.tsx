@@ -211,7 +211,7 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -50 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="bg-white rounded-2xl w-full max-w-2xl shadow-2xl"
+          className="bg-white rounded-2xl w-full max-w-xl shadow-2xl"
           style={{ 
             maxHeight: '90vh',
             margin: '0 auto'
@@ -279,8 +279,8 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
               />
 
               {/* Language Test Section */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
+              <div className="flex items-center gap-4">
+                <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
                   Have you done language test? *
                 </label>
                 <div className="flex gap-6">

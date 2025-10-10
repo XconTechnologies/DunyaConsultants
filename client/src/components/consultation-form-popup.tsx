@@ -155,7 +155,7 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+          className="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative">
@@ -213,8 +213,8 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
               />
 
               {/* Language Test Section */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
+              <div className="flex items-center gap-4">
+                <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
                   Have you done language test? *
                 </label>
                 <div className="flex gap-6">
