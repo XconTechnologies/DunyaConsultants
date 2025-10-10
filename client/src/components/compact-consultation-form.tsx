@@ -315,9 +315,9 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                 </div>
               </div>
 
-              {/* If Yes, show test type and score in same row */}
+              {/* If Yes, show test type full width, then half width with next field */}
               {formData.hasLanguageTest === "yes" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className={formData.testType ? "grid grid-cols-1 md:grid-cols-2 gap-4" : ""}>
                   <div className="relative">
                     <select
                       name="testType"
