@@ -121,7 +121,7 @@ export default function BackupManagement() {
   // Save configuration mutation
   const saveConfigMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest("/api/admin/backup/config", "POST", {
+      return apiRequest("POST", "/api/admin/backup/config", {
         frequency,
         autoBackupEnabled,
         cloudProvider,
@@ -147,7 +147,7 @@ export default function BackupManagement() {
   // Create backup mutation
   const createBackupMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest("/api/admin/backup/create", "POST", {});
+      return apiRequest("POST", "/api/admin/backup/create", {});
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/backup/history"] });
@@ -168,7 +168,7 @@ export default function BackupManagement() {
   // Delete backup mutation
   const deleteBackupMutation = useMutation({
     mutationFn: async (id: number) => {
-      return apiRequest(`/api/admin/backup/${id}`, "DELETE");
+      return apiRequest("DELETE", `/api/admin/backup/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/backup/history"] });
