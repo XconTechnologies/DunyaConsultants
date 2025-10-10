@@ -59,24 +59,55 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
     
     // Get source page from URL
     const currentPath = window.location.pathname;
-    let source = "website";
+    let source = "Website - Unknown Page";
     
-    if (currentPath.includes("ielts")) source = "ielts";
-    else if (currentPath.includes("pte")) source = "pte";
-    else if (currentPath.includes("toefl")) source = "toefl";
-    else if (currentPath.includes("duolingo")) source = "duolingo";
-    else if (currentPath.includes("usa")) source = "usa";
-    else if (currentPath.includes("uk")) source = "uk";
-    else if (currentPath.includes("canada")) source = "canada";
-    else if (currentPath.includes("finland")) source = "finland";
-    else if (currentPath.includes("australia")) source = "australia";
-    else if (currentPath.includes("belgium")) source = "belgium";
-    else if (currentPath.includes("turkey")) source = "turkey";
-    else if (currentPath.includes("lahore")) source = "lahore";
-    else if (currentPath.includes("karachi")) source = "karachi";
-    else if (currentPath.includes("islamabad")) source = "islamabad";
-    else if (currentPath.includes("bahawalpur")) source = "bahawalpur";
-    else if (currentPath === "/" || currentPath === "") source = "homepage";
+    // Test Prep Pages
+    if (currentPath.includes("ielts")) source = "IELTS Page";
+    else if (currentPath.includes("pte")) source = "PTE Page";
+    else if (currentPath.includes("toefl")) source = "TOEFL Page";
+    else if (currentPath.includes("duolingo")) source = "Duolingo Page";
+    
+    // Country Pages
+    else if (currentPath.includes("usa")) source = "USA Study Guide";
+    else if (currentPath.includes("uk")) source = "UK Study Guide";
+    else if (currentPath.includes("canada")) source = "Canada Study Guide";
+    else if (currentPath.includes("finland")) source = "Finland Study Guide";
+    else if (currentPath.includes("australia")) source = "Australia Study Guide";
+    else if (currentPath.includes("belgium")) source = "Belgium Study Guide";
+    else if (currentPath.includes("turkey")) source = "Turkey Study Guide";
+    
+    // Office Pages
+    else if (currentPath.includes("sargodha")) source = "Sargodha Office";
+    else if (currentPath.includes("lahore")) source = "Lahore Office";
+    else if (currentPath.includes("karachi")) source = "Karachi Office";
+    else if (currentPath.includes("islamabad")) source = "Islamabad Office";
+    else if (currentPath.includes("faisalabad")) source = "Faisalabad Office";
+    else if (currentPath.includes("bahawalpur")) source = "Bahawalpur Office";
+    else if (currentPath.includes("multan")) source = "Multan Office";
+    else if (currentPath.includes("gujranwala")) source = "Gujranwala Office";
+    else if (currentPath.includes("sialkot")) source = "Sialkot Office";
+    else if (currentPath.includes("gujrat")) source = "Gujrat Office";
+    else if (currentPath.includes("jhelum")) source = "Jhelum Office";
+    else if (currentPath.includes("sheikhupura")) source = "Sheikhupura Office";
+    else if (currentPath.includes("mian-channu") || currentPath.includes("mianchannu")) source = "Mian Channu Office";
+    else if (currentPath.includes("mandi-bahauddin")) source = "Mandi Bahauddin Office";
+    else if (currentPath.includes("peshawar")) source = "Peshawar Office";
+    else if (currentPath.includes("mardan")) source = "Mardan Office";
+    else if (currentPath.includes("jeddah")) source = "Jeddah Office";
+    else if (currentPath.includes("cairo")) source = "Cairo Office";
+    else if (currentPath.includes("istanbul")) source = "Istanbul Office";
+    else if (currentPath.includes("edinburgh")) source = "Edinburgh Office";
+    
+    // Other Pages
+    else if (currentPath.includes("services")) source = "Services Page";
+    else if (currentPath.includes("about")) source = "About Us";
+    else if (currentPath.includes("blog")) source = "Blog Page";
+    else if (currentPath.includes("contact")) source = "Contact Page";
+    else if (currentPath.includes("cost-calculator")) source = "Cost Calculator";
+    else if (currentPath.includes("course-match")) source = "Course Match Tool";
+    else if (currentPath.includes("journey")) source = "Study Abroad Journey";
+    else if (currentPath.includes("event")) source = "Events Page";
+    else if (currentPath === "/" || currentPath === "") source = "Homepage";
     
     try {
       const response = await fetch("/api/consultations", {
