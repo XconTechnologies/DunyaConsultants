@@ -41,6 +41,8 @@ Preferred communication style: Simple, everyday language.
 - `postAssignments`: Granular post access control assignments
 - `adminSessions`: Secure admin authentication sessions
 - `auditLogs`: Activity tracking and audit trail
+- `backup_configs`: Database backup configuration settings
+- `backup_history`: Historical records of database backups
 
 ### Key Features
 - Contact Management (validated forms)
@@ -76,6 +78,12 @@ Preferred communication style: Simple, everyday language.
 - **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
 - **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions
 - **Audit Trail**: Activity logging for user actions and content changes
+- **Database Backup System**: Comprehensive backup management with:
+  - Manual and scheduled backups (daily, weekly, monthly)
+  - Cloud storage integration support (Google Drive, Dropbox, OneDrive)
+  - Backup history tracking with download capability
+  - Automated backup configuration
+  - Storage location management (local and cloud)
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.
