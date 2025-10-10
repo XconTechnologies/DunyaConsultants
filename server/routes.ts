@@ -965,24 +965,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      // Generate redirect URL that will track scans
-      const baseUrl = process.env.REPLIT_DOMAINS
-        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
-        : 'http://localhost:5000';
-      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
+      if (!qrCode.qrImageUrl) {
+        return res.status(404).json({ message: "QR code image not found" });
+      }
 
-      const buffer = await QRCode.toBuffer(redirectUrl, {
-        width: 800,
-        margin: 2,
-        color: {
-          dark: '#000000',
-          light: '#FFFFFF'
-        }
-      });
+      // Serve the existing QR code image file
+      const filepath = path.join(process.cwd(), 'public', qrCode.qrImageUrl);
+      
+      if (!fs.existsSync(filepath)) {
+        return res.status(404).json({ message: "QR code image file not found" });
+      }
 
       res.setHeader('Content-Type', 'image/png');
       res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.png"`);
-      res.send(buffer);
+      res.sendFile(filepath);
     } catch (error) {
       console.error("Error downloading QR code:", error);
       res.status(500).json({ message: "Failed to download QR code" });
@@ -1003,7 +999,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      // Generate redirect URL that will track scans
+      // Generate redirect URL that will track scans (same as preview)
       const baseUrl = process.env.REPLIT_DOMAINS
         ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
         : 'http://localhost:5000';
@@ -1011,7 +1007,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const svg = await QRCode.toString(redirectUrl, {
         type: 'svg',
-        width: 800,
+        width: 400,
         margin: 2,
         color: {
           dark: '#000000',
