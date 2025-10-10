@@ -251,6 +251,7 @@ const offices = [
 export default function OfficesList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Handle hash fragment scrolling
@@ -630,6 +631,7 @@ export default function OfficesList() {
                               View Details
                             </Button>
                           </Link>
+                          
                         ) : (
                           <a href={`tel:${office.phone}`} className="flex-1">
                             <Button 
@@ -839,6 +841,7 @@ export default function OfficesList() {
         </motion.div>
       </div>
 
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Footer />
       
       {/* Consultation Form Popup */}

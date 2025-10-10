@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 import CalendlyButton from "@/components/calendly-button";
 
 export default function KarachiGulshan() {
@@ -58,7 +59,7 @@ export default function KarachiGulshan() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
-            </Link>
+            
             <Badge className="bg-white/20 text-white border-white/30">
               Commercial Hub
             </Badge>
@@ -342,6 +343,7 @@ export default function KarachiGulshan() {
         </motion.div>
       </div>
       
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Footer />
     </div>
   );

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 // Import office images
 import SheikhupuraOffice1 from "@assets/sheikhupura-office-1.jpg";
@@ -16,6 +17,7 @@ import SheikhupuraOffice3 from "@assets/sheikhupura-office-3.jpg";
 
 export default function SheikhupuraOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   
   const services = [
     {
@@ -159,12 +161,13 @@ export default function SheikhupuraOffice() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+              
+
+                <Button size="lg" onClick={() => setIsFormOpen(true)} className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold" data-testid="office-free-consultation">
                   Book Free Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-              </Link>
+              
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
                 <a href="https://maps.app.goo.gl/UBa1pdSk4cKpaK5j8" target="_blank" rel="noopener noreferrer" className="flex items-center">
                   Get Directions
@@ -473,7 +476,7 @@ export default function SheikhupuraOffice() {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                    <Button size="lg" onClick={() => setIsFormOpen(true)} className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold" data-testid="office-free-consultation">
                       <BookOpen className="w-5 h-5 mr-2" />
                       Enroll Now
                     </Button>
@@ -618,11 +621,11 @@ export default function SheikhupuraOffice() {
                 </div>
 
                 <div className="space-y-4 mt-4">
-                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
-                    <Link href="/contact" className="flex items-center justify-center w-full">
+                  <Button size="lg" onClick={() => setIsFormOpen(true)} className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold" data-testid="office-contact-consultation">
+                    <span className="flex items-center justify-center w-full">
                       Book Free Consultation
                       <Calendar className="w-5 h-5 ml-2" />
-                    </Link>
+                    
                   </Button>
                   
                   <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
@@ -638,6 +641,7 @@ export default function SheikhupuraOffice() {
         </div>
       </section>
 
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Footer />
     </div>
   );

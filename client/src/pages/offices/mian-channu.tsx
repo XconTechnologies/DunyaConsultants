@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function MianChannuOffice() {
   const office = {
@@ -60,7 +61,7 @@ export default function MianChannuOffice() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
-            </Link>
+            
           </div>
           
           <motion.div
@@ -316,6 +317,7 @@ export default function MianChannuOffice() {
         </div>
       </div>
 
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Footer />
     </div>
   );
