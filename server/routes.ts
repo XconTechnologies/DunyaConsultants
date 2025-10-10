@@ -2348,6 +2348,160 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // ==============================================
+  // BACKUP MANAGEMENT ROUTES
+  // ==============================================
+  
+  // Get backup configuration
+  app.get("/api/admin/backup/config", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const config = await storage.getBackupConfig();
+      res.json(config || null);
+    } catch (error) {
+      console.error('Error fetching backup config:', error);
+      res.status(500).json({ message: 'Failed to fetch backup configuration' });
+    }
+  });
+
+  // Create or update backup configuration
+  app.post("/api/admin/backup/config", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { frequency, autoBackupEnabled, cloudProvider, cloudFolderId } = req.body;
+      
+      const existingConfig = await storage.getBackupConfig();
+      
+      if (existingConfig) {
+        const updated = await storage.updateBackupConfig(existingConfig.id, {
+          frequency,
+          autoBackupEnabled,
+          cloudProvider,
+          cloudFolderId
+        });
+        res.json(updated);
+      } else {
+        const created = await storage.createBackupConfig({
+          frequency,
+          autoBackupEnabled,
+          cloudProvider,
+          cloudFolderId,
+          createdBy: req.adminId!
+        });
+        res.json(created);
+      }
+    } catch (error) {
+      console.error('Error saving backup config:', error);
+      res.status(500).json({ message: 'Failed to save backup configuration' });
+    }
+  });
+
+  // Get backup history
+  app.get("/api/admin/backup/history", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
+      const history = await storage.getBackupHistory(limit);
+      res.json(history);
+    } catch (error) {
+      console.error('Error fetching backup history:', error);
+      res.status(500).json({ message: 'Failed to fetch backup history' });
+    }
+  });
+
+  // Create backup
+  app.post("/api/admin/backup/create", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { exec } = await import('child_process');
+      const { promisify } = await import('util');
+      const execAsync = promisify(exec);
+      const fs = await import('fs');
+      const path = await import('path');
+      
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const fileName = `backup-${timestamp}.sql`;
+      const backupDir = path.join(process.cwd(), 'backups');
+      const filePath = path.join(backupDir, fileName);
+      
+      // Create backups directory if it doesn't exist
+      if (!fs.existsSync(backupDir)) {
+        fs.mkdirSync(backupDir, { recursive: true });
+      }
+
+      // Create backup history record
+      const backup = await storage.createBackupHistory({
+        fileName,
+        fileSize: 0,
+        filePath,
+        cloudProvider: 'none',
+        status: 'in_progress',
+        createdBy: req.adminId!
+      });
+
+      // Execute pg_dump to create backup
+      const dbUrl = process.env.DATABASE_URL;
+      if (!dbUrl) {
+        throw new Error('DATABASE_URL not configured');
+      }
+
+      await execAsync(`pg_dump "${dbUrl}" > "${filePath}"`);
+      
+      // Get file size
+      const stats = fs.statSync(filePath);
+      
+      // Update backup record with completed status
+      const updated = await storage.updateBackupHistory(backup.id, {
+        fileSize: stats.size,
+        status: 'completed'
+      });
+
+      res.json(updated);
+    } catch (error) {
+      console.error('Error creating backup:', error);
+      res.status(500).json({ message: 'Failed to create backup' });
+    }
+  });
+
+  // Download backup
+  app.get("/api/admin/backup/download/:id", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const backup = await storage.getBackupById(id);
+      
+      if (!backup || !backup.filePath) {
+        return res.status(404).json({ message: 'Backup not found' });
+      }
+
+      res.download(backup.filePath, backup.fileName);
+    } catch (error) {
+      console.error('Error downloading backup:', error);
+      res.status(500).json({ message: 'Failed to download backup' });
+    }
+  });
+
+  // Delete backup
+  app.delete("/api/admin/backup/:id", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const backup = await storage.getBackupById(id);
+      
+      if (!backup) {
+        return res.status(404).json({ message: 'Backup not found' });
+      }
+
+      // Delete file if exists
+      if (backup.filePath) {
+        const fs = await import('fs');
+        if (fs.existsSync(backup.filePath)) {
+          fs.unlinkSync(backup.filePath);
+        }
+      }
+
+      await storage.deleteBackupHistory(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error deleting backup:', error);
+      res.status(500).json({ message: 'Failed to delete backup' });
+    }
+  });
+
+  // ==============================================
   // READER AUTHENTICATION ROUTES (Content Gating)
   // ==============================================
 
