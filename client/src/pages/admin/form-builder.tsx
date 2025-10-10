@@ -100,17 +100,14 @@ export default function FormBuilder() {
 
   // Create field mutation
   const createFieldMutation = useMutation({
-    mutationFn: (data: typeof fieldData) => apiRequest(`/api/admin/custom-forms/${formId}/fields`, {
-      method: "POST",
-      body: JSON.stringify({
-        fieldLabel: data.fieldLabel,
-        fieldType: data.fieldType,
-        fieldName: data.fieldName || data.fieldLabel.toLowerCase().replace(/\s+/g, '_'),
-        placeholder: data.placeholder || null,
-        required: data.required,
-        options: data.options ? data.options.split('\n').filter(o => o.trim()) : null,
-        order: fields.length
-      })
+    mutationFn: (data: typeof fieldData) => apiRequest("POST", `/api/admin/custom-forms/${formId}/fields`, {
+      fieldLabel: data.fieldLabel,
+      fieldType: data.fieldType,
+      fieldName: data.fieldName || data.fieldLabel.toLowerCase().replace(/\s+/g, '_'),
+      placeholder: data.placeholder || null,
+      required: data.required,
+      options: data.options ? data.options.split('\n').filter(o => o.trim()) : null,
+      order: fields.length
     }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms", formId, "fields"] });
@@ -130,10 +127,7 @@ export default function FormBuilder() {
   // Update field mutation
   const updateFieldMutation = useMutation({
     mutationFn: (data: { id: number; updates: Partial<FormField> }) => 
-      apiRequest(`/api/admin/form-fields/${data.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data.updates)
-      }),
+      apiRequest("PATCH", `/api/admin/form-fields/${data.id}`, data.updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms", formId, "fields"] });
       toast({ title: "Success", description: "Field updated successfully" });
@@ -149,9 +143,7 @@ export default function FormBuilder() {
 
   // Delete field mutation
   const deleteFieldMutation = useMutation({
-    mutationFn: (fieldId: number) => apiRequest(`/api/admin/form-fields/${fieldId}`, {
-      method: "DELETE"
-    }),
+    mutationFn: (fieldId: number) => apiRequest("DELETE", `/api/admin/form-fields/${fieldId}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms", formId, "fields"] });
       toast({ title: "Success", description: "Field deleted successfully" });

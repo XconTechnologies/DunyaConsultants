@@ -80,10 +80,7 @@ export default function FormSubmissions() {
   // Update submission mutation
   const updateSubmissionMutation = useMutation({
     mutationFn: (data: { id: number; updates: Partial<CustomFormSubmission> }) => 
-      apiRequest(`/api/admin/custom-form-submissions/${data.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data.updates)
-      }),
+      apiRequest("PATCH", `/api/admin/custom-form-submissions/${data.id}`, data.updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-form-submissions"] });
       toast({ title: "Success", description: "Submission updated successfully" });
@@ -99,9 +96,7 @@ export default function FormSubmissions() {
 
   // Delete submission mutation
   const deleteSubmissionMutation = useMutation({
-    mutationFn: (id: number) => apiRequest(`/api/admin/custom-form-submissions/${id}`, {
-      method: "DELETE"
-    }),
+    mutationFn: (id: number) => apiRequest("DELETE", `/api/admin/custom-form-submissions/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-form-submissions"] });
       setSelectedSubmission(null);

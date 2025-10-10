@@ -71,10 +71,7 @@ export default function FormManagement() {
 
   // Create form mutation
   const createFormMutation = useMutation({
-    mutationFn: (data: typeof formData) => apiRequest("/api/admin/custom-forms", {
-      method: "POST",
-      body: JSON.stringify(data)
-    }),
+    mutationFn: (data: typeof formData) => apiRequest("POST", "/api/admin/custom-forms", data),
     onSuccess: (newForm: any) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms"] });
       setIsCreateDialogOpen(false);
@@ -95,10 +92,7 @@ export default function FormManagement() {
   // Update form mutation
   const updateFormMutation = useMutation({
     mutationFn: (data: { id: number; updates: Partial<CustomForm> }) => 
-      apiRequest(`/api/admin/custom-forms/${data.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(data.updates)
-      }),
+      apiRequest("PATCH", `/api/admin/custom-forms/${data.id}`, data.updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms"] });
       setEditingForm(null);
@@ -115,9 +109,7 @@ export default function FormManagement() {
 
   // Delete form mutation
   const deleteFormMutation = useMutation({
-    mutationFn: (id: number) => apiRequest(`/api/admin/custom-forms/${id}`, {
-      method: "DELETE"
-    }),
+    mutationFn: (id: number) => apiRequest("DELETE", `/api/admin/custom-forms/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/custom-forms"] });
       toast({ title: "Success", description: "Form deleted successfully" });
