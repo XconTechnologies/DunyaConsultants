@@ -201,6 +201,7 @@ function Router() {
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/user-activity" component={UserActivity} />
+      <Route path="/admin/backup" component={BackupManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
       <Route path="/admin/event-assignments" component={EventAssignments} />
       <Route path="/admin/categories" component={AdminCategoriesPage} />

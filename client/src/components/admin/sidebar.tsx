@@ -14,7 +14,8 @@ import {
   X,
   ChevronDown,
   ChevronRight,
-  Activity
+  Activity,
+  Database
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
@@ -113,6 +114,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/qr-codes",
     icon: QrCode,
     description: "Generate custom QR codes"
+  },
+  {
+    title: "Backup",
+    href: "/admin/backup",
+    icon: Database,
+    description: "Database backup management"
   },
   {
     title: "Trash",
