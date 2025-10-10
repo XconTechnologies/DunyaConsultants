@@ -71,6 +71,7 @@ import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
 import UserActivity from "@/pages/admin/user-activity";
+import BackupManagement from "@/pages/admin/backup";
 import PostAssignments from "@/pages/admin/post-assignments";
 import EventAssignments from "@/pages/admin/event-assignments";
 import AdminCategoriesPage from "@/pages/admin/categories";
