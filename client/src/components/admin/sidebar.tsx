@@ -13,7 +13,8 @@ import {
   ClipboardList,
   X,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  Activity
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
@@ -97,7 +98,15 @@ const sidebarItems: SidebarItem[] = [
     title: "Users",
     href: "/admin/users",
     icon: Users,
-    description: "Manage users and permissions"
+    description: "Manage users and permissions",
+    subItems: [
+      {
+        title: "User Activity",
+        href: "/admin/user-activity",
+        icon: Activity,
+        description: "Track user login/logout"
+      }
+    ]
   },
   {
     title: "QR Codes",

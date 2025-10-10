@@ -70,6 +70,7 @@ import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
+import UserActivity from "@/pages/admin/user-activity";
 import PostAssignments from "@/pages/admin/post-assignments";
 import EventAssignments from "@/pages/admin/event-assignments";
 import AdminCategoriesPage from "@/pages/admin/categories";
@@ -198,6 +199,7 @@ function Router() {
       <Route path="/admin/trash" component={TrashManagement} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
+      <Route path="/admin/user-activity" component={UserActivity} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
       <Route path="/admin/event-assignments" component={EventAssignments} />
       <Route path="/admin/categories" component={AdminCategoriesPage} />
