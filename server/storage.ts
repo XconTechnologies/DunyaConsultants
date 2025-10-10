@@ -1,7 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, editingSessions, editRequests,
-  categories, blogPostCategories, events, eventRegistrations, qrCodes,
+  categories, blogPostCategories, events, eventRegistrations, qrCodes, backupConfigs, backupHistory,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -15,7 +15,8 @@ import {
   type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
   type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
-  type QrCode, type InsertQrCode
+  type QrCode, type InsertQrCode,
+  type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -220,6 +221,16 @@ export interface IStorage {
     events?: Event[];
     adminUsers?: AdminUser[];
   }>;
+  
+  // Backup Management
+  getBackupConfig(): Promise<BackupConfig | undefined>;
+  createBackupConfig(config: InsertBackupConfig): Promise<BackupConfig>;
+  updateBackupConfig(id: number, updates: Partial<BackupConfig>): Promise<BackupConfig>;
+  createBackupHistory(backup: InsertBackupHistory): Promise<BackupHistory>;
+  updateBackupHistory(id: number, updates: Partial<BackupHistory>): Promise<BackupHistory>;
+  getBackupHistory(limit?: number): Promise<BackupHistory[]>;
+  getBackupById(id: number): Promise<BackupHistory | undefined>;
+  deleteBackupHistory(id: number): Promise<void>;
 }
 
 
@@ -1824,6 +1835,54 @@ export class DatabaseStorage implements IStorage {
     }
     
     return result;
+  }
+
+  // Backup Management Methods
+  async getBackupConfig(): Promise<BackupConfig | undefined> {
+    const [config] = await db.select().from(backupConfigs).orderBy(desc(backupConfigs.id)).limit(1);
+    return config || undefined;
+  }
+
+  async createBackupConfig(config: InsertBackupConfig): Promise<BackupConfig> {
+    const [newConfig] = await db.insert(backupConfigs).values(config).returning();
+    return newConfig;
+  }
+
+  async updateBackupConfig(id: number, updates: Partial<BackupConfig>): Promise<BackupConfig> {
+    const [updated] = await db.update(backupConfigs)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(backupConfigs.id, id))
+      .returning();
+    return updated;
+  }
+
+  async createBackupHistory(backup: InsertBackupHistory): Promise<BackupHistory> {
+    const [newBackup] = await db.insert(backupHistory).values(backup).returning();
+    return newBackup;
+  }
+
+  async updateBackupHistory(id: number, updates: Partial<BackupHistory>): Promise<BackupHistory> {
+    const [updated] = await db.update(backupHistory)
+      .set(updates)
+      .where(eq(backupHistory.id, id))
+      .returning();
+    return updated;
+  }
+
+  async getBackupHistory(limit: number = 50): Promise<BackupHistory[]> {
+    return await db.select()
+      .from(backupHistory)
+      .orderBy(desc(backupHistory.createdAt))
+      .limit(limit);
+  }
+
+  async getBackupById(id: number): Promise<BackupHistory | undefined> {
+    const [backup] = await db.select().from(backupHistory).where(eq(backupHistory.id, id));
+    return backup || undefined;
+  }
+
+  async deleteBackupHistory(id: number): Promise<void> {
+    await db.delete(backupHistory).where(eq(backupHistory.id, id));
   }
 }
 
