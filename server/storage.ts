@@ -134,6 +134,8 @@ export interface IStorage {
   getAuditLogs(limit?: number, offset?: number): Promise<AuditLog[]>;
   createAuditLog(auditLog: InsertAuditLog): Promise<AuditLog>;
   getAuditLogsByEntity(entity: string, entityId: number): Promise<AuditLog[]>;
+  getAuditLogsByActor(actorId: number): Promise<AuditLog[]>;
+  getUserActivityLogs(userId?: number, limit?: number): Promise<(AuditLog & { actorUsername: string })[]>;
   
   // User Management (Admin Operations)
   getAllAdminUsers(): Promise<AdminUser[]>;
@@ -1141,6 +1143,37 @@ export class DatabaseStorage implements IStorage {
         eq(auditLogs.entityId, entityId)
       ))
       .orderBy(desc(auditLogs.createdAt));
+  }
+
+  async getAuditLogsByActor(actorId: number): Promise<AuditLog[]> {
+    return await db.select().from(auditLogs)
+      .where(eq(auditLogs.actorId, actorId))
+      .orderBy(desc(auditLogs.createdAt));
+  }
+
+  async getUserActivityLogs(userId?: number, limit: number = 100): Promise<(AuditLog & { actorUsername: string })[]> {
+    const query = db.select({
+      id: auditLogs.id,
+      actorId: auditLogs.actorId,
+      role: auditLogs.role,
+      action: auditLogs.action,
+      entity: auditLogs.entity,
+      entityId: auditLogs.entityId,
+      before: auditLogs.before,
+      after: auditLogs.after,
+      createdAt: auditLogs.createdAt,
+      actorUsername: adminUsers.username,
+    })
+    .from(auditLogs)
+    .leftJoin(adminUsers, eq(auditLogs.actorId, adminUsers.id))
+    .orderBy(desc(auditLogs.createdAt))
+    .limit(limit);
+
+    if (userId) {
+      return await query.where(eq(auditLogs.actorId, userId));
+    }
+    
+    return await query;
   }
   
   // User Management Methods
