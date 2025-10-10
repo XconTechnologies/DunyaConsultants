@@ -285,8 +285,8 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
               />
 
               {/* Language Test Section */}
-              <div className="flex items-center gap-4">
-                <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                <label className="text-sm font-medium text-gray-700">
                   Have you done language test? *
                 </label>
                 <div className="flex gap-6">
