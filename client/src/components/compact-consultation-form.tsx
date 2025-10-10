@@ -211,15 +211,14 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -50 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="bg-white rounded-2xl w-full max-w-lg shadow-2xl"
+          className="bg-white rounded-2xl w-full max-w-lg shadow-2xl flex flex-col"
           style={{ 
             maxHeight: '90vh',
             margin: '0 auto'
           }}
         >
-          <div className="overflow-y-auto max-h-full rounded-2xl">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative rounded-t-2xl">
+          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative rounded-t-2xl flex-shrink-0">
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
@@ -235,7 +234,7 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
           </div>
 
           {/* Form */}
-          <div className="p-6">
+          <div className="p-6 overflow-y-auto flex-1">
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Row 1: Full Name and City */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -338,14 +337,13 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                     />
                   )}
 
-                  {/* Show Band/Score field for all test types */}
-                  {formData.testType && (
+                  {/* Show Band/Score field only for IELTS, PTE, TOEFL (not Other) */}
+                  {formData.testType && formData.testType !== "other" && (
                     <FloatingLabelInput
                       label={formData.testType === "ielts" ? "Band Score" : "Score"}
                       name="testScore"
                       value={formData.testScore}
                       onChange={handleInputChange}
-                      placeholder={formData.testType === "ielts" ? "e.g., 7.5" : "e.g., 65"}
                       data-testid="input-test-score"
                     />
                   )}
@@ -397,7 +395,6 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                 {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
               </Button>
             </form>
-          </div>
           </div>
         </motion.div>
       </div>
