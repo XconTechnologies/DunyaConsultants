@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface CompactConsultationFormProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultCountryCode?: string;
 }
 
 interface FormData {
@@ -44,11 +45,11 @@ const countries = [
   "Other"
 ];
 
-export default function CompactConsultationForm({ isOpen, onClose }: CompactConsultationFormProps) {
+export default function CompactConsultationForm({ isOpen, onClose, defaultCountryCode = "+92" }: CompactConsultationFormProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     city: "",
-    countryCode: "+92",
+    countryCode: defaultCountryCode,
     whatsappNumber: "",
     email: "",
     hasLanguageTest: "",
@@ -176,7 +177,7 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
         setFormData({
           fullName: "",
           city: "",
-          countryCode: "+92",
+          countryCode: defaultCountryCode,
           whatsappNumber: "",
           email: "",
           hasLanguageTest: "",

@@ -534,7 +534,7 @@ export default function EdinburghOffice() {
         </div>
       </section>
 
-      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} defaultCountryCode="+44" />
       <Footer />
     </div>
   );

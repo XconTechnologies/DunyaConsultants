@@ -541,7 +541,7 @@ export default function IstanbulOffice() {
         </div>
       </section>
 
-      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} defaultCountryCode="+90" />
       <Footer />
     </div>
   );

@@ -641,7 +641,7 @@ export default function CairoOffice() {
         </div>
       </section>
 
-      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} defaultCountryCode="+20" />
       <Footer />
     </div>
   );

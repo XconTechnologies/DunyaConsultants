@@ -538,7 +538,7 @@ export default function JeddahOffice() {
         </div>
       </section>
 
-      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+      <CompactConsultationForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} defaultCountryCode="+966" />
       <Footer />
     </div>
   );
