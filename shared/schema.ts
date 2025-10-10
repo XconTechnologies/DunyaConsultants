@@ -421,6 +421,34 @@ export const qrCodes = pgTable("qr_codes", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Backup Configuration
+export const backupConfigs = pgTable("backup_configs", {
+  id: serial("id").primaryKey(),
+  frequency: text("frequency", { enum: ["manual", "daily", "weekly", "monthly"] }).default("manual").notNull(),
+  autoBackupEnabled: boolean("auto_backup_enabled").default(false).notNull(),
+  cloudProvider: text("cloud_provider", { enum: ["none", "google_drive", "dropbox", "onedrive"] }).default("none").notNull(),
+  cloudFolderId: text("cloud_folder_id"), // Folder/Path in cloud storage
+  lastBackupAt: timestamp("last_backup_at"),
+  nextBackupAt: timestamp("next_backup_at"),
+  createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Backup History
+export const backupHistory = pgTable("backup_history", {
+  id: serial("id").primaryKey(),
+  fileName: text("file_name").notNull(),
+  fileSize: integer("file_size").notNull(), // in bytes
+  filePath: text("file_path"), // local storage path
+  cloudUrl: text("cloud_url"), // cloud storage URL if uploaded
+  cloudProvider: text("cloud_provider", { enum: ["none", "google_drive", "dropbox", "onedrive"] }).default("none").notNull(),
+  status: text("status", { enum: ["in_progress", "completed", "failed"] }).default("in_progress").notNull(),
+  errorMessage: text("error_message"),
+  createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // User sessions for reader authentication
 export const userSessions = pgTable("user_sessions", {
   id: serial("id").primaryKey(),
@@ -678,6 +706,19 @@ export const insertQrCodeSchema = createInsertSchema(qrCodes).omit({
   createdAt: true,
 });
 
+export const insertBackupConfigSchema = createInsertSchema(backupConfigs).omit({
+  id: true,
+  lastBackupAt: true,
+  nextBackupAt: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertBackupHistorySchema = createInsertSchema(backupHistory).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -736,3 +777,7 @@ export type InsertEventRegistration = z.infer<typeof insertEventRegistrationSche
 export type EventRegistration = typeof eventRegistrations.$inferSelect;
 export type InsertQrCode = z.infer<typeof insertQrCodeSchema>;
 export type QrCode = typeof qrCodes.$inferSelect;
+export type InsertBackupConfig = z.infer<typeof insertBackupConfigSchema>;
+export type BackupConfig = typeof backupConfigs.$inferSelect;
+export type InsertBackupHistory = z.infer<typeof insertBackupHistorySchema>;
+export type BackupHistory = typeof backupHistory.$inferSelect;
