@@ -423,6 +423,18 @@ export const qrCodes = pgTable("qr_codes", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Admin Notifications
+export const adminNotifications = pgTable("admin_notifications", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => adminUsers.id).notNull(),
+  type: text("type", { enum: ["event_registration", "new_lead"] }).notNull(),
+  title: text("title").notNull(),
+  message: text("message").notNull(),
+  relatedId: integer("related_id"), // Event registration ID or consultation ID
+  isRead: boolean("is_read").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Backup Configuration
 export const backupConfigs = pgTable("backup_configs", {
   id: serial("id").primaryKey(),
@@ -722,6 +734,12 @@ export const insertQrCodeSchema = createInsertSchema(qrCodes).omit({
   createdAt: true,
 });
 
+export const insertAdminNotificationSchema = createInsertSchema(adminNotifications).omit({
+  id: true,
+  isRead: true,
+  createdAt: true,
+});
+
 export const insertBackupConfigSchema = createInsertSchema(backupConfigs).omit({
   id: true,
   lastBackupAt: true,
@@ -795,6 +813,8 @@ export type InsertEventRegistration = z.infer<typeof insertEventRegistrationSche
 export type EventRegistration = typeof eventRegistrations.$inferSelect;
 export type InsertQrCode = z.infer<typeof insertQrCodeSchema>;
 export type QrCode = typeof qrCodes.$inferSelect;
+export type InsertAdminNotification = z.infer<typeof insertAdminNotificationSchema>;
+export type AdminNotification = typeof adminNotifications.$inferSelect;
 export type InsertBackupConfig = z.infer<typeof insertBackupConfigSchema>;
 export type BackupConfig = typeof backupConfigs.$inferSelect;
 export type InsertBackupHistory = z.infer<typeof insertBackupHistorySchema>;
