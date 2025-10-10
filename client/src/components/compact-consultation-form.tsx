@@ -211,26 +211,28 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
           {/* Form */}
           <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Full Name */}
-              <FloatingLabelInput
-                label="Full Name *"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                required
-                data-testid="input-full-name"
-              />
+              {/* Full Name and WhatsApp - Row 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FloatingLabelInput
+                  label="Full Name *"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-full-name"
+                />
 
-              {/* WhatsApp Number (Combined) */}
-              <FloatingLabelWhatsAppInput
-                label="WhatsApp Number *"
-                countryCode={formData.countryCode}
-                onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
-                numberValue={formData.whatsappNumber}
-                onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
-                required
-                data-testid="input-whatsapp"
-              />
+                {/* WhatsApp Number (Combined) */}
+                <FloatingLabelWhatsAppInput
+                  label="WhatsApp Number *"
+                  countryCode={formData.countryCode}
+                  onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
+                  numberValue={formData.whatsappNumber}
+                  onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
+                  required
+                  data-testid="input-whatsapp"
+                />
+              </div>
 
               {/* Email and City - Row 2 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -43,12 +43,12 @@ export function FloatingLabelWhatsAppInput({
         ${isFocused ? 'border-[#1D50C9] ring-2 ring-[#1D50C9]/20' : 'border-gray-300'}
         ${isActive ? 'border-[#1D50C9]' : ''}
       `}>
-        <div className="relative">
+        {/* Country Flag Selector */}
+        <div className="relative border-r border-gray-300">
           <select
             value={countryCode}
             onChange={(e) => onCountryCodeChange(e.target.value)}
-            className="pl-3 pr-2 py-3 bg-transparent border-r border-gray-300 focus:outline-none text-sm cursor-pointer appearance-none"
-            style={{ minWidth: '110px' }}
+            className="pl-3 pr-8 py-3 bg-transparent focus:outline-none text-lg cursor-pointer appearance-none"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
@@ -58,36 +58,44 @@ export function FloatingLabelWhatsAppInput({
               </option>
             ))}
           </select>
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-lg">
+          {/* Display only flag */}
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xl">
             {selectedCountry.flag}
           </div>
-          <div className="absolute left-11 top-1/2 -translate-y-1/2 pointer-events-none text-sm text-gray-700">
-            {selectedCountry.code}
+          {/* Dropdown arrow */}
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </div>
         </div>
         
-        <input
-          type="tel"
-          value={numberValue}
-          onChange={(e) => onNumberChange(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          className="flex-1 px-3 py-3 bg-transparent border-0 outline-none text-sm"
-          required={required}
-          {...props}
-        />
-        
-        <label
-          className={`
-            absolute left-3 bg-white px-1 pointer-events-none transition-all duration-200
-            ${isActive || isFocused
-              ? '-top-2.5 text-xs text-[#1D50C9]'
-              : 'top-3 text-sm text-gray-500'
-            }
-          `}
-        >
-          {label}
-        </label>
+        {/* WhatsApp Number Input */}
+        <div className="flex-1 relative">
+          <input
+            type="tel"
+            value={numberValue}
+            onChange={(e) => onNumberChange(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            className="w-full px-3 py-3 bg-transparent border-0 outline-none text-sm"
+            required={required}
+            {...props}
+          />
+          
+          {/* Floating Label */}
+          <label
+            className={`
+              absolute left-3 bg-white px-1 pointer-events-none transition-all duration-200
+              ${isActive || isFocused
+                ? '-top-2.5 text-xs text-[#1D50C9]'
+                : 'top-3 text-sm text-gray-500'
+              }
+            `}
+          >
+            {label}
+          </label>
+        </div>
       </div>
     </div>
   );

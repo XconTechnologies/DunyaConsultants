@@ -2,6 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
+import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whatsapp-input";
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,20 +21,6 @@ interface FormData {
   interestedCountries: string[];
   message: string;
 }
-
-const countryCodes = [
-  { code: "+92", country: "Pakistan" },
-  { code: "+1", country: "USA/Canada" },
-  { code: "+44", country: "UK" },
-  { code: "+61", country: "Australia" },
-  { code: "+49", country: "Germany" },
-  { code: "+358", country: "Finland" },
-  { code: "+32", country: "Belgium" },
-  { code: "+90", country: "Turkey" },
-  { code: "+971", country: "UAE" },
-  { code: "+966", country: "Saudi Arabia" },
-  { code: "+20", country: "Egypt" },
-];
 
 const countries = [
   "United States",
@@ -234,32 +221,15 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
                   required
                   data-testid="input-full-name"
                 />
-                <div className="flex gap-2">
-                  <select
-                    name="countryCode"
-                    value={formData.countryCode}
-                    onChange={handleInputChange}
-                    className="w-24 px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
-                    data-testid="select-country-code"
-                  >
-                    {countryCodes.map((item) => (
-                      <option key={item.code} value={item.code}>
-                        {item.code}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="flex-1">
-                    <FloatingLabelInput
-                      label="WhatsApp Number *"
-                      name="whatsappNumber"
-                      type="tel"
-                      value={formData.whatsappNumber}
-                      onChange={handleInputChange}
-                      required
-                      data-testid="input-whatsapp"
-                    />
-                  </div>
-                </div>
+                <FloatingLabelWhatsAppInput
+                  label="WhatsApp Number *"
+                  countryCode={formData.countryCode}
+                  onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
+                  numberValue={formData.whatsappNumber}
+                  onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
+                  required
+                  data-testid="input-whatsapp"
+                />
               </div>
 
               {/* Email and City - Row 2 */}
