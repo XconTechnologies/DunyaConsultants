@@ -308,9 +308,9 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                 </div>
               </div>
 
-              {/* If Yes, show test type */}
+              {/* If Yes, show test type and score in same row */}
               {formData.hasLanguageTest === "yes" && (
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="relative">
                     <select
                       name="testType"
@@ -326,7 +326,7 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                     </select>
                   </div>
 
-                  {/* If Other is selected, show text input */}
+                  {/* If Other is selected, show text input in same row */}
                   {formData.testType === "other" && (
                     <FloatingLabelInput
                       label="Which test?"
@@ -337,7 +337,7 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                     />
                   )}
 
-                  {/* Show Band/Score field only for IELTS, PTE, TOEFL (not Other) */}
+                  {/* Show Band/Score field in same row for IELTS, PTE, TOEFL */}
                   {formData.testType && formData.testType !== "other" && (
                     <FloatingLabelInput
                       label={formData.testType === "ielts" ? "Band Score" : "Score"}
