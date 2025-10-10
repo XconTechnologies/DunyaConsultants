@@ -256,6 +256,7 @@ export const adminUsers = pgTable("admin_users", {
     canAccessQRScanner?: boolean;
     canDownloadRegistrations?: boolean;
     canDeleteRegistrations?: boolean;
+    canManageLeads?: boolean;
   }>(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),
@@ -542,6 +543,15 @@ export const eventAssignments = pgTable("event_assignments", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Lead assignments for granular access control
+export const leadAssignments = pgTable("lead_assignments", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => adminUsers.id).notNull(),
+  leadId: integer("lead_id").references(() => consultations.id).notNull(),
+  assignedBy: integer("assigned_by").references(() => adminUsers.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   createdAt: true,
@@ -663,6 +673,11 @@ export const insertEventAssignmentSchema = createInsertSchema(eventAssignments).
   createdAt: true,
 });
 
+export const insertLeadAssignmentSchema = createInsertSchema(leadAssignments).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const insertCategorySchema = createInsertSchema(categories).omit({
   id: true,
   createdAt: true,
@@ -768,6 +783,8 @@ export type InsertPostAssignment = z.infer<typeof insertPostAssignmentSchema>;
 export type PostAssignment = typeof postAssignments.$inferSelect;
 export type InsertEventAssignment = z.infer<typeof insertEventAssignmentSchema>;
 export type EventAssignment = typeof eventAssignments.$inferSelect;
+export type InsertLeadAssignment = z.infer<typeof insertLeadAssignmentSchema>;
+export type LeadAssignment = typeof leadAssignments.$inferSelect;
 export type InsertCategory = z.infer<typeof insertCategorySchema>;
 export type Category = typeof categories.$inferSelect;
 export type InsertBlogPostCategory = z.infer<typeof insertBlogPostCategorySchema>;
