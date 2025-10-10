@@ -1782,6 +1782,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       await storage.updateAdminLastLogin(admin.id);
 
+      // Log login activity
+      await storage.createAuditLog({
+        actorId: admin.id,
+        role: admin.role,
+        action: 'login',
+        entity: 'session',
+        entityId: admin.id,
+        after: { username: admin.username, timestamp: new Date().toISOString() }
+      });
+
       res.json({
         success: true,
         token: sessionToken,
@@ -1799,10 +1809,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin logout
-  app.post("/api/admin/logout", requireAuth, async (req, res) => {
+  app.post("/api/admin/logout", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const token = req.headers.authorization?.replace('Bearer ', '');
       if (token) {
+        // Log logout activity before deleting session
+        if (req.adminId && req.adminRole) {
+          await storage.createAuditLog({
+            actorId: req.adminId,
+            role: req.adminRole,
+            action: 'logout',
+            entity: 'session',
+            entityId: req.adminId,
+            after: { timestamp: new Date().toISOString() }
+          });
+        }
+        
         await storage.deleteAdminSession(token);
       }
       res.json({ success: true, message: 'Logged out successfully' });
@@ -2308,6 +2330,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching post assignments:', error);
       res.status(500).json({ message: 'Failed to fetch assignments' });
+    }
+  });
+
+  // User Activity Logs
+  app.get("/api/admin/activity-logs", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const userId = req.query.userId ? parseInt(req.query.userId as string) : undefined;
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 100;
+
+      const activities = await storage.getUserActivityLogs(userId, limit);
+      res.json(activities);
+    } catch (error) {
+      console.error('Error fetching activity logs:', error);
+      res.status(500).json({ message: 'Failed to fetch activity logs' });
     }
   });
 
