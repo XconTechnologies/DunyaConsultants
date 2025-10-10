@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input";
+import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ConsultationFormModalProps {
@@ -11,13 +14,28 @@ interface ConsultationFormModalProps {
 interface FormData {
   fullName: string;
   email: string;
-  phone: string;
-  interestedCountry: string;
+  countryCode: string;
+  whatsappNumber: string;
+  city: string;
+  interestedCountries: string[];
   message: string;
 }
 
+const countryCodes = [
+  { code: "+92", country: "Pakistan" },
+  { code: "+1", country: "USA/Canada" },
+  { code: "+44", country: "UK" },
+  { code: "+61", country: "Australia" },
+  { code: "+49", country: "Germany" },
+  { code: "+358", country: "Finland" },
+  { code: "+32", country: "Belgium" },
+  { code: "+90", country: "Turkey" },
+  { code: "+971", country: "UAE" },
+  { code: "+966", country: "Saudi Arabia" },
+  { code: "+20", country: "Egypt" },
+];
+
 const countries = [
-  "Select a country",
   "United States",
   "United Kingdom", 
   "Canada",
@@ -32,8 +50,10 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
-    phone: "",
-    interestedCountry: "",
+    countryCode: "+92",
+    whatsappNumber: "",
+    city: "",
+    interestedCountries: [],
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,12 +66,21 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
     }));
   };
 
+  const handleCountryToggle = (country: string) => {
+    setFormData(prev => ({
+      ...prev,
+      interestedCountries: prev.interestedCountries.includes(country)
+        ? prev.interestedCountries.filter(c => c !== country)
+        : [...prev.interestedCountries, country]
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate required fields
-    if (!formData.fullName || !formData.email || !formData.phone || !formData.interestedCountry || formData.interestedCountry === "Select a country") {
-      alert("Please fill in all required fields.");
+    if (!formData.fullName || !formData.email || !formData.whatsappNumber || formData.interestedCountries.length === 0) {
+      alert("Please fill in all required fields and select at least one country.");
       return;
     }
 
@@ -116,8 +145,9 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
         body: JSON.stringify({
           name: formData.fullName,
           email: formData.email,
-          phone: formData.phone,
-          preferredCountry: formData.interestedCountry,
+          phone: `${formData.countryCode}${formData.whatsappNumber}`,
+          city: formData.city,
+          preferredCountry: formData.interestedCountries.join(", "),
           additionalInfo: formData.message,
           educationLevel: "Not specified",
           fieldOfStudy: "Not specified",
@@ -130,8 +160,10 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
         setFormData({
           fullName: "",
           email: "",
-          phone: "",
-          interestedCountry: "",
+          countryCode: "+92",
+          whatsappNumber: "",
+          city: "",
+          interestedCountries: [],
           message: ""
         });
         onClose();
@@ -166,7 +198,7 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -50 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="bg-white rounded-2xl w-full max-w-md shadow-2xl"
+          className="bg-white rounded-2xl w-full max-w-2xl shadow-2xl"
           style={{ 
             maxHeight: '90vh',
             margin: '0 auto'
@@ -192,98 +224,98 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
           {/* Form */}
           <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Full Name and Email - Row */}
+              {/* Full Name and WhatsApp Number - Row 1 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    placeholder="Enter your full name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
-                    required
-                    data-testid="input-full-name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Enter your email address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
-                    required
-                    data-testid="input-email"
-                  />
-                </div>
-              </div>
-
-              {/* Phone Number and Country - Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="Enter your phone number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
-                    required
-                    data-testid="input-phone"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="interestedCountry" className="block text-sm font-medium text-gray-700 mb-1">
-                    Interested Country *
-                  </label>
+                <FloatingLabelInput
+                  label="Full Name *"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-full-name"
+                />
+                <div className="flex gap-2">
                   <select
-                    id="interestedCountry"
-                    name="interestedCountry"
-                    value={formData.interestedCountry}
+                    name="countryCode"
+                    value={formData.countryCode}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white"
-                    required
-                    data-testid="select-country"
+                    className="w-24 px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
+                    data-testid="select-country-code"
                   >
-                    {countries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}
+                    {countryCodes.map((item) => (
+                      <option key={item.code} value={item.code}>
+                        {item.code}
                       </option>
                     ))}
                   </select>
+                  <div className="flex-1">
+                    <FloatingLabelInput
+                      label="WhatsApp Number *"
+                      name="whatsappNumber"
+                      type="tel"
+                      value={formData.whatsappNumber}
+                      onChange={handleInputChange}
+                      required
+                      data-testid="input-whatsapp"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Email and City - Row 2 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FloatingLabelInput
+                  label="Email Address *"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-email"
+                />
+                <FloatingLabelInput
+                  label="City"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  data-testid="input-city"
+                />
+              </div>
+
+              {/* Interested Countries - Checkboxes */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Interested Countries *
+                </label>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {countries.map((country) => (
+                    <div key={country} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`country-${country}`}
+                        checked={formData.interestedCountries.includes(country)}
+                        onCheckedChange={() => handleCountryToggle(country)}
+                        data-testid={`checkbox-${country.toLowerCase().replace(/\s+/g, '-')}`}
+                      />
+                      <label
+                        htmlFor={`country-${country}`}
+                        className="text-sm text-gray-700 cursor-pointer select-none"
+                      >
+                        {country}
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Message */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Tell us about your study abroad goals..."
-                  rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all resize-none"
-                  data-testid="textarea-message"
-                />
-              </div>
+              <FloatingLabelTextarea
+                label="Message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                rows={2}
+                data-testid="textarea-message"
+              />
 
               {/* Submit Button */}
               <Button
