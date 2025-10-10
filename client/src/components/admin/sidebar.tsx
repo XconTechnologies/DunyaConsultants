@@ -91,12 +91,6 @@ const sidebarItems: SidebarItem[] = [
     description: "Manage post access control"
   },
   {
-    title: "Lead Assignments",
-    href: "/admin/lead-assignments",
-    icon: Mail,
-    description: "Assign leads to users"
-  },
-  {
     title: "Event Assignments",
     href: "/admin/event-assignments",
     icon: CalendarCheck,
@@ -117,10 +111,18 @@ const sidebarItems: SidebarItem[] = [
     ]
   },
   {
-    title: "Leads",
+    title: "Form Submissions",
     href: "/admin/leads",
     icon: Mail,
-    description: "View all consultation requests"
+    description: "View all form submissions",
+    subItems: [
+      {
+        title: "Form Assignments",
+        href: "/admin/lead-assignments",
+        icon: Mail,
+        description: "Assign forms to users"
+      }
+    ]
   },
   {
     title: "QR Codes",
@@ -150,7 +152,7 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ currentUser, isOpen = true, onClose }: AdminSidebarProps) {
   const [location] = useLocation();
-  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events"]));
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Form Submissions"]));
 
   const toggleItem = (title: string) => {
     const newExpanded = new Set(expandedItems);
@@ -217,10 +219,10 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              // Dashboard, posts, events, media, qr-codes are always visible
+              // Dashboard, posts, events, media, form submissions, qr-codes are always visible
               if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || 
                   item.href === "/admin/events" || item.href === "/admin/media" ||
-                  item.href === "/admin/qr-codes") {
+                  item.href === "/admin/leads" || item.href === "/admin/qr-codes") {
                 return true;
               }
               // Other items require user management permission
