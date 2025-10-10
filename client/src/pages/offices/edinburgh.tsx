@@ -518,7 +518,7 @@ export default function EdinburghOffice() {
                     <span className="flex items-center justify-center w-full">
                       Book Free Consultation
                       <Calendar className="w-5 h-5 ml-2" />
-                    
+                    </span>
                   </Button>
                   
                   <Button size="lg" variant="outline" className="w-full border-white/50 text-white hover:bg-white/10 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 font-semibold">

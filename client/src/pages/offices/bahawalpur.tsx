@@ -621,7 +621,7 @@ export default function BahawalpurOffice() {
                     <span className="flex items-center justify-center w-full">
                       Book Free Consultation
                       <Calendar className="w-5 h-5 ml-2" />
-                    
+                    </span>
                   </Button>
                   
                   <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">

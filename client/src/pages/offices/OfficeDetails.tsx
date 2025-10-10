@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRoute } from "wouter";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle } from "lucide-react";
@@ -133,6 +134,7 @@ const offices = [
 
 export default function OfficeDetails() {
   const [match, params] = useRoute("/offices/:officeId");
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const office = offices.find(o => o.id === params?.officeId);
 
   if (!office) {
@@ -142,7 +144,7 @@ export default function OfficeDetails() {
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Office Not Found</h1>
           <Link href="/offices">
             <Button>← Back to Offices</Button>
-          
+          </Link>
         </div>
       </div>
     );
@@ -161,7 +163,7 @@ export default function OfficeDetails() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Offices
               </Button>
-            
+            </Link>
             {office.isHeadOffice && (
               <Badge className="bg-white/20 text-white border-white/30">
                 Head Office

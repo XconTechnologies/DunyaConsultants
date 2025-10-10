@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function LahoreDHA() {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const office = {
     id: "lahore-dha",
     city: "Lahore",
@@ -58,7 +60,7 @@ export default function LahoreDHA() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
-            
+            </Link>
           </div>
           
           <motion.div

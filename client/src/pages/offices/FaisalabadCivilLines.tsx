@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 import CalendlyButton from "@/components/calendly-button";
 
 export default function FaisalabadCivilLines() {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const office = {
     id: "faisalabad",
     city: "Faisalabad",
@@ -59,7 +61,7 @@ export default function FaisalabadCivilLines() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
-            
+            </Link>
             <Badge className="bg-white/20 text-white border-white/30">
               Industrial City
             </Badge>

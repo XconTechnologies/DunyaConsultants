@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function MianChannuOffice() {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const office = {
     id: "mian-channu",
     city: "Mian Channu",
@@ -61,7 +63,6 @@ export default function MianChannuOffice() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
-            
           </div>
           
           <motion.div
