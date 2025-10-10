@@ -12,7 +12,8 @@ import {
   QrCode,
   ClipboardList,
   Activity,
-  Database
+  Database,
+  Mail
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
@@ -78,6 +79,11 @@ const navItems: NavItem[] = [
     title: "Activity",
     href: "/admin/user-activity",
     icon: Activity
+  },
+  {
+    title: "Leads",
+    href: "/admin/leads",
+    icon: Mail
   },
   {
     title: "Backup",

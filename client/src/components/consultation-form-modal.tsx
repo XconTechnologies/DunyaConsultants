@@ -57,19 +57,62 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      alert("Thank you! Your consultation request has been submitted. We'll contact you soon.");
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        interestedCountry: "",
-        message: ""
+    // Get source page from URL
+    const currentPath = window.location.pathname;
+    let source = "website";
+    
+    if (currentPath.includes("ielts")) source = "ielts";
+    else if (currentPath.includes("pte")) source = "pte";
+    else if (currentPath.includes("toefl")) source = "toefl";
+    else if (currentPath.includes("duolingo")) source = "duolingo";
+    else if (currentPath.includes("usa")) source = "usa";
+    else if (currentPath.includes("uk")) source = "uk";
+    else if (currentPath.includes("canada")) source = "canada";
+    else if (currentPath.includes("finland")) source = "finland";
+    else if (currentPath.includes("australia")) source = "australia";
+    else if (currentPath.includes("belgium")) source = "belgium";
+    else if (currentPath.includes("turkey")) source = "turkey";
+    else if (currentPath.includes("lahore")) source = "lahore";
+    else if (currentPath.includes("karachi")) source = "karachi";
+    else if (currentPath.includes("islamabad")) source = "islamabad";
+    else if (currentPath.includes("bahawalpur")) source = "bahawalpur";
+    else if (currentPath === "/" || currentPath === "") source = "homepage";
+    
+    try {
+      const response = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          preferredCountry: formData.interestedCountry,
+          additionalInfo: formData.message,
+          educationLevel: "Not specified",
+          fieldOfStudy: "Not specified",
+          source: source
+        })
       });
+      
+      if (response.ok) {
+        alert("Thank you! Your consultation request has been submitted. We'll contact you soon.");
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          interestedCountry: "",
+          message: ""
+        });
+        onClose();
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      onClose();
-    }, 1000);
+    }
   };
 
   if (!isOpen) return null;

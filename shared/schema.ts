@@ -223,6 +223,7 @@ export const consultations = pgTable("consultations", {
   additionalInfo: text("additional_info"),
   documents: text("documents").array(),
   status: text("status").default("pending"),
+  source: text("source").default("website"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

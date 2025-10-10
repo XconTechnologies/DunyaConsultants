@@ -15,7 +15,8 @@ import {
   ChevronDown,
   ChevronRight,
   Activity,
-  Database
+  Database,
+  Mail
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
@@ -108,6 +109,12 @@ const sidebarItems: SidebarItem[] = [
         description: "Track user login/logout"
       }
     ]
+  },
+  {
+    title: "Leads",
+    href: "/admin/leads",
+    icon: Mail,
+    description: "View all consultation requests"
   },
   {
     title: "QR Codes",

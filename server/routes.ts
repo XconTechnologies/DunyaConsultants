@@ -1482,6 +1482,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all consultations (for admin leads page)
+  app.get("/api/consultations", async (req, res) => {
+    try {
+      const consultations = await storage.getConsultations();
+      res.json(consultations);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch consultations" });
+    }
+  });
+
   // Consultation booking (keep existing for backward compatibility)
   app.post("/api/consultations", async (req, res) => {
     try {
