@@ -2,6 +2,7 @@ import {
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
   categories, blogPostCategories, events, eventRegistrations, qrCodes, backupConfigs, backupHistory,
+  customForms, formFields, customFormSubmissions,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -16,7 +17,9 @@ import {
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
   type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
   type QrCode, type InsertQrCode,
-  type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory
+  type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory,
+  type CustomForm, type InsertCustomForm, type FormField, type InsertFormField,
+  type CustomFormSubmission, type InsertCustomFormSubmission
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -238,6 +241,24 @@ export interface IStorage {
   getBackupHistory(limit?: number): Promise<BackupHistory[]>;
   getBackupById(id: number): Promise<BackupHistory | undefined>;
   deleteBackupHistory(id: number): Promise<void>;
+  
+  // Custom Forms (Form Builder)
+  getCustomForms(activeOnly?: boolean): Promise<CustomForm[]>;
+  getCustomFormById(id: number): Promise<CustomForm | undefined>;
+  getCustomFormBySlug(slug: string): Promise<CustomForm | undefined>;
+  createCustomForm(form: InsertCustomForm): Promise<CustomForm>;
+  updateCustomForm(id: number, updates: Partial<CustomForm>): Promise<CustomForm>;
+  deleteCustomForm(id: number): Promise<void>;
+  getFormFields(formId: number): Promise<FormField[]>;
+  createFormField(field: InsertFormField): Promise<FormField>;
+  updateFormField(id: number, updates: Partial<FormField>): Promise<FormField>;
+  deleteFormField(id: number): Promise<void>;
+  reorderFormFields(formId: number, fieldOrders: { id: number; order: number }[]): Promise<void>;
+  getCustomFormSubmissions(formId?: number): Promise<CustomFormSubmission[]>;
+  getCustomFormSubmissionById(id: number): Promise<CustomFormSubmission | undefined>;
+  createCustomFormSubmission(submission: InsertCustomFormSubmission): Promise<CustomFormSubmission>;
+  updateCustomFormSubmission(id: number, updates: Partial<CustomFormSubmission>): Promise<CustomFormSubmission>;
+  deleteCustomFormSubmission(id: number): Promise<void>;
 }
 
 
@@ -1932,6 +1953,119 @@ export class DatabaseStorage implements IStorage {
 
   async deleteBackupHistory(id: number): Promise<void> {
     await db.delete(backupHistory).where(eq(backupHistory.id, id));
+  }
+
+  // Custom Forms Implementation
+  async getCustomForms(activeOnly?: boolean): Promise<CustomForm[]> {
+    if (activeOnly) {
+      return await db.select()
+        .from(customForms)
+        .where(and(eq(customForms.isActive, true), sql`${customForms.trashedAt} IS NULL`))
+        .orderBy(desc(customForms.createdAt));
+    }
+    return await db.select()
+      .from(customForms)
+      .where(sql`${customForms.trashedAt} IS NULL`)
+      .orderBy(desc(customForms.createdAt));
+  }
+
+  async getCustomFormById(id: number): Promise<CustomForm | undefined> {
+    const [form] = await db.select()
+      .from(customForms)
+      .where(eq(customForms.id, id));
+    return form || undefined;
+  }
+
+  async getCustomFormBySlug(slug: string): Promise<CustomForm | undefined> {
+    const [form] = await db.select()
+      .from(customForms)
+      .where(eq(customForms.slug, slug));
+    return form || undefined;
+  }
+
+  async createCustomForm(form: InsertCustomForm): Promise<CustomForm> {
+    const [newForm] = await db.insert(customForms).values(form).returning();
+    return newForm;
+  }
+
+  async updateCustomForm(id: number, updates: Partial<CustomForm>): Promise<CustomForm> {
+    const [updated] = await db.update(customForms)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(customForms.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteCustomForm(id: number): Promise<void> {
+    await db.delete(customForms).where(eq(customForms.id, id));
+  }
+
+  async getFormFields(formId: number): Promise<FormField[]> {
+    return await db.select()
+      .from(formFields)
+      .where(eq(formFields.formId, formId))
+      .orderBy(asc(formFields.order));
+  }
+
+  async createFormField(field: InsertFormField): Promise<FormField> {
+    const [newField] = await db.insert(formFields).values(field).returning();
+    return newField;
+  }
+
+  async updateFormField(id: number, updates: Partial<FormField>): Promise<FormField> {
+    const [updated] = await db.update(formFields)
+      .set(updates)
+      .where(eq(formFields.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteFormField(id: number): Promise<void> {
+    await db.delete(formFields).where(eq(formFields.id, id));
+  }
+
+  async reorderFormFields(formId: number, fieldOrders: { id: number; order: number }[]): Promise<void> {
+    for (const { id, order } of fieldOrders) {
+      await db.update(formFields)
+        .set({ order })
+        .where(and(eq(formFields.id, id), eq(formFields.formId, formId)));
+    }
+  }
+
+  async getCustomFormSubmissions(formId?: number): Promise<CustomFormSubmission[]> {
+    if (formId) {
+      return await db.select()
+        .from(customFormSubmissions)
+        .where(eq(customFormSubmissions.formId, formId))
+        .orderBy(desc(customFormSubmissions.submittedAt));
+    }
+    return await db.select()
+      .from(customFormSubmissions)
+      .orderBy(desc(customFormSubmissions.submittedAt));
+  }
+
+  async getCustomFormSubmissionById(id: number): Promise<CustomFormSubmission | undefined> {
+    const [submission] = await db.select()
+      .from(customFormSubmissions)
+      .where(eq(customFormSubmissions.id, id));
+    return submission || undefined;
+  }
+
+  async createCustomFormSubmission(submission: InsertCustomFormSubmission): Promise<CustomFormSubmission> {
+    const [newSubmission] = await db.insert(customFormSubmissions).values(submission).returning();
+    return newSubmission;
+  }
+
+  async updateCustomFormSubmission(id: number, updates: Partial<CustomFormSubmission>): Promise<CustomFormSubmission> {
+    const [updated] = await db.update(customFormSubmissions)
+      .set(updates)
+      .where(eq(customFormSubmissions.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteCustomFormSubmission(id: number): Promise<void> {
+    await db.delete(customFormSubmissions).where(eq(customFormSubmissions.id, id));
   }
 }
 

@@ -88,6 +88,9 @@ import QrCodesPage from "@/pages/admin/qr-codes";
 import AdminIndex from "@/pages/admin/index";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
+import FormManagement from "@/pages/admin/form-management";
+import FormBuilder from "@/pages/admin/form-builder";
+import FormSubmissions from "@/pages/admin/form-submissions";
 
 
 
@@ -216,7 +219,9 @@ function Router() {
       <Route path="/admin/blog-preview/:id" component={AdminBlogPreview} />
       <Route path="/admin/event-editor/:id?" component={EventEditor} />
       <Route path="/admin/event-editor" component={EventEditor} />
-      
+      <Route path="/admin/form-management" component={FormManagement} />
+      <Route path="/admin/form-builder/:id" component={FormBuilder} />
+      <Route path="/admin/form-submissions/:id" component={FormSubmissions} />
       
       <Route component={NotFound} />
     </Switch>

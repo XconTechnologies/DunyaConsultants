@@ -773,6 +773,60 @@ export type Consultation = typeof consultations.$inferSelect;
 export type InsertFaq = z.infer<typeof insertFaqSchema>;
 export type Faq = typeof faqs.$inferSelect;
 
+// Custom Forms (Form Builder)
+export const customForms = pgTable("custom_forms", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description"),
+  slug: text("slug").notNull().unique(),
+  isActive: boolean("is_active").notNull().default(true),
+  createdBy: integer("created_by").references(() => adminUsers.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  trashedAt: timestamp("trashed_at"),
+});
+
+export const insertCustomFormSchema = createInsertSchema(customForms).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const formFields = pgTable("form_fields", {
+  id: serial("id").primaryKey(),
+  formId: integer("form_id").notNull().references(() => customForms.id, { onDelete: "cascade" }),
+  fieldLabel: text("field_label").notNull(),
+  fieldType: text("field_type").notNull(), // text, email, phone, select, textarea, number, date, checkbox, radio
+  fieldName: text("field_name").notNull(),
+  placeholder: text("placeholder"),
+  required: boolean("required").notNull().default(false),
+  options: text("options").array(), // for select/radio/checkbox
+  order: integer("order").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertFormFieldSchema = createInsertSchema(formFields).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const customFormSubmissions = pgTable("custom_form_submissions", {
+  id: serial("id").primaryKey(),
+  formId: integer("form_id").notNull().references(() => customForms.id, { onDelete: "cascade" }),
+  submissionData: json("submission_data").notNull(),
+  submittedAt: timestamp("submitted_at").notNull().defaultNow(),
+  source: text("source"), // page where form was submitted
+  ipAddress: text("ip_address"),
+  status: text("status").notNull().default("pending"), // pending, contacted, converted, lost
+  notes: text("notes"),
+  assignedTo: integer("assigned_to").references(() => adminUsers.id),
+});
+
+export const insertCustomFormSubmissionSchema = createInsertSchema(customFormSubmissions).omit({
+  id: true,
+  submittedAt: true,
+});
+
 // Admin Dashboard Types
 export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
 export type AdminUser = typeof adminUsers.$inferSelect;
@@ -820,3 +874,9 @@ export type InsertBackupConfig = z.infer<typeof insertBackupConfigSchema>;
 export type BackupConfig = typeof backupConfigs.$inferSelect;
 export type InsertBackupHistory = z.infer<typeof insertBackupHistorySchema>;
 export type BackupHistory = typeof backupHistory.$inferSelect;
+export type InsertCustomForm = z.infer<typeof insertCustomFormSchema>;
+export type CustomForm = typeof customForms.$inferSelect;
+export type InsertFormField = z.infer<typeof insertFormFieldSchema>;
+export type FormField = typeof formFields.$inferSelect;
+export type InsertCustomFormSubmission = z.infer<typeof insertCustomFormSubmissionSchema>;
+export type CustomFormSubmission = typeof customFormSubmissions.$inferSelect;

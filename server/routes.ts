@@ -5097,6 +5097,241 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ========================================
+  // CUSTOM FORMS (FORM BUILDER) ROUTES
+  // ========================================
+
+  // Get all custom forms
+  app.get("/api/admin/custom-forms", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const activeOnly = req.query.active === 'true';
+      const forms = await storage.getCustomForms(activeOnly);
+      res.json(forms);
+    } catch (error) {
+      console.error('Error fetching custom forms:', error);
+      res.status(500).json({ message: 'Failed to fetch custom forms' });
+    }
+  });
+
+  // Get custom form by ID
+  app.get("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      const form = await storage.getCustomFormById(formId);
+      
+      if (!form) {
+        return res.status(404).json({ message: 'Form not found' });
+      }
+
+      res.json(form);
+    } catch (error) {
+      console.error('Error fetching custom form:', error);
+      res.status(500).json({ message: 'Failed to fetch custom form' });
+    }
+  });
+
+  // Create custom form
+  app.post("/api/admin/custom-forms", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const form = await storage.createCustomForm({
+        ...req.body,
+        createdBy: req.user!.id
+      });
+      res.status(201).json(form);
+    } catch (error) {
+      console.error('Error creating custom form:', error);
+      res.status(500).json({ message: 'Failed to create custom form' });
+    }
+  });
+
+  // Update custom form
+  app.patch("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      const form = await storage.updateCustomForm(formId, req.body);
+      res.json(form);
+    } catch (error) {
+      console.error('Error updating custom form:', error);
+      res.status(500).json({ message: 'Failed to update custom form' });
+    }
+  });
+
+  // Delete custom form
+  app.delete("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      await storage.deleteCustomForm(formId);
+      res.json({ message: 'Form deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting custom form:', error);
+      res.status(500).json({ message: 'Failed to delete custom form' });
+    }
+  });
+
+  // Get form fields
+  app.get("/api/admin/custom-forms/:id/fields", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      const fields = await storage.getFormFields(formId);
+      res.json(fields);
+    } catch (error) {
+      console.error('Error fetching form fields:', error);
+      res.status(500).json({ message: 'Failed to fetch form fields' });
+    }
+  });
+
+  // Create form field
+  app.post("/api/admin/custom-forms/:id/fields", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      const field = await storage.createFormField({
+        ...req.body,
+        formId
+      });
+      res.status(201).json(field);
+    } catch (error) {
+      console.error('Error creating form field:', error);
+      res.status(500).json({ message: 'Failed to create form field' });
+    }
+  });
+
+  // Update form field
+  app.patch("/api/admin/form-fields/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const fieldId = parseInt(req.params.id);
+      const field = await storage.updateFormField(fieldId, req.body);
+      res.json(field);
+    } catch (error) {
+      console.error('Error updating form field:', error);
+      res.status(500).json({ message: 'Failed to update form field' });
+    }
+  });
+
+  // Delete form field
+  app.delete("/api/admin/form-fields/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const fieldId = parseInt(req.params.id);
+      await storage.deleteFormField(fieldId);
+      res.json({ message: 'Field deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting form field:', error);
+      res.status(500).json({ message: 'Failed to delete form field' });
+    }
+  });
+
+  // Reorder form fields
+  app.post("/api/admin/custom-forms/:id/fields/reorder", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = parseInt(req.params.id);
+      const { fieldOrders } = req.body;
+      await storage.reorderFormFields(formId, fieldOrders);
+      res.json({ message: 'Fields reordered successfully' });
+    } catch (error) {
+      console.error('Error reordering form fields:', error);
+      res.status(500).json({ message: 'Failed to reorder form fields' });
+    }
+  });
+
+  // Get custom form submissions
+  app.get("/api/admin/custom-form-submissions", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const formId = req.query.formId ? parseInt(req.query.formId as string) : undefined;
+      const submissions = await storage.getCustomFormSubmissions(formId);
+      res.json(submissions);
+    } catch (error) {
+      console.error('Error fetching form submissions:', error);
+      res.status(500).json({ message: 'Failed to fetch form submissions' });
+    }
+  });
+
+  // Get custom form submission by ID
+  app.get("/api/admin/custom-form-submissions/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const submissionId = parseInt(req.params.id);
+      const submission = await storage.getCustomFormSubmissionById(submissionId);
+      
+      if (!submission) {
+        return res.status(404).json({ message: 'Submission not found' });
+      }
+
+      res.json(submission);
+    } catch (error) {
+      console.error('Error fetching form submission:', error);
+      res.status(500).json({ message: 'Failed to fetch form submission' });
+    }
+  });
+
+  // Update custom form submission (status, notes, etc.)
+  app.patch("/api/admin/custom-form-submissions/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const submissionId = parseInt(req.params.id);
+      const submission = await storage.updateCustomFormSubmission(submissionId, req.body);
+      res.json(submission);
+    } catch (error) {
+      console.error('Error updating form submission:', error);
+      res.status(500).json({ message: 'Failed to update form submission' });
+    }
+  });
+
+  // Delete custom form submission
+  app.delete("/api/admin/custom-form-submissions/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const submissionId = parseInt(req.params.id);
+      await storage.deleteCustomFormSubmission(submissionId);
+      res.json({ message: 'Submission deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting form submission:', error);
+      res.status(500).json({ message: 'Failed to delete form submission' });
+    }
+  });
+
+  // Public route: Get form by slug (for embedding)
+  app.get("/api/forms/:slug", async (req, res) => {
+    try {
+      const form = await storage.getCustomFormBySlug(req.params.slug);
+      
+      if (!form || !form.isActive) {
+        return res.status(404).json({ message: 'Form not found' });
+      }
+
+      const fields = await storage.getFormFields(form.id);
+      
+      res.json({
+        ...form,
+        fields
+      });
+    } catch (error) {
+      console.error('Error fetching form:', error);
+      res.status(500).json({ message: 'Failed to fetch form' });
+    }
+  });
+
+  // Public route: Submit custom form
+  app.post("/api/forms/:slug/submit", async (req, res) => {
+    try {
+      const form = await storage.getCustomFormBySlug(req.params.slug);
+      
+      if (!form || !form.isActive) {
+        return res.status(404).json({ message: 'Form not found' });
+      }
+
+      const submission = await storage.createCustomFormSubmission({
+        formId: form.id,
+        submissionData: req.body.data,
+        source: req.body.source || 'unknown',
+        ipAddress: req.ip
+      });
+
+      res.status(201).json({ 
+        message: 'Form submitted successfully',
+        submissionId: submission.id
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      res.status(500).json({ message: 'Failed to submit form' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

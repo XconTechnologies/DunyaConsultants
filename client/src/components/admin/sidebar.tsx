@@ -16,7 +16,8 @@ import {
   ChevronRight,
   Activity,
   Database,
-  Mail
+  Mail,
+  FileEdit
 } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
@@ -109,6 +110,12 @@ const sidebarItems: SidebarItem[] = [
         description: "Track user login/logout"
       }
     ]
+  },
+  {
+    title: "Form Management",
+    href: "/admin/form-management",
+    icon: FileEdit,
+    description: "Create and manage custom forms"
   },
   {
     title: "Form Submissions",
@@ -219,10 +226,11 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              // Dashboard, posts, events, media, form submissions, qr-codes are always visible
+              // Dashboard, posts, events, media, form management, form submissions, qr-codes are always visible
               if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || 
                   item.href === "/admin/events" || item.href === "/admin/media" ||
-                  item.href === "/admin/leads" || item.href === "/admin/qr-codes") {
+                  item.href === "/admin/form-management" || item.href === "/admin/leads" || 
+                  item.href === "/admin/qr-codes") {
                 return true;
               }
               // Other items require user management permission
