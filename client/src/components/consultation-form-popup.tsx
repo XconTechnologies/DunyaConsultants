@@ -15,10 +15,14 @@ interface ConsultationFormPopupProps {
 
 interface FormData {
   fullName: string;
-  email: string;
+  city: string;
   countryCode: string;
   whatsappNumber: string;
-  city: string;
+  email: string;
+  hasLanguageTest: string;
+  testType: string;
+  otherTestName: string;
+  testScore: string;
   interestedCountries: string[];
   message: string;
 }
@@ -37,10 +41,14 @@ const countries = [
 export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationFormPopupProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
-    email: "",
+    city: "",
     countryCode: "+92",
     whatsappNumber: "",
-    city: "",
+    email: "",
+    hasLanguageTest: "",
+    testType: "",
+    otherTestName: "",
+    testScore: "",
     interestedCountries: [],
     message: ""
   });
@@ -73,6 +81,20 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
     
     setIsSubmitting(true);
     
+    // Build language test info
+    let languageTestInfo = "";
+    if (formData.hasLanguageTest === "yes") {
+      if (formData.testType === "other") {
+        languageTestInfo = `Language Test: ${formData.otherTestName}`;
+      } else if (formData.testType) {
+        languageTestInfo = `Language Test: ${formData.testType.toUpperCase()}${formData.testScore ? ` - Score: ${formData.testScore}` : ''}`;
+      }
+    } else if (formData.hasLanguageTest === "no") {
+      languageTestInfo = "Language Test: Not taken";
+    }
+    
+    const finalMessage = [formData.message, languageTestInfo].filter(Boolean).join("\n");
+    
     try {
       // Send data to Google Sheets via backend
       const response = await fetch('/api/submit-consultation', {
@@ -86,7 +108,7 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
           phone: `${formData.countryCode}${formData.whatsappNumber}`,
           city: formData.city,
           country: formData.interestedCountries.join(", "),
-          message: formData.message
+          message: finalMessage
         }),
       });
 
@@ -100,10 +122,14 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
         alert("✅ Submitted Successfully");
         setFormData({
           fullName: "",
-          email: "",
+          city: "",
           countryCode: "+92",
           whatsappNumber: "",
-          city: "",
+          email: "",
+          hasLanguageTest: "",
+          testType: "",
+          otherTestName: "",
+          testScore: "",
           interestedCountries: [],
           message: ""
         });
@@ -149,32 +175,12 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
           {/* Form */}
           <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Full Name and WhatsApp Number - Row 1 */}
+              {/* Row 1: Full Name and City */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FloatingLabelInput
                   label="Full Name *"
                   name="fullName"
                   value={formData.fullName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FloatingLabelWhatsAppInput
-                  label="WhatsApp Number *"
-                  countryCode={formData.countryCode}
-                  onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
-                  numberValue={formData.whatsappNumber}
-                  onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
-                  required
-                />
-              </div>
-
-              {/* Email and City - Row 2 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FloatingLabelInput
-                  label="Email Address *"
-                  name="email"
-                  type="email"
-                  value={formData.email}
                   onChange={handleInputChange}
                   required
                 />
@@ -185,6 +191,97 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
                   onChange={handleInputChange}
                 />
               </div>
+
+              {/* Row 2: WhatsApp Number */}
+              <FloatingLabelWhatsAppInput
+                label="WhatsApp Number *"
+                countryCode={formData.countryCode}
+                onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
+                numberValue={formData.whatsappNumber}
+                onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
+                required
+              />
+
+              {/* Row 3: Email Address */}
+              <FloatingLabelInput
+                label="Email Address *"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+
+              {/* Language Test Section */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Have you done language test? *
+                </label>
+                <div className="flex gap-6">
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="hasLanguageTest"
+                      value="yes"
+                      checked={formData.hasLanguageTest === "yes"}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                    />
+                    <span className="text-sm text-gray-700">Yes</span>
+                  </label>
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="hasLanguageTest"
+                      value="no"
+                      checked={formData.hasLanguageTest === "no"}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                    />
+                    <span className="text-sm text-gray-700">No</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* If Yes, show test type */}
+              {formData.hasLanguageTest === "yes" && (
+                <div className="space-y-4">
+                  <div className="relative">
+                    <select
+                      name="testType"
+                      value={formData.testType}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
+                    >
+                      <option value="">Select Test Type</option>
+                      <option value="ielts">IELTS</option>
+                      <option value="pte">PTE</option>
+                      <option value="toefl">TOEFL</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* If Other is selected, show text input */}
+                  {formData.testType === "other" && (
+                    <FloatingLabelInput
+                      label="Which test?"
+                      name="otherTestName"
+                      value={formData.otherTestName}
+                      onChange={handleInputChange}
+                    />
+                  )}
+
+                  {/* Show Band/Score field only for IELTS, PTE, TOEFL (not Other) */}
+                  {formData.testType && formData.testType !== "other" && (
+                    <FloatingLabelInput
+                      label={formData.testType === "ielts" ? "Band Score" : "Score"}
+                      name="testScore"
+                      value={formData.testScore}
+                      onChange={handleInputChange}
+                    />
+                  )}
+                </div>
+              )}
 
               {/* Interested Countries - Checkboxes */}
               <div>
