@@ -323,7 +323,7 @@ export default function CompactConsultationForm({ isOpen, onClose }: CompactCons
                       name="testType"
                       value={formData.testType}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
+                      className="w-full px-3 pt-5 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm h-[52px]"
                     >
                       <option value="">Select Test Type</option>
                       <option value="ielts">IELTS</option>
