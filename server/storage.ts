@@ -1,6 +1,6 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
-  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, editingSessions, editRequests,
+  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
   categories, blogPostCategories, events, eventRegistrations, qrCodes, backupConfigs, backupHistory,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
@@ -11,7 +11,7 @@ import {
   type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
   type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
-  type EventAssignment, type InsertEventAssignment,
+  type EventAssignment, type InsertEventAssignment, type LeadAssignment, type InsertLeadAssignment,
   type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
   type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
@@ -157,6 +157,13 @@ export interface IStorage {
   getUserEventAssignments(userId: number): Promise<EventAssignment[]>;
   getEventAssignments(eventId: number): Promise<EventAssignment[]>;
   getUserAssignedEvents(userId: number): Promise<Event[]>;
+  
+  // Lead Assignment Management
+  assignLeadToUser(assignment: InsertLeadAssignment): Promise<LeadAssignment>;
+  removeLeadAssignment(userId: number, leadId: number): Promise<void>;
+  getUserLeadAssignments(userId: number): Promise<LeadAssignment[]>;
+  getLeadAssignments(leadId: number): Promise<LeadAssignment[]>;
+  getUserAssignedLeads(userId: number): Promise<Consultation[]>;
   
   // Editing Session Management
   startEditingSession(session: InsertEditingSession): Promise<EditingSession>;
@@ -1298,6 +1305,48 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(events)
       .where(inArray(events.id, eventIds))
       .orderBy(desc(events.updatedAt));
+  }
+
+  // Lead Assignment Methods
+  async assignLeadToUser(assignment: InsertLeadAssignment): Promise<LeadAssignment> {
+    const [leadAssignment] = await db.insert(leadAssignments).values(assignment).returning();
+    return leadAssignment;
+  }
+  
+  async removeLeadAssignment(userId: number, leadId: number): Promise<void> {
+    await db.delete(leadAssignments)
+      .where(and(eq(leadAssignments.userId, userId), eq(leadAssignments.leadId, leadId)));
+  }
+  
+  async getUserLeadAssignments(userId: number): Promise<LeadAssignment[]> {
+    return await db.select().from(leadAssignments)
+      .where(eq(leadAssignments.userId, userId))
+      .orderBy(desc(leadAssignments.createdAt));
+  }
+  
+  async getLeadAssignments(leadId: number): Promise<LeadAssignment[]> {
+    return await db.select().from(leadAssignments)
+      .where(eq(leadAssignments.leadId, leadId))
+      .orderBy(desc(leadAssignments.createdAt));
+  }
+  
+  async getUserAssignedLeads(userId: number): Promise<Consultation[]> {
+    // Get leads assigned to the user through leadAssignments table
+    const assignments = await db.select({
+      leadId: leadAssignments.leadId
+    }).from(leadAssignments)
+      .where(eq(leadAssignments.userId, userId));
+    
+    if (assignments.length === 0) {
+      return [];
+    }
+    
+    const leadIds = assignments.map(a => a.leadId);
+    
+    // Use inArray to get all assigned leads
+    return await db.select().from(consultations)
+      .where(inArray(consultations.id, leadIds))
+      .orderBy(desc(consultations.createdAt));
   }
 
   // Editing Session Methods
