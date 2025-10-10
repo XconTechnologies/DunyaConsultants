@@ -2118,6 +2118,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ==============================================
+  // Lead Assignment Routes
+  // ==============================================
+
+  // Assign lead to user
+  app.post("/api/admin/lead-assignments", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { userId, leadId } = req.body;
+
+      if (!userId || !leadId) {
+        return res.status(400).json({ message: 'User ID and Lead ID are required' });
+      }
+
+      const assignment = await storage.assignLeadToUser({
+        userId,
+        leadId,
+        assignedBy: req.adminId!
+      });
+
+      res.status(201).json(assignment);
+    } catch (error) {
+      console.error('Error assigning lead to user:', error);
+      res.status(500).json({ message: 'Failed to assign lead' });
+    }
+  });
+
+  // Remove lead assignment
+  app.delete("/api/admin/lead-assignments/:userId/:leadId", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const leadId = parseInt(req.params.leadId);
+
+      if (isNaN(userId) || isNaN(leadId)) {
+        return res.status(400).json({ message: 'Invalid user ID or lead ID' });
+      }
+
+      await storage.removeLeadAssignment(userId, leadId);
+      res.json({ success: true, message: 'Lead assignment removed' });
+    } catch (error) {
+      console.error('Error removing lead assignment:', error);
+      res.status(500).json({ message: 'Failed to remove assignment' });
+    }
+  });
+
+  // Get user's assigned leads
+  app.get("/api/admin/users/:id/leads", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Allow users to see their own leads, admins can see any user's leads
+      if (req.adminRole !== 'admin' && req.adminId !== userId) {
+        return res.status(403).json({ message: 'Access denied' });
+      }
+
+      const leads = await storage.getUserAssignedLeads(userId);
+      res.json(leads);
+    } catch (error) {
+      console.error('Error fetching user leads:', error);
+      res.status(500).json({ message: 'Failed to fetch leads' });
+    }
+  });
+
+  // Get lead assignments (which users can access a specific lead)
+  app.get("/api/admin/leads/:leadId/assignments", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const leadId = parseInt(req.params.leadId);
+
+      if (isNaN(leadId)) {
+        return res.status(400).json({ message: 'Invalid lead ID' });
+      }
+
+      const assignments = await storage.getLeadAssignments(leadId);
+      res.json(assignments);
+    } catch (error) {
+      console.error('Error fetching lead assignments:', error);
+      res.status(500).json({ message: 'Failed to fetch lead assignments' });
+    }
+  });
+
   // Editing Session Management Endpoints
   
   // Start editing session for a post
