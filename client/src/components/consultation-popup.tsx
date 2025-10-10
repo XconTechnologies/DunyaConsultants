@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Phone, Mail, MapPin, Clock, User, BookOpen } from "lucide-react";
+import { X, Phone, Mail, MapPin, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input";
+import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ConsultationPopupProps {
@@ -12,14 +12,39 @@ interface ConsultationPopupProps {
   onClose: () => void;
 }
 
+const countryCodes = [
+  { code: "+92", country: "Pakistan" },
+  { code: "+1", country: "USA/Canada" },
+  { code: "+44", country: "UK" },
+  { code: "+61", country: "Australia" },
+  { code: "+49", country: "Germany" },
+  { code: "+358", country: "Finland" },
+  { code: "+32", country: "Belgium" },
+  { code: "+90", country: "Turkey" },
+  { code: "+971", country: "UAE" },
+  { code: "+966", country: "Saudi Arabia" },
+  { code: "+20", country: "Egypt" },
+];
+
+const countries = [
+  "United States",
+  "United Kingdom", 
+  "Canada",
+  "Australia",
+  "Germany",
+  "Finland",
+  "Belgium",
+  "Turkey"
+];
+
 export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
-    phone: "",
-    consultationType: "",
-    preferredDate: "",
-    preferredTime: "",
+    countryCode: "+92",
+    whatsappNumber: "",
+    city: "",
+    interestedCountries: [] as string[],
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,51 +63,92 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
     };
   }, [isOpen]);
 
-  const consultationTypes = [
-    "General Consultation",
-    "UK Study Visa",
-    "Canada Study Visa", 
-    "Australia Study Visa",
-    "USA Study Visa",
-    "Germany Study Visa",
-    "IELTS Preparation",
-    "University Selection",
-    "Document Guidance"
-  ];
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-  const timeSlots = [
-    "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
-    "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
-  ];
+  const handleCountryToggle = (country: string) => {
+    setFormData(prev => ({
+      ...prev,
+      interestedCountries: prev.interestedCountries.includes(country)
+        ? prev.interestedCountries.filter(c => c !== country)
+        : [...prev.interestedCountries, country]
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formData.interestedCountries.length === 0) {
+      alert("Please select at least one country.");
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Get source page from URL
+    const currentPath = window.location.pathname;
+    let source = "Website - Unknown Page";
     
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    if (currentPath.includes("ielts")) source = "IELTS Page";
+    else if (currentPath.includes("pte")) source = "PTE Page";
+    else if (currentPath.includes("toefl")) source = "TOEFL Page";
+    else if (currentPath.includes("duolingo")) source = "Duolingo Page";
+    else if (currentPath.includes("usa")) source = "USA Study Guide";
+    else if (currentPath.includes("uk")) source = "UK Study Guide";
+    else if (currentPath.includes("canada")) source = "Canada Study Guide";
+    else if (currentPath.includes("finland")) source = "Finland Study Guide";
+    else if (currentPath.includes("australia")) source = "Australia Study Guide";
+    else if (currentPath.includes("belgium")) source = "Belgium Study Guide";
+    else if (currentPath.includes("turkey")) source = "Turkey Study Guide";
+    else if (currentPath.includes("services")) source = "Services Page";
+    else if (currentPath.includes("about")) source = "About Us";
+    else if (currentPath.includes("blog")) source = "Blog Page";
+    else if (currentPath === "/" || currentPath === "") source = "Homepage";
     
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        consultationType: "",
-        preferredDate: "",
-        preferredTime: "",
-        message: ""
+    try {
+      const response = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: `${formData.countryCode}${formData.whatsappNumber}`,
+          city: formData.city,
+          preferredCountry: formData.interestedCountries.join(", "),
+          additionalInfo: formData.message,
+          educationLevel: "Not specified",
+          fieldOfStudy: "Not specified",
+          source: source
+        })
       });
-      onClose();
-    }, 3000);
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            fullName: "",
+            email: "",
+            countryCode: "+92",
+            whatsappNumber: "",
+            city: "",
+            interestedCountries: [],
+            message: ""
+          });
+          onClose();
+        }, 3000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,97 +216,97 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                   {/* Left Side - Form */}
                   <div className="p-6 lg:p-8">
                     {!isSubmitted ? (
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Personal Information */}
-                        <div className="space-y-4">
-                          <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                            <User className="w-5 h-5 mr-2 #1845B3" />
-                            Personal Information
-                          </h3>
-                          
-                          <div className="grid grid-cols-1 gap-4">
-                            <Input
-                              placeholder="Full Name *"
-                              value={formData.name}
-                              onChange={(e) => handleInputChange("name", e.target.value)}
-                              required
-                              className="border-gray-300 focus:#1D50C9"
-                            />
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              <Input
-                                type="email"
-                                placeholder="Email Address *"
-                                value={formData.email}
-                                onChange={(e) => handleInputChange("email", e.target.value)}
-                                required
-                                className="border-gray-300 focus:#1D50C9"
-                              />
-                              
-                              <Input
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        {/* Full Name and WhatsApp Number - Row 1 */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FloatingLabelInput
+                            label="Full Name *"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          <div className="flex gap-2">
+                            <select
+                              name="countryCode"
+                              value={formData.countryCode}
+                              onChange={handleInputChange}
+                              className="w-24 px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
+                            >
+                              {countryCodes.map((item) => (
+                                <option key={item.code} value={item.code}>
+                                  {item.code}
+                                </option>
+                              ))}
+                            </select>
+                            <div className="flex-1">
+                              <FloatingLabelInput
+                                label="WhatsApp Number *"
+                                name="whatsappNumber"
                                 type="tel"
-                                placeholder="Phone Number *"
-                                value={formData.phone}
-                                onChange={(e) => handleInputChange("phone", e.target.value)}
+                                value={formData.whatsappNumber}
+                                onChange={handleInputChange}
                                 required
-                                className="border-gray-300 focus:#1D50C9"
                               />
                             </div>
                           </div>
                         </div>
 
-                        {/* Consultation Details */}
-                        <div className="space-y-4">
-                          <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                            <Clock className="w-5 h-5 mr-2 #1845B3" />
-                            Consultation Details
-                          </h3>
-                          
-                          <Select value={formData.consultationType} onValueChange={(value) => handleInputChange("consultationType", value)}>
-                            <SelectTrigger className="border-gray-300 focus:#1D50C9">
-                              <SelectValue placeholder="Select Consultation Type *" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {consultationTypes.map((type) => (
-                                <SelectItem key={type} value={type}>{type}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <Input
-                              type="date"
-                              value={formData.preferredDate}
-                              onChange={(e) => handleInputChange("preferredDate", e.target.value)}
-                              min={new Date().toISOString().split('T')[0]}
-                              className="border-gray-300 focus:#1D50C9"
-                            />
-                            
-                            <Select value={formData.preferredTime} onValueChange={(value) => handleInputChange("preferredTime", value)}>
-                              <SelectTrigger className="border-gray-300 focus:#1D50C9">
-                                <SelectValue placeholder="Preferred Time" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {timeSlots.map((time) => (
-                                  <SelectItem key={time} value={time}>{time}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          <Textarea
-                            placeholder="Tell us about your study abroad goals and any specific questions..."
-                            value={formData.message}
-                            onChange={(e) => handleInputChange("message", e.target.value)}
-                            rows={4}
-                            className="border-gray-300 focus:#1D50C9"
+                        {/* Email and City - Row 2 */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FloatingLabelInput
+                            label="Email Address *"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          <FloatingLabelInput
+                            label="City"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleInputChange}
                           />
                         </div>
 
+                        {/* Interested Countries - Checkboxes */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Interested Countries *
+                          </label>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            {countries.map((country) => (
+                              <div key={country} className="flex items-center space-x-2">
+                                <Checkbox
+                                  id={`popup-country-${country}`}
+                                  checked={formData.interestedCountries.includes(country)}
+                                  onCheckedChange={() => handleCountryToggle(country)}
+                                />
+                                <label
+                                  htmlFor={`popup-country-${country}`}
+                                  className="text-sm text-gray-700 cursor-pointer select-none"
+                                >
+                                  {country}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Message */}
+                        <FloatingLabelTextarea
+                          label="Message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          rows={2}
+                        />
+
                         <Button
                           type="submit"
-                          disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                          className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-#1a73e8 hover:to-[#1a73e8] py-3 text-lg font-semibold"
+                          disabled={isSubmitting}
+                          className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] py-3 text-lg font-semibold"
                         >
                           {isSubmitting ? (
                             <div className="flex items-center justify-center space-x-2">
@@ -256,16 +322,16 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                       /* Success State */
                       <div className="text-center py-12">
                         <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <div className="w-8 h-8 #1D50C9 rounded-full flex items-center justify-center">
+                          <div className="w-8 h-8 bg-[#1D50C9] rounded-full flex items-center justify-center">
                             <div className="w-3 h-3 bg-white rounded-full" />
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold #1845B3 mb-2">Consultation Booked!</h3>
+                        <h3 className="text-2xl font-bold text-[#1845B3] mb-2">Consultation Booked!</h3>
                         <p className="text-gray-600 mb-4">
                           Thank you for booking a consultation with us. Our expert counselor will contact you within 24 hours.
                         </p>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <p className="text-sm text-#1a73e8">
+                          <p className="text-sm text-[#1D50C9]">
                             <strong>Next Steps:</strong> You'll receive a confirmation email with consultation details and a calendar invite.
                           </p>
                         </div>
@@ -280,19 +346,19 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Why Choose Free Consultation?</h3>
                         <div className="space-y-3 text-sm text-gray-600">
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
                             <p>Get personalized study abroad guidance from certified counselors</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
                             <p>Learn about visa requirements and application processes</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
                             <p>Discover scholarship opportunities and financial aid options</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
                             <p>Get university selection assistance based on your profile</p>
                           </div>
                         </div>
@@ -302,15 +368,15 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         <h4 className="font-semibold text-gray-800 mb-4">Contact Information</h4>
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3 text-sm">
-                            <Phone className="w-4 h-4 #1845B3" />
+                            <Phone className="w-4 h-4 text-[#1845B3]" />
                             <span>+92 304 1110947</span>
                           </div>
                           <div className="flex items-center space-x-3 text-sm">
-                            <Mail className="w-4 h-4 #1845B3" />
+                            <Mail className="w-4 h-4 text-[#1845B3]" />
                             <span>info@dunyaconsultants.com</span>
                           </div>
                           <div className="flex items-start space-x-3 text-sm">
-                            <MapPin className="w-4 h-4 #1845B3 mt-0.5" />
+                            <MapPin className="w-4 h-4 text-[#1845B3] mt-0.5" />
                             <span>Alif Tower Buhadur shah zafar road, Sargodha</span>
                           </div>
                         </div>
@@ -318,7 +384,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
 
                       <div className="bg-white/50 rounded-lg p-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold #1845B3">17+</div>
+                          <div className="text-2xl font-bold text-[#1845B3]">17+</div>
                           <div className="text-xs text-gray-600">Office Locations</div>
                         </div>
                       </div>
