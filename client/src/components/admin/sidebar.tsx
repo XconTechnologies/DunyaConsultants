@@ -19,7 +19,14 @@ import {
   Mail,
   FileEdit
 } from "lucide-react";
-import { canManageUsers } from "@/lib/permissions";
+import { 
+  canManageUsers, 
+  canAccessEvents, 
+  canManageLeads, 
+  canAccessQRScanner,
+  canManageMedia,
+  isAdmin
+} from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -226,15 +233,33 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              // Dashboard, posts, events, media, form management, form submissions, qr-codes are always visible
-              if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || 
-                  item.href === "/admin/events" || item.href === "/admin/media" ||
-                  item.href === "/admin/form-management" || item.href === "/admin/leads" || 
-                  item.href === "/admin/qr-codes") {
+              // Dashboard and posts are always visible
+              if (item.href === "/admin/dashboard" || item.href === "/admin/posts") {
                 return true;
               }
-              // Other items require user management permission
-              return canManageUsers(currentUser);
+              
+              // Events require canAccessEvents permission
+              if (item.href === "/admin/events") {
+                return canAccessEvents(currentUser) || isAdmin(currentUser);
+              }
+              
+              // Media requires canManageMedia permission
+              if (item.href === "/admin/media") {
+                return canManageMedia(currentUser) || isAdmin(currentUser);
+              }
+              
+              // Form management and leads require canManageLeads permission
+              if (item.href === "/admin/form-management" || item.href === "/admin/leads") {
+                return canManageLeads(currentUser) || isAdmin(currentUser);
+              }
+              
+              // QR codes require canAccessQRScanner permission
+              if (item.href === "/admin/qr-codes") {
+                return canAccessQRScanner(currentUser) || isAdmin(currentUser);
+              }
+              
+              // Other items (Users, Post Assignments, Event Assignments, Backup, Trash) require user management permission
+              return canManageUsers(currentUser) || isAdmin(currentUser);
             })
             .map((item) => {
               const isActive = isItemOrSubItemActive(item);
@@ -306,7 +331,23 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                   {/* Sub items */}
                   {hasSubItems && isExpanded && (
                     <div className="ml-4 mt-1 space-y-1">
-                      {item.subItems!.map((subItem) => {
+                      {item.subItems!
+                        .filter((subItem) => {
+                          // Filter sub-items based on permissions
+                          if (subItem.href === "/admin/qr-scanner") {
+                            return canAccessQRScanner(currentUser) || isAdmin(currentUser);
+                          }
+                          if (subItem.href === "/admin/lead-assignments") {
+                            return canManageLeads(currentUser) || isAdmin(currentUser);
+                          }
+                          // User Activity and other sub-items require user management permission
+                          if (subItem.href === "/admin/user-activity") {
+                            return canManageUsers(currentUser) || isAdmin(currentUser);
+                          }
+                          // Default: show if parent is visible
+                          return true;
+                        })
+                        .map((subItem) => {
                         const isSubActive = location === subItem.href;
                         const SubIcon = subItem.icon;
                         

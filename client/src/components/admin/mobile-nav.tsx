@@ -15,7 +15,15 @@ import {
   Database,
   Mail
 } from "lucide-react";
-import { canManageUsers } from "@/lib/permissions";
+import { 
+  canManageUsers, 
+  canAccessEvents, 
+  canManageLeads, 
+  canAccessQRScanner,
+  canManageMedia,
+  canManageCategories,
+  isAdmin
+} from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
 
 interface NavItem {
@@ -115,21 +123,38 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
   const [location] = useLocation();
 
   const visibleItems = navItems.filter((item) => {
-    // Dashboard, posts, categories, events, media, registrations, QR scanner, QR codes are always visible
-    if (
-      item.href === "/admin/dashboard" ||
-      item.href === "/admin/posts" ||
-      item.href === "/admin/categories" ||
-      item.href === "/admin/events" ||
-      item.href === "/admin/media" ||
-      item.href === "/admin/event-registrations" ||
-      item.href === "/admin/qr-scanner" ||
-      item.href === "/admin/qr-codes"
-    ) {
+    // Dashboard and posts are always visible
+    if (item.href === "/admin/dashboard" || item.href === "/admin/posts") {
       return true;
     }
-    // Other items require user management permission
-    return canManageUsers(currentUser);
+    
+    // Categories require canManageCategories permission
+    if (item.href === "/admin/categories") {
+      return canManageCategories(currentUser) || isAdmin(currentUser);
+    }
+    
+    // Events and registrations require canAccessEvents permission
+    if (item.href === "/admin/events" || item.href === "/admin/event-registrations") {
+      return canAccessEvents(currentUser) || isAdmin(currentUser);
+    }
+    
+    // Media requires canManageMedia permission
+    if (item.href === "/admin/media") {
+      return canManageMedia(currentUser) || isAdmin(currentUser);
+    }
+    
+    // QR scanner and QR codes require canAccessQRScanner permission
+    if (item.href === "/admin/qr-scanner" || item.href === "/admin/qr-codes") {
+      return canAccessQRScanner(currentUser) || isAdmin(currentUser);
+    }
+    
+    // Leads and lead assignments require canManageLeads permission
+    if (item.href === "/admin/leads" || item.href === "/admin/lead-assignments") {
+      return canManageLeads(currentUser) || isAdmin(currentUser);
+    }
+    
+    // Other items (Users, Post Assigns, Event Assigns, Activity, Backup, Trash) require user management permission
+    return canManageUsers(currentUser) || isAdmin(currentUser);
   });
 
   return (

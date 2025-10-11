@@ -10,6 +10,11 @@ export interface UserPermissions {
   canManageCategories?: boolean;
   canViewAnalytics?: boolean;
   canManageMedia?: boolean;
+  canAccessEvents?: boolean;
+  canAccessQRScanner?: boolean;
+  canDownloadRegistrations?: boolean;
+  canDeleteRegistrations?: boolean;
+  canManageLeads?: boolean;
 }
 
 // Default permissions for each role
@@ -23,6 +28,11 @@ const DEFAULT_ROLE_PERMISSIONS: Record<string, UserPermissions> = {
     canManageCategories: true,
     canViewAnalytics: true,
     canManageMedia: true,
+    canAccessEvents: true,
+    canAccessQRScanner: true,
+    canDownloadRegistrations: true,
+    canDeleteRegistrations: true,
+    canManageLeads: true,
   },
   editor: {
     canCreate: true,
@@ -33,6 +43,11 @@ const DEFAULT_ROLE_PERMISSIONS: Record<string, UserPermissions> = {
     canManageCategories: false,
     canViewAnalytics: false,
     canManageMedia: true,
+    canAccessEvents: true,
+    canAccessQRScanner: false,
+    canDownloadRegistrations: false,
+    canDeleteRegistrations: false,
+    canManageLeads: false,
   },
   publisher: {
     canCreate: true,
@@ -43,6 +58,11 @@ const DEFAULT_ROLE_PERMISSIONS: Record<string, UserPermissions> = {
     canManageCategories: false,
     canViewAnalytics: true,
     canManageMedia: true,
+    canAccessEvents: true,
+    canAccessQRScanner: false,
+    canDownloadRegistrations: false,
+    canDeleteRegistrations: false,
+    canManageLeads: false,
   },
   custom: {
     canCreate: false,
@@ -53,6 +73,11 @@ const DEFAULT_ROLE_PERMISSIONS: Record<string, UserPermissions> = {
     canManageCategories: false,
     canViewAnalytics: false,
     canManageMedia: false,
+    canAccessEvents: false,
+    canAccessQRScanner: false,
+    canDownloadRegistrations: false,
+    canDeleteRegistrations: false,
+    canManageLeads: false,
   }
 };
 
@@ -143,4 +168,39 @@ export function canManageMedia(user: AdminUser | null | undefined): boolean {
  */
 export function canManageUsers(user: AdminUser | null | undefined): boolean {
   return hasPermission(user, 'canManageUsers');
+}
+
+/**
+ * Check if a user can access events
+ */
+export function canAccessEvents(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canAccessEvents');
+}
+
+/**
+ * Check if a user can access QR scanner
+ */
+export function canAccessQRScanner(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canAccessQRScanner');
+}
+
+/**
+ * Check if a user can download registrations
+ */
+export function canDownloadRegistrations(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canDownloadRegistrations');
+}
+
+/**
+ * Check if a user can delete registrations
+ */
+export function canDeleteRegistrations(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canDeleteRegistrations');
+}
+
+/**
+ * Check if a user can manage leads
+ */
+export function canManageLeads(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canManageLeads');
 }
