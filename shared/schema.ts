@@ -223,7 +223,7 @@ export const consultations = pgTable("consultations", {
   workExperience: text("work_experience"),
   additionalInfo: text("additional_info"),
   documents: text("documents").array(),
-  status: text("status", { enum: ["pending", "contacted", "interested", "not_interested"] }).default("pending"),
+  status: text("status", { enum: ["pending", "contacted", "converted", "interested", "not_interested"] }).default("pending"),
   source: text("source").default("website"),
   createdAt: timestamp("created_at").defaultNow(),
 });

@@ -1478,6 +1478,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update consultation status
+  app.patch("/api/consultations/:id/status", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      
+      // Validate status
+      const validStatuses = ["pending", "contacted", "converted", "interested", "not_interested"];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Invalid status value" 
+        });
+      }
+
+      const updated = await storage.updateConsultationStatus(id, status);
+      res.json({ success: true, consultation: updated });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to update consultation status" 
+      });
+    }
+  });
+
   // Contact form (updated route to match frontend)
   app.post("/api/contacts", async (req, res) => {
     try {

@@ -51,6 +51,7 @@ export interface IStorage {
   createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   getConsultations(): Promise<Consultation[]>;
+  updateConsultationStatus(id: number, status: string): Promise<Consultation>;
   
   // QR Code Management
   createQrCode(qrCode: InsertQrCode): Promise<QrCode>;
@@ -456,6 +457,15 @@ export class DatabaseStorage implements IStorage {
 
   async getConsultations(): Promise<Consultation[]> {
     return await db.select().from(consultations).orderBy(desc(consultations.createdAt));
+  }
+
+  async updateConsultationStatus(id: number, status: string): Promise<Consultation> {
+    const [updated] = await db
+      .update(consultations)
+      .set({ status: status as "pending" | "contacted" | "converted" | "interested" | "not_interested" })
+      .where(eq(consultations.id, id))
+      .returning();
+    return updated;
   }
 
   // QR Code Management

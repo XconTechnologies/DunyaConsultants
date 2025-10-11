@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
+import { apiRequest } from "@/lib/queryClient";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
 import MobileNav from "@/components/admin/mobile-nav";
@@ -33,6 +34,7 @@ export default function LeadsManagement() {
   const [sourceFilter, setSourceFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const queryClient = useQueryClient();
 
   // Check authentication
   useEffect(() => {
@@ -62,6 +64,19 @@ export default function LeadsManagement() {
   const { data: leads = [], isLoading } = useQuery<Consultation[]>({
     queryKey: ["/api/consultations"],
     enabled: authChecked && !!currentUser,
+  });
+
+  // Update consultation status mutation
+  const updateStatusMutation = useMutation({
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      return await apiRequest(`/api/consultations/${id}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify({ status }),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
+    },
   });
 
   // Filter leads
@@ -142,14 +157,15 @@ export default function LeadsManagement() {
       "pending": "bg-yellow-100 text-yellow-700",
       "contacted": "bg-blue-100 text-blue-700",
       "converted": "bg-green-100 text-green-700",
-      "lost": "bg-red-100 text-red-700",
+      "interested": "bg-purple-100 text-purple-700",
+      "not_interested": "bg-red-100 text-red-700",
     };
 
     const statusColor = statusMap[status || "pending"] || "bg-gray-100 text-gray-700";
 
     return (
       <Badge className={`${statusColor} border-0 capitalize`}>
-        {status || "pending"}
+        {status?.replace('_', ' ') || "pending"}
       </Badge>
     );
   };
@@ -266,7 +282,8 @@ export default function LeadsManagement() {
                       <SelectItem value="pending">Pending</SelectItem>
                       <SelectItem value="contacted">Contacted</SelectItem>
                       <SelectItem value="converted">Converted</SelectItem>
-                      <SelectItem value="lost">Lost</SelectItem>
+                      <SelectItem value="interested">Interested</SelectItem>
+                      <SelectItem value="not_interested">Not Interested</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -325,7 +342,49 @@ export default function LeadsManagement() {
                             <TableCell className="text-sm text-gray-600">{lead.phone}</TableCell>
                             <TableCell className="text-sm">{lead.preferredCountry}</TableCell>
                             <TableCell>{getSourceBadge(lead.source)}</TableCell>
-                            <TableCell>{getStatusBadge(lead.status)}</TableCell>
+                            <TableCell>
+                              <Select
+                                value={lead.status || "pending"}
+                                onValueChange={(value) => updateStatusMutation.mutate({ id: lead.id, status: value })}
+                                disabled={updateStatusMutation.isPending}
+                              >
+                                <SelectTrigger className="w-[160px] h-8">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="pending">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                      Pending
+                                    </div>
+                                  </SelectItem>
+                                  <SelectItem value="contacted">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                                      Contacted
+                                    </div>
+                                  </SelectItem>
+                                  <SelectItem value="converted">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                      Converted
+                                    </div>
+                                  </SelectItem>
+                                  <SelectItem value="interested">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                                      Interested
+                                    </div>
+                                  </SelectItem>
+                                  <SelectItem value="not_interested">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                      Not Interested
+                                    </div>
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
