@@ -14,7 +14,6 @@ import { ArrowLeft, Eye, Trash2, Download, Filter } from "lucide-react";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
 import { format } from "date-fns";
 import type { AdminUser } from "@shared/schema";
 
@@ -46,7 +45,6 @@ export default function FormSubmissions() {
   const [selectedSubmission, setSelectedSubmission] = useState<CustomFormSubmission | null>(null);
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
   // Check authentication
   useEffect(() => {
@@ -116,43 +114,6 @@ export default function FormSubmissions() {
   const handleDeleteSubmission = (id: number) => {
     if (confirm("Are you sure you want to delete this submission?")) {
       deleteSubmissionMutation.mutate(id);
-      setSelectedIds(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(id);
-        return newSet;
-      });
-    }
-  };
-
-  const handleToggleSelection = (id: number) => {
-    setSelectedIds(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
-  const handleSelectAll = () => {
-    if (selectedIds.size === filteredSubmissions.length) {
-      setSelectedIds(new Set());
-    } else {
-      setSelectedIds(new Set(filteredSubmissions.map(s => s.id)));
-    }
-  };
-
-  const handleBulkDelete = () => {
-    if (selectedIds.size === 0) return;
-    
-    const count = selectedIds.size;
-    if (confirm(`Are you sure you want to delete ${count} submission${count > 1 ? 's' : ''}?`)) {
-      selectedIds.forEach(id => {
-        deleteSubmissionMutation.mutate(id);
-      });
-      setSelectedIds(new Set());
     }
   };
 
@@ -224,7 +185,7 @@ export default function FormSubmissions() {
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} title="Form Submissions" />
+        <AdminHeader currentUser={currentUser} />
         
         <div className="p-6">
           <div className="mb-6">
@@ -245,52 +206,23 @@ export default function FormSubmissions() {
                 </h1>
                 <p className="text-gray-600 mt-2">
                   {filteredSubmissions.length} total submission{filteredSubmissions.length !== 1 ? 's' : ''}
-                  {selectedIds.size > 0 && (
-                    <span className="ml-2 text-blue-600 font-medium">
-                      ({selectedIds.size} selected)
-                    </span>
-                  )}
                 </p>
               </div>
               
-              <div className="flex gap-2">
-                {selectedIds.size > 0 && (
-                  <Button 
-                    variant="destructive"
-                    onClick={handleBulkDelete}
-                    data-testid="button-bulk-delete"
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Delete Selected ({selectedIds.size})
-                  </Button>
-                )}
-                
-                <Button 
-                  onClick={exportToCSV} 
-                  disabled={filteredSubmissions.length === 0}
-                  data-testid="button-export-csv"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Export CSV
-                </Button>
-              </div>
+              <Button 
+                onClick={exportToCSV} 
+                disabled={filteredSubmissions.length === 0}
+                data-testid="button-export-csv"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
             </div>
           </div>
 
           <Card className="mb-6">
             <CardHeader>
               <div className="flex items-center gap-4">
-                {filteredSubmissions.length > 0 && (
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      checked={selectedIds.size === filteredSubmissions.length && filteredSubmissions.length > 0}
-                      onCheckedChange={handleSelectAll}
-                      data-testid="checkbox-select-all"
-                    />
-                    <span className="text-sm text-gray-600">Select All</span>
-                  </div>
-                )}
-                
                 <div className="flex-1">
                   <Input
                     placeholder="Search submissions..."
@@ -333,14 +265,7 @@ export default function FormSubmissions() {
               {filteredSubmissions.map((submission) => (
                 <Card key={submission.id}>
                   <CardHeader>
-                    <div className="flex items-start gap-3">
-                      <Checkbox
-                        checked={selectedIds.has(submission.id)}
-                        onCheckedChange={() => handleToggleSelection(submission.id)}
-                        className="mt-1"
-                        data-testid={`checkbox-submission-${submission.id}`}
-                      />
-                      
+                    <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <CardTitle className="text-sm">

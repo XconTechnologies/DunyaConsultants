@@ -292,7 +292,7 @@ export default function LeadAssignments() {
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} title="Form Assignments" />
+        <AdminHeader currentUser={currentUser} />
         
         <div className="p-6">
           <div className="mb-6">
