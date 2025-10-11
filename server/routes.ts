@@ -1782,6 +1782,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete single consultation
+  app.delete("/api/consultations/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Invalid consultation ID" 
+        });
+      }
+
+      await storage.deleteConsultation(id);
+      res.json({ success: true, message: "Consultation deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to delete consultation" 
+      });
+    }
+  });
+
   // Bulk delete consultations
   app.delete("/api/consultations/bulk-delete", async (req, res) => {
     try {

@@ -55,6 +55,7 @@ export interface IStorage {
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   getConsultations(): Promise<Consultation[]>;
   updateConsultationStatus(id: number, status: string): Promise<Consultation>;
+  deleteConsultation(id: number): Promise<void>;
   bulkDeleteConsultations(ids: number[]): Promise<void>;
   
   // QR Code Management
@@ -494,6 +495,10 @@ export class DatabaseStorage implements IStorage {
       .where(eq(consultations.id, id))
       .returning();
     return updated;
+  }
+
+  async deleteConsultation(id: number): Promise<void> {
+    await db.delete(consultations).where(eq(consultations.id, id));
   }
 
   async bulkDeleteConsultations(ids: number[]): Promise<void> {

@@ -154,17 +154,37 @@ export default function LeadsManagement() {
   // Get unique sources
   const uniqueSources = Array.from(new Set(leads.map(lead => lead.source || "website")));
 
+  // Single delete mutation
+  const singleDeleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return await apiRequest(`/api/consultations/${id}`, {
+        method: 'DELETE',
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
+    },
+  });
+
+  const handleSingleDelete = (id: number, name: string) => {
+    if (confirm(`Are you sure you want to delete the lead from ${name}?`)) {
+      singleDeleteMutation.mutate(id);
+    }
+  };
+
+  // Check if user is admin
+  const isAdmin = currentUser?.role === 'admin';
+
   // Export to CSV
   const exportToCSV = () => {
-    const headers = ["Date", "Name", "Email", "Phone", "Country", "Source", "Status"];
+    const headers = ["Date", "Name", "Country", "Source", "Status", "Assigned To"];
     const rows = filteredLeads.map(lead => [
       format(new Date(lead.createdAt!), "yyyy-MM-dd HH:mm"),
       lead.name,
-      lead.email,
-      lead.phone,
       lead.preferredCountry,
       lead.source || "website",
-      lead.status || "pending"
+      lead.status || "pending",
+      lead.assignedTo || "Unassigned"
     ]);
 
     const csvContent = [
@@ -380,7 +400,7 @@ export default function LeadsManagement() {
                       </span>
                     )}
                   </CardTitle>
-                  {selectedIds.length > 0 && (
+                  {selectedIds.length > 0 && isAdmin && (
                     <Button
                       variant="destructive"
                       size="sm"
@@ -409,39 +429,40 @@ export default function LeadsManagement() {
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-12">
-                            <Checkbox
-                              checked={selectedIds.length === filteredLeads.length && filteredLeads.length > 0}
-                              onCheckedChange={toggleSelectAll}
-                              data-testid="checkbox-select-all"
-                            />
-                          </TableHead>
-                          <TableHead>Date</TableHead>
+                          {isAdmin && (
+                            <TableHead className="w-12">
+                              <Checkbox
+                                checked={selectedIds.length === filteredLeads.length && filteredLeads.length > 0}
+                                onCheckedChange={toggleSelectAll}
+                                data-testid="checkbox-select-all"
+                              />
+                            </TableHead>
+                          )}
+                          <TableHead>Registration Date</TableHead>
                           <TableHead>Name</TableHead>
-                          <TableHead>Email</TableHead>
-                          <TableHead>Phone</TableHead>
                           <TableHead>Country</TableHead>
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead>Assign To</TableHead>
+                          {isAdmin && <TableHead className="w-20">Actions</TableHead>}
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {filteredLeads.map((lead) => (
                           <TableRow key={lead.id}>
-                            <TableCell>
-                              <Checkbox
-                                checked={selectedIds.includes(lead.id)}
-                                onCheckedChange={() => toggleSelect(lead.id)}
-                                data-testid={`checkbox-lead-${lead.id}`}
-                              />
-                            </TableCell>
+                            {isAdmin && (
+                              <TableCell>
+                                <Checkbox
+                                  checked={selectedIds.includes(lead.id)}
+                                  onCheckedChange={() => toggleSelect(lead.id)}
+                                  data-testid={`checkbox-lead-${lead.id}`}
+                                />
+                              </TableCell>
+                            )}
                             <TableCell className="text-sm text-gray-600">
                               {format(new Date(lead.createdAt!), "MMM d, h:mm a")}
                             </TableCell>
                             <TableCell className="font-medium">{lead.name}</TableCell>
-                            <TableCell className="text-sm text-gray-600">{lead.email}</TableCell>
-                            <TableCell className="text-sm text-gray-600">{lead.phone}</TableCell>
                             <TableCell className="text-sm">{lead.preferredCountry}</TableCell>
                             <TableCell>{getSourceBadge(lead.source)}</TableCell>
                             <TableCell>
@@ -504,6 +525,20 @@ export default function LeadsManagement() {
                                 </SelectContent>
                               </Select>
                             </TableCell>
+                            {isAdmin && (
+                              <TableCell>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleSingleDelete(lead.id, lead.name)}
+                                  disabled={singleDeleteMutation.isPending}
+                                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                  data-testid={`button-delete-${lead.id}`}
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                              </TableCell>
+                            )}
                           </TableRow>
                         ))}
                       </TableBody>
