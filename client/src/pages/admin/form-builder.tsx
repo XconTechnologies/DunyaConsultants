@@ -204,7 +204,7 @@ export default function FormBuilder() {
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} />
+        <AdminHeader currentUser={currentUser} title="Form Builder" />
         
         <div className="p-6">
           <div className="mb-6">

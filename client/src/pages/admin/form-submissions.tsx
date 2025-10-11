@@ -224,7 +224,7 @@ export default function FormSubmissions() {
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} />
+        <AdminHeader currentUser={currentUser} title="Form Submissions" />
         
         <div className="p-6">
           <div className="mb-6">

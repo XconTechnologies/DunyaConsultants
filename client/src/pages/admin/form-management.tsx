@@ -183,7 +183,7 @@ export default function FormManagement() {
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} />
+        <AdminHeader currentUser={currentUser} title="Form Management" />
         
         <div className="p-6">
           <div className="mb-6 flex items-center justify-between">
