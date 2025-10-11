@@ -1503,6 +1503,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Bulk delete consultations
+  app.delete("/api/consultations/bulk-delete", async (req, res) => {
+    try {
+      const { ids } = req.body;
+      
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Invalid or empty IDs array" 
+        });
+      }
+
+      await storage.bulkDeleteConsultations(ids);
+      res.json({ success: true, message: `Deleted ${ids.length} consultation(s)` });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to delete consultations" 
+      });
+    }
+  });
+
   // Contact form (updated route to match frontend)
   app.post("/api/contacts", async (req, res) => {
     try {

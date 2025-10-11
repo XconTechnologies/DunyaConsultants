@@ -23,7 +23,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, Mail, Phone, Globe, Calendar, Filter, Download } from "lucide-react";
+import { Search, Mail, Phone, Globe, Calendar, Filter, Download, Trash2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import type { AdminUser, Consultation } from "@shared/schema";
 
@@ -34,6 +36,7 @@ export default function LeadsManagement() {
   const [sourceFilter, setSourceFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const queryClient = useQueryClient();
 
   // Check authentication
@@ -78,6 +81,44 @@ export default function LeadsManagement() {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
     },
   });
+
+  // Bulk delete mutation
+  const bulkDeleteMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      return await apiRequest(`/api/consultations/bulk-delete`, {
+        method: 'DELETE',
+        body: JSON.stringify({ ids }),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
+      setSelectedIds([]);
+    },
+  });
+
+  // Selection handlers
+  const toggleSelectAll = () => {
+    if (selectedIds.length === filteredLeads.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredLeads.map(lead => lead.id));
+    }
+  };
+
+  const toggleSelect = (id: number) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const handleBulkDelete = () => {
+    if (selectedIds.length === 0) return;
+    if (confirm(`Are you sure you want to delete ${selectedIds.length} lead(s)?`)) {
+      bulkDeleteMutation.mutate(selectedIds);
+    }
+  };
 
   // Filter leads
   const filteredLeads = leads.filter((lead) => {
@@ -302,10 +343,29 @@ export default function LeadsManagement() {
             {/* Leads Table */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Filter className="w-5 h-5" />
-                  {filteredLeads.length} Lead{filteredLeads.length !== 1 ? 's' : ''}
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-2">
+                    <Filter className="w-5 h-5" />
+                    {filteredLeads.length} Lead{filteredLeads.length !== 1 ? 's' : ''}
+                    {selectedIds.length > 0 && (
+                      <span className="text-sm text-gray-500">
+                        ({selectedIds.length} selected)
+                      </span>
+                    )}
+                  </CardTitle>
+                  {selectedIds.length > 0 && (
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={handleBulkDelete}
+                      disabled={bulkDeleteMutation.isPending}
+                      data-testid="button-bulk-delete"
+                    >
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Delete Selected ({selectedIds.length})
+                    </Button>
+                  )}
+                </div>
               </CardHeader>
               <CardContent>
                 {isLoading ? (
@@ -322,6 +382,13 @@ export default function LeadsManagement() {
                     <Table>
                       <TableHeader>
                         <TableRow>
+                          <TableHead className="w-12">
+                            <Checkbox
+                              checked={selectedIds.length === filteredLeads.length && filteredLeads.length > 0}
+                              onCheckedChange={toggleSelectAll}
+                              data-testid="checkbox-select-all"
+                            />
+                          </TableHead>
                           <TableHead>Date</TableHead>
                           <TableHead>Name</TableHead>
                           <TableHead>Email</TableHead>
@@ -334,6 +401,13 @@ export default function LeadsManagement() {
                       <TableBody>
                         {filteredLeads.map((lead) => (
                           <TableRow key={lead.id}>
+                            <TableCell>
+                              <Checkbox
+                                checked={selectedIds.includes(lead.id)}
+                                onCheckedChange={() => toggleSelect(lead.id)}
+                                data-testid={`checkbox-lead-${lead.id}`}
+                              />
+                            </TableCell>
                             <TableCell className="text-sm text-gray-600">
                               {format(new Date(lead.createdAt!), "MMM d, h:mm a")}
                             </TableCell>
