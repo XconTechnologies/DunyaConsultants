@@ -156,6 +156,7 @@ export default function UserManagement() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [createForm, setCreateForm] = useState<CreateUserFormData>({
     username: "",
     email: "",
@@ -315,6 +316,61 @@ export default function UserManagement() {
       });
     },
   });
+
+  // Bulk delete users mutation
+  const bulkDeleteMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/users/bulk-delete', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+      setSelectedIds([]);
+      toast({
+        title: "Success",
+        description: data.message || "Users deleted successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete users",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Selection handlers
+  const toggleSelectAll = () => {
+    const activeUsers = users.filter(u => u.isActive);
+    if (selectedIds.length === activeUsers.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(activeUsers.map(u => u.id));
+    }
+  };
+
+  const toggleSelect = (id: number) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const handleBulkDelete = () => {
+    if (selectedIds.length === 0) return;
+    if (confirm(`Are you sure you want to delete ${selectedIds.length} user(s)? This will move them to trash.`)) {
+      bulkDeleteMutation.mutate(selectedIds);
+    }
+  };
 
   const handleCreateUser = () => {
     if (!createForm.username || !createForm.email || !createForm.password) {
@@ -563,10 +619,29 @@ export default function UserManagement() {
       {/* Users Table */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center">
-            <Users className="w-5 h-5 mr-2" />
-            System Users ({users.length})
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center">
+              <Users className="w-5 h-5 mr-2" />
+              System Users ({users.length})
+              {selectedIds.length > 0 && (
+                <span className="text-sm text-gray-500 ml-2">
+                  ({selectedIds.length} selected)
+                </span>
+              )}
+            </CardTitle>
+            {selectedIds.length > 0 && (
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleBulkDelete}
+                disabled={bulkDeleteMutation.isPending}
+                data-testid="button-bulk-delete-users"
+              >
+                <Trash2 className="w-4 h-4 mr-2" />
+                Delete Selected ({selectedIds.length})
+              </Button>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -577,6 +652,13 @@ export default function UserManagement() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-12">
+                    <Checkbox
+                      checked={selectedIds.length === users.filter(u => u.isActive).length && users.filter(u => u.isActive).length > 0}
+                      onCheckedChange={toggleSelectAll}
+                      data-testid="checkbox-select-all-users"
+                    />
+                  </TableHead>
                   <TableHead>User</TableHead>
                   <TableHead>Role</TableHead>
                   <TableHead>Status</TableHead>
@@ -588,6 +670,14 @@ export default function UserManagement() {
               <TableBody>
                 {users.map((user: AdminUser) => (
                   <TableRow key={user.id}>
+                    <TableCell>
+                      <Checkbox
+                        checked={selectedIds.includes(user.id)}
+                        onCheckedChange={() => toggleSelect(user.id)}
+                        disabled={!user.isActive}
+                        data-testid={`checkbox-user-${user.id}`}
+                      />
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">

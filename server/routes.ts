@@ -2134,6 +2134,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Bulk delete admin users (soft delete)
+  app.post("/api/admin/users/bulk-delete", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids } = req.body;
+
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ message: 'Invalid or empty IDs array' });
+      }
+
+      // Bulk delete users, excluding the current admin
+      await storage.bulkDeleteAdminUsers(ids, req.adminId);
+      
+      const deletedCount = ids.filter(id => id !== req.adminId).length;
+      res.json({ 
+        success: true, 
+        message: `Successfully deleted ${deletedCount} user(s)`,
+        deleted: deletedCount
+      });
+    } catch (error) {
+      console.error('Error bulk deleting admin users:', error);
+      res.status(500).json({ message: 'Failed to delete users' });
+    }
+  });
+
   // ==============================================
   // POST ASSIGNMENT ROUTES (Admin Only)
   // ==============================================

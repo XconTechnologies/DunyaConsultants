@@ -151,6 +151,7 @@ export interface IStorage {
   getAdminUserById(id: number): Promise<AdminUser | undefined>;
   updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser>;
   deleteAdminUser(id: number): Promise<void>;
+  bulkDeleteAdminUsers(ids: number[], excludeId?: number): Promise<void>;
   
   // Post Assignment Management
   assignPostToUser(assignment: InsertPostAssignment): Promise<PostAssignment>;
@@ -1277,6 +1278,20 @@ export class DatabaseStorage implements IStorage {
     await db.update(adminUsers)
       .set({ isActive: false })
       .where(eq(adminUsers.id, id));
+  }
+
+  async bulkDeleteAdminUsers(ids: number[], excludeId?: number): Promise<void> {
+    if (ids.length === 0) return;
+    
+    // Filter out the exclude ID if provided
+    let idsToDelete = excludeId ? ids.filter(id => id !== excludeId) : ids;
+    
+    if (idsToDelete.length === 0) return;
+    
+    // Soft delete by setting isActive to false
+    await db.update(adminUsers)
+      .set({ isActive: false })
+      .where(sql`${adminUsers.id} IN (${sql.join(idsToDelete.map(id => sql`${id}`), sql`, `)})`);
   }
   
   // Post Assignment Methods
