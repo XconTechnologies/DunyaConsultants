@@ -633,75 +633,54 @@ export default function CategoriesPage() {
                 ) : (
                   <Table>
                     <TableHeader>
-                      <TableRow>
-                        <TableHead>Category</TableHead>
-                        <TableHead>SEO Info</TableHead>
-                        <TableHead>Posts</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                      <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                        <TableHead className="font-semibold text-gray-700">Category</TableHead>
+                        <TableHead className="font-semibold text-gray-700">Posts</TableHead>
+                        <TableHead className="font-semibold text-gray-700 w-24 text-center">Delete</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {categories.map((category) => (
-                        <TableRow key={category.id} data-testid={`category-row-${category.slug}`}>
+                        <TableRow key={category.id} data-testid={`category-row-${category.slug}`} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
                           <TableCell>
-                            <div>
-                              <div className="font-medium">{category.name}</div>
+                            <div className="space-y-2">
+                              <div className="font-semibold text-gray-900 text-base">{category.name}</div>
                               <div className="text-sm text-gray-500">/{category.slug}</div>
                               {category.description && (
-                                <div className="text-xs text-gray-400 mt-1 max-w-xs truncate">
+                                <div className="text-xs text-gray-500 mt-1 max-w-xs">
                                   {category.description}
                                 </div>
                               )}
+                              <div className="flex items-center gap-2 mt-2">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleEditCategory(category)}
+                                  className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                                  data-testid={`button-edit-${category.slug}`}
+                                >
+                                  <Edit className="w-3.5 h-3.5 mr-1.5" />
+                                  Edit
+                                </Button>
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell>
-                            <div className="space-y-1">
-                              {category.focusKeyword && (
-                                <Badge variant="outline" className="text-xs">
-                                  <Search className="w-3 h-3 mr-1" />
-                                  {category.focusKeyword}
-                                </Badge>
-                              )}
-                              {category.metaTitle && (
-                                <div className="text-xs text-gray-500 max-w-xs truncate">
-                                  {category.metaTitle}
-                                </div>
-                              )}
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant={category.count > 0 ? "default" : "secondary"}>
-                              {category.count} posts
+                            <Badge variant={category.count > 0 ? "default" : "secondary"} className={category.count > 0 ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0" : "bg-gray-200 text-gray-700 border-0"}>
+                              {category.count} {category.count === 1 ? 'post' : 'posts'}
                             </Badge>
                           </TableCell>
-                          <TableCell>
-                            <Badge variant={category.isActive ? "default" : "secondary"}>
-                              {category.isActive ? "Active" : "Inactive"}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="text-right">
-                            <div className="flex items-center justify-end space-x-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleEditCategory(category)}
-                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
-                                data-testid={`button-edit-${category.slug}`}
-                              >
-                                <Edit className="w-4 h-4" />
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleDeleteCategory(category)}
-                                disabled={category.count > 0 || deleteCategoryMutation.isPending}
-                                className="text-red-600 hover:text-red-700 hover:bg-red-50 disabled:opacity-50"
-                                data-testid={`button-delete-${category.slug}`}
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
-                            </div>
+                          <TableCell className="text-center">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteCategory(category)}
+                              disabled={category.count > 0 || deleteCategoryMutation.isPending}
+                              className="text-red-600 hover:text-red-800 hover:bg-red-50 disabled:opacity-50"
+                              data-testid={`button-delete-${category.slug}`}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
                           </TableCell>
                         </TableRow>
                       ))}
