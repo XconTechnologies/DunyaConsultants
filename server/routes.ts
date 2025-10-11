@@ -547,7 +547,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Admin Events Management
   app.get("/api/admin/events", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const events = await storage.getAllEvents();
+      const user = await storage.getAdminById(req.adminId!);
+      
+      // Admin sees all events, non-admin users see only assigned events
+      let events;
+      if (user?.role === 'admin') {
+        events = await storage.getAllEvents();
+      } else {
+        events = await storage.getUserAssignedEvents(req.adminId!);
+      }
+      
       res.json(events);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -615,6 +624,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/events/:eventId/registrations", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const eventId = parseInt(req.params.eventId);
+      const user = await storage.getAdminById(req.adminId!);
+      
+      // Admin can see all registrations
+      if (user?.role === 'admin') {
+        const registrations = await storage.getEventRegistrations(eventId);
+        return res.json(registrations);
+      }
+      
+      // Non-admin users can only see registrations for their assigned events
+      const assignedEvents = await storage.getUserAssignedEvents(req.adminId!);
+      const isAssigned = assignedEvents.some(e => e.id === eventId);
+      
+      if (!isAssigned) {
+        return res.status(403).json({ message: "Access denied: Event not assigned to you" });
+      }
+      
       const registrations = await storage.getEventRegistrations(eventId);
       res.json(registrations);
     } catch (error) {
@@ -625,8 +650,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/admin/registrations", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const registrations = await storage.getEventRegistrations();
-      res.json(registrations);
+      const user = await storage.getAdminById(req.adminId!);
+      
+      // Admin sees all registrations
+      if (user?.role === 'admin') {
+        const registrations = await storage.getEventRegistrations();
+        return res.json(registrations);
+      }
+      
+      // Non-admin users see only registrations for their assigned events
+      const assignedEvents = await storage.getUserAssignedEvents(req.adminId!);
+      const assignedEventIds = assignedEvents.map(e => e.id);
+      
+      if (assignedEventIds.length === 0) {
+        return res.json([]);
+      }
+      
+      const allRegistrations = await storage.getEventRegistrations();
+      const filteredRegistrations = allRegistrations.filter(reg => 
+        assignedEventIds.includes(reg.eventId)
+      );
+      
+      res.json(filteredRegistrations);
     } catch (error) {
       console.error("Error fetching all registrations:", error);
       res.status(500).json({ message: "Failed to fetch registrations" });
@@ -814,10 +859,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all event registrations
-  app.get("/api/events/registrations/all", async (req, res) => {
+  app.get("/api/events/registrations/all", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const registrations = await storage.getAllEventRegistrations();
-      res.json(registrations);
+      const user = await storage.getAdminById(req.adminId!);
+      
+      // Admin sees all registrations
+      if (user?.role === 'admin') {
+        const registrations = await storage.getAllEventRegistrations();
+        return res.json(registrations);
+      }
+      
+      // Non-admin users see only registrations for their assigned events
+      const assignedEvents = await storage.getUserAssignedEvents(req.adminId!);
+      const assignedEventIds = assignedEvents.map(e => e.id);
+      
+      if (assignedEventIds.length === 0) {
+        return res.json([]);
+      }
+      
+      const allRegistrations = await storage.getAllEventRegistrations();
+      const filteredRegistrations = allRegistrations.filter(reg => 
+        assignedEventIds.includes(reg.eventId)
+      );
+      
+      res.json(filteredRegistrations);
     } catch (error) {
       console.error("Error fetching registrations:", error);
       res.status(500).json({ message: "Failed to fetch registrations" });
