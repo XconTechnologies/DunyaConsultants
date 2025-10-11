@@ -168,6 +168,7 @@ export default function UserManagement() {
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [editUsername, setEditUsername] = useState("");
   const [editPassword, setEditPassword] = useState("");
+  const [editPermissions, setEditPermissions] = useState<Record<string, boolean>>({});
 
   // Check authentication
   useEffect(() => {
@@ -396,6 +397,8 @@ export default function UserManagement() {
     setEditUsername(user.username);
     setEditPassword("");
     setShowEditPassword(false);
+    // Initialize edit permissions with user's current permissions
+    setEditPermissions(user.permissions || {});
     setIsEditDialogOpen(true);
   };
 
@@ -854,14 +857,11 @@ export default function UserManagement() {
                         <div key={permission} className="flex items-center space-x-2">
                           <Checkbox
                             id={`edit-${permission}`}
-                            checked={(editingUser.permissions as any)?.[permission] ?? defaultValue}
+                            checked={editPermissions?.[permission] ?? defaultValue}
                             onCheckedChange={(checked) => {
-                              setEditingUser({
-                                ...editingUser,
-                                permissions: {
-                                  ...editingUser.permissions,
-                                  [permission]: checked === true
-                                }
+                              setEditPermissions({
+                                ...editPermissions,
+                                [permission]: checked === true
                               });
                             }}
                           />
@@ -886,7 +886,7 @@ export default function UserManagement() {
                   onClick={() => {
                     const updates: any = { 
                       role: editingUser.role,
-                      permissions: editingUser.role === 'custom' ? editingUser.permissions : null
+                      permissions: editingUser.role === 'custom' ? editPermissions : null
                     };
                     
                     // Add username if changed
