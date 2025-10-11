@@ -204,7 +204,7 @@ export default function QRScannerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       <AdminSidebar 
         currentUser={adminUser} 
         isOpen={sidebarOpen}
@@ -219,8 +219,8 @@ export default function QRScannerPage() {
         <div className="max-w-4xl mx-auto">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">QR Code Scanner</h1>
-            <p className="text-gray-600">Scan attendee QR codes to mark attendance and prize eligibility</p>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent mb-2">QR Code Scanner</h1>
+            <p className="text-gray-600 font-medium">Scan attendee QR codes to mark attendance and prize eligibility</p>
           </div>
           <Button
             variant="outline"
@@ -235,13 +235,13 @@ export default function QRScannerPage() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Scanner Card */}
-          <Card>
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50/30 overflow-hidden">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">
                 <QrCode className="h-5 w-5 text-[#1D50C9]" />
                 Scan QR Code
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="font-medium">
                 Enter the QR code token to mark attendance
               </CardDescription>
             </CardHeader>
@@ -292,9 +292,9 @@ export default function QRScannerPage() {
           </Card>
 
           {/* Last Scan Result */}
-          <Card>
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-green-50/30 overflow-hidden">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-xl font-bold bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
                 {lastScan?.success ? (
                   <CheckCircle2 className="h-5 w-5 text-green-600" />
                 ) : (
@@ -302,7 +302,7 @@ export default function QRScannerPage() {
                 )}
                 Last Scan Result
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="font-medium">
                 Details of the most recent scan
               </CardDescription>
             </CardHeader>
@@ -342,13 +342,13 @@ export default function QRScannerPage() {
         </div>
 
         {/* Instructions */}
-        <Card className="mt-6">
+        <Card className="mt-6 border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
           <CardHeader>
-            <CardTitle>Scanning Instructions</CardTitle>
+            <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Scanning Instructions</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 text-sm text-gray-600">
-              <ol className="list-decimal list-inside space-y-2">
+              <ol className="list-decimal list-inside space-y-2 font-medium">
                 <li>Ask the attendee to show their QR code (from email or registration confirmation)</li>
                 <li>Use a QR code scanner app to scan the code, or manually enter the token</li>
                 <li>Paste the scanned token into the input field above</li>
@@ -356,9 +356,9 @@ export default function QRScannerPage() {
                 <li>The attendee will be automatically marked as attended and eligible for the prize</li>
                 <li>Prizes will be distributed 7-10 days after the event</li>
               </ol>
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                <p className="font-semibold text-blue-900">Note:</p>
-                <p className="text-blue-800 text-sm">
+              <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+                <p className="font-bold text-blue-900">Note:</p>
+                <p className="text-blue-800 text-sm font-medium">
                   Each QR code can only be scanned once. If someone tries to scan again, 
                   you'll see an "Already Scanned" message.
                 </p>
