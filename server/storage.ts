@@ -174,6 +174,7 @@ export interface IStorage {
   // Lead Assignment Management
   assignLeadToUser(assignment: InsertLeadAssignment): Promise<LeadAssignment>;
   removeLeadAssignment(userId: number, leadId: number): Promise<void>;
+  transferLead(leadId: number, fromUserId: number, toUserId: number, transferredBy: number): Promise<LeadAssignment>;
   getUserLeadAssignments(userId: number): Promise<LeadAssignment[]>;
   getLeadAssignments(leadId: number): Promise<LeadAssignment[]>;
   getUserAssignedLeads(userId: number): Promise<Consultation[]>;
@@ -1419,6 +1420,23 @@ export class DatabaseStorage implements IStorage {
   async removeLeadAssignment(userId: number, leadId: number): Promise<void> {
     await db.delete(leadAssignments)
       .where(and(eq(leadAssignments.userId, userId), eq(leadAssignments.leadId, leadId)));
+  }
+  
+  async transferLead(leadId: number, fromUserId: number, toUserId: number, transferredBy: number): Promise<LeadAssignment> {
+    // Remove the current assignment
+    await db.delete(leadAssignments)
+      .where(and(eq(leadAssignments.userId, fromUserId), eq(leadAssignments.leadId, leadId)));
+    
+    // Create new assignment for the new user
+    const [newAssignment] = await db.insert(leadAssignments)
+      .values({
+        userId: toUserId,
+        leadId,
+        assignedBy: transferredBy
+      })
+      .returning();
+    
+    return newAssignment;
   }
   
   async getUserLeadAssignments(userId: number): Promise<LeadAssignment[]> {

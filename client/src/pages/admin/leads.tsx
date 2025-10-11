@@ -69,12 +69,31 @@ export default function LeadsManagement() {
     enabled: authChecked && !!currentUser,
   });
 
+  // Fetch eligible users for lead reassignment
+  const { data: eligibleUsers = [] } = useQuery<AdminUser[]>({
+    queryKey: ["/api/admin/users/eligible-for-leads"],
+    enabled: authChecked && !!currentUser,
+  });
+
   // Update consultation status mutation
   const updateStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: number; status: string }) => {
       return await apiRequest(`/api/consultations/${id}/status`, {
         method: 'PATCH',
         body: JSON.stringify({ status }),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
+    },
+  });
+
+  // Reassign lead mutation
+  const reassignLeadMutation = useMutation({
+    mutationFn: async ({ id, userId }: { id: number; userId: number }) => {
+      return await apiRequest(`/api/consultations/${id}/assign`, {
+        method: 'PATCH',
+        body: JSON.stringify({ userId }),
       });
     },
     onSuccess: () => {
@@ -404,6 +423,7 @@ export default function LeadsManagement() {
                           <TableHead>Country</TableHead>
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
+                          <TableHead>Assign To</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -464,6 +484,23 @@ export default function LeadsManagement() {
                                       Not Interested
                                     </div>
                                   </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </TableCell>
+                            <TableCell>
+                              <Select
+                                onValueChange={(value) => reassignLeadMutation.mutate({ id: lead.id, userId: parseInt(value) })}
+                                disabled={reassignLeadMutation.isPending || eligibleUsers.length === 0}
+                              >
+                                <SelectTrigger className="w-[180px] h-8" data-testid={`select-assign-${lead.id}`}>
+                                  <SelectValue placeholder="Reassign..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {eligibleUsers.map((user) => (
+                                    <SelectItem key={user.id} value={user.id.toString()}>
+                                      {user.username}
+                                    </SelectItem>
+                                  ))}
                                 </SelectContent>
                               </Select>
                             </TableCell>

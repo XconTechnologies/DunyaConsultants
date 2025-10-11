@@ -37,6 +37,7 @@ interface AuthenticatedRequest extends Request {
   adminRole?: string;
   userId?: number;
   isAuthenticated?: boolean;
+  user?: AdminUser;
 }
 
 // Admin authentication middleware
@@ -60,6 +61,7 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
 
     req.adminId = session.adminUserId;
     req.adminRole = admin.role;
+    req.user = admin;
     req.isAuthenticated = true;
     next();
   } catch (error) {
@@ -1684,10 +1686,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update consultation status
-  app.patch("/api/consultations/:id/status", async (req, res) => {
+  app.patch("/api/consultations/:id/status", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       const { status } = req.body;
+      const currentUser = req.user!;
       
       // Validate status
       const validStatuses = ["pending", "contacted", "converted", "interested", "not_interested"];
@@ -1698,12 +1701,83 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
+      // Check if user has permission to update this lead
+      if (currentUser.role !== 'admin') {
+        const assignedLeads = await storage.getUserAssignedLeads(currentUser.id);
+        const hasAccess = assignedLeads.some(lead => lead.id === id);
+        
+        if (!hasAccess) {
+          return res.status(403).json({
+            success: false,
+            message: "You don't have permission to update this lead"
+          });
+        }
+      }
+
       const updated = await storage.updateConsultationStatus(id, status);
       res.json({ success: true, consultation: updated });
     } catch (error) {
       res.status(500).json({ 
         success: false, 
         message: "Failed to update consultation status" 
+      });
+    }
+  });
+
+  // Transfer/reassign lead to another user
+  app.patch("/api/consultations/:id/assign", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const leadId = parseInt(req.params.id);
+      const { userId: toUserId } = req.body;
+      const currentUser = req.user!;
+      
+      if (!toUserId) {
+        return res.status(400).json({
+          success: false,
+          message: "Target user ID is required"
+        });
+      }
+
+      // Find current assignee for the lead
+      const currentAssignments = await storage.getLeadAssignments(leadId);
+      if (currentAssignments.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "This lead is not currently assigned to anyone"
+        });
+      }
+      
+      const currentAssignee = currentAssignments[0];
+      
+      // Check if user has permission to transfer this lead
+      if (currentUser.role !== 'admin') {
+        // Non-admin users can only transfer their own assigned leads
+        if (currentAssignee.userId !== currentUser.id) {
+          return res.status(403).json({
+            success: false,
+            message: "You don't have permission to reassign this lead"
+          });
+        }
+      }
+
+      // Transfer the lead from current assignee to new user
+      const newAssignment = await storage.transferLead(
+        leadId,
+        currentAssignee.userId,
+        toUserId,
+        currentUser.id
+      );
+      
+      res.json({ 
+        success: true, 
+        assignment: newAssignment,
+        message: "Lead reassigned successfully"
+      });
+    } catch (error) {
+      console.error('Error transferring lead:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to reassign lead" 
       });
     }
   });
@@ -2117,6 +2191,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ==============================================
   // USER MANAGEMENT ROUTES (Admin Only)
   // ==============================================
+
+  // Get eligible users for lead assignment (users with lead permissions)
+  app.get("/api/admin/users/eligible-for-leads", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const allUsers = await storage.getAllAdminUsers();
+      // Filter to active users with lead management permissions
+      const eligibleUsers = allUsers.filter(user => 
+        user.isActive && (
+          user.role === 'admin' || 
+          (user.permissions && (user.permissions as any).canManageLeads === true)
+        )
+      );
+      res.json(eligibleUsers);
+    } catch (error) {
+      console.error('Error fetching eligible users:', error);
+      res.status(500).json({ message: 'Failed to fetch eligible users' });
+    }
+  });
 
   // Get all admin users (for user management interface)
   app.get("/api/admin/users", requireAuth, requireAdmin, async (req, res) => {

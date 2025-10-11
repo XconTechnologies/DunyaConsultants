@@ -270,3 +270,12 @@ export function canAssignPosts(user: AdminUser | null | undefined, hasPostAssign
   if (!user) return false;
   return isAdmin(user) || hasPostAssignments;
 }
+
+/**
+ * Check if a user can transfer/reassign leads
+ * Admin or users with lead management permissions can transfer their assigned leads
+ */
+export function canTransferLead(user: AdminUser | null | undefined, hasLeadAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || (canManageLeads(user) && hasLeadAssignments);
+}
