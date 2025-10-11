@@ -235,7 +235,7 @@ export function canAccessManagedEvents(user: AdminUser | null | undefined, hasEv
 /**
  * Check if a user can manage lead assignments
  */
-export function canManageLeadAssignments(user: AdminUser | null | undefined, hasLeadAssignments: boolean = false): boolean {
+export function canManageAssignedLeads(user: AdminUser | null | undefined, hasLeadAssignments: boolean = false): boolean {
   if (!user) return false;
   return isAdmin(user) || (canManageLeads(user) && hasLeadAssignments);
 }
@@ -243,7 +243,7 @@ export function canManageLeadAssignments(user: AdminUser | null | undefined, has
 /**
  * Check if a user can view their own QR codes
  */
-export function canViewOwnQRCodes(user: AdminUser | null | undefined): boolean {
+export function canAccessOwnQRCodes(user: AdminUser | null | undefined): boolean {
   if (!user) return false;
   return isAdmin(user) || canAccessQRScanner(user);
 }

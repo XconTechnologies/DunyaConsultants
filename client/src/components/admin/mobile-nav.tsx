@@ -16,7 +16,7 @@ import {
   FileEdit
 } from "lucide-react";
 import { 
-  hasPostAssignments,
+  canAccessPosts,
   canManageOwnMedia,
   canAccessManagedEvents,
   canManageAssignedLeads,
@@ -143,12 +143,12 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
     
     // Posts: Show if user has post assignments OR is admin
     if (item.href === "/admin/posts") {
-      return hasPostAssignments(currentUser, hasUserPostAssignments);
+      return canAccessPosts(currentUser, hasUserPostAssignments);
     }
     
     // Categories: Show if user has post assignments OR is admin
     if (item.href === "/admin/categories") {
-      return hasPostAssignments(currentUser, hasUserPostAssignments);
+      return canAccessPosts(currentUser, hasUserPostAssignments);
     }
     
     // Media: Show if user has media uploads OR has post assignments OR is admin

@@ -19,7 +19,7 @@ import {
   FileEdit
 } from "lucide-react";
 import { 
-  hasPostAssignments,
+  canAccessPosts,
   canManageOwnMedia,
   canAccessManagedEvents,
   canManageAssignedLeads,
@@ -247,7 +247,7 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
               
               // Posts: Show if user has post assignments OR is admin
               if (item.href === "/admin/posts") {
-                return hasPostAssignments(currentUser, hasUserPostAssignments);
+                return canAccessPosts(currentUser, hasUserPostAssignments);
               }
               
               // Media: Show if user has media uploads OR has post assignments OR is admin
@@ -367,7 +367,7 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                         .filter((subItem) => {
                           // Categories: Show if user has post assignments OR is admin
                           if (subItem.href === "/admin/categories") {
-                            return hasPostAssignments(currentUser, hasUserPostAssignments);
+                            return canAccessPosts(currentUser, hasUserPostAssignments);
                           }
                           
                           // Event Registrations: Show if user has event assignments OR is admin
