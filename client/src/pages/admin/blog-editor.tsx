@@ -1287,7 +1287,7 @@ export default function BlogEditor() {
         // For content image - insert directly into ReactQuill (no automatic links)
         const quillEditor = document.querySelector('.ql-editor');
         if (quillEditor) {
-          const imageHtml = `<p><img loading="lazy" src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" loading="lazy" /></p>`;
+          const imageHtml = `<p><img loading="lazy" src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" /></p>`;
           quillEditor.innerHTML += imageHtml;
         }
       }

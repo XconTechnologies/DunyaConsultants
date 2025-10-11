@@ -5,9 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
+import { Loader2 } from "lucide-react";
 // Global ReactQuill CSS import to ensure proper loading
 import 'react-quill/dist/quill.snow.css';
 import Home from "@/pages/home";
@@ -63,33 +64,34 @@ import CairoOffice from "@/pages/offices/cairo";
 import EdinburghOffice from "@/pages/offices/edinburgh";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
-import AdminLogin from "@/pages/admin/login";
-import UserLogin from "@/pages/user-login";
-import UserDashboard from "@/pages/dashboard";
-import AdminDashboard from "@/pages/admin/dashboard";
-import BlogEditor from "@/pages/admin/blog-editor";
-import AdminBlogPreview from "@/pages/admin/blog-preview";
-import UserManagement from "@/pages/admin/user-management";
-import UserActivity from "@/pages/admin/user-activity";
-import BackupManagement from "@/pages/admin/backup";
-import LeadsManagement from "@/pages/admin/leads";
-import PostAssignments from "@/pages/admin/post-assignments";
-import LeadAssignments from "@/pages/admin/lead-assignments";
-import AdminCategoriesPage from "@/pages/admin/categories";
-import AllPosts from "@/pages/admin/posts";
-import MediaManagement from "@/pages/admin/media";
-import EventsManagement from "@/pages/admin/events-management";
-import EventEditor from "@/pages/admin/event-editor";
-import TrashManagement from "@/pages/admin/trash";
-import QRScannerPage from "@/pages/admin/qr-scanner";
-import EventRegistrationsPage from "@/pages/admin/event-registrations";
-import QrCodesPage from "@/pages/admin/qr-codes";
-import AdminIndex from "@/pages/admin/index";
-import CategoryPage from "@/pages/category";
-import CategoriesIndexPage from "@/pages/categories";
-import FormManagement from "@/pages/admin/form-management";
-import FormBuilder from "@/pages/admin/form-builder";
-import FormSubmissions from "@/pages/admin/form-submissions";
+// Lazy-loaded Admin Pages for better performance
+const AdminLogin = lazy(() => import("@/pages/admin/login"));
+const UserLogin = lazy(() => import("@/pages/user-login"));
+const UserDashboard = lazy(() => import("@/pages/dashboard"));
+const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
+const BlogEditor = lazy(() => import("@/pages/admin/blog-editor"));
+const AdminBlogPreview = lazy(() => import("@/pages/admin/blog-preview"));
+const UserManagement = lazy(() => import("@/pages/admin/user-management"));
+const UserActivity = lazy(() => import("@/pages/admin/user-activity"));
+const BackupManagement = lazy(() => import("@/pages/admin/backup"));
+const LeadsManagement = lazy(() => import("@/pages/admin/leads"));
+const PostAssignments = lazy(() => import("@/pages/admin/post-assignments"));
+const LeadAssignments = lazy(() => import("@/pages/admin/lead-assignments"));
+const AdminCategoriesPage = lazy(() => import("@/pages/admin/categories"));
+const AllPosts = lazy(() => import("@/pages/admin/posts"));
+const MediaManagement = lazy(() => import("@/pages/admin/media"));
+const EventsManagement = lazy(() => import("@/pages/admin/events-management"));
+const EventEditor = lazy(() => import("@/pages/admin/event-editor"));
+const TrashManagement = lazy(() => import("@/pages/admin/trash"));
+const QRScannerPage = lazy(() => import("@/pages/admin/qr-scanner"));
+const EventRegistrationsPage = lazy(() => import("@/pages/admin/event-registrations"));
+const QrCodesPage = lazy(() => import("@/pages/admin/qr-codes"));
+const AdminIndex = lazy(() => import("@/pages/admin/index"));
+const CategoryPage = lazy(() => import("@/pages/category"));
+const CategoriesIndexPage = lazy(() => import("@/pages/categories"));
+const FormManagement = lazy(() => import("@/pages/admin/form-management"));
+const FormBuilder = lazy(() => import("@/pages/admin/form-builder"));
+const FormSubmissions = lazy(() => import("@/pages/admin/form-submissions"));
 
 
 
@@ -228,6 +230,16 @@ function Router() {
   );
 }
 
+// Loading fallback component for code splitting
+const LoadingFallback = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+    <div className="text-center">
+      <Loader2 className="w-12 h-12 animate-spin text-[#1D50C9] mx-auto mb-4" />
+      <p className="text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
+
 function App() {
   // Initialize Google Analytics when app loads
   useEffect(() => {
@@ -251,7 +263,9 @@ function App() {
       <EngagementTracker>
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <Suspense fallback={<LoadingFallback />}>
+            <Router />
+          </Suspense>
         </TooltipProvider>
       </EngagementTracker>
     </QueryClientProvider>

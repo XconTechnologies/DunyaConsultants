@@ -535,7 +535,7 @@ export default function EventRegistration() {
                   {/* Right: QR Code (Smaller) */}
                   <div className="text-center">
                     <div className="bg-white p-2 inline-block rounded-lg border border-[#1D50C9]">
-                      <img loading="lazy" src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" loading="lazy" />
+                      <img loading="lazy" src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" />
                     </div>
                     <p className="text-xs text-[#1D50C9] font-semibold mt-2">YOUR QR CODE</p>
                   </div>
