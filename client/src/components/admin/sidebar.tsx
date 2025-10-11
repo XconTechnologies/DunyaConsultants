@@ -25,6 +25,7 @@ import {
   canManageLeads, 
   canAccessQRScanner,
   canManageMedia,
+  canManageCategories,
   isAdmin
 } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
@@ -334,11 +335,17 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                       {item.subItems!
                         .filter((subItem) => {
                           // Filter sub-items based on permissions
+                          if (subItem.href === "/admin/event-registrations") {
+                            return canAccessEvents(currentUser) || isAdmin(currentUser);
+                          }
                           if (subItem.href === "/admin/qr-scanner") {
                             return canAccessQRScanner(currentUser) || isAdmin(currentUser);
                           }
                           if (subItem.href === "/admin/lead-assignments") {
                             return canManageLeads(currentUser) || isAdmin(currentUser);
+                          }
+                          if (subItem.href === "/admin/categories") {
+                            return canManageCategories(currentUser) || isAdmin(currentUser);
                           }
                           // User Activity and other sub-items require user management permission
                           if (subItem.href === "/admin/user-activity") {

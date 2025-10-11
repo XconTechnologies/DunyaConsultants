@@ -55,6 +55,7 @@ import {
   canEditContent,
   canCreateContent,
   canViewAnalytics,
+  canAccessEvents,
   isAdmin 
 } from "@/lib/permissions";
 import type { AdminUser, Event, EventRegistration } from "@shared/schema";
@@ -779,8 +780,8 @@ export default function AdminDashboard() {
         </div>
         )}
 
-        {/* Event Registration Cards - Only visible for users with analytics permission */}
-        {canViewAnalytics(adminUser) && events.length > 0 && (() => {
+        {/* Event Registration Cards - Only visible for users with events access permission */}
+        {canAccessEvents(adminUser) && events.length > 0 && (() => {
           const eventsWithRegistrations = events
             .filter((event) => !event.trashedAt)
             .map((event) => {
