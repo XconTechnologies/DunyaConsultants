@@ -38,6 +38,7 @@ export default function EventRegistrationsPage() {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [selectedRegistration, setSelectedRegistration] = useState<EventRegistration | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [generatingQR, setGeneratingQR] = useState(false);
   const { toast } = useToast();
 
   // Helper function to get auth headers
@@ -133,6 +134,55 @@ export default function EventRegistrationsPage() {
       toast({ title: "Error", description: "Failed to trash registrations.", variant: "destructive" });
     },
   });
+
+  // Function to generate QR code if missing
+  const generateQRCode = async (reg: EventRegistration) => {
+    if (reg.qrCodeUrl) return reg; // Already has QR code
+
+    setGeneratingQR(true);
+    try {
+      const response = await fetch(`/api/admin/registrations/${reg.id}/generate-qr`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+      });
+
+      if (!response.ok) throw new Error('Failed to generate QR code');
+
+      const data = await response.json();
+      
+      // Update the registration with the new QR code
+      const updatedReg = { ...reg, qrCodeUrl: data.qrCodeUrl };
+      
+      // Update the selected registration
+      setSelectedRegistration(updatedReg);
+      
+      // Invalidate and refetch registrations
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+      
+      return updatedReg;
+    } catch (error) {
+      console.error('Error generating QR code:', error);
+      toast({
+        title: "Error",
+        description: "Failed to generate QR code. Please try again.",
+        variant: "destructive"
+      });
+      return reg;
+    } finally {
+      setGeneratingQR(false);
+    }
+  };
+
+  // Handle opening registration details
+  const handleOpenDetails = async (reg: EventRegistration) => {
+    setSelectedRegistration(reg);
+    setIsDetailsOpen(true);
+    
+    // Generate QR code if missing
+    if (!reg.qrCodeUrl) {
+      await generateQRCode(reg);
+    }
+  };
 
   // Export to CSV
   const exportToCSV = (eventRegs: EventRegistration[], eventTitle: string) => {
@@ -429,10 +479,7 @@ export default function EventRegistrationsPage() {
                                 <TableRow 
                                   key={reg.id} 
                                   className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 cursor-pointer"
-                                  onClick={() => {
-                                    setSelectedRegistration(reg);
-                                    setIsDetailsOpen(true);
-                                  }}
+                                  onClick={() => handleOpenDetails(reg)}
                                 >
                                   <TableCell className="py-4" onClick={(e) => e.stopPropagation()}>
                                     <Checkbox
@@ -614,21 +661,32 @@ export default function EventRegistrationsPage() {
               </div>
 
               {/* QR Code */}
-              {selectedRegistration.qrCodeUrl && (
-                <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 p-6 rounded-lg">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
-                    <QrCode className="h-5 w-5 text-[#1D50C9]" />
-                    Registration QR Code
-                  </h3>
-                  <div className="flex justify-center">
+              <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 p-6 rounded-lg">
+                <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <QrCode className="h-5 w-5 text-[#1D50C9]" />
+                  Registration QR Code
+                </h3>
+                <div className="flex justify-center">
+                  {generatingQR ? (
+                    <div className="w-48 h-48 flex items-center justify-center border-4 border-white shadow-lg rounded-lg bg-white">
+                      <div className="text-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-2"></div>
+                        <p className="text-sm text-gray-600">Generating QR Code...</p>
+                      </div>
+                    </div>
+                  ) : selectedRegistration.qrCodeUrl ? (
                     <img 
                       src={selectedRegistration.qrCodeUrl} 
                       alt="Registration QR Code" 
                       className="w-48 h-48 border-4 border-white shadow-lg rounded-lg"
                     />
-                  </div>
+                  ) : (
+                    <div className="w-48 h-48 flex items-center justify-center border-4 border-gray-200 shadow-lg rounded-lg bg-white">
+                      <p className="text-sm text-gray-400">No QR Code</p>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           )}
         </DialogContent>

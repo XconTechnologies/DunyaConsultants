@@ -36,6 +36,7 @@ export interface IStorage {
   createEventRegistration(registration: InsertEventRegistration & { token: string }): Promise<EventRegistration>;
   getEventRegistrationByToken(token: string): Promise<EventRegistration | undefined>;
   updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration>;
+  updateEventRegistrationToken(id: number, token: string): Promise<EventRegistration>;
   markAttendance(token: string): Promise<EventRegistration | undefined>;
   markAttendanceById(id: number): Promise<EventRegistration | undefined>;
   getEventRegistrations(eventId?: number): Promise<EventRegistration[]>;
@@ -330,6 +331,14 @@ export class DatabaseStorage implements IStorage {
   async updateEventRegistrationQR(id: number, qrCodeUrl: string, sheetRowId?: string): Promise<EventRegistration> {
     const [registration] = await db.update(eventRegistrations)
       .set({ qrCodeUrl, sheetRowId })
+      .where(eq(eventRegistrations.id, id))
+      .returning();
+    return registration;
+  }
+
+  async updateEventRegistrationToken(id: number, token: string): Promise<EventRegistration> {
+    const [registration] = await db.update(eventRegistrations)
+      .set({ token })
       .where(eq(eventRegistrations.id, id))
       .returning();
     return registration;

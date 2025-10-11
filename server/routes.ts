@@ -824,6 +824,85 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Generate QR code for a registration (if missing)
+  app.post("/api/admin/registrations/:id/generate-qr", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const registrations = await storage.getAllEventRegistrations();
+      const registration = registrations.find((r: any) => r.id === id);
+
+      if (!registration) {
+        return res.status(404).json({ message: "Registration not found" });
+      }
+
+      // Generate token if not exists
+      let token = registration.token;
+      if (!token) {
+        token = generateUniqueToken();
+        await storage.updateEventRegistrationToken(id, token);
+      }
+
+      // Generate QR code
+      const { qrCodeUrl } = await generateRegistrationQRCode(
+        registration.id,
+        token,
+        registration.eventId
+      );
+
+      // Update registration with QR code URL
+      await storage.updateEventRegistrationQR(registration.id, qrCodeUrl);
+
+      res.json({ success: true, qrCodeUrl });
+    } catch (error) {
+      console.error("Error generating QR code:", error);
+      res.status(500).json({ message: "Failed to generate QR code" });
+    }
+  });
+
+  // Generate QR codes for all registrations (bulk)
+  app.post("/api/admin/registrations/generate-all-qr", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const registrations = await storage.getAllEventRegistrations();
+      let generated = 0;
+
+      for (const registration of registrations) {
+        // Skip if already has QR code
+        if (registration.qrCodeUrl) continue;
+
+        // Generate token if not exists
+        let token = registration.token;
+        if (!token) {
+          token = generateUniqueToken();
+          await storage.updateEventRegistrationToken(registration.id, token);
+        }
+
+        // Generate QR code
+        const { qrCodeUrl } = await generateRegistrationQRCode(
+          registration.id,
+          token,
+          registration.eventId
+        );
+
+        // Update registration with QR code URL
+        await storage.updateEventRegistrationQR(registration.id, qrCodeUrl);
+        generated++;
+      }
+
+      res.json({ success: true, generated, total: registrations.length });
+    } catch (error) {
+      console.error("Error generating QR codes:", error);
+      res.status(500).json({ message: "Failed to generate QR codes" });
+    }
+  });
+
   // ==============================================
   // QR CODE MANAGEMENT ROUTES
   // ==============================================
