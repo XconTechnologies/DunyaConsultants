@@ -214,7 +214,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
             href="https://wa.me/923261111947"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold rounded-lg transition-all"
+            className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all"
             data-testid="button-whatsapp-contact"
           >
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
