@@ -919,6 +919,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete event registration (Admin only)
+  app.delete("/api/admin/registrations/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      await storage.deleteEventRegistration(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting registration:", error);
+      res.status(500).json({ message: "Failed to delete registration" });
+    }
+  });
+
+  // Bulk delete event registrations (Admin only)
+  app.post("/api/admin/registrations/bulk-delete", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const { ids } = req.body;
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ message: "Invalid request: ids array required" });
+      }
+
+      await storage.bulkDeleteEventRegistrations(ids);
+      res.json({ success: true, deleted: ids.length });
+    } catch (error) {
+      console.error("Error bulk deleting registrations:", error);
+      res.status(500).json({ message: "Failed to delete registrations" });
+    }
+  });
+
   // ==============================================
   // QR CODE MANAGEMENT ROUTES
   // ==============================================

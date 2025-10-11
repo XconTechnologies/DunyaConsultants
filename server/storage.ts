@@ -45,6 +45,8 @@ export interface IStorage {
   trashEventRegistration(id: number, trashedBy: number, reason?: string): Promise<EventRegistration>;
   restoreEventRegistration(id: number): Promise<EventRegistration>;
   getTrashedEventRegistrations(): Promise<EventRegistration[]>;
+  deleteEventRegistration(id: number): Promise<void>;
+  bulkDeleteEventRegistrations(ids: number[]): Promise<void>;
   getAllEvents(): Promise<Event[]>;
   createEvent(event: InsertEvent): Promise<Event>;
   updateEvent(id: number, updates: Partial<InsertEvent>): Promise<Event>;
@@ -432,6 +434,15 @@ export class DatabaseStorage implements IStorage {
       .from(eventRegistrations)
       .where(sql`${eventRegistrations.trashedAt} IS NOT NULL`)
       .orderBy(desc(eventRegistrations.trashedAt));
+  }
+
+  async deleteEventRegistration(id: number): Promise<void> {
+    await db.delete(eventRegistrations).where(eq(eventRegistrations.id, id));
+  }
+
+  async bulkDeleteEventRegistrations(ids: number[]): Promise<void> {
+    if (ids.length === 0) return;
+    await db.delete(eventRegistrations).where(sql`${eventRegistrations.id} IN (${sql.join(ids.map(id => sql`${id}`), sql`, `)})`);
   }
 
   async getAllEvents(): Promise<Event[]> {
