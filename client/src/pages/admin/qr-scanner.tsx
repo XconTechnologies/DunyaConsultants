@@ -11,7 +11,6 @@ import MobileNav from "@/components/admin/mobile-nav";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { QrCode, CheckCircle2, Camera, X } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
-import { Html5Qrcode } from "html5-qrcode";
 import {
   Dialog,
   DialogContent,
@@ -29,7 +28,7 @@ export default function QRScannerPage() {
   const [showCamera, setShowCamera] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
-  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const scannerRef = useRef<any | null>(null);
 
   // Check authentication
   useEffect(() => {
@@ -135,6 +134,7 @@ export default function QRScannerPage() {
       
       setTimeout(async () => {
         try {
+          const { Html5Qrcode } = await import('html5-qrcode');
           const html5QrCode = new Html5Qrcode("qr-reader");
           scannerRef.current = html5QrCode;
 

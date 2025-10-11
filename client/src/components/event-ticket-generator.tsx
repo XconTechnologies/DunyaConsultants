@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Calendar, Clock, MapPin, User, Mail, Phone, GraduationCap, QrCode } from 'lucide-react';
-import html2canvas from 'html2canvas';
 import dcLogoPath from '@assets/DC Blue Logo_1751614676879.png';
 
 interface TicketData {
@@ -76,6 +75,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         const downloadBtn = ticketRef.current.querySelector('.download-btn') as HTMLElement;
         if (downloadBtn) downloadBtn.style.display = 'none';
 
+        const html2canvas = (await import('html2canvas')).default;
         const canvas = await html2canvas(ticketRef.current, {
           backgroundColor: '#ffffff',
           scale: 2,

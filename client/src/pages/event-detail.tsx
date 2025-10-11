@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Calendar, MapPin, GraduationCap, Download, CheckCircle, Clock } from "lucide-react";
-import html2canvas from "html2canvas";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Event } from "@shared/schema";
@@ -133,6 +132,7 @@ export default function EventDetailPage() {
     if (!cardRef.current) return;
     
     try {
+      const html2canvas = (await import('html2canvas')).default;
       const canvas = await html2canvas(cardRef.current, {
         scale: 2,
         backgroundColor: '#ffffff',

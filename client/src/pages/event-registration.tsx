@@ -25,7 +25,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
-import html2canvas from "html2canvas";
 import type { Event } from "@shared/schema";
 import dunyaLogo from "@assets/dunya-logo-blue.png";
 

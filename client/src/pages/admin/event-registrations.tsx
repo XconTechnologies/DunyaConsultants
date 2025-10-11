@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import * as XLSX from 'xlsx';
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
 import MobileNav from "@/components/admin/mobile-nav";
@@ -236,7 +235,7 @@ export default function EventRegistrationsPage() {
   };
 
   // Export to Excel
-  const exportToSheets = (eventRegs: EventRegistration[], eventTitle: string) => {
+  const exportToSheets = async (eventRegs: EventRegistration[], eventTitle: string) => {
     const sheetData = eventRegs.map(reg => ({
       Name: reg.name,
       Email: reg.email,
@@ -248,6 +247,9 @@ export default function EventRegistrationsPage() {
       Registered: new Date(reg.createdAt).toLocaleDateString()
     }));
 
+    // Dynamically import XLSX library
+    const XLSX = await import('xlsx');
+    
     // Create a new workbook and worksheet
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(sheetData);
