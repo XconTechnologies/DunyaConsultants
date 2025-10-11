@@ -202,7 +202,7 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
+            className="w-20 h-20 bg-[#1D50C9] rounded-full flex items-center justify-center mx-auto mb-4"
           >
             <Check className="w-10 h-10 text-white" />
           </motion.div>
