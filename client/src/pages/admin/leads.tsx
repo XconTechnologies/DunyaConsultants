@@ -212,7 +212,7 @@ export default function LeadsManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       <AdminHeader currentUser={currentUser} title="Leads Submissions" />
       
       <div className="flex pt-16">
@@ -222,64 +222,72 @@ export default function LeadsManagement() {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">Leads Submissions</h1>
-              <p className="text-gray-600 mt-1">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Leads Submissions</h1>
+              <p className="text-gray-600 mt-1 font-medium">
                 View and manage all consultation leads submissions from your website
               </p>
             </div>
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <Card>
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Total Leads</p>
-                      <p className="text-2xl font-bold text-gray-900">{leads.length}</p>
+                      <p className="text-sm text-gray-600 font-medium">Total Leads</p>
+                      <p className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">{leads.length}</p>
                     </div>
-                    <Mail className="w-8 h-8 text-blue-600" />
+                    <div className="p-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-amber-50 hover:shadow-xl transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Pending</p>
-                      <p className="text-2xl font-bold text-yellow-600">
+                      <p className="text-sm text-gray-600 font-medium">Pending</p>
+                      <p className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">
                         {leads.filter(l => l.status === "pending").length}
                       </p>
                     </div>
-                    <Calendar className="w-8 h-8 text-yellow-600" />
+                    <div className="p-2 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-lg">
+                      <Calendar className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Contacted</p>
-                      <p className="text-2xl font-bold text-blue-600">
+                      <p className="text-sm text-gray-600 font-medium">Contacted</p>
+                      <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                         {leads.filter(l => l.status === "contacted").length}
                       </p>
                     </div>
-                    <Phone className="w-8 h-8 text-blue-600" />
+                    <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Converted</p>
-                      <p className="text-2xl font-bold text-green-600">
+                      <p className="text-sm text-gray-600 font-medium">Converted</p>
+                      <p className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                         {leads.filter(l => l.status === "converted").length}
                       </p>
                     </div>
-                    <Globe className="w-8 h-8 text-green-600" />
+                    <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg">
+                      <Globe className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
