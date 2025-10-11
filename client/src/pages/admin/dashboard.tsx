@@ -46,6 +46,7 @@ import {
   ExternalLink,
   Calendar,
   UserCheck,
+  Mail,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -56,9 +57,10 @@ import {
   canCreateContent,
   canViewAnalytics,
   canAccessEvents,
+  canManageLeads,
   isAdmin 
 } from "@/lib/permissions";
-import type { AdminUser, Event, EventRegistration } from "@shared/schema";
+import type { AdminUser, Event, EventRegistration, Consultation } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
 import AdminHeader from "@/components/admin/header";
 import MobileNav from "@/components/admin/mobile-nav";
@@ -117,6 +119,12 @@ export default function AdminDashboard() {
   const { data: registrations = [] } = useQuery<EventRegistration[]>({
     queryKey: ["/api/events/registrations/all"],
     enabled: authChecked && !!adminUser,
+  });
+
+  // Fetch leads/consultations
+  const { data: leads = [] } = useQuery<Consultation[]>({
+    queryKey: ["/api/consultations"],
+    enabled: authChecked && !!adminUser && canManageLeads(adminUser),
   });
   
   // Edit conflict state management
@@ -709,8 +717,8 @@ export default function AdminDashboard() {
         <MobileNav currentUser={adminUser} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards - Only visible for users with analytics permission */}
-        {canViewAnalytics(adminUser) && (
+        {/* Stats Cards - Only visible for users with content permissions */}
+        {(canCreateContent(adminUser) || canEditContent(adminUser) || isAdmin(adminUser)) && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -848,6 +856,83 @@ export default function AdminDashboard() {
             </div>
           );
         })()}
+
+        {/* Leads/Form Submissions Cards - Only visible for users with leads access permission */}
+        {canManageLeads(adminUser) && leads.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Mail className="h-6 w-6 text-[#1D50C9]" />
+              Form Submissions & Leads
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Total Leads Card */}
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setLocation('/admin/leads')}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-gray-700">Total Leads</CardTitle>
+                  <div className="p-2 bg-[#1D50C9] rounded-lg">
+                    <Mail className="h-4 w-4 text-white" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-[#1D50C9]">{leads.length}</div>
+                  <p className="text-xs text-gray-600 mt-1">All form submissions</p>
+                </CardContent>
+              </Card>
+
+              {/* Pending Leads Card */}
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setLocation('/admin/leads')}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-gray-700">Pending</CardTitle>
+                  <div className="p-2 bg-orange-500 rounded-lg">
+                    <Activity className="h-4 w-4 text-white" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-orange-600">
+                    {leads.filter(l => l.status === "pending").length}
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">Awaiting contact</p>
+                </CardContent>
+              </Card>
+
+              {/* Contacted Leads Card */}
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-yellow-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setLocation('/admin/leads')}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-gray-700">Contacted</CardTitle>
+                  <div className="p-2 bg-yellow-500 rounded-lg">
+                    <UserCheck className="h-4 w-4 text-white" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-yellow-600">
+                    {leads.filter(l => l.status === "contacted").length}
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">In progress</p>
+                </CardContent>
+              </Card>
+
+              {/* Converted Leads Card */}
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setLocation('/admin/leads')}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-gray-700">Converted</CardTitle>
+                  <div className="p-2 bg-green-500 rounded-lg">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-green-600">
+                    {leads.filter(l => l.status === "converted").length}
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">Successfully converted</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
 
       </div>
       </div>
