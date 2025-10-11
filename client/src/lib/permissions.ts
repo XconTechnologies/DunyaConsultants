@@ -204,3 +204,69 @@ export function canDeleteRegistrations(user: AdminUser | null | undefined): bool
 export function canManageLeads(user: AdminUser | null | undefined): boolean {
   return hasPermission(user, 'canManageLeads');
 }
+
+/**
+ * Check if a user can access posts (based on assignments or admin status)
+ * @param user - The admin user
+ * @param hasAssignments - Whether the user has post assignments (from API)
+ */
+export function canAccessPosts(user: AdminUser | null | undefined, hasAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || hasAssignments;
+}
+
+/**
+ * Check if a user can manage their own media
+ * Users can upload media only if they have post assignments or are admin
+ */
+export function canManageOwnMedia(user: AdminUser | null | undefined, hasPostAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || (canManageMedia(user) && hasPostAssignments);
+}
+
+/**
+ * Check if a user can access events features based on their assignments
+ */
+export function canAccessManagedEvents(user: AdminUser | null | undefined, hasEventAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || (canAccessEvents(user) && hasEventAssignments);
+}
+
+/**
+ * Check if a user can manage lead assignments
+ */
+export function canManageLeadAssignments(user: AdminUser | null | undefined, hasLeadAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || (canManageLeads(user) && hasLeadAssignments);
+}
+
+/**
+ * Check if a user can view their own QR codes
+ */
+export function canViewOwnQRCodes(user: AdminUser | null | undefined): boolean {
+  if (!user) return false;
+  return isAdmin(user) || canAccessQRScanner(user);
+}
+
+/**
+ * Check if a user can access form management (admin only)
+ */
+export function canAccessFormManagement(user: AdminUser | null | undefined): boolean {
+  return isAdmin(user);
+}
+
+/**
+ * Check if a user can access backup and trash (admin only)
+ */
+export function canAccessBackupAndTrash(user: AdminUser | null | undefined): boolean {
+  return isAdmin(user);
+}
+
+/**
+ * Check if a user can assign posts to other users
+ * Post managers can assign posts but cannot see user activity
+ */
+export function canAssignPosts(user: AdminUser | null | undefined, hasPostAssignments: boolean = false): boolean {
+  if (!user) return false;
+  return isAdmin(user) || hasPostAssignments;
+}
