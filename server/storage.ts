@@ -66,6 +66,7 @@ export interface IStorage {
   trashQrCode(id: number, trashedBy: number, reason?: string): Promise<QrCode>;
   restoreQrCode(id: number): Promise<QrCode>;
   getTrashedQrCodes(): Promise<QrCode[]>;
+  getUserQRCodes(userId: number): Promise<QrCode[]>; // Get QR codes created by specific user
   
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
@@ -134,6 +135,7 @@ export interface IStorage {
   createMedia(media: InsertMedia): Promise<Media>;
   updateMedia(id: number, updates: Partial<Media>): Promise<Media>;
   deleteMedia(id: number): Promise<void>;
+  getUserMedia(userId: number): Promise<Media[]>; // Get media uploaded by specific user
   
   // Blog Post Revisions
   getBlogPostRevisions(postId: number): Promise<BlogPostRevision[]>;
@@ -159,6 +161,7 @@ export interface IStorage {
   getUserPostAssignments(userId: number): Promise<PostAssignment[]>;
   getPostAssignments(postId: number): Promise<PostAssignment[]>;
   getUserAssignedPosts(userId: number): Promise<BlogPost[]>;
+  hasUserPostAssignments(userId: number): Promise<boolean>; // Check if user has any post assignments
   
   // Event Assignment Management
   assignEventToUser(assignment: InsertEventAssignment): Promise<EventAssignment>;
@@ -166,6 +169,7 @@ export interface IStorage {
   getUserEventAssignments(userId: number): Promise<EventAssignment[]>;
   getEventAssignments(eventId: number): Promise<EventAssignment[]>;
   getUserAssignedEvents(userId: number): Promise<Event[]>;
+  hasUserEventAssignments(userId: number): Promise<boolean>; // Check if user has any event assignments
   
   // Lead Assignment Management
   assignLeadToUser(assignment: InsertLeadAssignment): Promise<LeadAssignment>;
@@ -173,6 +177,7 @@ export interface IStorage {
   getUserLeadAssignments(userId: number): Promise<LeadAssignment[]>;
   getLeadAssignments(leadId: number): Promise<LeadAssignment[]>;
   getUserAssignedLeads(userId: number): Promise<Consultation[]>;
+  hasUserLeadAssignments(userId: number): Promise<boolean>; // Check if user has any lead assignments
   
   // Editing Session Management
   startEditingSession(session: InsertEditingSession): Promise<EditingSession>;
@@ -557,6 +562,13 @@ export class DatabaseStorage implements IStorage {
       .from(qrCodes)
       .where(sql`${qrCodes.trashedAt} IS NOT NULL`)
       .orderBy(desc(qrCodes.trashedAt));
+  }
+
+  async getUserQRCodes(userId: number): Promise<QrCode[]> {
+    return await db.select()
+      .from(qrCodes)
+      .where(eq(qrCodes.createdBy, userId))
+      .orderBy(desc(qrCodes.createdAt));
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {
@@ -1186,6 +1198,12 @@ export class DatabaseStorage implements IStorage {
     await db.delete(media).where(eq(media.id, id));
   }
 
+  async getUserMedia(userId: number): Promise<Media[]> {
+    return await db.select().from(media)
+      .where(eq(media.uploadedBy, userId))
+      .orderBy(desc(media.createdAt));
+  }
+
   // Blog Post Revisions Methods
   async getBlogPostRevisions(postId: number): Promise<BlogPostRevision[]> {
     return await db.select().from(blogPostRevisions)
@@ -1317,6 +1335,13 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(postAssignments.createdAt));
   }
   
+  async hasUserPostAssignments(userId: number): Promise<boolean> {
+    const [result] = await db.select({ count: sql<number>`count(*)` })
+      .from(postAssignments)
+      .where(eq(postAssignments.userId, userId));
+    return Number(result?.count) > 0;
+  }
+  
   async getUserAssignedPosts(userId: number): Promise<BlogPost[]> {
     // Get posts assigned to the user through postAssignments table
     const assignments = await db.select({
@@ -1359,6 +1384,13 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(eventAssignments.createdAt));
   }
   
+  async hasUserEventAssignments(userId: number): Promise<boolean> {
+    const [result] = await db.select({ count: sql<number>`count(*)` })
+      .from(eventAssignments)
+      .where(eq(eventAssignments.userId, userId));
+    return Number(result?.count) > 0;
+  }
+  
   async getUserAssignedEvents(userId: number): Promise<Event[]> {
     // Get events assigned to the user through eventAssignments table
     const assignments = await db.select({
@@ -1399,6 +1431,13 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(leadAssignments)
       .where(eq(leadAssignments.leadId, leadId))
       .orderBy(desc(leadAssignments.createdAt));
+  }
+  
+  async hasUserLeadAssignments(userId: number): Promise<boolean> {
+    const [result] = await db.select({ count: sql<number>`count(*)` })
+      .from(leadAssignments)
+      .where(eq(leadAssignments.userId, userId));
+    return Number(result?.count) > 0;
   }
   
   async getUserAssignedLeads(userId: number): Promise<Consultation[]> {
