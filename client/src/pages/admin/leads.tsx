@@ -23,10 +23,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, Mail, Phone, Globe, Calendar, Filter, Download, Trash2 } from "lucide-react";
+import { Search, Mail, Phone, Globe, Calendar, Filter, Download, Trash2, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import type { AdminUser, Consultation } from "@shared/schema";
 
 export default function LeadsManagement() {
@@ -37,6 +44,8 @@ export default function LeadsManagement() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [selectedLead, setSelectedLead] = useState<Consultation | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const queryClient = useQueryClient();
 
   // Check authentication
@@ -250,9 +259,14 @@ export default function LeadsManagement() {
     );
   };
 
+  const handleRowClick = (lead: Consultation) => {
+    setSelectedLead(lead);
+    setIsDetailsOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
-      <AdminHeader currentUser={currentUser} title="Leads Submissions" />
+      <AdminHeader currentUser={currentUser} title="Leads" />
       
       <div className="flex pt-16">
         <AdminSidebar currentUser={currentUser} />
@@ -261,9 +275,9 @@ export default function LeadsManagement() {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-6">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Leads Submissions</h1>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Leads</h1>
               <p className="text-gray-600 mt-1 font-medium">
-                View and manage all consultation leads submissions from your website
+                View and manage all consultation leads from your website
               </p>
             </div>
 
@@ -444,6 +458,7 @@ export default function LeadsManagement() {
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead>Assign To</TableHead>
+                          <TableHead className="w-20">Details</TableHead>
                           {isAdmin && <TableHead className="w-20">Actions</TableHead>}
                         </TableRow>
                       </TableHeader>
@@ -525,6 +540,17 @@ export default function LeadsManagement() {
                                 </SelectContent>
                               </Select>
                             </TableCell>
+                            <TableCell>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleRowClick(lead)}
+                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                                data-testid={`button-view-${lead.id}`}
+                              >
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                            </TableCell>
                             {isAdmin && (
                               <TableCell>
                                 <Button
@@ -552,6 +578,135 @@ export default function LeadsManagement() {
       </div>
 
       <MobileNav currentUser={currentUser} />
+
+      {/* Lead Details Dialog */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-[#1D50C9]">Lead Details</DialogTitle>
+            <DialogDescription>
+              Complete information about this lead submission
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedLead && (
+            <div className="space-y-6 mt-4">
+              {/* Personal Information */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Mail className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Name</p>
+                      <p className="font-medium text-gray-900">{selectedLead.name}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Mail className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Email</p>
+                      <p className="font-medium text-gray-900">{selectedLead.email}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Phone className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Phone</p>
+                      <p className="font-medium text-gray-900">{selectedLead.phone}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Globe className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Preferred Country</p>
+                      <p className="font-medium text-gray-900">{selectedLead.preferredCountry}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submission Details */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Submission Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Calendar className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Registration Date</p>
+                      <p className="font-medium text-gray-900">
+                        {format(new Date(selectedLead.createdAt!), "MMM d, yyyy 'at' h:mm a")}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Filter className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Source</p>
+                      <div className="mt-1">{getSourceBadge(selectedLead.source)}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Filter className="w-5 h-5 text-[#1D50C9]" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Status</p>
+                      <div className="mt-1">{getStatusBadge(selectedLead.status)}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Message */}
+              {selectedLead.message && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Message</h3>
+                  <div className="p-4 bg-gray-50 rounded-lg">
+                    <p className="text-gray-700 whitespace-pre-wrap">{selectedLead.message}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Actions */}
+              <div className="flex gap-3 pt-4 border-t">
+                <Button
+                  onClick={() => window.location.href = `mailto:${selectedLead.email}`}
+                  className="flex-1 bg-[#1D50C9] hover:bg-[#1845B3]"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Send Email
+                </Button>
+                <Button
+                  onClick={() => window.location.href = `tel:${selectedLead.phone}`}
+                  variant="outline"
+                  className="flex-1"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
