@@ -1013,14 +1013,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all QR codes (Admin only)
+  // Get all QR codes (Admin sees all, users see only their codes)
   app.get("/api/admin/qr-codes", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       if (!req.adminId) {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const qrCodes = await storage.getQrCodes();
+      const user = await storage.getAdminById(req.adminId);
+      
+      // Admin sees all QR codes, non-admin users see only their created codes
+      let qrCodes;
+      if (user?.role === 'admin') {
+        qrCodes = await storage.getQrCodes();
+      } else {
+        qrCodes = await storage.getUserQRCodes(req.adminId);
+      }
+      
       res.json(qrCodes);
     } catch (error) {
       console.error("Error fetching QR codes:", error);
@@ -4093,9 +4102,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all media (Admin/Editor access)
-  app.get("/api/admin/media", requireAuth, requireUser, async (req, res) => {
+  app.get("/api/admin/media", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
     try {
-      const media = await storage.getMedia();
+      const user = await storage.getAdminById(req.adminId!);
+      
+      // Admin sees all media, non-admin users see only their uploads
+      let media;
+      if (user?.role === 'admin') {
+        media = await storage.getMedia();
+      } else {
+        media = await storage.getUserMedia(req.adminId!);
+      }
+      
       res.json(media);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch media' });
@@ -5336,8 +5354,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // CUSTOM FORMS (FORM BUILDER) ROUTES
   // ========================================
 
-  // Get all custom forms
-  app.get("/api/admin/custom-forms", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get all custom forms (Admin only)
+  app.get("/api/admin/custom-forms", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const activeOnly = req.query.active === 'true';
       const forms = await storage.getCustomForms(activeOnly);
@@ -5348,8 +5366,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get custom form by ID
-  app.get("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get custom form by ID (Admin only)
+  app.get("/api/admin/custom-forms/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       const form = await storage.getCustomFormById(formId);
@@ -5365,8 +5383,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Create custom form
-  app.post("/api/admin/custom-forms", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Create custom form (Admin only)
+  app.post("/api/admin/custom-forms", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const form = await storage.createCustomForm({
         ...req.body,
@@ -5379,8 +5397,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update custom form
-  app.patch("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Update custom form (Admin only)
+  app.patch("/api/admin/custom-forms/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       const form = await storage.updateCustomForm(formId, req.body);
@@ -5391,8 +5409,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete custom form
-  app.delete("/api/admin/custom-forms/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Delete custom form (Admin only)
+  app.delete("/api/admin/custom-forms/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       await storage.deleteCustomForm(formId);
@@ -5403,8 +5421,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get form fields
-  app.get("/api/admin/custom-forms/:id/fields", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get form fields (Admin only)
+  app.get("/api/admin/custom-forms/:id/fields", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       const fields = await storage.getFormFields(formId);
@@ -5415,8 +5433,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Create form field
-  app.post("/api/admin/custom-forms/:id/fields", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Create form field (Admin only)
+  app.post("/api/admin/custom-forms/:id/fields", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       const field = await storage.createFormField({
@@ -5430,8 +5448,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update form field
-  app.patch("/api/admin/form-fields/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Update form field (Admin only)
+  app.patch("/api/admin/form-fields/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const fieldId = parseInt(req.params.id);
       const field = await storage.updateFormField(fieldId, req.body);
@@ -5442,8 +5460,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete form field
-  app.delete("/api/admin/form-fields/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Delete form field (Admin only)
+  app.delete("/api/admin/form-fields/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const fieldId = parseInt(req.params.id);
       await storage.deleteFormField(fieldId);
