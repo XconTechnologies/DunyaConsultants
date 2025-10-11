@@ -135,10 +135,8 @@ export default function EventRegistrationsPage() {
     },
   });
 
-  // Function to generate QR code if missing
+  // Function to generate QR code (will check if file exists on server)
   const generateQRCode = async (reg: EventRegistration) => {
-    if (reg.qrCodeUrl) return reg; // Already has QR code
-
     setGeneratingQR(true);
     try {
       const response = await fetch(`/api/admin/registrations/${reg.id}/generate-qr`, {
@@ -150,16 +148,20 @@ export default function EventRegistrationsPage() {
 
       const data = await response.json();
       
-      // Update the registration with the new QR code
-      const updatedReg = { ...reg, qrCodeUrl: data.qrCodeUrl };
+      // If the QR code was regenerated or already exists, update the registration
+      if (data.qrCodeUrl) {
+        const updatedReg = { ...reg, qrCodeUrl: data.qrCodeUrl };
+        setSelectedRegistration(updatedReg);
+        
+        // Only invalidate if a new QR was generated
+        if (!data.alreadyExists) {
+          queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+        }
+        
+        return updatedReg;
+      }
       
-      // Update the selected registration
-      setSelectedRegistration(updatedReg);
-      
-      // Invalidate and refetch registrations
-      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
-      
-      return updatedReg;
+      return reg;
     } catch (error) {
       console.error('Error generating QR code:', error);
       toast({
@@ -178,10 +180,8 @@ export default function EventRegistrationsPage() {
     setSelectedRegistration(reg);
     setIsDetailsOpen(true);
     
-    // Generate QR code if missing
-    if (!reg.qrCodeUrl) {
-      await generateQRCode(reg);
-    }
+    // Always try to generate QR code (endpoint will check if file exists)
+    await generateQRCode(reg);
   };
 
   // Export to CSV

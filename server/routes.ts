@@ -824,7 +824,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Generate QR code for a registration (if missing)
+  // Generate QR code for a registration (if missing or file doesn't exist)
   app.post("/api/admin/registrations/:id/generate-qr", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       if (!req.adminId) {
@@ -837,6 +837,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (!registration) {
         return res.status(404).json({ message: "Registration not found" });
+      }
+
+      // Check if QR code file exists
+      let needsGeneration = false;
+      if (registration.qrCodeUrl) {
+        const filePath = path.join(process.cwd(), 'public', registration.qrCodeUrl);
+        try {
+          await fs.promises.access(filePath);
+          // File exists, no need to regenerate
+          return res.json({ success: true, qrCodeUrl: registration.qrCodeUrl, alreadyExists: true });
+        } catch {
+          // File doesn't exist, need to generate
+          needsGeneration = true;
+        }
+      } else {
+        needsGeneration = true;
       }
 
       // Generate token if not exists
