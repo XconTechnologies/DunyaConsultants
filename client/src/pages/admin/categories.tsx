@@ -645,13 +645,7 @@ export default function CategoriesPage() {
                           <TableCell>
                             <div className="space-y-2">
                               <div className="font-semibold text-gray-900 text-base">{category.name}</div>
-                              <div className="text-sm text-gray-500">/{category.slug}</div>
-                              {category.description && (
-                                <div className="text-xs text-gray-500 mt-1 max-w-xs">
-                                  {category.description}
-                                </div>
-                              )}
-                              <div className="flex items-center gap-2 mt-2">
+                              <div className="flex items-center gap-2">
                                 <Button
                                   variant="ghost"
                                   size="sm"
