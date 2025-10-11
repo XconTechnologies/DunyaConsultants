@@ -135,6 +135,27 @@ export default function EventRegistrationsPage() {
     },
   });
 
+  // Bulk delete mutation (permanent)
+  const bulkDeleteMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/registrations/bulk-delete', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to delete registrations');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Selected registrations permanently deleted." });
+      queryClient.invalidateQueries({ queryKey: ["/api/events/registrations/all"] });
+      setSelectedIds([]);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to delete registrations.", variant: "destructive" });
+    },
+  });
+
   // Function to generate QR code (will check if file exists on server)
   const generateQRCode = async (reg: EventRegistration) => {
     setGeneratingQR(true);
@@ -438,13 +459,31 @@ export default function EventRegistrationsPage() {
                               </Select>
                               <Button
                                 size="sm"
-                                variant="destructive"
-                                onClick={() => bulkTrashMutation.mutate(selectedIds)}
+                                variant="outline"
+                                onClick={() => {
+                                  if (confirm(`Are you sure you want to move ${selectedIds.length} registration(s) to trash?`)) {
+                                    bulkTrashMutation.mutate(selectedIds);
+                                  }
+                                }}
                                 disabled={bulkTrashMutation.isPending}
+                                data-testid="button-bulk-trash"
+                              >
+                                <Trash2 className="h-4 w-4 mr-2" />
+                                Move to Trash
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => {
+                                  if (confirm(`⚠️ PERMANENT DELETE: Are you sure you want to permanently delete ${selectedIds.length} registration(s)? This action cannot be undone!`)) {
+                                    bulkDeleteMutation.mutate(selectedIds);
+                                  }
+                                }}
+                                disabled={bulkDeleteMutation.isPending}
                                 data-testid="button-bulk-delete"
                               >
                                 <Trash2 className="h-4 w-4 mr-2" />
-                                Delete
+                                Delete Permanently
                               </Button>
                             </div>
                           </div>
