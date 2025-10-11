@@ -123,6 +123,30 @@ export default function AllPosts() {
     },
   });
 
+  // Fetch categories for each post
+  const { data: postCategories = {} } = useQuery({
+    queryKey: ["/api/admin/blog-posts/categories", blogPosts],
+    enabled: authChecked && blogPosts.length > 0,
+    queryFn: async () => {
+      const categoriesMap: { [key: number]: any[] } = {};
+      await Promise.all(
+        blogPosts.map(async (post: BlogPost) => {
+          try {
+            const response = await fetch(`/api/admin/blog-posts/${post.id}/categories`, {
+              headers: getAuthHeaders()
+            });
+            if (response.ok) {
+              categoriesMap[post.id] = await response.json();
+            }
+          } catch (error) {
+            console.error(`Failed to fetch categories for post ${post.id}`);
+          }
+        })
+      );
+      return categoriesMap;
+    },
+  });
+
   // Get author name helper
   const getAuthorName = (authorId: number) => {
     const author = authors.find((a: Author) => a.id === authorId);
@@ -327,92 +351,112 @@ export default function AllPosts() {
                       )}
                     </TableHead>
                     <TableHead className="font-semibold text-gray-700">Title</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Category</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Status</TableHead>
                     <TableHead className="font-semibold text-gray-700 w-24 text-center">Delete</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {blogLoading ? (
                     <TableRow>
-                      <TableCell colSpan={3} className="text-center py-8">
+                      <TableCell colSpan={5} className="text-center py-8">
                         Loading blog posts...
                       </TableCell>
                     </TableRow>
                   ) : blogPosts.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={3} className="text-center py-8 text-gray-500">
+                      <TableCell colSpan={5} className="text-center py-8 text-gray-500">
                         No blog posts found. Create your first post!
                       </TableCell>
                     </TableRow>
                   ) : (
-                    blogPosts.map((post: BlogPost) => (
-                      <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
-                        <TableCell className="py-4">
-                          {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
-                            <Checkbox
-                              data-testid={`checkbox-select-blog-${post.id}`}
-                              checked={selectedIds.includes(post.id)}
-                              onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <div className="space-y-2">
-                            <div className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors">
-                              {post.title}
+                    blogPosts.map((post: BlogPost) => {
+                      const categories = postCategories[post.id] || [];
+                      return (
+                        <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
+                          <TableCell className="py-4">
+                            {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
+                              <Checkbox
+                                data-testid={`checkbox-select-blog-${post.id}`}
+                                checked={selectedIds.includes(post.id)}
+                                onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
+                              />
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            <div className="space-y-2">
+                              <div className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors">
+                                {post.title}
+                              </div>
+                              <div className="flex items-center gap-3 flex-wrap">
+                                {post.isPublished && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
+                                    data-testid={`button-view-blog-${post.id}`}
+                                    className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                                  >
+                                    <Eye className="w-3.5 h-3.5 mr-1.5" />
+                                    View
+                                  </Button>
+                                )}
+                                {canEditContent(adminUser) && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                                    data-testid={`button-edit-blog-${post.id}`}
+                                    className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                                  >
+                                    <Edit2 className="w-3.5 h-3.5 mr-1.5" />
+                                    Edit
+                                  </Button>
+                                )}
+                              </div>
                             </div>
-                            <div className="flex items-center gap-3 flex-wrap">
-                              <Badge 
-                                variant={post.isPublished ? "default" : "secondary"}
-                                className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
-                              >
-                                {post.isPublished ? "Published" : "Draft"}
-                              </Badge>
-                              {post.isPublished && (
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
-                                  data-testid={`button-view-blog-${post.id}`}
-                                  className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
-                                >
-                                  <Eye className="w-3.5 h-3.5 mr-1.5" />
-                                  View
-                                </Button>
-                              )}
-                              {canEditContent(adminUser) && (
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
-                                  data-testid={`button-edit-blog-${post.id}`}
-                                  className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
-                                >
-                                  <Edit2 className="w-3.5 h-3.5 mr-1.5" />
-                                  Edit
-                                </Button>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex flex-wrap gap-1">
+                              {categories.length > 0 ? (
+                                categories.map((cat: any) => (
+                                  <Badge key={cat.id} variant="outline" className="text-xs">
+                                    {cat.name}
+                                  </Badge>
+                                ))
+                              ) : (
+                                <span className="text-gray-400 text-sm">No category</span>
                               )}
                             </div>
-                          </div>
-                        </TableCell>
-                        <TableCell className="text-center">
-                          {canDeleteContent(adminUser) && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => {
-                                if (window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
-                                  deleteMutation.mutate(post.id);
-                                }
-                              }}
-                              data-testid={`button-delete-blog-${post.id}`}
-                              className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                          </TableCell>
+                          <TableCell>
+                            <Badge 
+                              variant={post.isPublished ? "default" : "secondary"}
+                              className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
                             >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    ))
+                              {post.isPublished ? "Published" : "Draft"}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            {canDeleteContent(adminUser) && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  if (window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
+                                    deleteMutation.mutate(post.id);
+                                  }
+                                }}
+                                data-testid={`button-delete-blog-${post.id}`}
+                                className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })
                   )}
                 </TableBody>
               </Table>
