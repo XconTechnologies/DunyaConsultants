@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, Mail, Phone, Globe, Calendar, Filter, Download, Trash2, Eye } from "lucide-react";
+import { Search, Mail, Phone, Globe, Calendar, Filter, Download, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
@@ -458,15 +458,19 @@ export default function LeadsManagement() {
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead>Assign To</TableHead>
-                          <TableHead className="w-20">Details</TableHead>
                           {isAdmin && <TableHead className="w-20">Actions</TableHead>}
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {filteredLeads.map((lead) => (
-                          <TableRow key={lead.id}>
+                          <TableRow 
+                            key={lead.id}
+                            onClick={() => handleRowClick(lead)}
+                            className="cursor-pointer hover:bg-blue-50/50"
+                            data-testid={`row-lead-${lead.id}`}
+                          >
                             {isAdmin && (
-                              <TableCell>
+                              <TableCell onClick={(e) => e.stopPropagation()}>
                                 <Checkbox
                                   checked={selectedIds.includes(lead.id)}
                                   onCheckedChange={() => toggleSelect(lead.id)}
@@ -480,7 +484,7 @@ export default function LeadsManagement() {
                             <TableCell className="font-medium">{lead.name}</TableCell>
                             <TableCell className="text-sm">{lead.preferredCountry}</TableCell>
                             <TableCell>{getSourceBadge(lead.source)}</TableCell>
-                            <TableCell>
+                            <TableCell onClick={(e) => e.stopPropagation()}>
                               <Select
                                 value={lead.status || "pending"}
                                 onValueChange={(value) => updateStatusMutation.mutate({ id: lead.id, status: value })}
@@ -523,7 +527,7 @@ export default function LeadsManagement() {
                                 </SelectContent>
                               </Select>
                             </TableCell>
-                            <TableCell>
+                            <TableCell onClick={(e) => e.stopPropagation()}>
                               <Select
                                 onValueChange={(value) => reassignLeadMutation.mutate({ id: lead.id, userId: parseInt(value) })}
                                 disabled={reassignLeadMutation.isPending || eligibleUsers.length === 0}
@@ -540,19 +544,8 @@ export default function LeadsManagement() {
                                 </SelectContent>
                               </Select>
                             </TableCell>
-                            <TableCell>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleRowClick(lead)}
-                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
-                                data-testid={`button-view-${lead.id}`}
-                              >
-                                <Eye className="w-4 h-4" />
-                              </Button>
-                            </TableCell>
                             {isAdmin && (
-                              <TableCell>
+                              <TableCell onClick={(e) => e.stopPropagation()}>
                                 <Button
                                   variant="ghost"
                                   size="sm"
@@ -583,54 +576,46 @@ export default function LeadsManagement() {
       <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-[#1D50C9]">Lead Details</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-xl font-bold">Lead Details</DialogTitle>
+            <DialogDescription className="text-sm text-gray-500">
               Complete information about this lead submission
             </DialogDescription>
           </DialogHeader>
           
           {selectedLead && (
-            <div className="space-y-6 mt-4">
+            <div className="space-y-6 mt-2">
               {/* Personal Information */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Personal Information</h3>
+              <div className="space-y-3">
+                <h3 className="text-base font-semibold text-gray-900">Personal Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Mail className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Name</p>
-                      <p className="font-medium text-gray-900">{selectedLead.name}</p>
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Name</p>
+                      <p className="font-medium text-gray-900 truncate">{selectedLead.name}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Mail className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Email</p>
-                      <p className="font-medium text-gray-900">{selectedLead.email}</p>
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Email</p>
+                      <p className="font-medium text-gray-900 truncate">{selectedLead.email}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Phone className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Phone</p>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Phone</p>
                       <p className="font-medium text-gray-900">{selectedLead.phone}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Globe className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Preferred Country</p>
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Preferred Country</p>
                       <p className="font-medium text-gray-900">{selectedLead.preferredCountry}</p>
                     </div>
                   </div>
@@ -638,38 +623,32 @@ export default function LeadsManagement() {
               </div>
 
               {/* Submission Details */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Submission Details</h3>
+              <div className="space-y-3 border-t pt-4">
+                <h3 className="text-base font-semibold text-gray-900">Submission Details</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Calendar className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Registration Date</p>
+                  <div className="flex items-center gap-3">
+                    <Calendar className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Registration Date</p>
                       <p className="font-medium text-gray-900">
                         {format(new Date(selectedLead.createdAt!), "MMM d, yyyy 'at' h:mm a")}
                       </p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Filter className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Source</p>
-                      <div className="mt-1">{getSourceBadge(selectedLead.source)}</div>
+                  <div className="flex items-center gap-3">
+                    <Filter className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Source</p>
+                      <div className="mt-0.5">{getSourceBadge(selectedLead.source)}</div>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Filter className="w-5 h-5 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Status</p>
-                      <div className="mt-1">{getStatusBadge(selectedLead.status)}</div>
+                  <div className="flex items-center gap-3">
+                    <Filter className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Status</p>
+                      <div className="mt-0.5">{getStatusBadge(selectedLead.status)}</div>
                     </div>
                   </div>
                 </div>
@@ -677,10 +656,10 @@ export default function LeadsManagement() {
 
               {/* Message */}
               {selectedLead.message && (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Message</h3>
-                  <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-gray-700 whitespace-pre-wrap">{selectedLead.message}</p>
+                <div className="space-y-3 border-t pt-4">
+                  <h3 className="text-base font-semibold text-gray-900">Message</h3>
+                  <div className="p-3 bg-gray-50 rounded-md border">
+                    <p className="text-sm text-gray-700 whitespace-pre-wrap">{selectedLead.message}</p>
                   </div>
                 </div>
               )}
@@ -690,6 +669,7 @@ export default function LeadsManagement() {
                 <Button
                   onClick={() => window.location.href = `mailto:${selectedLead.email}`}
                   className="flex-1 bg-[#1D50C9] hover:bg-[#1845B3]"
+                  data-testid="button-send-email"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Send Email
@@ -697,7 +677,8 @@ export default function LeadsManagement() {
                 <Button
                   onClick={() => window.location.href = `tel:${selectedLead.phone}`}
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 border-gray-300"
+                  data-testid="button-call-now"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Now
