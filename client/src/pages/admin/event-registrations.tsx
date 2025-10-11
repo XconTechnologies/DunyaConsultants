@@ -236,7 +236,7 @@ export default function EventRegistrationsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       <AdminSidebar 
         currentUser={adminUser} 
         isOpen={sidebarOpen}
@@ -265,15 +265,15 @@ export default function EventRegistrationsPage() {
             </Card>
           ) : (
             <Tabs defaultValue={eventsWithRegistrations[0]?.id.toString()} className="space-y-6">
-              <TabsList className="bg-white p-1 shadow-sm">
+              <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0">
                 {eventsWithRegistrations.map((event: Event) => (
                   <TabsTrigger 
                     key={event.id} 
                     value={event.id.toString()}
-                    className="data-[state=active]:bg-[#1D50C9] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all"
                   >
                     {event.title}
-                    <Badge variant="secondary" className="ml-2">
+                    <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0">
                       {registrationsByEvent[event.id]?.length || 0}
                     </Badge>
                   </TabsTrigger>
@@ -289,45 +289,45 @@ export default function EventRegistrationsPage() {
                   <TabsContent key={event.id} value={event.id.toString()} className="space-y-6">
                     {/* Event Stats */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <Card>
+                      <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow">
                         <CardHeader className="pb-3">
-                          <CardDescription>Total Registrations</CardDescription>
-                          <CardTitle className="text-3xl text-[#1D50C9]">{eventRegs.length}</CardTitle>
+                          <CardDescription className="font-medium text-gray-600">Total Registrations</CardDescription>
+                          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">{eventRegs.length}</CardTitle>
                         </CardHeader>
                       </Card>
-                      <Card>
+                      <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-shadow">
                         <CardHeader className="pb-3">
-                          <CardDescription>Attended</CardDescription>
-                          <CardTitle className="text-3xl text-green-600">{attendedCount}</CardTitle>
+                          <CardDescription className="font-medium text-gray-600">Attended</CardDescription>
+                          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{attendedCount}</CardTitle>
                         </CardHeader>
                       </Card>
-                      <Card>
+                      <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-50 to-slate-50 hover:shadow-xl transition-shadow">
                         <CardHeader className="pb-3">
-                          <CardDescription>Not Attended</CardDescription>
-                          <CardTitle className="text-3xl text-gray-400">{eventRegs.length - attendedCount}</CardTitle>
+                          <CardDescription className="font-medium text-gray-600">Not Attended</CardDescription>
+                          <CardTitle className="text-3xl font-bold text-gray-500">{eventRegs.length - attendedCount}</CardTitle>
                         </CardHeader>
                       </Card>
-                      <Card>
+                      <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-shadow">
                         <CardHeader className="pb-3">
-                          <CardDescription>Prize Eligible</CardDescription>
-                          <CardTitle className="text-3xl text-purple-600">{eligibleCount}</CardTitle>
+                          <CardDescription className="font-medium text-gray-600">Prize Eligible</CardDescription>
+                          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{eligibleCount}</CardTitle>
                         </CardHeader>
                       </Card>
                     </div>
 
                     {/* Registrations Table */}
-                    <Card>
+                    <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
                       <CardHeader>
                         <div className="flex items-center justify-between">
                           <div>
-                            <CardTitle>{event.title} - Registrations</CardTitle>
-                            <CardDescription>Complete list of all registrations for this event</CardDescription>
+                            <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">{event.title} - Registrations</CardTitle>
+                            <CardDescription className="font-medium">Complete list of all registrations for this event</CardDescription>
                           </div>
                           <div className="flex gap-2">
                             <Button
                               onClick={() => exportToCSV(eventRegs, event.title)}
                               variant="outline"
-                              className="gap-2"
+                              className="gap-2 border-[#1D50C9]/30 hover:bg-[#1D50C9]/5"
                               data-testid={`button-export-csv-${event.id}`}
                             >
                               <Download className="h-4 w-4" />
@@ -336,7 +336,7 @@ export default function EventRegistrationsPage() {
                             <Button
                               onClick={() => exportToSheets(eventRegs, event.title)}
                               variant="outline"
-                              className="gap-2"
+                              className="gap-2 border-[#1D50C9]/30 hover:bg-[#1D50C9]/5"
                               data-testid={`button-export-sheets-${event.id}`}
                             >
                               <FileSpreadsheet className="h-4 w-4" />
@@ -394,8 +394,8 @@ export default function EventRegistrationsPage() {
                         <div className="overflow-x-auto">
                           <Table>
                             <TableHeader>
-                              <TableRow>
-                                <TableHead className="w-12">
+                              <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                                <TableHead className="w-12 py-4">
                                   <Checkbox
                                     checked={eventRegs.length > 0 && selectedIds.length === eventRegs.length}
                                     onCheckedChange={(checked) => {
@@ -408,21 +408,21 @@ export default function EventRegistrationsPage() {
                                     data-testid="checkbox-select-all"
                                   />
                                 </TableHead>
-                                <TableHead>Name</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Phone</TableHead>
-                                <TableHead>Education</TableHead>
-                                <TableHead>Destination</TableHead>
-                                <TableHead>Attendance</TableHead>
-                                <TableHead>Prize Status</TableHead>
-                                <TableHead>Registered</TableHead>
-                                <TableHead>Actions</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Name</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Email</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Phone</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Education</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Destination</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Attendance</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Prize Status</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Registered</TableHead>
+                                <TableHead className="font-semibold text-gray-700">Actions</TableHead>
                               </TableRow>
                             </TableHeader>
                             <TableBody>
                               {eventRegs.map((reg: EventRegistration) => (
-                                <TableRow key={reg.id}>
-                                  <TableCell>
+                                <TableRow key={reg.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
+                                  <TableCell className="py-4">
                                     <Checkbox
                                       checked={selectedIds.includes(reg.id)}
                                       onCheckedChange={(checked) => {
@@ -436,7 +436,7 @@ export default function EventRegistrationsPage() {
                                     />
                                   </TableCell>
                                   <TableCell>
-                                    <div className="font-medium">{reg.name}</div>
+                                    <div className="font-semibold text-gray-900">{reg.name}</div>
                                   </TableCell>
                                   <TableCell>
                                     <div className="flex items-center gap-1 text-sm text-gray-600">
@@ -464,12 +464,12 @@ export default function EventRegistrationsPage() {
                                   </TableCell>
                                   <TableCell>
                                     {reg.isAttended ? (
-                                      <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm">
                                         <CheckCircle2 className="h-3 w-3 mr-1" />
                                         Attended
                                       </Badge>
                                     ) : (
-                                      <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                                      <Badge className="bg-gradient-to-r from-gray-100 to-slate-100 text-gray-600 border-0">
                                         <XCircle className="h-3 w-3 mr-1" />
                                         Not Attended
                                       </Badge>
@@ -477,17 +477,17 @@ export default function EventRegistrationsPage() {
                                   </TableCell>
                                   <TableCell>
                                     {reg.prizeStatus === 'eligible' && (
-                                      <Badge className="bg-purple-100 text-purple-800 hover:bg-purple-100">
+                                      <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 shadow-sm">
                                         Eligible
                                       </Badge>
                                     )}
                                     {reg.prizeStatus === 'distributed' && (
-                                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+                                      <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-sm">
                                         Distributed
                                       </Badge>
                                     )}
                                     {reg.prizeStatus === 'pending' && (
-                                      <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                                      <Badge className="bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0">
                                         Pending
                                       </Badge>
                                     )}
