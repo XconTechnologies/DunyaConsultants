@@ -224,7 +224,7 @@ export default function AllPosts() {
   if (!authChecked) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       <AdminSidebar currentUser={adminUser} />
       
       {/* Mobile Navigation */}
@@ -235,8 +235,8 @@ export default function AllPosts() {
           {/* Header */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">All Posts</h1>
-              <p className="text-gray-600 mt-2">Manage all blog posts</p>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">All Posts</h1>
+              <p className="text-gray-600 mt-2 font-medium">Manage all blog posts</p>
             </div>
             {canCreateContent(adminUser) && (
               <Button 
@@ -312,12 +312,12 @@ export default function AllPosts() {
           )}
 
           {/* Posts Table */}
-          <Card>
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm overflow-hidden">
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12">
+                  <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                    <TableHead className="w-12 py-4">
                       {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
                         <Checkbox
                           data-testid="checkbox-select-all"
@@ -326,12 +326,12 @@ export default function AllPosts() {
                         />
                       )}
                     </TableHead>
-                    <TableHead>Title</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Author</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Title</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Category</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Date</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Status</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Author</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -349,8 +349,8 @@ export default function AllPosts() {
                     </TableRow>
                   ) : (
                     blogPosts.map((post: BlogPost) => (
-                      <TableRow key={post.id}>
-                        <TableCell>
+                      <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
+                        <TableCell className="py-4">
                           {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
                             <Checkbox
                               data-testid={`checkbox-select-blog-${post.id}`}
@@ -359,15 +359,15 @@ export default function AllPosts() {
                             />
                           )}
                         </TableCell>
-                        <TableCell className="font-medium">
+                        <TableCell className="font-semibold text-gray-900">
                           <div>
-                            <div>{post.title}</div>
+                            <div className="hover:text-[#1D50C9] transition-colors">{post.title}</div>
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="secondary">General</Badge>
+                          <Badge className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-0 font-medium">General</Badge>
                         </TableCell>
-                        <TableCell className="text-sm text-gray-500">
+                        <TableCell className="text-sm text-gray-600 font-medium">
                           {post.publishedAt 
                             ? new Date(post.publishedAt).toLocaleDateString()
                             : new Date(post.createdAt).toLocaleDateString()
@@ -376,7 +376,7 @@ export default function AllPosts() {
                         <TableCell>
                           <Badge 
                             variant={post.isPublished ? "default" : "secondary"}
-                            className={post.isPublished ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
+                            className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
                           >
                             {post.isPublished ? "Published" : "Draft"}
                           </Badge>
