@@ -309,8 +309,6 @@ export default function TrashManagement() {
                           <TableHead>File</TableHead>
                           <TableHead>Type</TableHead>
                           <TableHead>Size</TableHead>
-                          <TableHead>Trashed At</TableHead>
-                          <TableHead>Reason</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -320,8 +318,6 @@ export default function TrashManagement() {
                             <TableCell className="font-medium">{media.originalName}</TableCell>
                             <TableCell>{media.mimeType}</TableCell>
                             <TableCell>{formatFileSize(media.size)}</TableCell>
-                            <TableCell>{formatDate(media.trashedAt!)}</TableCell>
-                            <TableCell>{media.trashReason || '-'}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
@@ -366,8 +362,6 @@ export default function TrashManagement() {
                         <TableRow>
                           <TableHead>Title</TableHead>
                           <TableHead>Status</TableHead>
-                          <TableHead>Trashed At</TableHead>
-                          <TableHead>Reason</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -378,8 +372,6 @@ export default function TrashManagement() {
                             <TableCell>
                               <Badge variant="outline">{post.status}</Badge>
                             </TableCell>
-                            <TableCell>{formatDate(post.trashedAt!)}</TableCell>
-                            <TableCell>{post.trashReason || '-'}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
@@ -424,8 +416,6 @@ export default function TrashManagement() {
                         <TableRow>
                           <TableHead>Name</TableHead>
                           <TableHead>Slug</TableHead>
-                          <TableHead>Trashed At</TableHead>
-                          <TableHead>Reason</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -434,8 +424,6 @@ export default function TrashManagement() {
                           <TableRow key={category.id} data-testid={`row-trash-category-${category.id}`}>
                             <TableCell className="font-medium">{category.name}</TableCell>
                             <TableCell>{category.slug}</TableCell>
-                            <TableCell>{formatDate(category.trashedAt!)}</TableCell>
-                            <TableCell>{category.trashReason || '-'}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
@@ -480,8 +468,6 @@ export default function TrashManagement() {
                         <TableRow>
                           <TableHead>Title</TableHead>
                           <TableHead>Date</TableHead>
-                          <TableHead>Trashed At</TableHead>
-                          <TableHead>Reason</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -490,8 +476,6 @@ export default function TrashManagement() {
                           <TableRow key={event.id} data-testid={`row-trash-event-${event.id}`}>
                             <TableCell className="font-medium">{event.title}</TableCell>
                             <TableCell>{formatDate(event.eventDate)}</TableCell>
-                            <TableCell>{formatDate(event.trashedAt!)}</TableCell>
-                            <TableCell>{event.trashReason || '-'}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
@@ -537,8 +521,6 @@ export default function TrashManagement() {
                           <TableHead>Username</TableHead>
                           <TableHead>Email</TableHead>
                           <TableHead>Role</TableHead>
-                          <TableHead>Trashed At</TableHead>
-                          <TableHead>Reason</TableHead>
                           <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -550,8 +532,6 @@ export default function TrashManagement() {
                             <TableCell>
                               <Badge>{user.role}</Badge>
                             </TableCell>
-                            <TableCell>{formatDate(user.trashedAt!)}</TableCell>
-                            <TableCell>{user.trashReason || '-'}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
