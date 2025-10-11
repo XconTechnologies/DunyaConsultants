@@ -57,7 +57,7 @@ const ROLE_CONFIG = {
     label: "Admin",
     color: "bg-red-500",
     icon: Crown,
-    description: "Full system access",
+    description: "Full access to all content and settings",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
@@ -78,7 +78,7 @@ const ROLE_CONFIG = {
     label: "Editor",
     color: "bg-blue-500",
     icon: FileEdit,
-    description: "Create and edit content",
+    description: "Create and edit assigned posts/events",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
@@ -99,7 +99,7 @@ const ROLE_CONFIG = {
     label: "Publisher",
     color: "bg-green-500",
     icon: Upload,
-    description: "Edit and publish content",
+    description: "Create, edit and publish assigned content",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
@@ -120,7 +120,7 @@ const ROLE_CONFIG = {
     label: "Custom",
     color: "bg-purple-500",
     icon: Settings,
-    description: "Custom permissions",
+    description: "Configure specific permissions for this user",
     defaultPermissions: {
       canCreate: false,
       canEdit: false,
@@ -562,18 +562,18 @@ export default function UserManagement() {
                       .filter(([permission]) => permission !== 'canManageMedia') // Hide Media - admin only
                       .map(([permission, defaultValue]) => {
                       const permissionLabels: Record<string, string> = {
-                        canCreate: "Create Content",
-                        canEdit: "Edit Content", 
-                        canPublish: "Publish Content",
-                        canDelete: "Delete Content",
-                        canManageUsers: "Manage Users",
-                        canManageCategories: "Manage Categories", 
-                        canViewAnalytics: "View Analytics",
-                        canAccessEvents: "Access Events",
-                        canAccessQRScanner: "Access QR Scanner",
-                        canManageLeads: "Manage Leads",
-                        canDownloadRegistrations: "Download Registrations",
-                        canDeleteRegistrations: "Delete Registrations"
+                        canCreate: "Create Posts",
+                        canEdit: "Edit Assigned Posts", 
+                        canPublish: "Publish Posts",
+                        canDelete: "Delete Posts",
+                        canManageUsers: "Manage User Assignments",
+                        canManageCategories: "Manage Post Categories", 
+                        canViewAnalytics: "View Dashboard Analytics",
+                        canAccessEvents: "Manage Assigned Events",
+                        canAccessQRScanner: "Create & View QR Codes",
+                        canManageLeads: "Manage Assigned Leads",
+                        canDownloadRegistrations: "Download Event Data",
+                        canDeleteRegistrations: "Delete Event Registrations"
                       };
                       
                       return (
@@ -841,18 +841,18 @@ export default function UserManagement() {
                       .filter(([permission]) => permission !== 'canManageMedia') // Hide Media - admin only
                       .map(([permission, defaultValue]) => {
                       const permissionLabels: Record<string, string> = {
-                        canCreate: "Create Content",
-                        canEdit: "Edit Content", 
-                        canPublish: "Publish Content",
-                        canDelete: "Delete Content",
-                        canManageUsers: "Manage Users",
-                        canManageCategories: "Manage Categories", 
-                        canViewAnalytics: "View Analytics",
-                        canAccessEvents: "Access Events",
-                        canAccessQRScanner: "Access QR Scanner",
-                        canManageLeads: "Manage Leads",
-                        canDownloadRegistrations: "Download Registrations",
-                        canDeleteRegistrations: "Delete Registrations"
+                        canCreate: "Create Posts",
+                        canEdit: "Edit Assigned Posts", 
+                        canPublish: "Publish Posts",
+                        canDelete: "Delete Posts",
+                        canManageUsers: "Manage User Assignments",
+                        canManageCategories: "Manage Post Categories", 
+                        canViewAnalytics: "View Dashboard Analytics",
+                        canAccessEvents: "Manage Assigned Events",
+                        canAccessQRScanner: "Create & View QR Codes",
+                        canManageLeads: "Manage Assigned Leads",
+                        canDownloadRegistrations: "Download Event Data",
+                        canDeleteRegistrations: "Delete Event Registrations"
                       };
                       
                       return (
