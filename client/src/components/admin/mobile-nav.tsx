@@ -12,7 +12,8 @@ import {
   ClipboardList,
   Activity,
   Database,
-  Mail
+  Mail,
+  FileEdit
 } from "lucide-react";
 import { 
   hasPostAssignments,
@@ -87,6 +88,11 @@ const navItems: NavItem[] = [
     title: "Activity",
     href: "/admin/user-activity",
     icon: Activity
+  },
+  {
+    title: "Forms",
+    href: "/admin/form-management",
+    icon: FileEdit
   },
   {
     title: "Leads",
@@ -187,6 +193,11 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
     
     // Activity: Admin-only
     if (item.href === "/admin/user-activity") {
+      return isAdmin(currentUser);
+    }
+    
+    // Forms: Admin-only
+    if (item.href === "/admin/form-management") {
       return isAdmin(currentUser);
     }
     

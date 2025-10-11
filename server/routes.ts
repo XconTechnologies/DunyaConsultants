@@ -5583,8 +5583,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Reorder form fields
-  app.post("/api/admin/custom-forms/:id/fields/reorder", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Reorder form fields (Admin only)
+  app.post("/api/admin/custom-forms/:id/fields/reorder", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = parseInt(req.params.id);
       const { fieldOrders } = req.body;
@@ -5596,8 +5596,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get custom form submissions
-  app.get("/api/admin/custom-form-submissions", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get custom form submissions (Admin only)
+  app.get("/api/admin/custom-form-submissions", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const formId = req.query.formId ? parseInt(req.query.formId as string) : undefined;
       const submissions = await storage.getCustomFormSubmissions(formId);
@@ -5608,8 +5608,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get custom form submission by ID
-  app.get("/api/admin/custom-form-submissions/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get custom form submission by ID (Admin only)
+  app.get("/api/admin/custom-form-submissions/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const submissionId = parseInt(req.params.id);
       const submission = await storage.getCustomFormSubmissionById(submissionId);
