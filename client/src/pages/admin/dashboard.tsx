@@ -862,7 +862,7 @@ export default function AdminDashboard() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Mail className="h-6 w-6 text-[#1D50C9]" />
-              Form Submissions & Leads
+              Leads Submissions
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Total Leads Card */}
@@ -876,7 +876,7 @@ export default function AdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold text-[#1D50C9]">{leads.length}</div>
-                  <p className="text-xs text-gray-600 mt-1">All form submissions</p>
+                  <p className="text-xs text-gray-600 mt-1">All leads submissions</p>
                 </CardContent>
               </Card>
 

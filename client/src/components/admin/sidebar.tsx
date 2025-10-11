@@ -126,16 +126,16 @@ const sidebarItems: SidebarItem[] = [
     description: "Create and manage custom forms"
   },
   {
-    title: "Form Submissions",
+    title: "Leads Submissions",
     href: "/admin/leads",
     icon: Mail,
-    description: "View all form submissions",
+    description: "View all leads submissions",
     subItems: [
       {
-        title: "Form Assignments",
+        title: "Leads Assignments",
         href: "/admin/lead-assignments",
         icon: Mail,
-        description: "Assign forms to users"
+        description: "Assign leads to users"
       }
     ]
   },
@@ -167,7 +167,7 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ currentUser, isOpen = true, onClose }: AdminSidebarProps) {
   const [location] = useLocation();
-  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Form Submissions"]));
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Leads Submissions"]));
 
   const toggleItem = (title: string) => {
     const newExpanded = new Set(expandedItems);

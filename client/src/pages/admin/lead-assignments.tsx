@@ -296,16 +296,16 @@ export default function LeadAssignments() {
         
         <div className="p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">Form Assignments</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Leads Assignments</h1>
             <p className="text-gray-600 mt-2">
-              Assign form submissions to specific users for personalized management
+              Assign leads submissions to specific users for personalized management
             </p>
           </div>
 
           <Card className="mb-6">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle>All Form Assignments</CardTitle>
+                <CardTitle>All Leads Assignments</CardTitle>
                 <p className="text-sm text-gray-600 mt-1">
                   {assignments.length} total assignments
                 </p>
@@ -320,7 +320,7 @@ export default function LeadAssignments() {
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl max-h-[80vh]">
                   <DialogHeader>
-                    <DialogTitle>Assign Form Submissions to User</DialogTitle>
+                    <DialogTitle>Assign Leads Submissions to User</DialogTitle>
                   </DialogHeader>
                   
                   <div className="space-y-4">

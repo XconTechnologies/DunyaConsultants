@@ -213,7 +213,7 @@ export default function LeadsManagement() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <AdminHeader currentUser={currentUser} title="Form Submissions" />
+      <AdminHeader currentUser={currentUser} title="Leads Submissions" />
       
       <div className="flex pt-16">
         <AdminSidebar currentUser={currentUser} />
@@ -222,9 +222,9 @@ export default function LeadsManagement() {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">Form Submissions</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Leads Submissions</h1>
               <p className="text-gray-600 mt-1">
-                View and manage all consultation form submissions from your website
+                View and manage all consultation leads submissions from your website
               </p>
             </div>
 
