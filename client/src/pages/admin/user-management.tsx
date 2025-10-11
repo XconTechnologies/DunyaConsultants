@@ -558,7 +558,9 @@ export default function UserManagement() {
                   </div>
                   <p className="text-xs text-gray-600 mb-3">Select the specific permissions for this user</p>
                   <div className="grid grid-cols-2 gap-3">
-                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions).map(([permission, defaultValue]) => {
+                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions)
+                      .filter(([permission]) => permission !== 'canManageMedia') // Hide Media - admin only
+                      .map(([permission, defaultValue]) => {
                       const permissionLabels: Record<string, string> = {
                         canCreate: "Create Content",
                         canEdit: "Edit Content", 
@@ -567,7 +569,6 @@ export default function UserManagement() {
                         canManageUsers: "Manage Users",
                         canManageCategories: "Manage Categories", 
                         canViewAnalytics: "View Analytics",
-                        canManageMedia: "Manage Media",
                         canAccessEvents: "Access Events",
                         canAccessQRScanner: "Access QR Scanner",
                         canManageLeads: "Manage Leads",
@@ -836,7 +837,9 @@ export default function UserManagement() {
                   </div>
                   <p className="text-xs text-gray-600 mb-3">Select the specific permissions for this user</p>
                   <div className="grid grid-cols-2 gap-3">
-                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions).map(([permission, defaultValue]) => {
+                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions)
+                      .filter(([permission]) => permission !== 'canManageMedia') // Hide Media - admin only
+                      .map(([permission, defaultValue]) => {
                       const permissionLabels: Record<string, string> = {
                         canCreate: "Create Content",
                         canEdit: "Edit Content", 
@@ -845,7 +848,6 @@ export default function UserManagement() {
                         canManageUsers: "Manage Users",
                         canManageCategories: "Manage Categories", 
                         canViewAnalytics: "View Analytics",
-                        canManageMedia: "Manage Media",
                         canAccessEvents: "Access Events",
                         canAccessQRScanner: "Access QR Scanner",
                         canManageLeads: "Manage Leads",
