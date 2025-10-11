@@ -2003,6 +2003,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get current user's assignment status
+  app.get("/api/admin/me/assignment-status", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const user = await storage.getAdminById(req.adminId);
+      
+      // Admin has access to everything
+      if (user?.role === 'admin') {
+        return res.json({
+          hasPostAssignments: true,
+          hasEventAssignments: true,
+          hasLeadAssignments: true,
+          hasMedia: true,
+          hasQRCodes: true
+        });
+      }
+
+      // For non-admin users, check actual assignments and ownership
+      const hasPostAssignments = await storage.hasUserPostAssignments(req.adminId);
+      const hasEventAssignments = await storage.hasUserEventAssignments(req.adminId);
+      const hasLeadAssignments = await storage.hasUserLeadAssignments(req.adminId);
+      
+      // Check if user has uploaded any media
+      const userMedia = await storage.getUserMedia(req.adminId);
+      const hasMedia = userMedia.length > 0;
+      
+      // Check if user has created any QR codes
+      const userQRCodes = await storage.getUserQRCodes(req.adminId);
+      const hasQRCodes = userQRCodes.length > 0;
+
+      res.json({
+        hasPostAssignments,
+        hasEventAssignments,
+        hasLeadAssignments,
+        hasMedia,
+        hasQRCodes
+      });
+    } catch (error) {
+      console.error("Error fetching assignment status:", error);
+      res.status(500).json({ message: "Failed to fetch assignment status" });
+    }
+  });
+
   // ==============================================
   // USER MANAGEMENT ROUTES (Admin Only)
   // ==============================================

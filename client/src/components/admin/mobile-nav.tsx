@@ -15,14 +15,15 @@ import {
   Mail
 } from "lucide-react";
 import { 
-  canManageUsers, 
-  canAccessEvents, 
-  canManageLeads, 
-  canAccessQRScanner,
-  canManageMedia,
-  canManageCategories,
+  hasPostAssignments,
+  canManageOwnMedia,
+  canAccessManagedEvents,
+  canManageAssignedLeads,
+  canAccessOwnQRCodes,
+  canAssignPosts,
   isAdmin
 } from "@/lib/permissions";
+import { useQuery } from "@tanstack/react-query";
 import type { AdminUser } from "@shared/schema";
 
 interface NavItem {
@@ -116,39 +117,86 @@ interface MobileNavProps {
 export default function MobileNav({ currentUser }: MobileNavProps) {
   const [location] = useLocation();
 
+  // Fetch assignment status for current user
+  const { data: assignmentStatus } = useQuery({
+    queryKey: ['/api/admin/me/assignment-status'],
+    enabled: !!currentUser,
+  });
+
+  const hasUserPostAssignments = assignmentStatus?.hasPostAssignments || false;
+  const hasUserEventAssignments = assignmentStatus?.hasEventAssignments || false;
+  const hasUserLeadAssignments = assignmentStatus?.hasLeadAssignments || false;
+  const hasUserMedia = assignmentStatus?.hasMedia || false;
+  const hasUserQRCodes = assignmentStatus?.hasQRCodes || false;
+
   const visibleItems = navItems.filter((item) => {
-    // Dashboard and posts are always visible
-    if (item.href === "/admin/dashboard" || item.href === "/admin/posts") {
+    // Dashboard is always visible
+    if (item.href === "/admin/dashboard") {
       return true;
     }
     
-    // Categories require canManageCategories permission
+    // Posts: Show if user has post assignments OR is admin
+    if (item.href === "/admin/posts") {
+      return hasPostAssignments(currentUser, hasUserPostAssignments);
+    }
+    
+    // Categories: Show if user has post assignments OR is admin
     if (item.href === "/admin/categories") {
-      return canManageCategories(currentUser) || isAdmin(currentUser);
+      return hasPostAssignments(currentUser, hasUserPostAssignments);
     }
     
-    // Events and registrations require canAccessEvents permission
-    if (item.href === "/admin/events" || item.href === "/admin/event-registrations") {
-      return canAccessEvents(currentUser) || isAdmin(currentUser);
-    }
-    
-    // Media requires canManageMedia permission
+    // Media: Show if user has media uploads OR has post assignments OR is admin
     if (item.href === "/admin/media") {
-      return canManageMedia(currentUser) || isAdmin(currentUser);
+      return canManageOwnMedia(currentUser, hasUserMedia, hasUserPostAssignments);
     }
     
-    // QR scanner and QR codes require canAccessQRScanner permission
-    if (item.href === "/admin/qr-scanner" || item.href === "/admin/qr-codes") {
-      return canAccessQRScanner(currentUser) || isAdmin(currentUser);
+    // Events and registrations: Show if user has event assignments OR is admin
+    if (item.href === "/admin/events" || item.href === "/admin/event-registrations") {
+      return canAccessManagedEvents(currentUser, hasUserEventAssignments);
     }
     
-    // Leads and lead assignments require canManageLeads permission
-    if (item.href === "/admin/leads" || item.href === "/admin/lead-assignments") {
-      return canManageLeads(currentUser) || isAdmin(currentUser);
+    // QR Scanner: Show if user has event assignments OR is admin
+    if (item.href === "/admin/qr-scanner") {
+      return canAccessManagedEvents(currentUser, hasUserEventAssignments);
     }
     
-    // Other items (Users, Post Assigns, Event Assigns, Activity, Backup, Trash) require user management permission
-    return canManageUsers(currentUser) || isAdmin(currentUser);
+    // QR codes: Show if user has QR codes OR is admin
+    if (item.href === "/admin/qr-codes") {
+      return canAccessOwnQRCodes(currentUser, hasUserQRCodes);
+    }
+    
+    // Leads: Show if user has lead assignments OR is admin
+    if (item.href === "/admin/leads") {
+      return canManageAssignedLeads(currentUser, hasUserLeadAssignments);
+    }
+    
+    // Lead Assignments: Show if user has lead assignments OR is admin
+    if (item.href === "/admin/lead-assignments") {
+      return canManageAssignedLeads(currentUser, hasUserLeadAssignments);
+    }
+    
+    // Post Assignments: For post managers (can assign posts) OR admin
+    if (item.href === "/admin/post-assignments") {
+      return canAssignPosts(currentUser);
+    }
+    
+    // Users: For post managers (can assign posts) OR admin
+    if (item.href === "/admin/users") {
+      return canAssignPosts(currentUser);
+    }
+    
+    // Activity: Admin-only
+    if (item.href === "/admin/user-activity") {
+      return isAdmin(currentUser);
+    }
+    
+    // Backup and Trash: Admin-only
+    if (item.href === "/admin/backup" || item.href === "/admin/trash") {
+      return isAdmin(currentUser);
+    }
+    
+    // Default: hide
+    return false;
   });
 
   return (
