@@ -239,7 +239,7 @@ export default function GujranwalaOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_c77d42af_1756191592651.jpg" 
                     alt="Dunya Consultants Gujranwala Office - Student Consultation Area with Professional Setup"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function GujranwalaOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.33_bb208391_1756191597249.jpg" 
                       alt="Dunya Consultants Gujranwala - Executive Consultation Room"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function GujranwalaOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_cb96a013_1756191605533.jpg" 
                       alt="Dunya Consultants Gujranwala - Building Exterior with Professional Branding"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

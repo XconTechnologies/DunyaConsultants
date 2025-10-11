@@ -239,7 +239,7 @@ export default function PeshawarOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/IMG-20250419-WA0052_1756208224456.jpg" 
                     alt="Dunya Consultants Peshawar Office - World Map Consultation Room"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function PeshawarOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG-20250419-WA0054_1756208227064.jpg" 
                       alt="Dunya Consultants Peshawar - Professional Reception Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function PeshawarOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG-20250419-WA0050 (1)_1756208304863.jpg" 
                       alt="Dunya Consultants Peshawar - Student Consultation Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

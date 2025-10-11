@@ -239,7 +239,7 @@ export default function MardanOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/IMG-20250827-WA0041_1756289745680.jpg" 
                     alt="Dunya Consultants Mardan Office - Professional Reception Area with International Flags and Branding"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function MardanOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG-20250827-WA0040_1756289748502.jpg" 
                       alt="Dunya Consultants Mardan - Executive Office Interior with International Flags"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function MardanOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG-20250827-WA0038_1756289752430.jpg" 
                       alt="Dunya Consultants Mardan - Main Office Workspace with Professional Setup"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

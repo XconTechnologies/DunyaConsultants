@@ -230,7 +230,7 @@ export default function Karachi() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src={karachiOffice1}
                     alt="Study Consultants Karachi Office"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -244,7 +244,7 @@ export default function Karachi() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={karachiOffice2}
                       alt="Professional consultation space"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -257,7 +257,7 @@ export default function Karachi() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={karachiOffice3}
                       alt="Modern office environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

@@ -289,7 +289,7 @@ export default function CategoryPage() {
                         {/* Featured Image */}
                         {post.image && (
                           <div className="relative overflow-hidden rounded-t-lg">
-                            <img 
+                            <img loading="lazy" 
                               src={post.image}
                               alt={post.title}
                               className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover"

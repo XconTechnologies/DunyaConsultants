@@ -235,7 +235,7 @@ export default function GujratOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/IMG_1254_1756195719395.jpg" 
                     alt="Dunya Consultants Gujrat Office Building - Located at Service Morh Road, G.T. Gujrat"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -249,7 +249,7 @@ export default function GujratOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/gujrat office pictures-16_1756195727708.jpg" 
                       alt="Dunya Consultants Gujrat - Professional Consultation Area with Students"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -262,7 +262,7 @@ export default function GujratOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/gujrat office pictures-03_1756195732853.jpg" 
                       alt="Dunya Consultants Gujrat - Executive Office with Professional Staff"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

@@ -244,7 +244,7 @@ export default function MandiBahauddinOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src={MandiBahauddinOffice1} 
                     alt="Dunya Consultants Mandi Bahauddin Office - Student Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -258,7 +258,7 @@ export default function MandiBahauddinOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={MandiBahauddinOffice2} 
                       alt="Dunya Consultants Mandi Bahauddin - Reception & Entrance"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -271,7 +271,7 @@ export default function MandiBahauddinOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={MandiBahauddinOffice3} 
                       alt="Dunya Consultants Mandi Bahauddin - Executive Office"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

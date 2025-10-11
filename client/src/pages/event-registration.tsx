@@ -250,10 +250,11 @@ export default function EventRegistration() {
           </div>
           {(event.detailImage || event.image) && (
             <div className="rounded-lg overflow-hidden mb-6 shadow-lg bg-white">
-              <img 
+              <img loading="lazy" 
                 src={event.detailImage || event.image} 
                 alt={event.title} 
                 className="w-full aspect-[2.4/1] object-cover border-[5px] border-white rounded-lg"
+                loading="lazy"
               />
             </div>
           )}
@@ -477,10 +478,11 @@ export default function EventRegistration() {
         <DialogContent className="sm:max-w-md border-[#dadada]">
           <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-8 rounded-t-lg">
             <div className="text-center mb-6">
-              <img 
+              <img loading="lazy" 
                 src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
                 alt="Dunya Consultants" 
                 className="h-12 mx-auto"
+                loading="lazy"
               />
             </div>
             
@@ -533,7 +535,7 @@ export default function EventRegistration() {
                   {/* Right: QR Code (Smaller) */}
                   <div className="text-center">
                     <div className="bg-white p-2 inline-block rounded-lg border border-[#1D50C9]">
-                      <img src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" />
+                      <img loading="lazy" src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" loading="lazy" />
                     </div>
                     <p className="text-xs text-[#1D50C9] font-semibold mt-2">YOUR QR CODE</p>
                   </div>

@@ -270,7 +270,7 @@ export default function EventDetailPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-xl shadow-2xl overflow-hidden transition-transform duration-500 ease-in-out hover:scale-95"
           >
-            <img 
+            <img loading="lazy" 
               src={event.detailImage || event.image}
               alt={event.title}
               className="w-full aspect-[2.4/1] object-cover border-[5px] border-white rounded-xl"
@@ -732,7 +732,7 @@ export default function EventDetailPage() {
                         <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide">Your Entry Pass</h3>
                       </div>
                       <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <img 
+                        <img loading="lazy" 
                           src={registrationData.qrCodeUrl} 
                           alt="Event QR Code" 
                           className="w-full h-auto mx-auto"

@@ -29,7 +29,7 @@ export default function UKLLMPakistaniBar() {
             <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Featured Image */}
               <div className="mb-8">
-                <img 
+                <img loading="lazy" 
                   src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80"
                   alt="UK LLM to Pakistani Bar"
                   className="w-full h-64 object-cover rounded-lg"

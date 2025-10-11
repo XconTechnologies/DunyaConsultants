@@ -318,7 +318,7 @@ export default function BlogsCarouselSection() {
                     {/* Featured Image - Exact same as blog page */}
                     {post.image && (
                       <div className="relative overflow-hidden rounded-t-lg">
-                        <img 
+                        <img loading="lazy" 
                           src={post.image}
                           alt={post.title}
                           className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"

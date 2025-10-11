@@ -366,7 +366,7 @@ export default function QrCodesPage() {
                       <TableRow key={qr.id}>
                         <TableCell>
                           {qr.qrImageUrl && !imageErrors.has(qr.id) ? (
-                            <img 
+                            <img loading="lazy" 
                               src={qr.qrImageUrl} 
                               alt={qr.title} 
                               className="h-12 w-12 object-contain cursor-pointer border border-gray-200 rounded p-1"
@@ -467,7 +467,7 @@ export default function QrCodesPage() {
             </DialogHeader>
             {viewQrCode?.qrImageUrl && !imageErrors.has(viewQrCode.id) ? (
               <div className="flex justify-center p-4">
-                <img 
+                <img loading="lazy" 
                   src={viewQrCode.qrImageUrl} 
                   alt={viewQrCode.title} 
                   className="max-w-full h-auto border border-gray-200 rounded-lg"

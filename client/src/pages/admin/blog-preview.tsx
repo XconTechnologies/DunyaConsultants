@@ -165,7 +165,7 @@ export default function AdminBlogPreview() {
               {/* Featured Image */}
               {blogPost.featuredImage && (
                 <div className="relative">
-                  <img 
+                  <img loading="lazy" 
                     src={normalizeImageSrc(blogPost.featuredImage)}
                     alt={blogPost.featuredImageAlt || blogPost.title}
                     title={blogPost.featuredImageTitle || blogPost.title}

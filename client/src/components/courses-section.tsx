@@ -264,7 +264,7 @@ export default function CoursesSection() {
             >
               {/* Course Image */}
               <div className="relative h-48 overflow-hidden">
-                <img 
+                <img loading="lazy" 
                   src={course.image}
                   alt={course.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"

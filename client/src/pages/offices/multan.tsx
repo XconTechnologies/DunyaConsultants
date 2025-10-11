@@ -239,7 +239,7 @@ export default function MultanOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2025-04-21 at 16.37.23_521ae136_1756207737985.jpg" 
                     alt="Dunya Consultants Multan Office - Student Consultation Area with Blue Chairs"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function MultanOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-04-21 at 16.48.19_f8789ebe_1756207739921.jpg" 
                       alt="Dunya Consultants Multan - Office with World Map and Study Abroad Information"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function MultanOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-04-21 at 16.37.23_b8efd8ab_1756207742155.jpg" 
                       alt="Dunya Consultants Multan - Office Exterior on Shalimar Metro Station"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

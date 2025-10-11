@@ -168,7 +168,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Link href="/" onClick={handleHomeClick}>
-                  <img 
+                  <img loading="lazy" 
                     src={isScrolled ? logoImageBlue : logoImageWhite} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"

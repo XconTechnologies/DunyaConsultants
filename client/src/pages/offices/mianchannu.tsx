@@ -232,7 +232,7 @@ export default function MianChannuOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/IMG_1257_1756197609489.jpg" 
                     alt="Dunya Consultants Mian Channu Office - Professional Consultation Area with International Flags and Study Travel Signage"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -246,7 +246,7 @@ export default function MianChannuOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG_1254 (1)_1756197612841.jpg" 
                       alt="Dunya Consultants Mian Channu - Executive Office with International Flag Display and University Banners"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -259,7 +259,7 @@ export default function MianChannuOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/IMG_1258_1756197617266.jpg" 
                       alt="Dunya Consultants Mian Channu - Reception Area with World Map and Professional Setup"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

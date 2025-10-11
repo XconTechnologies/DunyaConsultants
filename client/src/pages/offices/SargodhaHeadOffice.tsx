@@ -239,7 +239,7 @@ export default function SargodhaHeadOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
                     alt="Dunya Consultants Sargodha Office - Student Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function SargodhaHeadOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
                       alt="Dunya Consultants Sargodha - Active Consultation Sessions"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function SargodhaHeadOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
                       alt="Dunya Consultants Sargodha - Professional Counseling Environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

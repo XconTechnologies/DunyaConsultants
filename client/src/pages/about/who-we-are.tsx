@@ -476,7 +476,7 @@ export default function WhoWeAre() {
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="md:col-span-1 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-8 text-white text-center">
                     <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                      <img 
+                      <img loading="lazy" 
                         src={umerFarooqPhoto} 
                         alt="Umer Farooq - CEO of Dunya Consultants" 
                         className="w-full h-full object-cover"

@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="mb-6">
                 <Link href="/">
-                  <img 
+                  <img loading="lazy" 
                     src={logoImageWhite} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"

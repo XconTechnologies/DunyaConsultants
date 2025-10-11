@@ -744,7 +744,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Featured Image */}
               {blogPost.image && (
                 <div className="relative">
-                  <img 
+                  <img loading="lazy" 
                     src={normalizeImageSrc(blogPost.image)}
                     alt={blogPost.title}
                     className="w-full h-auto max-w-full object-cover"
@@ -2764,7 +2764,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 {/* Featured Image */}
                                 {blog.image && (
                                   <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
-                                    <img 
+                                    <img loading="lazy" 
                                       src={normalizeImageSrc(blog.image)} 
                                       alt={blog.title}
                                       className="w-full h-56 object-cover transition-transform hover:scale-105"
@@ -3684,7 +3684,7 @@ export default function Blog() {
                   {/* Featured Image */}
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <img 
+                      <img loading="lazy" 
                         src={post.image}
                         alt={post.title}
                         className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"

@@ -103,7 +103,7 @@ export default function BranchesCarousel() {
                   <Link href={branch.route} className="block">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group">
                       {branch.landmarkIcon ? (
-                        <img 
+                        <img loading="lazy" 
                           src={branch.landmarkIcon} 
                           alt={`${branch.name} landmark`}
                           className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300"

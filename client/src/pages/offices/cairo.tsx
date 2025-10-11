@@ -239,7 +239,7 @@ export default function CairoOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.21_5b1a1b9c_1756275821613.jpg" 
                     alt="Dunya Consultants Cairo Office - Professional Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function CairoOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.21_122c38b1_1756275821608.jpg" 
                       alt="Dunya Consultants Cairo - Modern Office Interior"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function CairoOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.24_574374d2_1756275821612.jpg" 
                       alt="Dunya Consultants Cairo - Grand Plaza Tower Building Entrance"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

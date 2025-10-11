@@ -140,7 +140,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         <div className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-6">
           <div className="flex justify-between items-start">
             <div className="flex items-center">
-              <img 
+              <img loading="lazy" 
                 src={dcLogoPath} 
                 alt="Dunya Consultants" 
                 className="h-12 w-auto mr-4 bg-white rounded-lg p-2"

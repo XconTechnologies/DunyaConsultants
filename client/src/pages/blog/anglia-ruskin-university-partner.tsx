@@ -72,7 +72,7 @@ export default function AngliaRuskinUniversityPartner() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-lg shadow-sm p-8"
             >
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Anglia Ruskin University"
                 className="w-full h-64 object-cover rounded-lg mb-8"

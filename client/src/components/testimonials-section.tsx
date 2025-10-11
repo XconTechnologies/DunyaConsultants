@@ -190,7 +190,7 @@ export default function TestimonialsSection() {
                     {/* Student Info */}
                     <div className="flex items-center">
                       <div className="relative">
-                        <img 
+                        <img loading="lazy" 
                           src={testimonial.image} 
                           alt={testimonial.name}
                           className="w-12 h-12 rounded-full object-cover border-2 border-blue-200"

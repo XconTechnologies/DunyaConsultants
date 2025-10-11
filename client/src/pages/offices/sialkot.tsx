@@ -231,7 +231,7 @@ export default function SialkotOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
                     alt="Dunya Consultants Sialkot Building - Located on 2nd Floor Above Bank Islami, Cantt Plaza"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -246,7 +246,7 @@ export default function SialkotOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.55_95200d91_1756192688607.jpg" 
                       alt="Dunya Consultants Sialkot - Modern Office Interior with Professional Staff"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -259,7 +259,7 @@ export default function SialkotOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/2426cce6-dd7f-4632-9bf9-3d3c161a7bcb_1756192695813.jpg" 
                       alt="Dunya Consultants Sialkot - Executive Consultation Room with International Flags"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

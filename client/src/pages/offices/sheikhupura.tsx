@@ -240,7 +240,7 @@ export default function SheikhupuraOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src={SheikhupuraOffice1} 
                     alt="Dunya Consultants Sheikhupura Office - Active Consultation Sessions"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -254,7 +254,7 @@ export default function SheikhupuraOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={SheikhupuraOffice2} 
                       alt="Dunya Consultants Sheikhupura - Executive Office"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -267,7 +267,7 @@ export default function SheikhupuraOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src={SheikhupuraOffice3} 
                       alt="Dunya Consultants Sheikhupura - Professional Waiting Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

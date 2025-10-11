@@ -239,7 +239,7 @@ export default function FaisalabadOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2024-07-20 at 12.33.10_e6eb58d6_1756191180572.jpg" 
                     alt="Dunya Consultants Faisalabad Office - Student Consultation Area"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function FaisalabadOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 12.33.10_2bedb1ad_1756191176804.jpg" 
                       alt="Professional Consultation Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function FaisalabadOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 13.44.41_463fcd8b_1756191184002.jpg" 
                       alt="Professional Counseling Environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

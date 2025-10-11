@@ -64,7 +64,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-lg shadow-sm p-8"
             >
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Turkey Education for Pakistani Students"
                 className="w-full h-64 object-cover rounded-lg mb-8"

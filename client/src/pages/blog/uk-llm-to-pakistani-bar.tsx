@@ -68,7 +68,7 @@ export default function UKLLMToPakistaniBar() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-lg shadow-sm p-8"
             >
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="UK LLM to Pakistani Bar Conversion"
                 className="w-full h-64 object-cover rounded-lg mb-8"

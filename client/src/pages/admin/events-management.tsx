@@ -659,7 +659,7 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.image && (
-                <img src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" />
+                <img loading="lazy" src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" loading="lazy" />
               )}
             </div>
 
@@ -686,7 +686,7 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.detailImage && (
-                <img src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" />
+                <img loading="lazy" src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" loading="lazy" />
               )}
               <p className="text-xs text-gray-500 mt-1">
                 If not provided, the card/thumbnail image will be used on the event detail page
@@ -923,7 +923,7 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.image && (
-                <img src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" />
+                <img loading="lazy" src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" loading="lazy" />
               )}
             </div>
 
@@ -948,7 +948,7 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.detailImage && (
-                <img src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" />
+                <img loading="lazy" src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" loading="lazy" />
               )}
               <p className="text-xs text-gray-500 mt-1">
                 If not provided, the card/thumbnail image will be used on the event detail page

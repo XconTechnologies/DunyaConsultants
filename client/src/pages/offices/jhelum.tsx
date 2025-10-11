@@ -239,7 +239,7 @@ export default function JhelumOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2025-04-19 at 11.45.17_977850fa_1756209011319.jpg" 
                     alt="Dunya Consultants Jhelum Office - Professional Consultation Area"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -253,7 +253,7 @@ export default function JhelumOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-04-19 at 11.38.47_093aabed_1756209014225.jpg" 
                       alt="Dunya Consultants Jhelum - Executive Consultation Room"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -266,7 +266,7 @@ export default function JhelumOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2025-04-19 at 11.45.17_bd7349f9_1756209017482.jpg" 
                       alt="Dunya Consultants Jhelum - Student Information Center"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"

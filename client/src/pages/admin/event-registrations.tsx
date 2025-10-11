@@ -714,7 +714,7 @@ export default function EventRegistrationsPage() {
                       </div>
                     </div>
                   ) : selectedRegistration.qrCodeUrl ? (
-                    <img 
+                    <img loading="lazy" 
                       src={selectedRegistration.qrCodeUrl} 
                       alt="Registration QR Code" 
                       className="w-48 h-48 border-4 border-white shadow-lg rounded-lg"

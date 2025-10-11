@@ -1287,7 +1287,7 @@ export default function BlogEditor() {
         // For content image - insert directly into ReactQuill (no automatic links)
         const quillEditor = document.querySelector('.ql-editor');
         if (quillEditor) {
-          const imageHtml = `<p><img src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" /></p>`;
+          const imageHtml = `<p><img loading="lazy" src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" loading="lazy" /></p>`;
           quillEditor.innerHTML += imageHtml;
         }
       }
@@ -1911,11 +1911,12 @@ export default function BlogEditor() {
                   
                   {watch("featuredImage") && (
                     <div className="mt-2">
-                      <img 
+                      <img loading="lazy" 
                         src={watch("featuredImage")} 
                         alt={watch("featuredImageAlt") || "Featured image preview"} 
                         title={watch("featuredImageTitle") || "Featured image"}
                         className="max-w-full h-32 object-cover rounded border"
+                        loading="lazy"
                         onLoad={() => {}}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';

@@ -111,7 +111,7 @@ export default function GoogleReviewsSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center mb-6">
-            <img 
+            <img loading="lazy" 
               src="https://www.studyindia.com/images/google-reviews-logo.webp" 
               alt="Google Reviews"
               className="h-12 mr-4"
@@ -136,7 +136,7 @@ export default function GoogleReviewsSection() {
           {/* Review Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center">
-              <img 
+              <img loading="lazy" 
                 src={currentReview.profileImage}
                 alt={currentReview.name}
                 className="w-16 h-16 rounded-full mr-4 bg-gray-200"
@@ -212,7 +212,7 @@ export default function GoogleReviewsSection() {
                   index === currentIndex ? 'ring-4 ring-blue-500 ring-offset-2' : ''
                 } rounded-full overflow-hidden shadow-xl`}>
                   <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white">
-                    <img 
+                    <img loading="lazy" 
                       src={review.profileImage}
                       alt={review.name}
                       className="w-full h-full object-cover"

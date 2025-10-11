@@ -235,7 +235,7 @@ export default function BahawalpurOffice() {
                   transition={{ duration: 0.5 }}
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <img 
+                  <img loading="lazy" 
                     src="/attached_assets/WhatsApp Image 2024-07-20 at 10.59.54_188e37f0_1756196637633.jpg" 
                     alt="Dunya Consultants Bahawalpur Office - Professional Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
@@ -249,7 +249,7 @@ export default function BahawalpurOffice() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 10.59.52_b4312b33_1756196640810.jpg" 
                       alt="Dunya Consultants Bahawalpur - Executive Conference Room with Modern Design"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
@@ -262,7 +262,7 @@ export default function BahawalpurOffice() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <img 
+                    <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 10.59.51_2f98511b_1756196643534.jpg" 
                       alt="Dunya Consultants Bahawalpur - Information Counter with Canadian and Australian Flags"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
