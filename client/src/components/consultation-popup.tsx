@@ -1,37 +1,16 @@
-import { useState } from "react";
-import { X, Check, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Phone, Mail, MapPin, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whatsapp-input";
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
-import { motion, AnimatePresence } from "framer-motion";
-import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ConsultationPopupProps {
   isOpen: boolean;
   onClose: () => void;
-}
-
-interface FormData {
-  fullName: string;
-  city: string;
-  countryCode: string;
-  whatsappNumber: string;
-  email: string;
-  hasLanguageTest: string;
-  testType: string;
-  otherTestName: string;
-  testScore: string;
-  interestedCountries: string[];
-  message: string;
 }
 
 const countries = [
@@ -42,19 +21,11 @@ const countries = [
   "Germany",
   "Finland",
   "Belgium",
-  "Turkey",
-  "Sweden",
-  "Ireland",
-  "Kyrgyzstan",
-  "Denmark",
-  "Cyprus",
-  "Dubai"
+  "Turkey"
 ];
 
 export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     fullName: "",
     city: "",
     countryCode: "+92",
@@ -64,29 +35,28 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
     testType: "",
     otherTestName: "",
     testScore: "",
-    interestedCountries: [],
+    interestedCountries: [] as string[],
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [emailError, setEmailError] = useState("");
-  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-
-    // Real-time email validation
-    if (name === "email") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (value && !emailRegex.test(value)) {
-        setEmailError("Please enter a valid email address");
-      } else {
-        setEmailError("");
-      }
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleCountryToggle = (country: string) => {
@@ -98,22 +68,11 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
     }));
   };
 
-  const handleNextStep = () => {
-    if (currentStep === 1) {
-      // Validate step 1 fields
-      if (!formData.fullName || !formData.whatsappNumber || !formData.email || emailError) {
-        alert("Please fill in all required fields correctly");
-        return;
-      }
-      setCurrentStep(2);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (formData.interestedCountries.length === 0) {
-      alert("Please select at least one country");
+      alert("Please select at least one country.");
       return;
     }
     
@@ -133,410 +92,374 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
     
     const finalMessage = [formData.message, languageTestInfo].filter(Boolean).join("\n");
     
+    // Get source page from URL
+    const currentPath = window.location.pathname;
+    let source = "Website - Unknown Page";
+    
+    if (currentPath.includes("ielts")) source = "IELTS Page";
+    else if (currentPath.includes("pte")) source = "PTE Page";
+    else if (currentPath.includes("toefl")) source = "TOEFL Page";
+    else if (currentPath.includes("duolingo")) source = "Duolingo Page";
+    else if (currentPath.includes("usa")) source = "USA Study Guide";
+    else if (currentPath.includes("uk")) source = "UK Study Guide";
+    else if (currentPath.includes("canada")) source = "Canada Study Guide";
+    else if (currentPath.includes("finland")) source = "Finland Study Guide";
+    else if (currentPath.includes("australia")) source = "Australia Study Guide";
+    else if (currentPath.includes("belgium")) source = "Belgium Study Guide";
+    else if (currentPath.includes("turkey")) source = "Turkey Study Guide";
+    else if (currentPath.includes("services")) source = "Services Page";
+    else if (currentPath.includes("about")) source = "About Us";
+    else if (currentPath.includes("blog")) source = "Blog Page";
+    else if (currentPath === "/" || currentPath === "") source = "Homepage";
+    
     try {
-      const response = await fetch('/api/submit-consultation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullname: formData.fullName,
+          name: formData.fullName,
           email: formData.email,
           phone: `${formData.countryCode}${formData.whatsappNumber}`,
           city: formData.city,
-          country: formData.interestedCountries.join(", "),
-          message: finalMessage
-        }),
+          preferredCountry: formData.interestedCountries.join(", "),
+          additionalInfo: finalMessage,
+          educationLevel: "Not specified",
+          fieldOfStudy: "Not specified",
+          source: source
+        })
       });
-
-      const result = await response.json();
-
-      if (result.status === 'success') {
-        trackConsultationBooking();
-        trackEvent('consultation_popup_success', 'conversion', formData.interestedCountries.join(", "));
+      
+      if (response.ok) {
+        setIsSubmitted(true);
         
-        setShowThankYou(true);
-        setFormData({
-          fullName: "",
-          city: "",
-          countryCode: "+92",
-          whatsappNumber: "",
-          email: "",
-          hasLanguageTest: "",
-          testType: "",
-          otherTestName: "",
-          testScore: "",
-          interestedCountries: [],
-          message: ""
-        });
-        setCurrentStep(1);
-        
-        // Auto-close thank you after 3 seconds
         setTimeout(() => {
-          setShowThankYou(false);
+          setIsSubmitted(false);
+          setFormData({
+            fullName: "",
+            city: "",
+            countryCode: "+92",
+            whatsappNumber: "",
+            email: "",
+            hasLanguageTest: "",
+            testType: "",
+            otherTestName: "",
+            testScore: "",
+            interestedCountries: [],
+            message: ""
+          });
           onClose();
         }, 3000);
       } else {
-        alert("Error submitting form. Please try again.");
+        alert("Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      alert("Error submitting form. Please try again.");
+      console.error("Submission error:", error);
+      alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!isOpen) return null;
-
-  // Thank You Popup
-  if (showThankYou) {
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl max-w-md w-full p-8 text-center shadow-2xl"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 bg-[#1D50C9] rounded-full flex items-center justify-center mx-auto mb-4"
-          >
-            <Check className="w-10 h-10 text-white" />
-          </motion.div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-          <p className="text-gray-600 mb-6">
-            Your consultation request has been received. Our expert will contact you shortly.
-          </p>
-          <a
-            href="https://wa.me/923261111947"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all"
-            data-testid="button-whatsapp-contact"
-          >
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Chat on WhatsApp
-          </a>
-        </motion.div>
-      </div>
-    );
-  }
-
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.2 }}
-          className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-xl max-h-[95vh] overflow-y-auto shadow-2xl"
+      {isOpen && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center p-4"
+          style={{ 
+            zIndex: 999999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
         >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative">
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
-              data-testid="button-close-popup"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            <div style={{ color: 'white' }}>
-              <h2 className="text-2xl font-bold mb-2" style={{ color: 'white' }}>
-                Get Personalized Study Abroad Guidance
-              </h2>
-              <p className="text-sm opacity-90" style={{ color: 'white' }}>
-                Takes less than a minute to complete
-              </p>
-            </div>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="px-6 pt-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-gray-600">Step {currentStep} of 2</span>
-              <span className="text-xs text-gray-500">{currentStep === 1 ? "Personal Info" : "Study Preferences"}</span>
-            </div>
-            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-[#1D50C9]"
-                initial={{ width: "0%" }}
-                animate={{ width: currentStep === 1 ? "50%" : "100%" }}
-                transition={{ duration: 0.3 }}
-              />
-            </div>
-          </div>
-
-          {/* Form */}
-          <div className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Step 1: Personal Info */}
-              {currentStep === 1 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="space-y-4"
-                >
-                  <FloatingLabelInput
-                    label="Full name *"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    required
-                    data-testid="input-fullname"
-                  />
-
-                  <FloatingLabelInput
-                    label="City"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    data-testid="input-city"
-                  />
-
-                  <FloatingLabelWhatsAppInput
-                    label="WhatsApp number *"
-                    countryCode={formData.countryCode}
-                    onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
-                    numberValue={formData.whatsappNumber}
-                    onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
-                    required
-                  />
-
-                  <div>
-                    <FloatingLabelInput
-                      label="Email address *"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      data-testid="input-email"
-                    />
-                    {emailError && (
-                      <p className="text-xs text-red-500 mt-1">{emailError}</p>
-                    )}
-                  </div>
-
-                  <Button
-                    type="button"
-                    onClick={handleNextStep}
-                    className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all"
-                    data-testid="button-next-step"
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            style={{ 
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 1
+            }}
+            onClick={onClose}
+          />
+          
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-auto"
+            style={{ zIndex: 2 }}
+          >
+            <Card className="bg-white shadow-2xl border-0">
+              <CardContent className="p-0">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 text-white relative">
+                  <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                   >
-                    Continue to Study Preferences →
-                  </Button>
-                </motion.div>
-              )}
-
-              {/* Step 2: Study Preferences */}
-              {currentStep === 2 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="space-y-4"
-                >
-                  {/* Language Test Section */}
-                  <div className="space-y-3">
+                    <X className="w-5 h-5" />
+                  </button>
+                  
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                      <BookOpen className="w-5 h-5" />
+                    </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 block mb-2">
-                        Have you completed IELTS, PTE, or Duolingo? *
-                      </label>
-                      <p className="text-xs text-gray-500 mb-3">
-                        Language tests help universities assess your English proficiency
-                      </p>
-                      <div className="flex gap-4">
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="hasLanguageTest"
-                            value="yes"
-                            checked={formData.hasLanguageTest === "yes"}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
-                            data-testid="radio-language-yes"
-                          />
-                          <span className="text-sm text-gray-700">Yes</span>
-                        </label>
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="hasLanguageTest"
-                            value="no"
-                            checked={formData.hasLanguageTest === "no"}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
-                            data-testid="radio-language-no"
-                          />
-                          <span className="text-sm text-gray-700">No</span>
-                        </label>
-                      </div>
+                      <h2 className="text-2xl font-bold">Book Your Free Consultation</h2>
+                      <p className="text-blue-100">Get expert guidance for your study abroad journey</p>
                     </div>
-
-                    {formData.hasLanguageTest === "yes" && (
-                      <div className="space-y-3">
-                        <select
-                          name="testType"
-                          value={formData.testType}
-                          onChange={handleInputChange}
-                          className="w-full min-h-[44px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
-                          data-testid="select-test-type"
-                        >
-                          <option value="">Select test type</option>
-                          <option value="ielts">IELTS</option>
-                          <option value="pte">PTE</option>
-                          <option value="toefl">TOEFL</option>
-                          <option value="duolingo">Duolingo</option>
-                          <option value="other">Other</option>
-                        </select>
-
-                        {formData.testType === "other" && (
-                          <FloatingLabelInput
-                            label="Which test?"
-                            name="otherTestName"
-                            value={formData.otherTestName}
-                            onChange={handleInputChange}
-                          />
-                        )}
-
-                        {formData.testType && formData.testType !== "other" && (
-                          <FloatingLabelInput
-                            label={formData.testType === "ielts" ? "Band score" : "Score"}
-                            name="testScore"
-                            value={formData.testScore}
-                            onChange={handleInputChange}
-                          />
-                        )}
-                      </div>
-                    )}
                   </div>
+                </div>
 
-                  {/* Multi-Select Dropdown for Countries */}
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 block mb-2">
-                      Interested countries *
-                    </label>
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                        className="w-full min-h-[44px] px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-left flex items-center justify-between"
-                        data-testid="button-country-dropdown"
-                      >
-                        <span className="text-sm text-gray-700">
-                          {formData.interestedCountries.length === 0
-                            ? "Select countries"
-                            : `${formData.interestedCountries.length} selected`}
-                        </span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isCountryDropdownOpen ? "rotate-180" : ""}`} />
-                      </button>
-
-                      {isCountryDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                          {countries.map((country) => (
-                            <label
-                              key={country}
-                              className="flex items-center px-4 py-2 hover:bg-gray-50 cursor-pointer"
-                              data-testid={`checkbox-country-${country.toLowerCase().replace(/\s+/g, '-')}`}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={formData.interestedCountries.includes(country)}
-                                onChange={() => handleCountryToggle(country)}
-                                className="w-4 h-4 text-[#1D50C9] rounded focus:ring-[#1D50C9]"
-                              />
-                              <span className="ml-3 text-sm text-gray-700">{country}</span>
-                            </label>
-                          ))}
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Left Side - Form */}
+                  <div className="p-6 lg:p-8">
+                    {!isSubmitted ? (
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        {/* Row 1: Full Name and City */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FloatingLabelInput
+                            label="Full Name *"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          <FloatingLabelInput
+                            label="City"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                          />
                         </div>
-                      )}
-                    </div>
 
-                    {/* Selected Countries Display */}
-                    {formData.interestedCountries.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {formData.interestedCountries.map((country) => (
-                          <Badge
-                            key={country}
-                            variant="secondary"
-                            className="bg-blue-50 text-blue-700 hover:bg-blue-100"
-                          >
-                            {country}
-                            <button
-                              type="button"
-                              onClick={() => handleCountryToggle(country)}
-                              className="ml-2 hover:text-blue-900"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </Badge>
-                        ))}
+                        {/* Row 2: WhatsApp Number */}
+                        <FloatingLabelWhatsAppInput
+                          label="WhatsApp Number *"
+                          countryCode={formData.countryCode}
+                          onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
+                          numberValue={formData.whatsappNumber}
+                          onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
+                          required
+                        />
+
+                        {/* Row 3: Email Address */}
+                        <FloatingLabelInput
+                          label="Email Address *"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                        />
+
+                        {/* Language Test Section */}
+                        <div className="flex items-center gap-4">
+                          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                            Have you done language test? *
+                          </label>
+                          <div className="flex gap-6">
+                            <label className="flex items-center space-x-2 cursor-pointer">
+                              <input
+                                type="radio"
+                                name="hasLanguageTest"
+                                value="yes"
+                                checked={formData.hasLanguageTest === "yes"}
+                                onChange={handleInputChange}
+                                className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                              />
+                              <span className="text-sm text-gray-700">Yes</span>
+                            </label>
+                            <label className="flex items-center space-x-2 cursor-pointer">
+                              <input
+                                type="radio"
+                                name="hasLanguageTest"
+                                value="no"
+                                checked={formData.hasLanguageTest === "no"}
+                                onChange={handleInputChange}
+                                className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                              />
+                              <span className="text-sm text-gray-700">No</span>
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* If Yes, show test type */}
+                        {formData.hasLanguageTest === "yes" && (
+                          <div className="space-y-4">
+                            <div className="relative">
+                              <select
+                                name="testType"
+                                value={formData.testType}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
+                              >
+                                <option value="">Select Test Type</option>
+                                <option value="ielts">IELTS</option>
+                                <option value="pte">PTE</option>
+                                <option value="toefl">TOEFL</option>
+                                <option value="other">Other</option>
+                              </select>
+                            </div>
+
+                            {/* If Other is selected, show text input */}
+                            {formData.testType === "other" && (
+                              <FloatingLabelInput
+                                label="Which test?"
+                                name="otherTestName"
+                                value={formData.otherTestName}
+                                onChange={handleInputChange}
+                              />
+                            )}
+
+                            {/* Show Band/Score field only for IELTS, PTE, TOEFL (not Other) */}
+                            {formData.testType && formData.testType !== "other" && (
+                              <FloatingLabelInput
+                                label={formData.testType === "ielts" ? "Band Score" : "Score"}
+                                name="testScore"
+                                value={formData.testScore}
+                                onChange={handleInputChange}
+                              />
+                            )}
+                          </div>
+                        )}
+
+                        {/* Interested Countries - Checkboxes */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Interested Countries *
+                          </label>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            {countries.map((country) => (
+                              <div key={country} className="flex items-center space-x-2">
+                                <Checkbox
+                                  id={`popup-country-${country}`}
+                                  checked={formData.interestedCountries.includes(country)}
+                                  onCheckedChange={() => handleCountryToggle(country)}
+                                />
+                                <label
+                                  htmlFor={`popup-country-${country}`}
+                                  className="text-sm text-gray-700 cursor-pointer select-none"
+                                >
+                                  {country}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Message */}
+                        <FloatingLabelTextarea
+                          label="Message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          rows={2}
+                        />
+
+                        <Button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] py-3 text-lg font-semibold"
+                        >
+                          {isSubmitting ? (
+                            <div className="flex items-center justify-center space-x-2">
+                              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              <span>Booking Consultation...</span>
+                            </div>
+                          ) : (
+                            "Book Free Consultation"
+                          )}
+                        </Button>
+                      </form>
+                    ) : (
+                      /* Success State */
+                      <div className="text-center py-12">
+                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <div className="w-8 h-8 bg-[#1D50C9] rounded-full flex items-center justify-center">
+                            <div className="w-3 h-3 bg-white rounded-full" />
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold text-[#1845B3] mb-2">Consultation Booked!</h3>
+                        <p className="text-gray-600 mb-4">
+                          Thank you for booking a consultation with us. Our expert counselor will contact you within 24 hours.
+                        </p>
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <p className="text-sm text-[#1D50C9]">
+                            <strong>Next Steps:</strong> You'll receive a confirmation email with consultation details and a calendar invite.
+                          </p>
+                        </div>
                       </div>
                     )}
                   </div>
 
-                  <FloatingLabelTextarea
-                    label="Tell us your preferred course or university (optional)"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={3}
-                    data-testid="textarea-message"
-                  />
+                  {/* Right Side - Contact Info */}
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-6 lg:p-8">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-800 mb-4">Why Choose Free Consultation?</h3>
+                        <div className="space-y-3 text-sm text-gray-600">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
+                            <p>Get personalized study abroad guidance from certified counselors</p>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
+                            <p>Learn about visa requirements and application processes</p>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
+                            <p>Discover scholarship opportunities and financial aid options</p>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2 flex-shrink-0" />
+                            <p>Get university selection assistance based on your profile</p>
+                          </div>
+                        </div>
+                      </div>
 
-                  {/* Action Buttons */}
-                  <div className="space-y-3 pt-2">
-                    <Button
-                      type="button"
-                      onClick={() => setCurrentStep(1)}
-                      variant="outline"
-                      className="w-full min-h-[44px] py-3"
-                      data-testid="button-back"
-                    >
-                      ← Back
-                    </Button>
-                    
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all sticky bottom-4"
-                      data-testid="button-submit"
-                    >
-                      {isSubmitting ? "Submitting..." : "Get My Free Consultation"}
-                    </Button>
+                      <div className="border-t border-blue-200 pt-6">
+                        <h4 className="font-semibold text-gray-800 mb-4">Contact Information</h4>
+                        <div className="space-y-3">
+                          <div className="flex items-center space-x-3 text-sm">
+                            <Phone className="w-4 h-4 text-[#1845B3]" />
+                            <span>+92 304 1110947</span>
+                          </div>
+                          <div className="flex items-center space-x-3 text-sm">
+                            <Mail className="w-4 h-4 text-[#1845B3]" />
+                            <span>info@dunyaconsultants.com</span>
+                          </div>
+                          <div className="flex items-start space-x-3 text-sm">
+                            <MapPin className="w-4 h-4 text-[#1845B3] mt-0.5" />
+                            <span>Alif Tower Buhadur shah zafar road, Sargodha</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-white/50 rounded-lg p-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#1845B3]">17+</div>
+                          <div className="text-xs text-gray-600">Office Locations</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
-              )}
-            </form>
-
-            {/* Trust Signals */}
-            <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-              <div className="flex items-center justify-center gap-6 text-xs text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>1000+ students guided</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>No consultation fees</span>
-                </div>
-              </div>
-              
-              <p className="text-center text-xs text-gray-500">
-                Trusted by students worldwide for study abroad guidance
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      )}
     </AnimatePresence>
   );
 }
