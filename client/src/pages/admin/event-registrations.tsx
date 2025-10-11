@@ -10,7 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2, Check } from "lucide-react";
+import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2, Check, QrCode } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -19,6 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import type { Event, EventRegistration, AdminUser } from "@shared/schema";
@@ -29,6 +36,8 @@ export default function EventRegistrationsPage() {
   const [authChecked, setAuthChecked] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [selectedRegistration, setSelectedRegistration] = useState<EventRegistration | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const { toast } = useToast();
 
   // Helper function to get auth headers
@@ -409,20 +418,23 @@ export default function EventRegistrationsPage() {
                                   />
                                 </TableHead>
                                 <TableHead className="font-semibold text-gray-700">Name</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Email</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Phone</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Education</TableHead>
                                 <TableHead className="font-semibold text-gray-700">Destination</TableHead>
                                 <TableHead className="font-semibold text-gray-700">Attendance</TableHead>
                                 <TableHead className="font-semibold text-gray-700">Prize Status</TableHead>
                                 <TableHead className="font-semibold text-gray-700">Registered</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Actions</TableHead>
                               </TableRow>
                             </TableHeader>
                             <TableBody>
                               {eventRegs.map((reg: EventRegistration) => (
-                                <TableRow key={reg.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
-                                  <TableCell className="py-4">
+                                <TableRow 
+                                  key={reg.id} 
+                                  className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 cursor-pointer"
+                                  onClick={() => {
+                                    setSelectedRegistration(reg);
+                                    setIsDetailsOpen(true);
+                                  }}
+                                >
+                                  <TableCell className="py-4" onClick={(e) => e.stopPropagation()}>
                                     <Checkbox
                                       checked={selectedIds.includes(reg.id)}
                                       onCheckedChange={(checked) => {
@@ -437,24 +449,6 @@ export default function EventRegistrationsPage() {
                                   </TableCell>
                                   <TableCell>
                                     <div className="font-semibold text-gray-900">{reg.name}</div>
-                                  </TableCell>
-                                  <TableCell>
-                                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                                      <Mail className="h-3 w-3" />
-                                      {reg.email}
-                                    </div>
-                                  </TableCell>
-                                  <TableCell>
-                                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                                      <Phone className="h-3 w-3" />
-                                      {reg.phone}
-                                    </div>
-                                  </TableCell>
-                                  <TableCell>
-                                    <div className="flex items-center gap-1 text-sm">
-                                      <GraduationCap className="h-3 w-3 text-gray-500" />
-                                      {reg.education || 'Not specified'}
-                                    </div>
                                   </TableCell>
                                   <TableCell>
                                     <div className="flex items-center gap-1 text-sm">
@@ -491,24 +485,14 @@ export default function EventRegistrationsPage() {
                                         Pending
                                       </Badge>
                                     )}
+                                    {!reg.prizeStatus && (
+                                      <Badge className="bg-gray-200 text-gray-600 border-0">
+                                        Not Eligible
+                                      </Badge>
+                                    )}
                                   </TableCell>
                                   <TableCell className="text-sm text-gray-500">
                                     {new Date(reg.createdAt).toLocaleDateString()}
-                                  </TableCell>
-                                  <TableCell>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      onClick={() => {
-                                        if (window.confirm(`Are you sure you want to move this registration to trash?`)) {
-                                          trashMutation.mutate({ id: reg.id });
-                                        }
-                                      }}
-                                      data-testid={`button-trash-registration-${reg.id}`}
-                                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                                    >
-                                      <Trash2 className="h-4 w-4" />
-                                    </Button>
                                   </TableCell>
                                 </TableRow>
                               ))}
@@ -524,6 +508,131 @@ export default function EventRegistrationsPage() {
           )}
         </div>
       </div>
+
+      {/* Registration Details Dialog */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Registration Details</DialogTitle>
+            <DialogDescription>Complete information for this registration</DialogDescription>
+          </DialogHeader>
+          
+          {selectedRegistration && (
+            <div className="space-y-6">
+              {/* Personal Information */}
+              <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 p-6 rounded-lg space-y-4">
+                <h3 className="font-semibold text-lg text-gray-900 mb-3">Personal Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Name</label>
+                    <p className="text-base font-semibold text-gray-900 mt-1">{selectedRegistration.name}</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Email</label>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Mail className="h-4 w-4 text-gray-500" />
+                      <p className="text-base text-gray-900">{selectedRegistration.email}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Phone</label>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Phone className="h-4 w-4 text-gray-500" />
+                      <p className="text-base text-gray-900">{selectedRegistration.phone}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Education</label>
+                    <div className="flex items-center gap-2 mt-1">
+                      <GraduationCap className="h-4 w-4 text-gray-500" />
+                      <p className="text-base text-gray-900">{selectedRegistration.education || 'Not specified'}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Destination</label>
+                    <div className="flex items-center gap-2 mt-1">
+                      <MapPin className="h-4 w-4 text-gray-500" />
+                      <p className="text-base text-gray-900">{selectedRegistration.destination || 'Not specified'}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Registration Date</label>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Calendar className="h-4 w-4 text-gray-500" />
+                      <p className="text-base text-gray-900">{new Date(selectedRegistration.createdAt).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Information */}
+              <div className="bg-gradient-to-br from-gray-50 to-indigo-50/30 p-6 rounded-lg space-y-4">
+                <h3 className="font-semibold text-lg text-gray-900 mb-3">Status</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Attendance</label>
+                    <div className="mt-2">
+                      {selectedRegistration.isAttended ? (
+                        <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Attended
+                        </Badge>
+                      ) : (
+                        <Badge className="bg-gradient-to-r from-gray-100 to-slate-100 text-gray-600 border-0">
+                          <XCircle className="h-3 w-3 mr-1" />
+                          Not Attended
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Prize Status</label>
+                    <div className="mt-2">
+                      {selectedRegistration.prizeStatus === 'eligible' && (
+                        <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 shadow-sm">
+                          Eligible
+                        </Badge>
+                      )}
+                      {selectedRegistration.prizeStatus === 'distributed' && (
+                        <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-sm">
+                          Distributed
+                        </Badge>
+                      )}
+                      {selectedRegistration.prizeStatus === 'pending' && (
+                        <Badge className="bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0">
+                          Pending
+                        </Badge>
+                      )}
+                      {!selectedRegistration.prizeStatus && (
+                        <Badge className="bg-gray-200 text-gray-600 border-0">
+                          Not Eligible
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* QR Code */}
+              {selectedRegistration.qrCodeUrl && (
+                <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 p-6 rounded-lg">
+                  <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                    <QrCode className="h-5 w-5 text-[#1D50C9]" />
+                    Registration QR Code
+                  </h3>
+                  <div className="flex justify-center">
+                    <img 
+                      src={selectedRegistration.qrCodeUrl} 
+                      alt="Registration QR Code" 
+                      className="w-48 h-48 border-4 border-white shadow-lg rounded-lg"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
