@@ -72,8 +72,14 @@ Preferred communication style: Simple, everyday language.
   - canManageCategories: Create and manage content categories
   - canViewAnalytics: Access analytics and reporting
   - canManageMedia: Upload and manage media files
+  - canAccessEvents: Access event management features
+  - canAccessQRScanner: Access QR scanner functionality
+  - canManageLeads: Access and manage lead submissions
+  - canDownloadRegistrations: Download event registration data
+  - canDeleteRegistrations: Delete event registrations
+- **Dynamic Permission Refresh**: User permissions are automatically refreshed on dashboard load to ensure latest access controls are applied
 - **Post-Level Access Control**: Admins can assign specific posts to individual users
-- **User Management Interface**: Admin dashboard for creating users, assigning roles, and managing permissions
+- **User Management Interface**: Admin dashboard for creating users, assigning roles, managing permissions, with bulk delete functionality
 - **Post Assignment Interface**: Dedicated interface for managing which users can access specific posts
 - **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
 - **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions
