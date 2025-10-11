@@ -310,7 +310,7 @@ export default function EventAssignments() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       {/* Sidebar */}
       <AdminSidebar currentUser={currentUser} />
       
@@ -322,8 +322,8 @@ export default function EventAssignments() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Event Assignments</h1>
-          <p className="text-gray-600 mt-1">Manage which users can access specific events</p>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Event Assignments</h1>
+          <p className="text-gray-600 mt-1 font-medium">Manage which users can access specific events</p>
         </div>
         
         <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
@@ -420,52 +420,52 @@ export default function EventAssignments() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-2xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">Total Assignments</CardTitle>
-            <div className="p-2 bg-[#1D50C9] rounded-lg">
+            <CardTitle className="text-sm font-semibold text-gray-700">Total Assignments</CardTitle>
+            <div className="p-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg shadow-md">
               <LinkIcon className="h-4 w-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#1D50C9]">
+            <div className="text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
               {assignments.length}
             </div>
-            <p className="text-xs text-gray-600 mt-1">
+            <p className="text-xs text-gray-600 mt-1 font-medium">
               Active event assignments
             </p>
           </CardContent>
         </Card>
         
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-2xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">Users with Access</CardTitle>
-            <div className="p-2 bg-green-500 rounded-lg">
+            <CardTitle className="text-sm font-semibold text-gray-700">Users with Access</CardTitle>
+            <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg shadow-md">
               <Users className="h-4 w-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-green-600">
+            <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
               {new Set(assignments.map(a => a.userId)).size}
             </div>
-            <p className="text-xs text-gray-600 mt-1">
+            <p className="text-xs text-gray-600 mt-1 font-medium">
               Users with event access
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-2xl transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">Assigned Events</CardTitle>
-            <div className="p-2 bg-purple-500 rounded-lg">
+            <CardTitle className="text-sm font-semibold text-gray-700">Assigned Events</CardTitle>
+            <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg shadow-md">
               <Calendar className="h-4 w-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-purple-600">
+            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               {new Set(assignments.map(a => a.eventId)).size}
             </div>
-            <p className="text-xs text-gray-600 mt-1">
+            <p className="text-xs text-gray-600 mt-1 font-medium">
               Events with assignments
             </p>
           </CardContent>
@@ -473,10 +473,10 @@ export default function EventAssignments() {
       </div>
 
       {/* Assignments Table */}
-      <Card>
+      <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
         <CardHeader>
-          <CardTitle className="flex items-center">
-            <LinkIcon className="w-5 h-5 mr-2" />
+          <CardTitle className="flex items-center text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">
+            <LinkIcon className="w-5 h-5 mr-2 text-[#1D50C9]" />
             Event Assignments ({assignments.length})
           </CardTitle>
         </CardHeader>
@@ -494,18 +494,18 @@ export default function EventAssignments() {
           ) : (
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>User</TableHead>
-                  <TableHead>Event</TableHead>
-                  <TableHead>Event Type</TableHead>
-                  <TableHead>Event Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                  <TableHead className="font-semibold text-gray-700 py-4">User</TableHead>
+                  <TableHead className="font-semibold text-gray-700">Event</TableHead>
+                  <TableHead className="font-semibold text-gray-700">Event Type</TableHead>
+                  <TableHead className="font-semibold text-gray-700">Event Date</TableHead>
+                  <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {assignments.map((assignment) => (
-                  <TableRow key={`${assignment.userId}-${assignment.eventId}`}>
-                    <TableCell>
+                  <TableRow key={`${assignment.userId}-${assignment.eventId}`} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
+                    <TableCell className="py-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-[#1D50C9]/10 rounded-full flex items-center justify-center">
                           <span className="text-sm font-medium text-[#1D50C9]">
@@ -528,7 +528,7 @@ export default function EventAssignments() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Badge className="bg-[#1D50C9] text-white">
+                      <Badge className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-sm">
                         {assignment.event.eventType}
                       </Badge>
                     </TableCell>
