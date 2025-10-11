@@ -2049,6 +2049,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get admin user by ID
+  app.get("/api/admin/users/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Get current user from storage to check permissions
+      const currentUser = await storage.getAdminUserById(req.adminId!);
+      const isAdmin = currentUser?.role === 'admin';
+      const isSelf = req.adminId === userId;
+
+      // Users can only get their own info, admins can get anyone's
+      if (!isAdmin && !isSelf) {
+        return res.status(403).json({ message: 'Not authorized to view this user' });
+      }
+
+      const user = await storage.getAdminUserById(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Remove password from response
+      const { password: _, ...userResponse } = user;
+      res.json(userResponse);
+    } catch (error) {
+      console.error('Error fetching admin user:', error);
+      res.status(500).json({ message: 'Failed to fetch user' });
+    }
+  });
+
   // Update admin user (role, permissions, username, password)
   app.put("/api/admin/users/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {

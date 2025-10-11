@@ -358,8 +358,39 @@ export default function AdminDashboard() {
 
     try {
       const userData = JSON.parse(user);
-      setAdminUser(userData);
-      setAuthChecked(true);
+      
+      // Fetch fresh user data from server to get latest permissions
+      fetch(`/api/admin/users/${userData.id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            // If fetch fails, use cached data
+            setAdminUser(userData);
+            setAuthChecked(true);
+            return;
+          }
+          return response.json();
+        })
+        .then(freshData => {
+          if (freshData) {
+            // Update localStorage with fresh data
+            const storageKey = localStorage.getItem("adminToken") ? "adminUser" : "user";
+            localStorage.setItem(storageKey, JSON.stringify(freshData));
+            setAdminUser(freshData);
+          } else {
+            setAdminUser(userData);
+          }
+          setAuthChecked(true);
+        })
+        .catch(() => {
+          // On error, use cached data
+          setAdminUser(userData);
+          setAuthChecked(true);
+        });
     } catch {
       setLocation("/login");
     }
