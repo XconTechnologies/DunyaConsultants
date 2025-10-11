@@ -280,9 +280,9 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                 return canAssignPosts(currentUser);
               }
               
-              // Users: For post managers (can assign posts) OR admin
+              // Users: Admin-only (post managers use Post Assignments page instead)
               if (item.href === "/admin/users") {
-                return canAssignPosts(currentUser);
+                return isAdmin(currentUser);
               }
               
               // Backup and Trash: Admin-only

@@ -180,9 +180,9 @@ export default function MobileNav({ currentUser }: MobileNavProps) {
       return canAssignPosts(currentUser);
     }
     
-    // Users: For post managers (can assign posts) OR admin
+    // Users: Admin-only (post managers use Post Assignments page instead)
     if (item.href === "/admin/users") {
-      return canAssignPosts(currentUser);
+      return isAdmin(currentUser);
     }
     
     // Activity: Admin-only
