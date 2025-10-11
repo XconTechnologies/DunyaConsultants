@@ -668,20 +668,22 @@ export default function LeadsManagement() {
               <div className="flex gap-3 pt-4 border-t">
                 <Button
                   onClick={() => window.location.href = `mailto:${selectedLead.email}`}
-                  className="flex-1 bg-[#1D50C9] hover:bg-[#1845B3]"
+                  className="flex-1 bg-[#1D50C9] text-white relative overflow-hidden group transition-transform hover:scale-105"
                   data-testid="button-send-email"
                 >
-                  <Mail className="w-4 h-4 mr-2" />
-                  Send Email
+                  <span className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
+                  <Mail className="w-4 h-4 mr-2 relative z-10" />
+                  <span className="relative z-10">Send Email</span>
                 </Button>
                 <Button
                   onClick={() => window.location.href = `tel:${selectedLead.phone}`}
                   variant="outline"
-                  className="flex-1 border-gray-300"
+                  className="flex-1 border-gray-300 relative overflow-hidden group transition-transform hover:scale-105 hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9]"
                   data-testid="button-call-now"
                 >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Call Now
+                  <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
+                  <Phone className="w-4 h-4 mr-2 relative z-10" />
+                  <span className="relative z-10">Call Now</span>
                 </Button>
               </div>
             </div>
