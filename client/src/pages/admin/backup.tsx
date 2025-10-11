@@ -108,6 +108,18 @@ export default function BackupManagement() {
   const [autoBackupEnabled, setAutoBackupEnabled] = useState<boolean>(config?.autoBackupEnabled || false);
   const [cloudProvider, setCloudProvider] = useState<string>(config?.cloudProvider || "none");
   const [cloudFolderId, setCloudFolderId] = useState<string>(config?.cloudFolderId || "");
+  
+  // Backup options state
+  const [backupOptions, setBackupOptions] = useState({
+    leads: true,
+    eventRegistrations: true,
+    qrCodes: true,
+    posts: true,
+    media: true,
+    users: true,
+    forms: true,
+    categories: true,
+  });
 
   useEffect(() => {
     if (config) {
@@ -147,13 +159,13 @@ export default function BackupManagement() {
   // Create backup mutation
   const createBackupMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest("POST", "/api/admin/backup/create", {});
+      return apiRequest("POST", "/api/admin/backup/create", backupOptions);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/backup/history"] });
       toast({
         title: "Backup Created",
-        description: "Database backup has been created successfully.",
+        description: "Selected data has been backed up successfully.",
       });
     },
     onError: (error) => {
@@ -164,6 +176,19 @@ export default function BackupManagement() {
       });
     },
   });
+
+  const toggleBackupOption = (key: keyof typeof backupOptions) => {
+    setBackupOptions(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const toggleAllBackupOptions = () => {
+    const allSelected = Object.values(backupOptions).every(v => v);
+    const newState = Object.keys(backupOptions).reduce((acc, key) => ({
+      ...acc,
+      [key]: !allSelected
+    }), {} as typeof backupOptions);
+    setBackupOptions(newState);
+  };
 
   // Delete backup mutation
   const deleteBackupMutation = useMutation({
@@ -321,6 +346,116 @@ export default function BackupManagement() {
                         )}
                       </Button>
                     </div>
+                  </CardContent>
+                </Card>
+
+                {/* Backup Options */}
+                <Card className="mt-6">
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span className="flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5" />
+                        Backup Options
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={toggleAllBackupOptions}
+                        className="text-xs"
+                      >
+                        {Object.values(backupOptions).every(v => v) ? "Deselect All" : "Select All"}
+                      </Button>
+                    </CardTitle>
+                    <CardDescription>
+                      Select which data to include in the backup
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-leads"
+                          checked={backupOptions.leads}
+                          onCheckedChange={() => toggleBackupOption('leads')}
+                          data-testid="switch-backup-leads"
+                        />
+                        <Label htmlFor="backup-leads" className="cursor-pointer">Leads</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-events"
+                          checked={backupOptions.eventRegistrations}
+                          onCheckedChange={() => toggleBackupOption('eventRegistrations')}
+                          data-testid="switch-backup-events"
+                        />
+                        <Label htmlFor="backup-events" className="cursor-pointer">Event Registrations</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-qr"
+                          checked={backupOptions.qrCodes}
+                          onCheckedChange={() => toggleBackupOption('qrCodes')}
+                          data-testid="switch-backup-qr"
+                        />
+                        <Label htmlFor="backup-qr" className="cursor-pointer">QR Codes</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-posts"
+                          checked={backupOptions.posts}
+                          onCheckedChange={() => toggleBackupOption('posts')}
+                          data-testid="switch-backup-posts"
+                        />
+                        <Label htmlFor="backup-posts" className="cursor-pointer">Blog Posts</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-media"
+                          checked={backupOptions.media}
+                          onCheckedChange={() => toggleBackupOption('media')}
+                          data-testid="switch-backup-media"
+                        />
+                        <Label htmlFor="backup-media" className="cursor-pointer">Media Files</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-users"
+                          checked={backupOptions.users}
+                          onCheckedChange={() => toggleBackupOption('users')}
+                          data-testid="switch-backup-users"
+                        />
+                        <Label htmlFor="backup-users" className="cursor-pointer">Users</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-forms"
+                          checked={backupOptions.forms}
+                          onCheckedChange={() => toggleBackupOption('forms')}
+                          data-testid="switch-backup-forms"
+                        />
+                        <Label htmlFor="backup-forms" className="cursor-pointer">Form Management</Label>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="backup-categories"
+                          checked={backupOptions.categories}
+                          onCheckedChange={() => toggleBackupOption('categories')}
+                          data-testid="switch-backup-categories"
+                        />
+                        <Label htmlFor="backup-categories" className="cursor-pointer">Categories</Label>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-gray-500 pt-2 border-t">
+                      {Object.values(backupOptions).filter(v => v).length} of {Object.keys(backupOptions).length} items selected
+                    </p>
                   </CardContent>
                 </Card>
               </div>
