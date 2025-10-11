@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, json, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json, varchar, index, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -422,7 +422,9 @@ export const qrCodes = pgTable("qr_codes", {
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
   trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  createdByIdx: index("qr_codes_created_by_idx").on(table.createdBy),
+}));
 
 // Admin Notifications
 export const adminNotifications = pgTable("admin_notifications", {
@@ -489,7 +491,9 @@ export const media = pgTable("media", {
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
   trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  uploadedByIdx: index("media_uploaded_by_idx").on(table.uploadedBy),
+}));
 
 // Blog post revisions for version control
 export const blogPostRevisions = pgTable("blog_post_revisions", {
@@ -545,7 +549,9 @@ export const postAssignments = pgTable("post_assignments", {
   postId: integer("post_id").references(() => blogPosts.id).notNull(),
   assignedBy: integer("assigned_by").references(() => adminUsers.id).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  userPostIdx: uniqueIndex("post_assignments_user_post_idx").on(table.userId, table.postId),
+}));
 
 // Event assignments for granular access control
 export const eventAssignments = pgTable("event_assignments", {
@@ -554,7 +560,9 @@ export const eventAssignments = pgTable("event_assignments", {
   eventId: integer("event_id").references(() => events.id).notNull(),
   assignedBy: integer("assigned_by").references(() => adminUsers.id).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  userEventIdx: uniqueIndex("event_assignments_user_event_idx").on(table.userId, table.eventId),
+}));
 
 // Lead assignments for granular access control
 export const leadAssignments = pgTable("lead_assignments", {
@@ -563,7 +571,9 @@ export const leadAssignments = pgTable("lead_assignments", {
   leadId: integer("lead_id").references(() => consultations.id).notNull(),
   assignedBy: integer("assigned_by").references(() => adminUsers.id).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  userLeadIdx: uniqueIndex("lead_assignments_user_lead_idx").on(table.userId, table.leadId),
+}));
 
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
