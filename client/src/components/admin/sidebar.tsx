@@ -120,10 +120,10 @@ const sidebarItems: SidebarItem[] = [
     description: "Create and manage custom forms"
   },
   {
-    title: "Leads Submissions",
+    title: "Leads",
     href: "/admin/leads",
     icon: Mail,
-    description: "View all leads submissions",
+    description: "View all leads",
     subItems: [
       {
         title: "Leads Assignments",
@@ -161,7 +161,7 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ currentUser, isOpen = true, onClose }: AdminSidebarProps) {
   const [location] = useLocation();
-  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Leads Submissions"]));
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Leads"]));
 
   // Fetch assignment status for current user
   const { data: assignmentStatus } = useQuery({
