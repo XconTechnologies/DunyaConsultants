@@ -2279,9 +2279,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(409).json({ message: 'Username already exists' });
       }
 
+      // Normalize roles: convert hyphens to underscores for consistency
+      const normalizedRoles = roles.map((r: string) => r.replace(/-/g, '_'));
+      
       // Validate roles
-      const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager'];
-      const invalidRoles = roles.filter((r: string) => !validRoles.includes(r));
+      const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager', 'custom'];
+      const invalidRoles = normalizedRoles.filter((r: string) => !validRoles.includes(r));
       if (invalidRoles.length > 0) {
         return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
       }
@@ -2291,7 +2294,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         username,
         email,
         password,
-        roles,
+        roles: normalizedRoles,
         permissions: permissions || null,
         isActive: true
       });
@@ -2373,12 +2376,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (!Array.isArray(roles) || roles.length === 0) {
           return res.status(400).json({ message: 'Roles must be a non-empty array' });
         }
-        const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager'];
-        const invalidRoles = roles.filter((r: string) => !validRoles.includes(r));
+        // Normalize roles: convert hyphens to underscores for consistency
+        const normalizedRoles = roles.map((r: string) => r.replace(/-/g, '_'));
+        
+        const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager', 'custom'];
+        const invalidRoles = normalizedRoles.filter((r: string) => !validRoles.includes(r));
         if (invalidRoles.length > 0) {
           return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
         }
-        updates.roles = roles;
+        updates.roles = normalizedRoles;
       }
       if (permissions !== undefined) updates.permissions = permissions;
       if (isActive !== undefined) updates.isActive = isActive;
