@@ -724,7 +724,7 @@ export class DatabaseStorage implements IStorage {
       username: insertAdminUser.username,
       email: insertAdminUser.email,
       password: hashedPassword,
-      role: insertAdminUser.role,
+      roles: insertAdminUser.roles,
       permissions: insertAdminUser.permissions ? JSON.parse(JSON.stringify(insertAdminUser.permissions)) : null,
       isActive: insertAdminUser.isActive !== undefined ? insertAdminUser.isActive : true,
     };
