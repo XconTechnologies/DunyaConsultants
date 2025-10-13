@@ -97,6 +97,10 @@ Preferred communication style: Simple, everyday language.
 - **Post Assignment Interface**: Dedicated interface for managing which users can access specific posts
 - **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
 - **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions
+- **Post Filtering System**: 
+  - Status filter counters in All Posts page (All, Published, Draft, Trash)
+  - Dashboard cards navigate to filtered views (e.g., clicking "Published" card shows only published posts)
+  - URL-based filtering with query parameters for bookmarkable filtered views
 - **Audit Trail**: Activity logging for user actions and content changes
 - **Database Backup System**: Comprehensive backup management with:
   - Manual and scheduled backups (daily, weekly, monthly)

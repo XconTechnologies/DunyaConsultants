@@ -780,7 +780,7 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card 
             className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
-            onClick={() => setLocation('/admin/posts')}
+            onClick={() => setLocation('/admin/posts?filter=all')}
             data-testid="card-total-posts"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -799,7 +799,7 @@ export default function AdminDashboard() {
           
           <Card 
             className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
-            onClick={() => setLocation('/admin/posts')}
+            onClick={() => setLocation('/admin/posts?filter=published')}
             data-testid="card-published-posts"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -820,7 +820,7 @@ export default function AdminDashboard() {
           
           <Card 
             className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
-            onClick={() => setLocation('/admin/posts')}
+            onClick={() => setLocation('/admin/posts?filter=draft')}
             data-testid="card-draft-posts"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

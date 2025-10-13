@@ -53,11 +53,16 @@ interface Author {
 }
 
 export default function AllPosts() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'trash'>('all');
+  
+  // Get initial filter from URL params
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialFilter = (urlParams.get('filter') || 'all') as 'all' | 'published' | 'draft' | 'trash';
+  const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'trash'>(initialFilter);
+  
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -71,6 +76,13 @@ export default function AllPosts() {
       ...(token && { 'Authorization': `Bearer ${token}` })
     };
   };
+
+  // Update filter when URL changes
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = (urlParams.get('filter') || 'all') as 'all' | 'published' | 'draft' | 'trash';
+    setStatusFilter(filter);
+  }, [location]);
 
   // Check authentication
   useEffect(() => {
