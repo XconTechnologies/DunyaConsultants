@@ -62,7 +62,14 @@ Preferred communication style: Simple, everyday language.
 
 ### Content Management System (Enterprise-Level)
 - **Multi-User Authentication**: Secure admin authentication with session management
-- **Four Role Types**: Admin, Editor, Publisher, and Custom roles with distinct permissions
+- **Multi-Role System**: Users can have multiple roles assigned simultaneously (e.g., Editor + Leads Manager)
+- **Five Core Role Types**: 
+  - Admin: Full system access with ability to manage all users and reset passwords
+  - Events Manager: Manage events, registrations, and QR codes
+  - Leads Manager: Manage consultation leads and assignments
+  - Editor: Create and edit assigned content
+  - Publisher: Publish content to live site
+  - Custom: Define specific permission combinations
 - **Granular Permissions System**: Checkbox-based custom permissions for fine-grained access control
   - canCreate: Create new content
   - canEdit: Edit existing content  
@@ -79,7 +86,14 @@ Preferred communication style: Simple, everyday language.
   - canDeleteRegistrations: Delete event registrations
 - **Dynamic Permission Refresh**: User permissions are automatically refreshed on dashboard load to ensure latest access controls are applied
 - **Post-Level Access Control**: Admins can assign specific posts to individual users
-- **User Management Interface**: Admin dashboard for creating users, assigning roles, managing permissions, with bulk delete functionality
+- **User Management Interface**: Admin dashboard for creating users, assigning multiple roles, managing permissions, with bulk delete functionality
+  - **Admin Privileges**: Admins can update usernames and reset passwords for all users (secure password reset without viewing current passwords)
+  - **Current User Accounts**:
+    - dunyasgd: Admin
+    - mubashir: Admin
+    - bwpadmin: Events Manager
+    - abuzar: Editor + Leads Manager (multi-role)
+    - test1: Editor
 - **Post Assignment Interface**: Dedicated interface for managing which users can access specific posts
 - **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
 - **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions

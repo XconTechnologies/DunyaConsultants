@@ -49,7 +49,7 @@ import {
   EyeOff
 } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
-import { canManageUsers } from "@/lib/permissions";
+import { canManageUsers, isAdmin } from "@/lib/permissions";
 
 // Role configuration with permissions and styling
 const ROLE_CONFIG = {
@@ -869,6 +869,11 @@ export default function UserManagement() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Edit User</DialogTitle>
+            {isAdmin(currentUser) && editingUser && (
+              <p className="text-sm text-gray-600 mt-2">
+                As an admin, you can update the username and reset the password for {editingUser.username}
+              </p>
+            )}
           </DialogHeader>
           {editingUser && (
             <div className="space-y-4">
@@ -879,7 +884,11 @@ export default function UserManagement() {
                   value={editUsername}
                   onChange={(e) => setEditUsername(e.target.value)}
                   placeholder="Enter username"
+                  disabled={!isAdmin(currentUser) && editingUser.id !== currentUser?.id}
                 />
+                {!isAdmin(currentUser) && editingUser.id !== currentUser?.id && (
+                  <p className="text-xs text-amber-600 mt-1">Only admins can change other users' usernames</p>
+                )}
               </div>
               <div>
                 <Label>Email</Label>
@@ -887,15 +896,18 @@ export default function UserManagement() {
                 <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
               </div>
               <div>
-                <Label htmlFor="edit-password">Password</Label>
+                <Label htmlFor="edit-password">
+                  {isAdmin(currentUser) ? "Reset Password" : "New Password"}
+                </Label>
                 <div className="relative">
                   <Input
                     id="edit-password"
                     type={showEditPassword ? "text" : "password"}
                     value={editPassword}
                     onChange={(e) => setEditPassword(e.target.value)}
-                    placeholder="Leave blank to keep current password"
+                    placeholder={isAdmin(currentUser) ? "Enter new password to reset" : "Leave blank to keep current password"}
                     className="pr-10"
+                    disabled={!isAdmin(currentUser) && editingUser.id !== currentUser?.id}
                   />
                   <Button
                     type="button"
@@ -911,7 +923,13 @@ export default function UserManagement() {
                     )}
                   </Button>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Only enter a password if you want to change it</p>
+                {isAdmin(currentUser) ? (
+                  <p className="text-xs text-blue-600 mt-1 font-medium">
+                    Admin privilege: Enter a new password to reset this user's password
+                  </p>
+                ) : (
+                  <p className="text-xs text-gray-500 mt-1">Only enter a password if you want to change it</p>
+                )}
               </div>
               <div>
                 <Label className="text-base font-semibold mb-3 block">Roles (Select one or more)</Label>
