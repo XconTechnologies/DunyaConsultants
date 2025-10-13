@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ import {
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function ServicesPage() {
   const services = [
@@ -148,6 +150,13 @@ export default function ServicesPage() {
     { icon: Clock, label: "Years Experience", value: "5+" },
     { icon: MapPin, label: "Countries Covered", value: "15+" }
   ];
+
+  useEffect(() => {
+    setStaticPageMeta(
+      'Our Services',
+      'Complete study abroad services including admission guidance, visa filing, test preparation, scholarship assistance, accommodation support, and pre-departure briefing. Your journey to international education starts here.'
+    );
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
