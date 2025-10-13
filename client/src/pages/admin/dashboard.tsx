@@ -47,6 +47,9 @@ import {
   Calendar,
   UserCheck,
   Mail,
+  Database,
+  Download,
+  Search,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -91,6 +94,7 @@ export default function AdminDashboard() {
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -763,6 +767,8 @@ export default function AdminDashboard() {
           title="Content Dashboard"
           subtitle={adminUser.roles?.includes('admin') ? 'Full Access' : 'Editor Access'}
           onMenuClick={() => setSidebarOpen(true)}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
         />
 
         {/* Mobile Navigation */}
@@ -772,7 +778,11 @@ export default function AdminDashboard() {
         {/* Stats Cards - Only visible for users with content permissions */}
         {(canCreateContent(adminUser) || canEditContent(adminUser) || isAdmin(adminUser)) && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
+          <Card 
+            className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
+            onClick={() => setLocation('/admin/blog-posts')}
+            data-testid="card-total-posts"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-700">Total Blog Posts</CardTitle>
               <div className="p-2 bg-[#1D50C9] rounded-lg">
@@ -787,7 +797,11 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
           
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm">
+          <Card 
+            className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
+            onClick={() => setLocation('/admin/blog-posts')}
+            data-testid="card-published-posts"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-700">Published</CardTitle>
               <div className="p-2 bg-green-500 rounded-lg">
@@ -804,7 +818,11 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
           
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm">
+          <Card 
+            className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
+            onClick={() => setLocation('/admin/blog-posts')}
+            data-testid="card-draft-posts"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-700">Drafts</CardTitle>
               <div className="p-2 bg-orange-500 rounded-lg">
@@ -821,7 +839,11 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
           
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm">
+          <Card 
+            className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105"
+            onClick={() => setLocation('/admin/categories')}
+            data-testid="card-categories"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-700">Categories</CardTitle>
               <div className="p-2 bg-purple-500 rounded-lg">
@@ -838,6 +860,59 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+        )}
+
+        {/* Backup Card - Only visible for admins */}
+        {isAdmin(adminUser) && (
+          <div className="mb-8">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-cyan-50/50 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-3 bg-cyan-500 rounded-lg">
+                      <Database className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl font-bold text-gray-900">Database Backup</CardTitle>
+                      <CardDescription className="text-gray-600">Create a backup of all your data with one click</CardDescription>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={async () => {
+                      try {
+                        const response = await fetch('/api/admin/backup/manual', {
+                          method: 'POST',
+                          headers: getAuthHeaders(),
+                        });
+                        
+                        if (!response.ok) {
+                          throw new Error('Backup failed');
+                        }
+                        
+                        const data = await response.json();
+                        
+                        toast({
+                          title: "Backup Created Successfully",
+                          description: `Backup created at ${new Date(data.createdAt).toLocaleString()}`,
+                        });
+                      } catch (error) {
+                        toast({
+                          title: "Backup Failed",
+                          description: "Failed to create backup. Please try again.",
+                          variant: "destructive",
+                        });
+                      }
+                    }}
+                    className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                    data-testid="button-create-backup"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Create Backup Now
+                  </Button>
+                </div>
+              </CardHeader>
+            </Card>
+          </div>
         )}
 
         {/* Event Registration Cards - Only visible for users with events access permission */}

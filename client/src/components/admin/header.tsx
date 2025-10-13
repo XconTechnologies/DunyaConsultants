@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink, LogOut, Menu } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ExternalLink, LogOut, Menu, Search } from "lucide-react";
 import { useLocation } from "wouter";
 import type { AdminUser } from "@shared/schema";
 
@@ -8,9 +9,11 @@ interface AdminHeaderProps {
   title: string;
   subtitle?: string;
   onMenuClick?: () => void;
+  searchQuery?: string;
+  onSearchChange?: (query: string) => void;
 }
 
-export default function AdminHeader({ currentUser, title, subtitle, onMenuClick }: AdminHeaderProps) {
+export default function AdminHeader({ currentUser, title, subtitle, onMenuClick, searchQuery, onSearchChange }: AdminHeaderProps) {
   const [, setLocation] = useLocation();
 
   const handleLogout = () => {
@@ -44,6 +47,20 @@ export default function AdminHeader({ currentUser, title, subtitle, onMenuClick 
             </div>
           </div>
           <div className="flex items-center space-x-2 lg:space-x-4">
+            {/* Search Bar */}
+            {onSearchChange && (
+              <div className="relative hidden md:block">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-200" />
+                <Input
+                  type="text"
+                  placeholder="Search dashboard..."
+                  value={searchQuery || ''}
+                  onChange={(e) => onSearchChange(e.target.value)}
+                  className="pl-10 pr-4 py-2 bg-white/10 border-white/20 text-white placeholder:text-blue-200 focus:bg-white/20 focus:border-white/40 w-64"
+                  data-testid="input-search-dashboard"
+                />
+              </div>
+            )}
             {currentUser && (
               <div className="text-right hidden md:block">
                 <div className="text-sm text-blue-100">Welcome back,</div>
