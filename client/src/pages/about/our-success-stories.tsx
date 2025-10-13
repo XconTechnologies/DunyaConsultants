@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -22,6 +22,7 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import CalendlyButton from '@/components/calendly-button';
 import ConsultationFormPopup from '@/components/consultation-form-popup';
+import { setStaticPageMeta } from "@/lib/seo";
 
 // Import Finland visa success images - using the actual files from attached_assets
 // Removed image1 as requested by user
@@ -105,6 +106,13 @@ export default function OurSuccessStories() {
   // Tab state for country selection
   const [activeTab, setActiveTab] = useState('UK');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    setStaticPageMeta(
+      "Student Success Stories",
+      "Read inspiring success stories from students who achieved their study abroad goals with Dunya Consultants. Real experiences from universities worldwide."
+    );
+  }, []);
 
   const achievements = [
     {

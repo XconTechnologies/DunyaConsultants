@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, Globe, Award, Target, Building2, GraduationCap, Heart, Star, CheckCircle, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,9 +10,18 @@ import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function WhoWeAre() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Who We Are",
+      "Learn about Dunya Consultants - Pakistan's trusted visa consultancy helping students achieve their study abroad dreams with expert guidance and personalized support."
+    );
+  }, []);
+  
   const stats = [
     { number: "15+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "20+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },

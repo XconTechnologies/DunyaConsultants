@@ -6,7 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { setStaticPageMeta } from "@/lib/seo";
 
 // Import team member images
 import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
@@ -162,6 +163,14 @@ const stats = [
 
 export default function TeamPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Our Team",
+      "Meet our experienced team of study abroad consultants, visa experts, and education counselors dedicated to helping you succeed in your international education journey."
+    );
+  }, []);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />

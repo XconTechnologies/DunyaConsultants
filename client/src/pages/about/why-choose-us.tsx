@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Shield, 
@@ -21,9 +21,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConsultationBookingSection from '@/components/consultation-booking-section';
 import ConsultationFormPopup from '@/components/consultation-form-popup';
 import CalendlyButton from '@/components/calendly-button';
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function WhyChooseUs() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Why Choose Us",
+      "Discover why thousands of students trust Dunya Consultants for their study abroad journey. Expert guidance, proven track record, and comprehensive support services."
+    );
+  }, []);
+  
   const advantages = [
     {
       icon: Award,
