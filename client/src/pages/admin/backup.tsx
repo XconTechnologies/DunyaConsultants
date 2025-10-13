@@ -961,7 +961,7 @@ export default function BackupManagement() {
 
       {/* Upload Restore Dialog */}
       <AlertDialog open={showUploadRestore} onOpenChange={(open) => !open && setShowUploadRestore(false)}>
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center gap-2">
               <CloudUpload className="w-5 h-5 text-green-600" />
