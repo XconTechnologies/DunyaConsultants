@@ -248,7 +248,13 @@ export default function BackupManagement() {
 
   const handleDownload = (backup: BackupHistory) => {
     const token = localStorage.getItem("adminToken");
-    window.open(`/api/admin/backup/download/${backup.id}?token=${token}`, '_blank');
+    // Create a temporary link element to trigger download without navigation
+    const link = document.createElement('a');
+    link.href = `/api/admin/backup/download/${backup.id}?token=${token}`;
+    link.download = backup.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const formatFileSize = (bytes: number) => {
