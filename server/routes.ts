@@ -61,9 +61,25 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
     }
 
     req.adminId = session.adminUserId;
+    
     // Support both old single role and new multi-role system
-    req.adminRoles = admin.roles || (admin as any).role ? [(admin as any).role] : [];
-    req.adminRole = req.adminRoles[0]; // Legacy support - use first role
+    // Ensure roles is always an array
+    let roles: string[] = [];
+    if (admin.roles && Array.isArray(admin.roles)) {
+      roles = admin.roles;
+    } else if (admin.roles) {
+      // If roles is a string or other type, try to convert it
+      roles = [admin.roles as any];
+    } else if ((admin as any).role) {
+      // Legacy single role support
+      roles = [(admin as any).role];
+    }
+    
+    // Debug logging
+    console.log('[Auth Debug] User:', admin.username, 'Raw roles:', admin.roles, 'Type:', typeof admin.roles, 'Parsed roles:', roles);
+    
+    req.adminRoles = roles;
+    req.adminRole = roles[0]; // Legacy support - use first role
     req.user = admin;
     req.isAuthenticated = true;
     next();
