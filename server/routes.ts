@@ -3270,6 +3270,195 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Upload and restore backup
+  app.post("/api/admin/backup/restore/upload", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    const upload = multer({
+      storage: multer.memoryStorage(),
+      limits: {
+        fileSize: 100 * 1024 * 1024, // 100MB max
+      },
+      fileFilter: (req, file, cb) => {
+        if (file.originalname.endsWith('.zip')) {
+          cb(null, true);
+        } else {
+          cb(new Error('Only ZIP files are allowed'));
+        }
+      },
+    }).single('backup');
+
+    upload(req, res, async (err) => {
+      if (err) {
+        console.error('Upload error:', err);
+        return res.status(400).json({ message: err.message || 'File upload failed' });
+      }
+
+      try {
+        if (!req.file) {
+          return res.status(400).json({ message: 'No file uploaded' });
+        }
+
+        const AdmZip = (await import('adm-zip')).default;
+        
+        // Extract ZIP file from buffer
+        const zip = new AdmZip(req.file.buffer);
+        const zipEntries = zip.getEntries();
+
+        // Parse backup data - handle both flat and nested structures
+        const backupData: any = {};
+        zipEntries.forEach((entry) => {
+          if (!entry.isDirectory && entry.entryName.endsWith('.json')) {
+            try {
+              const content = entry.getData().toString('utf8');
+              // Get filename without path and extension
+              const fileName = entry.entryName.split('/').pop()?.replace('.json', '') || '';
+              backupData[fileName] = JSON.parse(content);
+            } catch (err) {
+              console.error(`Error parsing ${entry.entryName}:`, err);
+            }
+          }
+        });
+
+        console.log('Restoring uploaded backup with data types:', Object.keys(backupData));
+
+        // NOTE: This is an ADDITIVE restore - it adds backup data to existing data
+        const restoredItems: any = {};
+
+        // Restore leads
+        if (backupData.leads && Array.isArray(backupData.leads)) {
+          let count = 0;
+          for (const lead of backupData.leads) {
+            try {
+              const { id, ...leadData } = lead;
+              await storage.createConsultation(leadData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring lead:', err);
+            }
+          }
+          restoredItems.leads = count;
+        }
+
+        // Restore event registrations
+        if (backupData.event_registrations && Array.isArray(backupData.event_registrations)) {
+          let count = 0;
+          for (const registration of backupData.event_registrations) {
+            try {
+              const { id, ...regData } = registration;
+              await storage.createEventRegistration(regData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring event registration:', err);
+            }
+          }
+          restoredItems.eventRegistrations = count;
+        }
+
+        // Restore categories first (needed for blog posts)
+        if (backupData.categories && Array.isArray(backupData.categories)) {
+          let count = 0;
+          for (const category of backupData.categories) {
+            try {
+              const { id, ...catData } = category;
+              await storage.createCategory(catData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring category:', err);
+            }
+          }
+          restoredItems.categories = count;
+        }
+
+        // Restore blog posts
+        if (backupData.blog_posts && Array.isArray(backupData.blog_posts)) {
+          let count = 0;
+          for (const post of backupData.blog_posts) {
+            try {
+              const { id, categories, ...postData } = post;
+              await storage.createBlogPost(postData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring blog post:', err);
+            }
+          }
+          restoredItems.blogPosts = count;
+        }
+
+        // Restore QR codes
+        if (backupData.qr_codes && Array.isArray(backupData.qr_codes)) {
+          let count = 0;
+          for (const qr of backupData.qr_codes) {
+            try {
+              const { id, ...qrData } = qr;
+              await storage.createQrCode(qrData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring QR code:', err);
+            }
+          }
+          restoredItems.qrCodes = count;
+        }
+
+        // Restore users (admins)
+        if (backupData.users && Array.isArray(backupData.users)) {
+          let count = 0;
+          for (const user of backupData.users) {
+            try {
+              const { id, ...userData } = user;
+              if (userData.password !== '[REDACTED]') {
+                await storage.createAdminUser(userData);
+                count++;
+              }
+            } catch (err) {
+              console.error('Error restoring user:', err);
+            }
+          }
+          restoredItems.users = count;
+        }
+
+        // Restore media files metadata
+        if (backupData.media && Array.isArray(backupData.media)) {
+          let count = 0;
+          for (const media of backupData.media) {
+            try {
+              const { id, ...mediaData } = media;
+              await storage.createMedia(mediaData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring media:', err);
+            }
+          }
+          restoredItems.media = count;
+        }
+
+        // Restore forms
+        if (backupData.forms && Array.isArray(backupData.forms)) {
+          let count = 0;
+          for (const form of backupData.forms) {
+            try {
+              const { id, ...formData } = form;
+              await storage.createCustomForm(formData);
+              count++;
+            } catch (err) {
+              console.error('Error restoring form:', err);
+            }
+          }
+          restoredItems.forms = count;
+        }
+
+        res.json({ 
+          success: true, 
+          message: 'Backup data has been added to the database (additive restore)',
+          warning: 'This is an additive restore - data was added to existing records. For complete replacement, contact system administrator.',
+          restoredItems
+        });
+      } catch (error) {
+        console.error('Error restoring uploaded backup:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        res.status(500).json({ message: 'Failed to restore backup', error: errorMessage });
+      }
+    });
+  });
+
   // Delete backup
   app.delete("/api/admin/backup/:id", requireAuth, requireAdmin, async (req, res) => {
     try {
