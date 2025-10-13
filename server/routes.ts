@@ -34,7 +34,8 @@ if (process.env.SENDGRID_API_KEY) {
 // Extend Request interface to include adminId and user info
 interface AuthenticatedRequest extends Request {
   adminId?: number;
-  adminRole?: string;
+  adminRole?: string; // Legacy - kept for backward compatibility
+  adminRoles?: string[]; // New multi-role support
   userId?: number;
   isAuthenticated?: boolean;
   user?: AdminUser;
@@ -60,7 +61,9 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
     }
 
     req.adminId = session.adminUserId;
-    req.adminRole = admin.role;
+    // Support both old single role and new multi-role system
+    req.adminRoles = admin.roles || (admin as any).role ? [(admin as any).role] : [];
+    req.adminRole = req.adminRoles[0]; // Legacy support - use first role
     req.user = admin;
     req.isAuthenticated = true;
     next();
@@ -69,14 +72,17 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
   }
 }
 
-// Role-based access control middleware
+// Role-based access control middleware - Updated for multi-role support
 function requireRole(...allowedRoles: string[]) {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-    if (!req.adminRole) {
+    if (!req.adminRoles || req.adminRoles.length === 0) {
       return res.status(401).json({ message: 'Authentication required' });
     }
 
-    if (!allowedRoles.includes(req.adminRole)) {
+    // Check if user has ANY of the allowed roles
+    const hasRole = req.adminRoles.some(role => allowedRoles.includes(role));
+    
+    if (!hasRole) {
       return res.status(403).json({ 
         message: `Access denied. Required roles: ${allowedRoles.join(', ')}` 
       });

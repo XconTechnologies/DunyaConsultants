@@ -55,9 +55,10 @@ import { canManageUsers } from "@/lib/permissions";
 const ROLE_CONFIG = {
   admin: {
     label: "Admin",
-    color: "bg-red-500",
+    color: "bg-gradient-to-r from-red-500 to-red-600",
+    badgeColor: "bg-red-500",
     icon: Crown,
-    description: "Full access to all content and settings",
+    description: "Full system access and user management",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
@@ -76,30 +77,32 @@ const ROLE_CONFIG = {
   },
   editor: {
     label: "Editor",
-    color: "bg-blue-500",
+    color: "bg-gradient-to-r from-blue-500 to-blue-600",
+    badgeColor: "bg-blue-500",
     icon: FileEdit,
-    description: "Create and edit assigned posts/events",
+    description: "Create and edit assigned posts, categories, media",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
       canPublish: false,
       canDelete: false,
       canManageUsers: false,
-      canManageCategories: false,
+      canManageCategories: true,
       canViewAnalytics: false,
       canManageMedia: true,
-      canAccessEvents: true,
+      canAccessEvents: false,
       canAccessQRScanner: false,
-      canDownloadRegistrations: true,
+      canDownloadRegistrations: false,
       canDeleteRegistrations: false,
       canManageLeads: false,
     }
   },
   publisher: {
     label: "Publisher",
-    color: "bg-green-500",
+    color: "bg-gradient-to-r from-green-500 to-green-600",
+    badgeColor: "bg-green-500",
     icon: Upload,
-    description: "Create, edit and publish assigned content",
+    description: "Create, edit and publish content",
     defaultPermissions: {
       canCreate: true,
       canEdit: true,
@@ -109,6 +112,28 @@ const ROLE_CONFIG = {
       canManageCategories: false,
       canViewAnalytics: true,
       canManageMedia: true,
+      canAccessEvents: false,
+      canAccessQRScanner: false,
+      canDownloadRegistrations: false,
+      canDeleteRegistrations: false,
+      canManageLeads: false,
+    }
+  },
+  events_manager: {
+    label: "Events Manager",
+    color: "bg-gradient-to-r from-purple-500 to-purple-600",
+    badgeColor: "bg-purple-500",
+    icon: Settings,
+    description: "Manage assigned events, scan QR codes, download registrations",
+    defaultPermissions: {
+      canCreate: false,
+      canEdit: false,
+      canPublish: false,
+      canDelete: false,
+      canManageUsers: false,
+      canManageCategories: false,
+      canViewAnalytics: false,
+      canManageMedia: false,
       canAccessEvents: true,
       canAccessQRScanner: true,
       canDownloadRegistrations: true,
@@ -116,11 +141,12 @@ const ROLE_CONFIG = {
       canManageLeads: false,
     }
   },
-  custom: {
-    label: "Custom",
-    color: "bg-purple-500",
-    icon: Settings,
-    description: "Configure specific permissions for this user",
+  leads_manager: {
+    label: "Leads Manager",
+    color: "bg-gradient-to-r from-orange-500 to-orange-600",
+    badgeColor: "bg-orange-500",
+    icon: Users,
+    description: "Manage leads, assign to users, update lead status",
     defaultPermissions: {
       canCreate: false,
       canEdit: false,
@@ -132,9 +158,9 @@ const ROLE_CONFIG = {
       canManageMedia: false,
       canAccessEvents: false,
       canAccessQRScanner: false,
-      canManageLeads: false,
       canDownloadRegistrations: false,
       canDeleteRegistrations: false,
+      canManageLeads: true,
     }
   }
 } as const;
@@ -143,7 +169,7 @@ interface CreateUserFormData {
   username: string;
   email: string;
   password: string;
-  role: keyof typeof ROLE_CONFIG;
+  roles: string[];
   permissions?: Record<string, boolean>;
 }
 
@@ -161,7 +187,7 @@ export default function UserManagement() {
     username: "",
     email: "",
     password: "",
-    role: "editor",
+    roles: ["editor"],
     permissions: {}
   });
   const [showCreatePassword, setShowCreatePassword] = useState(false);
@@ -236,7 +262,7 @@ export default function UserManagement() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsCreateDialogOpen(false);
-      setCreateForm({ username: "", email: "", password: "", role: "editor", permissions: {} });
+      setCreateForm({ username: "", email: "", password: "", roles: ["editor"], permissions: {} });
       toast({
         title: "Success",
         description: "User created successfully",
@@ -383,10 +409,32 @@ export default function UserManagement() {
       return;
     }
 
-    const roleConfig = ROLE_CONFIG[createForm.role];
+    if (!createForm.roles || createForm.roles.length === 0) {
+      toast({
+        title: "Error",
+        description: "Please select at least one role",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Merge permissions from all selected roles
+    const mergedPermissions: Record<string, boolean> = {};
+    createForm.roles.forEach(roleKey => {
+      const roleConfig = ROLE_CONFIG[roleKey as keyof typeof ROLE_CONFIG];
+      if (roleConfig && roleConfig.defaultPermissions) {
+        Object.entries(roleConfig.defaultPermissions).forEach(([key, value]) => {
+          // If any role grants a permission, grant it (OR logic)
+          if (value) {
+            mergedPermissions[key] = true;
+          }
+        });
+      }
+    });
+
     const userData = {
       ...createForm,
-      permissions: createForm.role === 'custom' ? createForm.permissions : roleConfig.defaultPermissions
+      permissions: mergedPermissions
     };
     
     createUserMutation.mutate(userData);
@@ -413,16 +461,27 @@ export default function UserManagement() {
     }
   };
 
-  const getRoleBadge = (role: string) => {
-    const config = ROLE_CONFIG[role as keyof typeof ROLE_CONFIG];
-    if (!config) return null;
+  const getRoleBadges = (roles: string[] | string | undefined) => {
+    // Handle both old single role and new roles array for backward compatibility
+    const roleArray = Array.isArray(roles) ? roles : (roles ? [roles] : []);
     
-    const Icon = config.icon;
+    if (roleArray.length === 0) return <Badge variant="outline">No Roles</Badge>;
+    
     return (
-      <Badge className={`${config.color} text-white`}>
-        <Icon className="w-3 h-3 mr-1" />
-        {config.label}
-      </Badge>
+      <div className="flex flex-wrap gap-1">
+        {roleArray.map((role) => {
+          const config = ROLE_CONFIG[role as keyof typeof ROLE_CONFIG];
+          if (!config) return null;
+          
+          const Icon = config.icon;
+          return (
+            <Badge key={role} className={`${config.badgeColor} text-white text-xs`}>
+              <Icon className="w-3 h-3 mr-1" />
+              {config.label}
+            </Badge>
+          );
+        })}
+      </div>
     );
   };
 
@@ -439,7 +498,7 @@ export default function UserManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Sidebar */}
       <AdminSidebar 
         currentUser={currentUser} 
@@ -452,24 +511,35 @@ export default function UserManagement() {
         <AdminHeader 
           currentUser={currentUser}
           title="User Management"
-          subtitle="Manage system users and their permissions"
+          subtitle="Create and manage system users with role-based access control"
           onMenuClick={() => setSidebarOpen(true)}
         />
 
         {/* Mobile Navigation */}
         <MobileNav currentUser={currentUser} />
         
-        <div className="p-6 space-y-6">
-      {/* Create User Dialog Button */}
-      <div className="flex items-center justify-end">
+        <div className="p-6 space-y-6 max-w-7xl mx-auto">
+          {/* Page Header */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#2563eb] rounded-xl shadow-lg">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#2563eb] bg-clip-text text-transparent">
+                  User Management
+                </h1>
+                <p className="text-gray-600 mt-1">Manage roles, permissions, and user accounts</p>
+              </div>
+            </div>
         
-        <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-700">
-              <UserPlus className="w-4 h-4 mr-2" />
-              Add User
-            </Button>
-          </DialogTrigger>
+            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-gradient-to-r from-[#1D50C9] to-[#2563eb] hover:from-[#1640a8] hover:to-[#1d4ed8] text-white px-6 py-6 shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl font-semibold">
+                  <UserPlus className="w-5 h-5 mr-2" />
+                  Add User
+                </Button>
+              </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>Create New User</DialogTitle>
@@ -521,36 +591,49 @@ export default function UserManagement() {
                 </div>
               </div>
               <div>
-                <Label htmlFor="role">Role</Label>
-                <Select 
-                  value={createForm.role} 
-                  onValueChange={(value) => {
-                    setCreateForm({ 
-                      ...createForm, 
-                      role: value as keyof typeof ROLE_CONFIG,
-                      permissions: value === 'custom' ? {} : undefined
-                    });
-                  }}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(ROLE_CONFIG).map(([key, config]) => (
-                      <SelectItem key={key} value={key}>
-                        <div className="flex items-center">
-                          <config.icon className="w-4 h-4 mr-2" />
-                          <span>{config.label}</span>
-                          <span className="text-sm text-gray-500 ml-2">- {config.description}</span>
+                <Label className="text-base font-semibold mb-3 block">Roles (Select one or more)</Label>
+                <div className="space-y-2 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border-2 border-blue-200">
+                  {Object.entries(ROLE_CONFIG).map(([key, config]) => {
+                    const isSelected = createForm.roles.includes(key);
+                    return (
+                      <div 
+                        key={key} 
+                        className={`flex items-start space-x-3 p-3 rounded-lg transition-all cursor-pointer hover:bg-white/60 ${isSelected ? 'bg-white border-2 border-[#1D50C9]' : 'border border-transparent'}`}
+                        onClick={() => {
+                          const newRoles = isSelected 
+                            ? createForm.roles.filter(r => r !== key)
+                            : [...createForm.roles, key];
+                          setCreateForm({ ...createForm, roles: newRoles });
+                        }}
+                      >
+                        <Checkbox
+                          id={`role-${key}`}
+                          checked={isSelected}
+                          onCheckedChange={() => {
+                            const newRoles = isSelected 
+                              ? createForm.roles.filter(r => r !== key)
+                              : [...createForm.roles, key];
+                            setCreateForm({ ...createForm, roles: newRoles });
+                          }}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <config.icon className="w-5 h-5 text-[#1D50C9]" />
+                            <Label htmlFor={`role-${key}`} className="font-semibold text-base cursor-pointer">
+                              {config.label}
+                            </Label>
+                          </div>
+                          <p className="text-sm text-gray-600">{config.description}</p>
                         </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
               
-              {/* Custom Permissions Section - Only visible when Custom role is selected */}
-              {createForm.role === 'custom' && (
+              {/* Permissions Preview */}
+              {createForm.roles.length > 0 && (
                 <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
                   <div className="flex items-center space-x-2">
                     <Settings className="w-4 h-4 text-purple-600" />
@@ -621,15 +704,16 @@ export default function UserManagement() {
       </div>
 
       {/* Users Table */}
-      <Card>
-        <CardHeader>
+      <Card className="shadow-xl border-0">
+        <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
           <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center">
-              <Users className="w-5 h-5 mr-2" />
-              System Users ({users.length})
+            <CardTitle className="flex items-center text-xl">
+              <Users className="w-6 h-6 mr-3 text-[#1D50C9]" />
+              <span>System Users</span>
+              <Badge className="ml-3 bg-[#1D50C9] text-white">{users.length}</Badge>
               {selectedIds.length > 0 && (
-                <span className="text-sm text-gray-500 ml-2">
-                  ({selectedIds.length} selected)
+                <span className="text-sm text-gray-600 ml-3 font-normal">
+                  {selectedIds.length} selected
                 </span>
               )}
             </CardTitle>
@@ -640,9 +724,10 @@ export default function UserManagement() {
                 onClick={handleBulkDelete}
                 disabled={bulkDeleteMutation.isPending}
                 data-testid="button-bulk-delete-users"
+                className="bg-red-500 hover:bg-red-600 font-semibold"
               >
                 <Trash2 className="w-4 h-4 mr-2" />
-                Delete Selected ({selectedIds.length})
+                Delete ({selectedIds.length})
               </Button>
             )}
           </div>
@@ -699,7 +784,7 @@ export default function UserManagement() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      {getRoleBadge(user.role)}
+                      {getRoleBadges(user.roles || (user as any).role)}
                     </TableCell>
                     <TableCell>
                       <Badge variant={user.isActive ? "default" : "secondary"}>
