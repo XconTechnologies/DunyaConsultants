@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
   TableBody,
@@ -154,12 +155,23 @@ export default function BackupManagement() {
         description: "Backup configuration has been updated successfully.",
       });
     },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to save backup configuration.",
-        variant: "destructive",
-      });
+    onError: (error: Error) => {
+      if (error.message.includes("401")) {
+        localStorage.removeItem("adminToken");
+        localStorage.removeItem("adminUser");
+        toast({
+          title: "Session Expired",
+          description: "Please log in again to continue.",
+          variant: "destructive",
+        });
+        setTimeout(() => setLocation("/login"), 1500);
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to save backup configuration.",
+          variant: "destructive",
+        });
+      }
     },
   });
 
@@ -372,76 +384,84 @@ export default function BackupManagement() {
                         Select which data types to include in automatic backups
                       </p>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-leads"
                             checked={configBackupDataTypes.includes("leads")}
                             onCheckedChange={() => toggleConfigDataType("leads")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-leads" className="cursor-pointer text-sm">Leads</Label>
+                          <Label htmlFor="config-leads" className="cursor-pointer text-sm font-medium">Leads</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-events"
                             checked={configBackupDataTypes.includes("eventRegistrations")}
                             onCheckedChange={() => toggleConfigDataType("eventRegistrations")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-events" className="cursor-pointer text-sm">Event Registrations</Label>
+                          <Label htmlFor="config-events" className="cursor-pointer text-sm font-medium">Event Registrations</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-qr"
                             checked={configBackupDataTypes.includes("qrCodes")}
                             onCheckedChange={() => toggleConfigDataType("qrCodes")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-qr" className="cursor-pointer text-sm">QR Codes</Label>
+                          <Label htmlFor="config-qr" className="cursor-pointer text-sm font-medium">QR Codes</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-posts"
                             checked={configBackupDataTypes.includes("posts")}
                             onCheckedChange={() => toggleConfigDataType("posts")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-posts" className="cursor-pointer text-sm">Blog Posts</Label>
+                          <Label htmlFor="config-posts" className="cursor-pointer text-sm font-medium">Blog Posts</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-media"
                             checked={configBackupDataTypes.includes("media")}
                             onCheckedChange={() => toggleConfigDataType("media")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-media" className="cursor-pointer text-sm">Media Files</Label>
+                          <Label htmlFor="config-media" className="cursor-pointer text-sm font-medium">Media Files</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-users"
                             checked={configBackupDataTypes.includes("users")}
                             onCheckedChange={() => toggleConfigDataType("users")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-users" className="cursor-pointer text-sm">Users</Label>
+                          <Label htmlFor="config-users" className="cursor-pointer text-sm font-medium">Users</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-forms"
                             checked={configBackupDataTypes.includes("forms")}
                             onCheckedChange={() => toggleConfigDataType("forms")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-forms" className="cursor-pointer text-sm">Form Management</Label>
+                          <Label htmlFor="config-forms" className="cursor-pointer text-sm font-medium">Form Management</Label>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <Switch
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                          <Checkbox
                             id="config-categories"
                             checked={configBackupDataTypes.includes("categories")}
                             onCheckedChange={() => toggleConfigDataType("categories")}
+                            className="w-5 h-5"
                           />
-                          <Label htmlFor="config-categories" className="cursor-pointer text-sm">Categories</Label>
+                          <Label htmlFor="config-categories" className="cursor-pointer text-sm font-medium">Categories</Label>
                         </div>
                       </div>
                       <p className="text-sm text-muted-foreground pt-2">
@@ -491,85 +511,93 @@ export default function BackupManagement() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-leads"
                           checked={backupOptions.leads}
                           onCheckedChange={() => toggleBackupOption('leads')}
                           data-testid="switch-backup-leads"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-leads" className="cursor-pointer">Leads</Label>
+                        <Label htmlFor="backup-leads" className="cursor-pointer text-sm font-medium">Leads</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-events"
                           checked={backupOptions.eventRegistrations}
                           onCheckedChange={() => toggleBackupOption('eventRegistrations')}
                           data-testid="switch-backup-events"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-events" className="cursor-pointer">Event Registrations</Label>
+                        <Label htmlFor="backup-events" className="cursor-pointer text-sm font-medium">Event Registrations</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-qr"
                           checked={backupOptions.qrCodes}
                           onCheckedChange={() => toggleBackupOption('qrCodes')}
                           data-testid="switch-backup-qr"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-qr" className="cursor-pointer">QR Codes</Label>
+                        <Label htmlFor="backup-qr" className="cursor-pointer text-sm font-medium">QR Codes</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-posts"
                           checked={backupOptions.posts}
                           onCheckedChange={() => toggleBackupOption('posts')}
                           data-testid="switch-backup-posts"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-posts" className="cursor-pointer">Blog Posts</Label>
+                        <Label htmlFor="backup-posts" className="cursor-pointer text-sm font-medium">Blog Posts</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-media"
                           checked={backupOptions.media}
                           onCheckedChange={() => toggleBackupOption('media')}
                           data-testid="switch-backup-media"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-media" className="cursor-pointer">Media Files</Label>
+                        <Label htmlFor="backup-media" className="cursor-pointer text-sm font-medium">Media Files</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-users"
                           checked={backupOptions.users}
                           onCheckedChange={() => toggleBackupOption('users')}
                           data-testid="switch-backup-users"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-users" className="cursor-pointer">Users</Label>
+                        <Label htmlFor="backup-users" className="cursor-pointer text-sm font-medium">Users</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-forms"
                           checked={backupOptions.forms}
                           onCheckedChange={() => toggleBackupOption('forms')}
                           data-testid="switch-backup-forms"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-forms" className="cursor-pointer">Form Management</Label>
+                        <Label htmlFor="backup-forms" className="cursor-pointer text-sm font-medium">Form Management</Label>
                       </div>
 
-                      <div className="flex items-center space-x-2">
-                        <Switch
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
+                        <Checkbox
                           id="backup-categories"
                           checked={backupOptions.categories}
                           onCheckedChange={() => toggleBackupOption('categories')}
                           data-testid="switch-backup-categories"
+                          className="w-5 h-5"
                         />
-                        <Label htmlFor="backup-categories" className="cursor-pointer">Categories</Label>
+                        <Label htmlFor="backup-categories" className="cursor-pointer text-sm font-medium">Categories</Label>
                       </div>
                     </div>
 
