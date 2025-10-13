@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
+import { setMetaTags } from "@/lib/seo";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -404,6 +405,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
   const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
     id: post.id,
     title: post.title,
+    metaTitle: post.metaTitle || post.meta_title,
+    metaDescription: post.metaDescription || post.meta_description,
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     categories: post.categories || [],
@@ -436,6 +439,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
   })) : staticBlogPosts;
 
   const blogPost = blogPosts.find((post: any) => post.slug === slug);
+
+  // Set meta tags for SEO
+  useEffect(() => {
+    if (blogPost) {
+      setMetaTags({
+        title: blogPost.title,
+        metaTitle: blogPost.metaTitle,
+        description: blogPost.excerpt,
+        metaDescription: blogPost.metaDescription
+      });
+    }
+  }, [blogPost]);
 
   // Get related blogs based on shared categories (always run this)
   const relatedBlogs = (() => {

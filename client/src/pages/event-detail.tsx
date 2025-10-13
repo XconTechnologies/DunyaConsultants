@@ -18,6 +18,7 @@ import Footer from "@/components/footer";
 import ReactCountryFlag from "react-country-flag";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { setMetaTags } from "@/lib/seo";
 
 const studyDestinations = [
   { name: "Australia", code: "AU" },
@@ -160,6 +161,15 @@ export default function EventDetailPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (event) {
+      setMetaTags({
+        title: event.title,
+        shortDescription: event.shortDescription
+      });
+    }
+  }, [event]);
 
   if (isLoading) {
     return (
