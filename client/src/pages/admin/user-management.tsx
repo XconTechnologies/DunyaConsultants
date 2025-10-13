@@ -1105,7 +1105,7 @@ export default function UserManagement() {
                     }
                     
                     // Check if events_manager role is being added
-                    const wasEventsManager = editingUser.roles?.includes('events_manager');
+                    const wasEventsManager = editingUser.roles?.includes('events_manager') || false;
                     const isEventsManager = editRoles.includes('events_manager');
                     
                     if (isEventsManager && !wasEventsManager) {
