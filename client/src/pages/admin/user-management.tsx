@@ -162,6 +162,28 @@ const ROLE_CONFIG = {
       canDeleteRegistrations: false,
       canManageLeads: true,
     }
+  },
+  custom: {
+    label: "Custom",
+    color: "bg-gradient-to-r from-gray-500 to-gray-600",
+    badgeColor: "bg-gray-500",
+    icon: Settings,
+    description: "Custom permission set",
+    defaultPermissions: {
+      canCreate: false,
+      canEdit: false,
+      canPublish: false,
+      canDelete: false,
+      canManageUsers: false,
+      canManageCategories: false,
+      canViewAnalytics: false,
+      canManageMedia: false,
+      canAccessEvents: false,
+      canAccessQRScanner: false,
+      canDownloadRegistrations: false,
+      canDeleteRegistrations: false,
+      canManageLeads: false,
+    }
   }
 } as const;
 
