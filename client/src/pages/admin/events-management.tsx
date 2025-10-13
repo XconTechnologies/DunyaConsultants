@@ -42,7 +42,7 @@ interface EventFormData {
   image: string;
   detailImage: string;
   eventDate: string;
-  eventType: "Open Day" | "Expo";
+  eventType: "Open Day" | "Expo" | "IELTS Masterclass";
   location: string;
   country: string[];
   studyLevel: string[];
@@ -504,12 +504,13 @@ export default function EventsManagement() {
               <select
                 id="eventType"
                 value={formData.eventType}
-                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" })}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" | "IELTS Masterclass" })}
                 className="w-full h-10 px-3 rounded-md border border-input bg-background"
                 data-testid="select-event-type"
               >
                 <option value="Open Day">Open Day</option>
                 <option value="Expo">Expo</option>
+                <option value="IELTS Masterclass">IELTS Masterclass</option>
               </select>
             </div>
 
@@ -777,11 +778,12 @@ export default function EventsManagement() {
               <select
                 id="edit-eventType"
                 value={formData.eventType}
-                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" })}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "Open Day" | "Expo" | "IELTS Masterclass" })}
                 className="w-full h-10 px-3 rounded-md border border-input bg-background"
               >
                 <option value="Open Day">Open Day</option>
                 <option value="Expo">Expo</option>
+                <option value="IELTS Masterclass">IELTS Masterclass</option>
               </select>
             </div>
 
