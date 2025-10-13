@@ -514,7 +514,7 @@ export const blogPostRevisions = pgTable("blog_post_revisions", {
 export const auditLogs = pgTable("audit_logs", {
   id: serial("id").primaryKey(),
   actorId: integer("actor_id").references(() => adminUsers.id).notNull(),
-  role: text("role").notNull(),
+  role: text("role"), // Nullable for multi-role support
   action: text("action").notNull(), // create, update, delete, publish, unpublish
   entity: text("entity").notNull(), // blog_post, media, user
   entityId: integer("entity_id").notNull(),

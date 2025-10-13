@@ -2094,10 +2094,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       await storage.updateAdminLastLogin(admin.id);
 
-      // Log login activity
+      // Log login activity - role is now nullable for multi-role support
       await storage.createAuditLog({
         actorId: admin.id,
-        role: admin.role,
+        role: admin.roles && admin.roles.length > 0 ? admin.roles[0] : null,
         action: 'login',
         entity: 'session',
         entityId: admin.id,
@@ -2111,7 +2111,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           id: admin.id,
           username: admin.username,
           email: admin.email,
-          role: admin.role
+          roles: admin.roles || [], // Return roles array for multi-role support
+          permissions: admin.permissions
         }
       });
     } catch (error) {
@@ -2126,10 +2127,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const token = req.headers.authorization?.replace('Bearer ', '');
       if (token) {
         // Log logout activity before deleting session
-        if (req.adminId && req.adminRole) {
+        if (req.adminId && req.adminRoles) {
           await storage.createAuditLog({
             actorId: req.adminId,
-            role: req.adminRole,
+            role: req.adminRoles && req.adminRoles.length > 0 ? req.adminRoles[0] : null,
             action: 'logout',
             entity: 'session',
             entityId: req.adminId,
