@@ -43,6 +43,7 @@ interface BlogPost {
   views: number;
   createdAt: Date;
   updatedAt: Date;
+  trashedAt: Date | null;
 }
 
 interface Author {
@@ -56,6 +57,7 @@ export default function AllPosts() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'trash'>('all');
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -166,6 +168,15 @@ export default function AllPosts() {
 
   const isAllSelected = selectedIds.length === blogPosts.length && blogPosts.length > 0;
 
+  // Filter posts based on status
+  const filteredPosts = blogPosts.filter((post: BlogPost) => {
+    if (statusFilter === 'all') return true;
+    if (statusFilter === 'published') return post.isPublished && !post.trashedAt;
+    if (statusFilter === 'draft') return !post.isPublished && !post.trashedAt;
+    if (statusFilter === 'trash') return post.trashedAt;
+    return true;
+  });
+
   // Bulk actions
   const bulkPublishMutation = useMutation({
     mutationFn: async (ids: number[]) => {
@@ -273,6 +284,54 @@ export default function AllPosts() {
             )}
           </div>
 
+          {/* Status Filter Counters */}
+          <div className="flex items-center gap-3 py-4 border-b border-gray-200">
+            <button
+              onClick={() => setStatusFilter('all')}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                statusFilter === 'all'
+                  ? 'bg-[#1D50C9] text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+              data-testid="filter-all"
+            >
+              All ({blogPosts.length})
+            </button>
+            <button
+              onClick={() => setStatusFilter('published')}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                statusFilter === 'published'
+                  ? 'bg-green-500 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+              data-testid="filter-published"
+            >
+              Published ({blogPosts.filter(p => p.isPublished && !p.trashedAt).length})
+            </button>
+            <button
+              onClick={() => setStatusFilter('draft')}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                statusFilter === 'draft'
+                  ? 'bg-yellow-500 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+              data-testid="filter-draft"
+            >
+              Draft ({blogPosts.filter(p => !p.isPublished && !p.trashedAt).length})
+            </button>
+            <button
+              onClick={() => setStatusFilter('trash')}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                statusFilter === 'trash'
+                  ? 'bg-red-500 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+              data-testid="filter-trash"
+            >
+              Trash ({blogPosts.filter(p => p.trashedAt).length})
+            </button>
+          </div>
+
           {/* Bulk Actions */}
           {selectedIds.length > 0 && (canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
             <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-[#1D50C9]/20 rounded-xl shadow-sm">
@@ -369,8 +428,14 @@ export default function AllPosts() {
                         No blog posts found. Create your first post!
                       </TableCell>
                     </TableRow>
+                  ) : filteredPosts.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-center py-8 text-gray-500">
+                        No {statusFilter} posts found.
+                      </TableCell>
+                    </TableRow>
                   ) : (
-                    blogPosts.map((post: BlogPost) => {
+                    filteredPosts.map((post: BlogPost) => {
                       const categories = postCategories[post.id] || [];
                       return (
                         <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
