@@ -292,10 +292,10 @@ export default function BackupManagement() {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     {/* Auto Backup Toggle */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between p-4 rounded-lg border-2 border-[#1D50C9] bg-blue-50">
                       <div className="space-y-0.5">
-                        <Label htmlFor="auto-backup">Auto Backup</Label>
-                        <p className="text-sm text-gray-500">
+                        <Label htmlFor="auto-backup" className="text-[#1D50C9] font-semibold text-lg">Auto Backup</Label>
+                        <p className="text-sm text-gray-600 font-medium">
                           Enable automatic database backups
                         </p>
                       </div>
@@ -304,6 +304,7 @@ export default function BackupManagement() {
                         checked={autoBackupEnabled}
                         onCheckedChange={setAutoBackupEnabled}
                         data-testid="switch-auto-backup"
+                        className="data-[state=checked]:bg-[#1D50C9] scale-125"
                       />
                     </div>
 
@@ -616,19 +617,19 @@ export default function BackupManagement() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <Button
-                      className="w-full"
+                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#2563eb] hover:from-[#1640a8] hover:to-[#1d4ed8] text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-200"
                       onClick={() => createBackupMutation.mutate()}
                       disabled={createBackupMutation.isPending}
                       data-testid="button-create-backup"
                     >
                       {createBackupMutation.isPending ? (
                         <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Creating...
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Creating Backup...
                         </>
                       ) : (
                         <>
-                          <Database className="w-4 h-4 mr-2" />
+                          <Database className="w-5 h-5 mr-2" />
                           Create Backup Now
                         </>
                       )}

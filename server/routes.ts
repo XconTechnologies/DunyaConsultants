@@ -2995,7 +2995,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       if (backupOptions.users) {
-        const users = await storage.getAdminUsers();
+        const users = await storage.getAllAdminUsers();
         // Remove sensitive data
         const sanitizedUsers = users.map((u: any) => ({ ...u, password: '[REDACTED]' }));
         backupData.users = sanitizedUsers;
