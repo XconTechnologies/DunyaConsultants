@@ -335,7 +335,7 @@ export default function EventRegistrationsPage() {
         {/* Mobile Navigation */}
         <MobileNav currentUser={adminUser} />
 
-        <div className="max-w-7xl mx-auto p-8">
+        <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
 
           {eventsWithRegistrations.length === 0 ? (
             <Card>
@@ -347,20 +347,22 @@ export default function EventRegistrationsPage() {
             </Card>
           ) : (
             <Tabs defaultValue={eventsWithRegistrations[0]?.id.toString()} className="space-y-6">
-              <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0">
-                {eventsWithRegistrations.map((event: Event) => (
-                  <TabsTrigger 
-                    key={event.id} 
-                    value={event.id.toString()}
-                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all"
-                  >
-                    {event.title}
-                    <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0">
-                      {registrationsByEvent[event.id]?.length || 0}
-                    </Badge>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+              <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
+                  {eventsWithRegistrations.map((event: Event) => (
+                    <TabsTrigger 
+                      key={event.id} 
+                      value={event.id.toString()}
+                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all whitespace-nowrap text-sm sm:text-base"
+                    >
+                      <span className="truncate max-w-[150px] sm:max-w-none">{event.title}</span>
+                      <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0">
+                        {registrationsByEvent[event.id]?.length || 0}
+                      </Badge>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
 
               {eventsWithRegistrations.map((event: Event) => {
                 const eventRegs = registrationsByEvent[event.id] || [];
@@ -400,29 +402,31 @@ export default function EventRegistrationsPage() {
                     {/* Registrations Table */}
                     <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
                       <CardHeader>
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                           <div>
-                            <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">{event.title} - Registrations</CardTitle>
-                            <CardDescription className="font-medium">Complete list of all registrations for this event</CardDescription>
+                            <CardTitle className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">{event.title} - Registrations</CardTitle>
+                            <CardDescription className="font-medium text-sm">Complete list of all registrations for this event</CardDescription>
                           </div>
-                          <div className="flex gap-2">
+                          <div className="flex gap-2 flex-wrap">
                             <Button
                               onClick={() => exportToCSV(eventRegs, event.title)}
                               variant="outline"
+                              size="sm"
                               className="gap-2 border-[#1D50C9]/30 hover:bg-[#1D50C9]/5"
                               data-testid={`button-export-csv-${event.id}`}
                             >
                               <Download className="h-4 w-4" />
-                              Export CSV
+                              <span className="hidden sm:inline">Export </span>CSV
                             </Button>
                             <Button
                               onClick={() => exportToSheets(eventRegs, event.title)}
                               variant="outline"
+                              size="sm"
                               className="gap-2 border-[#1D50C9]/30 hover:bg-[#1D50C9]/5"
                               data-testid={`button-export-sheets-${event.id}`}
                             >
                               <FileSpreadsheet className="h-4 w-4" />
-                              Export to Sheets
+                              <span className="hidden sm:inline">Export to </span>Sheets
                             </Button>
                           </div>
                         </div>
@@ -491,101 +495,103 @@ export default function EventRegistrationsPage() {
                           </div>
                         )}
                         
-                        <div className="overflow-x-auto">
-                          <Table>
-                            <TableHeader>
-                              <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
-                                <TableHead className="w-12 py-4">
-                                  <Checkbox
-                                    checked={eventRegs.length > 0 && selectedIds.length === eventRegs.length}
-                                    onCheckedChange={(checked) => {
-                                      if (checked) {
-                                        setSelectedIds(eventRegs.map(r => r.id));
-                                      } else {
-                                        setSelectedIds([]);
-                                      }
-                                    }}
-                                    data-testid="checkbox-select-all"
-                                  />
-                                </TableHead>
-                                <TableHead className="font-semibold text-gray-700">Name</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Destination</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Attendance</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Prize Status</TableHead>
-                                <TableHead className="font-semibold text-gray-700">Registered</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                              {eventRegs.map((reg: EventRegistration) => (
-                                <TableRow 
-                                  key={reg.id} 
-                                  className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 cursor-pointer"
-                                  onClick={() => handleOpenDetails(reg)}
-                                >
-                                  <TableCell className="py-4" onClick={(e) => e.stopPropagation()}>
+                        <div className="overflow-x-auto -mx-4 sm:mx-0">
+                          <div className="inline-block min-w-full align-middle">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                                  <TableHead className="w-12 py-4 hidden sm:table-cell">
                                     <Checkbox
-                                      checked={selectedIds.includes(reg.id)}
+                                      checked={eventRegs.length > 0 && selectedIds.length === eventRegs.length}
                                       onCheckedChange={(checked) => {
                                         if (checked) {
-                                          setSelectedIds([...selectedIds, reg.id]);
+                                          setSelectedIds(eventRegs.map(r => r.id));
                                         } else {
-                                          setSelectedIds(selectedIds.filter(id => id !== reg.id));
+                                          setSelectedIds([]);
                                         }
                                       }}
-                                      data-testid={`checkbox-select-${reg.id}`}
+                                      data-testid="checkbox-select-all"
                                     />
-                                  </TableCell>
-                                  <TableCell>
-                                    <div className="font-semibold text-gray-900">{reg.name}</div>
-                                  </TableCell>
-                                  <TableCell>
-                                    <div className="flex items-center gap-1 text-sm">
-                                      <MapPin className="h-3 w-3 text-gray-500" />
-                                      {reg.destination || 'Not specified'}
-                                    </div>
-                                  </TableCell>
-                                  <TableCell>
-                                    {reg.isAttended ? (
-                                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm">
-                                        <CheckCircle2 className="h-3 w-3 mr-1" />
-                                        Attended
-                                      </Badge>
-                                    ) : (
-                                      <Badge className="bg-gradient-to-r from-gray-100 to-slate-100 text-gray-600 border-0">
-                                        <XCircle className="h-3 w-3 mr-1" />
-                                        Not Attended
-                                      </Badge>
-                                    )}
-                                  </TableCell>
-                                  <TableCell>
-                                    {reg.prizeStatus === 'eligible' && (
-                                      <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 shadow-sm">
-                                        Eligible
-                                      </Badge>
-                                    )}
-                                    {reg.prizeStatus === 'distributed' && (
-                                      <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-sm">
-                                        Distributed
-                                      </Badge>
-                                    )}
-                                    {reg.prizeStatus === 'pending' && (
-                                      <Badge className="bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0">
-                                        Pending
-                                      </Badge>
-                                    )}
-                                    {!reg.prizeStatus && (
-                                      <Badge className="bg-gray-200 text-gray-600 border-0">
-                                        Not Eligible
-                                      </Badge>
-                                    )}
-                                  </TableCell>
-                                  <TableCell className="text-sm text-gray-500">
-                                    {new Date(reg.createdAt).toLocaleDateString()}
-                                  </TableCell>
+                                  </TableHead>
+                                  <TableHead className="font-semibold text-gray-700 min-w-[120px]">Name</TableHead>
+                                  <TableHead className="font-semibold text-gray-700 min-w-[100px]">Destination</TableHead>
+                                  <TableHead className="font-semibold text-gray-700 min-w-[110px]">Attendance</TableHead>
+                                  <TableHead className="font-semibold text-gray-700 hidden md:table-cell min-w-[100px]">Prize Status</TableHead>
+                                  <TableHead className="font-semibold text-gray-700 hidden lg:table-cell">Registered</TableHead>
                                 </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
+                              </TableHeader>
+                              <TableBody>
+                                {eventRegs.map((reg: EventRegistration) => (
+                                  <TableRow 
+                                    key={reg.id} 
+                                    className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 cursor-pointer"
+                                    onClick={() => handleOpenDetails(reg)}
+                                  >
+                                    <TableCell className="py-4 hidden sm:table-cell" onClick={(e) => e.stopPropagation()}>
+                                      <Checkbox
+                                        checked={selectedIds.includes(reg.id)}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            setSelectedIds([...selectedIds, reg.id]);
+                                          } else {
+                                            setSelectedIds(selectedIds.filter(id => id !== reg.id));
+                                          }
+                                        }}
+                                        data-testid={`checkbox-select-${reg.id}`}
+                                      />
+                                    </TableCell>
+                                    <TableCell>
+                                      <div className="font-semibold text-gray-900 whitespace-nowrap">{reg.name}</div>
+                                    </TableCell>
+                                    <TableCell>
+                                      <div className="flex items-center gap-1 text-sm whitespace-nowrap">
+                                        <MapPin className="h-3 w-3 text-gray-500 flex-shrink-0" />
+                                        <span className="truncate max-w-[120px]">{reg.destination || 'Not specified'}</span>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell>
+                                      {reg.isAttended ? (
+                                        <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm whitespace-nowrap text-xs">
+                                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                                          Attended
+                                        </Badge>
+                                      ) : (
+                                        <Badge className="bg-gradient-to-r from-gray-100 to-slate-100 text-gray-600 border-0 whitespace-nowrap text-xs">
+                                          <XCircle className="h-3 w-3 mr-1" />
+                                          Not Attended
+                                        </Badge>
+                                      )}
+                                    </TableCell>
+                                    <TableCell className="hidden md:table-cell">
+                                      {reg.prizeStatus === 'eligible' && (
+                                        <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 shadow-sm whitespace-nowrap">
+                                          Eligible
+                                        </Badge>
+                                      )}
+                                      {reg.prizeStatus === 'distributed' && (
+                                        <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-sm whitespace-nowrap">
+                                          Distributed
+                                        </Badge>
+                                      )}
+                                      {reg.prizeStatus === 'pending' && (
+                                        <Badge className="bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0 whitespace-nowrap">
+                                          Pending
+                                        </Badge>
+                                      )}
+                                      {!reg.prizeStatus && (
+                                        <Badge className="bg-gray-200 text-gray-600 border-0 whitespace-nowrap">
+                                          Not Eligible
+                                        </Badge>
+                                      )}
+                                    </TableCell>
+                                    <TableCell className="text-sm text-gray-500 hidden lg:table-cell whitespace-nowrap">
+                                      {new Date(reg.createdAt).toLocaleDateString()}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
