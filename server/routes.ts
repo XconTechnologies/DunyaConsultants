@@ -572,7 +572,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Admin sees all events, non-admin users see only assigned events
       let events;
-      if (user?.role === 'admin') {
+      const roles = user?.roles || [];
+      if (roles.includes('admin')) {
         events = await storage.getAllEvents();
       } else {
         events = await storage.getUserAssignedEvents(req.adminId!);
