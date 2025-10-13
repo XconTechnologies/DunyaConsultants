@@ -218,6 +218,9 @@ export default function UserManagement() {
   const [editPassword, setEditPassword] = useState("");
   const [editRoles, setEditRoles] = useState<string[]>([]);
   const [editPermissions, setEditPermissions] = useState<Record<string, boolean>>({});
+  const [showEventAssignmentDialog, setShowEventAssignmentDialog] = useState(false);
+  const [selectedEvents, setSelectedEvents] = useState<number[]>([]);
+  const [pendingUserUpdate, setPendingUserUpdate] = useState<{id: number, updates: Partial<AdminUser>} | null>(null);
 
   // Check authentication
   useEffect(() => {
@@ -267,6 +270,12 @@ export default function UserManagement() {
       return response.json();
     },
     enabled: authChecked && !!currentUser,
+  });
+
+  // Fetch all events for assignment
+  const { data: events = [] } = useQuery<any[]>({
+    queryKey: ["/api/events"],
+    enabled: showEventAssignmentDialog,
   });
 
   // Create user mutation
@@ -392,6 +401,45 @@ export default function UserManagement() {
       toast({
         title: "Error",
         description: error.message || "Failed to delete users",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Assign events to user mutation
+  const assignEventsMutation = useMutation({
+    mutationFn: async ({ userId, eventIds }: { userId: number; eventIds: number[] }) => {
+      const promises = eventIds.map(eventId =>
+        fetch('/api/admin/event-assignments', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ userId, eventId }),
+        }).then(res => {
+          if (!res.ok) throw new Error(`Failed to assign event ${eventId}`);
+          return res.json();
+        })
+      );
+      return Promise.all(promises);
+    },
+    onSuccess: async () => {
+      toast({
+        title: "Success",
+        description: "Events assigned successfully",
+      });
+      
+      // Now update the user role if we have pending update
+      if (pendingUserUpdate) {
+        updateUserMutation.mutate(pendingUserUpdate);
+        setPendingUserUpdate(null);
+      }
+      
+      setShowEventAssignmentDialog(false);
+      setSelectedEvents([]);
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to assign events",
         variant: "destructive",
       });
     },
@@ -1056,7 +1104,19 @@ export default function UserManagement() {
                       updates.password = editPassword;
                     }
                     
-                    handleUpdateUser(updates);
+                    // Check if events_manager role is being added
+                    const wasEventsManager = editingUser.roles?.includes('events_manager');
+                    const isEventsManager = editRoles.includes('events_manager');
+                    
+                    if (isEventsManager && !wasEventsManager) {
+                      // Show event assignment dialog first
+                      setPendingUserUpdate({ id: editingUser.id, updates });
+                      setIsEditDialogOpen(false);
+                      setShowEventAssignmentDialog(true);
+                    } else {
+                      // Update user directly
+                      handleUpdateUser(updates);
+                    }
                   }}
                   disabled={updateUserMutation.isPending}
                 >
@@ -1065,6 +1125,81 @@ export default function UserManagement() {
               </div>
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Event Assignment Dialog */}
+      <Dialog open={showEventAssignmentDialog} onOpenChange={setShowEventAssignmentDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Assign Events to Events Manager</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              Select the events this user will manage. They will be able to view registrations, scan QR codes, and manage these events.
+            </p>
+            
+            <div className="space-y-2 max-h-96 overflow-y-auto">
+              {events.map((event) => (
+                <div key={event.id} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  <Checkbox
+                    id={`event-${event.id}`}
+                    checked={selectedEvents.includes(event.id)}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setSelectedEvents([...selectedEvents, event.id]);
+                      } else {
+                        setSelectedEvents(selectedEvents.filter(id => id !== event.id));
+                      }
+                    }}
+                  />
+                  <Label htmlFor={`event-${event.id}`} className="flex-1 cursor-pointer">
+                    <div>
+                      <div className="font-medium">{event.title}</div>
+                      <div className="text-sm text-gray-500">{event.location} - {new Date(event.date).toLocaleDateString()}</div>
+                    </div>
+                  </Label>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-end space-x-2 pt-4">
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setShowEventAssignmentDialog(false);
+                  setSelectedEvents([]);
+                  setPendingUserUpdate(null);
+                  // Reopen edit dialog
+                  setIsEditDialogOpen(true);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={() => {
+                  if (selectedEvents.length === 0) {
+                    toast({
+                      title: "Validation Error",
+                      description: "Please select at least one event to assign",
+                      variant: "destructive",
+                    });
+                    return;
+                  }
+                  
+                  if (pendingUserUpdate) {
+                    assignEventsMutation.mutate({
+                      userId: pendingUserUpdate.id,
+                      eventIds: selectedEvents
+                    });
+                  }
+                }}
+                disabled={assignEventsMutation.isPending || selectedEvents.length === 0}
+              >
+                {assignEventsMutation.isPending ? "Assigning..." : `Assign ${selectedEvents.length} Event${selectedEvents.length !== 1 ? 's' : ''}`}
+              </Button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
       </div>
