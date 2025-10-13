@@ -380,43 +380,49 @@ export default function BackupManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <AdminHeader currentUser={currentUser} title="Backup Management" />
       
       <div className="flex pt-16">
         <AdminSidebar currentUser={currentUser} />
         
         <main className="flex-1 p-6 lg:ml-64">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             {/* Header */}
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <Database className="w-7 h-7" />
-                Backup Management
-              </h1>
-              <p className="text-gray-600 mt-1">
-                Configure automatic backups and manage database backups
-              </p>
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#2563eb] rounded-xl shadow-lg">
+                  <Database className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#2563eb] bg-clip-text text-transparent">
+                    Backup Management
+                  </h1>
+                  <p className="text-gray-600 mt-1">
+                    Protect your data with automated backups and easy restore
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Configuration */}
-              <div className="lg:col-span-2">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <HardDrive className="w-5 h-5" />
+              <div className="lg:col-span-2 space-y-6">
+                <Card className="shadow-xl border-0">
+                  <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <HardDrive className="w-6 h-6 text-[#1D50C9]" />
                       Backup Configuration
                     </CardTitle>
-                    <CardDescription>
+                    <CardDescription className="text-base">
                       Set up automatic backups and cloud storage
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-6 pt-6">
                     {/* Auto Backup Toggle */}
-                    <div className="flex items-center justify-between p-4 rounded-lg border-2 border-[#1D50C9] bg-blue-50">
-                      <div className="space-y-0.5">
-                        <Label htmlFor="auto-backup" className="text-[#1D50C9] font-semibold text-lg">Auto Backup</Label>
+                    <div className="flex items-center justify-between p-5 rounded-xl border-2 border-[#1D50C9] bg-gradient-to-r from-blue-50 to-indigo-50 shadow-sm">
+                      <div className="space-y-1">
+                        <Label htmlFor="auto-backup" className="text-[#1D50C9] font-bold text-lg">Auto Backup</Label>
                         <p className="text-sm text-gray-600 font-medium">
                           Enable automatic database backups
                         </p>
@@ -593,11 +599,12 @@ export default function BackupManagement() {
                     </div>
 
                     {/* Save Button */}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 pt-4 border-t">
                       <Button
                         onClick={() => saveConfigMutation.mutate()}
                         disabled={saveConfigMutation.isPending}
                         data-testid="button-save-config"
+                        className="bg-[#1D50C9] hover:bg-[#1640a8] text-white font-semibold px-8 py-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
                       >
                         {saveConfigMutation.isPending ? (
                           <>
@@ -605,7 +612,10 @@ export default function BackupManagement() {
                             Saving...
                           </>
                         ) : (
-                          "Save Configuration"
+                          <>
+                            <CheckCircle2 className="w-4 h-4 mr-2" />
+                            Save Configuration
+                          </>
                         )}
                       </Button>
                     </div>
@@ -613,27 +623,27 @@ export default function BackupManagement() {
                 </Card>
 
                 {/* Backup Options */}
-                <Card className="mt-6">
-                  <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
+                <Card className="shadow-xl border-0">
+                  <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
+                    <CardTitle className="flex items-center justify-between text-xl">
                       <span className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5" />
-                        Backup Options
+                        <CheckCircle2 className="w-6 h-6 text-[#1D50C9]" />
+                        Manual Backup
                       </span>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={toggleAllBackupOptions}
-                        className="text-xs"
+                        className="text-xs font-semibold hover:bg-[#1D50C9]/10"
                       >
                         {Object.values(backupOptions).every(v => v) ? "Deselect All" : "Select All"}
                       </Button>
                     </CardTitle>
-                    <CardDescription>
-                      Select which data to include in the backup
+                    <CardDescription className="text-base">
+                      Choose data types for one-time backup
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-4 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50">
                         <Checkbox
@@ -732,14 +742,14 @@ export default function BackupManagement() {
               </div>
 
               {/* Quick Actions */}
-              <div className="lg:col-span-1">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Quick Actions</CardTitle>
+              <div className="lg:col-span-1 space-y-6">
+                <Card className="shadow-xl border-0">
+                  <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
+                    <CardTitle className="text-xl">Quick Actions</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
+                  <CardContent className="space-y-4 pt-6">
                     <Button
-                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#2563eb] hover:from-[#1640a8] hover:to-[#1d4ed8] text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#2563eb] hover:from-[#1640a8] hover:to-[#1d4ed8] text-white font-bold py-7 text-lg shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl"
                       onClick={() => createBackupMutation.mutate()}
                       disabled={createBackupMutation.isPending}
                       data-testid="button-create-backup"
@@ -747,28 +757,28 @@ export default function BackupManagement() {
                       {createBackupMutation.isPending ? (
                         <>
                           <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Creating Backup...
+                          Creating...
                         </>
                       ) : (
                         <>
                           <Database className="w-5 h-5 mr-2" />
-                          Create Backup Now
+                          Create Backup
                         </>
                       )}
                     </Button>
 
                     <Button
-                      className="w-full bg-gradient-to-r from-[#059669] to-[#10b981] hover:from-[#047857] hover:to-[#059669] text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                      className="w-full bg-gradient-to-r from-[#059669] to-[#10b981] hover:from-[#047857] hover:to-[#059669] text-white font-bold py-7 text-lg shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl"
                       onClick={() => setShowUploadRestore(true)}
                       data-testid="button-upload-restore"
                     >
                       <CloudUpload className="w-5 h-5 mr-2" />
-                      Restore from File
+                      Restore File
                     </Button>
 
                     {cloudProvider !== "none" && (
                       <Button
-                        className="w-full"
+                        className="w-full py-6 rounded-xl font-semibold"
                         variant="outline"
                         disabled
                         data-testid="button-upload-cloud"
@@ -781,25 +791,28 @@ export default function BackupManagement() {
                 </Card>
 
                 {/* Stats Card */}
-                <Card className="mt-6">
-                  <CardHeader>
-                    <CardTitle className="text-sm">Backup Stats</CardTitle>
+                <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-blue-50">
+                  <CardHeader className="border-b">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <RefreshCw className="w-5 h-5 text-[#1D50C9]" />
+                      Backup Statistics
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Total Backups:</span>
-                      <span className="font-medium">{history.length}</span>
+                  <CardContent className="space-y-4 pt-6">
+                    <div className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm">
+                      <span className="text-gray-600 font-medium">Total Backups</span>
+                      <span className="text-2xl font-bold text-[#1D50C9]">{history.length}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Total Size:</span>
-                      <span className="font-medium">
+                    <div className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm">
+                      <span className="text-gray-600 font-medium">Total Size</span>
+                      <span className="text-lg font-bold text-gray-900">
                         {formatFileSize(history.reduce((acc, b) => acc + b.fileSize, 0))}
                       </span>
                     </div>
                     {config?.lastBackupAt && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Last Backup:</span>
-                        <span className="font-medium">
+                      <div className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm">
+                        <span className="text-gray-600 font-medium">Last Backup</span>
+                        <span className="text-sm font-semibold text-gray-900">
                           {format(new Date(config.lastBackupAt), "MMM d, h:mm a")}
                         </span>
                       </div>
@@ -810,14 +823,14 @@ export default function BackupManagement() {
             </div>
 
             {/* Backup History */}
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <RefreshCw className="w-5 h-5" />
+            <Card className="mt-6 shadow-xl border-0">
+              <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <RefreshCw className="w-6 h-6 text-[#1D50C9]" />
                   Backup History
                 </CardTitle>
-                <CardDescription>
-                  View and manage your database backups
+                <CardDescription className="text-base">
+                  View, download, and restore your database backups
                 </CardDescription>
               </CardHeader>
               <CardContent>
