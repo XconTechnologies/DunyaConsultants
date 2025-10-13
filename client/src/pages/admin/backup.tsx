@@ -967,35 +967,37 @@ export default function BackupManagement() {
               <CloudUpload className="w-5 h-5 text-green-600" />
               Restore from Backup File
             </AlertDialogTitle>
-            <AlertDialogDescription className="space-y-3">
-              <p>Upload a backup ZIP file to restore your database.</p>
-              
-              <div className="space-y-2">
-                <Label htmlFor="backup-file" className="text-sm font-medium">
-                  Select Backup File
-                </Label>
-                <Input
-                  id="backup-file"
-                  type="file"
-                  accept=".zip"
-                  onChange={handleFileChange}
-                  disabled={uploadRestoreMutation.isPending}
-                  data-testid="input-backup-file"
-                />
-                {uploadedFile && (
-                  <p className="text-sm text-green-600">
-                    Selected: {uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(2)} KB)
-                  </p>
-                )}
-              </div>
+            <AlertDialogDescription asChild>
+              <div className="space-y-3">
+                <p>Upload a backup ZIP file to restore your database.</p>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="backup-file" className="text-sm font-medium">
+                    Select Backup File
+                  </Label>
+                  <Input
+                    id="backup-file"
+                    type="file"
+                    accept=".zip"
+                    onChange={handleFileChange}
+                    disabled={uploadRestoreMutation.isPending}
+                    data-testid="input-backup-file"
+                  />
+                  {uploadedFile && (
+                    <p className="text-sm text-green-600">
+                      Selected: {uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(2)} KB)
+                    </p>
+                  )}
+                </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-md p-3 space-y-1">
-                <p className="font-semibold text-blue-600 text-sm">📋 Important Notes:</p>
-                <ul className="text-xs text-blue-700 space-y-1 list-disc list-inside">
-                  <li>This is an ADDITIVE restore - backup data will be added to existing data</li>
-                  <li>Duplicate items may fail to restore (emails, slugs, etc.)</li>
-                  <li>Create a backup of current data before restoring</li>
-                </ul>
+                <div className="bg-blue-50 border border-blue-200 rounded-md p-3 space-y-1">
+                  <p className="font-semibold text-blue-600 text-sm">📋 Important Notes:</p>
+                  <ul className="text-xs text-blue-700 space-y-1 list-disc list-inside">
+                    <li>This is an ADDITIVE restore - backup data will be added to existing data</li>
+                    <li>Duplicate items may fail to restore (emails, slugs, etc.)</li>
+                    <li>Create a backup of current data before restoring</li>
+                  </ul>
+                </div>
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
