@@ -238,13 +238,13 @@ export const faqs = pgTable("faqs", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// Admin Dashboard Tables
+// Admin Dashboard Tables - Multi-Role System
 export const adminUsers = pgTable("admin_users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  role: text("role", { enum: ["admin", "editor", "publisher", "custom"] }).default("editor").notNull(),
+  roles: text("roles").array().notNull().default(sql`ARRAY['editor']::text[]`),
   permissions: json("permissions").$type<{
     canCreate?: boolean;
     canEdit?: boolean;
@@ -624,10 +624,15 @@ export const insertFaqSchema = createInsertSchema(faqs).omit({
 });
 
 // Admin Dashboard Schemas
+export const validRoles = ["admin", "editor", "publisher", "events_manager", "leads_manager"] as const;
+export type ValidRole = typeof validRoles[number];
+
 export const insertAdminUserSchema = createInsertSchema(adminUsers).omit({
   id: true,
   createdAt: true,
   lastLogin: true,
+}).extend({
+  roles: z.array(z.enum(validRoles)).min(1, "At least one role is required")
 });
 
 export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
