@@ -2282,9 +2282,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Normalize roles: convert hyphens to underscores for consistency
       const normalizedRoles = roles.map((r: string) => r.replace(/-/g, '_'));
       
+      // Remove duplicates by using Set
+      const uniqueRoles = Array.from(new Set(normalizedRoles));
+      
       // Validate roles
       const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager', 'custom'];
-      const invalidRoles = normalizedRoles.filter((r: string) => !validRoles.includes(r));
+      const invalidRoles = uniqueRoles.filter((r: string) => !validRoles.includes(r));
       if (invalidRoles.length > 0) {
         return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
       }
@@ -2294,7 +2297,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         username,
         email,
         password,
-        roles: normalizedRoles,
+        roles: uniqueRoles,
         permissions: permissions || null,
         isActive: true
       });
@@ -2379,18 +2382,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Normalize roles: convert hyphens to underscores for consistency
         const normalizedRoles = roles.map((r: string) => r.replace(/-/g, '_'));
         
+        // Remove duplicates by using Set
+        const uniqueRoles = Array.from(new Set(normalizedRoles));
+        
         console.log('[Role Validation] Original roles:', roles);
         console.log('[Role Validation] Normalized roles:', normalizedRoles);
+        console.log('[Role Validation] Unique roles:', uniqueRoles);
         
         const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager', 'custom'];
-        const invalidRoles = normalizedRoles.filter((r: string) => !validRoles.includes(r));
+        const invalidRoles = uniqueRoles.filter((r: string) => !validRoles.includes(r));
         
         console.log('[Role Validation] Invalid roles:', invalidRoles);
         
         if (invalidRoles.length > 0) {
           return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
         }
-        updates.roles = normalizedRoles;
+        updates.roles = uniqueRoles;
       }
       if (permissions !== undefined) updates.permissions = permissions;
       if (isActive !== undefined) updates.isActive = isActive;
