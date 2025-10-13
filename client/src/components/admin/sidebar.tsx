@@ -24,6 +24,9 @@ import {
   canAccessManagedEvents,
   canManageAssignedLeads,
   canAccessOwnQRCodes,
+  canManageLeads,
+  canAccessEvents,
+  canAccessQRScanner,
   canAssignPosts,
   isAdmin
 } from "@/lib/permissions";
@@ -255,9 +258,9 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                 return canManageOwnMedia(currentUser, hasUserMedia, hasUserPostAssignments);
               }
               
-              // Events: Show if user has event assignments OR is admin
+              // Events: Show if user has events access permission (including events_manager role)
               if (item.href === "/admin/events") {
-                return canAccessManagedEvents(currentUser, hasUserEventAssignments);
+                return isAdmin(currentUser) || canAccessEvents(currentUser);
               }
               
               // Form management: Admin-only
@@ -265,14 +268,14 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                 return isAdmin(currentUser);
               }
               
-              // Leads: Show if user has lead assignments OR is admin
+              // Leads: Show if user has lead management permission (including leads_manager role)
               if (item.href === "/admin/leads") {
-                return canManageAssignedLeads(currentUser, hasUserLeadAssignments);
+                return isAdmin(currentUser) || canManageLeads(currentUser);
               }
               
-              // QR codes: Show if user has QR codes OR is admin
+              // QR codes: Show if user has QR scanner access (including events_manager role)
               if (item.href === "/admin/qr-codes") {
-                return canAccessOwnQRCodes(currentUser, hasUserQRCodes);
+                return isAdmin(currentUser) || canAccessQRScanner(currentUser);
               }
               
               // Post Assignments: For post managers (can assign posts) OR admin
@@ -370,19 +373,19 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                             return canAccessPosts(currentUser, hasUserPostAssignments);
                           }
                           
-                          // Event Registrations: Show if user has event assignments OR is admin
+                          // Event Registrations: Show if user has events access permission
                           if (subItem.href === "/admin/event-registrations") {
-                            return canAccessManagedEvents(currentUser, hasUserEventAssignments);
+                            return isAdmin(currentUser) || canAccessEvents(currentUser);
                           }
                           
-                          // QR Scanner: Show if user has event assignments OR is admin
+                          // QR Scanner: Show if user has QR scanner permission
                           if (subItem.href === "/admin/qr-scanner") {
-                            return canAccessManagedEvents(currentUser, hasUserEventAssignments);
+                            return isAdmin(currentUser) || canAccessQRScanner(currentUser);
                           }
                           
-                          // Lead Assignments: Show if user has lead assignments OR is admin
+                          // Lead Assignments: Show if user has lead management permission
                           if (subItem.href === "/admin/lead-assignments") {
-                            return canManageAssignedLeads(currentUser, hasUserLeadAssignments);
+                            return isAdmin(currentUser) || canManageLeads(currentUser);
                           }
                           
                           // User Activity: Admin-only
