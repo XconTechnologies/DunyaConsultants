@@ -658,8 +658,8 @@ export default function UserManagement() {
                 </div>
               </div>
               
-              {/* Permissions Preview */}
-              {createForm.roles.length > 0 && (
+              {/* Permissions Preview - Only show when Custom role is selected */}
+              {createForm.roles.includes('custom') && (
                 <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
                   <div className="flex items-center space-x-2">
                     <Settings className="w-4 h-4 text-purple-600" />
@@ -973,8 +973,8 @@ export default function UserManagement() {
                 </div>
               </div>
 
-              {/* Custom Permissions Section for Edit Dialog */}
-              {editRoles.length > 0 && (
+              {/* Custom Permissions Section for Edit Dialog - Only show when Custom role is selected */}
+              {editRoles.includes('custom') && (
                 <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
                   <div className="flex items-center space-x-2">
                     <Settings className="w-4 h-4 text-purple-600" />
