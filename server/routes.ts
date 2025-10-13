@@ -3049,14 +3049,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Download backup
-  app.get("/api/admin/backup/download/:id", requireAuth, requireAdmin, async (req, res) => {
+  // Download backup (accepts token from query parameter for direct download links)
+  app.get("/api/admin/backup/download/:id", async (req, res) => {
     try {
+      // Check token from query parameter or header
+      const token = req.query.token as string || req.headers.authorization?.replace('Bearer ', '');
+      
+      if (!token) {
+        return res.status(401).json({ message: 'No token provided' });
+      }
+
+      const session = await storage.getAdminSession(token);
+      if (!session) {
+        return res.status(401).json({ message: 'Invalid or expired token' });
+      }
+
+      const admin = await storage.getAdminById(session.adminUserId);
+      if (!admin || !admin.isActive || admin.role !== 'admin') {
+        return res.status(403).json({ message: 'Insufficient permissions' });
+      }
+
       const id = parseInt(req.params.id);
       const backup = await storage.getBackupById(id);
       
       if (!backup || !backup.filePath) {
         return res.status(404).json({ message: 'Backup not found' });
+      }
+
+      // Check if file exists
+      const fs = await import('fs');
+      if (!fs.existsSync(backup.filePath)) {
+        return res.status(404).json({ message: 'Backup file not found on server' });
       }
 
       res.download(backup.filePath, backup.fileName);
