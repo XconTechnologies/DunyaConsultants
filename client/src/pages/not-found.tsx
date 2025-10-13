@@ -1,11 +1,20 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft, Search, MapPin, Compass, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function NotFound() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Page Not Found",
+      "Page not found. The page you're looking for doesn't exist. Return to explore study abroad opportunities with Dunya Consultants."
+    );
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0F3A8A] text-white overflow-hidden relative">
       <Navigation />

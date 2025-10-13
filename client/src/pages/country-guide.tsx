@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Globe,
@@ -27,6 +27,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { setStaticPageMeta } from "@/lib/seo";
 
 const countries = [
   {
@@ -237,6 +238,13 @@ const applicationProcess = [
 ];
 
 export default function CountryGuide() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Country Guide",
+      "Comprehensive guides for studying in USA, UK, Canada, Australia and more. Compare costs, universities, visa requirements and post-study work opportunities."
+    );
+  }, []);
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

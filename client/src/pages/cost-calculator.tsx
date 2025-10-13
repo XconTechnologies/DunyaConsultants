@@ -146,6 +146,13 @@ const costDatabase: Record<string, CostData> = {
 };
 
 export default function CostCalculator() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Cost Calculator",
+      "Calculate accurate cost estimates for studying abroad. Get detailed breakdown of tuition fees, living expenses, visa costs and other expenses by country."
+    );
+  }, []);
+
   const [selectedCountry, setSelectedCountry] = useState("");
   const [duration, setDuration] = useState("");
   const [livingStyle, setLivingStyle] = useState("");

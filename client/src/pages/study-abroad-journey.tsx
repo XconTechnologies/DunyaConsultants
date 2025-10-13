@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { 
   UserCheck, 
   GraduationCap, 
@@ -27,6 +27,7 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { setStaticPageMeta } from "@/lib/seo";
 
 const journeySteps = [
   {
@@ -314,6 +315,13 @@ const faqs = [
 ];
 
 export default function StudyAbroadJourney() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study Abroad Journey",
+      "Step-by-step guide to your study abroad journey. From initial consultation to departure, understand the complete process of studying overseas."
+    );
+  }, []);
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [activeStep, setActiveStep] = useState(1);

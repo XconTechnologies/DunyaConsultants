@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import type { AdminUser, BlogPost } from "@shared/schema";
+import { setStaticPageMeta } from "@/lib/seo";
 
 interface UserDashboardData {
   user: AdminUser;
@@ -32,6 +33,13 @@ interface UserDashboardData {
 }
 
 export default function UserDashboard() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Dashboard",
+      "Manage your study abroad application. Track your progress, view assigned tasks and access your personalized dashboard."
+    );
+  }, []);
+
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [authChecked, setAuthChecked] = useState(false);

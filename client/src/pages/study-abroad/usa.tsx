@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
+import { setStaticPageMeta } from "@/lib/seo";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
@@ -16,6 +17,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadUSA() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in USA",
+      "Discover world-class education opportunities in the USA. Pakistani students benefit from flexible programs, research excellence, CPT/OPT work opportunities, and internationally recognized degrees from top American universities."
+    );
+  }, []);
+
   const [showSmartTools, setShowSmartTools] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 

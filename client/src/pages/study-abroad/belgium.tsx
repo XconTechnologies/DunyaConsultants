@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Castle, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -13,6 +14,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadBelgium() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in Belgium",
+      "Study in Belgium at the heart of Europe. Pakistani students enjoy multilingual education, affordable tuition, EU job market access, rich cultural heritage, and excellent research opportunities in historic European cities."
+    );
+  }, []);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const downloadChecklist = () => {
     const checklistText = `BELGIUM STUDY ABROAD DOCUMENT CHECKLIST

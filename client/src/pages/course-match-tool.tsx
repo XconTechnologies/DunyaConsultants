@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Brain, GraduationCap, MapPin, DollarSign, Globe, Award, ArrowRight, CheckCircle, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CalendlyButton from "@/components/calendly-button";
+import { setStaticPageMeta } from "@/lib/seo";
 
 interface QuizQuestion {
   id: string;
@@ -194,6 +195,13 @@ const countryDatabase: Record<string, any> = {
 };
 
 export default function CourseMatchTool() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Course Match Tool",
+      "Find the perfect course and university match for your profile. Get personalized recommendations based on your education, budget and career goals."
+    );
+  }, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [showResults, setShowResults] = useState(false);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Sun, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -13,6 +14,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadAustralia() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in Australia",
+      "Study in Australia with world-class education and post-study work rights (2-4 years). Pakistani students benefit from globally recognized degrees, multicultural society, work opportunities, and pathway to permanent residency."
+    );
+  }, []);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const downloadChecklist = () => {
     const checklistText = `AUSTRALIA STUDY ABROAD DOCUMENT CHECKLIST

@@ -250,18 +250,17 @@ const offices = [
 ];
 
 export default function OfficesList() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Our Offices",
+      "Find Dunya Consultants offices across Pakistan. Visit our branches in Lahore, Karachi, Islamabad, Faisalabad and 15+ cities for study abroad counseling."
+    );
+  }, []);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  // SEO meta tags
-  useEffect(() => {
-    setStaticPageMeta(
-      "Our Offices",
-      "Find Dunya Consultants offices near you for expert study abroad guidance and visa consultation services."
-    );
-  }, []);
 
   // Handle hash fragment scrolling
   useEffect(() => {

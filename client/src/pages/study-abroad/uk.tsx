@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
+import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Heart, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -14,6 +15,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadUK() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in UK",
+      "Study in the UK with 166 universities offering 50,000+ programs. Pakistani students enjoy high visa success rates, shorter degree programs, work-study opportunities, and affordable education in a culturally diverse environment."
+    );
+  }, []);
+
   const [selectedProgram, setSelectedProgram] = useState("undergraduate");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,8 +16,15 @@ import { format } from "date-fns";
 import type { Event } from "@shared/schema";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function EventsPage() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Events",
+      "Attend study abroad events, seminars and university fairs across Pakistan. Meet university representatives and get free counseling for your international education."
+    );
+  }, []);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);

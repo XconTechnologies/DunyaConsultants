@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Snowflake, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -12,6 +13,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadFinland() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in Finland",
+      "Experience Nordic excellence with Finland's world-class education system. Pakistani students benefit from research-focused programs, innovation hubs, EU education advantages, and beautiful Scandinavian lifestyle with English-taught courses."
+    );
+  }, []);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const downloadChecklist = () => {
     const checklistText = `FINLAND STUDY ABROAD DOCUMENT CHECKLIST

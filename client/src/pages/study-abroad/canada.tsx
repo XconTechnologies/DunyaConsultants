@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
+import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Leaf, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -14,6 +15,13 @@ import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function StudyAbroadCanada() {
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in Canada",
+      "Study in Canada - Ranked 3rd in Life Quality Index. Pakistani students can work while studying, get post-graduation work permits, pathway to PR within 3 years, and access to 223 universities with affordable living costs."
+    );
+  }, []);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const downloadChecklist = () => {
     const checklistText = `CANADA STUDY ABROAD DOCUMENT CHECKLIST

@@ -27,6 +27,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import type { Event } from "@shared/schema";
 import dunyaLogo from "@assets/dunya-logo-blue.png";
+import { setStaticPageMeta } from "@/lib/seo";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -71,6 +72,13 @@ export default function EventRegistration() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
+
+  useEffect(() => {
+    setStaticPageMeta(
+      "Event Registration",
+      "Register for study abroad events and seminars. Secure your spot at university fairs, webinars and counseling sessions across Pakistan."
+    );
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
