@@ -19,20 +19,10 @@ import {
   FileEdit
 } from "lucide-react";
 import { 
-  canAccessPosts,
-  canManageOwnMedia,
-  canAccessManagedEvents,
-  canManageAssignedLeads,
-  canAccessOwnQRCodes,
-  canManageLeads,
-  canAccessEvents,
-  canAccessQRScanner,
-  canAssignPosts,
   isAdmin
 } from "@/lib/permissions";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 interface SidebarSubItem {
   title: string;
@@ -165,18 +155,6 @@ interface AdminSidebarProps {
 export default function AdminSidebar({ currentUser, isOpen = true, onClose }: AdminSidebarProps) {
   const [location] = useLocation();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(["All Posts", "Events", "Leads"]));
-
-  // Fetch assignment status for current user
-  const { data: assignmentStatus } = useQuery({
-    queryKey: ['/api/admin/me/assignment-status'],
-    enabled: !!currentUser,
-  });
-
-  const hasUserPostAssignments = assignmentStatus?.hasPostAssignments || false;
-  const hasUserEventAssignments = assignmentStatus?.hasEventAssignments || false;
-  const hasUserLeadAssignments = assignmentStatus?.hasLeadAssignments || false;
-  const hasUserMedia = assignmentStatus?.hasMedia || false;
-  const hasUserQRCodes = assignmentStatus?.hasQRCodes || false;
 
   const toggleItem = (title: string) => {
     const newExpanded = new Set(expandedItems);
