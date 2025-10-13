@@ -2918,14 +2918,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create backup
   app.post("/api/admin/backup/create", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
-      const { exec } = await import('child_process');
-      const { promisify } = await import('util');
-      const execAsync = promisify(exec);
       const fs = await import('fs');
       const path = await import('path');
+      const archiver = await import('archiver');
+      
+      const backupOptions = req.body || {
+        leads: true,
+        eventRegistrations: true,
+        qrCodes: true,
+        posts: true,
+        media: true,
+        users: true,
+        forms: true,
+        categories: true,
+      };
       
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      const fileName = `backup-${timestamp}.sql`;
+      const fileName = `backup-${timestamp}.zip`;
       const backupDir = path.join(process.cwd(), 'backups');
       const filePath = path.join(backupDir, fileName);
       
@@ -2944,13 +2953,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
         createdBy: req.adminId!
       });
 
-      // Execute pg_dump to create backup
-      const dbUrl = process.env.DATABASE_URL;
-      if (!dbUrl) {
-        throw new Error('DATABASE_URL not configured');
+      // Create ZIP archive
+      const output = fs.createWriteStream(filePath);
+      const archive = archiver.default('zip', { zlib: { level: 9 } });
+      
+      archive.pipe(output);
+
+      // Backup selected data types
+      const backupData: any = {};
+
+      if (backupOptions.leads) {
+        const leads = await storage.getConsultations();
+        backupData.leads = leads;
+        archive.append(JSON.stringify(leads, null, 2), { name: 'leads.json' });
       }
 
-      await execAsync(`pg_dump "${dbUrl}" > "${filePath}"`);
+      if (backupOptions.eventRegistrations) {
+        const registrations = await storage.getAllEventRegistrations();
+        backupData.eventRegistrations = registrations;
+        archive.append(JSON.stringify(registrations, null, 2), { name: 'event_registrations.json' });
+      }
+
+      if (backupOptions.qrCodes) {
+        const qrCodes = await storage.getQrCodes();
+        backupData.qrCodes = qrCodes;
+        archive.append(JSON.stringify(qrCodes, null, 2), { name: 'qr_codes.json' });
+      }
+
+      if (backupOptions.posts) {
+        const posts = await storage.getBlogPosts();
+        backupData.posts = posts;
+        archive.append(JSON.stringify(posts, null, 2), { name: 'blog_posts.json' });
+      }
+
+      if (backupOptions.media) {
+        const media = await storage.getMedia();
+        backupData.media = media;
+        archive.append(JSON.stringify(media, null, 2), { name: 'media.json' });
+      }
+
+      if (backupOptions.users) {
+        const users = await storage.getAdminUsers();
+        // Remove sensitive data
+        const sanitizedUsers = users.map((u: any) => ({ ...u, password: '[REDACTED]' }));
+        backupData.users = sanitizedUsers;
+        archive.append(JSON.stringify(sanitizedUsers, null, 2), { name: 'users.json' });
+      }
+
+      if (backupOptions.forms) {
+        const forms = await storage.getCustomForms();
+        backupData.forms = forms;
+        archive.append(JSON.stringify(forms, null, 2), { name: 'forms.json' });
+      }
+
+      if (backupOptions.categories) {
+        const categories = await storage.getCategories();
+        backupData.categories = categories;
+        archive.append(JSON.stringify(categories, null, 2), { name: 'categories.json' });
+      }
+
+      // Add metadata
+      const metadata = {
+        createdAt: new Date().toISOString(),
+        createdBy: req.adminId,
+        backupOptions,
+        version: '1.0'
+      };
+      archive.append(JSON.stringify(metadata, null, 2), { name: 'metadata.json' });
+
+      await archive.finalize();
+
+      // Wait for the archive to finish
+      await new Promise((resolve, reject) => {
+        output.on('close', resolve);
+        output.on('error', reject);
+        archive.on('error', reject);
+      });
       
       // Get file size
       const stats = fs.statSync(filePath);
@@ -2964,7 +3042,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(updated);
     } catch (error) {
       console.error('Error creating backup:', error);
-      res.status(500).json({ message: 'Failed to create backup' });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      res.status(500).json({ message: 'Failed to create backup', error: errorMessage });
     }
   });
 
