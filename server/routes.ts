@@ -2246,10 +2246,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create new admin user
   app.post("/api/admin/users", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
-      const { username, email, password, role, permissions } = req.body;
+      const { username, email, password, roles, permissions } = req.body;
       
-      if (!username || !email || !password || !role) {
-        return res.status(400).json({ message: 'Username, email, password, and role are required' });
+      if (!username || !email || !password || !roles || !Array.isArray(roles) || roles.length === 0) {
+        return res.status(400).json({ message: 'Username, email, password, and at least one role are required' });
       }
 
       // Check if user already exists
@@ -2258,10 +2258,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(409).json({ message: 'Username already exists' });
       }
 
-      // Validate role
-      const validRoles = ['admin', 'editor', 'publisher', 'custom'];
-      if (!validRoles.includes(role)) {
-        return res.status(400).json({ message: 'Invalid role' });
+      // Validate roles
+      const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager'];
+      const invalidRoles = roles.filter((r: string) => !validRoles.includes(r));
+      if (invalidRoles.length > 0) {
+        return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
       }
 
       // Create the admin user
@@ -2269,7 +2270,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         username,
         email,
         password,
-        role,
+        roles,
         permissions: permissions || null,
         isActive: true
       });
@@ -2316,11 +2317,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update admin user (role, permissions, username, password)
+  // Update admin user (roles, permissions, username, password)
   app.put("/api/admin/users/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const userId = parseInt(req.params.id);
-      const { role, permissions, isActive, username, password } = req.body;
+      const { roles, permissions, isActive, username, password } = req.body;
 
       if (isNaN(userId)) {
         return res.status(400).json({ message: 'Invalid user ID' });
@@ -2328,7 +2329,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Get current user from storage to check permissions
       const currentUser = await storage.getAdminUserById(req.adminId!);
-      const isAdmin = currentUser?.role === 'admin';
+      const isAdmin = currentUser?.roles?.includes('admin');
       const isSelf = req.adminId === userId;
 
       // Check permissions: admin can edit anyone, users can only edit themselves
@@ -2341,18 +2342,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Cannot deactivate your own account' });
       }
 
-      // Only admins can change role, permissions, or isActive
-      if (!isAdmin && (role !== undefined || permissions !== undefined || isActive !== undefined)) {
-        return res.status(403).json({ message: 'Only admins can change role, permissions, or status' });
+      // Only admins can change roles, permissions, or isActive
+      if (!isAdmin && (roles !== undefined || permissions !== undefined || isActive !== undefined)) {
+        return res.status(403).json({ message: 'Only admins can change roles, permissions, or status' });
       }
 
       const updates: any = {};
-      if (role !== undefined) {
-        const validRoles = ['admin', 'editor', 'publisher', 'custom'];
-        if (!validRoles.includes(role)) {
-          return res.status(400).json({ message: 'Invalid role' });
+      if (roles !== undefined) {
+        if (!Array.isArray(roles) || roles.length === 0) {
+          return res.status(400).json({ message: 'Roles must be a non-empty array' });
         }
-        updates.role = role;
+        const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager'];
+        const invalidRoles = roles.filter((r: string) => !validRoles.includes(r));
+        if (invalidRoles.length > 0) {
+          return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
+        }
+        updates.roles = roles;
       }
       if (permissions !== undefined) updates.permissions = permissions;
       if (isActive !== undefined) updates.isActive = isActive;
