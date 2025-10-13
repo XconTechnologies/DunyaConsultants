@@ -2875,7 +2875,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create or update backup configuration
   app.post("/api/admin/backup/config", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
-      const { frequency, autoBackupEnabled, cloudProvider, cloudFolderId } = req.body;
+      const { frequency, autoBackupEnabled, cloudProvider, cloudFolderId, backupDataTypes } = req.body;
       
       const existingConfig = await storage.getBackupConfig();
       
@@ -2884,7 +2884,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           frequency,
           autoBackupEnabled,
           cloudProvider,
-          cloudFolderId
+          cloudFolderId,
+          backupDataTypes: backupDataTypes || ["leads", "eventRegistrations", "qrCodes", "posts", "media", "users", "forms", "categories"]
         });
         res.json(updated);
       } else {
@@ -2893,6 +2894,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           autoBackupEnabled,
           cloudProvider,
           cloudFolderId,
+          backupDataTypes: backupDataTypes || ["leads", "eventRegistrations", "qrCodes", "posts", "media", "users", "forms", "categories"],
           createdBy: req.adminId!
         });
         res.json(created);

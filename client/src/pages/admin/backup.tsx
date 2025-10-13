@@ -108,8 +108,11 @@ export default function BackupManagement() {
   const [autoBackupEnabled, setAutoBackupEnabled] = useState<boolean>(config?.autoBackupEnabled || false);
   const [cloudProvider, setCloudProvider] = useState<string>(config?.cloudProvider || "none");
   const [cloudFolderId, setCloudFolderId] = useState<string>(config?.cloudFolderId || "");
+  const [configBackupDataTypes, setConfigBackupDataTypes] = useState<string[]>([
+    "leads", "eventRegistrations", "qrCodes", "posts", "media", "users", "forms", "categories"
+  ]);
   
-  // Backup options state
+  // Backup options state (for manual backup)
   const [backupOptions, setBackupOptions] = useState({
     leads: true,
     eventRegistrations: true,
@@ -127,6 +130,9 @@ export default function BackupManagement() {
       setAutoBackupEnabled(config.autoBackupEnabled);
       setCloudProvider(config.cloudProvider);
       setCloudFolderId(config.cloudFolderId || "");
+      setConfigBackupDataTypes(config.backupDataTypes || [
+        "leads", "eventRegistrations", "qrCodes", "posts", "media", "users", "forms", "categories"
+      ]);
     }
   }, [config]);
 
@@ -138,6 +144,7 @@ export default function BackupManagement() {
         autoBackupEnabled,
         cloudProvider,
         cloudFolderId: cloudFolderId || null,
+        backupDataTypes: configBackupDataTypes,
       });
     },
     onSuccess: () => {
@@ -188,6 +195,22 @@ export default function BackupManagement() {
       [key]: !allSelected
     }), {} as typeof backupOptions);
     setBackupOptions(newState);
+  };
+
+  // Config backup data types helpers
+  const toggleConfigDataType = (type: string) => {
+    setConfigBackupDataTypes(prev => 
+      prev.includes(type) 
+        ? prev.filter(t => t !== type)
+        : [...prev, type]
+    );
+  };
+
+  const toggleAllConfigDataTypes = () => {
+    const allDataTypes = ["leads", "eventRegistrations", "qrCodes", "posts", "media", "users", "forms", "categories"];
+    setConfigBackupDataTypes(prev => 
+      prev.length === allDataTypes.length ? [] : allDataTypes
+    );
   };
 
   // Delete backup mutation
@@ -328,6 +351,103 @@ export default function BackupManagement() {
                         </p>
                       </div>
                     )}
+
+                    {/* Backup Data Types */}
+                    <div className="space-y-3 pt-4 border-t">
+                      <div className="flex items-center justify-between">
+                        <Label className="flex items-center gap-2">
+                          <Database className="w-4 h-4" />
+                          Data Types to Backup
+                        </Label>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={toggleAllConfigDataTypes}
+                          className="text-xs h-7"
+                        >
+                          {configBackupDataTypes.length === 8 ? "Deselect All" : "Select All"}
+                        </Button>
+                      </div>
+                      <p className="text-sm text-gray-500">
+                        Select which data types to include in automatic backups
+                      </p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-leads"
+                            checked={configBackupDataTypes.includes("leads")}
+                            onCheckedChange={() => toggleConfigDataType("leads")}
+                          />
+                          <Label htmlFor="config-leads" className="cursor-pointer text-sm">Leads</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-events"
+                            checked={configBackupDataTypes.includes("eventRegistrations")}
+                            onCheckedChange={() => toggleConfigDataType("eventRegistrations")}
+                          />
+                          <Label htmlFor="config-events" className="cursor-pointer text-sm">Event Registrations</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-qr"
+                            checked={configBackupDataTypes.includes("qrCodes")}
+                            onCheckedChange={() => toggleConfigDataType("qrCodes")}
+                          />
+                          <Label htmlFor="config-qr" className="cursor-pointer text-sm">QR Codes</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-posts"
+                            checked={configBackupDataTypes.includes("posts")}
+                            onCheckedChange={() => toggleConfigDataType("posts")}
+                          />
+                          <Label htmlFor="config-posts" className="cursor-pointer text-sm">Blog Posts</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-media"
+                            checked={configBackupDataTypes.includes("media")}
+                            onCheckedChange={() => toggleConfigDataType("media")}
+                          />
+                          <Label htmlFor="config-media" className="cursor-pointer text-sm">Media Files</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-users"
+                            checked={configBackupDataTypes.includes("users")}
+                            onCheckedChange={() => toggleConfigDataType("users")}
+                          />
+                          <Label htmlFor="config-users" className="cursor-pointer text-sm">Users</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-forms"
+                            checked={configBackupDataTypes.includes("forms")}
+                            onCheckedChange={() => toggleConfigDataType("forms")}
+                          />
+                          <Label htmlFor="config-forms" className="cursor-pointer text-sm">Form Management</Label>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id="config-categories"
+                            checked={configBackupDataTypes.includes("categories")}
+                            onCheckedChange={() => toggleConfigDataType("categories")}
+                          />
+                          <Label htmlFor="config-categories" className="cursor-pointer text-sm">Categories</Label>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground pt-2">
+                        {configBackupDataTypes.length} of 8 items selected
+                      </p>
+                    </div>
 
                     {/* Save Button */}
                     <div className="flex gap-2">

@@ -1,4 +1,5 @@
 import { pgTable, text, serial, integer, boolean, timestamp, json, varchar, index, uniqueIndex } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -445,6 +446,7 @@ export const backupConfigs = pgTable("backup_configs", {
   autoBackupEnabled: boolean("auto_backup_enabled").default(false).notNull(),
   cloudProvider: text("cloud_provider", { enum: ["none", "google_drive", "dropbox", "onedrive"] }).default("none").notNull(),
   cloudFolderId: text("cloud_folder_id"), // Folder/Path in cloud storage
+  backupDataTypes: json("backup_data_types").$type<string[]>().default(sql`'["leads","eventRegistrations","qrCodes","posts","media","users","forms","categories"]'`).notNull(), // Which data types to include in backup
   lastBackupAt: timestamp("last_backup_at"),
   nextBackupAt: timestamp("next_backup_at"),
   createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
