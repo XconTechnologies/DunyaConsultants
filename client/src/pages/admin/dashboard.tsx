@@ -1047,8 +1047,242 @@ export default function AdminDashboard() {
           );
         })()}
 
+        {/* Backup Card - Only visible for admins - Placed at the end */}
+        {isAdmin(adminUser) && (
+          <div className="mt-8">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-cyan-50/50 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-3 bg-cyan-500 rounded-lg">
+                      <Database className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl font-bold text-gray-900">Database Backup</CardTitle>
+                      <CardDescription className="text-gray-600">Create a backup of all your data with one click</CardDescription>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => setShowBackupDialog(true)}
+                    className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                    data-testid="button-create-backup"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Create Backup Now
+                  </Button>
+                </div>
+              </CardHeader>
+            </Card>
+          </div>
+        )}
+
       </div>
       </div>
+
+      {/* Backup Selection Dialog */}
+      <Dialog open={showBackupDialog} onOpenChange={setShowBackupDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Select Backup Items</DialogTitle>
+            <DialogDescription>Choose which data types to include in your backup</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="posts"
+                  checked={selectedBackupTypes.posts}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, posts: checked as boolean })
+                  }
+                />
+                <label htmlFor="posts" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Blog Posts
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="media"
+                  checked={selectedBackupTypes.media}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, media: checked as boolean })
+                  }
+                />
+                <label htmlFor="media" className="text-sm font-medium">Media Files</label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="events"
+                  checked={selectedBackupTypes.events}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, events: checked as boolean })
+                  }
+                />
+                <label htmlFor="events" className="text-sm font-medium">Events</label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="eventRegistrations"
+                  checked={selectedBackupTypes.eventRegistrations}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, eventRegistrations: checked as boolean })
+                  }
+                />
+                <label htmlFor="eventRegistrations" className="text-sm font-medium">Event Registrations</label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="leads"
+                  checked={selectedBackupTypes.leads}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, leads: checked as boolean })
+                  }
+                />
+                <label htmlFor="leads" className="text-sm font-medium">Leads & Consultations</label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="categories"
+                  checked={selectedBackupTypes.categories}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, categories: checked as boolean })
+                  }
+                />
+                <label htmlFor="categories" className="text-sm font-medium">Categories</label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="users"
+                  checked={selectedBackupTypes.users}
+                  onCheckedChange={(checked) =>
+                    setSelectedBackupTypes({ ...selectedBackupTypes, users: checked as boolean })
+                  }
+                />
+                <label htmlFor="users" className="text-sm font-medium">Users</label>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setShowBackupDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={async () => {
+                setShowBackupDialog(false);
+                setBackupInProgress(true);
+                setBackupProgress(0);
+                
+                try {
+                  // Simulate progress
+                  const progressInterval = setInterval(() => {
+                    setBackupProgress((prev) => {
+                      if (prev >= 90) {
+                        clearInterval(progressInterval);
+                        return prev;
+                      }
+                      return prev + 10;
+                    });
+                  }, 200);
+
+                  const response = await fetch('/api/admin/backup/manual', {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify(selectedBackupTypes),
+                  });
+                  
+                  clearInterval(progressInterval);
+                  setBackupProgress(100);
+
+                  if (!response.ok) {
+                    throw new Error('Backup failed');
+                  }
+
+                  const data = await response.json();
+                  setBackupData(data);
+                  
+                  setTimeout(() => {
+                    setBackupInProgress(false);
+                    setShowDownloadDialog(true);
+                  }, 500);
+                } catch (error) {
+                  setBackupInProgress(false);
+                  toast({
+                    title: "Backup Failed",
+                    description: "Failed to create backup. Please try again.",
+                    variant: "destructive",
+                  });
+                }
+              }}
+              className="bg-cyan-500 hover:bg-cyan-600 text-white"
+            >
+              Create Backup
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Backup Progress Dialog */}
+      <Dialog open={backupInProgress} onOpenChange={() => {}}>
+        <DialogContent className="sm:max-w-md" onInteractOutside={(e) => e.preventDefault()}>
+          <DialogHeader>
+            <DialogTitle>Creating Backup...</DialogTitle>
+            <DialogDescription>Please wait while we backup your data</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <Progress value={backupProgress} className="w-full" />
+            <p className="text-sm text-center text-gray-600">{backupProgress}% Complete</p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Download Backup Dialog */}
+      <Dialog open={showDownloadDialog} onOpenChange={setShowDownloadDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Backup Created Successfully!</DialogTitle>
+            <DialogDescription>
+              Your backup has been created and saved to the backup history
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <p className="text-sm text-gray-700">
+                <strong>Backup Size:</strong> {backupData?.size || 'N/A'}
+              </p>
+              <p className="text-sm text-gray-700 mt-2">
+                <strong>Created:</strong> {backupData?.createdAt ? new Date(backupData.createdAt).toLocaleString() : 'N/A'}
+              </p>
+            </div>
+          </div>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowDownloadDialog(false);
+                setBackupData(null);
+              }}
+              className="w-full sm:w-auto"
+            >
+              Close
+            </Button>
+            <Button
+              onClick={() => {
+                if (backupData?.downloadUrl) {
+                  window.open(backupData.downloadUrl, '_blank');
+                }
+                setLocation('/admin/backup');
+              }}
+              className="bg-cyan-500 hover:bg-cyan-600 text-white w-full sm:w-auto"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Download & View Backups
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Edit Conflict Dialog */}
       <Dialog open={showConflictDialog} onOpenChange={setShowConflictDialog}>
