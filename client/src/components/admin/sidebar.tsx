@@ -243,57 +243,44 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarItems
             .filter((item) => {
-              // Dashboard is always visible
+              // Admin sees everything
+              if (isAdmin(currentUser)) {
+                return true;
+              }
+
+              const userRoles = currentUser?.roles || [];
+              
+              // Dashboard is visible to everyone
               if (item.href === "/admin/dashboard") {
                 return true;
               }
               
-              // Posts: Show if user has post assignments OR is admin
+              // All Posts - visible to editor and publisher
               if (item.href === "/admin/posts") {
-                return canAccessPosts(currentUser, hasUserPostAssignments);
+                return userRoles.includes('editor') || userRoles.includes('publisher');
               }
               
-              // Media: Show if user has media uploads OR has post assignments OR is admin
+              // Media - visible to editor and publisher
               if (item.href === "/admin/media") {
-                return canManageOwnMedia(currentUser, hasUserMedia, hasUserPostAssignments);
+                return userRoles.includes('editor') || userRoles.includes('publisher');
               }
               
-              // Events: Show if user has events access permission (including events_manager role)
+              // Events - visible to events_manager only
               if (item.href === "/admin/events") {
-                return isAdmin(currentUser) || canAccessEvents(currentUser);
+                return userRoles.includes('events_manager');
               }
               
-              // Form management: Admin-only
-              if (item.href === "/admin/form-management") {
-                return isAdmin(currentUser);
-              }
-              
-              // Leads: Show if user has lead management permission (including leads_manager role)
+              // Leads - visible to leads_manager only
               if (item.href === "/admin/leads") {
-                return isAdmin(currentUser) || canManageLeads(currentUser);
+                return userRoles.includes('leads_manager');
               }
               
-              // QR codes: Show if user has QR scanner access (including events_manager role)
+              // QR Codes - visible to publisher and events_manager
               if (item.href === "/admin/qr-codes") {
-                return isAdmin(currentUser) || canAccessQRScanner(currentUser);
+                return userRoles.includes('publisher') || userRoles.includes('events_manager');
               }
               
-              // Post Assignments: For post managers (can assign posts) OR admin
-              if (item.href === "/admin/post-assignments") {
-                return canAssignPosts(currentUser);
-              }
-              
-              // Users: Admin-only (post managers use Post Assignments page instead)
-              if (item.href === "/admin/users") {
-                return isAdmin(currentUser);
-              }
-              
-              // Backup and Trash: Admin-only
-              if (item.href === "/admin/backup" || item.href === "/admin/trash") {
-                return isAdmin(currentUser);
-              }
-              
-              // Default: hide
+              // All other tabs are admin-only (already filtered above)
               return false;
             })
             .map((item) => {
@@ -368,33 +355,35 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
                     <div className="ml-4 mt-1 space-y-1">
                       {item.subItems!
                         .filter((subItem) => {
-                          // Categories: Show if user has post assignments OR is admin
+                          // Admin sees everything
+                          if (isAdmin(currentUser)) {
+                            return true;
+                          }
+
+                          const userRoles = currentUser?.roles || [];
+                          
+                          // Categories - visible to editor and publisher
                           if (subItem.href === "/admin/categories") {
-                            return canAccessPosts(currentUser, hasUserPostAssignments);
+                            return userRoles.includes('editor') || userRoles.includes('publisher');
                           }
                           
-                          // Event Registrations: Show if user has events access permission
+                          // Event Registrations - visible to events_manager
                           if (subItem.href === "/admin/event-registrations") {
-                            return isAdmin(currentUser) || canAccessEvents(currentUser);
+                            return userRoles.includes('events_manager');
                           }
                           
-                          // QR Scanner: Show if user has QR scanner permission
+                          // QR Scanner - visible to events_manager
                           if (subItem.href === "/admin/qr-scanner") {
-                            return isAdmin(currentUser) || canAccessQRScanner(currentUser);
+                            return userRoles.includes('events_manager');
                           }
                           
-                          // Lead Assignments: Show if user has lead management permission
+                          // Lead Assignments - visible to leads_manager
                           if (subItem.href === "/admin/lead-assignments") {
-                            return isAdmin(currentUser) || canManageLeads(currentUser);
+                            return userRoles.includes('leads_manager');
                           }
                           
-                          // User Activity: Admin-only
-                          if (subItem.href === "/admin/user-activity") {
-                            return isAdmin(currentUser);
-                          }
-                          
-                          // Default: show if parent is visible
-                          return true;
+                          // User Activity - admin only (already filtered above)
+                          return false;
                         })
                         .map((subItem) => {
                         const isSubActive = location === subItem.href;
