@@ -9,10 +9,18 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function CairoOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Cairo Office",
+      "Expert study abroad consultants in Cairo helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,17 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 import CalendlyButton from "@/components/calendly-button";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function FaisalabadCivilLines() {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Faisalabad Civil Lines Office",
+      "Expert study abroad consultants in Faisalabad Civil Lines helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   const office = {
     id: "faisalabad",
     city: "Faisalabad",

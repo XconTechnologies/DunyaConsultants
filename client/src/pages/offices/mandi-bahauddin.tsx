@@ -14,10 +14,18 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 import MandiBahauddinOffice1 from "@assets/mandi-bahauddin-office-1.jpg";
 import MandiBahauddinOffice2 from "@assets/mandi-bahauddin-office-2.jpg";
 import MandiBahauddinOffice3 from "@assets/mandi-bahauddin-office-3.jpg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function MandiBahauddinOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Mandi Bahauddin Office",
+      "Expert study abroad consultants in Mandi Bahauddin helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

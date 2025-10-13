@@ -13,10 +13,18 @@ import CalendlyButton from "@/components/calendly-button";
 import islamabadOffice1 from "@assets/WhatsApp Image 2024-07-20 at 11.05.13_0f23fc96_1755846273550.jpg";
 import islamabadOffice2 from "@assets/WhatsApp Image 2024-07-20 at 11.05.12_50cd8325_1755846275288.jpg";
 import islamabadOffice3 from "@assets/WhatsApp Image 2024-07-20 at 11.02.31_cc1213a4_1755846277007.jpg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function Islamabad() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Islamabad Office",
+      "Expert study abroad consultants in Islamabad helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

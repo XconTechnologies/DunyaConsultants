@@ -14,10 +14,18 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 import SheikhupuraOffice1 from "@assets/sheikhupura-office-1.jpg";
 import SheikhupuraOffice2 from "@assets/sheikhupura-office-2.jpg";
 import SheikhupuraOffice3 from "@assets/sheikhupura-office-3.jpg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function SheikhupuraOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Sheikhupura Office",
+      "Expert study abroad consultants in Sheikhupura helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

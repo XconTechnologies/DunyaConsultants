@@ -9,10 +9,18 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function PeshawarOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Peshawar Office",
+      "Expert study abroad consultants in Peshawar helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

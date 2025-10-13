@@ -12,10 +12,18 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 import joharOffice1 from "@assets/IMG-20250419-WA0086_1755765616664.jpg";
 import joharOffice2 from "@assets/IMG-20250419-WA0079_1755765618829.jpg";
 import joharOffice3 from "@assets/IMG-20250419-WA0077_1755765622670.jpg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function LahoreJohar() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Lahore Johar Town Office",
+      "Expert study abroad consultants in Lahore Johar Town helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

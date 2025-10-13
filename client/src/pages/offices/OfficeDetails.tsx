@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRoute } from "wouter";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle } from "lucide-react";
@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 // Office data with detailed information
 const offices = [
@@ -135,6 +136,13 @@ const offices = [
 export default function OfficeDetails() {
   const [match, params] = useRoute("/offices/:officeId");
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Office Locations",
+      "Find Dunya Consultants offices near you for expert study abroad guidance and visa consultation services."
+    );
+  }, []);
   const office = offices.find(o => o.id === params?.officeId);
 
   if (!office) {

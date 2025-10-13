@@ -13,10 +13,18 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 import karachiOffice1 from "@assets/IMG-20250419-WA0086_1755765616664.jpg";
 import karachiOffice2 from "@assets/IMG-20250419-WA0079_1755765618829.jpg";
 import karachiOffice3 from "@assets/IMG-20250419-WA0077_1755765622670.jpg";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function Karachi() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Karachi Office",
+      "Expert study abroad consultants in Karachi helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+    );
+  }, []);
   
   const services = [
     {

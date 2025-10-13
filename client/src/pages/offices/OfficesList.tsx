@@ -11,6 +11,7 @@ import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 // Office data
 const offices = [
@@ -253,6 +254,14 @@ export default function OfficesList() {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // SEO meta tags
+  useEffect(() => {
+    setStaticPageMeta(
+      "Our Offices",
+      "Find Dunya Consultants offices near you for expert study abroad guidance and visa consultation services."
+    );
+  }, []);
 
   // Handle hash fragment scrolling
   useEffect(() => {
