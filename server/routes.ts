@@ -75,9 +75,6 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
       roles = [(admin as any).role];
     }
     
-    // Debug logging
-    console.log('[Auth Debug] User:', admin.username, 'Raw roles:', admin.roles, 'Type:', typeof admin.roles, 'Parsed roles:', roles);
-    
     req.adminRoles = roles;
     req.adminRole = roles[0]; // Legacy support - use first role
     req.user = admin;
