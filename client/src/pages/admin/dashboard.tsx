@@ -925,7 +925,13 @@ export default function AdminDashboard() {
               ) || [];
               return { event, registrations: eventRegs };
             })
-            .filter(({ registrations }) => registrations.length > 0);
+            .filter(({ registrations }) => registrations.length > 0)
+            .filter(({ event }) => {
+              if (!searchQuery) return true;
+              const query = searchQuery.toLowerCase();
+              return event.title.toLowerCase().includes(query) || 
+                     (event.location?.toLowerCase().includes(query) || false);
+            });
 
           if (eventsWithRegistrations.length === 0) return null;
 
@@ -985,81 +991,96 @@ export default function AdminDashboard() {
         })()}
 
         {/* Leads/Form Submissions Cards - Only visible for users with leads access permission */}
-        {canManageLeads(adminUser) && leads.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Mail className="h-6 w-6 text-[#1D50C9]" />
-              Leads Submissions
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {/* Total Leads Card */}
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => setLocation('/admin/leads')}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-700">Total Leads</CardTitle>
-                  <div className="p-2 bg-[#1D50C9] rounded-lg">
-                    <Mail className="h-4 w-4 text-white" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-[#1D50C9]">{leads.length}</div>
-                  <p className="text-xs text-gray-600 mt-1">All leads submissions</p>
-                </CardContent>
-              </Card>
+        {canManageLeads(adminUser) && leads.length > 0 && (() => {
+          const filteredLeads = searchQuery 
+            ? leads.filter(lead => {
+                const query = searchQuery.toLowerCase();
+                return (lead.name?.toLowerCase().includes(query) || false) || 
+                       (lead.email?.toLowerCase().includes(query) || false) ||
+                       (lead.phone?.toLowerCase().includes(query) || false) ||
+                       (lead.country?.toLowerCase().includes(query) || false) ||
+                       (lead.status?.toLowerCase().includes(query) || false);
+              })
+            : leads;
 
-              {/* Pending Leads Card */}
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => setLocation('/admin/leads')}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-700">Pending</CardTitle>
-                  <div className="p-2 bg-orange-500 rounded-lg">
-                    <Activity className="h-4 w-4 text-white" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-orange-600">
-                    {leads.filter(l => l.status === "pending").length}
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">Awaiting contact</p>
-                </CardContent>
-              </Card>
+          if (filteredLeads.length === 0 && searchQuery) return null;
 
-              {/* Contacted Leads Card */}
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-yellow-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => setLocation('/admin/leads')}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-700">Contacted</CardTitle>
-                  <div className="p-2 bg-yellow-500 rounded-lg">
-                    <UserCheck className="h-4 w-4 text-white" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-yellow-600">
-                    {leads.filter(l => l.status === "contacted").length}
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">In progress</p>
-                </CardContent>
-              </Card>
+          return (
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <Mail className="h-6 w-6 text-[#1D50C9]" />
+                Leads Submissions {searchQuery && `(${filteredLeads.length} matches)`}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Total Leads Card */}
+                <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setLocation('/admin/leads')}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-700">Total Leads</CardTitle>
+                    <div className="p-2 bg-[#1D50C9] rounded-lg">
+                      <Mail className="h-4 w-4 text-white" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-3xl font-bold text-[#1D50C9]">{filteredLeads.length}</div>
+                    <p className="text-xs text-gray-600 mt-1">All leads submissions</p>
+                  </CardContent>
+                </Card>
 
-              {/* Converted Leads Card */}
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => setLocation('/admin/leads')}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-700">Converted</CardTitle>
-                  <div className="p-2 bg-green-500 rounded-lg">
-                    <CheckCircle className="h-4 w-4 text-white" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-green-600">
-                    {leads.filter(l => l.status === "converted").length}
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">Successfully converted</p>
-                </CardContent>
-              </Card>
+                {/* Pending Leads Card */}
+                <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setLocation('/admin/leads')}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-700">Pending</CardTitle>
+                    <div className="p-2 bg-orange-500 rounded-lg">
+                      <Activity className="h-4 w-4 text-white" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-3xl font-bold text-orange-600">
+                      {filteredLeads.filter(l => l.status === "pending").length}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">Awaiting contact</p>
+                  </CardContent>
+                </Card>
+
+                {/* Contacted Leads Card */}
+                <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-yellow-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setLocation('/admin/leads')}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-700">Contacted</CardTitle>
+                    <div className="p-2 bg-yellow-500 rounded-lg">
+                      <UserCheck className="h-4 w-4 text-white" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-3xl font-bold text-yellow-600">
+                      {filteredLeads.filter(l => l.status === "contacted").length}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">In progress</p>
+                  </CardContent>
+                </Card>
+
+                {/* Converted Leads Card */}
+                <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
+                  onClick={() => setLocation('/admin/leads')}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-700">Converted</CardTitle>
+                    <div className="p-2 bg-green-500 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-white" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-3xl font-bold text-green-600">
+                      {filteredLeads.filter(l => l.status === "converted").length}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">Successfully converted</p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
       </div>
       </div>
