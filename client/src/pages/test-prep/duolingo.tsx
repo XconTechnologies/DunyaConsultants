@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, CheckCircle, BookOpen, FileText, Headphones, Mic, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,17 @@ import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function Duolingo() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "Duolingo English Test Preparation",
+      "Prepare for the Duolingo English Test with expert guidance. Take the test from home, get results in 48 hours. Accepted by 4,000+ universities worldwide."
+    );
+  }, []);
   const testSections = [
     {
       title: "Adaptive Test",

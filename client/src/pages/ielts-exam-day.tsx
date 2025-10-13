@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Clock,
@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Link } from "wouter";
+import { setStaticPageMeta } from "@/lib/seo";
 
 const examDaySchedule = [
   {
@@ -113,6 +114,13 @@ const securityMeasures = [
 export default function IELTSExamDay() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    setStaticPageMeta(
+      "IELTS Exam Day Guide",
+      "Complete guide to IELTS exam day preparation. Learn what to expect, required documents, test schedule, and important tips for your IELTS test day success."
+    );
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>

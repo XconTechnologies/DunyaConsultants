@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, CheckCircle, BookOpen, PenTool, Headphones, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,9 +8,17 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function IELTS() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "IELTS Preparation Courses",
+      "Expert IELTS preparation courses to achieve your target band score. Comprehensive training for Listening, Reading, Writing, and Speaking modules with experienced instructors."
+    );
+  }, []);
   const testSections = [
     {
       title: "Listening",

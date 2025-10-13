@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, CheckCircle, BookOpen, FileText, Headphones, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,17 @@ import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { setStaticPageMeta } from "@/lib/seo";
 
 export default function PTE() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  useEffect(() => {
+    setStaticPageMeta(
+      "PTE Academic Preparation",
+      "Prepare for PTE Academic with expert coaching. Computer-based English test accepted by thousands of universities worldwide. Fast results and flexible test dates."
+    );
+  }, []);
   const testSections = [
     {
       title: "Speaking",
