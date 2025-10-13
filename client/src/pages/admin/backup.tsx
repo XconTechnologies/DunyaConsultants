@@ -10,6 +10,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -39,7 +49,8 @@ import {
   CheckCircle2,
   XCircle,
   Loader2,
-  CloudUpload
+  CloudUpload,
+  RotateCcw
 } from "lucide-react";
 import { format } from "date-fns";
 import type { AdminUser, BackupConfig, BackupHistory } from "@shared/schema";
@@ -225,6 +236,9 @@ export default function BackupManagement() {
     );
   };
 
+  // Restore confirmation state
+  const [restoreBackupId, setRestoreBackupId] = useState<number | null>(null);
+
   // Delete backup mutation
   const deleteBackupMutation = useMutation({
     mutationFn: async (id: number) => {
@@ -241,6 +255,40 @@ export default function BackupManagement() {
       toast({
         title: "Error",
         description: "Failed to delete backup.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Restore backup mutation
+  const restoreBackupMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await apiRequest("POST", `/api/admin/backup/restore/${id}`);
+      return response.json();
+    },
+    onSuccess: (data) => {
+      setRestoreBackupId(null);
+      
+      // Build detailed message
+      const items = data.restoredItems || {};
+      const itemsList = Object.entries(items)
+        .filter(([, count]) => (count as number) > 0)
+        .map(([key, count]) => `${key}: ${count}`)
+        .join(', ') || 'No items';
+      
+      toast({
+        title: "Backup Restored Successfully",
+        description: data.warning || `Restored: ${itemsList}`,
+      });
+      
+      // Refresh all data
+      queryClient.invalidateQueries();
+    },
+    onError: (error: Error) => {
+      setRestoreBackupId(null);
+      toast({
+        title: "Restore Failed",
+        description: error.message || "Failed to restore backup.",
         variant: "destructive",
       });
     },
@@ -757,9 +805,20 @@ export default function BackupManagement() {
                               <Button
                                 size="sm"
                                 variant="ghost"
+                                onClick={() => setRestoreBackupId(backup.id)}
+                                disabled={backup.status !== "completed" || restoreBackupMutation.isPending}
+                                data-testid={`button-restore-${backup.id}`}
+                                title="Restore from this backup"
+                              >
+                                <RotateCcw className="w-4 h-4 text-blue-600" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
                                 onClick={() => handleDownload(backup)}
                                 disabled={backup.status !== "completed"}
                                 data-testid={`button-download-${backup.id}`}
+                                title="Download backup"
                               >
                                 <Download className="w-4 h-4" />
                               </Button>
@@ -769,6 +828,7 @@ export default function BackupManagement() {
                                 onClick={() => deleteBackupMutation.mutate(backup.id)}
                                 disabled={deleteBackupMutation.isPending}
                                 data-testid={`button-delete-${backup.id}`}
+                                title="Delete backup"
                               >
                                 <Trash2 className="w-4 h-4 text-red-600" />
                               </Button>
@@ -786,6 +846,41 @@ export default function BackupManagement() {
       </div>
 
       <MobileNav currentUser={currentUser} />
+
+      {/* Restore Confirmation Dialog */}
+      <AlertDialog open={restoreBackupId !== null} onOpenChange={(open) => !open && setRestoreBackupId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <RotateCcw className="w-5 h-5 text-blue-600" />
+              Restore Backup?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-2">
+              <p>This will restore data from the selected backup to your database.</p>
+              <p className="font-semibold text-blue-600">📋 Note: This is an ADDITIVE restore - backup data will be added to your existing data (not replaced).</p>
+              <p className="text-amber-600">⚠️ Some items may fail to restore if they conflict with existing data (duplicate emails, slugs, etc.).</p>
+              <p className="text-sm">It's recommended to create a backup of your current data before restoring.</p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={restoreBackupMutation.isPending}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => restoreBackupId && restoreBackupMutation.mutate(restoreBackupId)}
+              disabled={restoreBackupMutation.isPending}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              {restoreBackupMutation.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Restoring...
+                </>
+              ) : (
+                "Restore Backup"
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
