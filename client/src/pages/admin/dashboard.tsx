@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
 import {
   Dialog,
   DialogContent,
@@ -158,6 +159,23 @@ export default function AdminDashboard() {
   const [pendingPostId, setPendingPostId] = useState<number | null>(null);
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
   const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
+
+  // Backup state management
+  const [showBackupDialog, setShowBackupDialog] = useState(false);
+  const [backupInProgress, setBackupInProgress] = useState(false);
+  const [backupProgress, setBackupProgress] = useState(0);
+  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
+  const [backupData, setBackupData] = useState<any>(null);
+  const [selectedBackupTypes, setSelectedBackupTypes] = useState({
+    posts: true,
+    media: true,
+    events: true,
+    eventRegistrations: true,
+    leads: true,
+    categories: true,
+    users: true,
+    forms: false,
+  });
 
   // Get auth headers helper
   const getAuthHeaders = () => {
@@ -860,59 +878,6 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
-        )}
-
-        {/* Backup Card - Only visible for admins */}
-        {isAdmin(adminUser) && (
-          <div className="mb-8">
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-cyan-50/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-3 bg-cyan-500 rounded-lg">
-                      <Database className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl font-bold text-gray-900">Database Backup</CardTitle>
-                      <CardDescription className="text-gray-600">Create a backup of all your data with one click</CardDescription>
-                    </div>
-                  </div>
-                  <Button
-                    onClick={async () => {
-                      try {
-                        const response = await fetch('/api/admin/backup/manual', {
-                          method: 'POST',
-                          headers: getAuthHeaders(),
-                        });
-                        
-                        if (!response.ok) {
-                          throw new Error('Backup failed');
-                        }
-                        
-                        const data = await response.json();
-                        
-                        toast({
-                          title: "Backup Created Successfully",
-                          description: `Backup created at ${new Date(data.createdAt).toLocaleString()}`,
-                        });
-                      } catch (error) {
-                        toast({
-                          title: "Backup Failed",
-                          description: "Failed to create backup. Please try again.",
-                          variant: "destructive",
-                        });
-                      }
-                    }}
-                    className="bg-cyan-500 hover:bg-cyan-600 text-white"
-                    data-testid="button-create-backup"
-                  >
-                    <Download className="h-4 w-4 mr-2" />
-                    Create Backup Now
-                  </Button>
-                </div>
-              </CardHeader>
-            </Card>
-          </div>
         )}
 
         {/* Event Registration Cards - Only visible for users with events access permission */}
