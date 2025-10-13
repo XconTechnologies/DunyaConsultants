@@ -86,11 +86,14 @@ Preferred communication style: Simple, everyday language.
 - **Audit Trail**: Activity logging for user actions and content changes
 - **Database Backup System**: Comprehensive backup management with:
   - Manual and scheduled backups (daily, weekly, monthly)
-  - Cloud storage integration support (Google Drive, Dropbox, OneDrive) - requires API credentials to be configured
+  - Selective backup of 8 data types (Leads, Event Registrations, QR Codes, Blog Posts, Media Files, Users, Forms, Categories)
+  - Backup restore functionality (additive restore - adds backup data to existing data)
   - Backup history tracking with download capability
-  - Automated backup configuration
+  - Automated backup configuration with highly visible toggle
   - Storage location management (local and cloud)
+  - Cloud storage integration support (Google Drive, Dropbox, OneDrive) - requires API credentials to be configured
   - Note: Cloud integrations available but user opted for local backups only
+  - Note: Restore is additive (not replacement) and has limited relational data support
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.
