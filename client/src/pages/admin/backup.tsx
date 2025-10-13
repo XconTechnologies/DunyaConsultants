@@ -238,6 +238,8 @@ export default function BackupManagement() {
 
   // Restore confirmation state
   const [restoreBackupId, setRestoreBackupId] = useState<number | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [showUploadRestore, setShowUploadRestore] = useState(false);
 
   // Delete backup mutation
   const deleteBackupMutation = useMutation({
@@ -294,6 +296,56 @@ export default function BackupManagement() {
     },
   });
 
+  // Upload and restore backup mutation
+  const uploadRestoreMutation = useMutation({
+    mutationFn: async (file: File) => {
+      const formData = new FormData();
+      formData.append('backup', file);
+      
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch("/api/admin/backup/restore/upload", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to restore backup");
+      }
+      
+      return response.json();
+    },
+    onSuccess: (data) => {
+      setShowUploadRestore(false);
+      setUploadedFile(null);
+      
+      // Build detailed message
+      const items = data.restoredItems || {};
+      const itemsList = Object.entries(items)
+        .filter(([, count]) => (count as number) > 0)
+        .map(([key, count]) => `${key}: ${count}`)
+        .join(', ') || 'No items';
+      
+      toast({
+        title: "Backup Restored Successfully",
+        description: data.warning || `Restored: ${itemsList}`,
+      });
+      
+      // Refresh all data
+      queryClient.invalidateQueries();
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Restore Failed",
+        description: error.message || "Failed to restore backup.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleDownload = (backup: BackupHistory) => {
     const token = localStorage.getItem("adminToken");
     // Create a temporary link element to trigger download without navigation
@@ -303,6 +355,22 @@ export default function BackupManagement() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.name.endsWith('.zip')) {
+        toast({
+          title: "Invalid File Type",
+          description: "Please upload a ZIP backup file.",
+          variant: "destructive",
+        });
+        return;
+      }
+      setUploadedFile(file);
+    }
   };
 
   const formatFileSize = (bytes: number) => {
@@ -689,6 +757,15 @@ export default function BackupManagement() {
                       )}
                     </Button>
 
+                    <Button
+                      className="w-full bg-gradient-to-r from-[#059669] to-[#10b981] hover:from-[#047857] hover:to-[#059669] text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                      onClick={() => setShowUploadRestore(true)}
+                      data-testid="button-upload-restore"
+                    >
+                      <CloudUpload className="w-5 h-5 mr-2" />
+                      Restore from File
+                    </Button>
+
                     {cloudProvider !== "none" && (
                       <Button
                         className="w-full"
@@ -870,6 +947,67 @@ export default function BackupManagement() {
               className="bg-blue-600 hover:bg-blue-700"
             >
               {restoreBackupMutation.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Restoring...
+                </>
+              ) : (
+                "Restore Backup"
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Upload Restore Dialog */}
+      <AlertDialog open={showUploadRestore} onOpenChange={(open) => !open && setShowUploadRestore(false)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <CloudUpload className="w-5 h-5 text-green-600" />
+              Restore from Backup File
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-3">
+              <p>Upload a backup ZIP file to restore your database.</p>
+              
+              <div className="space-y-2">
+                <Label htmlFor="backup-file" className="text-sm font-medium">
+                  Select Backup File
+                </Label>
+                <Input
+                  id="backup-file"
+                  type="file"
+                  accept=".zip"
+                  onChange={handleFileChange}
+                  disabled={uploadRestoreMutation.isPending}
+                  data-testid="input-backup-file"
+                />
+                {uploadedFile && (
+                  <p className="text-sm text-green-600">
+                    Selected: {uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(2)} KB)
+                  </p>
+                )}
+              </div>
+
+              <div className="bg-blue-50 border border-blue-200 rounded-md p-3 space-y-1">
+                <p className="font-semibold text-blue-600 text-sm">📋 Important Notes:</p>
+                <ul className="text-xs text-blue-700 space-y-1 list-disc list-inside">
+                  <li>This is an ADDITIVE restore - backup data will be added to existing data</li>
+                  <li>Duplicate items may fail to restore (emails, slugs, etc.)</li>
+                  <li>Create a backup of current data before restoring</li>
+                </ul>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={uploadRestoreMutation.isPending}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => uploadedFile && uploadRestoreMutation.mutate(uploadedFile)}
+              disabled={!uploadedFile || uploadRestoreMutation.isPending}
+              className="bg-green-600 hover:bg-green-700"
+              data-testid="button-confirm-upload-restore"
+            >
+              {uploadRestoreMutation.isPending ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   Restoring...
