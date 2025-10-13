@@ -113,18 +113,39 @@ export default function AdminDashboard() {
   const { data: events = [] } = useQuery<Event[]>({
     queryKey: ["/api/events"],
     enabled: authChecked && !!adminUser,
+    queryFn: async () => {
+      const response = await fetch('/api/events', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) throw new Error('Failed to fetch events');
+      return response.json();
+    },
   });
 
   // Fetch event registrations
   const { data: registrations = [] } = useQuery<EventRegistration[]>({
     queryKey: ["/api/events/registrations/all"],
     enabled: authChecked && !!adminUser,
+    queryFn: async () => {
+      const response = await fetch('/api/events/registrations/all', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) throw new Error('Failed to fetch registrations');
+      return response.json();
+    },
   });
 
   // Fetch leads/consultations
   const { data: leads = [] } = useQuery<Consultation[]>({
     queryKey: ["/api/consultations"],
     enabled: authChecked && !!adminUser && canManageLeads(adminUser),
+    queryFn: async () => {
+      const response = await fetch('/api/consultations', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) throw new Error('Failed to fetch leads');
+      return response.json();
+    },
   });
   
   // Edit conflict state management
@@ -174,9 +195,9 @@ export default function AdminDashboard() {
   // Handle edit button click with conflict checking
   const handleEditPost = async (postId: number) => {
     // Check if user is admin - admins can takeover posts
-    const isAdmin = adminUser?.role === 'admin';
+    const userIsAdmin = isAdmin(adminUser);
     
-    if (isAdmin) {
+    if (userIsAdmin) {
       // Admin takeover - check for existing sessions and handle takeover
       const sessions = await fetch(`/api/admin/posts/${postId}/editing-sessions`, {
         headers: getAuthHeaders(),
@@ -399,10 +420,10 @@ export default function AdminDashboard() {
 
   // Fetch blog posts - all posts for admin, only assigned posts for other users
   const { data: blogPosts = [], isLoading: blogLoading, refetch: refetchBlogs } = useQuery({
-    queryKey: adminUser?.role === 'admin' ? ["/api/admin/blog-posts"] : ["/api/admin/users", adminUser?.id, "posts"],
+    queryKey: isAdmin(adminUser) ? ["/api/admin/blog-posts"] : ["/api/admin/users", adminUser?.id, "posts"],
     enabled: authChecked && !!adminUser,
     queryFn: async () => {
-      if (adminUser?.role === 'admin') {
+      if (isAdmin(adminUser)) {
         // Admin sees all posts
         const response = await fetch("/api/admin/blog-posts?limit=100", {
           headers: getAuthHeaders(),

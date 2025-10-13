@@ -882,17 +882,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all event registrations
   app.get("/api/events/registrations/all", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const user = await storage.getAdminById(req.adminId!);
-      
       // Admin sees all registrations
-      if (user?.role === 'admin') {
+      if (req.adminRoles && req.adminRoles.includes('admin')) {
         const registrations = await storage.getAllEventRegistrations();
+        console.log(`[Registrations] Admin request - returning ${registrations.length} registrations`);
         return res.json(registrations);
       }
       
       // Non-admin users see only registrations for their assigned events
       const assignedEvents = await storage.getUserAssignedEvents(req.adminId!);
       const assignedEventIds = assignedEvents.map(e => e.id);
+      console.log(`[Registrations] Non-admin request - ${assignedEventIds.length} assigned events`);
       
       if (assignedEventIds.length === 0) {
         return res.json([]);
@@ -902,6 +902,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const filteredRegistrations = allRegistrations.filter(reg => 
         assignedEventIds.includes(reg.eventId)
       );
+      console.log(`[Registrations] Non-admin - filtered to ${filteredRegistrations.length} registrations`);
       
       res.json(filteredRegistrations);
     } catch (error) {
