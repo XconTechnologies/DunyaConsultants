@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Globe,
@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
+import { setStaticPageMeta } from "@/lib/seo";
 
 const usaStats = {
   universities: "4,000+",
@@ -153,6 +154,13 @@ export default function USAGuide() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeTab, setActiveTab] = useState("overview");
+
+  useEffect(() => {
+    setStaticPageMeta(
+      "Study in USA",
+      "Complete guide to studying in USA. Learn about top universities, admission requirements, costs, scholarships, visa process, and career opportunities for international students."
+    );
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
