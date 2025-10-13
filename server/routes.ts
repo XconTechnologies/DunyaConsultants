@@ -2379,8 +2379,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Normalize roles: convert hyphens to underscores for consistency
         const normalizedRoles = roles.map((r: string) => r.replace(/-/g, '_'));
         
+        console.log('[Role Validation] Original roles:', roles);
+        console.log('[Role Validation] Normalized roles:', normalizedRoles);
+        
         const validRoles = ['admin', 'editor', 'publisher', 'events_manager', 'leads_manager', 'custom'];
         const invalidRoles = normalizedRoles.filter((r: string) => !validRoles.includes(r));
+        
+        console.log('[Role Validation] Invalid roles:', invalidRoles);
+        
         if (invalidRoles.length > 0) {
           return res.status(400).json({ message: `Invalid roles: ${invalidRoles.join(', ')}` });
         }
