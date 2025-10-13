@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
+import { setStaticPageMeta } from '@/lib/seo';
 
 interface Category {
   id: number;
@@ -68,11 +69,10 @@ export default function CategoriesIndexPage() {
 
   // SEO
   useEffect(() => {
-    document.title = 'Blog Categories - Path Visa Consultants';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore all blog categories at Path Visa Consultants. Find articles on study abroad, visa services, test preparation, and more expert guidance for international students.');
-    }
+    setStaticPageMeta(
+      'Blog Categories',
+      'Explore all blog categories at Dunya Consultants. Find articles on study abroad, visa services, test preparation, and more expert guidance for international students.'
+    );
   }, []);
 
   if (isLoading) {

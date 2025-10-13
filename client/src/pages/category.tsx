@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl } from "@/lib/blog-utils";
+import { setMetaTags } from "@/lib/seo";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -146,14 +147,14 @@ export default function CategoryPage() {
 
   // SEO and page title
   useEffect(() => {
-    document.title = `${currentCategory.name} - Blog | Path Visa Consultants`;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', `Explore our comprehensive ${currentCategory.name.toLowerCase()} articles and guides. Get expert insights and advice for studying abroad from Path Visa Consultants.`);
-    }
-  }, [currentCategory.name]);
+    setMetaTags({
+      title: currentCategory.name,
+      metaTitle: (currentCategory as any).metaTitle || (currentCategory as any).meta_title,
+      description: `Explore our comprehensive ${currentCategory.name.toLowerCase()} articles and guides. Get expert insights and advice for studying abroad from Path Visa Consultants.`,
+      metaDescription: (currentCategory as any).metaDescription || (currentCategory as any).meta_description,
+      siteName: "Blog | Dunya Consultants"
+    });
+  }, [currentCategory]);
 
   if (isLoading) {
     return (
