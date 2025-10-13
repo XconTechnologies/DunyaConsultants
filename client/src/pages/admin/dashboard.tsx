@@ -1187,7 +1187,7 @@ export default function AdminDashboard() {
                     });
                   }, 200);
 
-                  const response = await fetch('/api/admin/backup/manual', {
+                  const response = await fetch('/api/admin/backup/create', {
                     method: 'POST',
                     headers: getAuthHeaders(),
                     body: JSON.stringify(selectedBackupTypes),
