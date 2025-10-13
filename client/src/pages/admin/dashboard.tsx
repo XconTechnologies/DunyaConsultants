@@ -740,7 +740,7 @@ export default function AdminDashboard() {
         <AdminHeader 
           currentUser={adminUser}
           title="Content Dashboard"
-          subtitle={adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
+          subtitle={adminUser.roles?.includes('admin') ? 'Full Access' : 'Editor Access'}
           onMenuClick={() => setSidebarOpen(true)}
         />
 

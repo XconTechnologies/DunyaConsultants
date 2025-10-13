@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import type { AuditLog, AdminUser } from "@shared/schema";
+import { getRoleBadges } from "@/lib/roleHelpers";
 
 // Action icons and colors
 const ACTION_CONFIG: Record<string, { icon: any; color: string; label: string }> = {
@@ -65,7 +66,7 @@ function ActivityItem({ log, users }: { log: AuditLog; users: AdminUser[] }) {
             
             <div className="flex items-center gap-2 mt-1">
               <Badge variant="outline" className="text-xs">
-                {log.role}
+                {Array.isArray(log.role) ? log.role.join(', ') : log.role}
               </Badge>
               
               {log.entityId && (
@@ -185,7 +186,7 @@ export default function UserActivity() {
                         <SelectItem value="all">All Users</SelectItem>
                         {users.map((user) => (
                           <SelectItem key={user.id} value={user.id.toString()}>
-                            {user.username} ({user.role})
+                            {user.username} ({Array.isArray(user.roles) ? user.roles.join(', ') : (user as any).role || 'No role'})
                           </SelectItem>
                         ))}
                       </SelectContent>

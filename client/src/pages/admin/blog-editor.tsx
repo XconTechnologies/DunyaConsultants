@@ -97,7 +97,7 @@ export default function BlogEditor() {
           setConflictingUser(conflictUser);
           
           // If conflicting user is admin and current user is not admin, show permission request
-          if (conflictUser.role === 'admin' && adminUser?.role !== 'admin') {
+          if (conflictUser.roles?.includes('admin') && !adminUser?.roles?.includes('admin')) {
             setShowConflictDialog(true);
             return false; // Block editing
           }
@@ -2049,10 +2049,10 @@ export default function BlogEditor() {
               {conflictingUser && (
                 <div className="space-y-3">
                   <p>
-                    <strong>{conflictingUser.username}</strong> ({conflictingUser.role}) is currently editing this post.
+                    <strong>{conflictingUser.username}</strong> ({conflictingUser.roles?.join(', ') || 'User'}) is currently editing this post.
                   </p>
                   <p>
-                    {conflictingUser.role === 'admin' && adminUser?.role !== 'admin' 
+                    {conflictingUser.roles?.includes('admin') && !adminUser?.roles?.includes('admin')
                       ? "An admin is requesting to edit this post. You can allow them to take control or continue editing."
                       : "Do you want to request permission to edit this post?"
                     }
@@ -2067,7 +2067,7 @@ export default function BlogEditor() {
               onClick={() => handleConflictResolution('quit')}
               disabled={conflictRequestPending}
             >
-              {conflictingUser?.role === 'admin' && adminUser?.role !== 'admin' 
+              {conflictingUser?.roles?.includes('admin') && !adminUser?.roles?.includes('admin')
                 ? "Keep Editing" 
                 : "Cancel"
               }
@@ -2083,7 +2083,7 @@ export default function BlogEditor() {
                   Processing...
                 </>
               ) : (
-                conflictingUser?.role === 'admin' && adminUser?.role !== 'admin' 
+                conflictingUser?.roles?.includes('admin') && !adminUser?.roles?.includes('admin')
                   ? "Allow Admin Access" 
                   : "Request Access"
               )}
@@ -2104,7 +2104,7 @@ export default function BlogEditor() {
               {incomingEditRequest && (
                 <div className="space-y-3">
                   <p>
-                    <strong>{incomingEditRequest.requester.username}</strong> ({incomingEditRequest.requester.role}) wants to edit this post.
+                    <strong>{incomingEditRequest.requester.username}</strong> ({incomingEditRequest.requester.roles?.join(', ') || 'User'}) wants to edit this post.
                   </p>
                   <p>
                     Do you want to allow them to take control of editing this post? If you approve, your editing session will be closed and they will be able to edit the post.

@@ -47,30 +47,7 @@ import {
 import type { AdminUser, Consultation } from "@shared/schema";
 import { isAdmin } from "@/lib/permissions";
 import AdminHeader from "@/components/admin/header";
-
-// Role configuration for user display
-const ROLE_CONFIG = {
-  admin: {
-    label: "Admin",
-    color: "bg-red-500",
-    icon: Crown,
-  },
-  editor: {
-    label: "Editor", 
-    color: "bg-blue-500",
-    icon: FileEdit,
-  },
-  publisher: {
-    label: "Publisher",
-    color: "bg-green-500", 
-    icon: Upload,
-  },
-  custom: {
-    label: "Custom",
-    color: "bg-purple-500",
-    icon: Settings,
-  }
-} as const;
+import { getRoleBadges, ROLE_CONFIG } from "@/lib/roleHelpers";
 
 interface LeadAssignment {
   id: number;
@@ -332,7 +309,10 @@ export default function LeadAssignments() {
                         </SelectTrigger>
                         <SelectContent>
                           {users.filter(u => !u.trashedAt && u.isActive).map(user => {
-                            const roleConfig = ROLE_CONFIG[user.role as keyof typeof ROLE_CONFIG];
+                            // Get first role for icon display
+                            const userRoles = user.roles || (user as any).role ? [(user as any).role] : [];
+                            const firstRole = userRoles[0] || 'editor';
+                            const roleConfig = ROLE_CONFIG[firstRole as keyof typeof ROLE_CONFIG];
                             const RoleIcon = roleConfig?.icon || Settings;
                             
                             return (
@@ -340,11 +320,7 @@ export default function LeadAssignments() {
                                 <div className="flex items-center gap-2">
                                   <RoleIcon className="w-4 h-4" />
                                   <span>{user.username}</span>
-                                  <Badge 
-                                    className={`${roleConfig?.color || 'bg-gray-500'} text-white text-xs`}
-                                  >
-                                    {roleConfig?.label || user.role}
-                                  </Badge>
+                                  {getRoleBadges(user.roles || (user as any).role)}
                                 </div>
                               </SelectItem>
                             );
@@ -440,7 +416,6 @@ export default function LeadAssignments() {
                     </TableRow>
                   ) : (
                     assignments.map((assignment) => {
-                      const roleConfig = ROLE_CONFIG[assignment.user.role as keyof typeof ROLE_CONFIG];
                       return (
                         <TableRow key={`${assignment.userId}-${assignment.leadId}`}>
                           <TableCell>
@@ -450,9 +425,7 @@ export default function LeadAssignments() {
                             </div>
                           </TableCell>
                           <TableCell>
-                            <Badge className={`${roleConfig?.color || 'bg-gray-500'} text-white`}>
-                              {roleConfig?.label || assignment.user.role}
-                            </Badge>
+                            {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
                           </TableCell>
                           <TableCell>{assignment.lead.name}</TableCell>
                           <TableCell>{assignment.lead.email}</TableCell>

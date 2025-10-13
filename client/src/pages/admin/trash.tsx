@@ -38,6 +38,7 @@ import {
 import type { AdminUser, Media, BlogPost, Category, Event } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
 import MobileNav from "@/components/admin/mobile-nav";
+import { getRoleBadges } from "@/lib/roleHelpers";
 
 export default function TrashManagement() {
   const [, setLocation] = useLocation();
@@ -530,7 +531,7 @@ export default function TrashManagement() {
                             <TableCell className="font-medium">{user.username}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>
-                              <Badge>{user.role}</Badge>
+                              {getRoleBadges(user.roles || (user as any).role)}
                             </TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button

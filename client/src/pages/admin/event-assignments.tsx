@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import type { AdminUser, Event } from "@shared/schema";
 import { isAdmin } from "@/lib/permissions";
+import { getRoleBadges } from "@/lib/roleHelpers";
 
 // Role configuration for user display
 const ROLE_CONFIG = {
@@ -350,7 +351,7 @@ export default function EventAssignments() {
                         <div className="flex items-center space-x-2">
                           <span>{user.username}</span>
                           <span className="text-sm text-gray-500">({user.email})</span>
-                          {getRoleBadge(user.role)}
+                          {getRoleBadges(user.roles || (user as any).role)}
                         </div>
                       </SelectItem>
                     ))}
@@ -516,7 +517,7 @@ export default function EventAssignments() {
                           <div className="font-medium">{assignment.user.username}</div>
                           <div className="text-sm text-gray-500">{assignment.user.email}</div>
                         </div>
-                        {getRoleBadge(assignment.user.role)}
+                        {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
                       </div>
                     </TableCell>
                     <TableCell>

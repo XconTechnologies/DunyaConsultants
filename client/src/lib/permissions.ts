@@ -82,7 +82,16 @@ const DEFAULT_ROLE_PERMISSIONS: Record<string, UserPermissions> = {
 };
 
 /**
- * Get the effective permissions for a user based on their role and custom permissions
+ * Check if a user has a specific role
+ */
+export function hasRole(user: AdminUser | null | undefined, role: string): boolean {
+  if (!user) return false;
+  const roles = user.roles || [];
+  return roles.includes(role);
+}
+
+/**
+ * Get the effective permissions for a user based on their roles and custom permissions
  */
 export function getUserPermissions(user: AdminUser): UserPermissions {
   if (!user) return {};
@@ -92,8 +101,20 @@ export function getUserPermissions(user: AdminUser): UserPermissions {
     return user.permissions as UserPermissions;
   }
   
-  // Otherwise, use default permissions for their role
-  return DEFAULT_ROLE_PERMISSIONS[user.role] || {};
+  // Merge permissions from all roles (OR logic - if any role grants a permission, grant it)
+  const roles = user.roles || [];
+  const mergedPermissions: UserPermissions = {};
+  
+  roles.forEach(role => {
+    const rolePermissions = DEFAULT_ROLE_PERMISSIONS[role] || {};
+    Object.entries(rolePermissions).forEach(([key, value]) => {
+      if (value === true) {
+        mergedPermissions[key as keyof UserPermissions] = true;
+      }
+    });
+  });
+  
+  return mergedPermissions;
 }
 
 /**
@@ -107,11 +128,11 @@ export function hasPermission(user: AdminUser | null | undefined, permission: ke
 }
 
 /**
- * Check if a user has admin role (backwards compatibility helper)
+ * Check if a user has admin role
  */
 export function isAdmin(user: AdminUser | null | undefined): boolean {
   if (!user) return false;
-  return user.role === 'admin';
+  return hasRole(user, 'admin');
 }
 
 /**

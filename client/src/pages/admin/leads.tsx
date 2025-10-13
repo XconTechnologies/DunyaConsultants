@@ -182,7 +182,7 @@ export default function LeadsManagement() {
   };
 
   // Check if user is admin
-  const isAdmin = currentUser?.role === 'admin';
+  const isAdmin = currentUser?.roles?.includes('admin');
 
   // Export to CSV
   const exportToCSV = () => {

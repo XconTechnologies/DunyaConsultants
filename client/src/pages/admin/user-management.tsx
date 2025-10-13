@@ -216,6 +216,7 @@ export default function UserManagement() {
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [editUsername, setEditUsername] = useState("");
   const [editPassword, setEditPassword] = useState("");
+  const [editRoles, setEditRoles] = useState<string[]>([]);
   const [editPermissions, setEditPermissions] = useState<Record<string, boolean>>({});
 
   // Check authentication
@@ -467,6 +468,9 @@ export default function UserManagement() {
     setEditUsername(user.username);
     setEditPassword("");
     setShowEditPassword(false);
+    // Initialize edit roles with legacy fallback
+    const userRoles = user.roles?.length ? user.roles : (user.role ? [user.role] : ['editor']);
+    setEditRoles(userRoles);
     // Initialize edit permissions with user's current permissions
     setEditPermissions(user.permissions || {});
     setIsEditDialogOpen(true);
@@ -910,33 +914,49 @@ export default function UserManagement() {
                 <p className="text-xs text-gray-500 mt-1">Only enter a password if you want to change it</p>
               </div>
               <div>
-                <Label htmlFor="edit-role">Role</Label>
-                <Select 
-                  value={editingUser.role} 
-                  onValueChange={(value) => setEditingUser({ 
-                    ...editingUser, 
-                    role: value as any,
-                    permissions: value === 'custom' ? (editingUser.permissions || {}) : null
-                  })}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(ROLE_CONFIG).map(([key, config]) => (
-                      <SelectItem key={key} value={key}>
-                        <div className="flex items-center">
-                          <config.icon className="w-4 h-4 mr-2" />
-                          <span>{config.label}</span>
+                <Label className="text-base font-semibold mb-3 block">Roles (Select one or more)</Label>
+                <div className="space-y-2 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border-2 border-blue-200">
+                  {Object.entries(ROLE_CONFIG).map(([key, config]) => {
+                    const isSelected = editRoles.includes(key);
+                    return (
+                      <div 
+                        key={key} 
+                        className={`flex items-start space-x-3 p-3 rounded-lg transition-all cursor-pointer hover:bg-white/60 ${isSelected ? 'bg-white border-2 border-[#1D50C9]' : 'border border-transparent'}`}
+                        onClick={() => {
+                          const newRoles = isSelected 
+                            ? editRoles.filter(r => r !== key)
+                            : [...editRoles, key];
+                          setEditRoles(newRoles);
+                        }}
+                      >
+                        <Checkbox
+                          id={`edit-role-${key}`}
+                          checked={isSelected}
+                          onCheckedChange={() => {
+                            const newRoles = isSelected 
+                              ? editRoles.filter(r => r !== key)
+                              : [...editRoles, key];
+                            setEditRoles(newRoles);
+                          }}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <config.icon className="w-5 h-5 text-[#1D50C9]" />
+                            <Label htmlFor={`edit-role-${key}`} className="font-semibold text-base cursor-pointer">
+                              {config.label}
+                            </Label>
+                          </div>
+                          <p className="text-sm text-gray-600">{config.description}</p>
                         </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Custom Permissions Section for Edit Dialog */}
-              {editingUser.role === 'custom' && (
+              {editRoles.length > 0 && (
                 <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
                   <div className="flex items-center space-x-2">
                     <Settings className="w-4 h-4 text-purple-600" />
@@ -993,9 +1013,19 @@ export default function UserManagement() {
                 </Button>
                 <Button 
                   onClick={() => {
+                    // Validate that at least one role is selected
+                    if (editRoles.length === 0) {
+                      toast({
+                        title: "Validation Error",
+                        description: "Please select at least one role",
+                        variant: "destructive",
+                      });
+                      return;
+                    }
+                    
                     const updates: any = { 
-                      role: editingUser.role,
-                      permissions: editingUser.role === 'custom' ? editPermissions : null
+                      roles: editRoles,
+                      permissions: editPermissions
                     };
                     
                     // Add username if changed
