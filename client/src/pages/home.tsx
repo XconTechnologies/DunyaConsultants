@@ -1,8 +1,9 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import StatsBanner from "@/components/stats-banner";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
+import { setStaticPageMeta } from "@/lib/seo";
 
 // Lazy load ALL heavy components for better performance
 const AboutCompany = lazy(() => import("@/components/about-company"));
@@ -34,6 +35,13 @@ const SectionSkeleton = () => (
 );
 
 export default function Home() {
+  useEffect(() => {
+    setStaticPageMeta(
+      'Home',
+      'Your trusted partner for studying abroad. Expert visa consultation, university applications, test preparation, and end-to-end support for international students from Pakistan.'
+    );
+  }, []);
+
   return (
     <div className="min-h-screen">
       <ScrollProgress />
