@@ -351,7 +351,7 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
 
                 <div className={`grid gap-4 ${formData.testType ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                   <FloatingLabelSelect
-                    label="Test Type"
+                    label="Select test type"
                     value={formData.testType}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
                     options={testTypes}
