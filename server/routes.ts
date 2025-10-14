@@ -1723,7 +1723,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Check if user has permission to update this lead
-      if (currentUser.role !== 'admin') {
+      const isAdmin = currentUser.roles?.includes('admin');
+      if (!isAdmin) {
         const assignedLeads = await storage.getUserAssignedLeads(currentUser.id);
         const hasAccess = assignedLeads.some(lead => lead.id === id);
         
@@ -1771,7 +1772,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const currentAssignee = currentAssignments[0];
       
       // Check if user has permission to transfer this lead
-      if (currentUser.role !== 'admin') {
+      const isAdmin = currentUser.roles?.includes('admin');
+      if (!isAdmin) {
         // Non-admin users can only transfer their own assigned leads
         if (currentAssignee.userId !== currentUser.id) {
           return res.status(403).json({
