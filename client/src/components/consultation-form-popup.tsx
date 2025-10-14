@@ -339,7 +339,6 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
                 name="degreeGrade"
                 value={formData.degreeGrade}
                 onChange={handleInputChange}
-                placeholder="e.g., 3.5 GPA, 85%, First Division"
                 required
                 data-testid="input-degree-grade"
               />
