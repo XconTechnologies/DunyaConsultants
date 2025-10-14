@@ -186,10 +186,11 @@ export default function UpcomingEventsSection() {
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full bg-white text-blue-700 hover:bg-gray-50 transition-all duration-300 font-bold text-base py-6"
+                        className="w-full relative overflow-hidden bg-gradient-to-r from-blue-800 to-blue-900 text-white hover:shadow-xl transition-all duration-300 font-bold text-base py-6 group/btn hover:animate-bob"
                         data-testid="button-see-details"
                       >
-                        See Details
+                        <span className="relative z-10">View Details</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover/btn:opacity-30 group-hover/btn:animate-shimmer pointer-events-none"></div>
                       </Button>
                     </div>
                   </div>
