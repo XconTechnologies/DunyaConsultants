@@ -107,7 +107,7 @@ export default function LeadsManagement() {
   // Bulk delete mutation
   const bulkDeleteMutation = useMutation({
     mutationFn: async (ids: number[]) => {
-      return await apiRequest('DELETE', `/api/consultations/bulk-delete`, { ids });
+      return await apiRequest('POST', `/api/consultations/bulk-delete`, { ids });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });

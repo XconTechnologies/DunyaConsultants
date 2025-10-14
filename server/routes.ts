@@ -1828,13 +1828,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Bulk delete consultations
-  app.delete("/api/consultations/bulk-delete", requireAuth, async (req: AuthenticatedRequest, res) => {
+  app.post("/api/consultations/bulk-delete", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      console.log('Bulk delete request body:', req.body);
       const { ids } = req.body;
       
       if (!Array.isArray(ids) || ids.length === 0) {
-        console.log('Invalid ids array:', ids);
         return res.status(400).json({ 
           success: false, 
           message: "Invalid or empty IDs array" 
