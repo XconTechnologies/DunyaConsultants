@@ -153,7 +153,7 @@ export default function UpcomingEventsSection() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                       {/* First Column - Event Details */}
                       <div className="space-y-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white transition-colors leading-tight" data-testid="text-event-title">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:!text-white transition-colors leading-tight" data-testid="text-event-title">
                           {featuredEvent.title}
                         </h3>
                         
@@ -222,7 +222,7 @@ export default function UpcomingEventsSection() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-start justify-between gap-2 mb-3">
-                          <h4 className="font-bold text-lg sm:text-xl text-white transition-colors line-clamp-2 leading-tight" data-testid="text-event-title">
+                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight" data-testid="text-event-title">
                             {event.title}
                           </h4>
                           <Badge className="bg-white text-blue-700 text-xs font-bold flex-shrink-0 shadow-md">
