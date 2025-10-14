@@ -308,8 +308,8 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
               )}
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 block">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
                 Have you done language test? *
               </label>
               <div className="flex gap-6">
@@ -354,7 +354,7 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
                   />
                 )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className={`grid gap-4 ${formData.testType ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 block">
                       Test Type *
