@@ -136,11 +136,11 @@ export default function UpcomingEventsSection() {
               <Link href={`/events/${featuredEvent.slug}`}>
                 <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#345CAF' }} data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden aspect-[168/100]">
                     <img
                       src={featuredEvent.image}
                       alt={featuredEvent.title}
-                      className="w-full h-48 sm:h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
