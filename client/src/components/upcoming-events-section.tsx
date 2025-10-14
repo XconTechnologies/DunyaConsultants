@@ -53,10 +53,10 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-2 sm:p-3 min-w-[50px] sm:min-w-[60px] text-center">
+          <div className="bg-white text-blue-700 rounded-lg p-2 sm:p-3 min-w-[50px] sm:min-w-[60px] text-center">
             <div className="text-xl sm:text-2xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
-          <div className="text-xs text-gray-600 mt-1">{item.label}</div>
+          <div className="text-xs text-white/90 mt-1">{item.label}</div>
         </div>
       ))}
     </div>
@@ -134,8 +134,8 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative bg-white" data-testid={`event-featured-${featuredEvent.id}`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#345CAD' }} data-testid={`event-featured-${featuredEvent.id}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden">
                     <img
                       src={featuredEvent.image}
@@ -144,19 +144,19 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm">
+                      <Badge className="bg-white text-blue-700 shadow-md text-xs sm:text-sm">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 sm:p-6">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-blue-600 transition-colors" data-testid="text-event-title">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-gray-100 transition-colors" data-testid="text-event-title">
                       {featuredEvent.title}
                     </h3>
                     
                     <div className="space-y-2 sm:space-y-3 mb-4">
-                      <div className="flex items-center text-gray-600 text-sm sm:text-base">
-                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                      <div className="flex items-center text-white/90 text-sm sm:text-base">
+                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white flex-shrink-0" />
                         <span data-testid="text-event-date" className="break-words">
                           {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -167,8 +167,8 @@ export default function UpcomingEventsSection() {
                         </span>
                       </div>
                       {featuredEvent.venue && (
-                        <div className="flex items-center text-gray-600 text-sm sm:text-base">
-                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                        <div className="flex items-center text-white/90 text-sm sm:text-base">
+                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white flex-shrink-0" />
                           <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
                         </div>
                       )}
@@ -178,7 +178,7 @@ export default function UpcomingEventsSection() {
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+                        className="w-full bg-white text-blue-700 hover:bg-gray-100 transition-all duration-300"
                         data-testid="button-see-details"
                       >
                         See Details
@@ -201,7 +201,7 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
+                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#345CAD' }} data-testid={`event-card-${event.id}`}>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                     <div className="flex flex-col sm:flex-row gap-4 p-4">
                       <div className="relative w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
@@ -214,16 +214,16 @@ export default function UpcomingEventsSection() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-bold text-base sm:text-lg group-hover:text-blue-600 transition-colors line-clamp-2" data-testid="text-event-title">
+                          <h4 className="font-bold text-base sm:text-lg text-white group-hover:text-gray-100 transition-colors line-clamp-2" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                          <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
+                          <Badge className="bg-white text-blue-700 text-xs flex-shrink-0 shadow-sm">
                             {event.eventType}
                           </Badge>
                         </div>
                         <div className="space-y-1 mb-3">
-                          <div className="flex items-center text-sm text-gray-600">
-                            <Calendar className="w-4 h-4 mr-2 text-blue-600" />
+                          <div className="flex items-center text-sm text-white/90">
+                            <Calendar className="w-4 h-4 mr-2 text-white" />
                             <span className="truncate" data-testid="text-event-date">
                               {new Date(event.eventDate).toLocaleDateString('en-US', {
                                 month: 'short',
@@ -233,8 +233,8 @@ export default function UpcomingEventsSection() {
                             </span>
                           </div>
                           {event.venue && (
-                            <div className="flex items-center text-sm text-gray-600">
-                              <MapPin className="w-4 h-4 mr-2 text-blue-600" />
+                            <div className="flex items-center text-sm text-white/90">
+                              <MapPin className="w-4 h-4 mr-2 text-white" />
                               <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
                             </div>
                           )}
@@ -242,7 +242,7 @@ export default function UpcomingEventsSection() {
                         <div className="mt-auto">
                           <Button 
                             size="sm"
-                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+                            className="w-full sm:w-auto bg-white text-blue-700 hover:bg-gray-100 transition-all duration-300"
                             data-testid="button-see-more"
                           >
                             See More
