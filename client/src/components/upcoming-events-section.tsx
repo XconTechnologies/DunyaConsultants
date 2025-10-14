@@ -222,7 +222,7 @@ export default function UpcomingEventsSection() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-start justify-between gap-2 mb-3">
-                          <h4 className="font-bold text-base sm:text-lg text-gray-900 line-clamp-1" data-testid="text-event-title">
+                          <h4 className="font-bold text-base sm:text-lg text-blue-600 line-clamp-1" data-testid="text-event-title">
                             {event.title}
                           </h4>
                           <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
