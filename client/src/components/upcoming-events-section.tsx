@@ -186,7 +186,7 @@ export default function UpcomingEventsSection() {
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full relative overflow-hidden bg-white text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
+                        className="w-full relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
                         data-testid="button-see-details"
                       >
                         <span className="relative z-10">View Details</span>
