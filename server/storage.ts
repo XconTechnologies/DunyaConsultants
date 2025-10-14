@@ -502,7 +502,8 @@ export class DatabaseStorage implements IStorage {
   }
 
   async bulkDeleteConsultations(ids: number[]): Promise<void> {
-    await db.delete(consultations).where(sql`${consultations.id} IN (${sql.join(ids.map(id => sql`${id}`), sql`, `)})`);
+    if (ids.length === 0) return;
+    await db.delete(consultations).where(inArray(consultations.id, ids));
   }
 
   // QR Code Management
