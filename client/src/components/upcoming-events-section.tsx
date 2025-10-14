@@ -53,7 +53,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-white text-blue-700 rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md">
+          <div className="bg-white group-hover:bg-transparent group-hover:border group-hover:border-white text-blue-700 group-hover:text-white rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md group-hover:shadow-none transition-all duration-300">
             <div className="text-2xl sm:text-3xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
           <div className="text-xs sm:text-sm text-white font-medium mt-2">{item.label}</div>
