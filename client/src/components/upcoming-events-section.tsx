@@ -153,7 +153,7 @@ export default function UpcomingEventsSection() {
                     <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-6 mb-4">
                       {/* Left side: Title, Date, Venue */}
                       <div className="flex-1">
-                        <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 !text-blue-600 hover:!text-blue-600" data-testid="text-event-title">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#2563eb' }} data-testid="text-event-title">
                           {featuredEvent.title}
                         </h3>
                         
@@ -222,7 +222,7 @@ export default function UpcomingEventsSection() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-start justify-between gap-2 mb-3">
-                          <h4 className="font-bold text-base sm:text-lg !text-blue-600 hover:!text-blue-600 line-clamp-1" data-testid="text-event-title">
+                          <h4 className="font-bold text-base sm:text-lg line-clamp-1" style={{ color: '#2563eb' }} data-testid="text-event-title">
                             {event.title}
                           </h4>
                           <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
