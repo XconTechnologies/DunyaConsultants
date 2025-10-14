@@ -8,6 +8,7 @@ import { setStaticPageMeta } from "@/lib/seo";
 // Lazy load ALL heavy components for better performance
 const AboutCompany = lazy(() => import("@/components/about-company"));
 const BranchesCarousel = lazy(() => import("@/components/branches-carousel"));
+const UpcomingEventsSection = lazy(() => import("@/components/upcoming-events-section"));
 const IeltsSection = lazy(() => import("@/components/ielts-section"));
 const CountriesSection = lazy(() => import("@/components/countries-section"));
 const AccreditationSection = lazy(() => import("@/components/accreditation-section"));
@@ -58,6 +59,10 @@ export default function Home() {
       
       <Suspense fallback={<SectionSkeleton />}>
         <BranchesCarousel />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <UpcomingEventsSection />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
