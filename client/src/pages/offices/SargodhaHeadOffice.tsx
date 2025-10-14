@@ -17,8 +17,8 @@ export default function SargodhaHeadOffice() {
   
   useEffect(() => {
     setStaticPageMeta(
-      "Sargodha Head Office",
-      "Expert study abroad consultants in Sargodha helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more."
+      "Dunya Consultants Sargodha | Study Abroad & Visa Experts",
+      "Want to study abroad but don't know where to begin? We're here to help. We help you with every step, from picking a course to securing your visa, at Dunya Consultants (Sargodha). This makes the process look easy and stress-free."
     );
   }, []);
   
