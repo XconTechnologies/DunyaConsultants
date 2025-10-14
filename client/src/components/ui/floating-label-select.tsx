@@ -45,7 +45,7 @@ export function FloatingLabelSelect({
           )}
           data-testid={dataTestId}
         >
-          <SelectValue placeholder={placeholder} />
+          <SelectValue placeholder="" />
         </SelectTrigger>
         <SelectContent>
           {options.map((option) => (
