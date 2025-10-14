@@ -140,7 +140,7 @@ export default function UpcomingEventsSection() {
                 <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none z-10"></div>
                   <div 
-                    className="relative h-64 md:h-72 bg-cover bg-no-repeat bg-fixed bg-center"
+                    className="relative h-64 md:h-72 bg-cover bg-no-repeat bg-center"
                     style={{ backgroundImage: `url(${featuredEvent.image})` }}
                   >
                     <div className="absolute top-4 right-4">
