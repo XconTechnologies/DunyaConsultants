@@ -282,10 +282,10 @@ export default function UpcomingEventsSection() {
             <Link href="/events">
               <Button 
                 size="lg" 
-                className="relative overflow-hidden bg-white text-blue-700 hover:bg-transparent hover:border-2 hover:border-white hover:shadow-2xl px-12 py-6 text-lg font-semibold shadow-lg transition-all duration-300 group" 
+                className="relative overflow-hidden bg-white hover:bg-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 group" 
                 data-testid="button-view-all-events"
               >
-                <span className="relative z-10 text-blue-700 hover:!text-blue-700">View All Events</span>
+                <span className="relative z-10 text-blue-700 group-hover:!text-transparent transition-colors duration-300">View All Events</span>
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-60 group-hover:animate-diagonal-shimmer -translate-x-full -translate-y-full"></div>
               </Button>
             </Link>
