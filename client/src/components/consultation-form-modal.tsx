@@ -377,15 +377,13 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
                   </div>
 
                   {formData.testType && (
-                    <div className="space-y-2">
-                      <FloatingLabelInput
-                        label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
-                        name="testScore"
-                        value={formData.testScore}
-                        onChange={handleInputChange}
-                        data-testid="input-test-score"
-                      />
-                    </div>
+                    <FloatingLabelInput
+                      label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
+                      name="testScore"
+                      value={formData.testScore}
+                      onChange={handleInputChange}
+                      data-testid="input-test-score"
+                    />
                   )}
                 </div>
               </>
