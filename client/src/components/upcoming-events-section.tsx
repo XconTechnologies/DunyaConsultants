@@ -222,13 +222,10 @@ export default function UpcomingEventsSection() {
                         />
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
-                        <div className="flex items-start justify-between gap-2 mb-3">
-                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight" data-testid="text-event-title">
+                        <div className="mb-3">
+                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight mb-2" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                          <Badge className="bg-white text-blue-700 text-xs font-bold flex-shrink-0 shadow-md">
-                            {event.eventType}
-                          </Badge>
                         </div>
                         <div className="space-y-2 mb-3">
                           <div className="flex items-center text-sm text-white font-medium">
@@ -248,13 +245,19 @@ export default function UpcomingEventsSection() {
                             </div>
                           )}
                         </div>
+                        <div className="mb-3">
+                          <Badge className="bg-white text-blue-700 text-xs font-bold shadow-md">
+                            {event.eventType}
+                          </Badge>
+                        </div>
                         <div className="mt-auto">
                           <Button 
                             size="sm"
-                            className="w-full sm:w-auto bg-white text-blue-700 hover:bg-gray-50 transition-all duration-300 font-bold"
+                            className="w-full sm:w-auto relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn"
                             data-testid="button-see-more"
                           >
-                            See More
+                            <span className="relative z-10 text-blue-700 group-hover/sidebtn:!text-blue-700">See More</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover/sidebtn:opacity-100 -translate-x-full group-hover/sidebtn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
                           </Button>
                         </div>
                       </div>
