@@ -230,6 +230,7 @@ export const consultations = pgTable("consultations", {
   otherTestName: text("other_test_name"),
   testScore: text("test_score"),
   educationLevel: text("education_level"),
+  degreeGrade: text("degree_grade"),
   fieldOfStudy: text("field_of_study"),
   preferredCountry: text("preferred_country"),
   interestedCountries: text("interested_countries").array(),
