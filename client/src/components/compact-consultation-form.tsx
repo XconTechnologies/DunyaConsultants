@@ -21,6 +21,8 @@ interface FormData {
   countryCode: string;
   whatsappNumber: string;
   email: string;
+  lastDegree: string;
+  degreeGrade: string;
   hasLanguageTest: string;
   testType: string;
   otherTestName: string;
@@ -47,6 +49,14 @@ const countries = [
   "Other"
 ];
 
+const degreeOptions = [
+  { value: "matriculation", label: "Matriculation" },
+  { value: "intermediate", label: "Intermediate" },
+  { value: "bachelors", label: "Bachelor's Degree" },
+  { value: "masters", label: "Master's Degree" },
+  { value: "phd", label: "PhD" }
+];
+
 const testTypes = [
   { value: "ielts", label: "IELTS" },
   { value: "pte", label: "PTE" },
@@ -63,6 +73,8 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
     countryCode: defaultCountryCode,
     whatsappNumber: "",
     email: "",
+    lastDegree: "",
+    degreeGrade: "",
     hasLanguageTest: "",
     testType: "",
     otherTestName: "",
@@ -102,8 +114,13 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.fullName || !formData.city || !formData.whatsappNumber || !formData.email || !formData.hasLanguageTest || formData.interestedCountries.length === 0) {
+    if (!formData.fullName || !formData.city || !formData.whatsappNumber || !formData.email || !formData.lastDegree || !formData.hasLanguageTest || formData.interestedCountries.length === 0) {
       alert("Please fill in all required fields");
+      return;
+    }
+
+    if (formData.lastDegree && !formData.degreeGrade) {
+      alert("Please enter your CGPA / Percentage / Division");
       return;
     }
 
@@ -130,6 +147,8 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
         city: formData.city,
         whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
         email: formData.email,
+        educationLevel: formData.lastDegree,
+        degreeGrade: formData.degreeGrade,
         hasLanguageTest: formData.hasLanguageTest,
         testType: formData.testType,
         otherTestName: formData.otherTestName,
@@ -165,6 +184,8 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
           countryCode: defaultCountryCode,
           whatsappNumber: "",
           email: "",
+          lastDegree: "",
+          degreeGrade: "",
           hasLanguageTest: "",
           testType: "",
           otherTestName: "",
@@ -302,6 +323,28 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
                 <p className="text-xs text-red-500 mt-1">{emailError}</p>
               )}
             </div>
+
+            <FloatingLabelSelect
+              label="Last Degree *"
+              value={formData.lastDegree}
+              onValueChange={(value) => setFormData(prev => ({ ...prev, lastDegree: value, degreeGrade: "" }))}
+              options={degreeOptions}
+              placeholder="Select your last degree"
+              required
+              data-testid="select-last-degree"
+            />
+
+            {formData.lastDegree && (
+              <FloatingLabelInput
+                label="CGPA / Percentage / Division *"
+                name="degreeGrade"
+                value={formData.degreeGrade}
+                onChange={handleInputChange}
+                placeholder="e.g., 3.5 GPA, 85%, First Division"
+                required
+                data-testid="input-degree-grade"
+              />
+            )}
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
