@@ -264,23 +264,25 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
         {/* Scrollable Form */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <FloatingLabelInput
-              label="Full Name *"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-              required
-              data-testid="input-fullname"
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FloatingLabelInput
+                label="Full Name *"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+                data-testid="input-fullname"
+              />
 
-            <FloatingLabelInput
-              label="City *"
-              name="city"
-              value={formData.city}
-              onChange={handleInputChange}
-              required
-              data-testid="input-city"
-            />
+              <FloatingLabelInput
+                label="City *"
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+                required
+                data-testid="input-city"
+              />
+            </div>
 
             <FloatingLabelWhatsAppInput
               label="WhatsApp Number *"
@@ -340,27 +342,6 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
 
             {formData.hasLanguageTest === "yes" && (
               <>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 block">
-                    Test Type *
-                  </label>
-                  <Select
-                    value={formData.testType}
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
-                  >
-                    <SelectTrigger className="w-full" data-testid="select-test-type">
-                      <SelectValue placeholder="Select test type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {testTypes.map((test) => (
-                        <SelectItem key={test.value} value={test.value}>
-                          {test.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
                 {formData.testType === "other" && (
                   <FloatingLabelInput
                     label="Which test have you taken? *"
@@ -373,16 +354,38 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
                   />
                 )}
 
-                {formData.testType && (
-                  <FloatingLabelInput
-                    label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
-                    name="testScore"
-                    value={formData.testScore}
-                    onChange={handleInputChange}
-                    placeholder={formData.testType === "ielts" ? "e.g., 7.5" : "Enter your score"}
-                    data-testid="input-test-score"
-                  />
-                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 block">
+                      Test Type *
+                    </label>
+                    <Select
+                      value={formData.testType}
+                      onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
+                    >
+                      <SelectTrigger className="w-full" data-testid="select-test-type">
+                        <SelectValue placeholder="Select test type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {testTypes.map((test) => (
+                          <SelectItem key={test.value} value={test.value}>
+                            {test.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {formData.testType && (
+                    <FloatingLabelInput
+                      label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
+                      name="testScore"
+                      value={formData.testScore}
+                      onChange={handleInputChange}
+                      data-testid="input-test-score"
+                    />
+                  )}
+                </div>
               </>
             )}
 
@@ -390,7 +393,7 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
               <label className="text-sm font-medium text-gray-700 block">
                 Interested Countries *
               </label>
-              <div className="grid grid-cols-2 gap-3 max-h-[200px] overflow-y-auto p-2 border border-gray-200 rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-2 border border-gray-200 rounded-lg">
                 {countries.map((country) => (
                   <label
                     key={country}
