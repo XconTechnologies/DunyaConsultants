@@ -45,7 +45,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
   }, [eventDate]);
 
   return (
-    <div className="flex gap-3 sm:gap-4 justify-center md:justify-start mt-4">
+    <div className="flex gap-2 sm:gap-4 justify-center md:justify-start mt-4">
       {[
         { label: "Days", value: timeRemaining.days },
         { label: "Hours", value: timeRemaining.hours },
@@ -53,10 +53,10 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-white group-hover:bg-blue-700 group-hover:border-2 group-hover:border-blue-700 rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md transition-all duration-300">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-700 group-hover:!text-white transition-colors">{item.value.toString().padStart(2, "0")}</div>
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-2 sm:p-3 min-w-[50px] sm:min-w-[60px] text-center">
+            <div className="text-xl sm:text-2xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
-          <div className="text-xs sm:text-sm text-white font-medium mt-2">{item.label}</div>
+          <div className="text-xs text-gray-600 mt-1">{item.label}</div>
         </div>
       ))}
     </div>
@@ -134,63 +134,54 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative bg-white" data-testid={`event-featured-${featuredEvent.id}`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                  <div className="relative overflow-hidden aspect-video">
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative bg-white" data-testid={`event-featured-${featuredEvent.id}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
+                  <div className="relative overflow-hidden">
                     <img
                       src={featuredEvent.image}
                       alt={featuredEvent.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-48 sm:h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-700 shadow-lg text-xs sm:text-sm font-bold !text-white hover:!text-white">
+                      <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
                   </div>
-                  <div className="p-5 sm:p-7">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                      {/* First Column - Event Details */}
-                      <div className="space-y-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold !text-blue-700 hover:!text-blue-700 transition-colors leading-tight" data-testid="text-event-title">
-                          {featuredEvent.title}
-                        </h3>
-                        
-                        <div className="space-y-3">
-                          <div className="flex items-center text-blue-700 text-sm sm:text-base font-medium">
-                            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-blue-700 flex-shrink-0" />
-                            <span data-testid="text-event-date" className="break-words">
-                              {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                              })}
-                            </span>
-                          </div>
-                          {featuredEvent.venue && (
-                            <div className="flex items-center text-blue-700 text-sm sm:text-base font-medium">
-                              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-blue-700 flex-shrink-0" />
-                              <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
-                            </div>
-                          )}
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-blue-600 transition-colors" data-testid="text-event-title">
+                      {featuredEvent.title}
+                    </h3>
+                    
+                    <div className="space-y-2 sm:space-y-3 mb-4">
+                      <div className="flex items-center text-gray-600 text-sm sm:text-base">
+                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                        <span data-testid="text-event-date" className="break-words">
+                          {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                      {featuredEvent.venue && (
+                        <div className="flex items-center text-gray-600 text-sm sm:text-base">
+                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                          <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
                         </div>
-                      </div>
-
-                      {/* Second Column - Countdown Timer */}
-                      <div className="flex items-center justify-center lg:justify-end">
-                        <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
-                      </div>
+                      )}
                     </div>
+
+                    <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full relative overflow-hidden bg-blue-700 text-white hover:!text-white hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
                         data-testid="button-see-details"
                       >
-                        <span className="relative z-10 text-white group-hover/btn:!text-white">View Details</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover/btn:opacity-30 -translate-x-full group-hover/btn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
+                        See Details
                       </Button>
                     </div>
                   </div>
@@ -210,10 +201,10 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                    <div className="flex flex-col sm:flex-row gap-4 p-5">
-                      <div className="relative w-full sm:w-36 h-44 sm:h-28 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
+                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
+                    <div className="flex flex-col sm:flex-row gap-4 p-4">
+                      <div className="relative w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
                         <img
                           src={event.image}
                           alt={event.title}
@@ -221,44 +212,40 @@ export default function UpcomingEventsSection() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex-1 min-w-0 flex gap-4">
-                        {/* Left Column - Title, Date, Venue */}
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-lg sm:text-xl text-blue-700 group-hover:!text-blue-700 transition-colors line-clamp-2 leading-tight mb-3" data-testid="text-event-title">
+                      <div className="flex-1 min-w-0 flex flex-col">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <h4 className="font-bold text-base sm:text-lg group-hover:text-blue-600 transition-colors line-clamp-2" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                          <div className="space-y-2">
-                            <div className="flex items-center text-sm text-blue-700 font-medium">
-                              <Calendar className="w-5 h-5 mr-2 text-blue-700" />
-                              <span className="truncate" data-testid="text-event-date">
-                                {new Date(event.eventDate).toLocaleDateString('en-US', {
-                                  month: 'short',
-                                  day: 'numeric',
-                                  year: 'numeric',
-                                })}
-                              </span>
-                            </div>
-                            {event.venue && (
-                              <div className="flex items-center text-sm text-blue-700 font-medium">
-                                <MapPin className="w-5 h-5 mr-2 text-blue-700" />
-                                <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Right Column - Badge and Button */}
-                        <div className="flex flex-col items-end justify-between gap-3">
-                          <Badge className="bg-blue-700 text-xs font-bold shadow-md !text-white hover:!text-white">
+                          <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
                             {event.eventType}
                           </Badge>
+                        </div>
+                        <div className="space-y-1 mb-3">
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Calendar className="w-4 h-4 mr-2 text-blue-600" />
+                            <span className="truncate" data-testid="text-event-date">
+                              {new Date(event.eventDate).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                              })}
+                            </span>
+                          </div>
+                          {event.venue && (
+                            <div className="flex items-center text-sm text-gray-600">
+                              <MapPin className="w-4 h-4 mr-2 text-blue-600" />
+                              <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="mt-auto">
                           <Button 
                             size="sm"
-                            className="relative overflow-hidden bg-blue-700 text-white hover:!text-white hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn whitespace-nowrap"
+                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
                             data-testid="button-see-more"
                           >
-                            <span className="relative z-10 text-white group-hover/sidebtn:!text-white">See More</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover/sidebtn:opacity-30 -translate-x-full group-hover/sidebtn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
+                            See More
                           </Button>
                         </div>
                       </div>
@@ -282,10 +269,10 @@ export default function UpcomingEventsSection() {
             <Link href="/events">
               <Button 
                 size="lg" 
-                className="relative overflow-hidden bg-white hover:bg-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 group" 
+                className="relative overflow-hidden bg-white text-blue-700 hover:bg-gray-50 px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 group" 
                 data-testid="button-view-all-events"
               >
-                <span className="relative z-10 text-blue-700 group-hover:!text-transparent transition-colors duration-300">View All Events</span>
+                <span className="relative z-10">View All Events</span>
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-60 group-hover:animate-diagonal-shimmer -translate-x-full -translate-y-full"></div>
               </Button>
             </Link>
