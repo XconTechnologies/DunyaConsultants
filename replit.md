@@ -131,6 +131,14 @@ Preferred communication style: Simple, everyday language.
 - Tabbed visa success stories for different countries.
 - Infinite horizontal carousels for success stories.
 
+### SEO & Social Media Integration
+- **Server-Side Social Meta Tags**: Social media crawlers (WhatsApp, Facebook, Twitter, LinkedIn) receive dynamically injected meta tags via middleware
+- **Comprehensive Page Coverage**: All 25+ office locations, 7 study destinations, 4 test prep pages, and blog posts have specific Open Graph and Twitter Card meta tags
+- **Smart Featured Images**: Automatic image extraction fallback system (Featured Image → First Content Image → Default Fallback)
+- **Office-Specific Social Previews**: Each office page (Lahore DHA, Islamabad, Karachi, international offices, etc.) has custom titles and descriptions for social sharing
+- **Production Cache Headers**: Static assets cached for 1 year in production (images, CSS, JS, fonts) for optimal performance
+- **Security**: All meta tag values are HTML-escaped to prevent injection attacks
+
 ## External Dependencies
 - `@neondatabase/serverless`: PostgreSQL connectivity
 - `drizzle-orm`: Type-safe database operations
