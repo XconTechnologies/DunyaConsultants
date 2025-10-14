@@ -175,6 +175,132 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
     title: 'Duolingo English Test Preparation - Dunya Consultants',
     description: 'Prepare for the Duolingo English Test with expert guidance and proven strategies.',
     image: '/attached_assets/duolingo-prep.jpg'
+  },
+  // Office Pages
+  '/offices/sargodha-head-office': {
+    title: 'Dunya Consultants Sargodha | Study Abroad & Visa Experts',
+    description: 'Want to study abroad but don\'t know where to begin? We\'re here to help. We help you with every step, from picking a course to securing your visa, at Dunya Consultants (Sargodha).',
+    image: '/attached_assets/IMG-20240909-WA0043_1756189128801.jpg'
+  },
+  '/offices/lahore-dha': {
+    title: 'Lahore DHA Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Lahore DHA helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-lahore-dha.jpg'
+  },
+  '/offices/lahore-dha-city': {
+    title: 'Lahore DHA City Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Lahore DHA City helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-lahore-dha-city.jpg'
+  },
+  '/offices/lahore-johar': {
+    title: 'Lahore Johar Town Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Lahore Johar Town helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-lahore-johar.jpg'
+  },
+  '/offices/islamabad': {
+    title: 'Islamabad Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Islamabad helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-islamabad.jpg'
+  },
+  '/offices/islamabad-blue-area': {
+    title: 'Islamabad Blue Area Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Islamabad Blue Area helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-islamabad-blue-area.jpg'
+  },
+  '/offices/karachi': {
+    title: 'Karachi Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Karachi helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-karachi.jpg'
+  },
+  '/offices/karachi-gulshan': {
+    title: 'Karachi Gulshan Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Karachi Gulshan helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-karachi-gulshan.jpg'
+  },
+  '/offices/faisalabad': {
+    title: 'Faisalabad Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Faisalabad helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-faisalabad.jpg'
+  },
+  '/offices/faisalabad-civil-lines': {
+    title: 'Faisalabad Civil Lines Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Faisalabad Civil Lines helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-faisalabad-civil-lines.jpg'
+  },
+  '/offices/multan': {
+    title: 'Multan Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Multan helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-multan.jpg'
+  },
+  '/offices/gujranwala': {
+    title: 'Gujranwala Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Gujranwala helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-gujranwala.jpg'
+  },
+  '/offices/sialkot': {
+    title: 'Sialkot Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Sialkot helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-sialkot.jpg'
+  },
+  '/offices/gujrat': {
+    title: 'Gujrat Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Gujrat helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-gujrat.jpg'
+  },
+  '/offices/bahawalpur': {
+    title: 'Bahawalpur Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Bahawalpur helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-bahawalpur.jpg'
+  },
+  '/offices/mianchannu': {
+    title: 'Mian Channu Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Mian Channu helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-mian-channu.jpg'
+  },
+  '/offices/mandi-bahauddin': {
+    title: 'Mandi Bahauddin Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Mandi Bahauddin helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-mandi-bahauddin.jpg'
+  },
+  '/offices/sheikhupura': {
+    title: 'Sheikhupura Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Sheikhupura helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-sheikhupura.jpg'
+  },
+  '/offices/peshawar': {
+    title: 'Peshawar Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Peshawar helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-peshawar.jpg'
+  },
+  '/offices/jhelum': {
+    title: 'Jhelum Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Jhelum helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-jhelum.jpg'
+  },
+  '/offices/mardan': {
+    title: 'Mardan Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Mardan helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-mardan.jpg'
+  },
+  '/offices/saudi-arabia-jeddah': {
+    title: 'Jeddah Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Jeddah helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-jeddah.jpg'
+  },
+  '/offices/turkey-istanbul': {
+    title: 'Istanbul Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Istanbul helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-istanbul.jpg'
+  },
+  '/offices/egypt-cairo': {
+    title: 'Cairo Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Cairo helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-cairo.jpg'
+  },
+  '/offices/edinburgh': {
+    title: 'Edinburgh Office - Dunya Consultants',
+    description: 'Expert study abroad consultants in Edinburgh helping students with university selection, visa guidance, and IELTS preparation for USA, UK, Canada, Australia, and more.',
+    image: '/attached_assets/office-edinburgh.jpg'
   }
 };
 
