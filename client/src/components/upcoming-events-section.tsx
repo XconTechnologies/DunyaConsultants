@@ -189,7 +189,7 @@ export default function UpcomingEventsSection() {
                         className="w-full relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
                         data-testid="button-see-details"
                       >
-                        <span className="relative z-10">View Details</span>
+                        <span className="relative z-10 text-blue-700 group-hover/btn:!text-blue-700">View Details</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover/btn:opacity-100 -translate-x-full group-hover/btn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
                       </Button>
                     </div>
