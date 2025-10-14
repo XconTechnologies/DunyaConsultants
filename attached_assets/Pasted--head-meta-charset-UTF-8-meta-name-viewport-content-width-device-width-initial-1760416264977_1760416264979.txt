@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Study Abroad Consultants in Pakistan - Dunya Consultants</title>
+    <meta name="description" content="Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!" />
+    <meta property="og:title" content="Study Abroad Consultants in Pakistan - Dunya Consultants" />
+    <meta property="og:description" content="Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!" />
+    <meta property="og:type" content="website" />
+    <meta name="google-site-verification" content="iRGygOiJOs-MlD_sSIm9t_vWAvAhD10oG27ppJZXLNk" />
+    
+    <!-- Favicon - Optimized for Google Search Results -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSMDBGDBDJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RSMDBGDBDJ', {
+        'stream_id': '6280758091',
+        'stream_name': 'https://dunyaconsultants.com/'
+      });
+    </script>
+    
+    <!-- Critical inline CSS for above-the-fold content -->
+    <style>
+      body{margin:0;padding:0;font-family:Inter,sans-serif;background:#fff;}
+      .critical-section{min-height:100vh;display:flex;align-items:center;justify-content:center;}
+      .hero-gradient{background:linear-gradient(135deg,#1D50C9 0%,#2764E8 100%);}
+      .loading-spinner{width:40px;height:40px;border:4px solid #f3f4f6;border-top:4px solid #1D50C9;border-radius:50%;animation:spin 1s linear infinite;}
+      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    </style>
+    
+    <!-- Resource hints for critical resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical font preload -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Critical CSS preload -->
+    <noscript></noscript>
+    
+    <!-- Font optimization -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Module preload for main entry -->
+    <link rel="modulepreload" href="data:application/octet-stream;base64,aW1wb3J0IHsgY3JlYXRlUm9vdCB9IGZyb20gInJlYWN0LWRvbS9jbGllbnQiOwppbXBvcnQgQXBwIGZyb20gIi4vQXBwIjsKaW1wb3J0ICIuL2luZGV4LmNzcyI7CgovLyBJbml0aWFsaXplIHBlcmZvcm1hbmNlIG1vbml0b3JpbmcgaW4gZGV2ZWxvcG1lbnQKaWYgKHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAnZGV2ZWxvcG1lbnQnICYmIHR5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnKSB7CiAgLy8gU2ltcGxlIHBlcmZvcm1hbmNlIG1vbml0b3Jpbmcgd2l0aG91dCBleHRlcm5hbCBkZXBlbmRlbmNpZXMKICBjb25zdCBvYnNlcnZlciA9IG5ldyBQZXJmb3JtYW5jZU9ic2VydmVyKChsaXN0KSA9PiB7CiAgICBmb3IgKGNvbnN0IGVudHJ5IG9mIGxpc3QuZ2V0RW50cmllcygpKSB7CiAgICAgIGlmIChlbnRyeS5lbnRyeVR5cGUgPT09ICdsYXJnZXN0LWNvbnRlbnRmdWwtcGFpbnQnKSB7CiAgICAgICAgY29uc29sZS5sb2coJ0xDUDonLCBlbnRyeS5zdGFydFRpbWUgKyAnbXMnKTsKICAgICAgfQogICAgfQogIH0pOwogIHRyeSB7CiAgICBvYnNlcnZlci5vYnNlcnZlKHsgZW50cnlUeXBlczogWydsYXJnZXN0LWNvbnRlbnRmdWwtcGFpbnQnXSB9KTsKICB9IGNhdGNoIChlKSB7CiAgICAvLyBPYnNlcnZlciBub3Qgc3VwcG9ydGVkCiAgfQp9CgovLyBQcmVsb2FkIGNyaXRpY2FsIGZvbnQKaWYgKHR5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnKSB7CiAgY29uc3QgbGluayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2xpbmsnKTsKICBsaW5rLnJlbCA9ICdwcmVsb2FkJzsKICBsaW5rLmhyZWYgPSAnaHR0cHM6Ly9mb250cy5nc3RhdGljLmNvbS9zL2ludGVyL3YxMy9VY0NPM0Z3ckszaUxUZUh1U19mdlF0TXdDcDUwS25NdzJib0tvZHVLbU1FVnVMeWZBWjloaUotRWstX0VlQS53b2ZmMic7CiAgbGluay5hcyA9ICdmb250JzsKICBsaW5rLnR5cGUgPSAnZm9udC93b2ZmMic7CiAgbGluay5jcm9zc09yaWdpbiA9ICdhbm9ueW1vdXMnOwogIGRvY3VtZW50LmhlYWQuYXBwZW5kQ2hpbGQobGluayk7Cn0KCmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInJvb3QiKSEpLnJlbmRlcig8QXBwIC8+KTsK">
+    <script type="module" crossorigin src="/assets/index-DjpOLtz-.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-ZSfKSBov.css">
+  </head>
