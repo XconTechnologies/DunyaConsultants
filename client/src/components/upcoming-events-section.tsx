@@ -45,7 +45,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
   }, [eventDate]);
 
   return (
-    <div className="flex gap-2 sm:gap-4 justify-center md:justify-start mt-4">
+    <div className="flex gap-3 sm:gap-4 justify-center md:justify-start mt-4">
       {[
         { label: "Days", value: timeRemaining.days },
         { label: "Hours", value: timeRemaining.hours },
@@ -53,10 +53,10 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-white text-blue-700 rounded-lg p-2 sm:p-3 min-w-[50px] sm:min-w-[60px] text-center">
-            <div className="text-xl sm:text-2xl font-bold">{item.value.toString().padStart(2, "0")}</div>
+          <div className="bg-white text-blue-700 rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md">
+            <div className="text-2xl sm:text-3xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
-          <div className="text-xs text-white/90 mt-1">{item.label}</div>
+          <div className="text-xs sm:text-sm text-white font-medium mt-2">{item.label}</div>
         </div>
       ))}
     </div>
@@ -134,7 +134,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#345CAD' }} data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#345CAF' }} data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden">
                     <img
@@ -144,19 +144,19 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-white text-blue-700 shadow-md text-xs sm:text-sm">
+                      <Badge className="bg-white text-blue-700 shadow-lg text-xs sm:text-sm font-bold">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-gray-100 transition-colors" data-testid="text-event-title">
+                  <div className="p-5 sm:p-7">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-5 text-white group-hover:text-gray-100 transition-colors leading-tight" data-testid="text-event-title">
                       {featuredEvent.title}
                     </h3>
                     
-                    <div className="space-y-2 sm:space-y-3 mb-4">
-                      <div className="flex items-center text-white/90 text-sm sm:text-base">
-                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white flex-shrink-0" />
+                    <div className="space-y-3 sm:space-y-4 mb-5">
+                      <div className="flex items-center text-white text-sm sm:text-base font-medium">
+                        <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
                         <span data-testid="text-event-date" className="break-words">
                           {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -167,8 +167,8 @@ export default function UpcomingEventsSection() {
                         </span>
                       </div>
                       {featuredEvent.venue && (
-                        <div className="flex items-center text-white/90 text-sm sm:text-base">
-                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white flex-shrink-0" />
+                        <div className="flex items-center text-white text-sm sm:text-base font-medium">
+                          <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
                           <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
                         </div>
                       )}
@@ -178,7 +178,7 @@ export default function UpcomingEventsSection() {
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full bg-white text-blue-700 hover:bg-gray-100 transition-all duration-300"
+                        className="w-full bg-white text-blue-700 hover:bg-gray-50 transition-all duration-300 font-bold text-base py-6"
                         data-testid="button-see-details"
                       >
                         See Details
@@ -201,10 +201,10 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#345CAD' }} data-testid={`event-card-${event.id}`}>
+                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#345CAF' }} data-testid={`event-card-${event.id}`}>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                    <div className="flex flex-col sm:flex-row gap-4 p-4">
-                      <div className="relative w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
+                    <div className="flex flex-col sm:flex-row gap-4 p-5">
+                      <div className="relative w-full sm:w-36 h-44 sm:h-28 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
                         <img
                           src={event.image}
                           alt={event.title}
@@ -213,17 +213,17 @@ export default function UpcomingEventsSection() {
                         />
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-bold text-base sm:text-lg text-white group-hover:text-gray-100 transition-colors line-clamp-2" data-testid="text-event-title">
+                        <div className="flex items-start justify-between gap-2 mb-3">
+                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:text-gray-100 transition-colors line-clamp-2 leading-tight" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                          <Badge className="bg-white text-blue-700 text-xs flex-shrink-0 shadow-sm">
+                          <Badge className="bg-white text-blue-700 text-xs font-bold flex-shrink-0 shadow-md">
                             {event.eventType}
                           </Badge>
                         </div>
-                        <div className="space-y-1 mb-3">
-                          <div className="flex items-center text-sm text-white/90">
-                            <Calendar className="w-4 h-4 mr-2 text-white" />
+                        <div className="space-y-2 mb-3">
+                          <div className="flex items-center text-sm text-white font-medium">
+                            <Calendar className="w-5 h-5 mr-2 text-white" />
                             <span className="truncate" data-testid="text-event-date">
                               {new Date(event.eventDate).toLocaleDateString('en-US', {
                                 month: 'short',
@@ -233,8 +233,8 @@ export default function UpcomingEventsSection() {
                             </span>
                           </div>
                           {event.venue && (
-                            <div className="flex items-center text-sm text-white/90">
-                              <MapPin className="w-4 h-4 mr-2 text-white" />
+                            <div className="flex items-center text-sm text-white font-medium">
+                              <MapPin className="w-5 h-5 mr-2 text-white" />
                               <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
                             </div>
                           )}
@@ -242,7 +242,7 @@ export default function UpcomingEventsSection() {
                         <div className="mt-auto">
                           <Button 
                             size="sm"
-                            className="w-full sm:w-auto bg-white text-blue-700 hover:bg-gray-100 transition-all duration-300"
+                            className="w-full sm:w-auto bg-white text-blue-700 hover:bg-gray-50 transition-all duration-300 font-bold"
                             data-testid="button-see-more"
                           >
                             See More
