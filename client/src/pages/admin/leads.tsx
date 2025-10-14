@@ -87,10 +87,7 @@ export default function LeadsManagement() {
   // Update consultation status mutation
   const updateStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: number; status: string }) => {
-      return await apiRequest(`/api/consultations/${id}/status`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status }),
-      });
+      return await apiRequest('PATCH', `/api/consultations/${id}/status`, { status });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
@@ -100,10 +97,7 @@ export default function LeadsManagement() {
   // Reassign lead mutation
   const reassignLeadMutation = useMutation({
     mutationFn: async ({ id, userId }: { id: number; userId: number }) => {
-      return await apiRequest(`/api/consultations/${id}/assign`, {
-        method: 'PATCH',
-        body: JSON.stringify({ userId }),
-      });
+      return await apiRequest('PATCH', `/api/consultations/${id}/assign`, { userId });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
@@ -113,10 +107,7 @@ export default function LeadsManagement() {
   // Bulk delete mutation
   const bulkDeleteMutation = useMutation({
     mutationFn: async (ids: number[]) => {
-      return await apiRequest(`/api/consultations/bulk-delete`, {
-        method: 'DELETE',
-        body: JSON.stringify({ ids }),
-      });
+      return await apiRequest('DELETE', `/api/consultations/bulk-delete`, { ids });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
@@ -169,9 +160,7 @@ export default function LeadsManagement() {
   // Single delete mutation
   const singleDeleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      return await apiRequest(`/api/consultations/${id}`, {
-        method: 'DELETE',
-      });
+      return await apiRequest('DELETE', `/api/consultations/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/consultations"] });
