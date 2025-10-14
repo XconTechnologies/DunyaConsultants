@@ -134,8 +134,8 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#476DC6' }} data-testid={`event-featured-${featuredEvent.id}`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
+                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative bg-white" data-testid={`event-featured-${featuredEvent.id}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-video">
                     <img
                       src={featuredEvent.image}
@@ -144,7 +144,7 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-white text-blue-700 shadow-lg text-xs sm:text-sm font-bold">
+                      <Badge className="bg-blue-700 text-white hover:text-white shadow-lg text-xs sm:text-sm font-bold">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
@@ -153,13 +153,13 @@ export default function UpcomingEventsSection() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                       {/* First Column - Event Details */}
                       <div className="space-y-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:!text-white transition-colors leading-tight" data-testid="text-event-title">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-blue-700 group-hover:!text-blue-700 transition-colors leading-tight" data-testid="text-event-title">
                           {featuredEvent.title}
                         </h3>
                         
                         <div className="space-y-3">
-                          <div className="flex items-center text-white text-sm sm:text-base font-medium">
-                            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
+                          <div className="flex items-center text-blue-700 text-sm sm:text-base font-medium">
+                            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-blue-700 flex-shrink-0" />
                             <span data-testid="text-event-date" className="break-words">
                               {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
                                 weekday: 'long',
@@ -170,8 +170,8 @@ export default function UpcomingEventsSection() {
                             </span>
                           </div>
                           {featuredEvent.venue && (
-                            <div className="flex items-center text-white text-sm sm:text-base font-medium">
-                              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
+                            <div className="flex items-center text-blue-700 text-sm sm:text-base font-medium">
+                              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-blue-700 flex-shrink-0" />
                               <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
                             </div>
                           )}
@@ -186,11 +186,11 @@ export default function UpcomingEventsSection() {
 
                     <div className="mt-6">
                       <Button 
-                        className="w-full relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
+                        className="w-full relative overflow-hidden bg-blue-700 text-white hover:!text-white hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold text-base py-6 group/btn"
                         data-testid="button-see-details"
                       >
-                        <span className="relative z-10 text-blue-700 group-hover/btn:!text-blue-700">View Details</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover/btn:opacity-100 -translate-x-full group-hover/btn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
+                        <span className="relative z-10 text-white group-hover/btn:!text-white">View Details</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover/btn:opacity-30 -translate-x-full group-hover/btn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
                       </Button>
                     </div>
                   </div>
@@ -210,8 +210,8 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#476DC6' }} data-testid={`event-card-${event.id}`}>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
+                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                     <div className="flex flex-col sm:flex-row gap-4 p-5">
                       <div className="relative w-full sm:w-36 h-44 sm:h-28 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
                         <img
@@ -224,12 +224,12 @@ export default function UpcomingEventsSection() {
                       <div className="flex-1 min-w-0 flex gap-4">
                         {/* Left Column - Title, Date, Venue */}
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight mb-3" data-testid="text-event-title">
+                          <h4 className="font-bold text-lg sm:text-xl text-blue-700 group-hover:!text-blue-700 transition-colors line-clamp-2 leading-tight mb-3" data-testid="text-event-title">
                             {event.title}
                           </h4>
                           <div className="space-y-2">
-                            <div className="flex items-center text-sm text-white font-medium">
-                              <Calendar className="w-5 h-5 mr-2 text-white" />
+                            <div className="flex items-center text-sm text-blue-700 font-medium">
+                              <Calendar className="w-5 h-5 mr-2 text-blue-700" />
                               <span className="truncate" data-testid="text-event-date">
                                 {new Date(event.eventDate).toLocaleDateString('en-US', {
                                   month: 'short',
@@ -239,8 +239,8 @@ export default function UpcomingEventsSection() {
                               </span>
                             </div>
                             {event.venue && (
-                              <div className="flex items-center text-sm text-white font-medium">
-                                <MapPin className="w-5 h-5 mr-2 text-white" />
+                              <div className="flex items-center text-sm text-blue-700 font-medium">
+                                <MapPin className="w-5 h-5 mr-2 text-blue-700" />
                                 <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
                               </div>
                             )}
@@ -249,16 +249,16 @@ export default function UpcomingEventsSection() {
 
                         {/* Right Column - Badge and Button */}
                         <div className="flex flex-col items-end justify-between gap-3">
-                          <Badge className="bg-white text-blue-700 text-xs font-bold shadow-md">
+                          <Badge className="bg-blue-700 text-white hover:!text-white text-xs font-bold shadow-md">
                             {event.eventType}
                           </Badge>
                           <Button 
                             size="sm"
-                            className="relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn whitespace-nowrap"
+                            className="relative overflow-hidden bg-blue-700 text-white hover:!text-white hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn whitespace-nowrap"
                             data-testid="button-see-more"
                           >
-                            <span className="relative z-10 text-blue-700 group-hover/sidebtn:!text-blue-700">See More</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover/sidebtn:opacity-100 -translate-x-full group-hover/sidebtn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
+                            <span className="relative z-10 text-white group-hover/sidebtn:!text-white">See More</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover/sidebtn:opacity-30 -translate-x-full group-hover/sidebtn:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none"></div>
                           </Button>
                         </div>
                       </div>
