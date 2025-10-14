@@ -9,18 +9,23 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CompactConsultationForm from "@/components/compact-consultation-form";
-import { setStaticPageMeta } from "@/lib/seo";
+import { setMetaTags } from "@/lib/seo";
 
 export default function SargodhaHeadOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   
   useEffect(() => {
-    setStaticPageMeta(
-      "Dunya Consultants Sargodha | Study Abroad & Visa Experts",
-      "Want to study abroad but don't know where to begin? We're here to help. We help you with every step, from picking a course to securing your visa, at Dunya Consultants (Sargodha). This makes the process look easy and stress-free.",
-      "https://dunyaconsultants.com/attached_assets/IMG-20240909-WA0043_1756189128801.jpg"
-    );
+    // Get current page URL for og:url
+    const url = window.location.href;
+    
+    setMetaTags({
+      title: "Dunya Consultants Sargodha | Study Abroad & Visa Experts",
+      description: "Want to study abroad but don't know where to begin? We're here to help. We help you with every step, from picking a course to securing your visa, at Dunya Consultants (Sargodha). This makes the process look easy and stress-free.",
+      image: "https://dunyaconsultants.com/attached_assets/IMG-20240909-WA0043_1756189128801.jpg",
+      url: url,
+      siteName: "" // Empty to prevent appending site name since title already includes it
+    });
   }, []);
   
   const services = [
