@@ -45,7 +45,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
   }, [eventDate]);
 
   return (
-    <div className="flex gap-4 justify-center md:justify-start mt-4">
+    <div className="flex gap-2 sm:gap-4 justify-center md:justify-start mt-4">
       {[
         { label: "Days", value: timeRemaining.days },
         { label: "Hours", value: timeRemaining.hours },
@@ -53,8 +53,8 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-3 min-w-[60px] text-center">
-            <div className="text-2xl font-bold">{item.value.toString().padStart(2, "0")}</div>
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-2 sm:p-3 min-w-[50px] sm:min-w-[60px] text-center">
+            <div className="text-xl sm:text-2xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
           <div className="text-xs text-gray-600 mt-1">{item.label}</div>
         </div>
@@ -114,20 +114,14 @@ export default function UpcomingEventsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Upcoming Events
           </h2>
-          <p className="text-xl text-gray-700 mb-2 font-medium">
-            Join Us at Our Educational Events & Exhibitions
-          </p>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Join our upcoming events and webinars to explore study abroad options, scholarships, and visa guidance. Reserve your seat today!
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Featured Event - Left Column */}
           {featuredEvent && (
             <motion.div
@@ -143,24 +137,24 @@ export default function UpcomingEventsSection() {
                     <img
                       src={featuredEvent.image}
                       alt={featuredEvent.title}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-48 sm:h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-600 text-white shadow-md">
+                      <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors" data-testid="text-event-title">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-blue-600 transition-colors" data-testid="text-event-title">
                       {featuredEvent.title}
                     </h3>
                     
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center text-gray-600">
-                        <Calendar className="w-5 h-5 mr-2 text-blue-600" />
-                        <span data-testid="text-event-date">
+                    <div className="space-y-2 sm:space-y-3 mb-4">
+                      <div className="flex items-center text-gray-600 text-sm sm:text-base">
+                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                        <span data-testid="text-event-date" className="break-words">
                           {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
                             weekday: 'long',
                             year: 'numeric',
@@ -170,9 +164,9 @@ export default function UpcomingEventsSection() {
                         </span>
                       </div>
                       {featuredEvent.venue && (
-                        <div className="flex items-center text-gray-600">
-                          <MapPin className="w-5 h-5 mr-2 text-blue-600" />
-                          <span data-testid="text-event-venue">{featuredEvent.venue}</span>
+                        <div className="flex items-center text-gray-600 text-sm sm:text-base">
+                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 flex-shrink-0" />
+                          <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
                         </div>
                       )}
                     </div>
