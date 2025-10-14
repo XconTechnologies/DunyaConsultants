@@ -221,39 +221,40 @@ export default function UpcomingEventsSection() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <div className="mb-3">
-                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight mb-2" data-testid="text-event-title">
+                      <div className="flex-1 min-w-0 flex gap-4">
+                        {/* Left Column - Title, Date, Venue */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-lg sm:text-xl text-white group-hover:!text-white transition-colors line-clamp-2 leading-tight mb-3" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                        </div>
-                        <div className="space-y-2 mb-3">
-                          <div className="flex items-center text-sm text-white font-medium">
-                            <Calendar className="w-5 h-5 mr-2 text-white" />
-                            <span className="truncate" data-testid="text-event-date">
-                              {new Date(event.eventDate).toLocaleDateString('en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric',
-                              })}
-                            </span>
-                          </div>
-                          {event.venue && (
+                          <div className="space-y-2">
                             <div className="flex items-center text-sm text-white font-medium">
-                              <MapPin className="w-5 h-5 mr-2 text-white" />
-                              <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
+                              <Calendar className="w-5 h-5 mr-2 text-white" />
+                              <span className="truncate" data-testid="text-event-date">
+                                {new Date(event.eventDate).toLocaleDateString('en-US', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  year: 'numeric',
+                                })}
+                              </span>
                             </div>
-                          )}
+                            {event.venue && (
+                              <div className="flex items-center text-sm text-white font-medium">
+                                <MapPin className="w-5 h-5 mr-2 text-white" />
+                                <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        <div className="mb-3">
+
+                        {/* Right Column - Badge and Button */}
+                        <div className="flex flex-col items-end justify-between gap-3">
                           <Badge className="bg-white text-blue-700 text-xs font-bold shadow-md">
                             {event.eventType}
                           </Badge>
-                        </div>
-                        <div className="mt-auto">
                           <Button 
                             size="sm"
-                            className="w-full sm:w-auto relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn"
+                            className="relative overflow-hidden bg-white text-blue-700 hover:!text-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 font-bold group/sidebtn whitespace-nowrap"
                             data-testid="button-see-more"
                           >
                             <span className="relative z-10 text-blue-700 group-hover/sidebtn:!text-blue-700">See More</span>
