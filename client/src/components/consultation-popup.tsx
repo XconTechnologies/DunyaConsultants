@@ -1,19 +1,12 @@
 import { useState } from "react";
-import { X, Check, ChevronDown } from "lucide-react";
+import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whatsapp-input";
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface ConsultationPopupProps {
   isOpen: boolean;
@@ -21,15 +14,10 @@ interface ConsultationPopupProps {
 }
 
 interface FormData {
-  fullName: string;
-  city: string;
   countryCode: string;
   whatsappNumber: string;
   email: string;
   hasLanguageTest: string;
-  testType: string;
-  otherTestName: string;
-  testScore: string;
   interestedCountries: string[];
   message: string;
 }
@@ -48,28 +36,22 @@ const countries = [
   "Kyrgyzstan",
   "Denmark",
   "Cyprus",
-  "Dubai"
+  "Dubai",
+  "Other"
 ];
 
 export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
-  const [currentStep, setCurrentStep] = useState(1);
   const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    city: "",
     countryCode: "+92",
     whatsappNumber: "",
     email: "",
     hasLanguageTest: "",
-    testType: "",
-    otherTestName: "",
-    testScore: "",
     interestedCountries: [],
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -98,80 +80,62 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
     }));
   };
 
-  const handleNextStep = () => {
-    if (currentStep === 1) {
-      // Validate step 1 fields
-      if (!formData.fullName || !formData.whatsappNumber || !formData.email || emailError) {
-        alert("Please fill in all required fields correctly");
-        return;
-      }
-      setCurrentStep(2);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (formData.interestedCountries.length === 0) {
-      alert("Please select at least one country");
+    if (!formData.whatsappNumber || !formData.email || !formData.hasLanguageTest || formData.interestedCountries.length === 0) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    if (emailError) {
+      alert("Please enter a valid email address");
       return;
     }
     
     setIsSubmitting(true);
     
-    // Build language test info
-    let languageTestInfo = "";
-    if (formData.hasLanguageTest === "yes") {
-      if (formData.testType === "other") {
-        languageTestInfo = `Language Test: ${formData.otherTestName}`;
-      } else if (formData.testType) {
-        languageTestInfo = `Language Test: ${formData.testType.toUpperCase()}${formData.testScore ? ` - Score: ${formData.testScore}` : ''}`;
-      }
-    } else if (formData.hasLanguageTest === "no") {
-      languageTestInfo = "Language Test: Not taken";
-    }
-    
-    const finalMessage = [formData.message, languageTestInfo].filter(Boolean).join("\n");
-    
     try {
-      const response = await fetch('/api/submit-consultation', {
+      const payload = {
+        whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
+        email: formData.email,
+        hasLanguageTest: formData.hasLanguageTest,
+        interestedCountries: formData.interestedCountries,
+        message: formData.message
+      };
+
+      const response = await fetch('/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          fullname: formData.fullName,
-          email: formData.email,
-          phone: `${formData.countryCode}${formData.whatsappNumber}`,
-          city: formData.city,
-          country: formData.interestedCountries.join(", "),
-          message: finalMessage
-        }),
+        body: JSON.stringify(payload)
       });
 
-      const result = await response.json();
-
-      if (result.status === 'success') {
-        trackConsultationBooking();
-        trackEvent('consultation_popup_success', 'conversion', formData.interestedCountries.join(", "));
+      if (response.ok) {
+        trackEvent("consultation_form_submitted", {
+          countries: formData.interestedCountries.join(", "),
+          hasLanguageTest: formData.hasLanguageTest
+        });
         
+        trackConsultationBooking({
+          whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
+          email: formData.email
+        });
+
         setShowThankYou(true);
+        
+        // Reset form
         setFormData({
-          fullName: "",
-          city: "",
           countryCode: "+92",
           whatsappNumber: "",
           email: "",
           hasLanguageTest: "",
-          testType: "",
-          otherTestName: "",
-          testScore: "",
           interestedCountries: [],
           message: ""
         });
-        setCurrentStep(1);
-        
-        // Auto-close thank you after 3 seconds
+
+        // Auto close after 3 seconds
         setTimeout(() => {
           setShowThankYou(false);
           onClose();
@@ -228,315 +192,154 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
   }
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.2 }}
-          className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-xl max-h-[95vh] overflow-y-auto shadow-2xl"
-        >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative">
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
-              data-testid="button-close-popup"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            <div style={{ color: 'white' }}>
-              <h2 className="text-2xl font-bold mb-2" style={{ color: 'white' }}>
-                Get Personalized Study Abroad Guidance
-              </h2>
-              <p className="text-sm opacity-90" style={{ color: 'white' }}>
-                Takes less than a minute to complete
-              </p>
-            </div>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.2 }}
+        className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg max-h-[95vh] overflow-y-auto shadow-2xl"
+      >
+        {/* Header */}
+        <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
+            data-testid="button-close-popup"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          <div style={{ color: 'white' }}>
+            <h2 className="text-2xl font-bold mb-2" style={{ color: 'white' }}>
+              Book Your Free Consultation
+            </h2>
+            <p className="text-sm opacity-90" style={{ color: 'white' }}>
+              Connect with our expert advisors today
+            </p>
           </div>
+        </div>
 
-          {/* Progress Bar */}
-          <div className="px-6 pt-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-gray-600">Step {currentStep} of 2</span>
-              <span className="text-xs text-gray-500">{currentStep === 1 ? "Personal Info" : "Study Preferences"}</span>
-            </div>
-            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-[#1D50C9]"
-                initial={{ width: "0%" }}
-                animate={{ width: currentStep === 1 ? "50%" : "100%" }}
-                transition={{ duration: 0.3 }}
+        {/* Form */}
+        <div className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <FloatingLabelWhatsAppInput
+              label="WhatsApp Number *"
+              countryCode={formData.countryCode}
+              onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
+              numberValue={formData.whatsappNumber}
+              onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
+              required
+            />
+
+            <div>
+              <FloatingLabelInput
+                label="Email Address *"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                data-testid="input-email"
               />
+              {emailError && (
+                <p className="text-xs text-red-500 mt-1">{emailError}</p>
+              )}
             </div>
-          </div>
 
-          {/* Form */}
-          <div className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Step 1: Personal Info */}
-              {currentStep === 1 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="space-y-4"
-                >
-                  <FloatingLabelInput
-                    label="Full name *"
-                    name="fullName"
-                    value={formData.fullName}
+            {/* Language Test */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 block">
+                Have you done language test? *
+              </label>
+              <div className="flex gap-6">
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="hasLanguageTest"
+                    value="yes"
+                    checked={formData.hasLanguageTest === "yes"}
                     onChange={handleInputChange}
-                    required
-                    data-testid="input-fullname"
+                    className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                    data-testid="radio-language-yes"
                   />
-
-                  <FloatingLabelInput
-                    label="City"
-                    name="city"
-                    value={formData.city}
+                  <span className="text-sm text-gray-700">Yes</span>
+                </label>
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="hasLanguageTest"
+                    value="no"
+                    checked={formData.hasLanguageTest === "no"}
                     onChange={handleInputChange}
-                    data-testid="input-city"
+                    className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
+                    data-testid="radio-language-no"
                   />
-
-                  <FloatingLabelWhatsAppInput
-                    label="WhatsApp number *"
-                    countryCode={formData.countryCode}
-                    onCountryCodeChange={(code) => setFormData(prev => ({ ...prev, countryCode: code }))}
-                    numberValue={formData.whatsappNumber}
-                    onNumberChange={(number) => setFormData(prev => ({ ...prev, whatsappNumber: number }))}
-                    required
-                  />
-
-                  <div>
-                    <FloatingLabelInput
-                      label="Email address *"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      data-testid="input-email"
-                    />
-                    {emailError && (
-                      <p className="text-xs text-red-500 mt-1">{emailError}</p>
-                    )}
-                  </div>
-
-                  <Button
-                    type="button"
-                    onClick={handleNextStep}
-                    className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all"
-                    data-testid="button-next-step"
-                  >
-                    Continue to Study Preferences →
-                  </Button>
-                </motion.div>
-              )}
-
-              {/* Step 2: Study Preferences */}
-              {currentStep === 2 && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="space-y-4"
-                >
-                  {/* Language Test Section */}
-                  <div className="space-y-3">
-                    <div>
-                      <label className="text-sm font-medium text-gray-700 block mb-2">
-                        Have you completed IELTS, PTE, or Duolingo? *
-                      </label>
-                      <p className="text-xs text-gray-500 mb-3">
-                        Language tests help universities assess your English proficiency
-                      </p>
-                      <div className="flex gap-4">
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="hasLanguageTest"
-                            value="yes"
-                            checked={formData.hasLanguageTest === "yes"}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
-                            data-testid="radio-language-yes"
-                          />
-                          <span className="text-sm text-gray-700">Yes</span>
-                        </label>
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="hasLanguageTest"
-                            value="no"
-                            checked={formData.hasLanguageTest === "no"}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-[#1D50C9] focus:ring-[#1D50C9]"
-                            data-testid="radio-language-no"
-                          />
-                          <span className="text-sm text-gray-700">No</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    {formData.hasLanguageTest === "yes" && (
-                      <div className="space-y-3">
-                        <select
-                          name="testType"
-                          value={formData.testType}
-                          onChange={handleInputChange}
-                          className="w-full min-h-[44px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-sm"
-                          data-testid="select-test-type"
-                        >
-                          <option value="">Select test type</option>
-                          <option value="ielts">IELTS</option>
-                          <option value="pte">PTE</option>
-                          <option value="toefl">TOEFL</option>
-                          <option value="duolingo">Duolingo</option>
-                          <option value="other">Other</option>
-                        </select>
-
-                        {formData.testType === "other" && (
-                          <FloatingLabelInput
-                            label="Which test?"
-                            name="otherTestName"
-                            value={formData.otherTestName}
-                            onChange={handleInputChange}
-                          />
-                        )}
-
-                        {formData.testType && formData.testType !== "other" && (
-                          <FloatingLabelInput
-                            label={formData.testType === "ielts" ? "Band score" : "Score"}
-                            name="testScore"
-                            value={formData.testScore}
-                            onChange={handleInputChange}
-                          />
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Multi-Select Dropdown for Countries */}
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 block mb-2">
-                      Interested countries *
-                    </label>
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                        className="w-full min-h-[44px] px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white text-left flex items-center justify-between"
-                        data-testid="button-country-dropdown"
-                      >
-                        <span className="text-sm text-gray-700">
-                          {formData.interestedCountries.length === 0
-                            ? "Select countries"
-                            : `${formData.interestedCountries.length} selected`}
-                        </span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isCountryDropdownOpen ? "rotate-180" : ""}`} />
-                      </button>
-
-                      {isCountryDropdownOpen && (
-                        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                          {countries.map((country) => (
-                            <label
-                              key={country}
-                              className="flex items-center px-4 py-2 hover:bg-gray-50 cursor-pointer"
-                              data-testid={`checkbox-country-${country.toLowerCase().replace(/\s+/g, '-')}`}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={formData.interestedCountries.includes(country)}
-                                onChange={() => handleCountryToggle(country)}
-                                className="w-4 h-4 text-[#1D50C9] rounded focus:ring-[#1D50C9]"
-                              />
-                              <span className="ml-3 text-sm text-gray-700">{country}</span>
-                            </label>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Selected Countries Display */}
-                    {formData.interestedCountries.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {formData.interestedCountries.map((country) => (
-                          <Badge
-                            key={country}
-                            variant="secondary"
-                            className="bg-blue-50 text-blue-700 hover:bg-blue-100"
-                          >
-                            {country}
-                            <button
-                              type="button"
-                              onClick={() => handleCountryToggle(country)}
-                              className="ml-2 hover:text-blue-900"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <FloatingLabelTextarea
-                    label="Tell us your preferred course or university (optional)"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={3}
-                    data-testid="textarea-message"
-                  />
-
-                  {/* Action Buttons */}
-                  <div className="space-y-3 pt-2">
-                    <Button
-                      type="button"
-                      onClick={() => setCurrentStep(1)}
-                      variant="outline"
-                      className="w-full min-h-[44px] py-3"
-                      data-testid="button-back"
-                    >
-                      ← Back
-                    </Button>
-                    
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all sticky bottom-4"
-                      data-testid="button-submit"
-                    >
-                      {isSubmitting ? "Submitting..." : "Get My Free Consultation"}
-                    </Button>
-                  </div>
-                </motion.div>
-              )}
-            </form>
-
-            {/* Trust Signals */}
-            <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-              <div className="flex items-center justify-center gap-6 text-xs text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>1000+ students guided</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>No consultation fees</span>
-                </div>
+                  <span className="text-sm text-gray-700">No</span>
+                </label>
               </div>
-              
-              <p className="text-center text-xs text-gray-500">
-                Trusted by students worldwide for study abroad guidance
-              </p>
             </div>
+
+            {/* Interested Countries */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 block">
+                Interested Countries *
+              </label>
+              <div className="grid grid-cols-2 gap-3 max-h-[200px] overflow-y-auto p-2 border border-gray-200 rounded-lg">
+                {countries.map((country) => (
+                  <label
+                    key={country}
+                    className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-1 rounded"
+                  >
+                    <Checkbox
+                      checked={formData.interestedCountries.includes(country)}
+                      onCheckedChange={() => handleCountryToggle(country)}
+                      className="data-[state=checked]:bg-[#1D50C9] data-[state=checked]:border-[#1D50C9]"
+                    />
+                    <span className="text-sm text-gray-700">{country}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Message */}
+            <FloatingLabelTextarea
+              label="Message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              rows={4}
+              data-testid="textarea-message"
+            />
+
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              data-testid="button-submit-consultation"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
+            </Button>
+          </form>
+
+          {/* Trust Indicators */}
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center gap-6 text-xs text-gray-600">
+              <div className="flex items-center gap-1">
+                <Check className="w-4 h-4 text-green-600" />
+                <span>1000+ students guided</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Check className="w-4 h-4 text-green-600" />
+                <span>No consultation fees</span>
+              </div>
+            </div>
+            <p className="text-center text-xs text-gray-500 mt-2">
+              Trusted by students worldwide for study abroad guidance
+            </p>
           </div>
-        </motion.div>
-      </div>
-    </AnimatePresence>
+        </div>
+      </motion.div>
+    </div>
   );
 }
