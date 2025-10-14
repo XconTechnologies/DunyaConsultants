@@ -134,7 +134,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#345CAF' }} data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" style={{ backgroundColor: '#476DC6' }} data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-video">
                     <img
@@ -209,7 +209,7 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#345CAF' }} data-testid={`event-card-${event.id}`}>
+                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" style={{ backgroundColor: '#476DC6' }} data-testid={`event-card-${event.id}`}>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                     <div className="flex flex-col sm:flex-row gap-4 p-5">
                       <div className="relative w-full sm:w-36 h-44 sm:h-28 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
