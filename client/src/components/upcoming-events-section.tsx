@@ -53,7 +53,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="bg-white group-hover:bg-transparent group-hover:border-2 group-hover:border-white rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md group-hover:shadow-none transition-all duration-300">
+          <div className="bg-white group-hover:bg-blue-700 group-hover:border-2 group-hover:border-blue-700 rounded-lg p-3 sm:p-4 min-w-[55px] sm:min-w-[65px] text-center shadow-md transition-all duration-300">
             <div className="text-2xl sm:text-3xl font-bold text-blue-700 group-hover:!text-white transition-colors">{item.value.toString().padStart(2, "0")}</div>
           </div>
           <div className="text-xs sm:text-sm text-white font-medium mt-2">{item.label}</div>
@@ -144,7 +144,7 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-700 text-white hover:text-white shadow-lg text-xs sm:text-sm font-bold">
+                      <Badge className="bg-blue-700 !text-white hover:!text-white shadow-lg text-xs sm:text-sm font-bold">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
@@ -153,7 +153,7 @@ export default function UpcomingEventsSection() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                       {/* First Column - Event Details */}
                       <div className="space-y-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold text-blue-700 group-hover:!text-blue-700 transition-colors leading-tight" data-testid="text-event-title">
+                        <h3 className="text-2xl sm:text-3xl font-bold !text-blue-700 group-hover:!text-blue-700 transition-colors leading-tight" data-testid="text-event-title">
                           {featuredEvent.title}
                         </h3>
                         
@@ -249,7 +249,7 @@ export default function UpcomingEventsSection() {
 
                         {/* Right Column - Badge and Button */}
                         <div className="flex flex-col items-end justify-between gap-3">
-                          <Badge className="bg-blue-700 text-white hover:!text-white text-xs font-bold shadow-md">
+                          <Badge className="bg-blue-700 !text-white hover:!text-white text-xs font-bold shadow-md">
                             {event.eventType}
                           </Badge>
                           <Button 
