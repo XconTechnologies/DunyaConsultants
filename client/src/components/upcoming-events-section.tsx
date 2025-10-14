@@ -144,7 +144,7 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-700 shadow-lg text-xs sm:text-sm font-bold" style={{ color: 'white' }}>
+                      <Badge className="bg-blue-700 shadow-lg text-xs sm:text-sm font-bold [&]:!text-white [&:hover]:!text-white">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
@@ -153,7 +153,7 @@ export default function UpcomingEventsSection() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                       {/* First Column - Event Details */}
                       <div className="space-y-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold transition-colors leading-tight" style={{ color: '#1d4ed8' }} data-testid="text-event-title">
+                        <h3 className="text-2xl sm:text-3xl font-bold transition-colors leading-tight [&]:!text-blue-700 [&:hover]:!text-blue-700" data-testid="text-event-title">
                           {featuredEvent.title}
                         </h3>
                         
@@ -249,7 +249,7 @@ export default function UpcomingEventsSection() {
 
                         {/* Right Column - Badge and Button */}
                         <div className="flex flex-col items-end justify-between gap-3">
-                          <Badge className="bg-blue-700 text-xs font-bold shadow-md" style={{ color: 'white' }}>
+                          <Badge className="bg-blue-700 text-xs font-bold shadow-md [&]:!text-white [&:hover]:!text-white">
                             {event.eventType}
                           </Badge>
                           <Button 
