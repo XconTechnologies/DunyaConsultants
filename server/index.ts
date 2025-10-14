@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { socialMetaMiddleware } from "./social-meta-middleware";
 
 const app = express();
 
@@ -124,6 +125,9 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
     throw err;
   });
+
+  // Social media crawler meta tag injection - must be before Vite
+  app.use(socialMetaMiddleware);
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route

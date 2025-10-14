@@ -443,11 +443,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Set meta tags for SEO
   useEffect(() => {
     if (blogPost) {
+      const fullImageUrl = blogPost.image?.startsWith('http') 
+        ? blogPost.image 
+        : `${window.location.origin}${blogPost.image}`;
+      
+      const blogUrl = window.location.href;
+      
       setMetaTags({
         title: blogPost.title,
         metaTitle: blogPost.metaTitle,
         description: blogPost.excerpt,
-        metaDescription: blogPost.metaDescription
+        metaDescription: blogPost.metaDescription,
+        image: fullImageUrl,
+        url: blogUrl,
+        type: 'article'
       });
     }
   }, [blogPost]);
