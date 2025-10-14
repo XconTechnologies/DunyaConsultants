@@ -130,6 +130,7 @@ Preferred communication style: Simple, everyday language.
 - Automatic scroll-to-top functionality on page transitions.
 - Tabbed visa success stories for different countries.
 - Infinite horizontal carousels for success stories.
+- `/dashboard` route redirects all users to `/admin/dashboard`.
 
 ### SEO & Social Media Integration
 - **Server-Side Social Meta Tags**: Social media crawlers (WhatsApp, Facebook, Twitter, LinkedIn) receive dynamically injected meta tags via middleware
