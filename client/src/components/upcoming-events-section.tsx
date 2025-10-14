@@ -82,16 +82,16 @@ export default function UpcomingEventsSection() {
 
   if (isLoading) {
     return (
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto mb-8"></div>
+            <div className="h-8 bg-white/20 rounded w-1/3 mx-auto mb-4"></div>
+            <div className="h-4 bg-white/20 rounded w-2/3 mx-auto mb-8"></div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="h-96 bg-gray-200 rounded-lg"></div>
+              <div className="h-96 bg-white/20 rounded-lg"></div>
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="h-24 bg-gray-200 rounded-lg"></div>
+                  <div key={i} className="h-24 bg-white/20 rounded-lg"></div>
                 ))}
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function UpcomingEventsSection() {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -116,10 +116,10 @@ export default function UpcomingEventsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Upcoming Events
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-base md:text-lg px-4">
+          <p className="text-white/90 max-w-3xl mx-auto text-base md:text-lg px-4">
             Join our upcoming events and webinars to explore study abroad options, scholarships, and visa guidance. Reserve your seat today!
           </p>
         </motion.div>
@@ -134,7 +134,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative bg-white" data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden">
                     <img
@@ -175,6 +175,15 @@ export default function UpcomingEventsSection() {
                     </div>
 
                     <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
+
+                    <div className="mt-6">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+                        data-testid="button-see-details"
+                      >
+                        See Details
+                      </Button>
+                    </div>
                   </div>
                 </Card>
               </Link>
@@ -192,10 +201,10 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" data-testid={`event-card-${event.id}`}>
+                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                    <div className="flex gap-4 p-4">
-                      <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
+                    <div className="flex flex-col sm:flex-row gap-4 p-4">
+                      <div className="relative w-full sm:w-32 h-40 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
                         <img
                           src={event.image}
                           alt={event.title}
@@ -203,16 +212,16 @@ export default function UpcomingEventsSection() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-bold text-lg group-hover:text-blue-600 transition-colors line-clamp-2" data-testid="text-event-title">
+                          <h4 className="font-bold text-base sm:text-lg group-hover:text-blue-600 transition-colors line-clamp-2" data-testid="text-event-title">
                             {event.title}
                           </h4>
                           <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
                             {event.eventType}
                           </Badge>
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-1 mb-3">
                           <div className="flex items-center text-sm text-gray-600">
                             <Calendar className="w-4 h-4 mr-2 text-blue-600" />
                             <span className="truncate" data-testid="text-event-date">
@@ -229,6 +238,15 @@ export default function UpcomingEventsSection() {
                               <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
                             </div>
                           )}
+                        </div>
+                        <div className="mt-auto">
+                          <Button 
+                            size="sm"
+                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+                            data-testid="button-see-more"
+                          >
+                            See More
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -251,11 +269,11 @@ export default function UpcomingEventsSection() {
             <Link href="/events">
               <Button 
                 size="lg" 
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 text-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl hover:animate-bob transition-all duration-300 group" 
+                className="relative overflow-hidden bg-white text-blue-700 hover:bg-gray-50 px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 group" 
                 data-testid="button-view-all-events"
               >
                 <span className="relative z-10">View All Events</span>
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 group-hover:animate-diagonal-shimmer -translate-x-full -translate-y-full"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-60 group-hover:animate-diagonal-shimmer -translate-x-full -translate-y-full"></div>
               </Button>
             </Link>
           </motion.div>
