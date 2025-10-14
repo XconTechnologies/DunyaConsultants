@@ -26,11 +26,30 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Serve attached assets statically
-app.use('/attached_assets', express.static('attached_assets'));
+// Cache headers middleware for static assets (production only)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const isProduction = app.get("env") === "production";
+  
+  // Only apply cache headers in production and for static assets from /assets or /attached_assets
+  if (isProduction && (req.url.startsWith('/assets/') || req.url.startsWith('/attached_assets/'))) {
+    if (req.url.match(/\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff|woff2|ttf|eot)$/)) {
+      // All hashed assets: cache for 1 year (immutable)
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+  next();
+});
 
-// Serve QR codes statically
-app.use('/qr-codes', express.static('public/qr-codes'));
+// Serve attached assets statically (long cache in production only)
+const isProduction = app.get("env") === "production";
+app.use('/attached_assets', express.static('attached_assets', 
+  isProduction ? { maxAge: '365d', immutable: true } : {}
+));
+
+// Serve QR codes statically (long cache in production only)
+app.use('/qr-codes', express.static('public/qr-codes',
+  isProduction ? { maxAge: '365d', immutable: true } : {}
+));
 
 // Serve robots.txt before other routes
 app.get("/robots.txt", (req, res) => {
