@@ -137,7 +137,8 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full" data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full border-0 relative" data-testid={`event-featured-${featuredEvent.id}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden">
                     <img
                       src={featuredEvent.image}
@@ -146,7 +147,7 @@ export default function UpcomingEventsSection() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-blue-600 text-white">
+                      <Badge className="bg-blue-600 text-white shadow-md">
                         {featuredEvent.eventType}
                       </Badge>
                     </div>
@@ -177,10 +178,6 @@ export default function UpcomingEventsSection() {
                     </div>
 
                     <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
-
-                    <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" data-testid="button-register-event">
-                      Register Now
-                    </Button>
                   </div>
                 </Card>
               </Link>
@@ -198,9 +195,10 @@ export default function UpcomingEventsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group" data-testid={`event-card-${event.id}`}>
+                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative" data-testid={`event-card-${event.id}`}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                     <div className="flex gap-4 p-4">
-                      <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden rounded-lg">
+                      <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
                         <img
                           src={event.image}
                           alt={event.title}
@@ -213,7 +211,7 @@ export default function UpcomingEventsSection() {
                           <h4 className="font-bold text-lg group-hover:text-blue-600 transition-colors line-clamp-2" data-testid="text-event-title">
                             {event.title}
                           </h4>
-                          <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0">
+                          <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
                             {event.eventType}
                           </Badge>
                         </div>
@@ -254,7 +252,11 @@ export default function UpcomingEventsSection() {
             className="text-center mt-12"
           >
             <Link href="/events">
-              <Button variant="outline" size="lg" className="border-blue-600 text-blue-600 hover:bg-blue-50" data-testid="button-view-all-events">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl hover:from-blue-700 hover:to-blue-800 hover:animate-bob transition-all duration-300" 
+                data-testid="button-view-all-events"
+              >
                 View All Events
               </Button>
             </Link>
