@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-interface ConsultationPopupProps {
+interface ConsultationFormPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -60,7 +60,7 @@ const testTypes = [
   { value: "other", label: "Other" }
 ];
 
-export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopupProps) {
+export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationFormPopupProps) {
   const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -143,7 +143,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
         message: formData.message
       };
 
-      const response = await fetch('/api/consultations', {
+      const response = await fetch('/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

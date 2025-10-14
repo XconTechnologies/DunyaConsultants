@@ -5,7 +5,15 @@ import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whatsapp-input";
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
 import { motion } from "framer-motion";
+import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface CompactConsultationFormProps {
   isOpen: boolean;
@@ -14,10 +22,15 @@ interface CompactConsultationFormProps {
 }
 
 interface FormData {
+  fullName: string;
+  city: string;
   countryCode: string;
   whatsappNumber: string;
   email: string;
   hasLanguageTest: string;
+  testType: string;
+  otherTestName: string;
+  testScore: string;
   interestedCountries: string[];
   message: string;
 }
@@ -32,21 +45,34 @@ const countries = [
   "Belgium",
   "Turkey",
   "Sweden",
-  "Cyprus",
   "Ireland",
-  "Dubai",
   "Kyrgyzstan",
   "Denmark",
+  "Cyprus",
+  "Dubai",
   "Other"
+];
+
+const testTypes = [
+  { value: "ielts", label: "IELTS" },
+  { value: "pte", label: "PTE" },
+  { value: "language_cert", label: "Language Cert" },
+  { value: "duolingo", label: "Duolingo" },
+  { value: "other", label: "Other" }
 ];
 
 export default function CompactConsultationForm({ isOpen, onClose, defaultCountryCode = "+92" }: CompactConsultationFormProps) {
   const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    city: "",
     countryCode: defaultCountryCode,
     whatsappNumber: "",
     email: "",
     hasLanguageTest: "",
+    testType: "",
+    otherTestName: "",
+    testScore: "",
     interestedCountries: [],
     message: ""
   });
@@ -60,7 +86,6 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
       [name]: value
     }));
 
-    // Real-time email validation
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (value && !emailRegex.test(value)) {
@@ -83,8 +108,18 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.whatsappNumber || !formData.email || !formData.hasLanguageTest || formData.interestedCountries.length === 0) {
+    if (!formData.fullName || !formData.city || !formData.whatsappNumber || !formData.email || !formData.hasLanguageTest || formData.interestedCountries.length === 0) {
       alert("Please fill in all required fields");
+      return;
+    }
+
+    if (formData.hasLanguageTest === "yes" && !formData.testType) {
+      alert("Please select your language test type");
+      return;
+    }
+
+    if (formData.testType === "other" && !formData.otherTestName) {
+      alert("Please specify which test you have taken");
       return;
     }
 
@@ -97,14 +132,19 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
     
     try {
       const payload = {
+        fullName: formData.fullName,
+        city: formData.city,
         whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
         email: formData.email,
         hasLanguageTest: formData.hasLanguageTest,
+        testType: formData.testType,
+        otherTestName: formData.otherTestName,
+        testScore: formData.testScore,
         interestedCountries: formData.interestedCountries,
         message: formData.message
       };
 
-      const response = await fetch('/api/contacts', {
+      const response = await fetch('/api/consultations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,19 +153,32 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
       });
 
       if (response.ok) {
+        trackEvent("consultation_form_submitted", {
+          countries: formData.interestedCountries.join(", "),
+          hasLanguageTest: formData.hasLanguageTest
+        });
+        
+        trackConsultationBooking({
+          whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
+          email: formData.email
+        });
+
         setShowThankYou(true);
         
-        // Reset form
         setFormData({
+          fullName: "",
+          city: "",
           countryCode: defaultCountryCode,
           whatsappNumber: "",
           email: "",
           hasLanguageTest: "",
+          testType: "",
+          otherTestName: "",
+          testScore: "",
           interestedCountries: [],
           message: ""
         });
 
-        // Auto close after 3 seconds
         setTimeout(() => {
           setShowThankYou(false);
           onClose();
@@ -143,7 +196,6 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
 
   if (!isOpen) return null;
 
-  // Thank You Popup
   if (showThankYou) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -188,10 +240,10 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.2 }}
-        className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg max-h-[95vh] overflow-y-auto shadow-2xl"
+        className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg flex flex-col max-h-[90vh] shadow-2xl"
       >
-        {/* Header */}
-        <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative">
+        {/* Fixed Header */}
+        <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-4 sm:p-6 relative flex-shrink-0 rounded-t-2xl">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
@@ -201,18 +253,36 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
           </button>
           
           <div style={{ color: 'white' }}>
-            <h2 className="text-2xl font-bold mb-2" style={{ color: 'white' }}>
+            <h2 className="text-xl sm:text-2xl font-bold mb-2 pr-8" style={{ color: 'white' }}>
               Book Your Free Consultation
             </h2>
-            <p className="text-sm opacity-90" style={{ color: 'white' }}>
+            <p className="text-xs sm:text-sm opacity-90" style={{ color: 'white' }}>
               Connect with our expert advisors today
             </p>
           </div>
         </div>
 
-        {/* Form */}
-        <div className="p-6">
+        {/* Scrollable Form */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
+            <FloatingLabelInput
+              label="Full Name *"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              required
+              data-testid="input-fullname"
+            />
+
+            <FloatingLabelInput
+              label="City *"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              required
+              data-testid="input-city"
+            />
+
             <FloatingLabelWhatsAppInput
               label="WhatsApp Number *"
               countryCode={formData.countryCode}
@@ -237,7 +307,6 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
               )}
             </div>
 
-            {/* Language Test */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 block">
                 Have you done language test? *
@@ -270,7 +339,54 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
               </div>
             </div>
 
-            {/* Interested Countries */}
+            {formData.hasLanguageTest === "yes" && (
+              <>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 block">
+                    Test Type *
+                  </label>
+                  <Select
+                    value={formData.testType}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
+                  >
+                    <SelectTrigger className="w-full" data-testid="select-test-type">
+                      <SelectValue placeholder="Select test type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {testTypes.map((test) => (
+                        <SelectItem key={test.value} value={test.value}>
+                          {test.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {formData.testType === "other" && (
+                  <FloatingLabelInput
+                    label="Which test have you taken? *"
+                    name="otherTestName"
+                    value={formData.otherTestName}
+                    onChange={handleInputChange}
+                    placeholder="e.g., TOEFL, Cambridge English"
+                    required
+                    data-testid="input-other-test"
+                  />
+                )}
+
+                {formData.testType && (
+                  <FloatingLabelInput
+                    label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
+                    name="testScore"
+                    value={formData.testScore}
+                    onChange={handleInputChange}
+                    placeholder={formData.testType === "ielts" ? "e.g., 7.5" : "Enter your score"}
+                    data-testid="input-test-score"
+                  />
+                )}
+              </>
+            )}
+
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 block">
                 Interested Countries *
@@ -292,27 +408,16 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
               </div>
             </div>
 
-            {/* Message */}
             <FloatingLabelTextarea
               label="Message"
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              rows={4}
+              rows={3}
               data-testid="textarea-message"
             />
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              data-testid="button-submit-consultation"
-            >
-              {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
-            </Button>
           </form>
 
-          {/* Trust Indicators */}
           <div className="mt-6 pt-4 border-t border-gray-200">
             <div className="flex items-center justify-center gap-6 text-xs text-gray-600">
               <div className="flex items-center gap-1">
@@ -328,6 +433,19 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
               Trusted by students worldwide for study abroad guidance
             </p>
           </div>
+        </div>
+
+        {/* Fixed Submit Button */}
+        <div className="p-4 sm:p-6 border-t border-gray-200 flex-shrink-0 bg-white rounded-b-2xl">
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="w-full min-h-[44px] py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            data-testid="button-submit-consultation"
+          >
+            {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
+          </Button>
         </div>
       </motion.div>
     </div>

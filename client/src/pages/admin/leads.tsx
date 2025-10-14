@@ -152,10 +152,13 @@ export default function LeadsManagement() {
   const filteredLeads = leads.filter((lead) => {
     const matchesSource = sourceFilter === "all" || lead.source === sourceFilter;
     const matchesStatus = statusFilter === "all" || lead.status === statusFilter;
+    const displayName = lead.fullName || lead.name || "";
+    const displayPhone = lead.whatsappNumber || lead.phone || "";
     const matchesSearch = searchQuery === "" || 
-      lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      lead.phone.includes(searchQuery);
+      displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (lead.email || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      displayPhone.includes(searchQuery) ||
+      (lead.city || "").toLowerCase().includes(searchQuery.toLowerCase());
     
     return matchesSource && matchesStatus && matchesSearch;
   });
@@ -186,11 +189,17 @@ export default function LeadsManagement() {
 
   // Export to CSV
   const exportToCSV = () => {
-    const headers = ["Date", "Name", "Country", "Source", "Status", "Assigned To"];
+    const headers = ["Date", "Name", "City", "WhatsApp", "Email", "Language Test", "Test Type", "Test Score", "Countries", "Source", "Status", "Assigned To"];
     const rows = filteredLeads.map(lead => [
       format(new Date(lead.createdAt!), "yyyy-MM-dd HH:mm"),
-      lead.name,
-      lead.preferredCountry,
+      lead.fullName || lead.name || "",
+      lead.city || "",
+      lead.whatsappNumber || lead.phone || "",
+      lead.email || "",
+      lead.hasLanguageTest || "",
+      lead.testType || "",
+      lead.testScore || "",
+      (lead.interestedCountries || []).join("; ") || lead.preferredCountry || "",
       lead.source || "website",
       lead.status || "pending",
       lead.assignedTo || "Unassigned"
@@ -452,9 +461,12 @@ export default function LeadsManagement() {
                               />
                             </TableHead>
                           )}
-                          <TableHead>Registration Date</TableHead>
+                          <TableHead>Date</TableHead>
                           <TableHead>Name</TableHead>
-                          <TableHead>Country</TableHead>
+                          <TableHead>City</TableHead>
+                          <TableHead>WhatsApp</TableHead>
+                          <TableHead>Test</TableHead>
+                          <TableHead>Countries</TableHead>
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead>Assign To</TableHead>
@@ -481,8 +493,22 @@ export default function LeadsManagement() {
                             <TableCell className="text-sm text-gray-600">
                               {format(new Date(lead.createdAt!), "MMM d, h:mm a")}
                             </TableCell>
-                            <TableCell className="font-medium">{lead.name}</TableCell>
-                            <TableCell className="text-sm">{lead.preferredCountry}</TableCell>
+                            <TableCell className="font-medium">{lead.fullName || lead.name || "N/A"}</TableCell>
+                            <TableCell className="text-sm">{lead.city || "N/A"}</TableCell>
+                            <TableCell className="text-sm">{lead.whatsappNumber || lead.phone || "N/A"}</TableCell>
+                            <TableCell className="text-sm">
+                              {lead.hasLanguageTest === "yes" ? (
+                                <div>
+                                  <span className="font-medium">{lead.testType || "N/A"}</span>
+                                  {lead.testScore && <span className="text-gray-500"> ({lead.testScore})</span>}
+                                </div>
+                              ) : "No"}
+                            </TableCell>
+                            <TableCell className="text-sm">
+                              {(lead.interestedCountries && lead.interestedCountries.length > 0) 
+                                ? lead.interestedCountries.slice(0, 2).join(", ") + (lead.interestedCountries.length > 2 ? "..." : "")
+                                : (lead.preferredCountry || "N/A")}
+                            </TableCell>
                             <TableCell>{getSourceBadge(lead.source)}</TableCell>
                             <TableCell onClick={(e) => e.stopPropagation()}>
                               <Select
@@ -549,7 +575,7 @@ export default function LeadsManagement() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  onClick={() => handleSingleDelete(lead.id, lead.name)}
+                                  onClick={() => handleSingleDelete(lead.id, lead.fullName || lead.name || "this lead")}
                                   disabled={singleDeleteMutation.isPending}
                                   className="text-red-600 hover:text-red-700 hover:bg-red-50"
                                   data-testid={`button-delete-${lead.id}`}
@@ -592,7 +618,15 @@ export default function LeadsManagement() {
                     <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <div className="min-w-0 flex-1">
                       <p className="text-xs text-gray-500">Name</p>
-                      <p className="font-medium text-gray-900 truncate">{selectedLead.name}</p>
+                      <p className="font-medium text-gray-900 truncate">{selectedLead.fullName || selectedLead.name || "N/A"}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">City</p>
+                      <p className="font-medium text-gray-900">{selectedLead.city || "N/A"}</p>
                     </div>
                   </div>
                   
@@ -607,16 +641,32 @@ export default function LeadsManagement() {
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs text-gray-500">Phone</p>
-                      <p className="font-medium text-gray-900">{selectedLead.phone}</p>
+                      <p className="text-xs text-gray-500">WhatsApp</p>
+                      <p className="font-medium text-gray-900">{selectedLead.whatsappNumber || selectedLead.phone || "N/A"}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-3">
                     <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs text-gray-500">Preferred Country</p>
-                      <p className="font-medium text-gray-900">{selectedLead.preferredCountry}</p>
+                      <p className="text-xs text-gray-500">Language Test</p>
+                      <p className="font-medium text-gray-900">
+                        {selectedLead.hasLanguageTest === "yes" 
+                          ? `Yes - ${selectedLead.testType || "N/A"}${selectedLead.testScore ? ` (${selectedLead.testScore})` : ""}`
+                          : "No"}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Interested Countries</p>
+                      <p className="font-medium text-gray-900">
+                        {(selectedLead.interestedCountries && selectedLead.interestedCountries.length > 0)
+                          ? selectedLead.interestedCountries.join(", ")
+                          : (selectedLead.preferredCountry || "N/A")}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -676,14 +726,19 @@ export default function LeadsManagement() {
                   <span className="relative z-10">Send Email</span>
                 </Button>
                 <Button
-                  onClick={() => window.location.href = `tel:${selectedLead.phone}`}
+                  onClick={() => {
+                    const phone = selectedLead.whatsappNumber || selectedLead.phone;
+                    if (phone) {
+                      window.location.href = `https://wa.me/${phone.replace(/\+/g, '').replace(/\s/g, '')}`;
+                    }
+                  }}
                   variant="outline"
-                  className="flex-1 border-gray-300 relative overflow-hidden group transition-transform hover:scale-105 hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9]"
-                  data-testid="button-call-now"
+                  className="flex-1 border-gray-300 relative overflow-hidden group transition-transform hover:scale-105 hover:bg-[#25D366] hover:text-white hover:border-[#25D366]"
+                  data-testid="button-whatsapp-now"
                 >
                   <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
                   <Phone className="w-4 h-4 mr-2 relative z-10" />
-                  <span className="relative z-10">Call Now</span>
+                  <span className="relative z-10">WhatsApp</span>
                 </Button>
               </div>
             </div>
