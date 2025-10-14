@@ -248,10 +248,11 @@ export default function UpcomingEventsSection() {
             <Link href="/events">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl hover:from-blue-700 hover:to-blue-800 hover:animate-bob transition-all duration-300" 
+                className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 text-white px-12 py-6 text-lg font-semibold shadow-lg hover:shadow-2xl hover:animate-bob transition-all duration-300 group" 
                 data-testid="button-view-all-events"
               >
-                View All Events
+                <span className="relative z-10">View All Events</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 group-hover:animate-diagonal-shimmer -translate-x-full -translate-y-full"></div>
               </Button>
             </Link>
           </motion.div>

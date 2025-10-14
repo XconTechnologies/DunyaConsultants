@@ -139,6 +139,20 @@ table tr:hover {
   animation: shimmer 1.5s ease-in-out;
 }
 
+/* Diagonal shimmer animation from top-left to bottom-right */
+@keyframes diagonal-shimmer {
+  0% {
+    transform: translate(-100%, -100%);
+  }
+  100% {
+    transform: translate(100%, 100%);
+  }
+}
+
+.animate-diagonal-shimmer {
+  animation: diagonal-shimmer 0.8s ease-in-out;
+}
+
 /* Image scrolling animations */
 @keyframes scroll-up {
   0% {
