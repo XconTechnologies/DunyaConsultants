@@ -4,16 +4,10 @@ import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whatsapp-input";
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
+import { FloatingLabelSelect } from "@/components/ui/floating-label-select";
 import { motion } from "framer-motion";
 import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 interface ConsultationFormModalProps {
   isOpen: boolean;
@@ -355,41 +349,25 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
                 )}
 
                 <div className={`grid gap-4 ${formData.testType ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 block mb-1">
-                      Test Type *
-                    </label>
-                    <Select
-                      value={formData.testType}
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
-                    >
-                      <SelectTrigger className="w-full" data-testid="select-test-type">
-                        <SelectValue placeholder="Select test type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {testTypes.map((test) => (
-                          <SelectItem key={test.value} value={test.value}>
-                            {test.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <FloatingLabelSelect
+                    label="Test Type"
+                    value={formData.testType}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, testType: value, otherTestName: "", testScore: "" }))}
+                    options={testTypes}
+                    placeholder="Select test type"
+                    required
+                    data-testid="select-test-type"
+                  />
 
                   {formData.testType && (
-                    <div>
-                      <label className="text-sm font-medium text-gray-700 block mb-1">
-                        {formData.testType === "ielts" ? "IELTS Band Score *" : "Test Score *"}
-                      </label>
-                      <input
-                        type="text"
-                        name="testScore"
-                        value={formData.testScore}
-                        onChange={handleInputChange}
-                        className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
-                        data-testid="input-test-score"
-                      />
-                    </div>
+                    <FloatingLabelInput
+                      label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
+                      name="testScore"
+                      value={formData.testScore}
+                      onChange={handleInputChange}
+                      required
+                      data-testid="input-test-score"
+                    />
                   )}
                 </div>
               </>
