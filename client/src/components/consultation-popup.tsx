@@ -355,8 +355,8 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                 )}
 
                 <div className={`grid gap-4 ${formData.testType ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700 block">
+                  <div>
+                    <label className="text-sm font-medium text-gray-700 block mb-1">
                       Test Type *
                     </label>
                     <Select
@@ -377,13 +377,19 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                   </div>
 
                   {formData.testType && (
-                    <FloatingLabelInput
-                      label={formData.testType === "ielts" ? "IELTS Band Score" : "Test Score"}
-                      name="testScore"
-                      value={formData.testScore}
-                      onChange={handleInputChange}
-                      data-testid="input-test-score"
-                    />
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 block mb-1">
+                        {formData.testType === "ielts" ? "IELTS Band Score *" : "Test Score *"}
+                      </label>
+                      <input
+                        type="text"
+                        name="testScore"
+                        value={formData.testScore}
+                        onChange={handleInputChange}
+                        className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
+                        data-testid="input-test-score"
+                      />
+                    </div>
                   )}
                 </div>
               </>
