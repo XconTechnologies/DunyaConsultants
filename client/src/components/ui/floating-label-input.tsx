@@ -34,7 +34,7 @@ const FloatingLabelInput = forwardRef<HTMLInputElement, FloatingLabelInputProps>
             props.onChange?.(e);
           }}
           className={cn(
-            "peer w-full h-10 px-3 pt-5 pb-2 border border-gray-300 rounded-lg",
+            "peer w-full h-12 px-3 py-3 border border-gray-300 rounded-lg",
             "focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all",
             className
           )}
@@ -44,7 +44,7 @@ const FloatingLabelInput = forwardRef<HTMLInputElement, FloatingLabelInputProps>
             "absolute left-3 transition-all duration-200 ease-out pointer-events-none",
             isLabelFloating
               ? "-top-2.5 text-xs text-[#1D50C9] bg-white px-1"
-              : "top-3.5 text-sm text-gray-500"
+              : "top-1/2 -translate-y-1/2 text-sm text-gray-500"
           )}
         >
           {label}

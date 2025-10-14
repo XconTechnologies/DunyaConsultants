@@ -209,7 +209,7 @@ export function FloatingLabelWhatsAppInput({
           <select
             value={countryCode}
             onChange={(e) => onCountryCodeChange(e.target.value)}
-            className="w-full pl-2 pr-6 py-3 bg-transparent focus:outline-none text-sm cursor-pointer appearance-none opacity-0"
+            className="w-full h-12 pl-2 pr-6 bg-transparent focus:outline-none text-sm cursor-pointer appearance-none opacity-0"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
@@ -240,7 +240,7 @@ export function FloatingLabelWhatsAppInput({
             onChange={(e) => onNumberChange(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="w-full px-3 py-3 bg-transparent border-0 outline-none text-sm"
+            className="w-full h-12 px-3 bg-transparent border-0 outline-none text-sm"
             required={required}
             {...props}
           />
@@ -251,7 +251,7 @@ export function FloatingLabelWhatsAppInput({
               absolute left-3 bg-white px-1 pointer-events-none transition-all duration-200
               ${isActive || isFocused
                 ? '-top-2.5 text-xs text-[#1D50C9]'
-                : 'top-3 text-sm text-gray-500'
+                : 'top-1/2 -translate-y-1/2 text-sm text-gray-500'
               }
             `}
           >
