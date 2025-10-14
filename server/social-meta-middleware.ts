@@ -4,6 +4,7 @@ import { join } from 'path';
 import { db } from './db';
 import { blogPosts } from '@shared/schema';
 import { eq, and } from 'drizzle-orm';
+import { extractFirstImage } from './image-extractor';
 
 const SOCIAL_CRAWLERS = [
   'facebookexternalhit',
@@ -37,6 +38,19 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (char) => map[char]);
 }
 
+function normalizeImageUrl(image?: string): string {
+  if (!image) return '';
+  
+  // Already absolute URL
+  if (image.startsWith('http://') || image.startsWith('https://')) {
+    return image;
+  }
+  
+  // Ensure leading slash for relative URLs
+  const path = image.startsWith('/') ? image : '/' + image;
+  return `https://dunyaconsultants.com${path}`;
+}
+
 function generateMetaTags(data: {
   title: string;
   description: string;
@@ -47,7 +61,7 @@ function generateMetaTags(data: {
 }): string {
   const { title, description, image, url, type = 'website', siteName = 'Dunya Consultants' } = data;
   
-  const imageUrl = image?.startsWith('http') ? image : `https://dunyaconsultants.com${image}`;
+  const imageUrl = normalizeImageUrl(image);
   
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description);
@@ -75,6 +89,138 @@ function generateMetaTags(data: {
     <meta name="twitter:description" content="${safeDescription}" />
     ${image ? `<meta name="twitter:image" content="${safeImageUrl}" />` : ''}
   `.trim();
+}
+
+// Default fallback image for pages without specific images
+const DEFAULT_FEATURED_IMAGE = '/attached_assets/hero-background.jpg';
+
+// Static page meta data mapping
+const STATIC_PAGE_META: { [key: string]: { title: string; description: string; image?: string } } = {
+  '/': {
+    title: 'Study Abroad Consultants in Pakistan - Dunya Consultants',
+    description: 'Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!',
+    image: '/attached_assets/hero-background.jpg'
+  },
+  '/about': {
+    title: 'About Dunya Consultants - Your Trusted Study Abroad Partner',
+    description: 'Learn about Dunya Consultants, Pakistan\'s leading study abroad consultancy with expert guidance for international education.',
+    image: '/attached_assets/about-hero.jpg'
+  },
+  '/contact': {
+    title: 'Contact Dunya Consultants - Get Expert Study Abroad Guidance',
+    description: 'Get in touch with our expert study abroad consultants. We\'re here to help you achieve your international education goals.',
+    image: '/attached_assets/contact-hero.jpg'
+  },
+  '/services': {
+    title: 'Our Services - Study Abroad Consultancy',
+    description: 'Comprehensive study abroad services including university selection, visa guidance, and pre-departure support.',
+    image: '/attached_assets/services-hero.jpg'
+  },
+  '/events': {
+    title: 'Study Abroad Events & Expos - Dunya Consultants',
+    description: 'Join our study abroad events and education expos. Meet university representatives and get expert guidance.',
+    image: '/attached_assets/events-hero.jpg'
+  },
+  '/destinations/usa': {
+    title: 'Study in USA - Complete Guide for Pakistani Students',
+    description: 'Complete guide to studying in USA for Pakistani students. Learn about universities, visas, scholarships, and more.',
+    image: '/attached_assets/usa-flag.jpg'
+  },
+  '/destinations/uk': {
+    title: 'Study in UK - Complete Guide for Pakistani Students',
+    description: 'Everything you need to know about studying in the UK. University admissions, student visas, and scholarships.',
+    image: '/attached_assets/uk-flag.jpg'
+  },
+  '/destinations/canada': {
+    title: 'Study in Canada - Complete Guide for Pakistani Students',
+    description: 'Discover opportunities to study in Canada. University programs, student visas, and immigration pathways.',
+    image: '/attached_assets/canada-flag.jpg'
+  },
+  '/destinations/australia': {
+    title: 'Study in Australia - Complete Guide for Pakistani Students',
+    description: 'Study in Australia with expert guidance. University admissions, student visas, and post-study work opportunities.',
+    image: '/attached_assets/australia-flag.jpg'
+  },
+  '/destinations/finland': {
+    title: 'Study in Finland - Complete Guide for Pakistani Students',
+    description: 'Explore opportunities to study in Finland. Quality education, affordable living, and beautiful Nordic culture.',
+    image: '/attached_assets/finland-flag.jpg'
+  },
+  '/destinations/belgium': {
+    title: 'Study in Belgium - Complete Guide for Pakistani Students',
+    description: 'Study in Belgium with our expert guidance. Universities, scholarships, and living in the heart of Europe.',
+    image: '/attached_assets/belgium-flag.jpg'
+  },
+  '/destinations/turkey': {
+    title: 'Study in Turkey - Complete Guide for Pakistani Students',
+    description: 'Discover study opportunities in Turkey. Scholarships, universities, and experiencing Turkish culture.',
+    image: '/attached_assets/turkey-flag.jpg'
+  },
+  '/test-prep/ielts': {
+    title: 'IELTS Preparation - Dunya Consultants',
+    description: 'Expert IELTS preparation courses. Achieve your target band score with our comprehensive training program.',
+    image: '/attached_assets/ielts-prep.jpg'
+  },
+  '/test-prep/pte': {
+    title: 'PTE Preparation - Dunya Consultants',
+    description: 'Professional PTE preparation courses. Get the score you need for your study abroad journey.',
+    image: '/attached_assets/pte-prep.jpg'
+  },
+  '/test-prep/toefl': {
+    title: 'TOEFL Preparation - Dunya Consultants',
+    description: 'Comprehensive TOEFL preparation. Excel in your English language proficiency test.',
+    image: '/attached_assets/toefl-prep.jpg'
+  },
+  '/test-prep/duolingo': {
+    title: 'Duolingo English Test Preparation - Dunya Consultants',
+    description: 'Prepare for the Duolingo English Test with expert guidance and proven strategies.',
+    image: '/attached_assets/duolingo-prep.jpg'
+  }
+};
+
+// Function to get meta data for a path (with fallbacks)
+function getPageMeta(path: string): { title: string; description: string; image: string } {
+  // Exact match
+  if (STATIC_PAGE_META[path]) {
+    const meta = STATIC_PAGE_META[path];
+    return {
+      title: meta.title,
+      description: meta.description,
+      image: meta.image || DEFAULT_FEATURED_IMAGE
+    };
+  }
+
+  // Pattern matching for dynamic routes
+  if (path.startsWith('/destinations/')) {
+    return {
+      title: 'Study Abroad Destinations - Dunya Consultants',
+      description: 'Explore study abroad destinations with expert guidance from Dunya Consultants.',
+      image: DEFAULT_FEATURED_IMAGE
+    };
+  }
+
+  if (path.startsWith('/test-prep/')) {
+    return {
+      title: 'Test Preparation - Dunya Consultants',
+      description: 'Professional test preparation courses for IELTS, PTE, TOEFL, and more.',
+      image: DEFAULT_FEATURED_IMAGE
+    };
+  }
+
+  if (path.startsWith('/offices/')) {
+    return {
+      title: 'Our Offices - Dunya Consultants',
+      description: 'Visit our offices across Pakistan for expert study abroad consultation.',
+      image: DEFAULT_FEATURED_IMAGE
+    };
+  }
+
+  // Default fallback for any other page
+  return {
+    title: 'Dunya Consultants - Study Abroad Experts',
+    description: 'Expert study abroad consultation services. Your trusted partner for international education.',
+    image: DEFAULT_FEATURED_IMAGE
+  };
 }
 
 export async function socialMetaMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -108,7 +254,16 @@ export async function socialMetaMiddleware(req: Request, res: Response, next: Ne
         const blogPost = post[0];
         const title = blogPost.metaTitle || blogPost.title;
         const description = blogPost.metaDescription || blogPost.excerpt || '';
-        const image = blogPost.featuredImage || undefined;
+        
+        // Priority: featured image → first content image → default fallback
+        let image = blogPost.featuredImage;
+        if (!image) {
+          const extractedImage = extractFirstImage(
+            blogPost.content || '', 
+            blogPost.contentBlocks as any || []
+          );
+          image = extractedImage || DEFAULT_FEATURED_IMAGE;
+        }
 
         metaTags = generateMetaTags({
           title: `${title} - Dunya Consultants`,
@@ -119,6 +274,18 @@ export async function socialMetaMiddleware(req: Request, res: Response, next: Ne
           siteName: 'Dunya Consultants'
         });
       }
+    }
+    // Handle static pages (with fallback for any unmatched routes)
+    else {
+      const pageData = getPageMeta(path);
+      metaTags = generateMetaTags({
+        title: pageData.title,
+        description: pageData.description,
+        image: pageData.image,
+        url: fullUrl,
+        type: 'website',
+        siteName: 'Dunya Consultants'
+      });
     }
 
     if (metaTags) {

@@ -443,9 +443,26 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Set meta tags for SEO
   useEffect(() => {
     if (blogPost) {
-      const fullImageUrl = blogPost.image?.startsWith('http') 
-        ? blogPost.image 
-        : `${window.location.origin}${blogPost.image}`;
+      // Use featured image, or extract first image from content as fallback
+      let imageUrl = blogPost.image;
+      
+      if (!imageUrl && blogPost.content) {
+        // Extract first image from HTML content
+        const imgMatch = blogPost.content.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+        if (imgMatch && imgMatch[1]) {
+          const src = imgMatch[1].toLowerCase();
+          // Exclude logos and favicons
+          if (!src.includes('logo') && !src.includes('favicon') && !src.includes('icon')) {
+            imageUrl = imgMatch[1];
+          }
+        }
+      }
+      
+      const fullImageUrl = imageUrl 
+        ? (imageUrl.startsWith('http') 
+          ? imageUrl 
+          : `${window.location.origin}${imageUrl.startsWith('/') ? imageUrl : '/' + imageUrl}`)
+        : undefined;
       
       const blogUrl = window.location.href;
       
