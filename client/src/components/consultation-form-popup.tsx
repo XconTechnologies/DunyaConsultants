@@ -323,26 +323,28 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
               )}
             </div>
 
-            <FloatingLabelSelect
-              label="Last Degree *"
-              value={formData.lastDegree}
-              onValueChange={(value) => setFormData(prev => ({ ...prev, lastDegree: value, degreeGrade: "" }))}
-              options={degreeOptions}
-              placeholder="Select your last degree"
-              required
-              data-testid="select-last-degree"
-            />
-
-            {formData.lastDegree && (
-              <FloatingLabelInput
-                label="CGPA / Percentage / Division *"
-                name="degreeGrade"
-                value={formData.degreeGrade}
-                onChange={handleInputChange}
+            <div className={`grid gap-4 ${formData.lastDegree ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+              <FloatingLabelSelect
+                label="Last Degree *"
+                value={formData.lastDegree}
+                onValueChange={(value) => setFormData(prev => ({ ...prev, lastDegree: value, degreeGrade: "" }))}
+                options={degreeOptions}
+                placeholder="Select your last degree"
                 required
-                data-testid="input-degree-grade"
+                data-testid="select-last-degree"
               />
-            )}
+
+              {formData.lastDegree && (
+                <FloatingLabelInput
+                  label="CGPA / Percentage / Division *"
+                  name="degreeGrade"
+                  value={formData.degreeGrade}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-degree-grade"
+                />
+              )}
+            </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
