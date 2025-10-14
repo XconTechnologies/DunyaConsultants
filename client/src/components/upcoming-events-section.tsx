@@ -150,31 +150,39 @@ export default function UpcomingEventsSection() {
                     </div>
                   </div>
                   <div className="p-5 sm:p-7">
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-5 text-white group-hover:text-gray-100 transition-colors leading-tight" data-testid="text-event-title">
-                      {featuredEvent.title}
-                    </h3>
-                    
-                    <div className="space-y-3 sm:space-y-4 mb-5">
-                      <div className="flex items-center text-white text-sm sm:text-base font-medium">
-                        <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
-                        <span data-testid="text-event-date" className="break-words">
-                          {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </span>
-                      </div>
-                      {featuredEvent.venue && (
-                        <div className="flex items-center text-white text-sm sm:text-base font-medium">
-                          <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
-                          <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                      {/* First Column - Event Details */}
+                      <div className="space-y-4">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-gray-100 transition-colors leading-tight" data-testid="text-event-title">
+                          {featuredEvent.title}
+                        </h3>
+                        
+                        <div className="space-y-3">
+                          <div className="flex items-center text-white text-sm sm:text-base font-medium">
+                            <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
+                            <span data-testid="text-event-date" className="break-words">
+                              {new Date(featuredEvent.eventDate).toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </span>
+                          </div>
+                          {featuredEvent.venue && (
+                            <div className="flex items-center text-white text-sm sm:text-base font-medium">
+                              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-white flex-shrink-0" />
+                              <span data-testid="text-event-venue" className="break-words">{featuredEvent.venue}</span>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
+                      </div>
 
-                    <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
+                      {/* Second Column - Countdown Timer */}
+                      <div className="flex items-center justify-center lg:justify-end">
+                        <CountdownTimer eventDate={new Date(featuredEvent.eventDate)} />
+                      </div>
+                    </div>
 
                     <div className="mt-6">
                       <Button 
