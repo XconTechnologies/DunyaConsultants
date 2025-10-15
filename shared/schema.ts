@@ -328,6 +328,8 @@ export const blogPosts = pgTable("blog_posts", {
   verifiedBy: integer("verified_by").references(() => adminUsers.id),
   publishedAt: timestamp("published_at"),
   authorId: integer("author_id").references(() => adminUsers.id),
+  isApproved: boolean("is_approved").default(false).notNull(),
+  approvedAt: timestamp("approved_at"),
   approverId: integer("approver_id").references(() => adminUsers.id),
   trashedAt: timestamp("trashed_at"),
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
