@@ -1399,9 +1399,9 @@ export default function BlogEditor() {
               <Button 
                 variant="outline" 
                 className="mt-4" 
-                onClick={() => setLocation("/admin/dashboard")}
+                onClick={() => setLocation("/admin/posts")}
               >
-                Back to Dashboard
+                Back to All Posts
               </Button>
             </AlertDescription>
           </Alert>
@@ -1419,11 +1419,11 @@ export default function BlogEditor() {
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
-                onClick={() => setLocation("/admin/dashboard")}
+                onClick={() => setLocation("/admin/posts")}
                 className="flex items-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>Back to Dashboard</span>
+                <span>Back to All Posts</span>
               </Button>
               <div className="text-lg font-semibold">
                 {isEditing ? "Edit Blog Post" : "Create New Blog Post"}
