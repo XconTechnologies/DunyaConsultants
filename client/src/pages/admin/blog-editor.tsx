@@ -33,20 +33,20 @@ import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 // Categories will be loaded dynamically from API
 
 const blogSchema = z.object({
-  title: z.string().optional(),
-  slug: z.string().optional(),
-  excerpt: z.string().optional(),
-  content: z.string().optional(),
+  title: z.string().optional().or(z.literal("")),
+  slug: z.string().optional().or(z.literal("")),
+  excerpt: z.string().optional().or(z.literal("")),
+  content: z.string().optional().or(z.literal("")),
   contentBlocks: z.array(z.any()).optional(),
   categoryIds: z.array(z.number()).optional(),
-  category: z.string().optional(), // Keep for backward compatibility
-  metaDescription: z.string().optional(),
-  focusKeyword: z.string().optional(),
-  featuredImage: z.string().optional(),
-  featuredImageAlt: z.string().optional(),
-  featuredImageTitle: z.string().optional(),
-  featuredImageOriginalName: z.string().optional(),
-  publishedAt: z.string().optional(),
+  category: z.string().optional().or(z.literal("")), // Keep for backward compatibility
+  metaDescription: z.string().optional().or(z.literal("")),
+  focusKeyword: z.string().optional().or(z.literal("")),
+  featuredImage: z.string().optional().or(z.literal("")),
+  featuredImageAlt: z.string().optional().or(z.literal("")),
+  featuredImageTitle: z.string().optional().or(z.literal("")),
+  featuredImageOriginalName: z.string().optional().or(z.literal("")),
+  publishedAt: z.string().optional().or(z.literal("")),
   isPublished: z.boolean().default(false),
   status: z.enum(["draft", "in_review", "published", "archived"]).default("draft"),
   authorId: z.number().optional(),
@@ -1232,11 +1232,13 @@ export default function BlogEditor() {
 
   const onSubmit = async (data: BlogForm) => {
     console.log('Form submitted with data:', data);
+    console.log('Form errors:', errors);
     setIsSaving(true);
     try {
       await saveMutation.mutateAsync(data);
     } catch (error) {
       console.error('Save error:', error);
+      console.error('Error details:', JSON.stringify(error));
     } finally {
       setIsSaving(false);
     }
