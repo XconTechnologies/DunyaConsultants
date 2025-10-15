@@ -78,6 +78,9 @@ interface BlogPost {
   featuredImageOriginalName?: string;
   publishedAt?: string;
   isPublished: boolean;
+  isApproved?: boolean;
+  approvedAt?: string;
+  approverId?: number;
   authorId?: number;
   createdAt: string;
   updatedAt: string;
@@ -1231,6 +1234,42 @@ export default function BlogEditor() {
     },
   });
 
+  const approvalMutation = useMutation({
+    mutationFn: async (isApproved: boolean) => {
+      const response = await fetch(`/api/admin/blog-posts/${blogId}/approval`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ isApproved }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`${response.status}: ${errorText}`);
+      }
+
+      return response.json();
+    },
+    onSuccess: (result) => {
+      toast({
+        title: result.isApproved ? "Post Approved" : "Approval Removed",
+        description: result.isApproved 
+          ? "This post has been marked as approved." 
+          : "Approval has been removed from this post.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts", blogId] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update approval status",
+        variant: "destructive",
+      });
+    },
+  });
+
   const onSubmit = async (data: BlogForm) => {
     console.log('Form submitted with data:', data);
     console.log('Form errors:', errors);
@@ -1481,6 +1520,33 @@ export default function BlogEditor() {
                   )}
                   <span>{isSaving ? "Publishing..." : "Publish"}</span>
                 </Button>
+              )}
+              
+              {/* Approval Status Toggle */}
+              {isEditing && blogPost && (
+                <div className="ml-4 flex items-center space-x-2">
+                  <Button
+                    type="button"
+                    disabled={approvalMutation.isPending}
+                    className={`flex items-center space-x-2 ${
+                      blogPost.isApproved
+                        ? 'bg-green-600 hover:bg-green-700 text-white'
+                        : 'bg-red-500 hover:bg-red-600 text-white'
+                    }`}
+                    onClick={() => {
+                      approvalMutation.mutate(!blogPost.isApproved);
+                    }}
+                    data-testid="toggle-approval"
+                  >
+                    {approvalMutation.isPending ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <span className="text-sm font-medium">
+                        {blogPost.isApproved ? '✓ Approved' : '✗ Not Approved'}
+                      </span>
+                    )}
+                  </Button>
+                </div>
               )}
             </div>
           </div>
