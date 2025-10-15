@@ -4903,6 +4903,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Toggle blog post approval (Admin and Editor can approve/unapprove posts)
+  app.put("/api/admin/blog-posts/:id/approval", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { isApproved } = req.body;
+
+      if (typeof isApproved !== 'boolean') {
+        return res.status(400).json({ message: 'isApproved must be a boolean' });
+      }
+
+      // Get the current post
+      const currentPost = await storage.getBlogPost(id);
+      if (!currentPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+
+      // Update approval status
+      const updatedPost = await storage.updateBlogPost(id, {
+        isApproved,
+        approvedAt: isApproved ? new Date() : null,
+        approverId: isApproved ? req.adminId : null,
+      });
+
+      // Create audit log
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: isApproved ? 'approve_post' : 'unapprove_post',
+        entity: 'blog_post',
+        entityId: id,
+        before: JSON.stringify({
+          isApproved: currentPost.isApproved,
+          title: currentPost.title
+        }),
+        after: JSON.stringify({
+          isApproved,
+          approvedAt: isApproved ? new Date().toISOString() : null,
+          approverId: isApproved ? req.adminId : null
+        })
+      });
+
+      res.json(updatedPost);
+    } catch (error) {
+      console.error('Error updating blog post approval:', error);
+      res.status(500).json({ message: 'Failed to update post approval status' });
+    }
+  });
+
   // Get related blog posts (public endpoint, fixed publication consistency)
   app.get("/api/blog-posts/:id/related", async (req, res) => {
     try {
