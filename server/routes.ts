@@ -3753,7 +3753,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // Create blog post with comprehensive audit logging
-  app.post("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
+  app.post("/api/admin/blog-posts", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
     try {
       // Generate slug - use title if provided, otherwise use a draft slug
       let uniqueSlug = null;
@@ -3867,7 +3867,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update blog post with audit logging and revision tracking
-  app.put("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+  app.put("/api/admin/blog-posts/:id", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       
@@ -3877,9 +3877,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      // Check if user has publish permission
+      // Check if user has access to this post (admins can edit all, editors only assigned posts)
       const currentUser = req.user!;
-      const canPublish = currentUser.permissions?.canPublish || currentUser.roles?.includes('admin');
+      const isAdmin = currentUser.roles?.includes('admin');
+      
+      if (!isAdmin) {
+        // Non-admin users can only edit posts assigned to them
+        const assignedPosts = await storage.getUserAssignedPosts(req.adminId!);
+        const hasAccess = assignedPosts.some(post => post.id === id);
+        
+        if (!hasAccess) {
+          return res.status(403).json({ message: 'You do not have permission to edit this post. Contact an admin to get this post assigned to you.' });
+        }
+      }
+      
+      // Check if user has publish permission
+      const canPublish = currentUser.permissions?.canPublish || isAdmin;
       
       // Define safe fields that all users can update
       const safeFields = [
