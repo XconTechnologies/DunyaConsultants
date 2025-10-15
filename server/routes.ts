@@ -3755,8 +3755,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create blog post with comprehensive audit logging
   app.post("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const baseSlug = req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      const uniqueSlug = await generateUniqueSlug(baseSlug);
+      // Generate slug - use title if provided, otherwise use a draft slug
+      let uniqueSlug = null;
+      if (req.body.slug) {
+        uniqueSlug = await generateUniqueSlug(req.body.slug);
+      } else if (req.body.title) {
+        const baseSlug = req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        uniqueSlug = await generateUniqueSlug(baseSlug);
+      } else {
+        // For completely empty drafts, generate a unique draft slug
+        const draftSlug = `draft-${Date.now()}`;
+        uniqueSlug = await generateUniqueSlug(draftSlug);
+      }
       
       // Check if user has publish permission
       const currentUser = req.user!;
@@ -3775,6 +3785,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let isPublished = false;
       
       if (req.body.isPublished && canPublish) {
+        // Validate required fields for publishing
+        if (!req.body.title || !uniqueSlug || !req.body.content || !req.body.excerpt) {
+          return res.status(400).json({ 
+            message: 'Title, slug, excerpt, and content are required for publishing',
+            missingFields: {
+              title: !req.body.title,
+              slug: !uniqueSlug,
+              content: !req.body.content,
+              excerpt: !req.body.excerpt
+            }
+          });
+        }
+        
         // User has permission to publish
         isPublished = true;
         status = 'published';
@@ -3878,6 +3901,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const baseSlug = sanitizedUpdates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
         sanitizedUpdates.slug = await generateUniqueSlug(baseSlug);
       }
+      
+      // If this is a new draft without a slug, generate one
+      if (!sanitizedUpdates.slug && !originalPost.slug) {
+        const draftSlug = sanitizedUpdates.title 
+          ? sanitizedUpdates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+          : `draft-${Date.now()}`;
+        sanitizedUpdates.slug = await generateUniqueSlug(draftSlug);
+      }
 
       // Handle status/publish fields based on permissions
       if (!canPublish) {
@@ -3889,6 +3920,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Users with publish permission can update status fields
         if (req.body.hasOwnProperty('isPublished')) {
           if (req.body.isPublished) {
+            // Validate required fields for publishing
+            const finalTitle = sanitizedUpdates.title || originalPost.title;
+            const finalSlug = sanitizedUpdates.slug || originalPost.slug;
+            const finalContent = sanitizedUpdates.content || originalPost.content;
+            const finalExcerpt = sanitizedUpdates.excerpt || originalPost.excerpt;
+            
+            if (!finalTitle || !finalSlug || !finalContent || !finalExcerpt) {
+              return res.status(400).json({ 
+                message: 'Title, slug, excerpt, and content are required for publishing',
+                missingFields: {
+                  title: !finalTitle,
+                  slug: !finalSlug,
+                  content: !finalContent,
+                  excerpt: !finalExcerpt
+                }
+              });
+            }
+            
             // Publishing the post
             sanitizedUpdates.isPublished = true;
             sanitizedUpdates.status = 'published';
@@ -3907,6 +3956,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         } else if (req.body.hasOwnProperty('status')) {
           // If status is explicitly set without isPublished
           if (req.body.status === 'published') {
+            // Validate required fields for publishing
+            const finalTitle = sanitizedUpdates.title || originalPost.title;
+            const finalSlug = sanitizedUpdates.slug || originalPost.slug;
+            const finalContent = sanitizedUpdates.content || originalPost.content;
+            const finalExcerpt = sanitizedUpdates.excerpt || originalPost.excerpt;
+            
+            if (!finalTitle || !finalSlug || !finalContent || !finalExcerpt) {
+              return res.status(400).json({ 
+                message: 'Title, slug, excerpt, and content are required for publishing',
+                missingFields: {
+                  title: !finalTitle,
+                  slug: !finalSlug,
+                  content: !finalContent,
+                  excerpt: !finalExcerpt
+                }
+              });
+            }
+            
             sanitizedUpdates.isPublished = true;
             sanitizedUpdates.status = 'published';
             if (!req.body.publishedAt) {

@@ -306,8 +306,8 @@ export const categories = pgTable("categories", {
 
 export const blogPosts = pgTable("blog_posts", {
   id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  slug: text("slug").notNull().unique(),
+  title: text("title"),
+  slug: text("slug").unique(),
   metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
   focusKeyword: text("focus_keyword"),
@@ -315,7 +315,7 @@ export const blogPosts = pgTable("blog_posts", {
   featuredImageAlt: text("featured_image_alt"),
   featuredImageTitle: text("featured_image_title"),
   featuredImageOriginalName: text("featured_image_original_name"),
-  content: text("content").notNull(),
+  content: text("content"),
   contentBlocks: json("content_blocks").$type<ContentBlock[]>(),
   excerpt: text("excerpt"),
   category: text("category").default("General"), // Keep for backward compatibility

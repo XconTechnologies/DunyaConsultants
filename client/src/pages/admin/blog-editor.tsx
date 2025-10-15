@@ -33,10 +33,10 @@ import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 // Categories will be loaded dynamically from API
 
 const blogSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  slug: z.string().min(1, "Slug is required"),
-  excerpt: z.string().min(1, "Excerpt is required"),
-  content: z.string().min(1, "Content is required"),
+  title: z.string().optional(),
+  slug: z.string().optional(),
+  excerpt: z.string().optional(),
+  content: z.string().optional(),
   contentBlocks: z.array(z.any()).optional(),
   categoryIds: z.array(z.number()).optional(),
   category: z.string().optional(), // Keep for backward compatibility
@@ -50,6 +50,13 @@ const blogSchema = z.object({
   isPublished: z.boolean().default(false),
   status: z.enum(["draft", "in_review", "published", "archived"]).default("draft"),
   authorId: z.number().optional(),
+});
+
+const publishSchema = blogSchema.extend({
+  title: z.string().min(1, "Title is required for publishing"),
+  slug: z.string().min(1, "Slug is required for publishing"),
+  excerpt: z.string().min(1, "Excerpt is required for publishing"),
+  content: z.string().min(1, "Content is required for publishing"),
 });
 
 type BlogForm = z.infer<typeof blogSchema>;
@@ -1431,8 +1438,21 @@ export default function BlogEditor() {
                   form="blog-form"
                   disabled={isSaving || isImageUploading}
                   className="flex items-center space-x-2 ml-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
-                  onClick={() => {
+                  onClick={(e) => {
                     console.log('Publish button clicked');
+                    const formValues = getValues();
+                    
+                    // Validate required fields for publishing
+                    if (!formValues.title || !formValues.slug || !formValues.excerpt || !formValues.content) {
+                      e.preventDefault();
+                      toast({
+                        title: "Missing Required Fields",
+                        description: "Title, slug, excerpt, and content are required for publishing.",
+                        variant: "destructive",
+                      });
+                      return;
+                    }
+                    
                     setValue('isPublished', true);
                     setValue('status', 'published');
                   }}
