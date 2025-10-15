@@ -95,8 +95,15 @@ Preferred communication style: Simple, everyday language.
     - abuzar: Editor + Leads Manager (multi-role)
     - test1: Editor
 - **Post Assignment Interface**: Dedicated interface for managing which users can access specific posts
-- **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
+- **Enhanced Blog Editor**: Modern, clean redesign with:
+  - Two-column responsive layout (main content left, sidebar right)
+  - Tabbed sidebar with "Post Settings" and "SEO Settings" tabs
+  - Post Settings tab: Categories (dropdown with hierarchical selection), URL slug, excerpt, author, featured image, publish date
+  - SEO Settings tab: Focus keyword, meta description with character counter (0/160)
+  - ReactQuill-based rich text editor with HTML mode toggle
+  - Advanced content blocks system
 - **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions
+- **Approval System**: Three-state approval workflow (Approved, Not Approved, Editable) with color-coded dropdown in blog editor
 - **Post Filtering System**: 
   - Status filter counters in All Posts page (All, Published, Draft, Trash)
   - Dashboard cards navigate to filtered views (e.g., clicking "Published" card shows only published posts)
