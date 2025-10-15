@@ -3681,7 +3681,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let posts;
       
       // Admin users see all posts, non-admin users only see assigned posts
-      if (req.adminRole === 'admin') {
+      const isAdmin = req.adminRoles?.includes('admin');
+      
+      if (isAdmin) {
         posts = await storage.getBlogPosts(published);
       } else {
         // Non-admin users only see posts assigned to them
