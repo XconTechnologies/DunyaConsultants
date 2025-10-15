@@ -1416,14 +1416,27 @@ export default function BlogEditor() {
                 </Button>
               )}
               <Button
-                type="submit"
-                form="blog-form"
+                type="button"
                 disabled={isSaving || isImageUploading}
                 className="flex items-center space-x-2 bg-[#1D50C9] hover:bg-[#1642a8] text-white"
-                onClick={() => {
+                onClick={async () => {
                   console.log('Save Draft button clicked');
-                  setValue('isPublished', false);
-                  setValue('status', 'draft');
+                  const formValues = getValues();
+                  console.log('Current form values:', formValues);
+                  
+                  // Set as draft
+                  formValues.isPublished = false;
+                  formValues.status = 'draft';
+                  
+                  // Submit directly without validation
+                  setIsSaving(true);
+                  try {
+                    await saveMutation.mutateAsync(formValues);
+                  } catch (error) {
+                    console.error('Save draft error:', error);
+                  } finally {
+                    setIsSaving(false);
+                  }
                 }}
                 data-testid="save-draft-blog"
               >
