@@ -702,6 +702,18 @@ export default function BlogEditor() {
 
   // Format HTML code
   const formatHtmlCode = () => {
+    console.log('Format button clicked!');
+    console.log('Current HTML content:', htmlContent);
+    
+    if (!htmlContent || htmlContent.trim() === '') {
+      toast({
+        title: "No Content",
+        description: "There's no HTML content to format.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     try {
       const formatted = beautifyHtml(htmlContent, {
         indent_size: 2,
@@ -712,6 +724,8 @@ export default function BlogEditor() {
         indent_inner_html: true,
         end_with_newline: false,
       });
+      
+      console.log('Formatted HTML:', formatted);
       setHtmlContent(formatted);
       setValue('content', formatted);
       toast({
@@ -720,9 +734,10 @@ export default function BlogEditor() {
         className: "bg-green-500 text-white",
       });
     } catch (error) {
+      console.error('Format error:', error);
       toast({
         title: "Format Error",
-        description: "Failed to format HTML code.",
+        description: `Failed to format HTML code: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
     }
@@ -1020,18 +1035,26 @@ export default function BlogEditor() {
                       <Button
                         type="button"
                         size="sm"
-                        variant={editorMode === 'rich' ? 'default' : 'ghost'}
                         onClick={() => handleModeSwitch('rich')}
-                        className="px-3 py-1 text-xs"
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'rich' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                        data-testid="button-rich-text-mode"
                       >
                         Rich Text
                       </Button>
                       <Button
                         type="button"
                         size="sm"
-                        variant={editorMode === 'html' ? 'default' : 'ghost'}
                         onClick={() => handleModeSwitch('html')}
-                        className="px-3 py-1 text-xs"
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'html' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                        data-testid="button-html-mode"
                       >
                         HTML
                       </Button>
