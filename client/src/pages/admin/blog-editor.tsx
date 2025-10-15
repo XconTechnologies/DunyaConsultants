@@ -1428,7 +1428,7 @@ export default function BlogEditor() {
           <button
             type="button"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className={`fixed ${isSidebarOpen ? 'right-[calc(25%-0.75rem)]' : 'right-4'} top-24 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group`}
+            className={`fixed ${isSidebarOpen ? 'right-[calc(25%+0.5rem)]' : 'right-4'} top-24 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group`}
             title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
           >
             {isSidebarOpen ? (
