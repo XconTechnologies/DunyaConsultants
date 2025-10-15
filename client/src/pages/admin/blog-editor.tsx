@@ -1020,7 +1020,7 @@ export default function BlogEditor() {
                     </Button>
                   </div>
                 </div>
-                <div className="p-4 max-h-[calc(100vh-300px)] overflow-y-auto">
+                <div className="p-4">
                   {editorMode === 'rich' ? (
                     // Rich Text Editor Mode
                     <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
@@ -1056,7 +1056,7 @@ export default function BlogEditor() {
                           value={htmlContent}
                           onChange={(e) => handleHtmlChange(e.target.value)}
                           placeholder="Write your HTML code here..."
-                          className="w-full h-[500px] p-3 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full h-[460px] p-3 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                       </div>
                       
@@ -1064,7 +1064,7 @@ export default function BlogEditor() {
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700">Live Preview</label>
                         <div 
-                          className="w-full h-[500px] p-3 border border-gray-300 rounded-md bg-white overflow-auto prose prose-sm max-w-none"
+                          className="w-full h-[460px] p-3 border border-gray-300 rounded-md bg-white overflow-auto prose prose-sm max-w-none"
                           dangerouslySetInnerHTML={{ __html: htmlContent }}
                         />
                       </div>
