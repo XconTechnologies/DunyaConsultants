@@ -302,6 +302,21 @@ export default function BlogEditor() {
     setEditorMounted(true);
   }, []);
 
+  // Override Quill link button to use custom dialog
+  useEffect(() => {
+    if (editorRef.current) {
+      const quill = editorRef.current.getEditor();
+      if (quill) {
+        const toolbar = quill.getModule('toolbar');
+        if (toolbar) {
+          toolbar.addHandler('link', () => {
+            handleLinkClick();
+          });
+        }
+      }
+    }
+  }, [editorMounted, editorRef.current]);
+
   // Update selected category IDs when post categories load
   useEffect(() => {
     if (postCategories.length > 0) {
