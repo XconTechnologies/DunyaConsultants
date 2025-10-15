@@ -198,74 +198,89 @@ export default function UpcomingEventsSection() {
             </motion.div>
           )}
 
-          {/* Side Events - Right Column */}
-          <div className="space-y-4">
-            {sideEvents.map((event, index) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Link href={`/events/${event.slug}`}>
-                  <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
-                    <div className="flex gap-4 p-4">
-                      <div className="relative w-24 sm:w-28 h-20 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <div className="flex items-start justify-between gap-2 mb-3">
-                          <h4 className="font-bold text-base sm:text-lg line-clamp-1" style={{ color: '#2563eb' }} data-testid="text-event-title">
-                            {event.title}
-                          </h4>
-                          <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
-                            {event.eventType}
-                          </Badge>
+          {/* Side Events - Right Column with Auto-Scroll */}
+          <div className="relative overflow-hidden h-[440px]">
+            <motion.div
+              className="space-y-4"
+              animate={{
+                y: sideEvents.length > 3 ? [0, -(sideEvents.length - 3) * 140] : 0,
+              }}
+              transition={{
+                y: {
+                  duration: sideEvents.length * 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop",
+                },
+              }}
+            >
+              {sideEvents.concat(sideEvents).map((event, index) => (
+                <motion.div
+                  key={`${event.id}-${index}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: (index % sideEvents.length) * 0.1 }}
+                >
+                  <Link href={`/events/${event.slug}`}>
+                    <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
+                      <div className="flex gap-4 p-4">
+                        <div className="relative w-24 sm:w-28 h-20 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
+                          />
                         </div>
-                        <div className="flex items-end justify-between gap-4">
-                          {/* Left side: Date and Venue */}
-                          <div className="space-y-1 flex-1">
-                            <div className="flex items-center text-sm text-gray-600">
-                              <Calendar className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                              <span className="truncate" data-testid="text-event-date">
-                                {new Date(event.eventDate).toLocaleDateString('en-US', {
-                                  month: 'short',
-                                  day: 'numeric',
-                                  year: 'numeric',
-                                })}
-                              </span>
-                            </div>
-                            {event.venue && (
+                        <div className="flex-1 min-w-0 flex flex-col">
+                          <div className="flex items-start justify-between gap-2 mb-3">
+                            <h4 className="font-bold text-base sm:text-lg line-clamp-1" style={{ color: '#2563eb' }} data-testid="text-event-title">
+                              {event.title}
+                            </h4>
+                            <Badge className="bg-blue-100 text-blue-700 text-xs flex-shrink-0 shadow-sm">
+                              {event.eventType}
+                            </Badge>
+                          </div>
+                          <div className="flex items-end justify-between gap-4">
+                            {/* Left side: Date and Venue */}
+                            <div className="space-y-1 flex-1">
                               <div className="flex items-center text-sm text-gray-600">
-                                <MapPin className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                                <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
+                                <Calendar className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
+                                <span className="truncate" data-testid="text-event-date">
+                                  {new Date(event.eventDate).toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric',
+                                  })}
+                                </span>
                               </div>
-                            )}
-                          </div>
-                          {/* Right side: Button */}
-                          <div className="flex-shrink-0">
-                            <Button 
-                              size="sm"
-                              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
-                              data-testid="button-see-more"
-                            >
-                              See More
-                            </Button>
+                              {event.venue && (
+                                <div className="flex items-center text-sm text-gray-600">
+                                  <MapPin className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
+                                  <span className="truncate" data-testid="text-event-venue">{event.venue}</span>
+                                </div>
+                              )}
+                            </div>
+                            {/* Right side: Button */}
+                            <div className="flex-shrink-0">
+                              <Button 
+                                size="sm"
+                                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+                                data-testid="button-see-more"
+                              >
+                                See More
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
 
