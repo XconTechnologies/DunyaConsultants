@@ -3673,13 +3673,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // BLOG MANAGEMENT ROUTES
   // ==============================================
 
-  // Get all blog posts (admin) - all authenticated users can see all posts
+  // Get all blog posts (admin) - respects post assignments for non-admin users
   app.get("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const published = req.query.published === 'true' ? true : req.query.published === 'false' ? false : undefined;
       
-      // All authenticated admin users can see all posts
-      const posts = await storage.getBlogPosts(published);
+      let posts;
+      
+      // Admin users see all posts, non-admin users only see assigned posts
+      if (req.adminRole === 'admin') {
+        posts = await storage.getBlogPosts(published);
+      } else {
+        // Non-admin users only see posts assigned to them
+        posts = await storage.getUserAssignedPosts(req.adminId!);
+        
+        // Filter by published status if specified
+        if (published !== undefined) {
+          posts = posts.filter(post => post.isPublished === published);
+        }
+      }
       
       // Optional pagination support for better dashboard performance
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
@@ -3865,9 +3877,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      // Check if user has publish permission
+      // Check if user has access to this post (admins can edit all, editors only assigned posts)
       const currentUser = req.user!;
-      const canPublish = currentUser.permissions?.canPublish || currentUser.roles?.includes('admin');
+      const isAdmin = currentUser.roles?.includes('admin');
+      
+      if (!isAdmin) {
+        // Non-admin users can only edit posts assigned to them
+        const assignedPosts = await storage.getUserAssignedPosts(req.adminId!);
+        const hasAccess = assignedPosts.some(post => post.id === id);
+        
+        if (!hasAccess) {
+          return res.status(403).json({ message: 'You do not have permission to edit this post. Contact an admin to get this post assigned to you.' });
+        }
+      }
+      
+      // Check if user has publish permission
+      const canPublish = currentUser.permissions?.canPublish || isAdmin;
       
       // Define safe fields that all users can update
       const safeFields = [
