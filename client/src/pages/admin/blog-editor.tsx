@@ -22,7 +22,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
@@ -30,6 +30,10 @@ import type { AdminUser, Media, ContentBlock } from "@shared/schema";
 import MediaSelectionModal from "@/components/admin/media-selection-modal";
 import ContentBlocks from "@/components/admin/content-blocks";
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markup';
+import 'prismjs/themes/prism-tomorrow.css';
+import { html as beautifyHtml } from 'js-beautify';
 
 // Categories will be loaded dynamically from API
 
@@ -208,6 +212,8 @@ export default function BlogEditor() {
   const editorRef = useRef<any>(null);
   const sessionHeartbeatRef = useRef<NodeJS.Timeout | null>(null);
   const [currentSessionId, setCurrentSessionId] = useState<number | null>(null);
+  const htmlTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const htmlPreRef = useRef<HTMLPreElement>(null);
   const [showConflictDialog, setShowConflictDialog] = useState(false);
   const [conflictingUser, setConflictingUser] = useState<AdminUser | null>(null);
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
@@ -686,6 +692,42 @@ export default function BlogEditor() {
     setValue('content', value);
   };
 
+  // Sync scroll between textarea and pre
+  const handleScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    if (htmlPreRef.current && htmlTextareaRef.current) {
+      htmlPreRef.current.scrollTop = htmlTextareaRef.current.scrollTop;
+      htmlPreRef.current.scrollLeft = htmlTextareaRef.current.scrollLeft;
+    }
+  };
+
+  // Format HTML code
+  const formatHtmlCode = () => {
+    try {
+      const formatted = beautifyHtml(htmlContent, {
+        indent_size: 2,
+        indent_char: ' ',
+        max_preserve_newlines: 2,
+        preserve_newlines: true,
+        wrap_line_length: 120,
+        indent_inner_html: true,
+        end_with_newline: false,
+      });
+      setHtmlContent(formatted);
+      setValue('content', formatted);
+      toast({
+        title: "Code Formatted",
+        description: "HTML code has been formatted successfully.",
+        className: "bg-green-500 text-white",
+      });
+    } catch (error) {
+      toast({
+        title: "Format Error",
+        description: "Failed to format HTML code.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // Quill modules configuration
   const quillModules = useMemo(() => ({
     toolbar: [
@@ -1042,14 +1084,57 @@ export default function BlogEditor() {
                     </div>
                   ) : (
                     // HTML Editor Mode
-                    <div className="space-y-2">
-                      <textarea
-                        value={htmlContent}
-                        onChange={(e) => handleHtmlChange(e.target.value)}
-                        placeholder="Write your HTML code here with inline/internal CSS and JavaScript..."
-                        className="w-full h-[600px] p-4 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent overflow-auto bg-gray-50"
-                        spellCheck="false"
-                      />
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-2">
+                          <Code2 className="w-4 h-4 text-blue-600" />
+                          <span className="text-sm font-medium text-gray-700">HTML Code Editor</span>
+                        </div>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={formatHtmlCode}
+                          className="flex items-center space-x-2"
+                          data-testid="button-format-html"
+                        >
+                          <Wand2 className="w-4 h-4" />
+                          <span>Format Code</span>
+                        </Button>
+                      </div>
+                      <div className="relative rounded-md overflow-hidden border border-gray-300">
+                        <pre 
+                          ref={htmlPreRef}
+                          className="w-full h-[600px] p-4 font-mono text-sm overflow-auto bg-[#2d2d2d] m-0 pointer-events-none"
+                        >
+                          <code className="language-markup" dangerouslySetInnerHTML={{ 
+                            __html: Prism.highlight(htmlContent || '<!-- Write your HTML code here -->', Prism.languages.markup, 'markup') 
+                          }} />
+                        </pre>
+                        <textarea
+                          ref={htmlTextareaRef}
+                          value={htmlContent}
+                          onChange={(e) => handleHtmlChange(e.target.value)}
+                          onScroll={handleScroll}
+                          placeholder="Write your HTML code here with inline/internal CSS and JavaScript..."
+                          className="absolute top-0 left-0 w-full h-full p-4 font-mono text-sm resize-none bg-transparent overflow-auto"
+                          style={{
+                            caretColor: '#ffffff',
+                            color: 'transparent',
+                            WebkitTextFillColor: 'transparent',
+                            outline: 'none',
+                            border: 'none',
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.outline = '2px solid rgb(59 130 246)';
+                            e.target.style.borderRadius = '0.375rem';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.outline = 'none';
+                          }}
+                          spellCheck="false"
+                        />
+                      </div>
                     </div>
                   )}
                   
