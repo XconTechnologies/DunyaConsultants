@@ -1536,25 +1536,44 @@ export default function BlogEditor() {
                     }}
                     disabled={approvalMutation.isPending}
                   >
-                    <SelectTrigger className="w-[180px]" data-testid="select-approval-status">
-                      <SelectValue />
+                    <SelectTrigger 
+                      className={`w-[180px] ${
+                        blogPost.approvalStatus === 'approved' 
+                          ? 'border-green-500 text-green-700' 
+                          : blogPost.approvalStatus === 'not_approved'
+                          ? 'border-red-500 text-red-700'
+                          : 'border-blue-500 text-blue-700'
+                      }`}
+                      data-testid="select-approval-status"
+                    >
+                      <SelectValue>
+                        <span className="flex items-center space-x-2">
+                          <span>
+                            {blogPost.approvalStatus === 'approved' 
+                              ? '✓ Approved' 
+                              : blogPost.approvalStatus === 'not_approved'
+                              ? '✗ Not Approved'
+                              : '✎ Editable'}
+                          </span>
+                        </span>
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="approved" data-testid="option-approved">
+                      <SelectItem value="approved" data-testid="option-approved" className="text-green-700">
                         <span className="flex items-center space-x-2">
-                          <span className="text-green-600">✓</span>
+                          <span>✓</span>
                           <span>Approved</span>
                         </span>
                       </SelectItem>
-                      <SelectItem value="not_approved" data-testid="option-not-approved">
+                      <SelectItem value="not_approved" data-testid="option-not-approved" className="text-red-700">
                         <span className="flex items-center space-x-2">
-                          <span className="text-red-600">✗</span>
+                          <span>✗</span>
                           <span>Not Approved</span>
                         </span>
                       </SelectItem>
-                      <SelectItem value="editable" data-testid="option-editable">
+                      <SelectItem value="editable" data-testid="option-editable" className="text-blue-700">
                         <span className="flex items-center space-x-2">
-                          <span className="text-blue-600">✎</span>
+                          <span>✎</span>
                           <span>Editable</span>
                         </span>
                       </SelectItem>
