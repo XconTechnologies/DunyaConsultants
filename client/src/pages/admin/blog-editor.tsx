@@ -22,7 +22,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
@@ -216,6 +216,7 @@ export default function BlogEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const queryClient = useQueryClient();
 
@@ -954,10 +955,10 @@ export default function BlogEditor() {
 
       <div className="max-w-[1600px] mx-auto px-6 py-8">
         <form id="blog-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 ${isSidebarOpen ? 'lg:grid-cols-3' : 'lg:grid-cols-1'} gap-8 transition-all duration-300`}>
             
             {/* Main Content Area */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className={`space-y-6 ${isSidebarOpen ? 'lg:col-span-2' : ''}`}>
               
               {/* Title */}
               <div>
@@ -1083,49 +1084,11 @@ export default function BlogEditor() {
                   </div>
                 </div>
               </div>
-
-              {/* Content Preview with Blocks */}
-              {((watch("contentBlocks") as ContentBlock[] | undefined)?.length ?? 0) > 0 && (
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-base font-semibold mb-4 flex items-center space-x-2">
-                    <Eye className="w-5 h-5" />
-                    <span>Content Preview (with blocks)</span>
-                  </h3>
-                  <div className="border rounded-lg p-6 bg-white">
-                    {/* Integrated preview of content with blocks at correct positions */}
-                    <div className="prose prose-sm max-w-none">
-                      <ContentBlocksRenderer 
-                        blocks={(watch("contentBlocks") as ContentBlock[]) || []} 
-                        content={(watch("content") as string) || ''}
-                        integrated={true}
-                      />
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-3">
-                    This preview shows your content with blocks inserted at their selected positions.
-                  </p>
-                </div>
-              )}
-
-              {/* Content Blocks */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-base font-semibold mb-4">Advanced Content Blocks</h3>
-                <Controller
-                  name="contentBlocks"
-                  control={control}
-                  render={({ field }) => (
-                    <ContentBlocks
-                      blocks={field.value || []}
-                      onChange={field.onChange}
-                      content={watch("content") as string || ''}
-                    />
-                  )}
-                />
-              </div>
             </div>
 
             {/* Sidebar with Tabs */}
-            <div className="bg-white rounded-lg border border-gray-200 h-fit sticky top-24">
+            {isSidebarOpen && (
+              <div className="bg-white rounded-lg border border-gray-200 h-fit sticky top-24">
               <Tabs defaultValue="post-settings" className="w-full">
                 <TabsList className="w-full grid grid-cols-2 rounded-t-lg h-12">
                   <TabsTrigger value="post-settings" className="flex items-center space-x-2">
@@ -1458,7 +1421,20 @@ export default function BlogEditor() {
                 </TabsContent>
               </Tabs>
             </div>
+            )}
           </div>
+
+          {/* Sidebar Toggle Button */}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className={`fixed ${isSidebarOpen ? 'right-[calc(25%+1.5rem)]' : 'right-6'} top-[5.5rem] z-20 transition-all duration-300`}
+            title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+          >
+            {isSidebarOpen ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          </Button>
         </form>
       </div>
 
