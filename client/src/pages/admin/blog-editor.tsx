@@ -485,10 +485,8 @@ export default function BlogEditor() {
       const url = isEditing ? `/api/admin/blog-posts/${blogId}` : '/api/admin/blog-posts';
       const method = isEditing ? 'PUT' : 'POST';
 
-      return apiRequest(url, {
-        method,
-        body: JSON.stringify(data),
-      });
+      const response = await apiRequest(method, url, data);
+      return response.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
@@ -520,10 +518,8 @@ export default function BlogEditor() {
   // Create category mutation
   const createCategoryMutation = useMutation({
     mutationFn: async (name: string) => {
-      return apiRequest('/api/admin/categories', {
-        method: 'POST',
-        body: JSON.stringify({ name }),
-      });
+      const response = await apiRequest('POST', '/api/admin/categories', { name });
+      return response.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
@@ -547,10 +543,8 @@ export default function BlogEditor() {
   // Approval status mutation
   const approvalMutation = useMutation({
     mutationFn: async (status: 'approved' | 'not_approved' | 'editable') => {
-      return apiRequest(`/api/admin/blog-posts/${blogId}/approval`, {
-        method: 'PUT',
-        body: JSON.stringify({ approvalStatus: status }),
-      });
+      const response = await apiRequest('PUT', `/api/admin/blog-posts/${blogId}/approval`, { approvalStatus: status });
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
