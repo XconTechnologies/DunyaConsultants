@@ -178,13 +178,15 @@ export default function LeadsManagement() {
 
   // Export to CSV
   const exportToCSV = () => {
-    const headers = ["Date", "Name", "City", "WhatsApp", "Email", "Language Test", "Test Type", "Test Score", "Countries", "Source", "Status", "Assigned To"];
+    const headers = ["Date", "Name", "City", "WhatsApp", "Email", "Last Degree", "CGPA/Percentage", "Language Test", "Test Type", "Test Score", "Countries", "Source", "Status", "Assigned To"];
     const rows = filteredLeads.map(lead => [
       format(new Date(lead.createdAt!), "yyyy-MM-dd HH:mm"),
       lead.fullName || lead.name || "",
       lead.city || "",
       lead.whatsappNumber || lead.phone || "",
       lead.email || "",
+      lead.educationLevel || "",
+      lead.degreeGrade || "",
       lead.hasLanguageTest || "",
       lead.testType || "",
       lead.testScore || "",
@@ -656,6 +658,28 @@ export default function LeadsManagement() {
                           ? selectedLead.interestedCountries.join(", ")
                           : (selectedLead.preferredCountry || "N/A")}
                       </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Education Information */}
+              <div className="space-y-3 border-t pt-4">
+                <h3 className="text-base font-semibold text-gray-900">Education Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Last Degree</p>
+                      <p className="font-medium text-gray-900 capitalize">{selectedLead.educationLevel || "N/A"}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">CGPA / Percentage / Division</p>
+                      <p className="font-medium text-gray-900">{selectedLead.degreeGrade || "N/A"}</p>
                     </div>
                   </div>
                 </div>
