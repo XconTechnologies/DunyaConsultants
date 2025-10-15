@@ -124,7 +124,7 @@ export default function UpcomingEventsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:items-stretch">
           {/* Featured Event - Left Column */}
           {featuredEvent && (
             <motion.div
@@ -132,6 +132,7 @@ export default function UpcomingEventsSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="h-full"
             >
               <Link href={`/events/${featuredEvent.slug}`}>
                 <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col" data-testid={`event-featured-${featuredEvent.id}`}>
