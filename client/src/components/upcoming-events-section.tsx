@@ -151,7 +151,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col h-full" data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col" style={{ height: '600px' }} data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-[1.68/1]">
                     <img
@@ -218,7 +218,7 @@ export default function UpcomingEventsSection() {
           {/* Side Events - Right Column with Auto-Scroll */}
           <div 
             className="relative overflow-hidden" 
-            style={{ height: cardHeight ? `${cardHeight}px` : 'auto', minHeight: cardHeight ? `${cardHeight}px` : 'auto' }}
+            style={{ height: '600px', minHeight: '600px' }}
           >
             <motion.div
               className="space-y-4"
