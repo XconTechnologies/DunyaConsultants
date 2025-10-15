@@ -1724,7 +1724,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Check if user has permission to update this lead
       const isAdmin = currentUser.roles?.includes('admin');
-      if (!isAdmin) {
+      const canManageLeads = currentUser.permissions?.canManageLeads;
+      
+      if (!isAdmin && !canManageLeads) {
         const assignedLeads = await storage.getUserAssignedLeads(currentUser.id);
         const hasAccess = assignedLeads.some(lead => lead.id === id);
         

@@ -455,12 +455,9 @@ export default function LeadsManagement() {
                           <TableHead>Date</TableHead>
                           <TableHead>Name</TableHead>
                           <TableHead>City</TableHead>
-                          <TableHead>WhatsApp</TableHead>
-                          <TableHead>Test</TableHead>
                           <TableHead>Countries</TableHead>
                           <TableHead>Source</TableHead>
                           <TableHead>Status</TableHead>
-                          <TableHead>Assign To</TableHead>
                           {isAdmin && <TableHead className="w-20">Actions</TableHead>}
                         </TableRow>
                       </TableHeader>
@@ -486,15 +483,6 @@ export default function LeadsManagement() {
                             </TableCell>
                             <TableCell className="font-medium">{lead.fullName || lead.name || "N/A"}</TableCell>
                             <TableCell className="text-sm">{lead.city || "N/A"}</TableCell>
-                            <TableCell className="text-sm">{lead.whatsappNumber || lead.phone || "N/A"}</TableCell>
-                            <TableCell className="text-sm">
-                              {lead.hasLanguageTest === "yes" ? (
-                                <div>
-                                  <span className="font-medium">{lead.testType || "N/A"}</span>
-                                  {lead.testScore && <span className="text-gray-500"> ({lead.testScore})</span>}
-                                </div>
-                              ) : "No"}
-                            </TableCell>
                             <TableCell className="text-sm">
                               {(lead.interestedCountries && lead.interestedCountries.length > 0) 
                                 ? lead.interestedCountries.slice(0, 2).join(", ") + (lead.interestedCountries.length > 2 ? "..." : "")
@@ -541,23 +529,6 @@ export default function LeadsManagement() {
                                       Not Interested
                                     </div>
                                   </SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </TableCell>
-                            <TableCell onClick={(e) => e.stopPropagation()}>
-                              <Select
-                                onValueChange={(value) => reassignLeadMutation.mutate({ id: lead.id, userId: parseInt(value) })}
-                                disabled={reassignLeadMutation.isPending || eligibleUsers.length === 0}
-                              >
-                                <SelectTrigger className="w-[180px] h-8" data-testid={`select-assign-${lead.id}`}>
-                                  <SelectValue placeholder="Reassign..." />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {eligibleUsers.map((user) => (
-                                    <SelectItem key={user.id} value={user.id.toString()}>
-                                      {user.username}
-                                    </SelectItem>
-                                  ))}
                                 </SelectContent>
                               </Select>
                             </TableCell>
@@ -714,7 +685,37 @@ export default function LeadsManagement() {
                       <div className="mt-0.5">{getStatusBadge(selectedLead.status)}</div>
                     </div>
                   </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">Assigned To</p>
+                      <p className="font-medium text-gray-900">{selectedLead.assignedTo || "Unassigned"}</p>
+                    </div>
+                  </div>
                 </div>
+                
+                {/* Assignment Section - Only for Admin */}
+                {isAdmin && eligibleUsers.length > 0 && (
+                  <div className="mt-4">
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">Reassign Lead</label>
+                    <Select
+                      onValueChange={(value) => reassignLeadMutation.mutate({ id: selectedLead.id, userId: parseInt(value) })}
+                      disabled={reassignLeadMutation.isPending}
+                    >
+                      <SelectTrigger className="w-full" data-testid={`select-assign-popup-${selectedLead.id}`}>
+                        <SelectValue placeholder="Select user to assign..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {eligibleUsers.map((user) => (
+                          <SelectItem key={user.id} value={user.id.toString()}>
+                            {user.username}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
               </div>
 
               {/* Message */}
