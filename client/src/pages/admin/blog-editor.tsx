@@ -1417,9 +1417,9 @@ export default function BlogEditor() {
                 type="submit"
                 form="blog-form"
                 disabled={isSaving || isImageUploading}
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 bg-[#1D50C9] hover:bg-[#1642a8] text-white"
                 onClick={() => {
-                  console.log('Save button clicked');
+                  console.log('Save Draft button clicked');
                   setValue('isPublished', false);
                   setValue('status', 'draft');
                 }}
