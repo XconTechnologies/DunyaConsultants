@@ -34,7 +34,7 @@ interface BlogPost {
   excerpt: string;
   content: string;
   isPublished: boolean;
-  isApproved?: boolean;
+  approvalStatus?: 'approved' | 'not_approved' | 'editable';
   publishedAt: Date | null;
   authorId: number;
   metaTitle: string | null;
@@ -517,9 +517,19 @@ export default function AllPosts() {
                               </Badge>
                               <Badge 
                                 variant="outline"
-                                className={post.isApproved ? "bg-green-50 text-green-700 border-green-300" : "bg-red-50 text-red-700 border-red-300"}
+                                className={
+                                  post.approvalStatus === 'approved' 
+                                    ? "bg-green-50 text-green-700 border-green-300" 
+                                    : post.approvalStatus === 'not_approved'
+                                    ? "bg-red-50 text-red-700 border-red-300"
+                                    : "bg-blue-50 text-blue-700 border-blue-300"
+                                }
                               >
-                                {post.isApproved ? "✓ Approved" : "✗ Not Approved"}
+                                {post.approvalStatus === 'approved' 
+                                  ? "✓ Approved" 
+                                  : post.approvalStatus === 'not_approved'
+                                  ? "✗ Not Approved"
+                                  : "✎ Editable"}
                               </Badge>
                             </div>
                           </TableCell>
