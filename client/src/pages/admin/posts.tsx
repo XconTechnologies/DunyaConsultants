@@ -34,6 +34,7 @@ interface BlogPost {
   excerpt: string;
   content: string;
   isPublished: boolean;
+  isApproved?: boolean;
   publishedAt: Date | null;
   authorId: number;
   metaTitle: string | null;
@@ -507,12 +508,20 @@ export default function AllPosts() {
                             </div>
                           </TableCell>
                           <TableCell>
-                            <Badge 
-                              variant={post.isPublished ? "default" : "secondary"}
-                              className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
-                            >
-                              {post.isPublished ? "Published" : "Draft"}
-                            </Badge>
+                            <div className="flex flex-col gap-1">
+                              <Badge 
+                                variant={post.isPublished ? "default" : "secondary"}
+                                className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
+                              >
+                                {post.isPublished ? "Published" : "Draft"}
+                              </Badge>
+                              <Badge 
+                                variant="outline"
+                                className={post.isApproved ? "bg-green-50 text-green-700 border-green-300" : "bg-red-50 text-red-700 border-red-300"}
+                              >
+                                {post.isApproved ? "✓ Approved" : "✗ Not Approved"}
+                              </Badge>
+                            </div>
                           </TableCell>
                           <TableCell className="text-center">
                             {canDeleteContent(adminUser) && (
