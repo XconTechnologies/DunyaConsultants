@@ -234,7 +234,29 @@ export default function AdminBlogPreview() {
                 <div className="prose prose-xl max-w-none">
                   <div 
                     className="blog-content prose prose-xl max-w-none" 
-                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} 
+                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }}
+                    ref={(el) => {
+                      if (el) {
+                        setTimeout(() => {
+                          // Execute inline and internal scripts
+                          const scripts = el.querySelectorAll('script');
+                          scripts.forEach((oldScript) => {
+                            const newScript = document.createElement('script');
+                            
+                            // Copy all attributes
+                            Array.from(oldScript.attributes).forEach((attr) => {
+                              newScript.setAttribute(attr.name, attr.value);
+                            });
+                            
+                            // Copy script content
+                            newScript.textContent = oldScript.textContent;
+                            
+                            // Replace old script with new one to trigger execution
+                            oldScript.parentNode?.replaceChild(newScript, oldScript);
+                          });
+                        }, 100);
+                      }
+                    }}
                   />
                 </div>
               </div>

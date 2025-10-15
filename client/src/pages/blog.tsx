@@ -854,10 +854,30 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
                       ref={(el) => {
-                        // Initialize FAQ functionality after content is rendered
                         if (el) {
                           setTimeout(() => {
+                            // Initialize FAQ functionality
                             initializeFAQs(el);
+                            
+                            // Execute inline and internal scripts
+                            const scripts = el.querySelectorAll('script');
+                            scripts.forEach((oldScript) => {
+                              const newScript = document.createElement('script');
+                              
+                              // Copy all attributes
+                              Array.from(oldScript.attributes).forEach((attr) => {
+                                newScript.setAttribute(attr.name, attr.value);
+                              });
+                              
+                              // Copy script content
+                              newScript.textContent = oldScript.textContent;
+                              
+                              // Replace old script with new one to trigger execution
+                              oldScript.parentNode?.replaceChild(newScript, oldScript);
+                            });
+                            
+                            // Execute inline styles (already working via dangerouslySetInnerHTML)
+                            // Internal CSS in <style> tags will automatically work
                           }, 100);
                         }
                       }}

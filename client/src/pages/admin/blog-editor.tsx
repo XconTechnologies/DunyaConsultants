@@ -1047,27 +1047,15 @@ export default function BlogEditor() {
                       )}
                     </div>
                   ) : (
-                    // HTML Editor Mode with Live Preview
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                      {/* HTML Code Editor */}
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">HTML Code</label>
-                        <textarea
-                          value={htmlContent}
-                          onChange={(e) => handleHtmlChange(e.target.value)}
-                          placeholder="Write your HTML code here..."
-                          className="w-full h-[600px] p-3 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent overflow-auto"
-                        />
-                      </div>
-                      
-                      {/* Live Preview */}
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Live Preview</label>
-                        <div 
-                          className="w-full h-[600px] p-3 border border-gray-300 rounded-md bg-white overflow-auto prose prose-sm max-w-none"
-                          dangerouslySetInnerHTML={{ __html: htmlContent }}
-                        />
-                      </div>
+                    // HTML Editor Mode
+                    <div className="space-y-2">
+                      <textarea
+                        value={htmlContent}
+                        onChange={(e) => handleHtmlChange(e.target.value)}
+                        placeholder="Write your HTML code here with inline/internal CSS and JavaScript..."
+                        className="w-full h-[600px] p-4 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent overflow-auto bg-gray-50"
+                        spellCheck="false"
+                      />
                     </div>
                   )}
                   
@@ -1079,7 +1067,7 @@ export default function BlogEditor() {
                     {editorMode === 'rich' ? (
                       <>✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!</>
                     ) : (
-                      <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with live preview. Perfect for advanced formatting, custom styles, and embedding multimedia content.</>
+                      <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with inline/internal CSS and JavaScript. Your styles and scripts will work when the post is published.</>
                     )}
                   </div>
                 </div>
