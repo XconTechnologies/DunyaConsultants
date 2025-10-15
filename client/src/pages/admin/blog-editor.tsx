@@ -78,7 +78,7 @@ interface BlogPost {
   featuredImageOriginalName?: string;
   publishedAt?: string;
   isPublished: boolean;
-  isApproved?: boolean;
+  approvalStatus?: 'approved' | 'not_approved' | 'editable';
   approvedAt?: string;
   approverId?: number;
   authorId?: number;
@@ -1235,14 +1235,14 @@ export default function BlogEditor() {
   });
 
   const approvalMutation = useMutation({
-    mutationFn: async (isApproved: boolean) => {
+    mutationFn: async (approvalStatus: 'approved' | 'not_approved' | 'editable') => {
       const response = await fetch(`/api/admin/blog-posts/${blogId}/approval`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ isApproved }),
+        body: JSON.stringify({ approvalStatus }),
       });
 
       if (!response.ok) {
@@ -1253,11 +1253,15 @@ export default function BlogEditor() {
       return response.json();
     },
     onSuccess: (result) => {
+      const statusMessages = {
+        approved: { title: "Post Approved", desc: "This post has been marked as approved." },
+        not_approved: { title: "Post Not Approved", desc: "This post has been marked as not approved." },
+        editable: { title: "Post Marked Editable", desc: "This post is now in editable status." }
+      };
+      const msg = statusMessages[result.approvalStatus as keyof typeof statusMessages];
       toast({
-        title: result.isApproved ? "Post Approved" : "Approval Removed",
-        description: result.isApproved 
-          ? "This post has been marked as approved." 
-          : "Approval has been removed from this post.",
+        title: msg.title,
+        description: msg.desc,
       });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts", blogId] });
     },
@@ -1522,30 +1526,43 @@ export default function BlogEditor() {
                 </Button>
               )}
               
-              {/* Approval Status Toggle */}
+              {/* Approval Status Dropdown */}
               {isEditing && blogPost && (
                 <div className="ml-4 flex items-center space-x-2">
-                  <Button
-                    type="button"
-                    disabled={approvalMutation.isPending}
-                    className={`flex items-center space-x-2 ${
-                      blogPost.isApproved
-                        ? 'bg-green-600 hover:bg-green-700 text-white'
-                        : 'bg-red-500 hover:bg-red-600 text-white'
-                    }`}
-                    onClick={() => {
-                      approvalMutation.mutate(!blogPost.isApproved);
+                  <Select
+                    value={blogPost.approvalStatus || 'editable'}
+                    onValueChange={(value: 'approved' | 'not_approved' | 'editable') => {
+                      approvalMutation.mutate(value);
                     }}
-                    data-testid="toggle-approval"
+                    disabled={approvalMutation.isPending}
                   >
-                    {approvalMutation.isPending ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <span className="text-sm font-medium">
-                        {blogPost.isApproved ? '✓ Approved' : '✗ Not Approved'}
-                      </span>
-                    )}
-                  </Button>
+                    <SelectTrigger className="w-[180px]" data-testid="select-approval-status">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="approved" data-testid="option-approved">
+                        <span className="flex items-center space-x-2">
+                          <span className="text-green-600">✓</span>
+                          <span>Approved</span>
+                        </span>
+                      </SelectItem>
+                      <SelectItem value="not_approved" data-testid="option-not-approved">
+                        <span className="flex items-center space-x-2">
+                          <span className="text-red-600">✗</span>
+                          <span>Not Approved</span>
+                        </span>
+                      </SelectItem>
+                      <SelectItem value="editable" data-testid="option-editable">
+                        <span className="flex items-center space-x-2">
+                          <span className="text-blue-600">✎</span>
+                          <span>Editable</span>
+                        </span>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {approvalMutation.isPending && (
+                    <Loader2 className="w-4 h-4 animate-spin text-gray-500" />
+                  )}
                 </div>
               )}
             </div>
