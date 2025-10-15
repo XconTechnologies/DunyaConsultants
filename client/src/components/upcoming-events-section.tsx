@@ -199,28 +199,27 @@ export default function UpcomingEventsSection() {
           )}
 
           {/* Side Events - Right Column with Auto-Scroll */}
-          <div className="relative overflow-hidden h-[440px]">
+          <div className="relative overflow-hidden" style={{ height: '420px' }}>
             <motion.div
               className="space-y-4"
-              animate={{
-                y: sideEvents.length > 3 ? [0, -(sideEvents.length - 3) * 140] : 0,
-              }}
-              transition={{
+              animate={sideEvents.length > 3 ? {
+                y: [0, -(sideEvents.length * 136)],
+              } : {}}
+              transition={sideEvents.length > 3 ? {
                 y: {
-                  duration: sideEvents.length * 3,
+                  duration: sideEvents.length * 4,
                   repeat: Infinity,
                   ease: "linear",
-                  repeatType: "loop",
                 },
-              }}
+              } : {}}
             >
-              {sideEvents.concat(sideEvents).map((event, index) => (
+              {(sideEvents.length > 3 ? sideEvents.concat(sideEvents) : sideEvents).map((event, index) => (
                 <motion.div
                   key={`${event.id}-${index}`}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: (index % sideEvents.length) * 0.1 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <Link href={`/events/${event.slug}`}>
                     <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-card-${event.id}`}>
