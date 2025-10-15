@@ -1425,16 +1425,18 @@ export default function BlogEditor() {
           </div>
 
           {/* Sidebar Toggle Button */}
-          <Button
+          <button
             type="button"
-            variant="outline"
-            size="sm"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className={`fixed ${isSidebarOpen ? 'right-[calc(25%+1.5rem)]' : 'right-6'} top-[5.5rem] z-20 transition-all duration-300`}
+            className={`fixed ${isSidebarOpen ? 'right-[calc(25%-0.75rem)]' : 'right-4'} top-24 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group`}
             title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
           >
-            {isSidebarOpen ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
-          </Button>
+            {isSidebarOpen ? (
+              <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            ) : (
+              <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            )}
+          </button>
         </form>
       </div>
 
