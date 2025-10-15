@@ -3758,6 +3758,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const baseSlug = req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const uniqueSlug = await generateUniqueSlug(baseSlug);
       
+      // Check if user has publish permission
+      const currentUser = req.user!;
+      const canPublish = currentUser.permissions?.canPublish || currentUser.roles?.includes('admin');
+      
       // Parse the form data but handle publishedAt separately since it's omitted from schema
       const blogData = insertBlogPostSchema.parse({
         ...req.body,
@@ -3765,9 +3769,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         slug: uniqueSlug
       });
 
-      // Handle publishedAt based on isPublished status and provided date
+      // Handle publishedAt and status based on isPublished status and user permissions
       let publishedAt = null;
-      if (req.body.isPublished) {
+      let status = 'draft';
+      let isPublished = false;
+      
+      if (req.body.isPublished && canPublish) {
+        // User has permission to publish
+        isPublished = true;
+        status = 'published';
         if (req.body.publishedAt) {
           // Handle YYYY-MM-DD format from form
           publishedAt = new Date(req.body.publishedAt);
@@ -3778,10 +3788,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         } else {
           publishedAt = new Date();
         }
+      } else {
+        // User doesn't have permission to publish, or chose to save as draft
+        isPublished = false;
+        status = 'draft';
+        publishedAt = null;
       }
 
       const post = await storage.createBlogPost({
         ...blogData,
+        isPublished,
+        status,
         publishedAt
       } as any);
       
@@ -3830,7 +3847,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.put("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
-      const updates = req.body;
       
       // Get original post for comparison and audit logging
       const originalPost = await storage.getBlogPost(id);
@@ -3838,29 +3854,73 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      if (updates.title && !updates.slug) {
-        const baseSlug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        updates.slug = await generateUniqueSlug(baseSlug);
+      // Check if user has publish permission
+      const currentUser = req.user!;
+      const canPublish = currentUser.permissions?.canPublish || currentUser.roles?.includes('admin');
+      
+      // Define safe fields that all users can update
+      const safeFields = [
+        'title', 'slug', 'excerpt', 'content', 'contentBlocks',
+        'category', 'metaDescription', 'focusKeyword',
+        'featuredImage', 'featuredImageAlt', 'featuredImageTitle', 'featuredImageOriginalName'
+      ];
+      
+      // Build sanitized updates object from safe fields only
+      const sanitizedUpdates: any = {};
+      for (const field of safeFields) {
+        if (req.body.hasOwnProperty(field)) {
+          sanitizedUpdates[field] = req.body[field];
+        }
+      }
+      
+      // Handle slug generation if title changed
+      if (sanitizedUpdates.title && !sanitizedUpdates.slug) {
+        const baseSlug = sanitizedUpdates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        sanitizedUpdates.slug = await generateUniqueSlug(baseSlug);
       }
 
-      // Handle publishedAt based on isPublished status
-      if (updates.hasOwnProperty('isPublished')) {
-        if (updates.isPublished) {
-          // When publishing, set publishedAt if provided, otherwise use current time
-          if (updates.publishedAt) {
-            const parsedDate = new Date(updates.publishedAt);
-            updates.publishedAt = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+      // Handle status/publish fields based on permissions
+      if (!canPublish) {
+        // Editors can only save as draft - ignore all publish-related fields from request
+        sanitizedUpdates.isPublished = false;
+        sanitizedUpdates.status = 'draft';
+        // Do not update publishedAt
+      } else {
+        // Users with publish permission can update status fields
+        if (req.body.hasOwnProperty('isPublished')) {
+          if (req.body.isPublished) {
+            // Publishing the post
+            sanitizedUpdates.isPublished = true;
+            sanitizedUpdates.status = 'published';
+            if (req.body.publishedAt) {
+              const parsedDate = new Date(req.body.publishedAt);
+              sanitizedUpdates.publishedAt = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+            } else {
+              sanitizedUpdates.publishedAt = new Date();
+            }
           } else {
-            updates.publishedAt = new Date();
+            // Unpublishing the post
+            sanitizedUpdates.isPublished = false;
+            sanitizedUpdates.status = 'draft';
+            // Keep existing publishedAt for history
           }
-        } else {
-          // When unpublishing, keep existing publishedAt (for history) but set isPublished to false
-          // updates.publishedAt stays as is
+        } else if (req.body.hasOwnProperty('status')) {
+          // If status is explicitly set without isPublished
+          if (req.body.status === 'published') {
+            sanitizedUpdates.isPublished = true;
+            sanitizedUpdates.status = 'published';
+            if (!req.body.publishedAt) {
+              sanitizedUpdates.publishedAt = new Date();
+            }
+          } else {
+            sanitizedUpdates.isPublished = false;
+            sanitizedUpdates.status = req.body.status;
+          }
+        } else if (req.body.publishedAt) {
+          // If only publishedAt is updated without isPublished status change
+          const parsedDate = new Date(req.body.publishedAt);
+          sanitizedUpdates.publishedAt = isNaN(parsedDate.getTime()) ? originalPost.publishedAt : parsedDate;
         }
-      } else if (updates.publishedAt) {
-        // If only publishedAt is updated without isPublished status change
-        const parsedDate = new Date(updates.publishedAt);
-        updates.publishedAt = isNaN(parsedDate.getTime()) ? originalPost.publishedAt : parsedDate;
       }
       
       // Create revision before updating
@@ -3875,11 +3935,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      const post = await storage.updateBlogPost(id, updates);
+      const post = await storage.updateBlogPost(id, sanitizedUpdates);
       
       // Create comprehensive audit log for blog post update
-      const changedFields = Object.keys(updates).filter(key => 
-        JSON.stringify(originalPost[key as keyof typeof originalPost]) !== JSON.stringify(updates[key])
+      const changedFields = Object.keys(sanitizedUpdates).filter(key => 
+        JSON.stringify(originalPost[key as keyof typeof originalPost]) !== JSON.stringify(sanitizedUpdates[key])
       );
       
       await storage.createAuditLog({

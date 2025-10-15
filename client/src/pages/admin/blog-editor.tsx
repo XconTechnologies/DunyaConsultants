@@ -48,6 +48,7 @@ const blogSchema = z.object({
   featuredImageOriginalName: z.string().optional(),
   publishedAt: z.string().optional(),
   isPublished: z.boolean().default(false),
+  status: z.enum(["draft", "in_review", "published", "archived"]).default("draft"),
   authorId: z.number().optional(),
 });
 
@@ -769,6 +770,7 @@ export default function BlogEditor() {
     resolver: zodResolver(blogSchema),
     defaultValues: {
       isPublished: false,
+      status: "draft",
       content: "",
       category: "General", // Default category
       categoryIds: [], // Default to no categories selected
@@ -1412,6 +1414,7 @@ export default function BlogEditor() {
                 onClick={() => {
                   console.log('Save button clicked');
                   setValue('isPublished', false);
+                  setValue('status', 'draft');
                 }}
                 data-testid="save-draft-blog"
               >
@@ -1431,6 +1434,7 @@ export default function BlogEditor() {
                   onClick={() => {
                     console.log('Publish button clicked');
                     setValue('isPublished', true);
+                    setValue('status', 'published');
                   }}
                   data-testid="publish-blog"
                 >
