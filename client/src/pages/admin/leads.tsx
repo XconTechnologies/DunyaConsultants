@@ -562,7 +562,7 @@ export default function LeadsManagement() {
 
       {/* Lead Details Dialog */}
       <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">Lead Details</DialogTitle>
             <DialogDescription className="text-sm text-gray-500">
@@ -571,7 +571,7 @@ export default function LeadsManagement() {
           </DialogHeader>
           
           {selectedLead && (
-            <div className="space-y-6 mt-2">
+            <div className="space-y-6 mt-2 pb-4">
               {/* Personal Information */}
               <div className="space-y-3">
                 <h3 className="text-base font-semibold text-gray-900">Personal Information</h3>
