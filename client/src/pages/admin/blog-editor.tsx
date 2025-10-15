@@ -22,7 +22,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
@@ -230,6 +230,18 @@ export default function BlogEditor() {
   const [linkText, setLinkText] = useState('');
   const [linkNewTab, setLinkNewTab] = useState(false);
   const [linkNofollow, setLinkNofollow] = useState(false);
+
+  // Table dialog state
+  const [showTableDialog, setShowTableDialog] = useState(false);
+  const [tableRows, setTableRows] = useState('3');
+  const [tableCols, setTableCols] = useState('3');
+  const [tableHasHeader, setTableHasHeader] = useState(true);
+
+  // FAQ dialog state
+  const [showFaqDialog, setShowFaqDialog] = useState(false);
+  const [faqItems, setFaqItems] = useState<Array<{ question: string; answer: string }>>([
+    { question: '', answer: '' }
+  ]);
 
   const queryClient = useQueryClient();
 
@@ -783,6 +795,98 @@ export default function BlogEditor() {
     setShowLinkDialog(false);
   };
 
+  // Handle table insertion
+  const handleTableClick = () => {
+    setShowTableDialog(true);
+  };
+
+  const handleInsertTable = () => {
+    const quill = editorRef.current?.getEditor();
+    if (!quill) return;
+
+    const rows = parseInt(tableRows) || 3;
+    const cols = parseInt(tableCols) || 3;
+
+    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0;">';
+    
+    for (let i = 0; i < rows; i++) {
+      tableHtml += '<tr>';
+      for (let j = 0; j < cols; j++) {
+        if (i === 0 && tableHasHeader) {
+          tableHtml += '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f3f4f6; font-weight: 600;">Header</th>';
+        } else {
+          tableHtml += '<td style="border: 1px solid #ddd; padding: 8px;">Cell</td>';
+        }
+      }
+      tableHtml += '</tr>';
+    }
+    tableHtml += '</table><p><br></p>';
+
+    const range = quill.getSelection(true);
+    if (range) {
+      quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
+      quill.setSelection(range.index + tableHtml.length);
+    }
+
+    setShowTableDialog(false);
+    setTableRows('3');
+    setTableCols('3');
+    setTableHasHeader(true);
+  };
+
+  // Handle FAQ insertion
+  const handleFaqClick = () => {
+    setShowFaqDialog(true);
+  };
+
+  const handleInsertFaq = () => {
+    const quill = editorRef.current?.getEditor();
+    if (!quill) return;
+
+    let faqHtml = '<div class="faq-container" style="margin: 20px 0;">';
+    
+    faqItems.forEach((item, index) => {
+      if (item.question.trim() || item.answer.trim()) {
+        faqHtml += `
+          <details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
+            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1em; color: #1D50C9; list-style: none; display: flex; align-items: center;">
+              <span style="margin-right: 8px;">▶</span>
+              ${item.question || `Question ${index + 1}`}
+            </summary>
+            <div style="margin-top: 12px; padding-left: 24px; color: #4b5563;">
+              ${item.answer || 'Answer here...'}
+            </div>
+          </details>
+        `;
+      }
+    });
+    
+    faqHtml += '</div><p><br></p>';
+
+    const range = quill.getSelection(true);
+    if (range) {
+      quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
+      quill.setSelection(range.index + faqHtml.length);
+    }
+
+    setShowFaqDialog(false);
+    setFaqItems([{ question: '', answer: '' }]);
+  };
+
+  const addFaqItem = () => {
+    setFaqItems([...faqItems, { question: '', answer: '' }]);
+  };
+
+  const removeFaqItem = (index: number) => {
+    setFaqItems(faqItems.filter((_, i) => i !== index));
+  };
+
+  const updateFaqItem = (index: number, field: 'question' | 'answer', value: string) => {
+    const updated = [...faqItems];
+    updated[index][field] = value;
+    setFaqItems(updated);
+  };
+
   // Format HTML code
   const formatHtmlCode = () => {
     console.log('Format button clicked!');
@@ -1170,6 +1274,28 @@ export default function BlogEditor() {
                         <ImageIcon className="w-4 h-4" />
                       )}
                       <span className="ml-2">Insert Image</span>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleTableClick}
+                      title="Insert Table"
+                      data-testid="button-insert-table"
+                    >
+                      <TableIcon className="w-4 h-4" />
+                      <span className="ml-2">Insert Table</span>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleFaqClick}
+                      title="Insert FAQ"
+                      data-testid="button-insert-faq"
+                    >
+                      <HelpCircle className="w-4 h-4" />
+                      <span className="ml-2">Insert FAQ</span>
                     </Button>
                   </div>
                 </div>
@@ -1810,6 +1936,158 @@ export default function BlogEditor() {
               data-testid="button-insert-link"
             >
               Insert Link
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Table Dialog */}
+      <Dialog open={showTableDialog} onOpenChange={setShowTableDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Insert Table</DialogTitle>
+            <DialogDescription>
+              Configure your table dimensions
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="table-rows">Rows</Label>
+                <Input
+                  id="table-rows"
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={tableRows}
+                  onChange={(e) => setTableRows(e.target.value)}
+                  data-testid="input-table-rows"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="table-cols">Columns</Label>
+                <Input
+                  id="table-cols"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={tableCols}
+                  onChange={(e) => setTableCols(e.target.value)}
+                  data-testid="input-table-cols"
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="table-header"
+                checked={tableHasHeader}
+                onCheckedChange={(checked) => setTableHasHeader(checked as boolean)}
+                data-testid="checkbox-table-header"
+              />
+              <Label htmlFor="table-header" className="text-sm font-normal cursor-pointer">
+                Include header row
+              </Label>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setShowTableDialog(false);
+                setTableRows('3');
+                setTableCols('3');
+                setTableHasHeader(true);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleInsertTable}
+              className="bg-blue-600 hover:bg-blue-700"
+              data-testid="button-confirm-insert-table"
+            >
+              Insert Table
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* FAQ Dialog */}
+      <Dialog open={showFaqDialog} onOpenChange={setShowFaqDialog}>
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Insert FAQ Section</DialogTitle>
+            <DialogDescription>
+              Create collapsible FAQ items
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {faqItems.map((item, index) => (
+              <div key={index} className="border rounded-lg p-4 space-y-3 bg-gray-50">
+                <div className="flex items-center justify-between">
+                  <Label className="font-semibold">FAQ Item {index + 1}</Label>
+                  {faqItems.length > 1 && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeFaqItem(index)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`faq-question-${index}`}>Question</Label>
+                  <Input
+                    id={`faq-question-${index}`}
+                    placeholder="Enter question..."
+                    value={item.question}
+                    onChange={(e) => updateFaqItem(index, 'question', e.target.value)}
+                    data-testid={`input-faq-question-${index}`}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor={`faq-answer-${index}`}>Answer</Label>
+                  <Textarea
+                    id={`faq-answer-${index}`}
+                    placeholder="Enter answer..."
+                    value={item.answer}
+                    onChange={(e) => updateFaqItem(index, 'answer', e.target.value)}
+                    rows={3}
+                    data-testid={`input-faq-answer-${index}`}
+                  />
+                </div>
+              </div>
+            ))}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={addFaqItem}
+              className="w-full"
+              data-testid="button-add-faq-item"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Another FAQ
+            </Button>
+          </div>
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setShowFaqDialog(false);
+                setFaqItems([{ question: '', answer: '' }]);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleInsertFaq}
+              className="bg-blue-600 hover:bg-blue-700"
+              data-testid="button-confirm-insert-faq"
+            >
+              Insert FAQ
             </Button>
           </DialogFooter>
         </DialogContent>
