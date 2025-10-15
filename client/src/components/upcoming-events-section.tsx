@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Clock } from "lucide-react";
@@ -64,9 +64,26 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
 }
 
 export default function UpcomingEventsSection() {
+  const [cardHeight, setCardHeight] = useState<number | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+
   const { data: events, isLoading } = useQuery<Event[]>({
     queryKey: ["/api/events"],
   });
+
+  // Observe the featured card height
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setCardHeight(entry.contentRect.height);
+      }
+    });
+
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Filter upcoming events (not trashed and in the future)
   const upcomingEvents = events?.filter((event) => {
@@ -124,7 +141,7 @@ export default function UpcomingEventsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Featured Event - Left Column */}
           {featuredEvent && (
             <motion.div
@@ -132,10 +149,9 @@ export default function UpcomingEventsSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="h-full"
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col h-[600px]" data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col h-full" data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-[1.68/1]">
                     <img
@@ -200,7 +216,10 @@ export default function UpcomingEventsSection() {
           )}
 
           {/* Side Events - Right Column with Auto-Scroll */}
-          <div className="relative overflow-hidden h-full">
+          <div 
+            className="relative overflow-hidden" 
+            style={{ height: cardHeight ? `${cardHeight}px` : 'auto', minHeight: cardHeight ? `${cardHeight}px` : 'auto' }}
+          >
             <motion.div
               className="space-y-4"
               animate={sideEvents.length > 3 ? {
