@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useLocation, useRoute } from "wouter";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -223,6 +223,13 @@ export default function BlogEditor() {
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  
+  // Link dialog state
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
+  const [linkText, setLinkText] = useState('');
+  const [linkNewTab, setLinkNewTab] = useState(false);
+  const [linkNofollow, setLinkNofollow] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -700,6 +707,67 @@ export default function BlogEditor() {
     }
   };
 
+  // Custom link handler
+  const handleLinkClick = useCallback(() => {
+    const quill = editorRef.current?.getEditor();
+    if (!quill) return;
+
+    const range = quill.getSelection();
+    if (!range) return;
+
+    const text = quill.getText(range.index, range.length);
+    const format = quill.getFormat(range);
+    
+    setLinkText(text || '');
+    setLinkUrl(format.link || '');
+    
+    // Parse existing link attributes if editing
+    if (format.link) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = `<a href="${format.link}">link</a>`;
+      const anchor = tempDiv.querySelector('a');
+      if (anchor) {
+        setLinkNewTab(anchor.getAttribute('target') === '_blank');
+        setLinkNofollow(anchor.getAttribute('rel')?.includes('nofollow') || false);
+      }
+    } else {
+      setLinkNewTab(false);
+      setLinkNofollow(false);
+    }
+    
+    setShowLinkDialog(true);
+  }, []);
+
+  // Insert/update link with custom attributes
+  const handleInsertLink = () => {
+    const quill = editorRef.current?.getEditor();
+    if (!quill || !linkUrl) return;
+
+    const range = quill.getSelection(true);
+    if (!range) return;
+
+    // Build rel attribute
+    let rel = 'noopener noreferrer';
+    if (linkNofollow) {
+      rel += ' nofollow';
+    }
+
+    // Create the link HTML with attributes
+    const linkHtml = `<a href="${linkUrl}"${linkNewTab ? ' target="_blank"' : ''} rel="${rel}">${linkText || quill.getText(range.index, range.length) || linkUrl}</a>`;
+    
+    // Insert the link
+    quill.deleteText(range.index, range.length);
+    quill.clipboard.dangerouslyPasteHTML(range.index, linkHtml);
+    quill.setSelection(range.index + (linkText || linkUrl).length);
+
+    // Reset and close dialog
+    setLinkUrl('');
+    setLinkText('');
+    setLinkNewTab(false);
+    setLinkNofollow(false);
+    setShowLinkDialog(false);
+  };
+
   // Format HTML code
   const formatHtmlCode = () => {
     console.log('Format button clicked!');
@@ -1059,6 +1127,17 @@ export default function BlogEditor() {
                         HTML
                       </Button>
                     </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleLinkClick}
+                      title="Insert Link with Custom Attributes"
+                      data-testid="button-custom-link"
+                    >
+                      <Globe className="w-4 h-4" />
+                      <span className="ml-2">Insert Link</span>
+                    </Button>
                     <Button
                       type="button"
                       variant="outline"
@@ -1636,6 +1715,86 @@ export default function BlogEditor() {
               className="bg-blue-600 hover:bg-blue-700"
             >
               Grant Access
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Link Dialog */}
+      <Dialog open={showLinkDialog} onOpenChange={setShowLinkDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Insert Link</DialogTitle>
+            <DialogDescription>
+              Add a link with custom attributes
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="link-url">URL</Label>
+              <Input
+                id="link-url"
+                placeholder="https://example.com"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                data-testid="input-link-url"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-text">Link Text (optional)</Label>
+              <Input
+                id="link-text"
+                placeholder="Click here"
+                value={linkText}
+                onChange={(e) => setLinkText(e.target.value)}
+                data-testid="input-link-text"
+              />
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="link-new-tab"
+                  checked={linkNewTab}
+                  onCheckedChange={(checked) => setLinkNewTab(checked as boolean)}
+                  data-testid="checkbox-link-new-tab"
+                />
+                <Label htmlFor="link-new-tab" className="text-sm font-normal cursor-pointer">
+                  Open in new tab (target="_blank")
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="link-nofollow"
+                  checked={linkNofollow}
+                  onCheckedChange={(checked) => setLinkNofollow(checked as boolean)}
+                  data-testid="checkbox-link-nofollow"
+                />
+                <Label htmlFor="link-nofollow" className="text-sm font-normal cursor-pointer">
+                  Add nofollow (rel="nofollow")
+                </Label>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setShowLinkDialog(false);
+                setLinkUrl('');
+                setLinkText('');
+                setLinkNewTab(false);
+                setLinkNofollow(false);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleInsertLink}
+              disabled={!linkUrl}
+              className="bg-blue-600 hover:bg-blue-700"
+              data-testid="button-insert-link"
+            >
+              Insert Link
             </Button>
           </DialogFooter>
         </DialogContent>
