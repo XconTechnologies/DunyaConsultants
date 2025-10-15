@@ -4903,14 +4903,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Toggle blog post approval (Admin and Editor can approve/unapprove posts)
+  // Update blog post approval status (Admin and Editor can set approval status)
   app.put("/api/admin/blog-posts/:id/approval", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
-      const { isApproved } = req.body;
+      const { approvalStatus } = req.body;
 
-      if (typeof isApproved !== 'boolean') {
-        return res.status(400).json({ message: 'isApproved must be a boolean' });
+      if (!['approved', 'not_approved', 'editable'].includes(approvalStatus)) {
+        return res.status(400).json({ message: 'approvalStatus must be one of: approved, not_approved, editable' });
       }
 
       // Get the current post
@@ -4921,26 +4921,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Update approval status
       const updatedPost = await storage.updateBlogPost(id, {
-        isApproved,
-        approvedAt: isApproved ? new Date() : null,
-        approverId: isApproved ? req.adminId : null,
+        approvalStatus,
+        approvedAt: approvalStatus === 'approved' ? new Date() : null,
+        approverId: approvalStatus === 'approved' ? req.adminId : null,
       });
 
       // Create audit log
       await storage.createAuditLog({
         actorId: req.adminId!,
         role: req.adminRole!,
-        action: isApproved ? 'approve_post' : 'unapprove_post',
+        action: `set_post_approval_${approvalStatus}`,
         entity: 'blog_post',
         entityId: id,
         before: JSON.stringify({
-          isApproved: currentPost.isApproved,
+          approvalStatus: currentPost.approvalStatus,
           title: currentPost.title
         }),
         after: JSON.stringify({
-          isApproved,
-          approvedAt: isApproved ? new Date().toISOString() : null,
-          approverId: isApproved ? req.adminId : null
+          approvalStatus,
+          approvedAt: approvalStatus === 'approved' ? new Date().toISOString() : null,
+          approverId: approvalStatus === 'approved' ? req.adminId : null
         })
       });
 
