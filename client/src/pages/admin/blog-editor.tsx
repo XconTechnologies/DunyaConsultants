@@ -773,6 +773,7 @@ export default function BlogEditor() {
     watch,
     reset,
     control,
+    getValues,
   } = useForm<BlogForm>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
