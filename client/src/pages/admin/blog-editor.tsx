@@ -805,15 +805,15 @@ export default function BlogEditor() {
     const cols = parseInt(tableCols) || 3;
 
     // Build proper HTML table
-    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #ddd;">';
+    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #dadada;">';
     
     for (let i = 0; i < rows; i++) {
       tableHtml += '<tr>';
       for (let j = 0; j < cols; j++) {
         if (i === 0 && tableHasHeader) {
-          tableHtml += '<th style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">&nbsp;</th>';
+          tableHtml += '<th style="border: 1px solid #dadada; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">&nbsp;</th>';
         } else {
-          tableHtml += '<td style="border: 1px solid #ddd; padding: 12px;">&nbsp;</td>';
+          tableHtml += '<td style="border: 1px solid #dadada; padding: 12px;">&nbsp;</td>';
         }
       }
       tableHtml += '</tr>';
