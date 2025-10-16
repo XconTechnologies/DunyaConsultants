@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {
-  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon, Menu, ChevronLeft, ChevronRight
+  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon, Menu, ChevronLeft, ChevronRight, PanelRightClose, PanelRightOpen
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -370,8 +370,9 @@ export default function EventEditor() {
                 onClick={() => setRightSidebarCollapsed(!rightSidebarCollapsed)}
                 className="text-white hover:bg-white/20 backdrop-blur-sm transition-all"
                 data-testid="button-toggle-right-sidebar"
+                title={rightSidebarCollapsed ? "Show sidebar" : "Hide sidebar"}
               >
-                {rightSidebarCollapsed ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                {rightSidebarCollapsed ? <PanelRightOpen className="w-4 h-4" /> : <PanelRightClose className="w-4 h-4" />}
               </Button>
               <Button
                 variant="outline"
