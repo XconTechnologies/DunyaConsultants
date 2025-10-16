@@ -175,32 +175,36 @@ export default function FormManagement() {
   };
 
   if (!authChecked || !currentUser) {
-    return null;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading forms...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <AdminSidebar currentUser={currentUser} />
       
-      <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} />
-        
-        <div className="p-6">
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Form Management</h1>
-              <p className="text-gray-600 mt-2">
-                Create and manage custom forms with dynamic fields
-              </p>
-            </div>
-            
-            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-              <DialogTrigger asChild>
-                <Button data-testid="button-create-form">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Create Form
-                </Button>
-              </DialogTrigger>
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Form Management</h1>
+                <p className="text-blue-100 mt-1">Create and manage custom forms with dynamic fields</p>
+              </div>
+              <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="button-create-form">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create Form
+                  </Button>
+                </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Create New Form</DialogTitle>
@@ -280,48 +284,108 @@ export default function FormManagement() {
                 </div>
               </DialogContent>
             </Dialog>
+            </div>
+          </div>
+        </header>
+
+        {/* Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Total Forms</CardTitle>
+                <div className="p-2 bg-[#1D50C9] rounded-lg">
+                  <FileText className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-[#1D50C9]">{forms.length}</div>
+                <p className="text-xs text-gray-600 mt-1">Custom forms created</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Active Forms</CardTitle>
+                <div className="p-2 bg-green-500 rounded-lg">
+                  <Eye className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-green-600">
+                  {forms.filter(f => f.isActive).length}
+                </div>
+                <p className="text-xs text-gray-600 mt-1">Currently active forms</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Inactive Forms</CardTitle>
+                <div className="p-2 bg-gray-500 rounded-lg">
+                  <FileText className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-600">
+                  {forms.filter(f => !f.isActive).length}
+                </div>
+                <p className="text-xs text-gray-600 mt-1">Inactive forms</p>
+              </CardContent>
+            </Card>
           </div>
 
           {isLoading ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500">Loading forms...</p>
+            <div className="text-center py-16">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading forms...</p>
             </div>
           ) : forms.length === 0 ? (
-            <Card>
-              <CardContent className="py-12 text-center">
-                <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-16">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <FileText className="h-10 w-10 text-[#1D50C9]" />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">No forms yet</h3>
-                <p className="text-gray-600 mb-4">Create your first custom form to get started</p>
-                <Button onClick={() => setIsCreateDialogOpen(true)}>
+                <p className="text-gray-500 mb-6">Create your first custom form to get started</p>
+                <Button onClick={() => setIsCreateDialogOpen(true)} className="bg-[#1D50C9] hover:bg-[#1845B3]">
                   <Plus className="w-4 h-4 mr-2" />
                   Create Form
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ) : (
-            <div className="grid gap-4">
+            <div className="grid gap-6">
               {forms.map((form) => (
-                <Card key={form.id}>
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
+                <div key={form.id} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="p-6">
+                    <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <CardTitle>{form.title}</CardTitle>
-                          <Badge variant={form.isActive ? "default" : "secondary"}>
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-xl font-semibold text-gray-900">{form.title}</h3>
+                          <Badge 
+                            className={
+                              form.isActive
+                                ? "bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200" 
+                                : "bg-gradient-to-r from-gray-50 to-slate-50 text-gray-700 border-gray-200"
+                            }
+                          >
                             {form.isActive ? "Active" : "Inactive"}
                           </Badge>
                         </div>
                         {form.description && (
-                          <p className="text-sm text-gray-600 mt-1">{form.description}</p>
+                          <p className="text-sm text-gray-600 mb-3">{form.description}</p>
                         )}
-                        <div className="flex items-center gap-4 mt-2">
-                          <code className="text-xs bg-gray-100 px-2 py-1 rounded">
+                        <div className="flex items-center gap-3">
+                          <code className="text-xs bg-gradient-to-r from-gray-50 to-gray-100 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-700">
                             /api/forms/{form.slug}
                           </code>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => copyFormUrl(form.slug)}
+                            className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] transition-colors duration-200"
                             data-testid={`button-copy-url-${form.id}`}
                           >
                             <Copy className="w-3 h-3 mr-1" />
@@ -330,11 +394,12 @@ export default function FormManagement() {
                         </div>
                       </div>
                       
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2 justify-end">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setLocation(`/admin/form-builder/${form.id}`)}
+                          className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] hover:border-[#1D50C9] transition-colors duration-200"
                           data-testid={`button-edit-fields-${form.id}`}
                         >
                           <Edit className="w-4 h-4 mr-1" />
@@ -345,6 +410,7 @@ export default function FormManagement() {
                           variant="outline"
                           size="sm"
                           onClick={() => setLocation(`/admin/form-submissions/${form.id}`)}
+                          className="rounded-lg hover:bg-purple-50 hover:text-purple-600 hover:border-purple-600 transition-colors duration-200"
                           data-testid={`button-view-submissions-${form.id}`}
                         >
                           <Eye className="w-4 h-4 mr-1" />
@@ -358,6 +424,7 @@ export default function FormManagement() {
                             setSelectedFormSlug(form.slug);
                             setShowEmbedDialog(true);
                           }}
+                          className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                           data-testid={`button-embed-${form.id}`}
                         >
                           <Code className="w-4 h-4 mr-1" />
@@ -368,31 +435,32 @@ export default function FormManagement() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleUpdateForm(form.id, { isActive: !form.isActive })}
+                          className="rounded-lg hover:bg-orange-50 hover:text-orange-600 hover:border-orange-600 transition-colors duration-200"
                           data-testid={`button-toggle-active-${form.id}`}
                         >
                           {form.isActive ? "Deactivate" : "Activate"}
                         </Button>
                         
                         <Button
-                          variant="destructive"
+                          variant="ghost"
                           size="sm"
                           onClick={() => handleDeleteForm(form.id, form.title)}
+                          className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                           data-testid={`button-delete-${form.id}`}
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
                     </div>
-                  </CardHeader>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           )}
-        </div>
-      </div>
+        </main>
 
-      {/* Embed Code Dialog */}
-      <Dialog open={showEmbedDialog} onOpenChange={setShowEmbedDialog}>
+        {/* Embed Code Dialog */}
+        <Dialog open={showEmbedDialog} onOpenChange={setShowEmbedDialog}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Embed Form</DialogTitle>
@@ -440,7 +508,8 @@ await fetch('/api/forms/${selectedFormSlug}/submit', {
             </div>
           </div>
         </DialogContent>
-      </Dialog>
+        </Dialog>
+      </div>
     </div>
   );
 }
