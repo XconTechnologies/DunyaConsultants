@@ -820,21 +820,18 @@ export default function BlogEditor() {
     }
     tableHtml += '</table>\n<p><br></p>\n';
 
-    // Always switch to HTML mode for tables
+    // Stay in current mode, just append table to content
     if (editorMode === 'rich') {
-      const currentContent = watch('content') || '';
-      setHtmlContent(currentContent + tableHtml);
-      setValue('content', currentContent + tableHtml);
-      setEditorMode('html');
-      
-      setTimeout(() => {
-        const textarea = htmlTextareaRef.current;
-        if (textarea) {
-          const position = (currentContent + tableHtml).length;
-          textarea.selectionStart = textarea.selectionEnd = position;
-          textarea.focus();
-        }
-      }, 100);
+      const quill = editorRef.current?.getEditor();
+      if (quill) {
+        const currentContent = quill.root.innerHTML || '';
+        const newContent = currentContent + tableHtml;
+        setValue('content', newContent);
+        setHtmlContent(newContent);
+        
+        // Update quill with new content
+        quill.clipboard.dangerouslyPasteHTML(newContent);
+      }
     } else if (editorMode === 'html') {
       const textarea = htmlTextareaRef.current;
       if (textarea) {
@@ -851,11 +848,11 @@ export default function BlogEditor() {
         }, 0);
       }
     } else {
-      // In preview mode, switch to HTML
+      // In preview mode, add to content
       const currentContent = watch('content') || '';
-      setHtmlContent(currentContent + tableHtml);
-      setValue('content', currentContent + tableHtml);
-      setEditorMode('html');
+      const newContent = currentContent + tableHtml;
+      setHtmlContent(newContent);
+      setValue('content', newContent);
     }
 
     setShowTableDialog(false);
@@ -865,7 +862,7 @@ export default function BlogEditor() {
     
     toast({
       title: "Table Inserted",
-      description: editorMode === 'html' ? "Table added to HTML code" : "Switched to HTML mode - Edit your table, then use Preview to see it!",
+      description: "Table added! Switch to Preview mode to see it with borders, or HTML mode to edit it.",
       className: "bg-green-500 text-white",
     });
   };
