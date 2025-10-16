@@ -161,7 +161,7 @@ export default function AccreditationSection() {
                       cy="100"
                       r="85"
                       fill="white"
-                      stroke="#BFDBFE"
+                      stroke="#D4E2FF"
                       strokeWidth="15"
                       className="group-hover:drop-shadow-2xl transition-all duration-300"
                     />
