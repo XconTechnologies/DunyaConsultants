@@ -131,17 +131,70 @@ export default function AccreditationSection() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              {/* Circular Badge with Border */}
+              {/* Circular Badge with Border and Curved Text */}
               <div className="relative flex flex-col items-center">
-                {/* Circle Container with Border */}
-                <div className="relative w-40 h-40 rounded-full border-4 border-[#1D50C9] bg-white shadow-xl group-hover:shadow-2xl transition-all duration-300 flex items-center justify-center p-6">
-                  {accreditation.link ? (
-                    <a
-                      href={accreditation.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center"
-                    >
+                <div className="relative w-48 h-48">
+                  {/* SVG for circular border and curved text */}
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+                    <defs>
+                      {/* Define circular path for top text */}
+                      <path
+                        id={`circlePath-top-${index}`}
+                        d="M 100,20 A 75,75 0 0,1 175,100"
+                        fill="none"
+                      />
+                      {/* Define circular path for bottom text */}
+                      <path
+                        id={`circlePath-bottom-${index}`}
+                        d="M 175,100 A 75,75 0 0,1 100,180"
+                        fill="none"
+                      />
+                    </defs>
+                    
+                    {/* Outer circle border */}
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="white"
+                      stroke="#1D50C9"
+                      strokeWidth="5"
+                      className="group-hover:drop-shadow-2xl transition-all duration-300"
+                    />
+                    
+                    {/* Curved text on top */}
+                    <text className="text-[11px] font-bold uppercase tracking-wider fill-[#1D50C9]">
+                      <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
+                        {accreditation.category.split(' ')[0]}
+                      </textPath>
+                    </text>
+                    
+                    {/* Curved text on bottom */}
+                    <text className="text-[11px] font-bold uppercase tracking-wider fill-[#1D50C9]">
+                      <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
+                        {accreditation.category.split(' ')[1] || 'PARTNER'}
+                      </textPath>
+                    </text>
+                  </svg>
+                  
+                  {/* Logo in center */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                    {accreditation.link ? (
+                      <a
+                        href={accreditation.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center"
+                      >
+                        <img
+                          src={accreditation.logo}
+                          alt={`${accreditation.name} logo`}
+                          className="max-w-full max-h-full object-contain"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    ) : (
                       <img
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
@@ -149,23 +202,8 @@ export default function AccreditationSection() {
                         loading="lazy"
                         decoding="async"
                       />
-                    </a>
-                  ) : (
-                    <img
-                      src={accreditation.logo}
-                      alt={`${accreditation.name} logo`}
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                </div>
-                
-                {/* Text Label Below Circle */}
-                <div className="mt-4 text-center">
-                  <p className="text-sm font-bold text-[#1D50C9] uppercase tracking-wide">
-                    {accreditation.category}
-                  </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
