@@ -84,7 +84,7 @@ export default function AccreditationSection() {
             >
               {/* Circular Badge with Border and Curved Text */}
               <div className="relative flex flex-col items-center">
-                <div className="relative w-48 h-48 rounded-full bg-white transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
+                <div className="relative w-48 h-48 rounded-full bg-[#1D50C9] transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full transition-all duration-300" viewBox="0 0 200 200">
                     <defs>
@@ -113,15 +113,15 @@ export default function AccreditationSection() {
                       className="transition-all duration-300"
                     />
                     
-                    {/* Curved text on top - category in dark blue */}
-                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
+                    {/* Curved text on top - category in white */}
+                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.category}
                       </textPath>
                     </text>
                     
-                    {/* Curved text on bottom - logo name in dark blue */}
-                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
+                    {/* Curved text on bottom - logo name in white */}
+                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
                       <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.displayName}
                       </textPath>
