@@ -764,9 +764,19 @@ export default function EventEditor() {
                 </CardHeader>
                 <CardContent>
                   <Tabs value={imageTab} onValueChange={(value) => setImageTab(value as 'thumbnail' | 'banner')}>
-                    <TabsList className="grid w-full grid-cols-2 mb-4">
-                      <TabsTrigger value="thumbnail">Thumbnail *</TabsTrigger>
-                      <TabsTrigger value="banner">Banner</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-2 mb-4 bg-gray-100 p-1">
+                      <TabsTrigger 
+                        value="thumbnail"
+                        className="data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+                      >
+                        Thumbnail *
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="banner"
+                        className="data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+                      >
+                        Banner
+                      </TabsTrigger>
                     </TabsList>
                     
                     <TabsContent value="thumbnail" className="space-y-3">
