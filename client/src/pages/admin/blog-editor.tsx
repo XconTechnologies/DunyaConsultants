@@ -807,25 +807,24 @@ export default function BlogEditor() {
     const rows = parseInt(tableRows) || 3;
     const cols = parseInt(tableCols) || 3;
 
-    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0;">';
+    // Create table using div structure with CSS grid (Quill-compatible)
+    let tableHtml = `<div style="display: grid; grid-template-columns: repeat(${cols}, 1fr); border: 1px solid #ddd; margin: 20px 0; width: 100%;">`;
     
     for (let i = 0; i < rows; i++) {
-      tableHtml += '<tr>';
       for (let j = 0; j < cols; j++) {
         if (i === 0 && tableHasHeader) {
-          tableHtml += '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f3f4f6; font-weight: 600;">Header</th>';
+          tableHtml += `<div style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; min-height: 40px;">&nbsp;</div>`;
         } else {
-          tableHtml += '<td style="border: 1px solid #ddd; padding: 8px;">Cell</td>';
+          tableHtml += `<div style="border: 1px solid #ddd; padding: 12px; min-height: 40px;">&nbsp;</div>`;
         }
       }
-      tableHtml += '</tr>';
     }
-    tableHtml += '</table><p><br></p>';
+    tableHtml += '</div><p><br></p>';
 
     const range = quill.getSelection(true);
     if (range) {
       quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
-      quill.setSelection(range.index + tableHtml.length);
+      quill.setSelection(range.index + 1);
     }
 
     setShowTableDialog(false);
