@@ -321,21 +321,22 @@ export default function PostAssignments() {
       <MobileNav currentUser={currentUser} />
       
       {/* Main Content */}
-      <div className="ml-64 p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Post Assignments</h1>
-          <p className="text-gray-600 mt-1">Manage which users can access specific posts</p>
-        </div>
-        
-        <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg">
-              <LinkIcon className="w-4 h-4 mr-2" />
-              Assign Post
-            </Button>
-          </DialogTrigger>
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Post Assignments</h1>
+                <p className="text-blue-100 mt-1">Manage which users can access specific posts</p>
+              </div>
+              <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <LinkIcon className="w-4 h-4 mr-2" />
+                    Assign Post
+                  </Button>
+                </DialogTrigger>
           <DialogContent className="sm:max-w-2xl">
             <DialogHeader>
               <DialogTitle>Assign Posts to User</DialogTitle>
@@ -415,10 +416,14 @@ export default function PostAssignments() {
             </div>
           </DialogContent>
         </Dialog>
-      </div>
+            </div>
+          </div>
+        </header>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-700">Total Assignments</CardTitle>
@@ -472,90 +477,109 @@ export default function PostAssignments() {
       </div>
 
       {/* Assignments Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <LinkIcon className="w-5 h-5 mr-2" />
+      <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div className="border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white px-6 py-4">
+          <h2 className="text-xl font-semibold text-gray-900 flex items-center">
+            <LinkIcon className="w-5 h-5 mr-2 text-[#1D50C9]" />
             Post Assignments ({assignments.length})
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">Manage user access to specific posts</p>
+        </div>
+        
+        <div className="p-6">
           {isLoading ? (
-            <div className="flex items-center justify-center p-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1D50C9]"></div>
+            <div className="text-center py-16">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading assignments...</p>
             </div>
           ) : assignments.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <LinkIcon className="w-12 h-12 mx-auto text-gray-300 mb-4" />
-              <p className="text-lg font-medium">No post assignments found</p>
-              <p className="text-sm">Assign posts to users to get started</p>
+            <div className="text-center py-16">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <LinkIcon className="h-10 w-10 text-[#1D50C9]" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No post assignments yet</h3>
+              <p className="text-gray-500 mb-6">Assign posts to users to get started</p>
             </div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>User</TableHead>
-                  <TableHead>Post</TableHead>
-                  <TableHead>Post Status</TableHead>
-                  <TableHead>Assigned Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {assignments.map((assignment) => (
-                  <TableRow key={`${assignment.userId}-${assignment.postId}`}>
-                    <TableCell>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-[#1D50C9]/10 rounded-full flex items-center justify-center">
-                          <span className="text-sm font-medium text-[#1D50C9]">
-                            {assignment.user.username.charAt(0).toUpperCase()}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="font-medium">{assignment.user.username}</div>
-                          <div className="text-sm text-gray-500">{assignment.user.email}</div>
-                        </div>
-                        {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div>
-                        <div className="font-medium max-w-[300px] truncate">
-                          {assignment.post.title}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          ID: {assignment.post.id}
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {getStatusBadge(assignment.post.isPublished)}
-                    </TableCell>
-                    <TableCell>
-                      <div className="text-sm">
-                        {new Date(assignment.createdAt).toLocaleDateString()}
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {isAdmin(currentUser) && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleDeleteAssignment(assignment.userId, assignment.postId)}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                          disabled={deleteAssignmentMutation.isPending}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      )}
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+                    <TableHead className="font-semibold text-gray-700">User</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Post</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Post Status</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Assigned Date</TableHead>
+                    <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {assignments.map((assignment) => (
+                    <TableRow 
+                      key={`${assignment.userId}-${assignment.postId}`}
+                      className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200"
+                    >
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
+                            <span className="text-sm font-semibold text-[#1D50C9]">
+                              {assignment.user.username.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                          <div>
+                            <div className="font-medium text-gray-900">{assignment.user.username}</div>
+                            <div className="text-sm text-gray-500">{assignment.user.email}</div>
+                          </div>
+                          {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div>
+                          <div className="font-medium text-gray-900 max-w-[300px] truncate">
+                            {assignment.post.title}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            ID: {assignment.post.id}
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge 
+                          className={
+                            assignment.post.isPublished
+                              ? "bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200" 
+                              : "bg-gradient-to-r from-gray-50 to-slate-50 text-gray-700 border-gray-200"
+                          }
+                        >
+                          {assignment.post.isPublished ? "Published" : "Draft"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <div className="text-sm text-gray-700">
+                          {new Date(assignment.createdAt).toLocaleDateString()}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {isAdmin(currentUser) && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteAssignment(assignment.userId, assignment.postId)}
+                            className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
+                            disabled={deleteAssignmentMutation.isPending}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+        </main>
       </div>
     </div>
   );
