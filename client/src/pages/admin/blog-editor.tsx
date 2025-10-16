@@ -801,36 +801,60 @@ export default function BlogEditor() {
   };
 
   const handleInsertTable = () => {
-    const quill = editorRef.current?.getEditor();
-    if (!quill) return;
-
     const rows = parseInt(tableRows) || 3;
     const cols = parseInt(tableCols) || 3;
 
-    // Create table using div structure with CSS grid (Quill-compatible)
-    let tableHtml = `<div style="display: grid; grid-template-columns: repeat(${cols}, 1fr); border: 1px solid #ddd; margin: 20px 0; width: 100%;">`;
+    // Build proper HTML table
+    let tableHtml = '\n<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #ddd;">\n';
     
     for (let i = 0; i < rows; i++) {
+      tableHtml += '  <tr>\n';
       for (let j = 0; j < cols; j++) {
         if (i === 0 && tableHasHeader) {
-          tableHtml += `<div style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; min-height: 40px;">&nbsp;</div>`;
+          tableHtml += '    <th style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;"></th>\n';
         } else {
-          tableHtml += `<div style="border: 1px solid #ddd; padding: 12px; min-height: 40px;">&nbsp;</div>`;
+          tableHtml += '    <td style="border: 1px solid #ddd; padding: 12px;"></td>\n';
         }
       }
+      tableHtml += '  </tr>\n';
     }
-    tableHtml += '</div><p><br></p>';
+    tableHtml += '</table>\n<p><br></p>\n';
 
-    const range = quill.getSelection(true);
-    if (range) {
-      quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
-      quill.setSelection(range.index + 1);
+    // Switch to HTML mode if in rich text mode
+    if (editorMode === 'rich') {
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + tableHtml);
+      setValue('content', currentContent + tableHtml);
+      setEditorMode('html');
+    } else {
+      // Already in HTML mode, insert at cursor position
+      const textarea = htmlTextareaRef.current;
+      if (textarea) {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const currentContent = htmlContent;
+        const newContent = currentContent.substring(0, start) + tableHtml + currentContent.substring(end);
+        setHtmlContent(newContent);
+        setValue('content', newContent);
+        
+        // Set cursor position after the inserted table
+        setTimeout(() => {
+          textarea.selectionStart = textarea.selectionEnd = start + tableHtml.length;
+          textarea.focus();
+        }, 0);
+      }
     }
 
     setShowTableDialog(false);
     setTableRows('3');
     setTableCols('3');
     setTableHasHeader(true);
+    
+    toast({
+      title: "Table Inserted",
+      description: editorMode === 'rich' ? "Switched to HTML mode to edit your table" : "Table added to your content",
+      className: "bg-green-500 text-white",
+    });
   };
 
   // Handle FAQ insertion
@@ -839,37 +863,58 @@ export default function BlogEditor() {
   };
 
   const handleInsertFaq = () => {
-    const quill = editorRef.current?.getEditor();
-    if (!quill) return;
-
-    let faqHtml = '<div class="faq-container" style="margin: 20px 0;">';
+    let faqHtml = '\n<div class="faq-container" style="margin: 20px 0;">\n';
     
     faqItems.forEach((item, index) => {
       if (item.question.trim() || item.answer.trim()) {
-        faqHtml += `
-          <details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
-            <summary style="cursor: pointer; font-weight: 600; font-size: 1.1em; color: #1D50C9; list-style: none; display: flex; align-items: center;">
-              <span style="margin-right: 8px;">▶</span>
-              ${item.question || `Question ${index + 1}`}
-            </summary>
-            <div style="margin-top: 12px; padding-left: 24px; color: #4b5563;">
-              ${item.answer || 'Answer here...'}
-            </div>
-          </details>
-        `;
+        faqHtml += `  <details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
+    <summary style="cursor: pointer; font-weight: 600; font-size: 1.1em; color: #1D50C9; list-style: none; display: flex; align-items: center;">
+      <span style="margin-right: 8px;">▶</span>
+      ${item.question || `Question ${index + 1}`}
+    </summary>
+    <div style="margin-top: 12px; padding-left: 24px; color: #4b5563;">
+      ${item.answer || 'Answer here...'}
+    </div>
+  </details>
+`;
       }
     });
     
-    faqHtml += '</div><p><br></p>';
+    faqHtml += '</div>\n<p><br></p>\n';
 
-    const range = quill.getSelection(true);
-    if (range) {
-      quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
-      quill.setSelection(range.index + faqHtml.length);
+    // Switch to HTML mode if in rich text mode
+    if (editorMode === 'rich') {
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + faqHtml);
+      setValue('content', currentContent + faqHtml);
+      setEditorMode('html');
+    } else {
+      // Already in HTML mode, insert at cursor position
+      const textarea = htmlTextareaRef.current;
+      if (textarea) {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const currentContent = htmlContent;
+        const newContent = currentContent.substring(0, start) + faqHtml + currentContent.substring(end);
+        setHtmlContent(newContent);
+        setValue('content', newContent);
+        
+        // Set cursor position after the inserted FAQ
+        setTimeout(() => {
+          textarea.selectionStart = textarea.selectionEnd = start + faqHtml.length;
+          textarea.focus();
+        }, 0);
+      }
     }
 
     setShowFaqDialog(false);
     setFaqItems([{ question: '', answer: '' }]);
+    
+    toast({
+      title: "FAQ Inserted",
+      description: editorMode === 'rich' ? "Switched to HTML mode to edit your FAQ" : "FAQ added to your content",
+      className: "bg-green-500 text-white",
+    });
   };
 
   const addFaqItem = () => {
