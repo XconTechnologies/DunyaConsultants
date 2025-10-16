@@ -11,22 +11,26 @@ import icefAgencyLogo from "@assets/ICEF_Agency[1]_1758700143132.png";
 const accreditationBadges = [
   {
     name: "British Council",
+    displayName: "British Council",
     logo: britishCouncilLogo,
     category: "Education Partner"
   },
   {
     name: "ICEF Agency",
+    displayName: "ICEF Agency",
     logo: icefAgencyLogo,
     link: "https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1",
     category: "Certified Agency"
   },
   {
     name: "Duolingo",
+    displayName: "Duolingo",
     logo: duolingoLogo,
     category: "Test Partner"
   },
   {
     name: "LanguageCert",
+    displayName: "Language Cert",
     logo: languageCertLogo,
     category: "Language Partner"
   }
@@ -137,10 +141,16 @@ export default function AccreditationSection() {
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
                     <defs>
-                      {/* Define circular path for text - positioned on the border */}
+                      {/* Define circular path for top text */}
                       <path
                         id={`circlePath-top-${index}`}
                         d="M 20,100 A 80,80 0 0,1 180,100"
+                        fill="none"
+                      />
+                      {/* Define circular path for bottom text */}
+                      <path
+                        id={`circlePath-bottom-${index}`}
+                        d="M 180,100 A 80,80 0 0,1 20,100"
                         fill="none"
                       />
                     </defs>
@@ -156,10 +166,17 @@ export default function AccreditationSection() {
                       className="group-hover:drop-shadow-2xl transition-all duration-300"
                     />
                     
-                    {/* Curved text positioned on top of the border */}
+                    {/* Curved text on top - category */}
                     <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.category}
+                      </textPath>
+                    </text>
+                    
+                    {/* Curved text on bottom - logo name */}
+                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
+                      <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
+                        {accreditation.displayName}
                       </textPath>
                     </text>
                   </svg>
