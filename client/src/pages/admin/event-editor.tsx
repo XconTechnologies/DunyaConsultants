@@ -107,6 +107,7 @@ export default function EventEditor() {
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [rightSidebarCollapsed, setRightSidebarCollapsed] = useState(false);
   const [imageTab, setImageTab] = useState<'thumbnail' | 'banner'>('thumbnail');
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -364,6 +365,15 @@ export default function EventEditor() {
 
             <div className="flex items-center gap-3">
               <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setRightSidebarCollapsed(!rightSidebarCollapsed)}
+                className="text-white hover:bg-white/20 backdrop-blur-sm transition-all"
+                data-testid="button-toggle-right-sidebar"
+              >
+                {rightSidebarCollapsed ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              </Button>
+              <Button
                 variant="outline"
                 onClick={() => setShowPreview(!showPreview)}
                 className="bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm transition-all"
@@ -395,9 +405,9 @@ export default function EventEditor() {
         </div>
 
         <div className="max-w-7xl mx-auto p-8">
-          <div className="grid grid-cols-3 gap-8">
+          <div className={`grid gap-8 transition-all duration-300 ${rightSidebarCollapsed ? 'grid-cols-1' : 'grid-cols-3'}`}>
             {/* Main Content Area */}
-            <div className="col-span-2 space-y-6">
+            <div className={`space-y-6 transition-all duration-300 ${rightSidebarCollapsed ? 'col-span-1' : 'col-span-2'}`}>
               {/* Title */}
               <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
@@ -563,7 +573,8 @@ export default function EventEditor() {
             </div>
 
             {/* Sidebar */}
-            <div className="col-span-1 space-y-6">
+            {!rightSidebarCollapsed && (
+              <div className="col-span-1 space-y-6">
               {/* Event Details */}
               <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
@@ -885,6 +896,7 @@ export default function EventEditor() {
                 </CardContent>
               </Card>
             </div>
+            )}
           </div>
         </div>
       </div>
