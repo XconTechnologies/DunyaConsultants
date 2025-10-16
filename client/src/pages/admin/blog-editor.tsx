@@ -219,7 +219,7 @@ export default function BlogEditor() {
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
   const [showEditRequestDialog, setShowEditRequestDialog] = useState(false);
   const [incomingEditRequest, setIncomingEditRequest] = useState<any>(null);
-  const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
+  const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -804,29 +804,38 @@ export default function BlogEditor() {
     const rows = parseInt(tableRows) || 3;
     const cols = parseInt(tableCols) || 3;
 
-    // Create table-like structure using divs (Quill-compatible)
-    let tableHtml = `<div style="width: 100%; margin: 20px 0; border: 1px solid #dadada; display: inline-block;">`;
+    // Create proper HTML table
+    let tableHtml = '\n<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #dadada;">\n';
     
     for (let i = 0; i < rows; i++) {
-      tableHtml += `<div style="display: flex; width: 100%;">`;
+      tableHtml += '  <tr>\n';
       for (let j = 0; j < cols; j++) {
-        const isHeader = i === 0 && tableHasHeader;
-        tableHtml += `<div style="flex: 1; border: 1px solid #dadada; padding: 12px; ${isHeader ? 'background-color: #f3f4f6; font-weight: 600;' : ''}"><br></div>`;
-      }
-      tableHtml += `</div>`;
-    }
-    tableHtml += `</div><p><br></p>`;
-
-    if (editorMode === 'rich') {
-      const quill = editorRef.current?.getEditor();
-      if (quill) {
-        const range = quill.getSelection(true);
-        if (range) {
-          quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
-          quill.setSelection(range.index + tableHtml.length);
+        if (i === 0 && tableHasHeader) {
+          tableHtml += '    <th style="border: 1px solid #dadada; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">Header</th>\n';
+        } else {
+          tableHtml += '    <td style="border: 1px solid #dadada; padding: 12px;">Cell</td>\n';
         }
       }
-    } else {
+      tableHtml += '  </tr>\n';
+    }
+    tableHtml += '</table>\n<p><br></p>\n';
+
+    // Always switch to HTML mode for tables
+    if (editorMode === 'rich') {
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + tableHtml);
+      setValue('content', currentContent + tableHtml);
+      setEditorMode('html');
+      
+      setTimeout(() => {
+        const textarea = htmlTextareaRef.current;
+        if (textarea) {
+          const position = (currentContent + tableHtml).length;
+          textarea.selectionStart = textarea.selectionEnd = position;
+          textarea.focus();
+        }
+      }, 100);
+    } else if (editorMode === 'html') {
       const textarea = htmlTextareaRef.current;
       if (textarea) {
         const start = textarea.selectionStart;
@@ -841,6 +850,12 @@ export default function BlogEditor() {
           textarea.focus();
         }, 0);
       }
+    } else {
+      // In preview mode, switch to HTML
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + tableHtml);
+      setValue('content', currentContent + tableHtml);
+      setEditorMode('html');
     }
 
     setShowTableDialog(false);
@@ -850,7 +865,7 @@ export default function BlogEditor() {
     
     toast({
       title: "Table Inserted",
-      description: "Visual table has been added to your content",
+      description: editorMode === 'html' ? "Table added to HTML code" : "Switched to HTML mode - Edit your table, then use Preview to see it!",
       className: "bg-green-500 text-white",
     });
   };
@@ -1297,6 +1312,19 @@ export default function BlogEditor() {
                       >
                         HTML
                       </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => handleModeSwitch('preview')}
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'preview' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                        data-testid="button-preview-mode"
+                      >
+                        Preview
+                      </Button>
                     </div>
                     <Button
                       type="button"
@@ -1377,7 +1405,7 @@ export default function BlogEditor() {
                         </div>
                       )}
                     </div>
-                  ) : (
+                  ) : editorMode === 'html' ? (
                     // HTML Editor Mode
                     <div className="space-y-3">
                       <div className="flex items-center justify-between mb-2">
@@ -1434,6 +1462,20 @@ export default function BlogEditor() {
                         />
                       </div>
                     </div>
+                  ) : (
+                    // Preview Mode
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Eye className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm font-medium text-gray-700">Preview - How it will look when published</span>
+                      </div>
+                      <div className="border border-gray-300 rounded-md p-6 bg-white overflow-auto" style={{ maxHeight: '600px' }}>
+                        <div 
+                          className="prose prose-sm max-w-none"
+                          dangerouslySetInnerHTML={{ __html: watch('content') || '<p class="text-gray-400">No content to preview</p>' }}
+                        />
+                      </div>
+                    </div>
                   )}
                   
                   {errors.content && (
@@ -1443,8 +1485,10 @@ export default function BlogEditor() {
                   <div className="mt-2 text-sm text-gray-500">
                     {editorMode === 'rich' ? (
                       <>✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!</>
-                    ) : (
+                    ) : editorMode === 'html' ? (
                       <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with inline/internal CSS and JavaScript. Your styles and scripts will work when the post is published.</>
+                    ) : (
+                      <>👁️ <strong>Preview Mode:</strong> See exactly how your content will look when published, including tables, FAQs, and custom HTML.</>
                     )}
                   </div>
                 </div>
