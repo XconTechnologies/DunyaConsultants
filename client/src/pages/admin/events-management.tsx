@@ -341,7 +341,14 @@ export default function EventsManagement() {
   };
 
   if (!authChecked) {
-    return <div className="flex items-center justify-center h-screen">Loading...</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading events...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!adminUser) {
@@ -350,111 +357,163 @@ export default function EventsManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <AdminSidebar currentUser={adminUser} />
       
       {/* Mobile Navigation */}
       <MobileNav currentUser={adminUser} />
       
-      <div className="ml-64 p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Events Management</h1>
-              <p className="text-gray-600 mt-2">Create and manage events & expos</p>
+      {/* Main Content */}
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Events Management</h1>
+                <p className="text-blue-100 mt-1">Create and manage events & expos</p>
+              </div>
+              <Button 
+                onClick={() => setLocation("/admin/event-editor")} 
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all duration-300"
+                data-testid="button-create-event"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Create Event
+              </Button>
             </div>
-            <Button onClick={() => setLocation("/admin/event-editor")} data-testid="button-create-event">
-              <Plus className="w-4 h-4 mr-2" />
-              Create Event
-            </Button>
           </div>
+        </header>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>All Events</CardTitle>
-            </CardHeader>
-            <CardContent>
+        {/* Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white px-6 py-4">
+              <h2 className="text-xl font-semibold text-gray-900">All Events</h2>
+              <p className="text-sm text-gray-500 mt-1">Manage your events and expos</p>
+            </div>
+            
+            <div className="p-6">
               {isLoading ? (
-                <div className="text-center py-8 text-gray-500">Loading events...</div>
+                <div className="text-center py-16">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+                  <p className="text-gray-600">Loading events...</p>
+                </div>
               ) : events.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  No events found. Create your first event!
+                <div className="text-center py-16">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Calendar className="h-10 w-10 text-[#1D50C9]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No events yet</h3>
+                  <p className="text-gray-500 mb-6">Create your first event to get started</p>
+                  <Button 
+                    onClick={() => setLocation("/admin/event-editor")} 
+                    className="bg-[#1D50C9] hover:bg-[#1845B3]"
+                    data-testid="button-create-first-event"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create Your First Event
+                  </Button>
                 </div>
               ) : (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Title</TableHead>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Location</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {events.map((event) => (
-                      <TableRow key={event.id}>
-                        <TableCell className="font-medium">{event.title}</TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-gray-500" />
-                            {format(new Date(event.eventDate), "MMM d, yyyy")}
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-gray-500" />
-                            {event.location || "N/A"}
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant={event.eventType === "Open Day" ? "default" : "secondary"}>
-                            {event.eventType}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => toggleActiveMutation.mutate({ id: event.id, isActive: !event.isActive })}
-                            data-testid={`button-toggle-status-${event.id}`}
-                          >
-                            {event.isActive ? (
-                              <Eye className="w-4 h-4 text-green-600" />
-                            ) : (
-                              <EyeOff className="w-4 h-4 text-gray-400" />
-                            )}
-                          </Button>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setLocation(`/admin/event-editor/${event.id}`)}
-                              data-testid={`button-edit-${event.id}`}
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDelete(event.id)}
-                              data-testid={`button-delete-${event.id}`}
-                            >
-                              <Trash2 className="w-4 h-4 text-red-600" />
-                            </Button>
-                          </div>
-                        </TableCell>
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+                        <TableHead className="font-semibold text-gray-700">Title</TableHead>
+                        <TableHead className="font-semibold text-gray-700">Date</TableHead>
+                        <TableHead className="font-semibold text-gray-700">Location</TableHead>
+                        <TableHead className="font-semibold text-gray-700">Type</TableHead>
+                        <TableHead className="font-semibold text-gray-700">Status</TableHead>
+                        <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {events.map((event) => (
+                        <TableRow 
+                          key={event.id} 
+                          className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200"
+                        >
+                          <TableCell className="font-medium text-gray-900">{event.title}</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2 text-gray-700">
+                              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+                                <Calendar className="w-4 h-4 text-[#1D50C9]" />
+                              </div>
+                              {format(new Date(event.eventDate), "MMM d, yyyy")}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2 text-gray-700">
+                              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+                                <MapPin className="w-4 h-4 text-[#1D50C9]" />
+                              </div>
+                              {event.location || "N/A"}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge 
+                              className={
+                                event.eventType === "Open Day" 
+                                  ? "bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200" 
+                                  : event.eventType === "Expo"
+                                  ? "bg-gradient-to-r from-purple-50 to-violet-50 text-purple-700 border-purple-200"
+                                  : "bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border-blue-200"
+                              }
+                            >
+                              {event.eventType}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => toggleActiveMutation.mutate({ id: event.id, isActive: !event.isActive })}
+                              className={`rounded-lg transition-all duration-300 ${
+                                event.isActive 
+                                  ? "bg-green-50 hover:bg-green-100 text-green-700" 
+                                  : "bg-gray-50 hover:bg-gray-100 text-gray-400"
+                              }`}
+                              data-testid={`button-toggle-status-${event.id}`}
+                            >
+                              {event.isActive ? (
+                                <Eye className="w-4 h-4" />
+                              ) : (
+                                <EyeOff className="w-4 h-4" />
+                              )}
+                            </Button>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex justify-end gap-2">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setLocation(`/admin/event-editor/${event.id}`)}
+                                className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] transition-colors duration-200"
+                                data-testid={`button-edit-${event.id}`}
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleDelete(event.id)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
+                                data-testid={`button-delete-${event.id}`}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               )}
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </div>
+        </main>
       </div>
 
       {/* Create Event Dialog */}
