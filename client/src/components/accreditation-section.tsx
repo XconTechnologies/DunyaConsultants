@@ -131,51 +131,39 @@ export default function AccreditationSection() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              {/* Shield/Badge Shape with white background and blue arrow bottom */}
-              <div className="relative" style={{ width: "200px", height: "220px" }}>
-                {/* White hexagon with blue bottom arrow */}
-                <div className="absolute inset-0 bg-white shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
+              {/* Shield/Badge Shape */}
+              <div className="relative" style={{ width: "180px", height: "200px" }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
                   style={{
                     clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
                   }}
                 >
-                  <div className="w-full h-full flex flex-col items-center justify-center p-8 relative">
-                    {/* Top section with logo */}
-                    <div className="flex-1 flex items-center justify-center">
-                      {accreditation.link ? (
-                        <a
-                          href={accreditation.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center"
-                        >
-                          <img
-                            src={accreditation.logo}
-                            alt={`${accreditation.name} logo`}
-                            className="max-w-[120px] max-h-[90px] object-contain"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </a>
-                      ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center p-8">
+                    {accreditation.link ? (
+                      <a
+                        href={accreditation.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center mb-4"
+                      >
                         <img
                           src={accreditation.logo}
                           alt={`${accreditation.name} logo`}
-                          className="max-w-[120px] max-h-[90px] object-contain"
+                          className="max-w-[100px] max-h-[80px] object-contain"
                           loading="lazy"
                           decoding="async"
                         />
-                      )}
-                    </div>
-                    
-                    {/* Bottom section with blue background and text */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] py-3 px-4"
-                      style={{
-                        clipPath: "polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%)"
-                      }}
-                    >
-                      <p className="text-xs font-bold text-white text-center uppercase tracking-wide pt-1">{accreditation.category}</p>
-                    </div>
+                      </a>
+                    ) : (
+                      <img
+                        src={accreditation.logo}
+                        alt={`${accreditation.name} logo`}
+                        className="max-w-[100px] max-h-[80px] object-contain mb-4"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                    <p className="text-xs font-bold text-white text-center uppercase tracking-wide">{accreditation.category}</p>
                   </div>
                 </div>
               </div>
