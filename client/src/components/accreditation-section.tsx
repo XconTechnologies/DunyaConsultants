@@ -84,7 +84,7 @@ export default function AccreditationSection() {
             >
               {/* Circular Badge with Border and Curved Text */}
               <div className="relative flex flex-col items-center">
-                <div className="relative w-48 h-48">
+                <div className="relative w-48 h-48 rounded-full transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full transition-all duration-300" viewBox="0 0 200 200">
                     <defs>
@@ -100,10 +100,6 @@ export default function AccreditationSection() {
                         d="M 180,100 A 80,80 0 0,1 20,100"
                         fill="none"
                       />
-                      {/* Blue shadow filter for hover */}
-                      <filter id={`blueshadow-${index}`} x="-50%" y="-50%" width="200%" height="200%">
-                        <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#1D50C9" floodOpacity="0.4"/>
-                      </filter>
                     </defs>
                     
                     {/* Outer circle border - 15px thick light blue */}
@@ -115,19 +111,6 @@ export default function AccreditationSection() {
                       stroke="#D4E2FF"
                       strokeWidth="15"
                       className="transition-all duration-300"
-                    />
-                    {/* Circle shadow overlay that appears on hover */}
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="85"
-                      fill="none"
-                      stroke="transparent"
-                      strokeWidth="15"
-                      className="transition-all duration-300 opacity-0 group-hover:opacity-100"
-                      style={{
-                        filter: `url(#blueshadow-${index})`
-                      }}
                     />
                     
                     {/* Curved text on top - category in dark blue */}
