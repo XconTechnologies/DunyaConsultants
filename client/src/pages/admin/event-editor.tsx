@@ -15,11 +15,12 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {
-  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon
+  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon, Menu, ChevronLeft, ChevronRight
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -105,6 +106,8 @@ export default function EventEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [imageTab, setImageTab] = useState<'thumbnail' | 'banner'>('thumbnail');
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const editorRef = useRef<any>(null);
@@ -327,12 +330,23 @@ export default function EventEditor() {
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      <AdminSidebar currentUser={adminUser} />
+      <div className={`transition-all duration-300 ${sidebarCollapsed ? 'w-0' : 'w-64'}`}>
+        {!sidebarCollapsed && <AdminSidebar currentUser={adminUser} />}
+      </div>
 
-      <div className="ml-64 flex-1 overflow-auto">
+      <div className={`flex-1 overflow-auto transition-all duration-300 ${sidebarCollapsed ? 'ml-0' : 'ml-0'}`}>
         <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg px-8 py-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                className="text-white hover:bg-white/20 backdrop-blur-sm transition-all"
+                data-testid="button-toggle-sidebar"
+              >
+                {sidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+              </Button>
               <Button
                 variant="ghost"
                 size="sm"
@@ -546,21 +560,6 @@ export default function EventEditor() {
                 </CardContent>
               </Card>
 
-              {/* Content Blocks */}
-              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
-                <CardHeader>
-                  <CardTitle className="text-gray-800">Content Blocks</CardTitle>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Add rich content blocks to enhance your event description
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <ContentBlocks
-                    blocks={contentBlocks}
-                    onChange={setContentBlocks}
-                  />
-                </CardContent>
-              </Card>
             </div>
 
             {/* Sidebar */}
@@ -758,118 +757,121 @@ export default function EventEditor() {
                 </CardContent>
               </Card>
 
-              {/* Thumbnail Image */}
+              {/* Event Images */}
               <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle className="text-gray-800">Thumbnail Image *</CardTitle>
+                  <CardTitle className="text-gray-800">Event Images</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  {form.watch("image") ? (
-                    <div className="space-y-3">
-                      <div className="relative">
-                        <img
-                          src={form.watch("image")}
-                          alt="Thumbnail"
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
-                        <Button
-                          variant="destructive"
-                          size="icon"
-                          className="absolute top-2 right-2"
-                          onClick={() => form.setValue("image", "")}
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      </div>
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={() => {
-                          setMediaTarget('thumbnail');
-                          setShowMediaModal(true);
-                        }}
-                        data-testid="button-change-thumbnail"
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Change Thumbnail
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
-                      <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                      <p className="text-sm text-gray-500 mb-3">No thumbnail selected</p>
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          setMediaTarget('thumbnail');
-                          setShowMediaModal(true);
-                        }}
-                        data-testid="button-select-thumbnail"
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Select Thumbnail
-                      </Button>
-                    </div>
-                  )}
-                  {form.formState.errors.image && (
-                    <p className="text-sm text-red-600">{form.formState.errors.image.message}</p>
-                  )}
-                </CardContent>
-              </Card>
+                <CardContent>
+                  <Tabs value={imageTab} onValueChange={(value) => setImageTab(value as 'thumbnail' | 'banner')}>
+                    <TabsList className="grid w-full grid-cols-2 mb-4">
+                      <TabsTrigger value="thumbnail">Thumbnail *</TabsTrigger>
+                      <TabsTrigger value="banner">Banner</TabsTrigger>
+                    </TabsList>
+                    
+                    <TabsContent value="thumbnail" className="space-y-3">
+                      {form.watch("image") ? (
+                        <div className="space-y-3">
+                          <div className="relative">
+                            <img
+                              src={form.watch("image")}
+                              alt="Thumbnail"
+                              className="w-full h-48 object-cover rounded-lg"
+                            />
+                            <Button
+                              variant="destructive"
+                              size="icon"
+                              className="absolute top-2 right-2"
+                              onClick={() => form.setValue("image", "")}
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                            onClick={() => {
+                              setMediaTarget('thumbnail');
+                              setShowMediaModal(true);
+                            }}
+                            data-testid="button-change-thumbnail"
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Change Thumbnail
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
+                          <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
+                          <p className="text-sm text-gray-500 mb-3">No thumbnail selected</p>
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              setMediaTarget('thumbnail');
+                              setShowMediaModal(true);
+                            }}
+                            data-testid="button-select-thumbnail"
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Select Thumbnail
+                          </Button>
+                        </div>
+                      )}
+                      {form.formState.errors.image && (
+                        <p className="text-sm text-red-600">{form.formState.errors.image.message}</p>
+                      )}
+                    </TabsContent>
 
-              {/* Banner Image */}
-              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
-                <CardHeader>
-                  <CardTitle className="text-gray-800">Banner Image (Optional)</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {form.watch("detailImage") ? (
-                    <div className="space-y-3">
-                      <div className="relative">
-                        <img
-                          src={form.watch("detailImage")}
-                          alt="Banner"
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
-                        <Button
-                          variant="destructive"
-                          size="icon"
-                          className="absolute top-2 right-2"
-                          onClick={() => form.setValue("detailImage", "")}
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      </div>
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={() => {
-                          setMediaTarget('banner');
-                          setShowMediaModal(true);
-                        }}
-                        data-testid="button-change-banner"
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Change Banner
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
-                      <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
-                      <p className="text-sm text-gray-500 mb-3">No banner selected</p>
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          setMediaTarget('banner');
-                          setShowMediaModal(true);
-                        }}
-                        data-testid="button-select-banner"
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Select Banner
-                      </Button>
-                    </div>
-                  )}
+                    <TabsContent value="banner" className="space-y-3">
+                      {form.watch("detailImage") ? (
+                        <div className="space-y-3">
+                          <div className="relative">
+                            <img
+                              src={form.watch("detailImage")}
+                              alt="Banner"
+                              className="w-full h-48 object-cover rounded-lg"
+                            />
+                            <Button
+                              variant="destructive"
+                              size="icon"
+                              className="absolute top-2 right-2"
+                              onClick={() => form.setValue("detailImage", "")}
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                            onClick={() => {
+                              setMediaTarget('banner');
+                              setShowMediaModal(true);
+                            }}
+                            data-testid="button-change-banner"
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Change Banner
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
+                          <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
+                          <p className="text-sm text-gray-500 mb-3">No banner selected</p>
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              setMediaTarget('banner');
+                              setShowMediaModal(true);
+                            }}
+                            data-testid="button-select-banner"
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Select Banner
+                          </Button>
+                        </div>
+                      )}
+                    </TabsContent>
+                  </Tabs>
                 </CardContent>
               </Card>
             </div>
