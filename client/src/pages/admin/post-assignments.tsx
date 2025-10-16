@@ -42,7 +42,8 @@ import {
   Crown,
   FileEdit,
   Upload,
-  Settings
+  Settings,
+  Eye
 } from "lucide-react";
 import type { AdminUser, BlogPost } from "@shared/schema";
 import { isAdmin } from "@/lib/permissions";
@@ -90,6 +91,9 @@ export default function PostAssignments() {
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
   const [selectedPostIds, setSelectedPostIds] = useState<string[]>([]);
+  const [viewUserPostsDialog, setViewUserPostsDialog] = useState(false);
+  const [selectedUserForView, setSelectedUserForView] = useState<AdminUser | null>(null);
+  const [selectedUserPosts, setSelectedUserPosts] = useState<PostAssignment[]>([]);
 
   // Check authentication
   useEffect(() => {
@@ -289,6 +293,27 @@ export default function PostAssignments() {
     if (confirm("Are you sure you want to remove this post assignment?")) {
       deleteAssignmentMutation.mutate({ userId, postId });
     }
+  };
+
+  // Group assignments by user
+  const groupedAssignments = assignments.reduce((acc, assignment) => {
+    const userId = assignment.userId;
+    if (!acc[userId]) {
+      acc[userId] = {
+        user: assignment.user,
+        posts: []
+      };
+    }
+    acc[userId].posts.push(assignment);
+    return acc;
+  }, {} as Record<number, { user: AdminUser; posts: PostAssignment[] }>);
+
+  const userAssignments = Object.values(groupedAssignments);
+
+  const handleViewUserPosts = (user: AdminUser, posts: PostAssignment[]) => {
+    setSelectedUserForView(user);
+    setSelectedUserPosts(posts);
+    setViewUserPostsDialog(true);
   };
 
   const getRoleBadge = (role: string) => {
@@ -506,68 +531,54 @@ export default function PostAssignments() {
                 <TableHeader>
                   <TableRow className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
                     <TableHead className="font-semibold text-gray-700">User</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Post</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Post Status</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Assigned Date</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Assigned Posts</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Last Assigned</TableHead>
                     <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {assignments.map((assignment) => (
+                  {userAssignments.map(({ user, posts }) => (
                     <TableRow 
-                      key={`${assignment.userId}-${assignment.postId}`}
-                      className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200"
+                      key={user.id}
+                      onClick={() => handleViewUserPosts(user, posts)}
+                      className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200 cursor-pointer"
+                      data-testid={`row-user-${user.id}`}
                     >
                       <TableCell>
                         <div className="flex items-center space-x-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
                             <span className="text-sm font-semibold text-[#1D50C9]">
-                              {assignment.user.username.charAt(0).toUpperCase()}
+                              {user.username.charAt(0).toUpperCase()}
                             </span>
                           </div>
                           <div>
-                            <div className="font-medium text-gray-900">{assignment.user.username}</div>
-                            <div className="text-sm text-gray-500">{assignment.user.email}</div>
+                            <div className="font-medium text-gray-900">{user.username}</div>
+                            <div className="text-sm text-gray-500">{user.email}</div>
                           </div>
-                          {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
+                          {getRoleBadges(user.roles || (user as any).role)}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div>
-                          <div className="font-medium text-gray-900 max-w-[300px] truncate">
-                            {assignment.post.title}
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            ID: {assignment.post.id}
-                          </div>
+                        <div className="flex items-center gap-2">
+                          <FileText className="w-4 h-4 text-[#1D50C9]" />
+                          <span className="font-medium text-gray-900">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
                         </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge 
-                          className={
-                            assignment.post.isPublished
-                              ? "bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200" 
-                              : "bg-gradient-to-r from-gray-50 to-slate-50 text-gray-700 border-gray-200"
-                          }
-                        >
-                          {assignment.post.isPublished ? "Published" : "Draft"}
-                        </Badge>
                       </TableCell>
                       <TableCell>
                         <div className="text-sm text-gray-700">
-                          {new Date(assignment.createdAt).toLocaleDateString()}
+                          {new Date(posts[0]?.createdAt).toLocaleDateString()}
                         </div>
                       </TableCell>
-                      <TableCell className="text-right">
+                      <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                         {isAdmin(currentUser) && (
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => handleDeleteAssignment(assignment.userId, assignment.postId)}
-                            className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
-                            disabled={deleteAssignmentMutation.isPending}
+                            onClick={() => handleViewUserPosts(user, posts)}
+                            className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] transition-colors duration-200"
+                            data-testid={`button-view-${user.id}`}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Eye className="w-4 h-4" />
                           </Button>
                         )}
                       </TableCell>
@@ -581,6 +592,82 @@ export default function PostAssignments() {
       </div>
         </main>
       </div>
+
+      {/* View User Posts Dialog */}
+      <Dialog open={viewUserPostsDialog} onOpenChange={setViewUserPostsDialog}>
+        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
+                <span className="text-sm font-semibold text-[#1D50C9]">
+                  {selectedUserForView?.username.charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <div>
+                <div className="text-lg font-semibold">Posts Assigned to {selectedUserForView?.username}</div>
+                <div className="text-sm text-gray-500 font-normal">{selectedUserForView?.email}</div>
+              </div>
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="flex-1 overflow-y-auto">
+            {selectedUserPosts.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                <FileText className="w-12 h-12 mx-auto text-gray-300 mb-4" />
+                <p>No posts assigned to this user</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {selectedUserPosts.map((assignment) => (
+                  <div 
+                    key={assignment.postId}
+                    className="border border-gray-200 rounded-lg p-4 hover:border-[#1D50C9] hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-all duration-200"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="font-medium text-gray-900">{assignment.post.title}</h4>
+                          <Badge 
+                            className={
+                              assignment.post.isPublished
+                                ? "bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200" 
+                                : "bg-gradient-to-r from-gray-50 to-slate-50 text-gray-700 border-gray-200"
+                            }
+                          >
+                            {assignment.post.isPublished ? "Published" : "Draft"}
+                          </Badge>
+                        </div>
+                        <div className="text-sm text-gray-500 space-y-1">
+                          <div>Post ID: {assignment.post.id}</div>
+                          <div>Assigned: {new Date(assignment.createdAt).toLocaleDateString()}</div>
+                        </div>
+                      </div>
+                      {isAdmin(currentUser) && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            handleDeleteAssignment(assignment.userId, assignment.postId);
+                            setSelectedUserPosts(prev => prev.filter(p => p.postId !== assignment.postId));
+                            if (selectedUserPosts.length <= 1) {
+                              setViewUserPostsDialog(false);
+                            }
+                          }}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                          disabled={deleteAssignmentMutation.isPending}
+                          data-testid={`button-delete-${assignment.postId}`}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
