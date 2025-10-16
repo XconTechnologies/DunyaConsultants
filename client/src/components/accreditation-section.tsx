@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Star, Award, Shield, Users, GraduationCap } from "lucide-react";
 
 // Import accreditation images
 import britishCouncilLogo from "@assets/Group 1000008328_1758700076447.png";
@@ -36,61 +35,9 @@ const accreditationBadges = [
   }
 ];
 
-const reviewStats = [
-  {
-    platform: "British Council",
-    rating: 4.9,
-    reviews: "500+",
-    icon: Award,
-    color: "from-blue-500 to-blue-600"
-  },
-  {
-    platform: "ICEF Agency",
-    rating: 4.8,
-    reviews: "300+",
-    icon: Shield,
-    color: "from-purple-500 to-purple-600"
-  },
-  {
-    platform: "Students",
-    rating: 4.9,
-    reviews: "1000+",
-    icon: GraduationCap,
-    color: "from-green-500 to-green-600"
-  },
-  {
-    platform: "Google Reviews",
-    rating: 4.7,
-    reviews: "750+",
-    icon: Star,
-    color: "from-amber-500 to-amber-600"
-  },
-  {
-    platform: "Client Success",
-    rating: 4.8,
-    reviews: "850+",
-    icon: Users,
-    color: "from-indigo-500 to-indigo-600"
-  }
-];
-
 export default function AccreditationSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    
-    return (
-      <div className="flex items-center gap-1">
-        {[...Array(fullStars)].map((_, i) => (
-          <Star key={i} className="w-5 h-5 fill-emerald-500 text-emerald-500" />
-        ))}
-        {hasHalfStar && <Star className="w-5 h-5 fill-emerald-500 text-emerald-500 opacity-50" />}
-      </div>
-    );
-  };
 
   return (
     <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
@@ -212,52 +159,6 @@ export default function AccreditationSection() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Review Stats Cards */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          {reviewStats.map((stat, index) => {
-            const IconComponent = stat.icon;
-            return (
-              <motion.div
-                key={stat.platform}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                whileHover={{ y: -8 }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  {/* Rating */}
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    {stat.rating}
-                    <span className="text-2xl text-gray-400">/5</span>
-                  </div>
-                  
-                  {/* Stars */}
-                  <div className="mb-4">
-                    {renderStars(stat.rating)}
-                  </div>
-                  
-                  {/* Icon */}
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mb-3`}>
-                    <IconComponent className="w-6 h-6 text-white" />
-                  </div>
-                  
-                  {/* Platform name */}
-                  <p className="font-semibold text-gray-800 mb-1 text-sm">{stat.platform}</p>
-                  
-                  {/* Reviews count */}
-                  <p className="text-xs text-gray-500">Out of {stat.reviews} reviews</p>
-                </div>
-              </motion.div>
-            );
-          })}
         </motion.div>
 
       </div>
