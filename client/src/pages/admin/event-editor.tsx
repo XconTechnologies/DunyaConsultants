@@ -394,7 +394,7 @@ export default function EventEditor() {
                     {...form.register("title")}
                     onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="Enter event title"
-                    className="text-lg"
+                    className="text-lg border-[#dadada]"
                     data-testid="input-title"
                   />
                   {form.formState.errors.title && (
@@ -412,6 +412,7 @@ export default function EventEditor() {
                   <Input
                     {...form.register("slug")}
                     placeholder="event-slug"
+                    className="border-[#dadada]"
                     data-testid="input-slug"
                   />
                   {form.formState.errors.slug && (
@@ -430,6 +431,7 @@ export default function EventEditor() {
                     {...form.register("shortDescription")}
                     placeholder="Brief event description"
                     rows={3}
+                    className="border-[#dadada]"
                     data-testid="input-short-description"
                   />
                   {form.formState.errors.shortDescription && (
@@ -576,6 +578,7 @@ export default function EventEditor() {
                       id="eventDate"
                       type="date"
                       {...form.register("eventDate")}
+                      className="border-[#dadada]"
                       data-testid="input-event-date"
                     />
                     {form.formState.errors.eventDate && (
@@ -611,6 +614,7 @@ export default function EventEditor() {
                       id="venue"
                       {...form.register("venue")}
                       placeholder="Event venue"
+                      className="border-[#dadada]"
                       data-testid="input-venue"
                     />
                   </div>
@@ -622,6 +626,7 @@ export default function EventEditor() {
                       id="location"
                       {...form.register("location")}
                       placeholder="e.g., Lahore"
+                      className="border-[#dadada]"
                       data-testid="input-location"
                     />
                   </div>
@@ -655,7 +660,7 @@ export default function EventEditor() {
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
-                        className="w-full justify-start text-left font-normal"
+                        className="w-full justify-start text-left font-normal border-[#dadada]"
                         data-testid="button-study-level-select"
                       >
                         {form.watch("studyLevel")?.length === 0
@@ -709,7 +714,7 @@ export default function EventEditor() {
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
-                        className="w-full justify-start text-left font-normal"
+                        className="w-full justify-start text-left font-normal border-[#dadada]"
                         data-testid="button-country-select"
                       >
                         {form.watch("country")?.length === 0
@@ -790,7 +795,7 @@ export default function EventEditor() {
                       </Button>
                     </div>
                   ) : (
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
                       <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
                       <p className="text-sm text-gray-500 mb-3">No thumbnail selected</p>
                       <Button
@@ -849,7 +854,7 @@ export default function EventEditor() {
                       </Button>
                     </div>
                   ) : (
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    <div className="border-2 border-dashed border-[#dadada] rounded-lg p-8 text-center">
                       <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-3" />
                       <p className="text-sm text-gray-500 mb-3">No banner selected</p>
                       <Button
