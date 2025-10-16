@@ -84,7 +84,7 @@ export default function AccreditationSection() {
             >
               {/* Circular Badge with Border and Curved Text */}
               <div className="relative flex flex-col items-center">
-                <div className="relative w-48 h-48 rounded-full transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
+                <div className="relative w-48 h-48 rounded-full overflow-hidden transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full transition-all duration-300" viewBox="0 0 200 200">
                     <defs>
