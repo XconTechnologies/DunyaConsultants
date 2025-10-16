@@ -137,10 +137,10 @@ export default function AccreditationSection() {
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
                     <defs>
-                      {/* Define circular path for text on the blue border */}
+                      {/* Define circular path for text - aligned with border radius */}
                       <path
                         id={`circlePath-top-${index}`}
-                        d="M 30,100 A 70,70 0 0,1 170,100"
+                        d="M 25,100 A 75,75 0 0,1 175,100"
                         fill="none"
                       />
                     </defs>
@@ -156,8 +156,8 @@ export default function AccreditationSection() {
                       className="group-hover:drop-shadow-2xl transition-all duration-300"
                     />
                     
-                    {/* Curved text on top in white - positioned on the border */}
-                    <text className="text-[10px] font-bold uppercase tracking-widest" style={{ fill: 'white' }}>
+                    {/* Curved text positioned inside the border */}
+                    <text className="text-[9px] font-bold uppercase tracking-wider" style={{ fill: 'white' }}>
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.category}
                       </textPath>
