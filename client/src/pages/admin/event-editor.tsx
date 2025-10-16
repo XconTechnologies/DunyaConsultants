@@ -19,8 +19,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { html as beautifyHtml } from 'js-beautify';
 import {
-  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon, Menu, ChevronLeft, ChevronRight, PanelRightClose, PanelRightOpen
+  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon, Menu, ChevronLeft, ChevronRight, PanelRightClose, PanelRightOpen, Wand2
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -538,17 +541,64 @@ export default function EventEditor() {
                     </div>
                   ) : editorMode === 'html' ? (
                     <div className="space-y-3">
-                      <Textarea
-                        value={htmlContent}
-                        onChange={(e) => {
-                          setHtmlContent(e.target.value);
-                          form.setValue('fullDescription', e.target.value);
-                        }}
-                        ref={htmlTextareaRef}
-                        placeholder="Write custom HTML code here..."
-                        className="font-mono text-sm min-h-[400px]"
-                        data-testid="textarea-html-content"
-                      />
+                      <div className="flex justify-end mb-2">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            try {
+                              const formatted = beautifyHtml(htmlContent, {
+                                indent_size: 2,
+                                indent_char: ' ',
+                                max_preserve_newlines: 2,
+                                preserve_newlines: true,
+                                wrap_line_length: 0,
+                                wrap_attributes: 'auto',
+                                unformatted: ['code', 'pre'],
+                                content_unformatted: ['pre', 'textarea'],
+                                indent_inner_html: true,
+                                indent_scripts: 'normal'
+                              });
+                              setHtmlContent(formatted);
+                              form.setValue('fullDescription', formatted);
+                              toast({
+                                title: "Code formatted",
+                                description: "HTML has been auto-formatted for better readability"
+                              });
+                            } catch (error) {
+                              toast({
+                                title: "Format failed",
+                                description: "Unable to format HTML. Please check for syntax errors.",
+                                variant: "destructive"
+                              });
+                            }
+                          }}
+                          className="gap-2"
+                          data-testid="button-format-html"
+                        >
+                          <Wand2 className="w-4 h-4" />
+                          Format Code
+                        </Button>
+                      </div>
+                      <div className="relative border border-[#dadada] rounded-lg overflow-hidden">
+                        <Textarea
+                          value={htmlContent}
+                          onChange={(e) => {
+                            setHtmlContent(e.target.value);
+                            form.setValue('fullDescription', e.target.value);
+                          }}
+                          ref={htmlTextareaRef}
+                          placeholder="Write custom HTML code here..."
+                          className="font-mono text-sm min-h-[400px] bg-[#1e1e1e] text-[#d4d4d4] border-0 focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
+                          style={{
+                            caretColor: '#d4d4d4',
+                            tabSize: 2
+                          }}
+                          spellCheck={false}
+                          data-testid="textarea-html-content"
+                        />
+                      </div>
                     </div>
                   ) : (
                     <div 
