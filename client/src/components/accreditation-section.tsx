@@ -93,19 +93,26 @@ export default function AccreditationSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-5xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-3xl lg:text-4xl font-bold mb-6 cursor-pointer transition-all duration-300 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, #1D50C9 0%, #1845B3 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}
+            whileHover={{ scale: 1.05 }}
           >
-            Trusted by Students, Backed by Experts
+            Our Accreditation
           </motion.h2>
+          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+            Trusted by leading international organizations and certified to provide quality education services
+          </p>
         </motion.div>
 
         {/* Accreditation Badges */}
@@ -142,7 +149,7 @@ export default function AccreditationSection() {
                         <img
                           src={accreditation.logo}
                           alt={`${accreditation.name} logo`}
-                          className="max-w-[100px] max-h-[80px] object-contain filter brightness-0 invert"
+                          className="max-w-[100px] max-h-[80px] object-contain"
                           loading="lazy"
                           decoding="async"
                         />
@@ -151,7 +158,7 @@ export default function AccreditationSection() {
                       <img
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
-                        className="max-w-[100px] max-h-[80px] object-contain filter brightness-0 invert mb-4"
+                        className="max-w-[100px] max-h-[80px] object-contain mb-4"
                         loading="lazy"
                         decoding="async"
                       />
@@ -176,7 +183,7 @@ export default function AccreditationSection() {
             return (
               <motion.div
                 key={stat.platform}
-                className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -184,9 +191,9 @@ export default function AccreditationSection() {
               >
                 <div className="flex flex-col items-center text-center">
                   {/* Rating */}
-                  <div className="text-4xl font-bold mb-2 text-white">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                     {stat.rating}
-                    <span className="text-2xl text-white/70">/5</span>
+                    <span className="text-2xl text-gray-400">/5</span>
                   </div>
                   
                   {/* Stars */}
@@ -195,15 +202,15 @@ export default function AccreditationSection() {
                   </div>
                   
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-3 backdrop-blur-sm">
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mb-3`}>
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   
                   {/* Platform name */}
-                  <p className="font-semibold text-white mb-1 text-sm">{stat.platform}</p>
+                  <p className="font-semibold text-gray-800 mb-1 text-sm">{stat.platform}</p>
                   
                   {/* Reviews count */}
-                  <p className="text-xs text-white/80">Out of {stat.reviews} reviews</p>
+                  <p className="text-xs text-gray-500">Out of {stat.reviews} reviews</p>
                 </div>
               </motion.div>
             );
