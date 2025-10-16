@@ -140,45 +140,32 @@ export default function AccreditationSection() {
                       {/* Define circular path for top text */}
                       <path
                         id={`circlePath-top-${index}`}
-                        d="M 100,20 A 75,75 0 0,1 175,100"
-                        fill="none"
-                      />
-                      {/* Define circular path for bottom text */}
-                      <path
-                        id={`circlePath-bottom-${index}`}
-                        d="M 175,100 A 75,75 0 0,1 100,180"
+                        d="M 40,100 A 60,60 0 0,1 160,100"
                         fill="none"
                       />
                     </defs>
                     
-                    {/* Outer circle border */}
+                    {/* Outer circle border - 10px thick */}
                     <circle
                       cx="100"
                       cy="100"
-                      r="80"
+                      r="85"
                       fill="white"
                       stroke="#1D50C9"
-                      strokeWidth="5"
+                      strokeWidth="10"
                       className="group-hover:drop-shadow-2xl transition-all duration-300"
                     />
                     
-                    {/* Curved text on top */}
-                    <text className="text-[11px] font-bold uppercase tracking-wider fill-[#1D50C9]">
+                    {/* Curved text on top in white */}
+                    <text className="text-[12px] font-bold uppercase tracking-wide fill-white">
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
-                        {accreditation.category.split(' ')[0]}
-                      </textPath>
-                    </text>
-                    
-                    {/* Curved text on bottom */}
-                    <text className="text-[11px] font-bold uppercase tracking-wider fill-[#1D50C9]">
-                      <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
-                        {accreditation.category.split(' ')[1] || 'PARTNER'}
+                        {accreditation.category}
                       </textPath>
                     </text>
                   </svg>
                   
                   {/* Logo in center */}
-                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="absolute inset-0 flex items-center justify-center p-10">
                     {accreditation.link ? (
                       <a
                         href={accreditation.link}
