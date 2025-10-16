@@ -77,9 +77,12 @@ export default function MediaManagement() {
   };
 
   // Get auth headers for file upload (without Content-Type for FormData)
-  const getUploadAuthHeaders = () => {
+  const getUploadAuthHeaders = (): HeadersInit => {
     const adminToken = localStorage.getItem("adminToken");
-    return adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {};
+    if (adminToken) {
+      return { 'Authorization': `Bearer ${adminToken}` };
+    }
+    return {};
   };
 
   // Check authentication (admin only)
@@ -364,7 +367,7 @@ export default function MediaManagement() {
   };
 
   // Format date
-  const formatDate = (date: string) => {
+  const formatDate = (date: string | Date) => {
     return new Date(date).toLocaleDateString();
   };
 
@@ -429,63 +432,66 @@ export default function MediaManagement() {
         {/* Main Content Area */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Search and Filter Bar */}
-          <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex items-center space-x-4 flex-1">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Search media files..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                  data-testid="input-search-media"
-                />
+          <div className="mb-8 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+              <div className="flex items-center space-x-4 flex-1 w-full lg:w-auto">
+                <div className="relative flex-1 lg:max-w-md">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <Input
+                    placeholder="Search media files..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-12 h-11 border-gray-200 focus:border-[#1D50C9] focus:ring-[#1D50C9] rounded-lg"
+                    data-testid="input-search-media"
+                  />
+                </div>
+                <select
+                  value={filterType}
+                  onChange={(e) => setFilterType(e.target.value)}
+                  className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-gray-700 font-medium focus:border-[#1D50C9] focus:ring-1 focus:ring-[#1D50C9] transition-colors"
+                  data-testid="select-filter-type"
+                >
+                  <option value="all">All Files</option>
+                  <option value="image">Images</option>
+                  <option value="video">Videos</option>
+                  <option value="document">Documents</option>
+                </select>
               </div>
-              <select
-                value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-md bg-white"
-                data-testid="select-filter-type"
-              >
-                <option value="all">All Files</option>
-                <option value="image">Images</option>
-                <option value="video">Videos</option>
-                <option value="document">Documents</option>
-              </select>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              {selectedMediaIds.length > 0 && (
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={handleBulkDelete}
-                  data-testid="button-bulk-delete"
-                >
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Delete Selected ({selectedMediaIds.length})
-                </Button>
-              )}
               
-              <div className="flex items-center border border-gray-300 rounded-md">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className="rounded-r-none"
-                  data-testid="button-grid-view"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("list")}
-                  className="rounded-l-none"
-                  data-testid="button-list-view"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
+              <div className="flex items-center space-x-3">
+                {selectedMediaIds.length > 0 && (
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={handleBulkDelete}
+                    className="h-10"
+                    data-testid="button-bulk-delete"
+                  >
+                    <Trash2 className="h-4 w-4 mr-2" />
+                    Delete ({selectedMediaIds.length})
+                  </Button>
+                )}
+                
+                <div className="flex items-center bg-gray-100 rounded-lg p-1">
+                  <Button
+                    variant={viewMode === "grid" ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setViewMode("grid")}
+                    className={`rounded-md ${viewMode === "grid" ? "bg-white shadow-sm" : "hover:bg-gray-200"}`}
+                    data-testid="button-grid-view"
+                  >
+                    <Grid3X3 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant={viewMode === "list" ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setViewMode("list")}
+                    className={`rounded-md ${viewMode === "list" ? "bg-white shadow-sm" : "hover:bg-gray-200"}`}
+                    data-testid="button-list-view"
+                  >
+                    <List className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -497,105 +503,129 @@ export default function MediaManagement() {
               <p className="text-gray-600">Loading media files...</p>
             </div>
           ) : filteredMedia.length === 0 ? (
-            <Card className="text-center py-12">
-              <CardContent>
-                <Image className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-16">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Image className="h-10 w-10 text-[#1D50C9]" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {searchTerm || filterType !== "all" 
-                    ? "No media files match your search criteria."
-                    : "No media files uploaded yet."
+                    ? "No media files found"
+                    : "No media files yet"
+                  }
+                </h3>
+                <p className="text-gray-500 mb-6">
+                  {searchTerm || filterType !== "all" 
+                    ? "Try adjusting your search or filter to find what you're looking for."
+                    : "Upload your first media file to get started with your library."
                   }
                 </p>
-                <Button onClick={() => setShowUploadDialog(true)} data-testid="button-upload-first-media">
+                <Button 
+                  onClick={() => setShowUploadDialog(true)} 
+                  className="bg-[#1D50C9] hover:bg-[#1845B3]"
+                  data-testid="button-upload-first-media"
+                >
                   <Upload className="h-4 w-4 mr-2" />
-                  Upload Your First Media File
+                  Upload Media File
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ) : viewMode === "grid" ? (
             <>
               {/* Select All in Grid View */}
-              <div className="mb-4 flex items-center">
+              <div className="mb-6 flex items-center bg-white rounded-lg p-4 shadow-sm border border-gray-100">
                 <Checkbox
                   checked={isAllSelected}
                   onCheckedChange={handleSelectAll}
                   aria-label="Select all media"
+                  className="border-gray-300"
                   data-testid="checkbox-select-all"
                 />
-                <label className="ml-2 text-sm text-gray-600">
-                  Select All ({filteredMedia.length} files)
+                <label className="ml-3 text-sm font-medium text-gray-700">
+                  Select All <span className="text-gray-500">({filteredMedia.length} files)</span>
                 </label>
               </div>
               
               {/* Grid View */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                 {filteredMedia.map((media: Media) => (
-                  <Card key={media.id} className="overflow-hidden group hover:shadow-lg transition-shadow" data-testid={`card-media-${media.id}`}>
-                    <div className="relative">
-                      <div className="absolute top-2 left-2 z-10">
-                        <Checkbox
-                          checked={selectedMediaIds.includes(media.id)}
-                          onCheckedChange={(checked) => handleSelectMedia(media.id, !!checked)}
-                          aria-label={`Select ${media.originalName}`}
-                          data-testid={`checkbox-select-${media.id}`}
-                        />
+                  <div
+                    key={media.id}
+                    className="group relative bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-xl transition-all duration-300"
+                    data-testid={`card-media-${media.id}`}
+                  >
+                    <div className="relative aspect-square">
+                      <div className="absolute top-3 left-3 z-20">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-md p-1.5 shadow-sm">
+                          <Checkbox
+                            checked={selectedMediaIds.includes(media.id)}
+                            onCheckedChange={(checked) => handleSelectMedia(media.id, !!checked)}
+                            aria-label={`Select ${media.originalName}`}
+                            className="border-gray-300"
+                            data-testid={`checkbox-select-${media.id}`}
+                          />
+                        </div>
                       </div>
                       
                       {media.mimeType.startsWith("image/") ? (
                         <img
                           src={media.url}
                           alt={media.alt || media.originalName}
-                          className="w-full h-32 object-cover"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           data-testid={`img-preview-${media.id}`}
                         />
                       ) : (
-                        <div className="w-full h-32 bg-gray-100 flex items-center justify-center">
-                          {getFileTypeIcon(media.mimeType)}
+                        <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                          <div className="text-gray-400">
+                            {getFileTypeIcon(media.mimeType)}
+                          </div>
                         </div>
                       )}
                       
-                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="flex space-x-1">
+                      {/* Hover Actions Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-3 right-3 flex space-x-2">
                           <Button
                             size="sm"
                             variant="secondary"
                             onClick={() => window.open(media.url, '_blank')}
+                            className="h-8 w-8 p-0 bg-white/90 backdrop-blur-sm hover:bg-white border-0"
                             data-testid={`button-view-${media.id}`}
                           >
-                            <Eye className="h-3 w-3" />
+                            <Eye className="h-4 w-4 text-gray-700" />
                           </Button>
                           <Button
                             size="sm"
                             variant="secondary"
                             onClick={() => handleEdit(media)}
+                            className="h-8 w-8 p-0 bg-white/90 backdrop-blur-sm hover:bg-white border-0"
                             data-testid={`button-edit-${media.id}`}
                           >
-                            <Edit2 className="h-3 w-3" />
+                            <Edit2 className="h-4 w-4 text-gray-700" />
                           </Button>
                           <Button
                             size="sm"
                             variant="destructive"
                             onClick={() => handleDelete(media.id)}
+                            className="h-8 w-8 p-0 bg-red-500/90 backdrop-blur-sm hover:bg-red-600 border-0"
                             data-testid={`button-delete-${media.id}`}
                           >
-                            <Trash2 className="h-3 w-3" />
+                            <Trash2 className="h-4 w-4 text-white" />
                           </Button>
                         </div>
                       </div>
                     </div>
                     
-                    <CardContent className="p-3">
-                      <h3 className="text-sm font-medium truncate" title={media.originalName} data-testid={`text-filename-${media.id}`}>
+                    <div className="p-4 border-t border-gray-100">
+                      <h3 className="text-sm font-semibold text-gray-900 truncate mb-1" title={media.originalName} data-testid={`text-filename-${media.id}`}>
                         {media.originalName}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-1" data-testid={`text-size-${media.id}`}>
-                        {formatFileSize(media.size)}
-                      </p>
-                      <p className="text-xs text-gray-500" data-testid={`text-date-${media.id}`}>
-                        {formatDate(media.createdAt)}
-                      </p>
-                    </CardContent>
-                  </Card>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span data-testid={`text-size-${media.id}`}>{formatFileSize(media.size)}</span>
+                        <span data-testid={`text-date-${media.id}`}>{formatDate(media.createdAt)}</span>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </>
