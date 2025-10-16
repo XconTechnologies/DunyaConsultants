@@ -805,27 +805,31 @@ export default function BlogEditor() {
     const cols = parseInt(tableCols) || 3;
 
     // Build proper HTML table
-    let tableHtml = '\n<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #ddd;">\n';
+    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #ddd;">';
     
     for (let i = 0; i < rows; i++) {
-      tableHtml += '  <tr>\n';
+      tableHtml += '<tr>';
       for (let j = 0; j < cols; j++) {
         if (i === 0 && tableHasHeader) {
-          tableHtml += '    <th style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;"></th>\n';
+          tableHtml += '<th style="border: 1px solid #ddd; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">&nbsp;</th>';
         } else {
-          tableHtml += '    <td style="border: 1px solid #ddd; padding: 12px;"></td>\n';
+          tableHtml += '<td style="border: 1px solid #ddd; padding: 12px;">&nbsp;</td>';
         }
       }
-      tableHtml += '  </tr>\n';
+      tableHtml += '</tr>';
     }
-    tableHtml += '</table>\n<p><br></p>\n';
+    tableHtml += '</table><p><br></p>';
 
-    // Switch to HTML mode if in rich text mode
     if (editorMode === 'rich') {
-      const currentContent = watch('content') || '';
-      setHtmlContent(currentContent + tableHtml);
-      setValue('content', currentContent + tableHtml);
-      setEditorMode('html');
+      // Insert directly into Quill editor
+      const quill = editorRef.current?.getEditor();
+      if (quill) {
+        const range = quill.getSelection(true);
+        if (range) {
+          quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
+          quill.setSelection(range.index + 1);
+        }
+      }
     } else {
       // Already in HTML mode, insert at cursor position
       const textarea = htmlTextareaRef.current;
@@ -852,7 +856,7 @@ export default function BlogEditor() {
     
     toast({
       title: "Table Inserted",
-      description: editorMode === 'rich' ? "Switched to HTML mode to edit your table" : "Table added to your content",
+      description: "Table has been added to your content",
       className: "bg-green-500 text-white",
     });
   };
@@ -863,11 +867,11 @@ export default function BlogEditor() {
   };
 
   const handleInsertFaq = () => {
-    let faqHtml = '\n<div class="faq-container" style="margin: 20px 0;">\n';
+    let faqHtml = '<div class="faq-container" style="margin: 20px 0;">';
     
     faqItems.forEach((item, index) => {
       if (item.question.trim() || item.answer.trim()) {
-        faqHtml += `  <details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
+        faqHtml += `<details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
     <summary style="cursor: pointer; font-weight: 600; font-size: 1.1em; color: #1D50C9; list-style: none; display: flex; align-items: center;">
       <span style="margin-right: 8px;">▶</span>
       ${item.question || `Question ${index + 1}`}
@@ -875,19 +879,22 @@ export default function BlogEditor() {
     <div style="margin-top: 12px; padding-left: 24px; color: #4b5563;">
       ${item.answer || 'Answer here...'}
     </div>
-  </details>
-`;
+  </details>`;
       }
     });
     
-    faqHtml += '</div>\n<p><br></p>\n';
+    faqHtml += '</div><p><br></p>';
 
-    // Switch to HTML mode if in rich text mode
     if (editorMode === 'rich') {
-      const currentContent = watch('content') || '';
-      setHtmlContent(currentContent + faqHtml);
-      setValue('content', currentContent + faqHtml);
-      setEditorMode('html');
+      // Insert directly into Quill editor
+      const quill = editorRef.current?.getEditor();
+      if (quill) {
+        const range = quill.getSelection(true);
+        if (range) {
+          quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
+          quill.setSelection(range.index + 1);
+        }
+      }
     } else {
       // Already in HTML mode, insert at cursor position
       const textarea = htmlTextareaRef.current;
@@ -912,7 +919,7 @@ export default function BlogEditor() {
     
     toast({
       title: "FAQ Inserted",
-      description: editorMode === 'rich' ? "Switched to HTML mode to edit your FAQ" : "FAQ added to your content",
+      description: "FAQ has been added to your content",
       className: "bg-green-500 text-white",
     });
   };
