@@ -804,40 +804,29 @@ export default function BlogEditor() {
     const rows = parseInt(tableRows) || 3;
     const cols = parseInt(tableCols) || 3;
 
-    // Build proper HTML table with formatted structure
-    let tableHtml = '\n<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #dadada;">\n';
+    // Create table-like structure using divs (Quill-compatible)
+    let tableHtml = `<div style="width: 100%; margin: 20px 0; border: 1px solid #dadada; display: inline-block;">`;
     
     for (let i = 0; i < rows; i++) {
-      tableHtml += '  <tr>\n';
+      tableHtml += `<div style="display: flex; width: 100%;">`;
       for (let j = 0; j < cols; j++) {
-        if (i === 0 && tableHasHeader) {
-          tableHtml += '    <th style="border: 1px solid #dadada; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">Header</th>\n';
-        } else {
-          tableHtml += '    <td style="border: 1px solid #dadada; padding: 12px;">Cell</td>\n';
+        const isHeader = i === 0 && tableHasHeader;
+        tableHtml += `<div style="flex: 1; border: 1px solid #dadada; padding: 12px; ${isHeader ? 'background-color: #f3f4f6; font-weight: 600;' : ''}"><br></div>`;
+      }
+      tableHtml += `</div>`;
+    }
+    tableHtml += `</div><p><br></p>`;
+
+    if (editorMode === 'rich') {
+      const quill = editorRef.current?.getEditor();
+      if (quill) {
+        const range = quill.getSelection(true);
+        if (range) {
+          quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
+          quill.setSelection(range.index + tableHtml.length);
         }
       }
-      tableHtml += '  </tr>\n';
-    }
-    tableHtml += '</table>\n<p><br></p>\n';
-
-    // Always switch to HTML mode for tables since Quill doesn't support them
-    if (editorMode === 'rich') {
-      const currentContent = watch('content') || '';
-      setHtmlContent(currentContent + tableHtml);
-      setValue('content', currentContent + tableHtml);
-      setEditorMode('html');
-      
-      // Focus on the HTML textarea after mode switch
-      setTimeout(() => {
-        const textarea = htmlTextareaRef.current;
-        if (textarea) {
-          const position = (currentContent + tableHtml).length;
-          textarea.selectionStart = textarea.selectionEnd = position;
-          textarea.focus();
-        }
-      }, 100);
     } else {
-      // Already in HTML mode, insert at cursor position
       const textarea = htmlTextareaRef.current;
       if (textarea) {
         const start = textarea.selectionStart;
@@ -847,7 +836,6 @@ export default function BlogEditor() {
         setHtmlContent(newContent);
         setValue('content', newContent);
         
-        // Set cursor position after the inserted table
         setTimeout(() => {
           textarea.selectionStart = textarea.selectionEnd = start + tableHtml.length;
           textarea.focus();
@@ -862,7 +850,7 @@ export default function BlogEditor() {
     
     toast({
       title: "Table Inserted",
-      description: editorMode === 'rich' ? "Switched to HTML mode - tables work best here!" : "Table added to your content",
+      description: "Visual table has been added to your content",
       className: "bg-green-500 text-white",
     });
   };
