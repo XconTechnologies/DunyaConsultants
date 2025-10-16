@@ -804,32 +804,38 @@ export default function BlogEditor() {
     const rows = parseInt(tableRows) || 3;
     const cols = parseInt(tableCols) || 3;
 
-    // Build proper HTML table
-    let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #dadada;">';
+    // Build proper HTML table with formatted structure
+    let tableHtml = '\n<table style="border-collapse: collapse; width: 100%; margin: 20px 0; border: 1px solid #dadada;">\n';
     
     for (let i = 0; i < rows; i++) {
-      tableHtml += '<tr>';
+      tableHtml += '  <tr>\n';
       for (let j = 0; j < cols; j++) {
         if (i === 0 && tableHasHeader) {
-          tableHtml += '<th style="border: 1px solid #dadada; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">&nbsp;</th>';
+          tableHtml += '    <th style="border: 1px solid #dadada; padding: 12px; background-color: #f3f4f6; font-weight: 600; text-align: left;">Header</th>\n';
         } else {
-          tableHtml += '<td style="border: 1px solid #dadada; padding: 12px;">&nbsp;</td>';
+          tableHtml += '    <td style="border: 1px solid #dadada; padding: 12px;">Cell</td>\n';
         }
       }
-      tableHtml += '</tr>';
+      tableHtml += '  </tr>\n';
     }
-    tableHtml += '</table><p><br></p>';
+    tableHtml += '</table>\n<p><br></p>\n';
 
+    // Always switch to HTML mode for tables since Quill doesn't support them
     if (editorMode === 'rich') {
-      // Insert directly into Quill editor
-      const quill = editorRef.current?.getEditor();
-      if (quill) {
-        const range = quill.getSelection(true);
-        if (range) {
-          quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
-          quill.setSelection(range.index + 1);
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + tableHtml);
+      setValue('content', currentContent + tableHtml);
+      setEditorMode('html');
+      
+      // Focus on the HTML textarea after mode switch
+      setTimeout(() => {
+        const textarea = htmlTextareaRef.current;
+        if (textarea) {
+          const position = (currentContent + tableHtml).length;
+          textarea.selectionStart = textarea.selectionEnd = position;
+          textarea.focus();
         }
-      }
+      }, 100);
     } else {
       // Already in HTML mode, insert at cursor position
       const textarea = htmlTextareaRef.current;
@@ -856,7 +862,7 @@ export default function BlogEditor() {
     
     toast({
       title: "Table Inserted",
-      description: "Table has been added to your content",
+      description: editorMode === 'rich' ? "Switched to HTML mode - tables work best here!" : "Table added to your content",
       className: "bg-green-500 text-white",
     });
   };
@@ -867,11 +873,11 @@ export default function BlogEditor() {
   };
 
   const handleInsertFaq = () => {
-    let faqHtml = '<div class="faq-container" style="margin: 20px 0;">';
+    let faqHtml = '\n<div class="faq-container" style="margin: 20px 0;">\n';
     
     faqItems.forEach((item, index) => {
       if (item.question.trim() || item.answer.trim()) {
-        faqHtml += `<details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
+        faqHtml += `  <details style="border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 16px; background: white;">
     <summary style="cursor: pointer; font-weight: 600; font-size: 1.1em; color: #1D50C9; list-style: none; display: flex; align-items: center;">
       <span style="margin-right: 8px;">▶</span>
       ${item.question || `Question ${index + 1}`}
@@ -879,22 +885,29 @@ export default function BlogEditor() {
     <div style="margin-top: 12px; padding-left: 24px; color: #4b5563;">
       ${item.answer || 'Answer here...'}
     </div>
-  </details>`;
+  </details>
+`;
       }
     });
     
-    faqHtml += '</div><p><br></p>';
+    faqHtml += '</div>\n<p><br></p>\n';
 
+    // Always switch to HTML mode for FAQs since Quill doesn't support details/summary tags
     if (editorMode === 'rich') {
-      // Insert directly into Quill editor
-      const quill = editorRef.current?.getEditor();
-      if (quill) {
-        const range = quill.getSelection(true);
-        if (range) {
-          quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
-          quill.setSelection(range.index + 1);
+      const currentContent = watch('content') || '';
+      setHtmlContent(currentContent + faqHtml);
+      setValue('content', currentContent + faqHtml);
+      setEditorMode('html');
+      
+      // Focus on the HTML textarea after mode switch
+      setTimeout(() => {
+        const textarea = htmlTextareaRef.current;
+        if (textarea) {
+          const position = (currentContent + faqHtml).length;
+          textarea.selectionStart = textarea.selectionEnd = position;
+          textarea.focus();
         }
-      }
+      }, 100);
     } else {
       // Already in HTML mode, insert at cursor position
       const textarea = htmlTextareaRef.current;
@@ -919,7 +932,7 @@ export default function BlogEditor() {
     
     toast({
       title: "FAQ Inserted",
-      description: "FAQ has been added to your content",
+      description: editorMode === 'rich' ? "Switched to HTML mode - FAQs work best here!" : "FAQ added to your content",
       className: "bg-green-500 text-white",
     });
   };
@@ -1411,7 +1424,7 @@ export default function BlogEditor() {
                           onChange={(e) => handleHtmlChange(e.target.value)}
                           onScroll={handleScroll}
                           placeholder="Write your HTML code here with inline/internal CSS and JavaScript..."
-                          className="absolute top-0 left-0 w-full h-full p-4 font-mono text-sm resize-none bg-transparent overflow-auto"
+                          className="absolute top-0 left-0 w-full h-full p-4 font-mono text-sm resize-none bg-transparent overflow-auto z-10"
                           style={{
                             caretColor: '#ffffff',
                             color: 'transparent',
@@ -1427,6 +1440,9 @@ export default function BlogEditor() {
                             e.target.style.outline = 'none';
                           }}
                           spellCheck="false"
+                          autoComplete="off"
+                          autoCorrect="off"
+                          autoCapitalize="off"
                         />
                       </div>
                     </div>
