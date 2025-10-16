@@ -240,13 +240,14 @@ export default function TrashManagement() {
                   <Trash2 className="h-8 w-8 mr-3" />
                   Trash
                 </h1>
-                <p className="text-blue-100 mt-2">
+                <p className="text-blue-100 mt-1">
                   Restore or permanently delete trashed items
                 </p>
               </div>
-              <Badge variant="secondary" className="text-lg px-4 py-2">
-                {totalTrashedItems} {totalTrashedItems === 1 ? 'item' : 'items'}
-              </Badge>
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 border border-white/30">
+                <p className="text-white text-sm">Total Items</p>
+                <p className="text-white text-2xl font-bold">{totalTrashedItems}</p>
+              </div>
             </div>
           </div>
         </header>
@@ -259,35 +260,57 @@ export default function TrashManagement() {
               <p className="text-gray-600">Loading trashed items...</p>
             </div>
           ) : totalTrashedItems === 0 ? (
-            <Card className="text-center py-12">
-              <CardContent>
-                <Inbox className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-gray-700 mb-2">Trash is Empty</h3>
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-16">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Inbox className="h-10 w-10 text-[#1D50C9]" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Trash is Empty</h3>
                 <p className="text-gray-500">
                   Deleted items will appear here. You can restore them or permanently delete them.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ) : (
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-5 mb-6">
-                <TabsTrigger value="media" className="flex items-center gap-2" data-testid="tab-trash-media">
+              <TabsList className="grid w-full grid-cols-5 mb-8 bg-white border-0 shadow-lg p-1 rounded-xl">
+                <TabsTrigger 
+                  value="media" 
+                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white rounded-lg transition-all duration-200" 
+                  data-testid="tab-trash-media"
+                >
                   <Image className="h-4 w-4" />
                   Media ({trashedItems.media?.length || 0})
                 </TabsTrigger>
-                <TabsTrigger value="blogPosts" className="flex items-center gap-2" data-testid="tab-trash-posts">
+                <TabsTrigger 
+                  value="blogPosts" 
+                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white rounded-lg transition-all duration-200" 
+                  data-testid="tab-trash-posts"
+                >
                   <FileText className="h-4 w-4" />
                   Posts ({trashedItems.blogPosts?.length || 0})
                 </TabsTrigger>
-                <TabsTrigger value="categories" className="flex items-center gap-2" data-testid="tab-trash-categories">
+                <TabsTrigger 
+                  value="categories" 
+                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white rounded-lg transition-all duration-200" 
+                  data-testid="tab-trash-categories"
+                >
                   <FolderOpen className="h-4 w-4" />
                   Categories ({trashedItems.categories?.length || 0})
                 </TabsTrigger>
-                <TabsTrigger value="events" className="flex items-center gap-2" data-testid="tab-trash-events">
+                <TabsTrigger 
+                  value="events" 
+                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white rounded-lg transition-all duration-200" 
+                  data-testid="tab-trash-events"
+                >
                   <Calendar className="h-4 w-4" />
                   Events ({trashedItems.events?.length || 0})
                 </TabsTrigger>
-                <TabsTrigger value="adminUsers" className="flex items-center gap-2" data-testid="tab-trash-users">
+                <TabsTrigger 
+                  value="adminUsers" 
+                  className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white rounded-lg transition-all duration-200" 
+                  data-testid="tab-trash-users"
+                >
                   <User className="h-4 w-4" />
                   Users ({trashedItems.adminUsers?.length || 0})
                 </TabsTrigger>
@@ -296,34 +319,35 @@ export default function TrashManagement() {
               {/* Media Tab */}
               <TabsContent value="media">
                 {!trashedItems.media || trashedItems.media.length === 0 ? (
-                  <Card className="text-center py-8">
-                    <CardContent>
-                      <Image className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No trashed media files</p>
-                    </CardContent>
-                  </Card>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Image className="h-8 w-8 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-500">No trashed media files</p>
+                  </div>
                 ) : (
-                  <Card>
+                  <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead>File</TableHead>
-                          <TableHead>Type</TableHead>
-                          <TableHead>Size</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
+                        <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">File</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Type</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Size</TableHead>
+                          <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {trashedItems.media.map((media: Media) => (
-                          <TableRow key={media.id} data-testid={`row-trash-media-${media.id}`}>
-                            <TableCell className="font-medium">{media.originalName}</TableCell>
-                            <TableCell>{media.mimeType}</TableCell>
-                            <TableCell>{formatFileSize(media.size)}</TableCell>
+                          <TableRow key={media.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-media-${media.id}`}>
+                            <TableCell className="font-medium text-gray-900">{media.originalName}</TableCell>
+                            <TableCell className="text-gray-600">{media.mimeType}</TableCell>
+                            <TableCell className="text-gray-600">{formatFileSize(media.size)}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleRestore('media', media)}
+                                className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                                 data-testid={`button-restore-media-${media.id}`}
                               >
                                 <RotateCcw className="h-3 w-3 mr-1" />
@@ -331,8 +355,9 @@ export default function TrashManagement() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="destructive"
+                                variant="ghost"
                                 onClick={() => handlePurge('media', media)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                                 data-testid={`button-purge-media-${media.id}`}
                               >
                                 <Trash2 className="h-3 w-3 mr-1" />
@@ -350,34 +375,35 @@ export default function TrashManagement() {
               {/* Blog Posts Tab */}
               <TabsContent value="blogPosts">
                 {!trashedItems.blogPosts || trashedItems.blogPosts.length === 0 ? (
-                  <Card className="text-center py-8">
-                    <CardContent>
-                      <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No trashed blog posts</p>
-                    </CardContent>
-                  </Card>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FileText className="h-8 w-8 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-500">No trashed blog posts</p>
+                  </div>
                 ) : (
-                  <Card>
+                  <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead>Title</TableHead>
-                          <TableHead>Status</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
+                        <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">Title</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Status</TableHead>
+                          <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {trashedItems.blogPosts.map((post: BlogPost) => (
-                          <TableRow key={post.id} data-testid={`row-trash-post-${post.id}`}>
-                            <TableCell className="font-medium">{post.title}</TableCell>
+                          <TableRow key={post.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-post-${post.id}`}>
+                            <TableCell className="font-medium text-gray-900">{post.title}</TableCell>
                             <TableCell>
-                              <Badge variant="outline">{post.status}</Badge>
+                              <Badge className="bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border-blue-200">{post.status}</Badge>
                             </TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleRestore('blogPosts', post)}
+                                className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                                 data-testid={`button-restore-post-${post.id}`}
                               >
                                 <RotateCcw className="h-3 w-3 mr-1" />
@@ -385,8 +411,9 @@ export default function TrashManagement() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="destructive"
+                                variant="ghost"
                                 onClick={() => handlePurge('blogPosts', post)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                                 data-testid={`button-purge-post-${post.id}`}
                               >
                                 <Trash2 className="h-3 w-3 mr-1" />
@@ -404,32 +431,33 @@ export default function TrashManagement() {
               {/* Categories Tab */}
               <TabsContent value="categories">
                 {!trashedItems.categories || trashedItems.categories.length === 0 ? (
-                  <Card className="text-center py-8">
-                    <CardContent>
-                      <FolderOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No trashed categories</p>
-                    </CardContent>
-                  </Card>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FolderOpen className="h-8 w-8 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-500">No trashed categories</p>
+                  </div>
                 ) : (
-                  <Card>
+                  <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead>Name</TableHead>
-                          <TableHead>Slug</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
+                        <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">Name</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Slug</TableHead>
+                          <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {trashedItems.categories.map((category: Category) => (
-                          <TableRow key={category.id} data-testid={`row-trash-category-${category.id}`}>
-                            <TableCell className="font-medium">{category.name}</TableCell>
-                            <TableCell>{category.slug}</TableCell>
+                          <TableRow key={category.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-category-${category.id}`}>
+                            <TableCell className="font-medium text-gray-900">{category.name}</TableCell>
+                            <TableCell className="text-gray-600">{category.slug}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleRestore('categories', category)}
+                                className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                                 data-testid={`button-restore-category-${category.id}`}
                               >
                                 <RotateCcw className="h-3 w-3 mr-1" />
@@ -437,8 +465,9 @@ export default function TrashManagement() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="destructive"
+                                variant="ghost"
                                 onClick={() => handlePurge('categories', category)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                                 data-testid={`button-purge-category-${category.id}`}
                               >
                                 <Trash2 className="h-3 w-3 mr-1" />
@@ -456,32 +485,33 @@ export default function TrashManagement() {
               {/* Events Tab */}
               <TabsContent value="events">
                 {!trashedItems.events || trashedItems.events.length === 0 ? (
-                  <Card className="text-center py-8">
-                    <CardContent>
-                      <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No trashed events</p>
-                    </CardContent>
-                  </Card>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Calendar className="h-8 w-8 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-500">No trashed events</p>
+                  </div>
                 ) : (
-                  <Card>
+                  <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead>Title</TableHead>
-                          <TableHead>Date</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
+                        <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">Title</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Date</TableHead>
+                          <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {trashedItems.events.map((event: Event) => (
-                          <TableRow key={event.id} data-testid={`row-trash-event-${event.id}`}>
-                            <TableCell className="font-medium">{event.title}</TableCell>
-                            <TableCell>{formatDate(event.eventDate)}</TableCell>
+                          <TableRow key={event.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-event-${event.id}`}>
+                            <TableCell className="font-medium text-gray-900">{event.title}</TableCell>
+                            <TableCell className="text-gray-600">{formatDate(event.eventDate)}</TableCell>
                             <TableCell className="text-right space-x-2">
                               <Button
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleRestore('events', event)}
+                                className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                                 data-testid={`button-restore-event-${event.id}`}
                               >
                                 <RotateCcw className="h-3 w-3 mr-1" />
@@ -489,8 +519,9 @@ export default function TrashManagement() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="destructive"
+                                variant="ghost"
                                 onClick={() => handlePurge('events', event)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                                 data-testid={`button-purge-event-${event.id}`}
                               >
                                 <Trash2 className="h-3 w-3 mr-1" />
@@ -508,28 +539,28 @@ export default function TrashManagement() {
               {/* Admin Users Tab */}
               <TabsContent value="adminUsers">
                 {!trashedItems.adminUsers || trashedItems.adminUsers.length === 0 ? (
-                  <Card className="text-center py-8">
-                    <CardContent>
-                      <User className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No trashed users</p>
-                    </CardContent>
-                  </Card>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-12">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <User className="h-8 w-8 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-500">No trashed users</p>
+                  </div>
                 ) : (
-                  <Card>
+                  <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead>Username</TableHead>
-                          <TableHead>Email</TableHead>
-                          <TableHead>Role</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
+                        <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">Username</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Email</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Role</TableHead>
+                          <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {trashedItems.adminUsers.map((user: AdminUser) => (
-                          <TableRow key={user.id} data-testid={`row-trash-user-${user.id}`}>
-                            <TableCell className="font-medium">{user.username}</TableCell>
-                            <TableCell>{user.email}</TableCell>
+                          <TableRow key={user.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-user-${user.id}`}>
+                            <TableCell className="font-medium text-gray-900">{user.username}</TableCell>
+                            <TableCell className="text-gray-600">{user.email}</TableCell>
                             <TableCell>
                               {getRoleBadges(user.roles || (user as any).role)}
                             </TableCell>
@@ -538,6 +569,7 @@ export default function TrashManagement() {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleRestore('adminUsers', user)}
+                                className="rounded-lg hover:bg-green-50 hover:text-green-600 hover:border-green-600 transition-colors duration-200"
                                 data-testid={`button-restore-user-${user.id}`}
                               >
                                 <RotateCcw className="h-3 w-3 mr-1" />
@@ -545,8 +577,9 @@ export default function TrashManagement() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="destructive"
+                                variant="ghost"
                                 onClick={() => handlePurge('adminUsers', user)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
                                 data-testid={`button-purge-user-${user.id}`}
                               >
                                 <Trash2 className="h-3 w-3 mr-1" />
