@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useLocation, useRoute } from "wouter";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,8 +16,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import {
-  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus
+  Save, Eye, ArrowLeft, Loader2, Calendar, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Code2, FileText, Table as TableIcon
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -100,8 +102,13 @@ export default function EventEditor() {
   const [mediaTarget, setMediaTarget] = useState<'thumbnail' | 'banner' | null>(null);
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview'>('rich');
+  const [htmlContent, setHtmlContent] = useState('');
+  const [editorMounted, setEditorMounted] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const editorRef = useRef<any>(null);
+  const htmlTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   const form = useForm<EventForm>({
     resolver: zodResolver(eventSchema),
@@ -133,6 +140,35 @@ export default function EventEditor() {
       ...(token && { 'Authorization': `Bearer ${token}` })
     };
   };
+
+  // Quill modules configuration
+  const quillModules = useMemo(() => ({
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['blockquote', 'code-block'],
+      ['link'],
+      ['clean']
+    ]
+  }), []);
+
+  const quillFormats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'align',
+    'list', 'bullet',
+    'blockquote', 'code-block',
+    'link'
+  ];
+
+  // Mount editor
+  useEffect(() => {
+    setEditorMounted(true);
+  }, []);
 
   // Check authentication
   useEffect(() => {
@@ -257,6 +293,16 @@ export default function EventEditor() {
     if (!isEditing) {
       form.setValue('slug', generateSlug(title));
     }
+  };
+
+  const handleEditorModeChange = (mode: 'rich' | 'html' | 'preview') => {
+    if (mode === 'html' && editorMode === 'rich') {
+      const currentContent = form.watch('fullDescription') || '';
+      setHtmlContent(currentContent);
+    } else if (mode === 'rich' && editorMode === 'html') {
+      form.setValue('fullDescription', htmlContent);
+    }
+    setEditorMode(mode);
   };
 
   if (!authChecked) {
@@ -395,18 +441,106 @@ export default function EventEditor() {
               {/* Full Description */}
               <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle className="text-gray-800">Full Description</CardTitle>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-gray-800">Full Description</CardTitle>
+                    <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => handleEditorModeChange('rich')}
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'rich' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <FileText className="w-3 h-3 mr-1" />
+                        Rich Text
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => handleEditorModeChange('html')}
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'html' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Code2 className="w-3 h-3 mr-1" />
+                        HTML
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => handleEditorModeChange('preview')}
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'preview' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Eye className="w-3 h-3 mr-1" />
+                        Preview
+                      </Button>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <Textarea
-                    {...form.register("fullDescription")}
-                    placeholder="Detailed event description"
-                    rows={5}
-                    data-testid="input-full-description"
-                  />
+                  {editorMode === 'rich' ? (
+                    <div className="react-quill-container overflow-auto" style={{ maxHeight: '600px', width: '100%' }}>
+                      {editorMounted ? (
+                        <Controller
+                          name="fullDescription"
+                          control={form.control}
+                          render={({ field }) => (
+                            <ReactQuill
+                              key={`quill-${eventId || 'new'}-${field.value ? 'loaded' : 'empty'}`}
+                              value={field.value || ''}
+                              onChange={(value) => field.onChange(value)}
+                              placeholder="Write detailed event description here..."
+                              modules={quillModules}
+                              formats={quillFormats}
+                              ref={editorRef}
+                            />
+                          )}
+                        />
+                      ) : (
+                        <div className="text-center py-8 text-gray-500">Loading editor...</div>
+                      )}
+                    </div>
+                  ) : editorMode === 'html' ? (
+                    <div className="space-y-3">
+                      <Textarea
+                        value={htmlContent}
+                        onChange={(e) => {
+                          setHtmlContent(e.target.value);
+                          form.setValue('fullDescription', e.target.value);
+                        }}
+                        ref={htmlTextareaRef}
+                        placeholder="Write custom HTML code here..."
+                        className="font-mono text-sm min-h-[400px]"
+                        data-testid="textarea-html-content"
+                      />
+                    </div>
+                  ) : (
+                    <div 
+                      className="prose max-w-none p-4 bg-gray-50 rounded-lg min-h-[400px]"
+                      dangerouslySetInnerHTML={{ __html: form.watch('fullDescription') || '<p class="text-gray-400">No content to preview</p>' }}
+                    />
+                  )}
                   {form.formState.errors.fullDescription && (
                     <p className="text-sm text-red-600 mt-1">{form.formState.errors.fullDescription.message}</p>
                   )}
+                  <div className="mt-3 text-xs text-gray-500 bg-blue-50 p-2 rounded">
+                    {editorMode === 'rich' ? (
+                      <>✨ <strong>Rich Text Mode:</strong> Use the toolbar to format text, add headings, lists, links, and more!</>
+                    ) : editorMode === 'html' ? (
+                      <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with inline/internal CSS and JavaScript for advanced styling.</>
+                    ) : (
+                      <>👁️ <strong>Preview Mode:</strong> See exactly how your content will look when published.</>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
 
