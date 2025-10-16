@@ -102,36 +102,25 @@ export default function AccreditationSection() {
                       />
                     </defs>
                     
-                    {/* Outer blue border */}
+                    {/* Outer circle border - 15px thick light blue */}
                     <circle
                       cx="100"
                       cy="100"
-                      r="92"
-                      fill="transparent"
-                      stroke="#1D50C9"
-                      strokeWidth="8"
-                      className="transition-all duration-300"
-                    />
-                    
-                    {/* Inner white circle with light blue border */}
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="75"
+                      r="85"
                       fill="white"
                       stroke="#D4E2FF"
-                      strokeWidth="8"
+                      strokeWidth="15"
                       className="transition-all duration-300"
                     />
                     
-                    {/* Curved text on top - category in blue */}
+                    {/* Curved text on top - category in dark blue */}
                     <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.category}
                       </textPath>
                     </text>
                     
-                    {/* Curved text on bottom - logo name in blue */}
+                    {/* Curved text on bottom - logo name in dark blue */}
                     <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
                       <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.displayName}
