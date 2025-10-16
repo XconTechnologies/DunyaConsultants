@@ -117,7 +117,7 @@ export default function AccreditationSection() {
 
         {/* Accreditation Badges */}
         <motion.div
-          className="flex flex-wrap justify-center gap-6 mb-16"
+          className="flex flex-wrap justify-center gap-8 mb-16"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -131,40 +131,41 @@ export default function AccreditationSection() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              {/* Shield/Badge Shape */}
-              <div className="relative" style={{ width: "180px", height: "200px" }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
-                  style={{
-                    clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
-                  }}
-                >
-                  <div className="w-full h-full flex flex-col items-center justify-center p-8">
-                    {accreditation.link ? (
-                      <a
-                        href={accreditation.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center mb-4"
-                      >
-                        <img
-                          src={accreditation.logo}
-                          alt={`${accreditation.name} logo`}
-                          className="max-w-[100px] max-h-[80px] object-contain"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </a>
-                    ) : (
+              {/* Circular Badge with Border */}
+              <div className="relative flex flex-col items-center">
+                {/* Circle Container with Border */}
+                <div className="relative w-40 h-40 rounded-full border-4 border-[#1D50C9] bg-white shadow-xl group-hover:shadow-2xl transition-all duration-300 flex items-center justify-center p-6">
+                  {accreditation.link ? (
+                    <a
+                      href={accreditation.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center"
+                    >
                       <img
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
-                        className="max-w-[100px] max-h-[80px] object-contain mb-4"
+                        className="max-w-full max-h-full object-contain"
                         loading="lazy"
                         decoding="async"
                       />
-                    )}
-                    <p className="text-xs font-bold text-white text-center uppercase tracking-wide">{accreditation.category}</p>
-                  </div>
+                    </a>
+                  ) : (
+                    <img
+                      src={accreditation.logo}
+                      alt={`${accreditation.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                </div>
+                
+                {/* Text Label Below Circle */}
+                <div className="mt-4 text-center">
+                  <p className="text-sm font-bold text-[#1D50C9] uppercase tracking-wide">
+                    {accreditation.category}
+                  </p>
                 </div>
               </div>
             </motion.div>
