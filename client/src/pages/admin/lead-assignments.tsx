@@ -258,39 +258,28 @@ export default function LeadAssignments() {
   };
 
   const selectedLeadsCount = selectedLeadIds.length;
-  const availableLeads = leads.filter(lead => !lead.trashedAt);
+  const availableLeads = leads.filter(lead => !(lead as any).trashedAt);
 
   if (!authChecked || !currentUser || !isAdmin(currentUser)) {
     return null;
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <AdminSidebar currentUser={currentUser} />
       
-      <div className="flex-1 md:ml-64">
-        <AdminHeader currentUser={currentUser} />
-        
-        <div className="p-6">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">Leads Assignments</h1>
-            <p className="text-gray-600 mt-2">
-              Assign leads submissions to specific users for personalized management
-            </p>
-          </div>
-
-          <Card className="mb-6">
-            <CardHeader className="flex flex-row items-center justify-between">
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
               <div>
-                <CardTitle>All Leads Assignments</CardTitle>
-                <p className="text-sm text-gray-600 mt-1">
-                  {assignments.length} total assignments
-                </p>
+                <h1 className="text-3xl font-bold text-white">Leads Assignments</h1>
+                <p className="text-blue-100 mt-1">Assign leads submissions to specific users for personalized management</p>
               </div>
-              
               <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button data-testid="button-new-assignment">
+                  <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="button-new-assignment">
                     <UserPlus className="w-4 h-4 mr-2" />
                     New Assignment
                   </Button>
@@ -387,73 +376,114 @@ export default function LeadAssignments() {
                   </div>
                 </DialogContent>
               </Dialog>
+            </div>
+          </div>
+        </header>
+
+        {/* Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Stats Card */}
+          <Card className="mb-8 border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-700">Total Assignments</CardTitle>
+              <div className="p-2 bg-purple-500 rounded-lg">
+                <LinkIcon className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>User</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Lead Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Country</TableHead>
-                    <TableHead>Source</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {isLoading ? (
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8">
-                        Loading assignments...
-                      </TableCell>
-                    </TableRow>
-                  ) : assignments.length === 0 ? (
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-gray-500">
-                        No lead assignments found. Create one to get started.
-                      </TableCell>
-                    </TableRow>
-                  ) : (
-                    assignments.map((assignment) => {
-                      return (
-                        <TableRow key={`${assignment.userId}-${assignment.leadId}`}>
-                          <TableCell>
-                            <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-gray-400" />
-                              <span className="font-medium">{assignment.user.username}</span>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
-                          </TableCell>
-                          <TableCell>{assignment.lead.name}</TableCell>
-                          <TableCell>{assignment.lead.email}</TableCell>
-                          <TableCell>{assignment.lead.preferredCountry}</TableCell>
-                          <TableCell>
-                            {assignment.lead.source && (
-                              <Badge variant="outline">{assignment.lead.source}</Badge>
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDeleteAssignment(assignment.userId, assignment.leadId)}
-                              data-testid={`button-delete-assignment-${assignment.userId}-${assignment.leadId}`}
-                            >
-                              <Trash2 className="w-4 h-4 text-red-500" />
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })
-                  )}
-                </TableBody>
-              </Table>
+              <div className="text-3xl font-bold text-purple-600">{assignments.length}</div>
+              <p className="text-xs text-gray-600 mt-1">Active lead assignments</p>
             </CardContent>
           </Card>
-        </div>
+
+          {/* Table */}
+          <Card className="border-0 shadow-lg">
+            <CardHeader className="border-b border-gray-100">
+              <CardTitle className="text-gray-900">All Leads Assignments</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gray-50/50">
+                      <TableHead className="font-semibold text-gray-700">User</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Role</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Lead Name</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Email</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Country</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Source</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {isLoading ? (
+                      <TableRow>
+                        <TableCell colSpan={7} className="text-center py-16">
+                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+                          <p className="text-gray-600">Loading assignments...</p>
+                        </TableCell>
+                      </TableRow>
+                    ) : assignments.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={7} className="text-center py-16">
+                          <div className="max-w-md mx-auto">
+                            <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                              <LinkIcon className="h-10 w-10 text-[#1D50C9]" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2">No lead assignments found</h3>
+                            <p className="text-gray-500 mb-6">Create a new assignment to get started</p>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      assignments.map((assignment) => {
+                        return (
+                          <TableRow 
+                            key={`${assignment.userId}-${assignment.leadId}`}
+                            className="hover:bg-blue-50/50 transition-colors duration-200"
+                          >
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                <div className="p-2 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
+                                  <Users className="w-4 h-4 text-[#1D50C9]" />
+                                </div>
+                                <span className="font-medium text-gray-900">{assignment.user.username}</span>
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              {getRoleBadges(assignment.user.roles || (assignment.user as any).role)}
+                            </TableCell>
+                            <TableCell className="font-medium text-gray-900">{assignment.lead.name}</TableCell>
+                            <TableCell className="text-gray-600">{assignment.lead.email}</TableCell>
+                            <TableCell className="text-gray-600">{assignment.lead.preferredCountry}</TableCell>
+                            <TableCell>
+                              {assignment.lead.source && (
+                                <Badge className="bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 border-purple-200">
+                                  {assignment.lead.source}
+                                </Badge>
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleDeleteAssignment(assignment.userId, assignment.leadId)}
+                                className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
+                                data-testid={`button-delete-assignment-${assignment.userId}-${assignment.leadId}`}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+        </main>
       </div>
       
       <MobileNav currentUser={currentUser} />

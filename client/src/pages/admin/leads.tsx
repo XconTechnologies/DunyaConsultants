@@ -265,169 +265,168 @@ export default function LeadsManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
-      <AdminHeader currentUser={currentUser} title="Leads" />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <AdminSidebar currentUser={currentUser} />
       
-      <div className="flex pt-16">
-        <AdminSidebar currentUser={currentUser} />
-        
-        <main className="flex-1 p-6 lg:ml-64">
-          <div className="max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Leads</h1>
-              <p className="text-gray-600 mt-1 font-medium">
-                View and manage all consultation leads from your website
-              </p>
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Leads Management</h1>
+                <p className="text-blue-100 mt-1">View and manage all consultation leads from your website</p>
+              </div>
+              <Button 
+                onClick={exportToCSV}
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all duration-300"
+                data-testid="button-export-csv"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
             </div>
+          </div>
+        </header>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600 font-medium">Total Leads</p>
-                      <p className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">{leads.length}</p>
-                    </div>
-                    <div className="p-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+        {/* Content */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-amber-50 hover:shadow-xl transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600 font-medium">Pending</p>
-                      <p className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">
-                        {leads.filter(l => l.status === "pending").length}
-                      </p>
-                    </div>
-                    <div className="p-2 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-lg">
-                      <Calendar className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600 font-medium">Contacted</p>
-                      <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        {leads.filter(l => l.status === "contacted").length}
-                      </p>
-                    </div>
-                    <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600 font-medium">Converted</p>
-                      <p className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                        {leads.filter(l => l.status === "converted").length}
-                      </p>
-                    </div>
-                    <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg">
-                      <Globe className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Filters */}
-            <Card className="mb-6">
-              <CardContent className="pt-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <Input
-                      placeholder="Search by name, email, or phone..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
-                      data-testid="input-search-leads"
-                    />
-                  </div>
-
-                  <Select value={sourceFilter} onValueChange={setSourceFilter}>
-                    <SelectTrigger data-testid="select-source-filter">
-                      <SelectValue placeholder="Filter by source" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Sources</SelectItem>
-                      {uniqueSources.map((source) => (
-                        <SelectItem key={source} value={source}>
-                          {source.charAt(0).toUpperCase() + source.slice(1)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger data-testid="select-status-filter">
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="contacted">Contacted</SelectItem>
-                      <SelectItem value="converted">Converted</SelectItem>
-                      <SelectItem value="interested">Interested</SelectItem>
-                      <SelectItem value="not_interested">Not Interested</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <button
-                    onClick={exportToCSV}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    data-testid="button-export-csv"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export CSV
-                  </button>
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Total Leads</CardTitle>
+                <div className="p-2 bg-[#1D50C9] rounded-lg">
+                  <Mail className="h-4 w-4 text-white" />
                 </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-[#1D50C9]">{leads.length}</div>
+                <p className="text-xs text-gray-600 mt-1">All consultation requests</p>
               </CardContent>
             </Card>
 
-            {/* Leads Table */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center gap-2">
-                    <Filter className="w-5 h-5" />
-                    {filteredLeads.length} Lead{filteredLeads.length !== 1 ? 's' : ''}
-                    {selectedIds.length > 0 && (
-                      <span className="text-sm text-gray-500">
-                        ({selectedIds.length} selected)
-                      </span>
-                    )}
-                  </CardTitle>
-                  {selectedIds.length > 0 && isAdmin && (
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      onClick={handleBulkDelete}
-                      disabled={bulkDeleteMutation.isPending}
-                      data-testid="button-bulk-delete"
-                    >
-                      <Trash2 className="w-4 h-4 mr-2" />
-                      Delete Selected ({selectedIds.length})
-                    </Button>
-                  )}
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-yellow-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Pending</CardTitle>
+                <div className="p-2 bg-yellow-500 rounded-lg">
+                  <Calendar className="h-4 w-4 text-white" />
                 </div>
               </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-yellow-600">
+                  {leads.filter(l => l.status === "pending").length}
+                </div>
+                <p className="text-xs text-gray-600 mt-1">Awaiting response</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Contacted</CardTitle>
+                <div className="p-2 bg-purple-500 rounded-lg">
+                  <Phone className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-purple-600">
+                  {leads.filter(l => l.status === "contacted").length}
+                </div>
+                <p className="text-xs text-gray-600 mt-1">In communication</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-700">Converted</CardTitle>
+                <div className="p-2 bg-green-500 rounded-lg">
+                  <Globe className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-green-600">
+                  {leads.filter(l => l.status === "converted").length}
+                </div>
+                <p className="text-xs text-gray-600 mt-1">Successful conversions</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Filters */}
+          <Card className="mb-8 border-0 shadow-lg">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Input
+                    placeholder="Search by name, email, or phone..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 rounded-lg"
+                    data-testid="input-search-leads"
+                  />
+                </div>
+
+                <Select value={sourceFilter} onValueChange={setSourceFilter}>
+                  <SelectTrigger className="rounded-lg" data-testid="select-source-filter">
+                    <SelectValue placeholder="Filter by source" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Sources</SelectItem>
+                    {uniqueSources.map((source) => (
+                      <SelectItem key={source} value={source}>
+                        {source.charAt(0).toUpperCase() + source.slice(1)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="rounded-lg" data-testid="select-status-filter">
+                    <SelectValue placeholder="Filter by status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="contacted">Contacted</SelectItem>
+                    <SelectItem value="converted">Converted</SelectItem>
+                    <SelectItem value="interested">Interested</SelectItem>
+                    <SelectItem value="not_interested">Not Interested</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Leads Table */}
+          <Card className="border-0 shadow-lg">
+            <CardHeader className="border-b border-gray-100">
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2 text-gray-900">
+                  <Filter className="w-5 h-5 text-[#1D50C9]" />
+                  {filteredLeads.length} Lead{filteredLeads.length !== 1 ? 's' : ''}
+                  {selectedIds.length > 0 && (
+                    <Badge className="bg-blue-100 text-blue-700 ml-2">
+                      {selectedIds.length} selected
+                    </Badge>
+                  )}
+                </CardTitle>
+                {selectedIds.length > 0 && isAdmin && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleBulkDelete}
+                    disabled={bulkDeleteMutation.isPending}
+                    className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
+                    data-testid="button-bulk-delete"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Delete Selected ({selectedIds.length})
+                  </Button>
+                )}
+              </div>
+            </CardHeader>
               <CardContent>
                 {isLoading ? (
                   <div className="text-center py-8">
@@ -554,7 +553,6 @@ export default function LeadsManagement() {
                 )}
               </CardContent>
             </Card>
-          </div>
         </main>
       </div>
 
