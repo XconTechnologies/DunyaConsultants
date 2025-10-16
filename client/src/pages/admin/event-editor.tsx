@@ -270,8 +270,8 @@ export default function EventEditor() {
 
   if (isLoadingEvent) {
     return (
-      <div className="flex h-screen">
-        <AdminSidebar />
+      <div className="flex h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+        <AdminSidebar currentUser={adminUser} />
         <div className="ml-64 flex-1 flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
         </div>
@@ -280,23 +280,24 @@ export default function EventEditor() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <AdminSidebar currentUser={adminUser} />
 
       <div className="ml-64 flex-1 overflow-auto">
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-4">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg px-8 py-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setLocation("/admin/events")}
+                className="text-white hover:bg-white/20 backdrop-blur-sm transition-all"
                 data-testid="button-back"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-white">
                 {isEditing ? "Edit Event" : "Create New Event"}
               </h1>
             </div>
@@ -305,6 +306,7 @@ export default function EventEditor() {
               <Button
                 variant="outline"
                 onClick={() => setShowPreview(!showPreview)}
+                className="bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm transition-all"
                 data-testid="button-preview"
               >
                 <Eye className="w-4 h-4 mr-2" />
@@ -313,6 +315,7 @@ export default function EventEditor() {
               <Button
                 onClick={form.handleSubmit(onSubmit)}
                 disabled={saveMutation.isPending}
+                className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg transition-all"
                 data-testid="button-save"
               >
                 {saveMutation.isPending ? (
@@ -336,9 +339,9 @@ export default function EventEditor() {
             {/* Main Content Area */}
             <div className="col-span-2 space-y-6">
               {/* Title */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Event Title</CardTitle>
+                  <CardTitle className="text-gray-800">Event Title</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Input
@@ -355,9 +358,9 @@ export default function EventEditor() {
               </Card>
 
               {/* URL/Slug */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>URL Slug</CardTitle>
+                  <CardTitle className="text-gray-800">URL Slug</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Input
@@ -372,9 +375,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Short Description */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Short Description</CardTitle>
+                  <CardTitle className="text-gray-800">Short Description</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Textarea
@@ -390,9 +393,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Full Description */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Full Description</CardTitle>
+                  <CardTitle className="text-gray-800">Full Description</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Textarea
@@ -408,9 +411,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Content Blocks */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Content Blocks</CardTitle>
+                  <CardTitle className="text-gray-800">Content Blocks</CardTitle>
                   <p className="text-sm text-gray-500 mt-1">
                     Add rich content blocks to enhance your event description
                   </p>
@@ -427,9 +430,9 @@ export default function EventEditor() {
             {/* Sidebar */}
             <div className="col-span-1 space-y-6">
               {/* Event Details */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Event Details</CardTitle>
+                  <CardTitle className="text-gray-800">Event Details</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Event Date */}
@@ -509,9 +512,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Study Levels */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Study Levels</CardTitle>
+                  <CardTitle className="text-gray-800">Study Levels</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Popover>
@@ -563,9 +566,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Study Destination Countries */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Study Destination Countries</CardTitle>
+                  <CardTitle className="text-gray-800">Study Destination Countries</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Popover>
@@ -617,9 +620,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Thumbnail Image */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Thumbnail Image *</CardTitle>
+                  <CardTitle className="text-gray-800">Thumbnail Image *</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {form.watch("image") ? (
@@ -676,9 +679,9 @@ export default function EventEditor() {
               </Card>
 
               {/* Banner Image */}
-              <Card>
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
-                  <CardTitle>Banner Image (Optional)</CardTitle>
+                  <CardTitle className="text-gray-800">Banner Image (Optional)</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {form.watch("detailImage") ? (
