@@ -84,7 +84,7 @@ export default function AccreditationSection() {
             >
               {/* Circular Badge with Border and Curved Text */}
               <div className="relative flex flex-col items-center">
-                <div className="relative w-48 h-48 rounded-full bg-[#1D50C9] transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
+                <div className="relative w-48 h-48 rounded-full transition-all duration-300 group-hover:shadow-[0_10px_40px_rgba(29,80,201,0.3)]">
                   {/* SVG for circular border and curved text */}
                   <svg className="absolute inset-0 w-full h-full transition-all duration-300" viewBox="0 0 200 200">
                     <defs>
@@ -102,26 +102,37 @@ export default function AccreditationSection() {
                       />
                     </defs>
                     
-                    {/* Outer circle border - 15px thick light blue */}
+                    {/* Outer blue border */}
                     <circle
                       cx="100"
                       cy="100"
-                      r="85"
+                      r="92"
                       fill="transparent"
-                      stroke="#D4E2FF"
-                      strokeWidth="15"
+                      stroke="#1D50C9"
+                      strokeWidth="8"
                       className="transition-all duration-300"
                     />
                     
-                    {/* Curved text on top - category in white */}
-                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
+                    {/* Inner white circle with light blue border */}
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="75"
+                      fill="white"
+                      stroke="#D4E2FF"
+                      strokeWidth="8"
+                      className="transition-all duration-300"
+                    />
+                    
+                    {/* Curved text on top - category in blue */}
+                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
                       <textPath href={`#circlePath-top-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.category}
                       </textPath>
                     </text>
                     
-                    {/* Curved text on bottom - logo name in white */}
-                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: 'white' }}>
+                    {/* Curved text on bottom - logo name in blue */}
+                    <text className="text-[11px] font-bold uppercase tracking-wide" style={{ fill: '#1D50C9' }}>
                       <textPath href={`#circlePath-bottom-${index}`} startOffset="50%" textAnchor="middle">
                         {accreditation.displayName}
                       </textPath>
