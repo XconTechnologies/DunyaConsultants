@@ -124,35 +124,40 @@ export default function AccreditationSection() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <div className="bg-white rounded-2xl p-4 shadow-lg border-2 border-gray-200 group-hover:border-[#1D50C9] transition-all duration-300 flex flex-col items-center" style={{ width: "160px", height: "180px" }}>
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-2 mb-3 w-full h-28 flex items-center justify-center">
-                  {accreditation.link ? (
-                    <a
-                      href={accreditation.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full h-full flex items-center justify-center"
-                    >
+              {/* Shield/Badge Shape */}
+              <div className="relative" style={{ width: "180px", height: "200px" }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
+                  style={{
+                    clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
+                  }}
+                >
+                  <div className="w-full h-full flex flex-col items-center justify-center p-8">
+                    {accreditation.link ? (
+                      <a
+                        href={accreditation.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center mb-4"
+                      >
+                        <img
+                          src={accreditation.logo}
+                          alt={`${accreditation.name} logo`}
+                          className="max-w-[100px] max-h-[80px] object-contain filter brightness-0 invert"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    ) : (
                       <img
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
-                        className="max-w-full max-h-full object-contain"
+                        className="max-w-[100px] max-h-[80px] object-contain filter brightness-0 invert mb-4"
                         loading="lazy"
                         decoding="async"
                       />
-                    </a>
-                  ) : (
-                    <img
-                      src={accreditation.logo}
-                      alt={`${accreditation.name} logo`}
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-semibold text-gray-600">{accreditation.category}</p>
+                    )}
+                    <p className="text-xs font-bold text-white text-center uppercase tracking-wide">{accreditation.category}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -171,7 +176,7 @@ export default function AccreditationSection() {
             return (
               <motion.div
                 key={stat.platform}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#1D50C9]/30"
+                className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -179,9 +184,9 @@ export default function AccreditationSection() {
               >
                 <div className="flex flex-col items-center text-center">
                   {/* Rating */}
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  <div className="text-4xl font-bold mb-2 text-white">
                     {stat.rating}
-                    <span className="text-2xl text-gray-400">/5</span>
+                    <span className="text-2xl text-white/70">/5</span>
                   </div>
                   
                   {/* Stars */}
@@ -190,15 +195,15 @@ export default function AccreditationSection() {
                   </div>
                   
                   {/* Icon */}
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mb-3`}>
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-3 backdrop-blur-sm">
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   
                   {/* Platform name */}
-                  <p className="font-semibold text-gray-800 mb-1 text-sm">{stat.platform}</p>
+                  <p className="font-semibold text-white mb-1 text-sm">{stat.platform}</p>
                   
                   {/* Reviews count */}
-                  <p className="text-xs text-gray-500">Out of {stat.reviews} reviews</p>
+                  <p className="text-xs text-white/80">Out of {stat.reviews} reviews</p>
                 </div>
               </motion.div>
             );
