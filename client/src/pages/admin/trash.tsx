@@ -379,6 +379,7 @@ export default function TrashManagement() {
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
+                          <TableHead className="font-semibold text-gray-700">Preview</TableHead>
                           <TableHead className="font-semibold text-gray-700">File</TableHead>
                           <TableHead className="font-semibold text-gray-700">Type</TableHead>
                           <TableHead className="font-semibold text-gray-700">Size</TableHead>
@@ -388,6 +389,20 @@ export default function TrashManagement() {
                       <TableBody>
                         {trashedItems.media.map((media: Media) => (
                           <TableRow key={media.id} className="hover:bg-blue-50/50 transition-colors duration-200" data-testid={`row-trash-media-${media.id}`}>
+                            <TableCell>
+                              {media.mimeType.startsWith('image/') ? (
+                                <img 
+                                  src={`/api/uploads/${media.filename}`} 
+                                  alt={media.originalName}
+                                  className="w-16 h-16 object-cover rounded-lg border border-gray-200"
+                                  data-testid={`preview-media-${media.id}`}
+                                />
+                              ) : (
+                                <div className="w-16 h-16 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
+                                  <FileText className="h-6 w-6 text-gray-400" />
+                                </div>
+                              )}
+                            </TableCell>
                             <TableCell className="font-medium text-gray-900">{media.originalName}</TableCell>
                             <TableCell className="text-gray-600">{media.mimeType}</TableCell>
                             <TableCell className="text-gray-600">{formatFileSize(media.size)}</TableCell>
