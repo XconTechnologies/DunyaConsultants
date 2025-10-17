@@ -152,10 +152,10 @@ export default function EventRegistration() {
 
   if (eventsLoading || eventLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-white mx-auto mb-4" />
-          <p className="text-white/80 text-lg">Loading event details...</p>
+          <Loader2 className="h-12 w-12 animate-spin text-[#1D50C9] mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading event details...</p>
         </div>
       </div>
     );
@@ -166,36 +166,30 @@ export default function EventRegistration() {
     const upcomingEvents = allEvents?.filter(e => new Date(e.eventDate) >= new Date()) || [];
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] py-20 px-4 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10">
+      <div className="min-h-screen bg-white py-20 px-4">
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
-              <Sparkles className="h-5 w-5 text-yellow-300" />
-              <span className="text-white font-medium">Join Our Events</span>
+            <div className="inline-flex items-center gap-2 bg-blue-50 px-6 py-3 rounded-full mb-6">
+              <Sparkles className="h-5 w-5 text-[#1D50C9]" />
+              <span className="text-[#1D50C9] font-medium">Join Our Events</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-6">
               Event Registration
             </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Select an event to secure your spot and start your study abroad journey
             </p>
           </div>
           
           {/* Event Selector Card */}
-          <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 border border-white/20">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-12 w-12 bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] rounded-2xl flex items-center justify-center">
                 <Calendar className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Choose Your Event</h2>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">Choose Your Event</h2>
                 <p className="text-gray-600">Browse upcoming events and register instantly</p>
               </div>
             </div>
@@ -250,8 +244,8 @@ export default function EventRegistration() {
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] flex items-center justify-center px-4">
-        <div className="text-center bg-white/95 backdrop-blur-xl rounded-3xl p-12 max-w-md">
+      <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <div className="text-center bg-white rounded-3xl p-12 max-w-md border border-gray-200 shadow-2xl">
           <div className="h-20 w-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <MapPin className="h-10 w-10 text-red-500" />
           </div>
@@ -281,17 +275,10 @@ export default function EventRegistration() {
   const watchedValues = form.watch();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] py-12 px-4 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <div className="min-h-screen bg-white py-12 px-4">
+      <div className="max-w-6xl mx-auto">
         {/* Event Banner Card */}
-        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden mb-8 border border-white/20">
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-8 border border-gray-200">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Left: Event Image */}
             {(event.detailImage || event.image) && (
@@ -345,7 +332,7 @@ export default function EventRegistration() {
         </div>
 
         {/* Registration Form Card */}
-        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 border border-white/20">
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200">
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-12 w-12 bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] rounded-2xl flex items-center justify-center">
@@ -586,9 +573,9 @@ export default function EventRegistration() {
 
         {/* Additional Info */}
         <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-2xl">
-            <CheckCircle2 className="h-5 w-5 text-white" />
-            <p className="text-white/90 text-sm font-medium">
+          <div className="inline-flex items-center gap-3 bg-blue-50 px-6 py-4 rounded-2xl border border-blue-100">
+            <CheckCircle2 className="h-5 w-5 text-[#1D50C9]" />
+            <p className="text-gray-700 text-sm font-medium">
               You'll receive a confirmation email with your QR code for event check-in
             </p>
           </div>
