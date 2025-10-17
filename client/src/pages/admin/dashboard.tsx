@@ -924,7 +924,7 @@ export default function AdminDashboard() {
                     <Card 
                       key={event.id} 
                       className="border-0 shadow-lg bg-gradient-to-br from-white to-indigo-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer"
-                      onClick={() => setLocation('/admin/event-registrations')}
+                      onClick={() => setLocation(`/admin/event-registrations?eventId=${event.id}`)}
                     >
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium text-gray-700 line-clamp-1">

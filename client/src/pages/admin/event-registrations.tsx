@@ -40,6 +40,10 @@ export default function EventRegistrationsPage() {
   const [generatingQR, setGeneratingQR] = useState(false);
   const { toast } = useToast();
 
+  // Get event ID from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const eventIdFromUrl = urlParams.get('eventId');
+
   // Helper function to get auth headers
   const getAuthHeaders = () => {
     const adminToken = localStorage.getItem("adminToken");
@@ -359,7 +363,17 @@ export default function EventRegistrationsPage() {
               </CardContent>
             </Card>
           ) : (
-            <Tabs defaultValue={upcomingEvents.length > 0 ? "upcoming" : "past"} className="space-y-6">
+            <Tabs defaultValue={(() => {
+              // Determine default main tab based on URL parameter or default logic
+              if (eventIdFromUrl) {
+                const eventId = parseInt(eventIdFromUrl);
+                const isUpcoming = upcomingEvents.some(e => e.id === eventId);
+                const isPast = pastEvents.some(e => e.id === eventId);
+                if (isUpcoming) return "upcoming";
+                if (isPast) return "past";
+              }
+              return upcomingEvents.length > 0 ? "upcoming" : "past";
+            })()} className="space-y-6">
               {/* Main Tab List - Upcoming vs Past */}
               <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                 <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto">
@@ -391,7 +405,16 @@ export default function EventRegistrationsPage() {
               {/* Upcoming Events Tab Content */}
               {upcomingEvents.length > 0 && (
                 <TabsContent value="upcoming" className="space-y-6">
-                  <Tabs defaultValue={upcomingEvents[0]?.id.toString()} className="space-y-6">
+                  <Tabs defaultValue={(() => {
+                    // Use URL param if it's an upcoming event, otherwise use first event
+                    if (eventIdFromUrl) {
+                      const eventId = parseInt(eventIdFromUrl);
+                      if (upcomingEvents.some(e => e.id === eventId)) {
+                        return eventIdFromUrl;
+                      }
+                    }
+                    return upcomingEvents[0]?.id.toString();
+                  })()} className="space-y-6">
                     <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                       <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
                         {upcomingEvents.map((event: Event) => (
@@ -650,7 +673,16 @@ export default function EventRegistrationsPage() {
               {/* Past Events Tab Content */}
               {pastEvents.length > 0 && (
                 <TabsContent value="past" className="space-y-6">
-                  <Tabs defaultValue={pastEvents[0]?.id.toString()} className="space-y-6">
+                  <Tabs defaultValue={(() => {
+                    // Use URL param if it's a past event, otherwise use first event
+                    if (eventIdFromUrl) {
+                      const eventId = parseInt(eventIdFromUrl);
+                      if (pastEvents.some(e => e.id === eventId)) {
+                        return eventIdFromUrl;
+                      }
+                    }
+                    return pastEvents[0]?.id.toString();
+                  })()} className="space-y-6">
                     <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                       <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
                         {pastEvents.map((event: Event) => (
