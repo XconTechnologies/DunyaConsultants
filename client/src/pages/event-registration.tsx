@@ -495,16 +495,16 @@ export default function EventRegistration() {
             <div className="text-center space-y-3">
               <DialogTitle className="text-2xl text-white flex items-center justify-center gap-2">
                 <CheckCircle2 className="h-6 w-6 text-white flex-shrink-0" />
-                Thank You {userName}!
+                Thank You <strong className="font-bold italic">{userName}</strong>!
               </DialogTitle>
               <DialogDescription className="text-base text-white/90">
                 for registering for <strong>{event?.title}</strong>
               </DialogDescription>
+              
+              <p className="text-sm text-white/90 mt-3">
+                📧 Check your email for confirmation and your QR code
+              </p>
             </div>
-            
-            <p className="text-center text-sm pt-2 text-white/90">
-              📧 Check your email for confirmation and your QR code
-            </p>
           </DialogHeader>
           <div className="px-6 pb-6 pt-4">
             {qrCodeUrl && event && (
@@ -608,18 +608,60 @@ export default function EventRegistration() {
                       logoImage.src = '/dunya-white-logo.png';
                     });
 
-                    // Draw "Thank You" text in header below logo with checkmark and spacing
+                    // Draw "Thank You" text with username in bold italic
                     ctx.fillStyle = '#ffffff';
-                    ctx.font = `bold ${22 * scale}px system-ui`;
                     ctx.textAlign = 'center';
-                    const thankYouText = `✓ Thank You ${userName}!`;
-                    ctx.fillText(thankYouText, canvas.width / 2, 95 * scale);
+                    
+                    // Measure text parts to position correctly
+                    ctx.font = `bold ${22 * scale}px system-ui`;
+                    const thankYouPrefix = '✓ Thank You ';
+                    const thankYouSuffix = '!';
+                    
+                    const prefixWidth = ctx.measureText(thankYouPrefix).width;
+                    ctx.font = `bold italic ${22 * scale}px system-ui`;
+                    const nameWidth = ctx.measureText(userName).width;
+                    ctx.font = `bold ${22 * scale}px system-ui`;
+                    const suffixWidth = ctx.measureText(thankYouSuffix).width;
+                    const totalWidth = prefixWidth + nameWidth + suffixWidth;
+                    
+                    // Calculate starting position to center the whole text
+                    let currentX = (canvas.width - totalWidth) / 2;
+                    
+                    // Draw prefix
+                    ctx.font = `bold ${22 * scale}px system-ui`;
+                    ctx.textAlign = 'left';
+                    ctx.fillText(thankYouPrefix, currentX, 95 * scale);
+                    currentX += prefixWidth;
+                    
+                    // Draw username in bold italic
+                    ctx.font = `bold italic ${22 * scale}px system-ui`;
+                    ctx.fillText(userName, currentX, 95 * scale);
+                    currentX += nameWidth;
+                    
+                    // Draw suffix
+                    ctx.font = `bold ${22 * scale}px system-ui`;
+                    ctx.fillText(thankYouSuffix, currentX, 95 * scale);
 
-                    // Draw subtitle in header with more spacing
+                    // Draw subtitle with event name in bold
+                    ctx.textAlign = 'center';
                     ctx.font = `${15 * scale}px system-ui`;
-                    ctx.fillStyle = '#ffffff';
-                    const subtitleText = `for registering for ${event.title}`;
-                    ctx.fillText(subtitleText, canvas.width / 2, 125 * scale);
+                    const subtitlePrefix = 'for registering for ';
+                    const subtitlePrefixWidth = ctx.measureText(subtitlePrefix).width;
+                    ctx.font = `bold ${15 * scale}px system-ui`;
+                    const eventTitleWidth = ctx.measureText(event.title).width;
+                    const subtitleTotalWidth = subtitlePrefixWidth + eventTitleWidth;
+                    
+                    let subtitleX = (canvas.width - subtitleTotalWidth) / 2;
+                    
+                    // Draw prefix
+                    ctx.font = `${15 * scale}px system-ui`;
+                    ctx.textAlign = 'left';
+                    ctx.fillText(subtitlePrefix, subtitleX, 125 * scale);
+                    subtitleX += subtitlePrefixWidth;
+                    
+                    // Draw event title in bold
+                    ctx.font = `bold ${15 * scale}px system-ui`;
+                    ctx.fillText(event.title, subtitleX, 125 * scale);
 
                     // Draw email check note inside header on blue gradient
                     ctx.font = `${12 * scale}px system-ui`;
