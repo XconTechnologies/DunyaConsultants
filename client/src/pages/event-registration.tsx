@@ -208,14 +208,14 @@ export default function EventRegistration() {
                     <SelectItem 
                       key={evt.id} 
                       value={evt.slug} 
-                      className="text-sm sm:text-base py-4 cursor-pointer hover:bg-gradient-to-r hover:from-[#1D50C9]/10 hover:to-[#0f3a8a]/10 focus:bg-gradient-to-r focus:from-[#1D50C9]/10 focus:to-[#0f3a8a]/10 rounded-lg mx-1 my-0.5 transition-all duration-200"
+                      className="text-sm sm:text-base py-4 cursor-pointer hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#0f3a8a] focus:bg-gradient-to-r focus:from-[#1D50C9] focus:to-[#0f3a8a] rounded-lg mx-1 my-0.5 transition-all duration-200 group"
                     >
                       <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                        <div className="h-8 w-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Calendar className="h-4 w-4 text-[#1D50C9]" />
+                        <div className="h-8 w-8 bg-blue-100 group-hover:bg-white rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
+                          <Calendar className="h-4 w-4 text-[#1D50C9] group-hover:text-[#1D50C9]" />
                         </div>
-                        <span className="flex-1 font-medium text-gray-900">{evt.title}</span>
-                        <span className="text-gray-500 text-xs sm:text-sm bg-gray-100 px-2 py-1 rounded-md">
+                        <span className="flex-1 font-medium text-gray-900 group-hover:text-white transition-all">{evt.title}</span>
+                        <span className="text-gray-500 text-xs sm:text-sm bg-gray-100 group-hover:bg-white/20 group-hover:text-white px-2 py-1 rounded-md transition-all">
                           {new Date(evt.eventDate).toLocaleDateString('en-US', { 
                             month: 'short', 
                             day: 'numeric', 
