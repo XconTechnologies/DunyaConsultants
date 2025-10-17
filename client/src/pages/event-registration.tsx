@@ -568,142 +568,150 @@ export default function EventRegistration() {
                     const ctx = canvas.getContext('2d');
                     if (!ctx) return;
 
-                    // Set canvas dimensions (2x for high resolution) - smaller width with space for logo
+                    // Set canvas dimensions (2x for high resolution)
                     const scale = 2;
                     canvas.width = 600 * scale;
-                    canvas.height = 340 * scale;
+                    canvas.height = 480 * scale;
 
                     // Fill white background
                     ctx.fillStyle = '#ffffff';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                    // Draw blue border
-                    ctx.strokeStyle = '#1D50C9';
-                    ctx.lineWidth = 4 * scale;
-                    ctx.strokeRect(10 * scale, 10 * scale, (600 - 20) * scale, (340 - 20) * scale);
+                    // Draw blue header background
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                    gradient.addColorStop(0, '#1D50C9');
+                    gradient.addColorStop(1, '#0f3a8a');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, 120 * scale);
 
-                    // Draw rounded rectangle for content
-                    const drawRoundRect = (x: number, y: number, width: number, height: number, radius: number) => {
-                      ctx.beginPath();
-                      ctx.moveTo(x + radius, y);
-                      ctx.lineTo(x + width - radius, y);
-                      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-                      ctx.lineTo(x + width, y + height - radius);
-                      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-                      ctx.lineTo(x + radius, y + height);
-                      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-                      ctx.lineTo(x, y + radius);
-                      ctx.quadraticCurveTo(x, y, x + radius, y);
-                      ctx.closePath();
-                    };
-
-                    // Load and draw logo first
+                    // Load and draw white logo in header
                     const logoImage = new Image();
+                    logoImage.crossOrigin = 'anonymous';
                     
                     await new Promise<void>((resolve) => {
                       logoImage.onload = () => {
                         try {
-                          // Draw logo centered at top
-                          const logoWidth = 200 * scale;
-                          const logoHeight = 55 * scale;
+                          // Draw white logo centered in header
+                          const logoWidth = 180 * scale;
+                          const logoHeight = 50 * scale;
                           const logoX = (canvas.width - logoWidth) / 2;
-                          ctx.drawImage(logoImage, logoX, 30 * scale, logoWidth, logoHeight);
+                          ctx.drawImage(logoImage, logoX, 15 * scale, logoWidth, logoHeight);
                           console.log('Logo loaded successfully');
                           resolve();
                         } catch (err) {
                           console.error('Error drawing logo:', err);
-                          resolve(); // Continue anyway
+                          resolve();
                         }
                       };
                       logoImage.onerror = (e) => {
-                        console.error('Logo loading failed, continuing without logo:', e);
-                        resolve(); // Continue anyway without logo
+                        console.error('Logo loading failed:', e);
+                        resolve();
                       };
-                      // Use the local logo file
-                      logoImage.src = dunyaLogo;
+                      logoImage.src = 'https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png';
                     });
 
-                    // Event Name Heading - centered below logo on single line
-                    ctx.font = `bold ${15 * scale}px system-ui`;
-                    ctx.fillStyle = '#1D50C9';
+                    // Draw checkmark icon and "Thank You" text in header
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = `bold ${20 * scale}px system-ui`;
                     ctx.textAlign = 'center';
+                    const thankYouText = `Thank You ${userName}!`;
+                    ctx.fillText(thankYouText, canvas.width / 2, 90 * scale);
                     
-                    // Draw title on single line, centered
-                    const titleY = 120 * scale;
-                    ctx.fillText(event.title, canvas.width / 2, titleY);
-                    
-                    // Draw underline for title
-                    const titleWidth = ctx.measureText(event.title).width;
-                    ctx.strokeStyle = '#1D50C9';
-                    ctx.lineWidth = 2 * scale;
-                    ctx.beginPath();
-                    ctx.moveTo((canvas.width - titleWidth) / 2, titleY + 5 * scale);
-                    ctx.lineTo((canvas.width + titleWidth) / 2, titleY + 5 * scale);
-                    ctx.stroke();
+                    // Draw subtitle in header
+                    ctx.font = `${14 * scale}px system-ui`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    const subtitleText = `for registering for ${event.title}`;
+                    ctx.fillText(subtitleText, canvas.width / 2, 113 * scale);
 
-                    // Event Details subtitle
-                    ctx.font = `bold ${14 * scale}px system-ui`;
-                    ctx.fillStyle = '#1D50C9';
+                    // Draw email check note below header
+                    ctx.font = `${11 * scale}px system-ui`;
+                    ctx.fillStyle = '#6b7280';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('📧 Check your email for confirmation and your QR code', canvas.width / 2, 150 * scale);
+
+                    // Draw Event Details section header
+                    ctx.font = `bold ${16 * scale}px system-ui`;
+                    ctx.fillStyle = '#111827';
                     ctx.textAlign = 'left';
-                    ctx.fillText('Event Details', 40 * scale, 155 * scale);
+                    ctx.fillText('Event Details', 40 * scale, 195 * scale);
 
-                    // Date (inline)
+                    // Date
                     const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
                       weekday: 'long', 
-                      year: 'numeric', 
                       month: 'short', 
-                      day: 'numeric' 
+                      day: 'numeric',
+                      year: 'numeric' 
                     });
-                    ctx.font = `${13 * scale}px system-ui`;
+                    ctx.font = `${14 * scale}px system-ui`;
                     ctx.fillStyle = '#1D50C9';
-                    ctx.fillText('📅', 40 * scale, 190 * scale);
-                    ctx.fillStyle = '#374151';
+                    ctx.fillText('📅', 40 * scale, 235 * scale);
+                    ctx.fillStyle = '#111827';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Date:', 65 * scale, 190 * scale);
-                    ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText(dateStr, 110 * scale, 190 * scale);
+                    ctx.fillText('Date:', 65 * scale, 235 * scale);
+                    ctx.font = `${12 * scale}px system-ui`;
+                    ctx.fillStyle = '#374151';
+                    ctx.fillText(dateStr, 65 * scale, 255 * scale);
 
-                    // Time (inline)
+                    // Time
+                    ctx.font = `${14 * scale}px system-ui`;
                     ctx.fillStyle = '#f97316';
-                    ctx.fillText('🕐', 40 * scale, 225 * scale);
-                    ctx.fillStyle = '#374151';
+                    ctx.fillText('🕐', 40 * scale, 295 * scale);
+                    ctx.fillStyle = '#111827';
                     ctx.font = `bold ${13 * scale}px system-ui`;
-                    ctx.fillText('Time:', 65 * scale, 225 * scale);
-                    ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 225 * scale);
+                    ctx.fillText('Time:', 65 * scale, 295 * scale);
+                    ctx.font = `${12 * scale}px system-ui`;
+                    ctx.fillStyle = '#374151';
+                    ctx.fillText('10:00 AM to 5:00 PM', 65 * scale, 315 * scale);
 
-                    // Venue (inline)
+                    // Venue
                     if (event.venue) {
-                      ctx.fillStyle = '#1D50C9';
-                      ctx.fillText('📍', 40 * scale, 260 * scale);
-                      ctx.fillStyle = '#374151';
+                      ctx.font = `${14 * scale}px system-ui`;
+                      ctx.fillStyle = '#ef4444';
+                      ctx.fillText('📍', 40 * scale, 355 * scale);
+                      ctx.fillStyle = '#111827';
                       ctx.font = `bold ${13 * scale}px system-ui`;
-                      ctx.fillText('Venue:', 65 * scale, 260 * scale);
-                      ctx.font = `${13 * scale}px system-ui`;
-                      ctx.fillText(event.venue, 120 * scale, 260 * scale);
+                      ctx.fillText('Venue:', 65 * scale, 355 * scale);
+                      ctx.font = `${12 * scale}px system-ui`;
+                      ctx.fillStyle = '#374151';
+                      ctx.fillText(event.venue, 65 * scale, 375 * scale);
                     }
 
                     // Load and draw QR code
                     const qrImage = new Image();
-                    qrImage.crossOrigin = 'anonymous'; // Enable CORS
+                    qrImage.crossOrigin = 'anonymous';
                     
                     await new Promise<void>((resolve, reject) => {
                       qrImage.onload = () => {
                         try {
-                          // Draw QR border
+                          // Draw QR code border (rounded rectangle)
+                          const qrX = 410 * scale;
+                          const qrY = 220 * scale;
+                          const qrSize = 140 * scale;
+                          const borderRadius = 8 * scale;
+                          
                           ctx.strokeStyle = '#1D50C9';
-                          ctx.lineWidth = 2 * scale;
-                          drawRoundRect(410 * scale, 110 * scale, 150 * scale, 150 * scale, 8 * scale);
+                          ctx.lineWidth = 3 * scale;
+                          ctx.beginPath();
+                          ctx.moveTo(qrX + borderRadius, qrY);
+                          ctx.lineTo(qrX + qrSize - borderRadius, qrY);
+                          ctx.quadraticCurveTo(qrX + qrSize, qrY, qrX + qrSize, qrY + borderRadius);
+                          ctx.lineTo(qrX + qrSize, qrY + qrSize - borderRadius);
+                          ctx.quadraticCurveTo(qrX + qrSize, qrY + qrSize, qrX + qrSize - borderRadius, qrY + qrSize);
+                          ctx.lineTo(qrX + borderRadius, qrY + qrSize);
+                          ctx.quadraticCurveTo(qrX, qrY + qrSize, qrX, qrY + qrSize - borderRadius);
+                          ctx.lineTo(qrX, qrY + borderRadius);
+                          ctx.quadraticCurveTo(qrX, qrY, qrX + borderRadius, qrY);
+                          ctx.closePath();
                           ctx.stroke();
 
-                          // Draw QR code
-                          ctx.drawImage(qrImage, 420 * scale, 120 * scale, 130 * scale, 130 * scale);
+                          // Draw QR code image
+                          ctx.drawImage(qrImage, qrX + 15 * scale, qrY + 15 * scale, 110 * scale, 110 * scale);
 
                           // Draw "YOUR QR CODE" text
-                          ctx.font = `bold ${11 * scale}px system-ui`;
+                          ctx.font = `bold ${10 * scale}px system-ui`;
                           ctx.fillStyle = '#1D50C9';
                           ctx.textAlign = 'center';
-                          ctx.fillText('YOUR QR CODE', 485 * scale, 280 * scale);
+                          ctx.fillText('YOUR QR CODE', qrX + qrSize / 2, qrY + qrSize + 20 * scale);
                           
                           console.log('QR code loaded successfully');
                           resolve();
