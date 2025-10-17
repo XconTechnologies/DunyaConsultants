@@ -440,6 +440,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
                     .mobile-padding {
                       padding: 20px 15px !important;
                     }
+                    .mobile-logo {
+                      max-width: 180px !important;
+                      margin-bottom: 15px !important;
+                    }
+                    .mobile-header-title {
+                      font-size: 24px !important;
+                      margin: 10px 0 !important;
+                    }
+                    .mobile-header-subtitle {
+                      font-size: 14px !important;
+                      margin: 8px 10px 0 10px !important;
+                    }
+                    .mobile-qr-container {
+                      margin-top: 20px !important;
+                    }
+                    .mobile-card-padding {
+                      padding: 20px 15px !important;
+                    }
                   }
                 </style>
               </head>
@@ -448,12 +466,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   
                   <!-- Blue Header with Logo -->
                   <div style="background: linear-gradient(to right, #1D50C9, #0f3a8a); padding: 30px 20px; text-align: center;">
-                    <img src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" alt="Dunya Consultants" style="max-width: 200px; height: auto; display: inline-block; margin-bottom: 25px;" />
+                    <img src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" alt="Dunya Consultants" class="mobile-logo" style="max-width: 200px; height: auto; display: inline-block; margin-bottom: 25px;" />
                     
-                    <h1 style="color: #ffffff; font-size: 28px; margin: 15px 0; font-weight: bold;">
+                    <h1 class="mobile-header-title" style="color: #ffffff; font-size: 28px; margin: 15px 0; font-weight: bold;">
                       ✓ Thank You ${registration.name}!
                     </h1>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 10px 0 0 0;">
+                    <p class="mobile-header-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 10px 0 0 0;">
                       for registering for <strong>${event.title}</strong>
                     </p>
                   </div>
@@ -469,7 +487,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   <div class="mobile-padding" style="padding: 30px;">
                     
                     <!-- Event Details Card -->
-                    <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+                    <div class="mobile-card-padding" style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
                       <h3 style="color: #111827; font-size: 18px; font-weight: bold; margin: 0 0 20px 0;">Event Details</h3>
                       
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -502,9 +520,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
                             ` : ''}
                           </td>
                           
-                          <td class="mobile-stack" style="width: 37%; vertical-align: top; text-align: center; padding-left: 3%;">
-                            <div style="background: white; padding: 12px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
-                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 120px; height: 120px; display: block;" />
+                          <td class="mobile-stack mobile-qr-container" style="width: 37%; vertical-align: top; text-align: center; padding-left: 3%;">
+                            <div style="background: white; padding: 12px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9; max-width: 100%;">
+                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 120px; height: 120px; max-width: 100%; display: block;" />
                             </div>
                             <p style="color: #1D50C9; font-size: 11px; font-weight: bold; margin: 10px 0 0 0; letter-spacing: 0.5px;">YOUR QR CODE</p>
                           </td>
