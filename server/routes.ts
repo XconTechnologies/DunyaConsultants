@@ -1732,6 +1732,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const country = leadData.preferredCountry || 'Not specified';
           
           const voiceMessage = `New lead received from ${name}. Email: ${email}. Phone: ${phone}. Interested in studying in ${country}. Message: ${message}`;
+          
+          console.log('🎤 Generating TTS audio for lead:', consultation.id);
+          console.log('Voice message:', voiceMessage);
 
           // Call ElevenLabs Text-to-Speech API
           const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
