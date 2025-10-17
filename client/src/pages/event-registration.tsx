@@ -492,19 +492,17 @@ export default function EventRegistration() {
               />
             </div>
             
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <CheckCircle2 className="h-12 w-12 text-white flex-shrink-0" />
-                <DialogTitle className="text-2xl text-white">
-                  Thank You {userName}!
-                </DialogTitle>
-              </div>
+            <div className="text-center space-y-3">
+              <DialogTitle className="text-2xl text-white flex items-center justify-center gap-2">
+                <CheckCircle2 className="h-6 w-6 text-white flex-shrink-0" />
+                Thank You {userName}!
+              </DialogTitle>
               <DialogDescription className="text-base text-white/90">
                 for registering for <strong>{event?.title}</strong>
               </DialogDescription>
             </div>
             
-            <p className="text-center text-sm pt-3 text-white/90">
+            <p className="text-center text-sm pt-2 text-white/90">
               📧 Check your email for confirmation and your QR code
             </p>
           </DialogHeader>

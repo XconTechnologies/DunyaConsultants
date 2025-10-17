@@ -448,15 +448,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   
                   <!-- Blue Header with Logo -->
                   <div style="background: linear-gradient(to right, #1D50C9, #0f3a8a); padding: 30px 20px; text-align: center;">
-                    <img src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" alt="Dunya Consultants" style="max-width: 200px; height: auto; display: inline-block; margin-bottom: 20px;" />
+                    <img src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" alt="Dunya Consultants" style="max-width: 200px; height: auto; display: inline-block; margin-bottom: 25px;" />
                     
-                    <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; font-weight: bold;">
-                      Thank You ${registration.name}!
+                    <h1 style="color: #ffffff; font-size: 28px; margin: 15px 0; font-weight: bold;">
+                      ✓ Thank You ${registration.name}!
                     </h1>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 5px 0;">
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 10px 0 0 0;">
                       for registering for <strong>${event.title}</strong>
                     </p>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 13px; margin: 15px 0 0 0;">
+                  </div>
+                  
+                  <!-- Email Note Below Header -->
+                  <div style="background-color: #ffffff; padding: 20px; text-align: center;">
+                    <p style="color: #6b7280; font-size: 13px; margin: 0;">
                       📧 Check your email for confirmation and your QR code
                     </p>
                   </div>
