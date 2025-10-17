@@ -403,6 +403,31 @@ export const events = pgTable("events", {
   trashedAt: timestamp("trashed_at"),
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
   trashReason: text("trash_reason"),
+  // Media attachments for past events
+  recordings: json("recordings").$type<Array<{
+    url: string;
+    title: string;
+    duration?: string;
+    uploadedAt: string;
+  }>>(),
+  images: json("images").$type<Array<{
+    url: string;
+    caption?: string;
+    uploadedAt: string;
+  }>>(),
+  videos: json("videos").$type<Array<{
+    url: string;
+    title: string;
+    thumbnail?: string;
+    uploadedAt: string;
+  }>>(),
+  documents: json("documents").$type<Array<{
+    url: string;
+    title: string;
+    fileType: string;
+    size?: number;
+    uploadedAt: string;
+  }>>(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
