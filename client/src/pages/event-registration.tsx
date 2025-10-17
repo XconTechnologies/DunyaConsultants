@@ -482,75 +482,83 @@ export default function EventRegistration() {
 
       {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="sm:max-w-md border-[#dadada]">
-          <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] -mx-6 -mt-6 px-6 py-8 rounded-t-lg">
-            <div className="text-center mb-6">
-              <img loading="lazy" 
+        <DialogContent className="sm:max-w-md border-[#dadada] p-0 gap-0">
+          <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] px-6 py-6 rounded-t-lg">
+            <div className="text-center mb-4">
+              <img 
                 src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
                 alt="Dunya Consultants" 
-                className="h-12 mx-auto"
-                loading="lazy"
+                className="h-10 mx-auto"
               />
             </div>
             
-            <div className="flex items-center gap-4">
-              <CheckCircle2 className="h-16 w-16 text-white flex-shrink-0" />
-              <div className="flex-1">
-                <DialogTitle className="text-2xl text-white mb-2">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <CheckCircle2 className="h-12 w-12 text-white flex-shrink-0" />
+                <DialogTitle className="text-2xl text-white">
                   Thank You {userName}!
                 </DialogTitle>
-                <DialogDescription className="text-base text-white/90">
-                  for registering for <strong>{event?.title}</strong>
-                </DialogDescription>
               </div>
+              <DialogDescription className="text-base text-white/90">
+                for registering for <strong>{event?.title}</strong>
+              </DialogDescription>
             </div>
             
-            <p className="text-center text-sm pt-4 text-white/90">
+            <p className="text-center text-sm pt-3 text-white/90">
               📧 Check your email for confirmation and your QR code
             </p>
           </DialogHeader>
-          <div className="space-y-4 py-4">
+          <div className="px-6 pb-6 pt-4">
             {qrCodeUrl && event && (
-              <div id="event-card-download" className="bg-white border-2 border-[#1D50C9] rounded-lg p-5">
-                <div className="flex items-center gap-6">
+              <div id="event-card-download" className="bg-white border border-gray-200 rounded-lg p-5">
+                <h3 className="font-bold text-gray-900 text-base mb-4">Event Details</h3>
+                <div className="flex items-start gap-6">
                   {/* Left: Event Details */}
-                  <div className="flex-1">
-                    <h3 className="font-bold text-[#1D50C9] text-lg mb-3">Event Details</h3>
-                    <div className="space-y-2">
-                      <p className="text-sm text-gray-700">
-                        <span className="text-[#1D50C9]">📅</span> <strong>Date:</strong><br />
-                        <span className="ml-5">{new Date(event.eventDate).toLocaleDateString('en-US', { 
+                  <div className="flex-1 space-y-3">
+                    <div className="flex items-start gap-2">
+                      <span className="text-[#1D50C9] text-lg">📅</span>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">Date:</p>
+                        <p className="text-sm text-gray-700">{new Date(event.eventDate).toLocaleDateString('en-US', { 
                           weekday: 'long', 
-                          year: 'numeric', 
                           month: 'short', 
-                          day: 'numeric' 
-                        })}</span>
-                      </p>
-                      <p className="text-sm text-gray-700">
-                        <span className="text-orange-500">🕐</span> <strong>Time:</strong><br />
-                        <span className="ml-5">10:00 AM to 5:00 PM</span>
-                      </p>
-                      {event.venue && (
-                        <p className="text-sm text-gray-700">
-                          <span className="text-[#1D50C9]">📍</span> <strong>Venue:</strong><br />
-                          <span className="ml-5">{event.venue}</span>
-                        </p>
-                      )}
+                          day: 'numeric',
+                          year: 'numeric' 
+                        })}</p>
+                      </div>
                     </div>
+                    
+                    <div className="flex items-start gap-2">
+                      <span className="text-orange-500 text-lg">🕐</span>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">Time:</p>
+                        <p className="text-sm text-gray-700">10:00 AM to 5:00 PM</p>
+                      </div>
+                    </div>
+                    
+                    {event.venue && (
+                      <div className="flex items-start gap-2">
+                        <span className="text-red-500 text-lg">📍</span>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">Venue:</p>
+                          <p className="text-sm text-gray-700">{event.venue}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
-                  {/* Right: QR Code (Smaller) */}
+                  {/* Right: QR Code */}
                   <div className="text-center">
-                    <div className="bg-white p-2 inline-block rounded-lg border border-[#1D50C9]">
-                      <img loading="lazy" src={qrCodeUrl} alt="Event QR Code" className="w-32 h-32" />
+                    <div className="bg-white p-3 inline-block rounded-lg border-2 border-[#1D50C9]">
+                      <img src={qrCodeUrl} alt="Event QR Code" className="w-28 h-28" />
                     </div>
-                    <p className="text-xs text-[#1D50C9] font-semibold mt-2">YOUR QR CODE</p>
+                    <p className="text-xs text-[#1D50C9] font-bold mt-2 tracking-wide">YOUR QR CODE</p>
                   </div>
                 </div>
               </div>
             )}
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 px-6 pb-6">
             <Button
               onClick={async () => {
                 if (event && qrCodeUrl) {
