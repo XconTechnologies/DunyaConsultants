@@ -198,22 +198,30 @@ export default function EventRegistration() {
               <SelectTrigger className="w-full h-14 sm:h-16 text-base sm:text-lg border-2 border-white/30 hover:border-white transition-all rounded-xl sm:rounded-2xl bg-white shadow-sm" data-testid="select-event">
                 <SelectValue placeholder="🎓 Select an upcoming event..." />
               </SelectTrigger>
-              <SelectContent className="bg-white">
+              <SelectContent className="bg-gradient-to-br from-white to-blue-50/50 border-2 border-blue-100 shadow-2xl">
                 {upcomingEvents.length === 0 ? (
-                  <SelectItem value="no-events" disabled>
+                  <SelectItem value="no-events" disabled className="text-gray-400">
                     No upcoming events available
                   </SelectItem>
                 ) : (
                   upcomingEvents.map((evt) => (
-                    <SelectItem key={evt.id} value={evt.slug} className="text-sm sm:text-base py-3">
+                    <SelectItem 
+                      key={evt.id} 
+                      value={evt.slug} 
+                      className="text-sm sm:text-base py-4 cursor-pointer hover:bg-gradient-to-r hover:from-[#1D50C9]/10 hover:to-[#0f3a8a]/10 focus:bg-gradient-to-r focus:from-[#1D50C9]/10 focus:to-[#0f3a8a]/10 rounded-lg mx-1 my-0.5 transition-all duration-200"
+                    >
                       <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                        <Calendar className="h-4 w-4 text-[#1D50C9] flex-shrink-0" />
-                        <span className="flex-1">{evt.title}</span>
-                        <span className="text-gray-500 text-xs sm:text-sm">• {new Date(evt.eventDate).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric', 
-                          year: 'numeric' 
-                        })}</span>
+                        <div className="h-8 w-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Calendar className="h-4 w-4 text-[#1D50C9]" />
+                        </div>
+                        <span className="flex-1 font-medium text-gray-900">{evt.title}</span>
+                        <span className="text-gray-500 text-xs sm:text-sm bg-gray-100 px-2 py-1 rounded-md">
+                          {new Date(evt.eventDate).toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric', 
+                            year: 'numeric' 
+                          })}
+                        </span>
                       </div>
                     </SelectItem>
                   ))
