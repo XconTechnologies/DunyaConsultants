@@ -1048,6 +1048,161 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // ==============================================
+  // EVENT MEDIA MANAGEMENT ROUTES
+  // ==============================================
+
+  // Upload media to an event (Admin/Events Manager only)
+  app.post("/api/events/:eventId/media/upload", requireAuth, requireUser, upload.single('file'), async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+
+      const eventId = parseInt(req.params.eventId);
+      const { mediaType, title, caption, duration, thumbnail } = req.body;
+
+      // Validate media type
+      const validMediaTypes = ['recording', 'image', 'video', 'document'];
+      if (!validMediaTypes.includes(mediaType)) {
+        return res.status(400).json({ message: "Invalid media type" });
+      }
+
+      // Get event
+      const event = await storage.getEventById(eventId);
+      if (!event) {
+        return res.status(404).json({ message: "Event not found" });
+      }
+
+      // Get file info
+      const filename = req.file.filename;
+      const fileUrl = `/api/uploads/${filename}`;
+      const fileType = path.extname(req.file.originalname).toLowerCase();
+      const fileSize = req.file.size;
+
+      // Create media object based on type
+      const uploadedAt = new Date().toISOString();
+      let mediaItem: any;
+
+      switch (mediaType) {
+        case 'recording':
+          mediaItem = {
+            url: fileUrl,
+            title: title || req.file.originalname,
+            duration: duration || undefined,
+            uploadedAt
+          };
+          break;
+        case 'image':
+          mediaItem = {
+            url: fileUrl,
+            caption: caption || undefined,
+            uploadedAt
+          };
+          break;
+        case 'video':
+          mediaItem = {
+            url: fileUrl,
+            title: title || req.file.originalname,
+            thumbnail: thumbnail || undefined,
+            uploadedAt
+          };
+          break;
+        case 'document':
+          mediaItem = {
+            url: fileUrl,
+            title: title || req.file.originalname,
+            fileType: fileType,
+            size: fileSize,
+            uploadedAt
+          };
+          break;
+      }
+
+      // Update event with new media
+      const currentMedia = {
+        recordings: event.recordings || [],
+        images: event.images || [],
+        videos: event.videos || [],
+        documents: event.documents || []
+      };
+
+      const mediaArrayKey = `${mediaType}s` as 'recordings' | 'images' | 'videos' | 'documents';
+      currentMedia[mediaArrayKey] = [...currentMedia[mediaArrayKey], mediaItem];
+
+      await storage.updateEvent(eventId, currentMedia);
+
+      res.json({ 
+        success: true, 
+        media: mediaItem,
+        message: "Media uploaded successfully" 
+      });
+    } catch (error) {
+      console.error("Error uploading event media:", error);
+      res.status(500).json({ message: "Failed to upload media" });
+    }
+  });
+
+  // Delete media from an event (Admin/Events Manager only)
+  app.delete("/api/events/:eventId/media/:mediaType/:index", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
+    try {
+      const eventId = parseInt(req.params.eventId);
+      const { mediaType, index } = req.params;
+      const mediaIndex = parseInt(index);
+
+      // Get event
+      const event = await storage.getEventById(eventId);
+      if (!event) {
+        return res.status(404).json({ message: "Event not found" });
+      }
+
+      // Validate media type
+      const mediaArrayKey = `${mediaType}s` as 'recordings' | 'images' | 'videos' | 'documents';
+      const currentMedia = event[mediaArrayKey] || [];
+
+      if (mediaIndex < 0 || mediaIndex >= currentMedia.length) {
+        return res.status(400).json({ message: "Invalid media index" });
+      }
+
+      // Remove media item
+      const updatedMedia = currentMedia.filter((_, i) => i !== mediaIndex);
+
+      await storage.updateEvent(eventId, {
+        [mediaArrayKey]: updatedMedia
+      });
+
+      res.json({ 
+        success: true,
+        message: "Media deleted successfully" 
+      });
+    } catch (error) {
+      console.error("Error deleting event media:", error);
+      res.status(500).json({ message: "Failed to delete media" });
+    }
+  });
+
+  // Get all media for an event
+  app.get("/api/events/:eventId/media", async (req, res) => {
+    try {
+      const eventId = parseInt(req.params.eventId);
+      const event = await storage.getEventById(eventId);
+
+      if (!event) {
+        return res.status(404).json({ message: "Event not found" });
+      }
+
+      res.json({
+        recordings: event.recordings || [],
+        images: event.images || [],
+        videos: event.videos || [],
+        documents: event.documents || []
+      });
+    } catch (error) {
+      console.error("Error fetching event media:", error);
+      res.status(500).json({ message: "Failed to fetch media" });
+    }
+  });
+
+  // ==============================================
   // QR CODE MANAGEMENT ROUTES
   // ==============================================
 
