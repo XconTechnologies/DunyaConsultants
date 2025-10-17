@@ -244,6 +244,7 @@ export const consultations = pgTable("consultations", {
   status: text("status", { enum: ["pending", "contacted", "converted", "interested", "not_interested"] }).default("pending"),
   source: text("source").default("website"),
   assignedTo: text("assigned_to"),
+  audioUrl: text("audio_url"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
