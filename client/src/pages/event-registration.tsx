@@ -584,51 +584,31 @@ export default function EventRegistration() {
                     ctx.fillStyle = gradient;
                     ctx.fillRect(0, 0, canvas.width, 120 * scale);
 
-                    // Load white logo via proxy to avoid CORS
+                    // Load white logo from local public folder
                     const logoImage = new Image();
                     
-                    // Convert logo to data URL to avoid CORS issues
-                    const loadLogoAsDataURL = async () => {
-                      try {
-                        const response = await fetch('https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png');
-                        const blob = await response.blob();
-                        return new Promise<string>((resolve, reject) => {
-                          const reader = new FileReader();
-                          reader.onloadend = () => resolve(reader.result as string);
-                          reader.onerror = reject;
-                          reader.readAsDataURL(blob);
-                        });
-                      } catch (error) {
-                        console.error('Failed to load logo as data URL:', error);
-                        return '';
-                      }
-                    };
-
-                    const logoDataURL = await loadLogoAsDataURL();
-                    
-                    if (logoDataURL) {
-                      await new Promise<void>((resolve) => {
-                        logoImage.onload = () => {
-                          try {
-                            // Draw white logo centered at top
-                            const logoWidth = 160 * scale;
-                            const logoHeight = 45 * scale;
-                            const logoX = (canvas.width - logoWidth) / 2;
-                            ctx.drawImage(logoImage, logoX, 15 * scale, logoWidth, logoHeight);
-                            console.log('Logo drawn successfully');
-                            resolve();
-                          } catch (err) {
-                            console.error('Error drawing logo:', err);
-                            resolve();
-                          }
-                        };
-                        logoImage.onerror = (e) => {
-                          console.error('Logo loading failed:', e);
+                    await new Promise<void>((resolve) => {
+                      logoImage.onload = () => {
+                        try {
+                          // Draw white logo centered at top
+                          const logoWidth = 160 * scale;
+                          const logoHeight = 45 * scale;
+                          const logoX = (canvas.width - logoWidth) / 2;
+                          ctx.drawImage(logoImage, logoX, 15 * scale, logoWidth, logoHeight);
+                          console.log('Logo drawn successfully');
                           resolve();
-                        };
-                        logoImage.src = logoDataURL;
-                      });
-                    }
+                        } catch (err) {
+                          console.error('Error drawing logo:', err);
+                          resolve();
+                        }
+                      };
+                      logoImage.onerror = (e) => {
+                        console.error('Logo loading failed:', e);
+                        resolve();
+                      };
+                      // Use local logo from public folder
+                      logoImage.src = '/dunya-white-logo.png';
+                    });
 
                     // Draw "Thank You" text in header below logo
                     ctx.fillStyle = '#ffffff';
