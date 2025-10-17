@@ -166,36 +166,36 @@ export default function EventRegistration() {
     const upcomingEvents = allEvents?.filter(e => new Date(e.eventDate) >= new Date()) || [];
     
     return (
-      <div className="min-h-screen bg-white py-20 px-4">
+      <div className="min-h-screen bg-white py-8 sm:py-12 md:py-20 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-50 px-6 py-3 rounded-full mb-6">
-              <Sparkles className="h-5 w-5 text-[#1D50C9]" />
-              <span className="text-[#1D50C9] font-medium">Join Our Events</span>
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-blue-50 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 sm:mb-6">
+              <Sparkles className="h-4 sm:h-5 w-4 sm:w-5 text-[#1D50C9]" />
+              <span className="text-sm sm:text-base text-[#1D50C9] font-medium">Join Our Events</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4 sm:mb-6 px-4">
               Event Registration
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
               Select an event to secure your spot and start your study abroad journey
             </p>
           </div>
           
           {/* Event Selector Card */}
-          <div className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] rounded-3xl shadow-2xl p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                <Calendar className="h-6 w-6 text-white" />
+          <div className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
+            <div className="flex items-start sm:items-center gap-3 mb-6">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white">Choose Your Event</h2>
-                <p className="text-white/80">Browse upcoming events and register instantly</p>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl font-bold text-white">Choose Your Event</h2>
+                <p className="text-sm sm:text-base text-white/80 mt-1">Browse upcoming events and register instantly</p>
               </div>
             </div>
 
             <Select onValueChange={handleEventSelect}>
-              <SelectTrigger className="w-full h-16 text-lg border-2 border-white/30 hover:border-white transition-all rounded-2xl bg-white shadow-sm" data-testid="select-event">
+              <SelectTrigger className="w-full h-14 sm:h-16 text-base sm:text-lg border-2 border-white/30 hover:border-white transition-all rounded-xl sm:rounded-2xl bg-white shadow-sm" data-testid="select-event">
                 <SelectValue placeholder="🎓 Select an upcoming event..." />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -205,11 +205,11 @@ export default function EventRegistration() {
                   </SelectItem>
                 ) : (
                   upcomingEvents.map((evt) => (
-                    <SelectItem key={evt.id} value={evt.slug} className="text-base py-3">
-                      <div className="flex items-center gap-3">
-                        <Calendar className="h-4 w-4 text-[#1D50C9]" />
-                        <span>{evt.title}</span>
-                        <span className="text-gray-500 text-sm">• {new Date(evt.eventDate).toLocaleDateString('en-US', { 
+                    <SelectItem key={evt.id} value={evt.slug} className="text-sm sm:text-base py-3">
+                      <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                        <Calendar className="h-4 w-4 text-[#1D50C9] flex-shrink-0" />
+                        <span className="flex-1">{evt.title}</span>
+                        <span className="text-gray-500 text-xs sm:text-sm">• {new Date(evt.eventDate).toLocaleDateString('en-US', { 
                           month: 'short', 
                           day: 'numeric', 
                           year: 'numeric' 
@@ -222,17 +222,17 @@ export default function EventRegistration() {
             </Select>
 
             {/* Features Grid */}
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
-                <Users className="h-5 w-5 text-white" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8">
+              <div className="flex items-center gap-3 p-3 sm:p-4 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+                <Users className="h-5 w-5 text-white flex-shrink-0" />
                 <span className="text-sm text-white">Meet University Reps</span>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
-                <GraduationCap className="h-5 w-5 text-white" />
+              <div className="flex items-center gap-3 p-3 sm:p-4 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+                <GraduationCap className="h-5 w-5 text-white flex-shrink-0" />
                 <span className="text-sm text-white">Expert Guidance</span>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
-                <Globe className="h-5 w-5 text-white" />
+              <div className="flex items-center gap-3 p-3 sm:p-4 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl">
+                <Globe className="h-5 w-5 text-white flex-shrink-0" />
                 <span className="text-sm text-white">Global Opportunities</span>
               </div>
             </div>
@@ -245,18 +245,18 @@ export default function EventRegistration() {
   if (!event) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center px-4">
-        <div className="text-center bg-white rounded-3xl p-12 max-w-md border border-gray-200 shadow-2xl">
-          <div className="h-20 w-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <MapPin className="h-10 w-10 text-red-500" />
+        <div className="text-center bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-12 max-w-md w-full border border-gray-200 shadow-2xl">
+          <div className="h-16 w-16 sm:h-20 sm:w-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <MapPin className="h-8 w-8 sm:h-10 sm:w-10 text-red-500" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Event Not Found</h2>
-          <p className="text-gray-600 mb-6">The event you're looking for doesn't exist or has been removed.</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Event Not Found</h2>
+          <p className="text-sm sm:text-base text-gray-600 mb-6">The event you're looking for doesn't exist or has been removed.</p>
           <Button 
             onClick={() => {
               setEventSlug("");
               window.history.pushState({}, '', '/events/register-now');
             }} 
-            className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white px-8 py-6 text-lg rounded-xl hover:shadow-xl transition-all"
+            className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-xl hover:shadow-xl transition-all w-full sm:w-auto"
           >
             Browse Events
           </Button>
@@ -275,14 +275,14 @@ export default function EventRegistration() {
   const watchedValues = form.watch();
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
+    <div className="min-h-screen bg-white py-8 sm:py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Event Banner Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-8 border border-gray-200">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden mb-6 sm:mb-8 border border-gray-200">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Left: Event Image */}
             {(event.detailImage || event.image) && (
-              <div className="relative h-64 md:h-auto overflow-hidden">
+              <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
                 <img 
                   src={event.detailImage || event.image} 
                   alt={event.title} 
@@ -294,35 +294,35 @@ export default function EventRegistration() {
             )}
 
             {/* Right: Event Info */}
-            <div className={`p-8 md:p-12 flex flex-col justify-center ${!(event.detailImage || event.image) ? 'md:col-span-2' : ''}`}>
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-[#1D50C9] px-4 py-2 rounded-full mb-4 w-fit">
-                <Sparkles className="h-4 w-4" />
-                <span className="text-sm font-semibold">Upcoming Event</span>
+            <div className={`p-6 sm:p-8 md:p-12 flex flex-col justify-center ${!(event.detailImage || event.image) ? 'md:col-span-2' : ''}`}>
+              <div className="inline-flex items-center gap-2 bg-blue-100 text-[#1D50C9] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 w-fit">
+                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <span className="text-xs sm:text-sm font-semibold">Upcoming Event</span>
               </div>
               
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4 sm:mb-6">
                 {event.title}
               </h1>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 group">
-                  <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-[#1D50C9] transition-all">
-                    <Calendar className="h-6 w-6 text-[#1D50C9] group-hover:text-white transition-all" />
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start sm:items-center gap-3 group">
+                  <div className="h-10 w-10 sm:h-12 sm:w-12 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-[#1D50C9] transition-all flex-shrink-0">
+                    <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-[#1D50C9] group-hover:text-white transition-all" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">Date & Time</p>
-                    <p className="text-gray-900 font-semibold">{eventDate}</p>
+                    <p className="text-xs sm:text-sm text-gray-500 font-medium">Date & Time</p>
+                    <p className="text-sm sm:text-base text-gray-900 font-semibold">{eventDate}</p>
                   </div>
                 </div>
                 
                 {event.venue && (
-                  <div className="flex items-center gap-3 group">
-                    <div className="h-12 w-12 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-[#FF6B35] transition-all">
-                      <MapPin className="h-6 w-6 text-[#FF6B35] group-hover:text-white transition-all" />
+                  <div className="flex items-start sm:items-center gap-3 group">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 bg-orange-100 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-[#FF6B35] transition-all flex-shrink-0">
+                      <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-[#FF6B35] group-hover:text-white transition-all" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Venue</p>
-                      <p className="text-gray-900 font-semibold">{event.venue}</p>
+                      <p className="text-xs sm:text-sm text-gray-500 font-medium">Venue</p>
+                      <p className="text-sm sm:text-base text-gray-900 font-semibold">{event.venue}</p>
                     </div>
                   </div>
                 )}
@@ -332,15 +332,15 @@ export default function EventRegistration() {
         </div>
 
         {/* Registration Form Card */}
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200">
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-12 w-12 bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] rounded-2xl flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-white" />
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-200">
+          <div className="mb-6 sm:mb-8">
+            <div className="flex items-start sm:items-center gap-3 mb-4">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Registration Form</h2>
-                <p className="text-gray-600">Fill in your details to secure your spot</p>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Registration Form</h2>
+                <p className="text-sm sm:text-base text-gray-600 mt-1">Fill in your details to secure your spot</p>
               </div>
             </div>
           </div>
@@ -538,21 +538,21 @@ export default function EventRegistration() {
             </div>
 
             {/* Submit and Cancel Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
               <Button
                 type="submit"
                 disabled={registerMutation.isPending}
-                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white h-14 text-lg font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white h-12 sm:h-14 text-base sm:text-lg font-semibold rounded-xl hover:shadow-2xl sm:hover:scale-105 transition-all duration-300"
                 data-testid="button-register"
               >
                 {registerMutation.isPending ? (
                   <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                     Registering...
                   </>
                 ) : (
                   <>
-                    <CheckCircle2 className="mr-2 h-5 w-5" />
+                    <CheckCircle2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     Register Now
                   </>
                 )}
@@ -562,7 +562,7 @@ export default function EventRegistration() {
                 type="button"
                 variant="outline"
                 onClick={() => setLocation(`/events/${eventSlug}`)}
-                className="flex-1 h-14 text-lg font-semibold border-2 border-gray-300 hover:bg-white hover:border-[#1D50C9] hover:text-[#1D50C9] rounded-xl transition-all duration-300"
+                className="flex-1 h-12 sm:h-14 text-base sm:text-lg font-semibold border-2 border-gray-300 hover:bg-white hover:border-[#1D50C9] hover:text-[#1D50C9] rounded-xl transition-all duration-300"
                 data-testid="button-cancel"
               >
                 Back to Event
@@ -572,10 +572,10 @@ export default function EventRegistration() {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-3 bg-blue-50 px-6 py-4 rounded-2xl border border-blue-100">
-            <CheckCircle2 className="h-5 w-5 text-[#1D50C9]" />
-            <p className="text-gray-700 text-sm font-medium">
+        <div className="mt-6 sm:mt-8 px-4">
+          <div className="flex items-start sm:items-center gap-3 bg-blue-50 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl border border-blue-100 max-w-2xl mx-auto">
+            <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-[#1D50C9] flex-shrink-0 mt-0.5 sm:mt-0" />
+            <p className="text-gray-700 text-xs sm:text-sm font-medium text-left sm:text-center">
               You'll receive a confirmation email with your QR code for event check-in
             </p>
           </div>
@@ -584,34 +584,34 @@ export default function EventRegistration() {
 
       {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="sm:max-w-2xl border-0 p-0 gap-0 bg-transparent overflow-hidden">
-          <div className="bg-white rounded-3xl overflow-hidden">
-            <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] px-8 py-8 relative overflow-hidden">
+        <DialogContent className="sm:max-w-2xl border-0 p-0 gap-0 bg-transparent overflow-hidden max-w-[95vw]">
+          <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden">
+            <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] px-6 sm:px-8 py-6 sm:py-8 relative overflow-hidden">
               {/* Animated background circles */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+              <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-white/10 rounded-full -mr-12 sm:-mr-16 -mt-12 sm:-mt-16"></div>
+              <div className="absolute bottom-0 left-0 w-20 sm:w-24 h-20 sm:h-24 bg-white/10 rounded-full -ml-10 sm:-ml-12 -mb-10 sm:-mb-12"></div>
               
               <div className="relative z-10">
-                <div className="text-center mb-6">
-                  <div className="inline-flex h-20 w-20 items-center justify-center bg-white/20 rounded-full mb-4 backdrop-blur-sm">
-                    <CheckCircle2 className="h-10 w-10 text-white" />
+                <div className="text-center mb-4 sm:mb-6">
+                  <div className="inline-flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center bg-white/20 rounded-full mb-3 sm:mb-4 backdrop-blur-sm">
+                    <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   </div>
                   <img 
                     src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
                     alt="Dunya Consultants" 
-                    className="h-8 mx-auto opacity-90"
+                    className="h-6 sm:h-8 mx-auto opacity-90"
                   />
                 </div>
                 
-                <div className="text-center space-y-3">
-                  <DialogTitle className="text-3xl text-white font-bold">
+                <div className="text-center space-y-2 sm:space-y-3">
+                  <DialogTitle className="text-2xl sm:text-3xl text-white font-bold">
                     Thank You, {userName}!
                   </DialogTitle>
-                  <DialogDescription className="text-lg text-white/90">
+                  <DialogDescription className="text-base sm:text-lg text-white/90">
                     You're successfully registered for <span className="font-semibold">{event?.title}</span>
                   </DialogDescription>
                   
-                  <div className="flex items-center justify-center gap-2 mt-4">
+                  <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
                     <div className="h-1 w-1 bg-white/60 rounded-full"></div>
                     <div className="h-1 w-1 bg-white/60 rounded-full"></div>
                     <div className="h-1 w-1 bg-white/60 rounded-full"></div>
@@ -620,14 +620,14 @@ export default function EventRegistration() {
               </div>
             </DialogHeader>
             
-            <div className="px-8 py-8">
+            <div className="px-4 sm:px-8 py-6 sm:py-8">
               {qrCodeUrl && event && (
-                <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-2xl p-6 mb-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
+                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Left: Event Details */}
-                    <div className="space-y-4">
-                      <h3 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
-                        <Calendar className="h-5 w-5 text-[#1D50C9]" />
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
+                        <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-[#1D50C9]" />
                         Event Details
                       </h3>
                       
@@ -670,24 +670,24 @@ export default function EventRegistration() {
                     </div>
                     
                     {/* Right: QR Code */}
-                    <div className="flex flex-col items-center justify-center">
-                      <div className="bg-white p-4 rounded-2xl border-4 border-[#1D50C9] shadow-lg">
-                        <img src={qrCodeUrl} alt="Event QR Code" className="w-36 h-36" />
+                    <div className="flex flex-col items-center justify-center mt-4 md:mt-0">
+                      <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl border-4 border-[#1D50C9] shadow-lg">
+                        <img src={qrCodeUrl} alt="Event QR Code" className="w-28 h-28 sm:w-36 sm:h-36" />
                       </div>
-                      <p className="text-xs text-[#1D50C9] font-bold mt-3 tracking-wider uppercase">Your Check-in QR Code</p>
+                      <p className="text-xs text-[#1D50C9] font-bold mt-2 sm:mt-3 tracking-wider uppercase">Your Check-in QR Code</p>
                       <p className="text-xs text-gray-500 mt-1">Save this for event entry</p>
                     </div>
                   </div>
                 </div>
               )}
 
-              <div className="bg-blue-50 rounded-xl p-4 mb-6">
-                <div className="flex items-start gap-3">
-                  <div className="h-8 w-8 bg-[#1D50C9] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-lg">📧</span>
+              <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 bg-[#1D50C9] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-base sm:text-lg">📧</span>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-900 font-semibold">Check Your Email</p>
+                    <p className="text-xs sm:text-sm text-gray-900 font-semibold">Check Your Email</p>
                     <p className="text-xs text-gray-600 mt-1">We've sent a confirmation email with your QR code and event details</p>
                   </div>
                 </div>
@@ -698,7 +698,7 @@ export default function EventRegistration() {
                   setShowSuccessModal(false);
                   setLocation('/events');
                 }}
-                className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white h-12 text-base font-semibold rounded-xl hover:shadow-xl transition-all"
+                className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white h-11 sm:h-12 text-sm sm:text-base font-semibold rounded-xl hover:shadow-xl transition-all"
               >
                 Browse More Events
               </Button>
