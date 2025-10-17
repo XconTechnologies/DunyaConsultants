@@ -580,7 +580,7 @@ export default function EventRegistration() {
                     gradient.addColorStop(0, '#1D50C9');
                     gradient.addColorStop(1, '#0f3a8a');
                     ctx.fillStyle = gradient;
-                    ctx.fillRect(0, 0, canvas.width, 145 * scale);
+                    ctx.fillRect(0, 0, canvas.width, 165 * scale);
 
                     // Load white logo from local public folder
                     const logoImage = new Image();
@@ -621,22 +621,22 @@ export default function EventRegistration() {
                     const subtitleText = `for registering for ${event.title}`;
                     ctx.fillText(subtitleText, canvas.width / 2, 125 * scale);
 
-                    // Draw email check note below header on white background
-                    ctx.font = `${13 * scale}px system-ui`;
-                    ctx.fillStyle = '#6b7280';
+                    // Draw email check note inside header on blue gradient
+                    ctx.font = `${12 * scale}px system-ui`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
                     ctx.textAlign = 'center';
-                    ctx.fillText('📧 Check your email for confirmation and your QR code', canvas.width / 2, 170 * scale);
+                    ctx.fillText('📧 Check your email for confirmation and your QR code', canvas.width / 2, 150 * scale);
 
                     // Draw container border for Event Details
                     ctx.strokeStyle = '#e5e7eb';
                     ctx.lineWidth = 2 * scale;
-                    ctx.strokeRect(40 * scale, 200 * scale, 520 * scale, 305 * scale);
+                    ctx.strokeRect(40 * scale, 190 * scale, 520 * scale, 315 * scale);
 
                     // Draw Event Details section header inside container
                     ctx.font = `bold ${20 * scale}px system-ui`;
                     ctx.fillStyle = '#000000';
                     ctx.textAlign = 'left';
-                    ctx.fillText('Event Details', 60 * scale, 240 * scale);
+                    ctx.fillText('Event Details', 60 * scale, 230 * scale);
 
                     // Date
                     const dateStr = new Date(event.eventDate).toLocaleDateString('en-US', { 
@@ -647,36 +647,36 @@ export default function EventRegistration() {
                     });
                     ctx.font = `${18 * scale}px system-ui`;
                     ctx.fillStyle = '#dc2626';
-                    ctx.fillText('📅', 75 * scale, 290 * scale);
+                    ctx.fillText('📅', 75 * scale, 280 * scale);
                     ctx.fillStyle = '#000000';
                     ctx.font = `bold ${15 * scale}px system-ui`;
-                    ctx.fillText('Date:', 110 * scale, 290 * scale);
+                    ctx.fillText('Date:', 110 * scale, 280 * scale);
                     ctx.font = `${14 * scale}px system-ui`;
                     ctx.fillStyle = '#6b7280';
-                    ctx.fillText(dateStr, 110 * scale, 315 * scale);
+                    ctx.fillText(dateStr, 110 * scale, 305 * scale);
 
                     // Time
                     ctx.font = `${18 * scale}px system-ui`;
                     ctx.fillStyle = '#374151';
-                    ctx.fillText('🕐', 75 * scale, 365 * scale);
+                    ctx.fillText('🕐', 75 * scale, 355 * scale);
                     ctx.fillStyle = '#000000';
                     ctx.font = `bold ${15 * scale}px system-ui`;
-                    ctx.fillText('Time:', 110 * scale, 365 * scale);
+                    ctx.fillText('Time:', 110 * scale, 355 * scale);
                     ctx.font = `${14 * scale}px system-ui`;
                     ctx.fillStyle = '#6b7280';
-                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 390 * scale);
+                    ctx.fillText('10:00 AM to 5:00 PM', 110 * scale, 380 * scale);
 
                     // Venue
                     if (event.venue) {
                       ctx.font = `${18 * scale}px system-ui`;
                       ctx.fillStyle = '#dc2626';
-                      ctx.fillText('📍', 75 * scale, 440 * scale);
+                      ctx.fillText('📍', 75 * scale, 430 * scale);
                       ctx.fillStyle = '#000000';
                       ctx.font = `bold ${15 * scale}px system-ui`;
-                      ctx.fillText('Venue:', 110 * scale, 440 * scale);
+                      ctx.fillText('Venue:', 110 * scale, 430 * scale);
                       ctx.font = `${14 * scale}px system-ui`;
                       ctx.fillStyle = '#6b7280';
-                      ctx.fillText(event.venue, 110 * scale, 465 * scale);
+                      ctx.fillText(event.venue, 110 * scale, 455 * scale);
                     }
 
                     // Load and draw QR code
@@ -688,7 +688,7 @@ export default function EventRegistration() {
                         try {
                           // Draw QR code border (rounded rectangle) - positioned on the right inside container
                           const qrX = 370 * scale;
-                          const qrY = 255 * scale;
+                          const qrY = 245 * scale;
                           const qrSize = 160 * scale;
                           const borderRadius = 12 * scale;
                           
