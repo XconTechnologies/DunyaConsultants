@@ -58,8 +58,14 @@ export default function EventMediaManager({ eventId }: EventMediaManagerProps) {
       if (uploadCaption) formData.append('caption', uploadCaption);
       if (uploadDuration) formData.append('duration', uploadDuration);
 
+      // Get the auth token from localStorage
+      const token = localStorage.getItem('adminToken');
+      
       const response = await fetch(`/api/events/${eventId}/media/upload`, {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
         body: formData,
         credentials: 'include',
       });

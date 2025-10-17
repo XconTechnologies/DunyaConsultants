@@ -19,6 +19,7 @@ import ReactCountryFlag from "react-country-flag";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { setMetaTags } from "@/lib/seo";
+import EventMediaDisplay from "@/components/event-media-display";
 
 const studyDestinations = [
   { name: "Australia", code: "AU" },
@@ -368,6 +369,16 @@ export default function EventDetailPage() {
                       ))}
                     </div>
                   </div>
+                )}
+
+                {/* Event Media Section */}
+                {event && (
+                  <EventMediaDisplay
+                    recordings={event.recordings}
+                    images={event.images}
+                    videos={event.videos}
+                    documents={event.documents}
+                  />
                 )}
               </motion.div>
             </div>
