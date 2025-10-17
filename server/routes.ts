@@ -446,82 +446,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
               <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
                 <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
                   
-                  <!-- Logo -->
-                  <div style="background-color: #ffffff; padding: 40px 20px 20px 20px; text-align: center;">
-                    <img src="https://dunyaconsultants.com/assets/Logo%20BLue_1754907499757-QpBn6T2v.png" alt="Dunya Consultants" style="max-width: 250px; height: auto; display: inline-block;" />
+                  <!-- Blue Header with Logo -->
+                  <div style="background: linear-gradient(to right, #1D50C9, #0f3a8a); padding: 30px 20px; text-align: center;">
+                    <img src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" alt="Dunya Consultants" style="max-width: 200px; height: auto; display: inline-block; margin-bottom: 20px;" />
+                    
+                    <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; font-weight: bold;">
+                      Thank You ${registration.name}!
+                    </h1>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 5px 0;">
+                      for registering for <strong>${event.title}</strong>
+                    </p>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 13px; margin: 15px 0 0 0;">
+                      📧 Check your email for confirmation and your QR code
+                    </p>
                   </div>
-
-                  <!-- Event Banner -->
-                  ${event.detailImage ? `
-                  <div style="width: 100%; overflow: hidden;">
-                    <img src="${baseUrl}${event.detailImage}" alt="${event.title}" style="width: 100%; height: auto; display: block;" />
-                  </div>
-                  ` : ''}
 
                   <!-- Main Content -->
-                  <div class="mobile-padding" style="padding: 40px 30px;">
+                  <div class="mobile-padding" style="padding: 30px;">
                     
-                    <!-- Greeting -->
-                    <p style="font-size: 16px; color: #333; margin: 0 0 20px 0;">Hi ${registration.name},</p>
-                    
-                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 15px 0;">
-                      Congratulations, you've registered for <strong>Dunya Consultants ${event.title}</strong> in <strong>${cityName}</strong>; Turning Ambition into Admission
-                    </p>
-                    
-                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 15px 0;">
-                      All the details you need to attend the event can be found below.
-                    </p>
-                    
-                    <p style="font-size: 16px; color: #333; line-height: 1.6; margin: 0 0 30px 0;">
-                      We look forward to meeting you there.
-                    </p>
-
-                    <!-- Combined Details Card with 2 Columns -->
-                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                    <!-- Event Details Card -->
+                    <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+                      <h3 style="color: #111827; font-size: 18px; font-weight: bold; margin: 0 0 20px 0;">Event Details</h3>
+                      
                       <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
-                          <!-- Column 1: Your Details -->
-                          <td class="mobile-stack" style="width: 48%; vertical-align: top; padding-right: 2%;">
-                            <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">YOUR DETAILS</h3>
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Name:</strong> ${registration.name}</p>
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Email:</strong> <a href="mailto:${registration.email}" style="color: #1D50C9; text-decoration: none;">${registration.email}</a></p>
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Phone:</strong> ${registration.phone}</p>
-                            ${registration.education ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Education Level:</strong> ${registration.education}</p>` : ''}
-                            ${registration.destination ? `<p style="margin: 8px 0; color: #333; font-size: 14px;"><strong>Study Destination:</strong> ${registration.destination}</p>` : ''}
-                          </td>
-                          
-                          <!-- Column 2: Event Details -->
-                          <td class="mobile-stack" style="width: 48%; vertical-align: top; padding-left: 2%; border-left: 1px solid #e0e0e0;">
-                            <h3 style="color: #1D50C9; font-size: 14px; font-weight: bold; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">EVENT DETAILS</h3>
+                          <td class="mobile-stack" style="width: 60%; vertical-align: top; padding-right: 3%;">
+                            <div style="margin-bottom: 20px;">
+                              <span style="font-size: 18px; margin-right: 8px;">📅</span>
+                              <div style="display: inline-block; vertical-align: top;">
+                                <strong style="color: #111827; font-size: 14px; display: block; margin-bottom: 4px;">Date:</strong>
+                                <span style="color: #374151; font-size: 13px;">${eventDateFormatted}</span>
+                              </div>
+                            </div>
                             
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
-                              <span style="color: #1D50C9;">📅</span> <strong>Date:</strong><br/>
-                              ${eventDateFormatted}
-                            </p>
-                            
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
-                              <span style="color: #FF6B35;">🕐</span> <strong>Timings:</strong><br/>
-                              10:00 AM to 5:00 PM
-                            </p>
+                            <div style="margin-bottom: 20px;">
+                              <span style="font-size: 18px; margin-right: 8px;">🕐</span>
+                              <div style="display: inline-block; vertical-align: top;">
+                                <strong style="color: #111827; font-size: 14px; display: block; margin-bottom: 4px;">Time:</strong>
+                                <span style="color: #374151; font-size: 13px;">10:00 AM to 5:00 PM</span>
+                              </div>
+                            </div>
                             
                             ${event.venue ? `
-                            <p style="margin: 8px 0; color: #333; font-size: 14px;">
-                              <span style="color: #1D50C9;">📍</span> <strong>Venue:</strong><br/>
-                              ${event.venue}
-                              ${event.title.toLowerCase().includes('bahawalpur') ? `<br/><a href="https://maps.app.goo.gl/prH7W87aqmgs2JGMA" target="_blank" style="color: #1D50C9; text-decoration: underline;">View Map</a>` : ''}
-                            </p>
+                            <div>
+                              <span style="font-size: 18px; margin-right: 8px;">📍</span>
+                              <div style="display: inline-block; vertical-align: top;">
+                                <strong style="color: #111827; font-size: 14px; display: block; margin-bottom: 4px;">Venue:</strong>
+                                <span style="color: #374151; font-size: 13px;">${event.venue}</span>
+                              </div>
+                            </div>
                             ` : ''}
+                          </td>
+                          
+                          <td class="mobile-stack" style="width: 37%; vertical-align: top; text-align: center; padding-left: 3%;">
+                            <div style="background: white; padding: 12px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
+                              <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 120px; height: 120px; display: block;" />
+                            </div>
+                            <p style="color: #1D50C9; font-size: 11px; font-weight: bold; margin: 10px 0 0 0; letter-spacing: 0.5px;">YOUR QR CODE</p>
                           </td>
                         </tr>
                       </table>
-                    </div>
-
-                    <!-- QR Code Section -->
-                    <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center;">
-                      <div style="background: white; padding: 15px; display: inline-block; border-radius: 8px; border: 2px solid #1D50C9;">
-                        <img src="${baseUrl}${qrCodeUrl}" alt="QR Code" style="width: 150px; height: 150px; display: block;" />
-                      </div>
-                      <p style="color: #1D50C9; font-size: 12px; font-weight: bold; margin: 15px 0 0 0; text-transform: uppercase;">Your Event QR Code</p>
                     </div>
 
                   </div>
