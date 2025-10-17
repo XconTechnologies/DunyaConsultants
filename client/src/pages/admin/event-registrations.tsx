@@ -312,10 +312,23 @@ export default function EventRegistrationsPage() {
       return acc;
     }, {} as Record<number, EventRegistration[]>) || {};
 
-  // Get active events with registrations
+  // Get active events with registrations and separate into upcoming and past
+  const today = new Date();
   const eventsWithRegistrations = (events || []).filter((event: Event) => 
     registrationsByEvent[event.id]?.length > 0
   );
+
+  const upcomingEvents = eventsWithRegistrations.filter((event: Event) => {
+    const eventDate = new Date(event.eventDate);
+    const daysUntil = Math.ceil((eventDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    return daysUntil >= 0;
+  });
+
+  const pastEvents = eventsWithRegistrations.filter((event: Event) => {
+    const eventDate = new Date(event.eventDate);
+    const daysUntil = Math.ceil((eventDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    return daysUntil < 0;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
@@ -346,25 +359,57 @@ export default function EventRegistrationsPage() {
               </CardContent>
             </Card>
           ) : (
-            <Tabs defaultValue={eventsWithRegistrations[0]?.id.toString()} className="space-y-6">
+            <Tabs defaultValue={upcomingEvents.length > 0 ? "upcoming" : "past"} className="space-y-6">
+              {/* Main Tab List - Upcoming vs Past */}
               <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-                <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
-                  {eventsWithRegistrations.map((event: Event) => (
+                <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto">
+                  {upcomingEvents.length > 0 && (
                     <TabsTrigger 
-                      key={event.id} 
-                      value={event.id.toString()}
+                      value="upcoming"
                       className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all whitespace-nowrap text-sm sm:text-base"
                     >
-                      <span className="truncate max-w-[150px] sm:max-w-none">{event.title}</span>
-                      <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0">
-                        {registrationsByEvent[event.id]?.length || 0}
+                      Upcoming Events
+                      <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0 data-[state=active]:bg-white/20 data-[state=active]:text-white">
+                        {upcomingEvents.length}
                       </Badge>
                     </TabsTrigger>
-                  ))}
+                  )}
+                  {pastEvents.length > 0 && (
+                    <TabsTrigger 
+                      value="past"
+                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all whitespace-nowrap text-sm sm:text-base"
+                    >
+                      Past Events
+                      <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0 data-[state=active]:bg-white/20 data-[state=active]:text-white">
+                        {pastEvents.length}
+                      </Badge>
+                    </TabsTrigger>
+                  )}
                 </TabsList>
               </div>
 
-              {eventsWithRegistrations.map((event: Event) => {
+              {/* Upcoming Events Tab Content */}
+              {upcomingEvents.length > 0 && (
+                <TabsContent value="upcoming" className="space-y-6">
+                  <Tabs defaultValue={upcomingEvents[0]?.id.toString()} className="space-y-6">
+                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                      <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
+                        {upcomingEvents.map((event: Event) => (
+                          <TabsTrigger 
+                            key={event.id} 
+                            value={event.id.toString()}
+                            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all whitespace-nowrap text-sm sm:text-base"
+                          >
+                            <span className="truncate max-w-[150px] sm:max-w-none">{event.title}</span>
+                            <Badge className="ml-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-[#1D50C9] border-0">
+                              {registrationsByEvent[event.id]?.length || 0}
+                            </Badge>
+                          </TabsTrigger>
+                        ))}
+                      </TabsList>
+                    </div>
+
+                    {upcomingEvents.map((event: Event) => {
                 const eventRegs = registrationsByEvent[event.id] || [];
                 const attendedCount = eventRegs.filter((r: EventRegistration) => r.isAttended).length;
                 const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
@@ -598,6 +643,249 @@ export default function EventRegistrationsPage() {
                   </TabsContent>
                 );
               })}
+                  </Tabs>
+                </TabsContent>
+              )}
+
+              {/* Past Events Tab Content */}
+              {pastEvents.length > 0 && (
+                <TabsContent value="past" className="space-y-6">
+                  <Tabs defaultValue={pastEvents[0]?.id.toString()} className="space-y-6">
+                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                      <TabsList className="bg-white p-1.5 shadow-lg rounded-xl border-0 inline-flex w-auto min-w-full sm:w-auto">
+                        {pastEvents.map((event: Event) => (
+                          <TabsTrigger 
+                            key={event.id} 
+                            value={event.id.toString()}
+                            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-gray-600 data-[state=active]:to-gray-700 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all whitespace-nowrap text-sm sm:text-base"
+                          >
+                            <span className="truncate max-w-[150px] sm:max-w-none">{event.title}</span>
+                            <Badge className="ml-2 bg-gradient-to-r from-gray-100 to-slate-100 text-gray-700 border-0">
+                              {registrationsByEvent[event.id]?.length || 0}
+                            </Badge>
+                          </TabsTrigger>
+                        ))}
+                      </TabsList>
+                    </div>
+
+                    {pastEvents.map((event: Event) => {
+                      const eventRegs = registrationsByEvent[event.id] || [];
+                      const attendedCount = eventRegs.filter((r: EventRegistration) => r.isAttended).length;
+                      const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
+
+                      return (
+                        <TabsContent key={event.id} value={event.id.toString()} className="space-y-6">
+                          {/* Event Stats */}
+                          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 hover:shadow-xl transition-shadow">
+                              <CardHeader className="pb-3">
+                                <CardDescription className="font-medium text-gray-600">Total Registrations</CardDescription>
+                                <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">{eventRegs.length}</CardTitle>
+                              </CardHeader>
+                            </Card>
+                            <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-shadow">
+                              <CardHeader className="pb-3">
+                                <CardDescription className="font-medium text-gray-600">Attended</CardDescription>
+                                <CardTitle className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{attendedCount}</CardTitle>
+                              </CardHeader>
+                            </Card>
+                            <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-50 to-slate-50 hover:shadow-xl transition-shadow">
+                              <CardHeader className="pb-3">
+                                <CardDescription className="font-medium text-gray-600">Not Attended</CardDescription>
+                                <CardTitle className="text-3xl font-bold text-gray-500">{eventRegs.length - attendedCount}</CardTitle>
+                              </CardHeader>
+                            </Card>
+                            <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-shadow">
+                              <CardHeader className="pb-3">
+                                <CardDescription className="font-medium text-gray-600">Prize Eligible</CardDescription>
+                                <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{eligibleCount}</CardTitle>
+                              </CardHeader>
+                            </Card>
+                          </div>
+
+                          {/* Registrations Table - Same as upcoming but for past events */}
+                          <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
+                            <CardHeader>
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div>
+                                  <CardTitle className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">{event.title} - Registrations</CardTitle>
+                                  <CardDescription className="font-medium text-sm">Complete list of all registrations for this past event</CardDescription>
+                                </div>
+                                <div className="flex gap-2 flex-wrap">
+                                  <Button
+                                    onClick={() => exportToCSV(eventRegs, event.title)}
+                                    variant="outline"
+                                    size="sm"
+                                    className="gap-2 border-gray-600/30 hover:bg-gray-600/5"
+                                    data-testid={`button-export-csv-${event.id}`}
+                                  >
+                                    <Download className="h-4 w-4" />
+                                    <span className="hidden sm:inline">Export </span>CSV
+                                  </Button>
+                                  <Button
+                                    onClick={() => exportToSheets(eventRegs, event.title)}
+                                    variant="outline"
+                                    size="sm"
+                                    className="gap-2 border-gray-600/30 hover:bg-gray-600/5"
+                                    data-testid={`button-export-sheets-${event.id}`}
+                                  >
+                                    <FileSpreadsheet className="h-4 w-4" />
+                                    <span className="hidden sm:inline">Export to </span>Sheets
+                                  </Button>
+                                </div>
+                              </div>
+                            </CardHeader>
+                            <CardContent>
+                              {/* Bulk Actions Toolbar */}
+                              {selectedIds.length > 0 && (
+                                <div className="mb-4 p-4 bg-gray-50 rounded-lg flex items-center justify-between">
+                                  <div className="flex items-center gap-2">
+                                    <Checkbox 
+                                      checked={eventRegs.every((reg: EventRegistration) => selectedIds.includes(reg.id))}
+                                      onCheckedChange={(checked) => {
+                                        if (checked) {
+                                          setSelectedIds([...new Set([...selectedIds, ...eventRegs.map((r: EventRegistration) => r.id)])]);
+                                        } else {
+                                          setSelectedIds(selectedIds.filter(id => !eventRegs.some((r: EventRegistration) => r.id === id)));
+                                        }
+                                      }}
+                                    />
+                                    <span className="text-sm font-medium text-gray-700">{selectedIds.filter(id => eventRegs.some((r: EventRegistration) => r.id === id)).length} selected</span>
+                                  </div>
+                                  <div className="flex gap-2">
+                                    <Button
+                                      onClick={() => bulkAttendMutation.mutate(selectedIds)}
+                                      size="sm"
+                                      variant="outline"
+                                      className="gap-2"
+                                    >
+                                      <Check className="h-4 w-4" />
+                                      Mark Attended
+                                    </Button>
+                                    <Select onValueChange={(value) => bulkPrizeMutation.mutate({ ids: selectedIds, status: value })}>
+                                      <SelectTrigger className="w-[180px] h-9">
+                                        <SelectValue placeholder="Set Prize Status" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectItem value="eligible">Eligible</SelectItem>
+                                        <SelectItem value="distributed">Distributed</SelectItem>
+                                        <SelectItem value="pending">Pending</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                    <Button
+                                      onClick={() => {
+                                        if (confirm(`Are you sure you want to delete ${selectedIds.length} registration(s)?`)) {
+                                          bulkTrashMutation.mutate(selectedIds);
+                                        }
+                                      }}
+                                      size="sm"
+                                      variant="destructive"
+                                      className="gap-2"
+                                    >
+                                      <Trash2 className="h-4 w-4" />
+                                      Delete Selected
+                                    </Button>
+                                  </div>
+                                </div>
+                              )}
+
+                              <div className="rounded-lg border border-gray-200 overflow-hidden">
+                                <div className="overflow-x-auto">
+                                  <Table>
+                                    <TableHeader>
+                                      <TableRow className="bg-gradient-to-r from-gray-50 to-slate-50 hover:from-gray-100 hover:to-slate-100">
+                                        <TableHead className="w-[50px]">
+                                          <Checkbox 
+                                            checked={eventRegs.every((reg: EventRegistration) => selectedIds.includes(reg.id))}
+                                            onCheckedChange={(checked) => {
+                                              if (checked) {
+                                                setSelectedIds([...new Set([...selectedIds, ...eventRegs.map((r: EventRegistration) => r.id)])]);
+                                              } else {
+                                                setSelectedIds(selectedIds.filter(id => !eventRegs.some((r: EventRegistration) => r.id === id)));
+                                              }
+                                            }}
+                                          />
+                                        </TableHead>
+                                        <TableHead className="font-semibold text-gray-900">Name</TableHead>
+                                        <TableHead className="font-semibold text-gray-900 hidden md:table-cell">Destination</TableHead>
+                                        <TableHead className="font-semibold text-gray-900 hidden sm:table-cell">Attendance</TableHead>
+                                        <TableHead className="font-semibold text-gray-900 hidden lg:table-cell">Prize Status</TableHead>
+                                        <TableHead className="font-semibold text-gray-900 hidden lg:table-cell">Registered</TableHead>
+                                      </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                      {eventRegs.map((reg: EventRegistration) => (
+                                        <TableRow 
+                                          key={reg.id} 
+                                          className="hover:bg-gray-50/50 cursor-pointer transition-colors"
+                                          onClick={() => handleOpenDetails(reg)}
+                                        >
+                                          <TableCell onClick={(e) => e.stopPropagation()}>
+                                            <Checkbox 
+                                              checked={selectedIds.includes(reg.id)}
+                                              onCheckedChange={(checked) => {
+                                                if (checked) {
+                                                  setSelectedIds([...selectedIds, reg.id]);
+                                                } else {
+                                                  setSelectedIds(selectedIds.filter(id => id !== reg.id));
+                                                }
+                                              }}
+                                            />
+                                          </TableCell>
+                                          <TableCell className="font-medium text-gray-900">{reg.name}</TableCell>
+                                          <TableCell className="text-sm text-gray-600 hidden md:table-cell">{reg.destination || 'Not specified'}</TableCell>
+                                          <TableCell className="hidden sm:table-cell">
+                                            {reg.isAttended ? (
+                                              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm whitespace-nowrap">
+                                                <CheckCircle2 className="h-3 w-3 mr-1" />
+                                                Attended
+                                              </Badge>
+                                            ) : (
+                                              <Badge className="bg-gradient-to-r from-gray-100 to-slate-100 text-gray-600 border-0 whitespace-nowrap">
+                                                <XCircle className="h-3 w-3 mr-1" />
+                                                Not Attended
+                                              </Badge>
+                                            )}
+                                          </TableCell>
+                                          <TableCell className="hidden lg:table-cell">
+                                            {reg.prizeStatus === 'eligible' && (
+                                              <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 shadow-sm whitespace-nowrap">
+                                                Eligible
+                                              </Badge>
+                                            )}
+                                            {reg.prizeStatus === 'distributed' && (
+                                              <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-sm whitespace-nowrap">
+                                                Distributed
+                                              </Badge>
+                                            )}
+                                            {reg.prizeStatus === 'pending' && (
+                                              <Badge className="bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0 whitespace-nowrap">
+                                                Pending
+                                              </Badge>
+                                            )}
+                                            {!reg.prizeStatus && (
+                                              <Badge className="bg-gray-200 text-gray-600 border-0 whitespace-nowrap">
+                                                Not Eligible
+                                              </Badge>
+                                            )}
+                                          </TableCell>
+                                          <TableCell className="text-sm text-gray-500 hidden lg:table-cell whitespace-nowrap">
+                                            {new Date(reg.createdAt).toLocaleDateString()}
+                                          </TableCell>
+                                        </TableRow>
+                                      ))}
+                                    </TableBody>
+                                  </Table>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </TabsContent>
+                      );
+                    })}
+                  </Tabs>
+                </TabsContent>
+              )}
             </Tabs>
           )}
         </div>
