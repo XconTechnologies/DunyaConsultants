@@ -882,6 +882,7 @@ export default function AdminDashboard() {
 
         {/* Event Registration Cards - Only visible for users with events access permission */}
         {canAccessEvents(adminUser) && events.length > 0 && (() => {
+          const today = new Date();
           const eventsWithRegistrations = events
             .filter((event) => !event.trashedAt)
             .map((event) => {
@@ -891,6 +892,12 @@ export default function AdminDashboard() {
               return { event, registrations: eventRegs };
             })
             .filter(({ registrations }) => registrations.length > 0)
+            .filter(({ event }) => {
+              // Only show upcoming events (exclude past events)
+              const eventDate = new Date(event.eventDate);
+              const daysUntil = Math.ceil((eventDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+              return daysUntil >= 0;
+            })
             .filter(({ event }) => {
               if (!searchQuery) return true;
               const query = searchQuery.toLowerCase();
