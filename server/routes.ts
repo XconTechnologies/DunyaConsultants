@@ -6,7 +6,7 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema
+  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, consultations
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql } from "drizzle-orm";
@@ -15,6 +15,7 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import path from "path";
 import fs from "fs";
+import { promises as fsPromises } from "fs";
 import multer from "multer";
 import { Resend } from "resend";
 import { google } from 'googleapis';
@@ -1704,6 +1705,114 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.status(500).json({ 
           success: false, 
           message: "Failed to book consultation" 
+        });
+      }
+    }
+  });
+
+  // Lead submission with ElevenLabs TTS integration
+  app.post("/api/leads", async (req, res) => {
+    try {
+      // Parse and validate lead data
+      const leadData = insertConsultationSchema.parse(req.body);
+      
+      // Create consultation/lead record
+      const consultation = await storage.createConsultation(leadData);
+      
+      let audioUrl = null;
+
+      // Generate TTS audio if ElevenLabs API key is configured
+      if (process.env.ELEVENLABS_API_KEY) {
+        try {
+          // Create voice message from lead data
+          const name = leadData.name || leadData.fullName || 'A new lead';
+          const email = leadData.email;
+          const phone = leadData.phone || 'Not provided';
+          const message = leadData.message || 'No message provided';
+          const country = leadData.preferredCountry || 'Not specified';
+          
+          const voiceMessage = `New lead received from ${name}. Email: ${email}. Phone: ${phone}. Interested in studying in ${country}. Message: ${message}`;
+
+          // Call ElevenLabs Text-to-Speech API
+          const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
+            method: 'POST',
+            headers: {
+              'xi-api-key': process.env.ELEVENLABS_API_KEY,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              text: voiceMessage,
+              model_id: 'eleven_monolingual_v1',
+              voice_settings: {
+                stability: 0.5,
+                similarity_boost: 0.5,
+              },
+            }),
+          });
+
+          if (response.ok) {
+            // Generate unique filename
+            const timestamp = Date.now();
+            const filename = `lead-${consultation.id}-${timestamp}.mp3`;
+            const audioPath = path.join(process.cwd(), 'public', 'audio', filename);
+            
+            // Save audio file
+            const audioBuffer = await response.arrayBuffer();
+            await fsPromises.writeFile(audioPath, Buffer.from(audioBuffer));
+            
+            // Create public URL
+            audioUrl = `/audio/${filename}`;
+            
+            // Update consultation record with audio URL
+            await db.update(consultations)
+              .set({ audioUrl })
+              .where(eq(consultations.id, consultation.id));
+            
+            console.log(`✅ Generated TTS audio for lead ${consultation.id}: ${audioUrl}`);
+          } else {
+            console.error('ElevenLabs API error:', await response.text());
+          }
+        } catch (ttsError) {
+          console.error('Failed to generate TTS audio:', ttsError);
+          // Continue without audio - don't fail the entire request
+        }
+      }
+
+      // Send email notification
+      if (resend) {
+        try {
+          const emailContent = generateFormEmailHTML('New Lead Submission', req.body);
+          await resend.emails.send({
+            from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
+            to: 'info@dunyaconsultants.com',
+            subject: `New Lead - ${leadData.name || leadData.fullName || 'Anonymous'}`,
+            html: emailContent,
+          });
+        } catch (emailError) {
+          console.error('Failed to send lead notification email:', emailError);
+        }
+      }
+
+      res.json({ 
+        success: true, 
+        consultation: {
+          ...consultation,
+          audioUrl
+        },
+        audioUrl 
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          message: "Invalid form data", 
+          errors: error.errors 
+        });
+      } else {
+        console.error('Lead submission error:', error);
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to submit lead" 
         });
       }
     }
