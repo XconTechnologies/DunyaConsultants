@@ -31,6 +31,7 @@ import MediaSelectionModal from "@/components/admin/media-selection-modal";
 import ContentBlocks from "@/components/admin/content-blocks";
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 import AdminSidebar from "@/components/admin/sidebar";
+import EventMediaManager from "@/components/admin/event-media-manager";
 import { format } from "date-fns";
 
 const AVAILABLE_COUNTRIES = [
@@ -946,6 +947,11 @@ export default function EventEditor() {
                   </Tabs>
                 </CardContent>
               </Card>
+
+              {/* Event Media Attachments - Only show for existing events */}
+              {isEditing && eventId && (
+                <EventMediaManager eventId={eventId} />
+              )}
             </div>
             )}
           </div>
