@@ -183,19 +183,19 @@ export default function EventRegistration() {
           </div>
           
           {/* Event Selector Card */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200">
+          <div className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] rounded-3xl shadow-2xl p-8 md:p-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] rounded-2xl flex items-center justify-center">
+              <div className="h-12 w-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
                 <Calendar className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">Choose Your Event</h2>
-                <p className="text-gray-600">Browse upcoming events and register instantly</p>
+                <h2 className="text-2xl font-bold text-white">Choose Your Event</h2>
+                <p className="text-white/80">Browse upcoming events and register instantly</p>
               </div>
             </div>
 
             <Select onValueChange={handleEventSelect}>
-              <SelectTrigger className="w-full h-16 text-lg border-2 border-gray-200 hover:border-[#1D50C9] transition-all rounded-2xl bg-white shadow-sm" data-testid="select-event">
+              <SelectTrigger className="w-full h-16 text-lg border-2 border-white/30 hover:border-white transition-all rounded-2xl bg-white shadow-sm" data-testid="select-event">
                 <SelectValue placeholder="🎓 Select an upcoming event..." />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -223,17 +223,17 @@ export default function EventRegistration() {
 
             {/* Features Grid */}
             <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-xl">
-                <Users className="h-5 w-5 text-[#1D50C9]" />
-                <span className="text-sm text-gray-700">Meet University Reps</span>
+              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
+                <Users className="h-5 w-5 text-white" />
+                <span className="text-sm text-white">Meet University Reps</span>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-xl">
-                <GraduationCap className="h-5 w-5 text-[#1D50C9]" />
-                <span className="text-sm text-gray-700">Expert Guidance</span>
+              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
+                <GraduationCap className="h-5 w-5 text-white" />
+                <span className="text-sm text-white">Expert Guidance</span>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-xl">
-                <Globe className="h-5 w-5 text-[#1D50C9]" />
-                <span className="text-sm text-gray-700">Global Opportunities</span>
+              <div className="flex items-center gap-3 p-4 bg-white/20 backdrop-blur-sm rounded-xl">
+                <Globe className="h-5 w-5 text-white" />
+                <span className="text-sm text-white">Global Opportunities</span>
               </div>
             </div>
           </div>
