@@ -34,6 +34,7 @@ import {
   Calendar,
   User,
   Inbox,
+  Trash,
 } from "lucide-react";
 import type { AdminUser, Media, BlogPost, Category, Event } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
@@ -46,8 +47,9 @@ export default function TrashManagement() {
   const [authChecked, setAuthChecked] = useState(false);
   const [activeTab, setActiveTab] = useState("media");
   const [selectedItem, setSelectedItem] = useState<any>(null);
-  const [actionType, setActionType] = useState<"restore" | "purge" | null>(null);
+  const [actionType, setActionType] = useState<"restore" | "purge" | "empty" | null>(null);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [emptyTrashType, setEmptyTrashType] = useState<string | null>(null);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -165,6 +167,34 @@ export default function TrashManagement() {
     },
   });
 
+  // Empty trash mutation (delete all items of a type)
+  const emptyTrashMutation = useMutation({
+    mutationFn: async (type: string) => {
+      const response = await fetch(`/api/trash/empty/${type}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error("Failed to empty trash");
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/trash"] });
+      setShowConfirmDialog(false);
+      setEmptyTrashType(null);
+      toast({
+        title: "Success",
+        description: data.message || `Trash emptied successfully`,
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to empty trash",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Handle restore
   const handleRestore = (type: string, item: any) => {
     setSelectedItem({ type, item });
@@ -179,14 +209,21 @@ export default function TrashManagement() {
     setShowConfirmDialog(true);
   };
 
+  // Handle empty trash
+  const handleEmptyTrash = (type: string) => {
+    setEmptyTrashType(type);
+    setActionType("empty");
+    setShowConfirmDialog(true);
+  };
+
   // Confirm action
   const confirmAction = () => {
-    if (!selectedItem || !actionType) return;
-    
-    if (actionType === "restore") {
+    if (actionType === "restore" && selectedItem) {
       restoreMutation.mutate({ type: selectedItem.type, id: selectedItem.item.id });
-    } else {
+    } else if (actionType === "purge" && selectedItem) {
       purgeMutation.mutate({ type: selectedItem.type, id: selectedItem.item.id });
+    } else if (actionType === "empty" && emptyTrashType) {
+      emptyTrashMutation.mutate(emptyTrashType);
     }
   };
 
@@ -326,7 +363,19 @@ export default function TrashManagement() {
                     <p className="text-gray-500">No trashed media files</p>
                   </div>
                 ) : (
-                  <Card className="border-0 shadow-lg">
+                  <>
+                    <div className="flex justify-end mb-4">
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleEmptyTrash('media')}
+                        className="gap-2"
+                        data-testid="button-empty-trash-media"
+                      >
+                        <Trash className="h-4 w-4" />
+                        Empty Media Trash
+                      </Button>
+                    </div>
+                    <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
@@ -369,6 +418,7 @@ export default function TrashManagement() {
                       </TableBody>
                     </Table>
                   </Card>
+                  </>
                 )}
               </TabsContent>
 
@@ -382,7 +432,19 @@ export default function TrashManagement() {
                     <p className="text-gray-500">No trashed blog posts</p>
                   </div>
                 ) : (
-                  <Card className="border-0 shadow-lg">
+                  <>
+                    <div className="flex justify-end mb-4">
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleEmptyTrash('blogPosts')}
+                        className="gap-2"
+                        data-testid="button-empty-trash-posts"
+                      >
+                        <Trash className="h-4 w-4" />
+                        Empty Posts Trash
+                      </Button>
+                    </div>
+                    <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
@@ -425,6 +487,7 @@ export default function TrashManagement() {
                       </TableBody>
                     </Table>
                   </Card>
+                  </>
                 )}
               </TabsContent>
 
@@ -438,7 +501,19 @@ export default function TrashManagement() {
                     <p className="text-gray-500">No trashed categories</p>
                   </div>
                 ) : (
-                  <Card className="border-0 shadow-lg">
+                  <>
+                    <div className="flex justify-end mb-4">
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleEmptyTrash('categories')}
+                        className="gap-2"
+                        data-testid="button-empty-trash-categories"
+                      >
+                        <Trash className="h-4 w-4" />
+                        Empty Categories Trash
+                      </Button>
+                    </div>
+                    <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
@@ -479,6 +554,7 @@ export default function TrashManagement() {
                       </TableBody>
                     </Table>
                   </Card>
+                  </>
                 )}
               </TabsContent>
 
@@ -492,7 +568,19 @@ export default function TrashManagement() {
                     <p className="text-gray-500">No trashed events</p>
                   </div>
                 ) : (
-                  <Card className="border-0 shadow-lg">
+                  <>
+                    <div className="flex justify-end mb-4">
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleEmptyTrash('events')}
+                        className="gap-2"
+                        data-testid="button-empty-trash-events"
+                      >
+                        <Trash className="h-4 w-4" />
+                        Empty Events Trash
+                      </Button>
+                    </div>
+                    <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
@@ -533,6 +621,7 @@ export default function TrashManagement() {
                       </TableBody>
                     </Table>
                   </Card>
+                  </>
                 )}
               </TabsContent>
 
@@ -546,7 +635,19 @@ export default function TrashManagement() {
                     <p className="text-gray-500">No trashed users</p>
                   </div>
                 ) : (
-                  <Card className="border-0 shadow-lg">
+                  <>
+                    <div className="flex justify-end mb-4">
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleEmptyTrash('adminUsers')}
+                        className="gap-2"
+                        data-testid="button-empty-trash-users"
+                      >
+                        <Trash className="h-4 w-4" />
+                        Empty Users Trash
+                      </Button>
+                    </div>
+                    <Card className="border-0 shadow-lg">
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50/50">
@@ -591,6 +692,7 @@ export default function TrashManagement() {
                       </TableBody>
                     </Table>
                   </Card>
+                  </>
                 )}
               </TabsContent>
             </Tabs>
@@ -604,11 +706,15 @@ export default function TrashManagement() {
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-amber-500" />
-              {actionType === "restore" ? "Restore Item?" : "Permanently Delete Item?"}
+              {actionType === "restore" ? "Restore Item?" : actionType === "empty" ? "Empty Trash?" : "Permanently Delete Item?"}
             </AlertDialogTitle>
             <AlertDialogDescription>
               {actionType === "restore" ? (
                 "This will restore the item to its original location. You can trash it again later if needed."
+              ) : actionType === "empty" ? (
+                <span className="text-red-600 font-medium">
+                  This will permanently delete ALL items in this trash category. This action cannot be undone!
+                </span>
               ) : (
                 <span className="text-red-600 font-medium">
                   This action cannot be undone! The item will be permanently deleted from the database.
@@ -620,10 +726,10 @@ export default function TrashManagement() {
             <AlertDialogCancel data-testid="button-cancel-action">Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmAction}
-              className={actionType === "purge" ? "bg-red-600 hover:bg-red-700" : ""}
+              className={actionType === "purge" || actionType === "empty" ? "bg-red-600 hover:bg-red-700" : ""}
               data-testid="button-confirm-action"
             >
-              {actionType === "restore" ? "Restore" : "Delete Forever"}
+              {actionType === "restore" ? "Restore" : actionType === "empty" ? "Empty Trash" : "Delete Forever"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

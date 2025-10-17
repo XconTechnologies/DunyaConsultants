@@ -5285,6 +5285,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Empty trash by type (permanently delete all items of a specific type)
+  app.delete("/api/trash/empty/:type", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { type } = req.params;
+      const validTypes = ['media', 'blogPosts', 'categories', 'events', 'adminUsers'];
+      
+      if (!validTypes.includes(type)) {
+        return res.status(400).json({ message: 'Invalid trash type' });
+      }
+
+      const trashedItems = await storage.getTrashedItems(type);
+      const items = trashedItems[type as keyof typeof trashedItems] || [];
+      
+      if (items.length === 0) {
+        return res.json({ success: true, deletedCount: 0, message: 'No items to delete' });
+      }
+
+      let deletedCount = 0;
+      const errors = [];
+
+      for (const item of items) {
+        try {
+          if (type === 'media') {
+            await storage.purgeMedia(item.id);
+          } else if (type === 'blogPosts') {
+            await storage.purgeBlogPost(item.id);
+          } else if (type === 'categories') {
+            await storage.purgeCategory(item.id);
+          } else if (type === 'events') {
+            await storage.purgeEvent(item.id);
+          } else if (type === 'adminUsers') {
+            await storage.purgeAdminUser(item.id);
+          }
+          deletedCount++;
+        } catch (error) {
+          console.error(`Error purging ${type} item ${item.id}:`, error);
+          errors.push({ id: item.id, error: 'Failed to delete' });
+        }
+      }
+
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'empty_trash',
+        entity: type,
+        entityId: 0,
+        after: { deletedCount, errors: errors.length }
+      });
+
+      res.json({ 
+        success: true, 
+        deletedCount, 
+        errors: errors.length > 0 ? errors : undefined,
+        message: `Successfully deleted ${deletedCount} item(s) from ${type} trash` 
+      });
+    } catch (error) {
+      console.error('Error emptying trash:', error);
+      res.status(500).json({ message: 'Failed to empty trash' });
+    }
+  });
+
   // Soft delete media (move to trash)
   app.post("/api/admin/media/:id/trash", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
