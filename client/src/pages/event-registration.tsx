@@ -594,7 +594,7 @@ export default function EventRegistration() {
                           const logoWidth = 160 * scale;
                           const logoHeight = 45 * scale;
                           const logoX = (canvas.width - logoWidth) / 2;
-                          ctx.drawImage(logoImage, logoX, 15 * scale, logoWidth, logoHeight);
+                          ctx.drawImage(logoImage, logoX, 10 * scale, logoWidth, logoHeight);
                           console.log('Logo drawn successfully');
                           resolve();
                         } catch (err) {
@@ -610,18 +610,18 @@ export default function EventRegistration() {
                       logoImage.src = '/dunya-white-logo.png';
                     });
 
-                    // Draw "Thank You" text in header below logo
+                    // Draw "Thank You" text in header below logo with checkmark
                     ctx.fillStyle = '#ffffff';
                     ctx.font = `bold ${22 * scale}px system-ui`;
                     ctx.textAlign = 'center';
-                    const thankYouText = `Thank You ${userName}!`;
-                    ctx.fillText(thankYouText, canvas.width / 2, 80 * scale);
+                    const thankYouText = `✓ Thank You ${userName}!`;
+                    ctx.fillText(thankYouText, canvas.width / 2, 85 * scale);
 
-                    // Draw subtitle in header
+                    // Draw subtitle in header with spacing
                     ctx.font = `${15 * scale}px system-ui`;
                     ctx.fillStyle = '#ffffff';
                     const subtitleText = `for registering for ${event.title}`;
-                    ctx.fillText(subtitleText, canvas.width / 2, 105 * scale);
+                    ctx.fillText(subtitleText, canvas.width / 2, 110 * scale);
 
                     // Draw email check note below header on white background
                     ctx.font = `${13 * scale}px system-ui`;
