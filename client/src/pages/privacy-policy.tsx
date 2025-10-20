@@ -108,7 +108,16 @@ export default function PrivacyPolicy() {
                           onClick={(e) => {
                             e.preventDefault();
                             setActiveSection(section.id);
-                            document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
+                            const element = document.getElementById(section.id);
+                            if (element) {
+                              const headerOffset = 100;
+                              const elementPosition = element.getBoundingClientRect().top;
+                              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                              window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                              });
+                            }
                           }}
                         >
                           <section.icon className="w-4 h-4" />
