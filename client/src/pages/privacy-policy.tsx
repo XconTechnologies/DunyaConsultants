@@ -632,8 +632,8 @@ export default function PrivacyPolicy() {
                           <Mail className="w-6 h-6 text-[#1D50C9]" />
                         </div>
                         <div>
-                          <p className="text-xs text-white/70 font-medium mb-1">Email Us</p>
-                          <p className="text-sm font-bold">info@dunyaconsultants.com</p>
+                          <p className="text-xs text-white/70 hover:text-white font-medium mb-1">Email Us</p>
+                          <p className="text-sm font-bold text-white hover:text-white">info@dunyaconsultants.com</p>
                         </div>
                       </a>
                       <a 
@@ -647,8 +647,8 @@ export default function PrivacyPolicy() {
                           <Phone className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <p className="text-xs text-white/70 font-medium mb-1">WhatsApp</p>
-                          <p className="text-sm font-bold">+92 304 1110947</p>
+                          <p className="text-xs text-white/70 hover:text-white font-medium mb-1">WhatsApp</p>
+                          <p className="text-sm font-bold text-white hover:text-white">+92 304 1110947</p>
                         </div>
                       </a>
                     </div>
