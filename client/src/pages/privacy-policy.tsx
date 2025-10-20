@@ -41,11 +41,8 @@ export default function PrivacyPolicy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9] via-[#2764E8] to-[#1845B3]"></div>
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
-        </div>
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -632,8 +629,8 @@ export default function PrivacyPolicy() {
                           <Mail className="w-6 h-6 text-[#1D50C9]" />
                         </div>
                         <div>
-                          <p className="text-xs text-white/70 hover:text-white font-medium mb-1">Email Us</p>
-                          <p className="text-sm font-bold text-white hover:text-white">info@dunyaconsultants.com</p>
+                          <p className="text-xs text-white/70 hover:!text-white font-medium mb-1">Email Us</p>
+                          <p className="text-sm font-bold !text-white hover:!text-white">info@dunyaconsultants.com</p>
                         </div>
                       </a>
                       <a 
@@ -647,8 +644,8 @@ export default function PrivacyPolicy() {
                           <Phone className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <p className="text-xs text-white/70 hover:text-white font-medium mb-1">WhatsApp</p>
-                          <p className="text-sm font-bold text-white hover:text-white">+92 304 1110947</p>
+                          <p className="text-xs text-white/70 hover:!text-white font-medium mb-1">WhatsApp</p>
+                          <p className="text-sm font-bold !text-white hover:!text-white">+92 304 1110947</p>
                         </div>
                       </a>
                     </div>
