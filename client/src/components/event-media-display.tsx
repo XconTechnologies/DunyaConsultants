@@ -23,10 +23,16 @@ interface EventMediaDisplayProps {
   documents?: MediaAttachment[];
 }
 
-export default function EventMediaDisplay({ recordings = [], images = [], videos = [], documents = [] }: EventMediaDisplayProps) {
+export default function EventMediaDisplay({ recordings, images, videos, documents }: EventMediaDisplayProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
-  const hasMedia = recordings.length > 0 || images.length > 0 || videos.length > 0 || documents.length > 0;
+  // Ensure arrays are never null/undefined
+  const recordingsList = recordings ?? [];
+  const imagesList = images ?? [];
+  const videosList = videos ?? [];
+  const documentsList = documents ?? [];
+  
+  const hasMedia = recordingsList.length > 0 || imagesList.length > 0 || videosList.length > 0 || documentsList.length > 0;
 
   if (!hasMedia) {
     return null;
@@ -43,53 +49,53 @@ export default function EventMediaDisplay({ recordings = [], images = [], videos
       <div className="mb-8">
         <h3 className="text-2xl font-semibold text-gray-900 mb-6">Event Media</h3>
         
-        <Tabs defaultValue={recordings.length > 0 ? "recordings" : images.length > 0 ? "images" : videos.length > 0 ? "videos" : "documents"} className="w-full">
+        <Tabs defaultValue={recordingsList.length > 0 ? "recordings" : imagesList.length > 0 ? "images" : videosList.length > 0 ? "videos" : "documents"} className="w-full">
           <TabsList className="grid w-full grid-cols-4 bg-gray-100 p-1 mb-6">
-            {recordings.length > 0 && (
+            {recordingsList.length > 0 && (
               <TabsTrigger 
                 value="recordings"
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white text-sm"
                 data-testid="tab-recordings"
               >
                 <FileAudio className="w-4 h-4 mr-2" />
-                Audio ({recordings.length})
+                Audio ({recordingsList.length})
               </TabsTrigger>
             )}
-            {images.length > 0 && (
+            {imagesList.length > 0 && (
               <TabsTrigger 
                 value="images"
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white text-sm"
                 data-testid="tab-images"
               >
                 <ImageIcon className="w-4 h-4 mr-2" />
-                Images ({images.length})
+                Images ({imagesList.length})
               </TabsTrigger>
             )}
-            {videos.length > 0 && (
+            {videosList.length > 0 && (
               <TabsTrigger 
                 value="videos"
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white text-sm"
                 data-testid="tab-videos"
               >
                 <Video className="w-4 h-4 mr-2" />
-                Videos ({videos.length})
+                Videos ({videosList.length})
               </TabsTrigger>
             )}
-            {documents.length > 0 && (
+            {documentsList.length > 0 && (
               <TabsTrigger 
                 value="documents"
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white text-sm"
                 data-testid="tab-documents"
               >
                 <FileText className="w-4 h-4 mr-2" />
-                Documents ({documents.length})
+                Documents ({documentsList.length})
               </TabsTrigger>
             )}
           </TabsList>
 
-          {recordings.length > 0 && (
+          {recordingsList.length > 0 && (
             <TabsContent value="recordings" className="space-y-4">
-              {recordings.map((recording, index) => (
+              {recordingsList.map((recording, index) => (
                 <Card key={index} className="bg-gradient-to-br from-blue-50 to-white border-blue-200 hover:shadow-lg transition-shadow">
                   <CardContent className="p-5">
                     <div className="flex items-center justify-between gap-4">
@@ -115,10 +121,10 @@ export default function EventMediaDisplay({ recordings = [], images = [], videos
             </TabsContent>
           )}
 
-          {images.length > 0 && (
+          {imagesList.length > 0 && (
             <TabsContent value="images">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {images.map((image, index) => (
+                {imagesList.map((image, index) => (
                   <Card 
                     key={index} 
                     className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all border-0"
@@ -153,9 +159,9 @@ export default function EventMediaDisplay({ recordings = [], images = [], videos
             </TabsContent>
           )}
 
-          {videos.length > 0 && (
+          {videosList.length > 0 && (
             <TabsContent value="videos" className="space-y-4">
-              {videos.map((video, index) => (
+              {videosList.map((video, index) => (
                 <Card key={index} className="overflow-hidden border-0 shadow-lg">
                   <CardContent className="p-0">
                     <div className="relative">
@@ -185,9 +191,9 @@ export default function EventMediaDisplay({ recordings = [], images = [], videos
             </TabsContent>
           )}
 
-          {documents.length > 0 && (
+          {documentsList.length > 0 && (
             <TabsContent value="documents" className="space-y-3">
-              {documents.map((doc, index) => (
+              {documentsList.map((doc, index) => (
                 <Card key={index} className="bg-gradient-to-br from-orange-50 to-white border-orange-200 hover:shadow-lg transition-shadow">
                   <CardContent className="p-5">
                     <div className="flex items-center justify-between gap-4">
