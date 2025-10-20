@@ -370,7 +370,7 @@ export default function EventDetailPage() {
                               }}
                               className="mx-auto mb-3"
                             />
-                            <h4 className="text-white font-bold text-lg">{country}</h4>
+                            <h4 className="text-gray-900 font-bold text-lg">{country}</h4>
                           </CardContent>
                         </Card>
                       ))}
