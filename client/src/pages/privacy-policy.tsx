@@ -41,10 +41,10 @@ export default function PrivacyPolicy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-20 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,24 +55,24 @@ export default function PrivacyPolicy() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-24 h-24 bg-white/20 backdrop-blur-lg rounded-3xl mb-8 shadow-2xl"
+              className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-lg rounded-2xl sm:rounded-3xl mb-6 md:mb-8 shadow-2xl"
             >
-              <Shield className="w-14 h-14 text-white" strokeWidth={1.5} />
+              <Shield className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 text-white" strokeWidth={1.5} />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight px-2">
               Privacy Policy
             </h1>
-            <p className="text-xl md:text-2xl text-white/95 font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 font-light leading-relaxed px-4">
               Your trust is our priority. Learn how we protect your information.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/20">
-                <Lock className="w-5 h-5 text-white" />
-                <span className="text-sm font-medium text-white">Secure & Confidential</span>
+            <div className="mt-6 md:mt-8 flex flex-wrap items-center justify-center gap-3 md:gap-4 px-4">
+              <div className="flex items-center gap-2 sm:gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 sm:py-3 border border-white/20">
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-white whitespace-nowrap">Secure & Confidential</span>
               </div>
-              <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/20">
-                <CheckCircle className="w-5 h-5 text-white" />
-                <span className="text-sm font-medium text-white">GDPR Compliant</span>
+              <div className="flex items-center gap-2 sm:gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-5 py-2 sm:py-3 border border-white/20">
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-white whitespace-nowrap">GDPR Compliant</span>
               </div>
             </div>
           </motion.div>
@@ -80,8 +80,8 @@ export default function PrivacyPolicy() {
       </section>
 
       {/* Content Section */}
-      <section className="py-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-12 md:py-20 -mt-6 md:-mt-10">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar Navigation - Hidden on mobile */}
             <div className="hidden lg:block">
@@ -140,21 +140,21 @@ export default function PrivacyPolicy() {
                 transition={{ duration: 0.6 }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-white to-blue-50/30">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <FileText className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">Introduction</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Introduction</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
-                      <p className="text-lg">
+                    <div className="space-y-3 sm:space-y-4 text-gray-700 leading-relaxed">
+                      <p className="text-base sm:text-lg">
                         At Dunya Consultants, we value the confidence that you have in us and the information you shared. Study abroad consulting, visas, and anything else, whatever the reason you reach out to us for, we guarantee your information is treated confidentially, with respect and honesty.
                       </p>
-                      <p className="text-lg">
+                      <p className="text-base sm:text-lg">
                         This Policy describes how we will collect, use, and protect your information when you reach out to us through our website, visit our office, or interact with our team.
                       </p>
                     </div>
@@ -171,50 +171,50 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Globe className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">1. Who We Are</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">1. Who We Are</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
                       Dunya Consultants has a global presence, with offices located within Pakistan, Egypt, Saudi Arabia, United Kingdom, and Turkey. We are an overseas education consultancy, helping prospective students with university admission processes, visas, and related consultancy services.
                     </p>
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
-                      <p className="text-gray-700 font-medium mb-4">For any privacy-related concerns, reach us at:</p>
-                      <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-100">
+                      <p className="text-sm sm:text-base text-gray-700 font-medium mb-3 sm:mb-4">For any privacy-related concerns, reach us at:</p>
+                      <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                         <a 
                           href="mailto:info@dunyaconsultants.com" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-all group"
+                          className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white rounded-lg hover:shadow-md transition-all group"
                           data-testid="link-email-privacy"
                         >
-                          <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-[#1D50C9] transition-colors">
-                            <Mail className="w-5 h-5 text-[#1D50C9] group-hover:text-white" />
+                          <div className="p-1.5 sm:p-2 bg-blue-100 rounded-lg group-hover:bg-[#1D50C9] transition-colors flex-shrink-0">
+                            <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-[#1D50C9] group-hover:text-white" />
                           </div>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="text-xs text-gray-500 font-medium">Email Us</p>
-                            <p className="text-sm text-[#1D50C9] font-semibold">info@dunyaconsultants.com</p>
+                            <p className="text-xs sm:text-sm text-[#1D50C9] font-semibold truncate">info@dunyaconsultants.com</p>
                           </div>
                         </a>
                         <a 
                           href="https://wa.me/923041110947" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-all group"
+                          className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white rounded-lg hover:shadow-md transition-all group"
                           data-testid="link-whatsapp-privacy"
                         >
-                          <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-600 transition-colors">
-                            <Phone className="w-5 h-5 text-green-600 group-hover:text-white" />
+                          <div className="p-1.5 sm:p-2 bg-green-100 rounded-lg group-hover:bg-green-600 transition-colors flex-shrink-0">
+                            <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 group-hover:text-white" />
                           </div>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="text-xs text-gray-500 font-medium">WhatsApp</p>
-                            <p className="text-sm text-green-600 font-semibold">+92 304 1110947</p>
+                            <p className="text-xs sm:text-sm text-green-600 font-semibold">+92 304 1110947</p>
                           </div>
                         </a>
                       </div>
@@ -232,14 +232,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Database className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Database className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">2. Information We Collect</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">2. Information We Collect</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -266,7 +266,7 @@ export default function PrivacyPolicy() {
                               <item.icon className="w-5 h-5 text-[#1D50C9]" />
                             </div>
                           </div>
-                          <div>
+                          <div className="flex-1 min-w-0">
                             <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
                             <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                           </div>
@@ -286,14 +286,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Settings className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">3. How We Use Your Information</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">3. How We Use Your Information</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -334,14 +334,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Scale className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">4. Legal Basis for Processing</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">4. Legal Basis for Processing</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -382,14 +382,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Share2 className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Share2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">5. Data Sharing and Disclosure</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">5. Data Sharing and Disclosure</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -436,14 +436,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Cookie className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Cookie className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">6. Cookies and Tracking Technologies</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">6. Cookies and Tracking Technologies</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -472,14 +472,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-white to-blue-50/30">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Lock className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">7. Data Retention and Security</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">7. Data Retention and Security</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -503,14 +503,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <CheckCircle className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">8. Your Rights</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">8. Your Rights</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed mb-6">
@@ -560,14 +560,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <Eye className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">9. Your Consent</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">9. Your Consent</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -586,14 +586,14 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-lg">
-                        <RefreshCw className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <RefreshCw className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">10. Updates to This Policy</h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">10. Updates to This Policy</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full"></div>
                       </div>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -612,48 +612,48 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
               >
                 <Card className="border-none shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
-                  <CardContent className="p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-2xl shadow-lg">
-                        <MessageCircle className="w-6 h-6 text-white" />
+                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="p-2 sm:p-3 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h2 className="text-2xl font-bold mb-2">11. Contact Us</h2>
-                        <div className="h-1 w-20 bg-white/50 rounded-full"></div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-xl sm:text-2xl font-bold mb-2">11. Contact Us</h2>
+                        <div className="h-1 w-16 sm:w-20 bg-white/50 rounded-full"></div>
                       </div>
                     </div>
-                    <p className="text-white/90 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-6">
                       If you have any questions or concerns about this Privacy Policy or how your data is handled, please contact us:
                     </p>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                       <a 
                         href="mailto:info@dunyaconsultants.com" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-5 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all group border border-white/20"
+                        className="flex items-center gap-2 sm:gap-3 p-4 sm:p-5 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl hover:bg-white/20 transition-all group border border-white/20"
                         data-testid="link-email-contact"
                       >
-                        <div className="p-3 bg-white rounded-lg group-hover:scale-110 transition-transform">
-                          <Mail className="w-6 h-6 text-[#1D50C9]" />
+                        <div className="p-2 sm:p-3 bg-white rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+                          <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-[#1D50C9]" />
                         </div>
-                        <div>
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs text-white/70 hover:!text-white font-medium mb-1">Email Us</p>
-                          <p className="text-sm font-bold !text-white hover:!text-white">info@dunyaconsultants.com</p>
+                          <p className="text-xs sm:text-sm font-bold !text-white hover:!text-white truncate">info@dunyaconsultants.com</p>
                         </div>
                       </a>
                       <a 
                         href="https://wa.me/923041110947" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-5 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all group border border-white/20"
+                        className="flex items-center gap-2 sm:gap-3 p-4 sm:p-5 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl hover:bg-white/20 transition-all group border border-white/20"
                         data-testid="link-whatsapp-contact"
                       >
-                        <div className="p-3 bg-white rounded-lg group-hover:scale-110 transition-transform">
-                          <Phone className="w-6 h-6 text-green-600" />
+                        <div className="p-2 sm:p-3 bg-white rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+                          <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                         </div>
-                        <div>
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs text-white/70 hover:!text-white font-medium mb-1">WhatsApp</p>
-                          <p className="text-sm font-bold !text-white hover:!text-white">+92 304 1110947</p>
+                          <p className="text-xs sm:text-sm font-bold !text-white hover:!text-white">+92 304 1110947</p>
                         </div>
                       </a>
                     </div>
@@ -669,9 +669,9 @@ export default function PrivacyPolicy() {
                 viewport={{ once: true }}
                 className="text-center py-6"
               >
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 rounded-full">
-                  <Clock className="w-4 h-4 text-gray-600" />
-                  <p className="text-sm text-gray-600 font-medium">
+                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-100 rounded-full">
+                  <Clock className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                  <p className="text-xs sm:text-sm text-gray-600 font-medium">
                     Last Updated: October 2025
                   </p>
                 </div>
