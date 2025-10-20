@@ -353,31 +353,29 @@ export default function EventDetailPage() {
 
                 {/* Study Destination Cards */}
                 {event.country && Array.isArray(event.country) && event.country.length > 0 && (
-                  <Card className="mb-8 shadow-lg border border-gray-100">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Study Destinations</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        {event.country.map((country) => (
-                          <Card key={country} className="bg-gradient-to-br from-[#FF6B35] to-[#FF8C61] border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <CardContent className="p-6 text-center">
-                              <ReactCountryFlag
-                                countryCode={getCountryCode(country)}
-                                svg
-                                style={{
-                                  width: '64px',
-                                  height: '64px',
-                                  borderRadius: '50%',
-                                  objectFit: 'cover',
-                                }}
-                                className="mx-auto mb-3"
-                              />
-                              <h4 className="text-white font-bold text-lg">{country}</h4>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Study Destinations</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      {event.country.map((country) => (
+                        <Card key={country} className="bg-gradient-to-br from-[#FF6B35] to-[#FF8C61] border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                          <CardContent className="p-6 text-center">
+                            <ReactCountryFlag
+                              countryCode={getCountryCode(country)}
+                              svg
+                              style={{
+                                width: '64px',
+                                height: '64px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                              }}
+                              className="mx-auto mb-3"
+                            />
+                            <h4 className="text-white font-bold text-lg">{country}</h4>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
                 )}
 
                 {/* Event Media Section */}
