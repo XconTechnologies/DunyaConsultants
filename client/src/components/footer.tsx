@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="mb-6">
                 <Link href="/">
-                  <img loading="lazy" 
+                  <img 
                     src={logoImageWhite} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
@@ -76,6 +76,12 @@ export default function Footer() {
                   <Link href="/offices#international-offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <Globe className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
                     View International Offices
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy-policy" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
+                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
+                    Privacy Policy
                   </Link>
                 </li>
               </ul>
