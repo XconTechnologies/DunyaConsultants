@@ -19,7 +19,7 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConsultationBookingSection from '@/components/consultation-booking-section';
-import ConsultationFormPopup from '@/components/consultation-form-popup';
+import CompactConsultationForm from '@/components/compact-consultation-form';
 import CalendlyButton from '@/components/calendly-button';
 import { setStaticPageMeta } from "@/lib/seo";
 

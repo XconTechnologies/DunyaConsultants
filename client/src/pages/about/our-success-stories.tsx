@@ -21,7 +21,7 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import CalendlyButton from '@/components/calendly-button';
-import ConsultationFormPopup from '@/components/consultation-form-popup';
+import CompactConsultationForm from '@/components/compact-consultation-form';
 import { setStaticPageMeta } from "@/lib/seo";
 
 // Import Finland visa success images - using the actual files from attached_assets
@@ -485,7 +485,7 @@ export default function OurSuccessStories() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <ConsultationFormPopup 
+      <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />
