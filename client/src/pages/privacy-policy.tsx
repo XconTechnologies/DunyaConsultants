@@ -65,15 +65,14 @@ export default function PrivacyPolicy() {
             <p className="text-xl md:text-2xl text-white/95 font-light leading-relaxed">
               Your trust is our priority. Learn how we protect your information.
             </p>
-            <div className="mt-8 flex items-center justify-center gap-4 text-white/80">
-              <div className="flex items-center gap-2">
-                <Lock className="w-5 h-5" />
-                <span className="text-sm">Secure & Confidential</span>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/20">
+                <Lock className="w-5 h-5 text-white" />
+                <span className="text-sm font-medium text-white">Secure & Confidential</span>
               </div>
-              <div className="w-1 h-1 bg-white/50 rounded-full"></div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5" />
-                <span className="text-sm">GDPR Compliant</span>
+              <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-5 py-3 border border-white/20">
+                <CheckCircle className="w-5 h-5 text-white" />
+                <span className="text-sm font-medium text-white">GDPR Compliant</span>
               </div>
             </div>
           </motion.div>
