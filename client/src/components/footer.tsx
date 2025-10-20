@@ -60,7 +60,7 @@ export default function Footer() {
 
             {/* Offices */}
             <div className="lg:col-span-1">
-              <h4 className="text-lg font-bold mb-6 text-white">Pakistan Offices</h4>
+              <h4 className="text-lg font-bold mb-3 text-white">Pakistan Offices</h4>
               <ul className="space-y-3 text-sm mb-6">
                 <li>
                   <Link href="/offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
@@ -70,7 +70,7 @@ export default function Footer() {
                 </li>
               </ul>
               
-              <h4 className="text-lg font-bold mb-6 text-white">International Offices</h4>
+              <h4 className="text-lg font-bold mb-3 text-white">International Offices</h4>
               <ul className="space-y-3 text-sm mb-6">
                 <li>
                   <Link href="/offices#international-offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
@@ -80,7 +80,7 @@ export default function Footer() {
                 </li>
               </ul>
               
-              <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
+              <h4 className="text-lg font-bold mb-3 text-white">Quick Links</h4>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link href="/privacy-policy" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
