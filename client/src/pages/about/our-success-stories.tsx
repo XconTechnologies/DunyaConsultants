@@ -485,7 +485,7 @@ export default function OurSuccessStories() {
       <Footer />
       
       {/* Consultation Form Popup */}
-      <CompactConsultationForm 
+      <ConsultationFormPopup 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />
