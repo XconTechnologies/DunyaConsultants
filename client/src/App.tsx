@@ -109,6 +109,7 @@ import WhoWeAre from "@/pages/about/who-we-are";
 import WhyChooseUs from "@/pages/about/why-choose-us";
 import OurSuccessStories from "@/pages/about/our-success-stories";
 import TeamPage from "@/pages/about/team";
+import PrivacyPolicy from "@/pages/privacy-policy";
 
 function Router() {
   // Track page views when routes change - Google Analytics integration
@@ -147,6 +148,7 @@ function Router() {
       <Route path="/faqs" component={FAQsPage} />
       <Route path="/scholarships" component={ScholarshipsPage} />
       <Route path="/services" component={ServicesPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
       
       {/* About Routes */}
