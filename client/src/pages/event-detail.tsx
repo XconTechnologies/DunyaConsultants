@@ -253,7 +253,14 @@ export default function EventDetailPage() {
               )}
 
               {/* Event Title */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">{event.title}</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">{event.title}</h1>
+              
+              {/* Meta Description */}
+              {event.shortDescription && (
+                <p className="text-base md:text-lg text-white/90 mb-4 md:mb-6 max-w-3xl mx-auto leading-relaxed">
+                  {event.shortDescription}
+                </p>
+              )}
 
               {/* Date and Venue Tickers Below Title - Low White Opacity */}
               <div className="flex flex-wrap items-center justify-center gap-3">
