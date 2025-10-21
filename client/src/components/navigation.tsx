@@ -95,7 +95,7 @@ export default function Navigation() {
         title: "Free Country Consultation",
         description: "Get personalized study abroad guidance",
         cta: "Book Now",
-        href: "/consultation"
+        href: "/contact"
       }
     },
 
