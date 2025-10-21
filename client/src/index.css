@@ -111,6 +111,97 @@ table tr:hover {
   background-color: #f3f4f6;
 }
 
+/* List styles for ReactQuill editor and blog content */
+.ql-editor ul,
+.ql-editor ol,
+.blog-content ul,
+.blog-content ol,
+.prose ul,
+.prose ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.ql-editor ul li,
+.blog-content ul li,
+.prose ul li {
+  list-style-type: disc;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.ql-editor ol li,
+.blog-content ol li,
+.prose ol li {
+  list-style-type: decimal;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* Nested list styles - proper indentation */
+.ql-editor ul ul,
+.ql-editor ol ul,
+.blog-content ul ul,
+.blog-content ol ul,
+.prose ul ul,
+.prose ol ul {
+  list-style-type: circle;
+  margin: 0.25rem 0 0.25rem 0;
+  padding-left: 2rem;
+}
+
+.ql-editor ul ol,
+.ql-editor ol ol,
+.blog-content ul ol,
+.blog-content ol ol,
+.prose ul ol,
+.prose ol ol {
+  list-style-type: lower-alpha;
+  margin: 0.25rem 0 0.25rem 0;
+  padding-left: 2rem;
+}
+
+/* Third level nested lists */
+.ql-editor ul ul ul,
+.ql-editor ol ul ul,
+.blog-content ul ul ul,
+.blog-content ol ul ul,
+.prose ul ul ul,
+.prose ol ul ul {
+  list-style-type: square;
+  padding-left: 2rem;
+}
+
+.ql-editor ul ol ol,
+.ql-editor ol ol ol,
+.blog-content ul ol ol,
+.blog-content ol ol ol,
+.prose ul ol ol,
+.prose ol ol ol {
+  list-style-type: lower-roman;
+  padding-left: 2rem;
+}
+
+/* Ensure list items display properly */
+.ql-editor li,
+.blog-content li,
+.prose li {
+  display: list-item;
+}
+
+/* Custom HTML blocks - ensure scripts execute properly */
+.custom-html-block {
+  margin: 1.5rem 0;
+}
+
+.custom-html-block style {
+  display: none;
+}
+
+.custom-html-block script {
+  display: none;
+}
+
 /* Bob animation for hover effects */
 @keyframes bob {
   0%, 100% {
