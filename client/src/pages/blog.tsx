@@ -3487,23 +3487,7 @@ export default function Blog() {
     image: normalizeImageSrc(post.featuredImage || ''),
     featured: false,
     slug: post.slug,
-    sortDate: (() => {
-      // Extract date from slug for sorting (format: YYYY/MM/DD/slug)
-      const slugParts = post.slug.split('/');
-      if (slugParts.length >= 3) {
-        const year = slugParts[0];
-        const month = slugParts[1];
-        const day = slugParts[2];
-        return new Date(`${year}-${month}-${day}`);
-      }
-      // Fallback to created_at if available
-      const dateStr = post.publishedAt || post.published_at || post.created_at;
-      return dateStr ? new Date(dateStr) : new Date('1970-01-01');
-    })()
-  })).sort((a: any, b: any) => {
-    // Sort by date descending (newest first)
-    return b.sortDate.getTime() - a.sortDate.getTime();
-  }) : staticBlogPosts;
+  })) : staticBlogPosts;
 
   // Fetch hierarchical categories from public API
   const { data: hierarchicalCategories = [] } = useQuery<any[]>({
