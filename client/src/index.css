@@ -189,53 +189,61 @@ table tr:hover {
   display: list-item;
 }
 
-/* ReactQuill indent classes for nested lists */
+/* ReactQuill indent classes for nested lists - proper indentation */
 .ql-editor li.ql-indent-1,
 .blog-content li.ql-indent-1,
 .prose li.ql-indent-1 {
-  padding-left: 3em !important;
+  padding-left: 2.5em !important;
+  list-style-type: circle !important;
 }
 
 .ql-editor li.ql-indent-2,
 .blog-content li.ql-indent-2,
 .prose li.ql-indent-2 {
-  padding-left: 6em !important;
+  padding-left: 5em !important;
+  list-style-type: square !important;
 }
 
 .ql-editor li.ql-indent-3,
 .blog-content li.ql-indent-3,
 .prose li.ql-indent-3 {
-  padding-left: 9em !important;
+  padding-left: 7.5em !important;
+  list-style-type: disc !important;
 }
 
 .ql-editor li.ql-indent-4,
 .blog-content li.ql-indent-4,
 .prose li.ql-indent-4 {
-  padding-left: 12em !important;
+  padding-left: 10em !important;
+  list-style-type: circle !important;
 }
 
 .ql-editor li.ql-indent-5,
 .blog-content li.ql-indent-5,
 .prose li.ql-indent-5 {
-  padding-left: 15em !important;
+  padding-left: 12.5em !important;
+  list-style-type: square !important;
 }
 
 .ql-editor li.ql-indent-6,
 .blog-content li.ql-indent-6,
 .prose li.ql-indent-6 {
-  padding-left: 18em !important;
+  padding-left: 15em !important;
+  list-style-type: disc !important;
 }
 
 .ql-editor li.ql-indent-7,
 .blog-content li.ql-indent-7,
 .prose li.ql-indent-7 {
-  padding-left: 21em !important;
+  padding-left: 17.5em !important;
+  list-style-type: circle !important;
 }
 
 .ql-editor li.ql-indent-8,
 .blog-content li.ql-indent-8,
 .prose li.ql-indent-8 {
-  padding-left: 24em !important;
+  padding-left: 20em !important;
+  list-style-type: square !important;
 }
 
 /* Custom HTML blocks - ensure scripts execute properly */
