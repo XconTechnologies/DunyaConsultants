@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import {
   Plus,
@@ -15,6 +17,9 @@ import {
   CheckCircle,
   AlertTriangle,
   FileText,
+  Search,
+  Filter,
+  X,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -63,6 +68,13 @@ export default function AllPosts() {
   const urlParams = new URLSearchParams(window.location.search);
   const initialFilter = (urlParams.get('filter') || 'all') as 'all' | 'published' | 'draft' | 'trash';
   const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'trash'>(initialFilter);
+  
+  // Additional filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [yearFilter, setYearFilter] = useState<string>('all');
+  const [monthFilter, setMonthFilter] = useState<string>('all');
+  const [dateFilter, setDateFilter] = useState<string>('');
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -138,6 +150,21 @@ export default function AllPosts() {
     },
   });
 
+  // Fetch all categories
+  const { data: allCategories = [] } = useQuery({
+    queryKey: ["/api/admin/categories"],
+    enabled: authChecked,
+    queryFn: async () => {
+      const response = await fetch('/api/admin/categories', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
+  });
+
   // Fetch categories for each post
   const { data: postCategories = {} } = useQuery({
     queryKey: ["/api/admin/blog-posts/categories", blogPosts],
@@ -181,14 +208,77 @@ export default function AllPosts() {
 
   const isAllSelected = selectedIds.length === blogPosts.length && blogPosts.length > 0;
 
-  // Filter posts based on status
+  // Get unique years and months from posts
+  const availableYears = Array.from(new Set(
+    blogPosts
+      .filter((post: BlogPost) => post.publishedAt)
+      .map((post: BlogPost) => new Date(post.publishedAt!).getFullYear())
+  )).sort((a, b) => b - a);
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  // Filter posts based on all filters
   const filteredPosts = blogPosts.filter((post: BlogPost) => {
-    if (statusFilter === 'all') return true;
-    if (statusFilter === 'published') return post.isPublished && !post.trashedAt;
-    if (statusFilter === 'draft') return !post.isPublished && !post.trashedAt;
-    if (statusFilter === 'trash') return post.trashedAt;
+    // Status filter
+    if (statusFilter === 'published' && (!post.isPublished || post.trashedAt)) return false;
+    if (statusFilter === 'draft' && (post.isPublished || post.trashedAt)) return false;
+    if (statusFilter === 'trash' && !post.trashedAt) return false;
+    if (statusFilter !== 'all' && statusFilter !== 'trash' && post.trashedAt) return false;
+    
+    // Search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      const titleMatch = post.title.toLowerCase().includes(query);
+      const contentMatch = post.content.toLowerCase().includes(query);
+      const excerptMatch = post.excerpt?.toLowerCase().includes(query);
+      if (!titleMatch && !contentMatch && !excerptMatch) return false;
+    }
+    
+    // Category filter
+    if (categoryFilter !== 'all') {
+      const categories = postCategories[post.id] || [];
+      const hasCategory = categories.some((cat: any) => cat.id.toString() === categoryFilter);
+      if (!hasCategory) return false;
+    }
+    
+    // Date filter (specific date)
+    if (dateFilter) {
+      if (!post.publishedAt) return false;
+      const postDate = new Date(post.publishedAt).toISOString().split('T')[0];
+      if (postDate !== dateFilter) return false;
+    }
+    
+    // Year filter
+    if (yearFilter !== 'all') {
+      if (!post.publishedAt) return false;
+      const postYear = new Date(post.publishedAt).getFullYear().toString();
+      if (postYear !== yearFilter) return false;
+    }
+    
+    // Month filter
+    if (monthFilter !== 'all') {
+      if (!post.publishedAt) return false;
+      const postMonth = new Date(post.publishedAt).getMonth().toString();
+      if (postMonth !== monthFilter) return false;
+    }
+    
     return true;
   });
+
+  // Clear all filters function
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setCategoryFilter('all');
+    setYearFilter('all');
+    setMonthFilter('all');
+    setDateFilter('');
+  };
+
+  // Check if any filters are active
+  const hasActiveFilters = searchQuery || categoryFilter !== 'all' || yearFilter !== 'all' || monthFilter !== 'all' || dateFilter;
 
   // Bulk actions
   const bulkPublishMutation = useMutation({
@@ -344,6 +434,104 @@ export default function AllPosts() {
               Trash ({blogPosts.filter(p => p.trashedAt).length})
             </button>
           </div>
+
+          {/* Advanced Filters */}
+          <Card className="border-0 shadow-md bg-gradient-to-br from-white to-blue-50/30">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Filter className="w-5 h-5 text-[#1D50C9]" />
+                <h3 className="text-lg font-semibold text-gray-900">Filter Posts</h3>
+                {hasActiveFilters && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={clearAllFilters}
+                    className="ml-auto text-red-600 hover:text-red-700 hover:bg-red-50"
+                    data-testid="button-clear-filters"
+                  >
+                    <X className="w-4 h-4 mr-1" />
+                    Clear All Filters
+                  </Button>
+                )}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {/* Search Input */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="Search posts..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                    data-testid="input-search-posts"
+                  />
+                </div>
+
+                {/* Category Filter */}
+                <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                  <SelectTrigger className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]" data-testid="select-category-filter">
+                    <SelectValue placeholder="All Categories" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {allCategories.map((category: any) => (
+                      <SelectItem key={category.id} value={category.id.toString()}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Year Filter */}
+                <Select value={yearFilter} onValueChange={setYearFilter}>
+                  <SelectTrigger className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]" data-testid="select-year-filter">
+                    <SelectValue placeholder="All Years" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Years</SelectItem>
+                    {availableYears.map((year) => (
+                      <SelectItem key={year} value={year.toString()}>
+                        {year}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Month Filter */}
+                <Select value={monthFilter} onValueChange={setMonthFilter}>
+                  <SelectTrigger className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]" data-testid="select-month-filter">
+                    <SelectValue placeholder="All Months" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Months</SelectItem>
+                    {monthNames.map((month, index) => (
+                      <SelectItem key={index} value={index.toString()}>
+                        {month}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Specific Date Filter */}
+                <Input
+                  type="date"
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                  className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                  data-testid="input-date-filter"
+                />
+              </div>
+
+              {/* Results Counter */}
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm text-gray-600">
+                  Showing <span className="font-semibold text-[#1D50C9]">{filteredPosts.length}</span> of <span className="font-semibold">{blogPosts.length}</span> total posts
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Bulk Actions */}
           {selectedIds.length > 0 && (canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
