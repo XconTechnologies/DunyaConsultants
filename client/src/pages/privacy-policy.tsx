@@ -611,55 +611,74 @@ export default function PrivacyPolicy() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="border-none shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white overflow-hidden">
-                  <CardContent className="p-5 sm:p-6 md:p-8 lg:p-10">
-                    <div className="flex items-start gap-3 sm:gap-4 mb-6">
-                      <div className="p-2 sm:p-3 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
-                        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <Card className="border-none shadow-lg bg-white/80 backdrop-blur-sm border-2 border-[#1D50C9]/20 overflow-hidden">
+                  <CardContent className="p-6 md:p-8">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-xl">
+                        <MessageCircle className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">11. Contact Us</h2>
-                        <div className="h-1 w-16 sm:w-20 bg-white/50 rounded-full"></div>
+                      <div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">11. Contact Us</h2>
                       </div>
                     </div>
                     <div className="space-y-6">
-                      <p className="text-sm sm:text-base text-white/90 leading-relaxed">
+                      <p className="text-gray-700 leading-relaxed">
                         If you have any questions or concerns about this Privacy Policy or how your data is handled, please contact us:
                       </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <motion.a 
-                          href="mailto:info@dunyaconsultants.com" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
+                          href="tel:+923041110947"
                           whileHover={{ scale: 1.02, y: -4 }}
                           whileTap={{ scale: 0.98 }}
-                          className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all border border-white/20 hover:border-white/40"
-                          data-testid="link-email-contact"
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100"
+                          data-testid="link-phone-contact"
                         >
-                          <div className="p-2 sm:p-3 bg-white rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
-                            <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-[#1D50C9]" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-1">Email Us</p>
-                            <p className="text-sm sm:text-base font-bold text-white break-words">info@dunyaconsultants.com</p>
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Phone className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Phone</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">+92 304 1110947</p>
+                            </div>
                           </div>
                         </motion.a>
                         
                         <motion.a 
-                          href="https://wa.me/923041110947" 
+                          href="mailto:info@dunyaconsultants.com"
+                          whileHover={{ scale: 1.02, y: -4 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100"
+                          data-testid="link-email-contact"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Mail className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Email</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">info@dunyaconsultants.com</p>
+                            </div>
+                          </div>
+                        </motion.a>
+                        
+                        <motion.a 
+                          href="https://dunyaconsultants.com" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.02, y: -4 }}
                           whileTap={{ scale: 0.98 }}
-                          className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-5 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all border border-white/20 hover:border-white/40"
-                          data-testid="link-whatsapp-contact"
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100 sm:col-span-2 lg:col-span-1"
+                          data-testid="link-website-contact"
                         >
-                          <div className="p-2 sm:p-3 bg-white rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
-                            <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-1">WhatsApp</p>
-                            <p className="text-sm sm:text-base font-bold text-white break-words">+92 304 1110947</p>
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Globe className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Website</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">dunyaconsultants.com</p>
+                            </div>
                           </div>
                         </motion.a>
                       </div>
