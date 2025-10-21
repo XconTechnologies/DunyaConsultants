@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FileText, Globe, Briefcase, UserCheck, DollarSign, AlertCircle,
-  Copyright, Shield, Gavel, RefreshCw, MessageCircle, ExternalLink
+  Copyright, Shield, Gavel, RefreshCw, MessageCircle, ExternalLink,
+  Phone, Mail
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -496,9 +497,9 @@ export default function TermsOfServices() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.1 }}
               >
-                <Card className="border-none shadow-lg bg-white/80 backdrop-blur-sm border-2 border-[#1D50C9]/20">
+                <Card className="border-none shadow-lg bg-white/80 backdrop-blur-sm border-2 border-[#1D50C9]/20 overflow-hidden">
                   <CardContent className="p-6 md:p-8">
-                    <div className="flex items-start gap-4 mb-4">
+                    <div className="flex items-start gap-4 mb-6">
                       <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-xl">
                         <MessageCircle className="w-6 h-6 text-white" />
                       </div>
@@ -506,49 +507,63 @@ export default function TermsOfServices() {
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Contact Information</h2>
                       </div>
                     </div>
-                    <div className="prose max-w-none text-gray-700 leading-relaxed space-y-4">
-                      <p>
+                    <div className="space-y-6">
+                      <p className="text-gray-700 leading-relaxed">
                         For any questions regarding these Terms or our services, please contact us:
                       </p>
-                      <div className="grid md:grid-cols-3 gap-4">
-                        <a 
-                          href="tel:+923041110947" 
-                          className="flex items-center gap-3 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg hover:shadow-md transition-all"
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <motion.a 
+                          href="tel:+923041110947"
+                          whileHover={{ scale: 1.02, y: -4 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100"
                         >
-                          <div className="bg-[#1D50C9] p-2 rounded-lg">
-                            <MessageCircle className="w-5 h-5 text-white" />
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Phone className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Phone</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">+92 304 1110947</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-xs text-gray-600 font-medium">Phone</p>
-                            <p className="text-sm font-semibold text-gray-900">+92 304 1110947</p>
-                          </div>
-                        </a>
-                        <a 
-                          href="mailto:info@dunyaconsultants.com" 
-                          className="flex items-center gap-3 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg hover:shadow-md transition-all"
+                        </motion.a>
+                        
+                        <motion.a 
+                          href="mailto:info@dunyaconsultants.com"
+                          whileHover={{ scale: 1.02, y: -4 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100"
                         >
-                          <div className="bg-[#1D50C9] p-2 rounded-lg">
-                            <MessageCircle className="w-5 h-5 text-white" />
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Mail className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Email</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">info@dunyaconsultants.com</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-xs text-gray-600 font-medium">Email</p>
-                            <p className="text-sm font-semibold text-gray-900">info@dunyaconsultants.com</p>
-                          </div>
-                        </a>
-                        <a 
+                        </motion.a>
+                        
+                        <motion.a 
                           href="https://dunyaconsultants.com" 
                           target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="flex items-center gap-3 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg hover:shadow-md transition-all"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.02, y: -4 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="group relative bg-gradient-to-br from-white to-blue-50 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100 sm:col-span-2 lg:col-span-1"
                         >
-                          <div className="bg-[#1D50C9] p-2 rounded-lg">
-                            <Globe className="w-5 h-5 text-white" />
+                          <div className="flex items-start gap-4">
+                            <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                              <Globe className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Website</p>
+                              <p className="text-sm font-bold text-gray-900 break-words">dunyaconsultants.com</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-xs text-gray-600 font-medium">Website</p>
-                            <p className="text-sm font-semibold text-gray-900">dunyaconsultants.com</p>
-                          </div>
-                        </a>
+                        </motion.a>
                       </div>
                     </div>
                   </CardContent>
