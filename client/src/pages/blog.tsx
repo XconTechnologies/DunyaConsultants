@@ -604,34 +604,32 @@ function BlogPostDetail({ slug }: { slug: string }) {
               const scriptContent = oldScript.textContent || oldScript.innerHTML;
               
               // Skip empty scripts
-              if (!scriptContent || scriptContent.trim() === '') return;
+              if (!scriptContent || scriptContent.trim() === '') {
+                oldScript.setAttribute('data-executed', 'true');
+                return;
+              }
               
-              // Create new script element
-              const newScript = document.createElement('script');
+              // Validate script content - skip if it contains HTML tags (invalid JavaScript)
+              if (scriptContent.includes('<') && scriptContent.includes('>')) {
+                console.warn('Skipping script with HTML content:', scriptContent.substring(0, 100));
+                oldScript.setAttribute('data-executed', 'true');
+                return;
+              }
               
-              // Copy all attributes (src, type, etc.)
-              Array.from(oldScript.attributes).forEach((attr) => {
-                try {
-                  newScript.setAttribute(attr.name, attr.value);
-                } catch (e) {
-                  console.warn('Error copying attribute:', attr.name, e);
-                }
-              });
-              
-              // Set script content
-              newScript.textContent = scriptContent;
-              
-              // Mark as executed
-              newScript.setAttribute('data-executed', 'true');
+              // Mark as executed first to prevent re-execution
               oldScript.setAttribute('data-executed', 'true');
               
-              // Insert and execute script
-              if (oldScript.parentNode) {
-                oldScript.parentNode.insertBefore(newScript, oldScript);
-                oldScript.remove();
+              // Execute script using eval in try-catch for better error handling
+              try {
+                // Use Function constructor for safer execution
+                const scriptFunction = new Function(scriptContent);
+                scriptFunction();
+              } catch (execError) {
+                console.warn('Script execution error:', execError, '\nScript content:', scriptContent.substring(0, 200));
               }
             } catch (error) {
-              console.warn('Error executing script:', error);
+              console.warn('Error processing script:', error);
+              if (oldScript) oldScript.setAttribute('data-executed', 'true');
             }
           });
         });
@@ -648,31 +646,31 @@ function BlogPostDetail({ slug }: { slug: string }) {
               const scriptContent = oldScript.textContent || oldScript.innerHTML;
               
               // Skip empty scripts
-              if (!scriptContent || scriptContent.trim() === '') return;
+              if (!scriptContent || scriptContent.trim() === '') {
+                oldScript.setAttribute('data-executed', 'true');
+                return;
+              }
               
-              const newScript = document.createElement('script');
+              // Validate script content - skip if it contains HTML tags
+              if (scriptContent.includes('<') && scriptContent.includes('>')) {
+                console.warn('Skipping script with HTML content in blog area:', scriptContent.substring(0, 100));
+                oldScript.setAttribute('data-executed', 'true');
+                return;
+              }
               
-              // Copy attributes
-              Array.from(oldScript.attributes).forEach((attr) => {
-                try {
-                  newScript.setAttribute(attr.name, attr.value);
-                } catch (e) {
-                  console.warn('Error copying attribute:', attr.name, e);
-                }
-              });
-              
-              // Set content and mark as executed
-              newScript.textContent = scriptContent;
-              newScript.setAttribute('data-executed', 'true');
+              // Mark as executed first
               oldScript.setAttribute('data-executed', 'true');
               
-              // Execute
-              if (oldScript.parentNode) {
-                oldScript.parentNode.insertBefore(newScript, oldScript);
-                oldScript.remove();
+              // Execute script safely
+              try {
+                const scriptFunction = new Function(scriptContent);
+                scriptFunction();
+              } catch (execError) {
+                console.warn('Script execution error in blog area:', execError);
               }
             } catch (error) {
-              console.warn('Error executing script:', error);
+              console.warn('Error processing script:', error);
+              if (oldScript) oldScript.setAttribute('data-executed', 'true');
             }
           });
         });
@@ -976,21 +974,42 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             // Initialize FAQ functionality
                             initializeFAQs(el);
                             
-                            // Execute inline and internal scripts
-                            const scripts = el.querySelectorAll('script');
+                            // Execute inline and internal scripts safely
+                            const scripts = el.querySelectorAll('script:not([data-executed])');
                             scripts.forEach((oldScript) => {
-                              const newScript = document.createElement('script');
-                              
-                              // Copy all attributes
-                              Array.from(oldScript.attributes).forEach((attr) => {
-                                newScript.setAttribute(attr.name, attr.value);
-                              });
-                              
-                              // Copy script content
-                              newScript.textContent = oldScript.textContent;
-                              
-                              // Replace old script with new one to trigger execution
-                              oldScript.parentNode?.replaceChild(newScript, oldScript);
+                              try {
+                                // Skip if already executed
+                                if (oldScript.hasAttribute('data-executed')) return;
+                                
+                                const scriptContent = oldScript.textContent || oldScript.innerHTML;
+                                
+                                // Skip empty scripts
+                                if (!scriptContent || scriptContent.trim() === '') {
+                                  oldScript.setAttribute('data-executed', 'true');
+                                  return;
+                                }
+                                
+                                // Validate script content - skip if it contains HTML tags
+                                if (scriptContent.includes('<') && scriptContent.includes('>')) {
+                                  console.warn('Skipping invalid script with HTML content');
+                                  oldScript.setAttribute('data-executed', 'true');
+                                  return;
+                                }
+                                
+                                // Mark as executed
+                                oldScript.setAttribute('data-executed', 'true');
+                                
+                                // Execute safely
+                                try {
+                                  const scriptFunction = new Function(scriptContent);
+                                  scriptFunction();
+                                } catch (execError) {
+                                  console.warn('Script execution error:', execError);
+                                }
+                              } catch (error) {
+                                console.warn('Error processing script in ref:', error);
+                                if (oldScript) oldScript.setAttribute('data-executed', 'true');
+                              }
                             });
                             
                             // Execute inline styles (already working via dangerouslySetInnerHTML)
