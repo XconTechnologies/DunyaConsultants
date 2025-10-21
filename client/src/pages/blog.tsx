@@ -573,72 +573,112 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Execute scripts in custom HTML blocks
   useEffect(() => {
     const executeCustomScripts = () => {
-      // Find all custom HTML blocks
-      const customHtmlBlocks = document.querySelectorAll('.custom-html-block');
-      
-      customHtmlBlocks.forEach((block) => {
-        // Process styles
-        const styles = block.querySelectorAll('style');
-        styles.forEach((oldStyle) => {
-          // Styles are already processed by browser, just ensure they're in document head
-          if (!oldStyle.parentElement?.closest('head')) {
-            const newStyle = document.createElement('style');
-            newStyle.textContent = oldStyle.textContent;
-            document.head.appendChild(newStyle);
-          }
+      try {
+        // Find all custom HTML blocks
+        const customHtmlBlocks = document.querySelectorAll('.custom-html-block');
+        
+        customHtmlBlocks.forEach((block) => {
+          // Process styles
+          const styles = block.querySelectorAll('style');
+          styles.forEach((oldStyle) => {
+            try {
+              // Styles are already processed by browser, just ensure they're in document head
+              if (!oldStyle.parentElement?.closest('head')) {
+                const newStyle = document.createElement('style');
+                newStyle.textContent = oldStyle.textContent;
+                document.head.appendChild(newStyle);
+              }
+            } catch (error) {
+              console.warn('Error processing style:', error);
+            }
+          });
+          
+          // Process and execute scripts
+          const scripts = block.querySelectorAll('script');
+          scripts.forEach((oldScript) => {
+            try {
+              // Skip if script was already executed (has data-executed attribute)
+              if (oldScript.hasAttribute('data-executed')) return;
+              
+              // Get script content
+              const scriptContent = oldScript.textContent || oldScript.innerHTML;
+              
+              // Skip empty scripts
+              if (!scriptContent || scriptContent.trim() === '') return;
+              
+              // Create new script element
+              const newScript = document.createElement('script');
+              
+              // Copy all attributes (src, type, etc.)
+              Array.from(oldScript.attributes).forEach((attr) => {
+                try {
+                  newScript.setAttribute(attr.name, attr.value);
+                } catch (e) {
+                  console.warn('Error copying attribute:', attr.name, e);
+                }
+              });
+              
+              // Set script content
+              newScript.textContent = scriptContent;
+              
+              // Mark as executed
+              newScript.setAttribute('data-executed', 'true');
+              oldScript.setAttribute('data-executed', 'true');
+              
+              // Insert and execute script
+              if (oldScript.parentNode) {
+                oldScript.parentNode.insertBefore(newScript, oldScript);
+                oldScript.remove();
+              }
+            } catch (error) {
+              console.warn('Error executing script:', error);
+            }
+          });
         });
         
-        // Process and execute scripts
-        const scripts = block.querySelectorAll('script');
-        scripts.forEach((oldScript) => {
-          // Skip if script was already executed (has data-executed attribute)
-          if (oldScript.hasAttribute('data-executed')) return;
-          
-          const newScript = document.createElement('script');
-          
-          // Copy all attributes
-          Array.from(oldScript.attributes).forEach((attr) => {
-            newScript.setAttribute(attr.name, attr.value);
+        // Also process any scripts in blog-content areas that weren't in custom blocks
+        const blogContentAreas = document.querySelectorAll('.blog-content, .prose');
+        blogContentAreas.forEach((contentArea) => {
+          const scripts = contentArea.querySelectorAll('script:not([data-executed])');
+          scripts.forEach((oldScript) => {
+            try {
+              // Skip if already executed
+              if (oldScript.hasAttribute('data-executed')) return;
+              
+              const scriptContent = oldScript.textContent || oldScript.innerHTML;
+              
+              // Skip empty scripts
+              if (!scriptContent || scriptContent.trim() === '') return;
+              
+              const newScript = document.createElement('script');
+              
+              // Copy attributes
+              Array.from(oldScript.attributes).forEach((attr) => {
+                try {
+                  newScript.setAttribute(attr.name, attr.value);
+                } catch (e) {
+                  console.warn('Error copying attribute:', attr.name, e);
+                }
+              });
+              
+              // Set content and mark as executed
+              newScript.textContent = scriptContent;
+              newScript.setAttribute('data-executed', 'true');
+              oldScript.setAttribute('data-executed', 'true');
+              
+              // Execute
+              if (oldScript.parentNode) {
+                oldScript.parentNode.insertBefore(newScript, oldScript);
+                oldScript.remove();
+              }
+            } catch (error) {
+              console.warn('Error executing script:', error);
+            }
           });
-          
-          // Copy script content
-          newScript.textContent = oldScript.textContent;
-          
-          // Mark as executed
-          newScript.setAttribute('data-executed', 'true');
-          
-          // Replace old script with new one to trigger execution
-          if (oldScript.parentNode) {
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-          }
         });
-      });
-      
-      // Also process any scripts in blog-content areas that weren't in custom blocks
-      const blogContentAreas = document.querySelectorAll('.blog-content, .prose');
-      blogContentAreas.forEach((contentArea) => {
-        const scripts = contentArea.querySelectorAll('script:not([data-executed])');
-        scripts.forEach((oldScript) => {
-          // Skip if already executed
-          if (oldScript.hasAttribute('data-executed')) return;
-          
-          const newScript = document.createElement('script');
-          
-          // Copy attributes
-          Array.from(oldScript.attributes).forEach((attr) => {
-            newScript.setAttribute(attr.name, attr.value);
-          });
-          
-          // Copy content
-          newScript.textContent = oldScript.textContent;
-          newScript.setAttribute('data-executed', 'true');
-          
-          // Execute
-          if (oldScript.parentNode) {
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-          }
-        });
-      });
+      } catch (error) {
+        console.error('Error in executeCustomScripts:', error);
+      }
     };
     
     // Execute after content is rendered
