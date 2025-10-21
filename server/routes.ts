@@ -2285,18 +2285,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/me", requireAuth, async (req, res) => {
     try {
       const token = req.headers.authorization?.replace('Bearer ', '');
-      console.log('[/api/admin/me] Token:', token ? 'exists' : 'missing');
-      
       const session = await storage.getAdminSession(token!);
-      console.log('[/api/admin/me] Session:', session);
       
       if (!session) {
         return res.status(401).json({ message: 'Session expired' });
       }
       
-      console.log('[/api/admin/me] Looking up admin with ID:', session.adminUserId);
       const admin = await storage.getAdminById(session.adminUserId);
-      console.log('[/api/admin/me] Admin found:', admin ? `Yes (${admin.username})` : 'No');
       
       if (!admin) {
         return res.status(404).json({ message: 'Admin not found' });
@@ -2310,7 +2305,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         permissions: admin.permissions
       });
     } catch (error) {
-      console.error('[/api/admin/me] Error:', error);
       res.status(500).json({ message: 'Session verification failed' });
     }
   });

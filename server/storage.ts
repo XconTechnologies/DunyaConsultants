@@ -815,12 +815,15 @@ export class DatabaseStorage implements IStorage {
         .orderBy(desc(blogPosts.publishedAt));
       
       // Group categories by post ID and build the final structure
+      // Use an array to maintain order from the query
       const postsMap: Record<number, any> = {};
+      const orderedPostIds: number[] = [];
       
       postsWithCategories.forEach(row => {
         const postId = row.id;
         
         if (!postsMap[postId]) {
+          orderedPostIds.push(postId); // Track insertion order
           postsMap[postId] = {
             id: row.id,
             title: row.title,
@@ -860,7 +863,8 @@ export class DatabaseStorage implements IStorage {
         }
       });
       
-      return Object.values(postsMap);
+      // Return posts in the order they were inserted (which preserves database sort order)
+      return orderedPostIds.map(id => postsMap[id]);
     } catch (error) {
       console.error('Error in getBlogPostsWithCategories:', error);
       // Fallback to original method
