@@ -1001,7 +1001,7 @@ export default function BlogEditor() {
       ['bold', 'italic', 'underline', 'strike'],
       [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
       ['blockquote', 'code-block'],
       ['link'],
       ['clean']
@@ -1016,7 +1016,7 @@ export default function BlogEditor() {
     'bold', 'italic', 'underline', 'strike',
     'color', 'background',
     'align',
-    'list', 'bullet',
+    'list', 'bullet', 'indent',
     'blockquote', 'code-block',
     'link', 'image'
   ];
