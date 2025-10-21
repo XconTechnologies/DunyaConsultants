@@ -708,7 +708,7 @@ export default function BlogEditor() {
   };
 
   // Handle mode switch
-  const handleModeSwitch = (mode: 'rich' | 'html') => {
+  const handleModeSwitch = (mode: 'rich' | 'html' | 'preview') => {
     if (mode === 'html' && editorMode === 'rich') {
       // Switching from rich to HTML
       const currentContent = watch('content') || '';
@@ -716,6 +716,14 @@ export default function BlogEditor() {
     } else if (mode === 'rich' && editorMode === 'html') {
       // Switching from HTML to rich
       setValue('content', htmlContent);
+    } else if (mode === 'preview') {
+      // Switching to preview mode - sync content from current mode
+      if (editorMode === 'html') {
+        setValue('content', htmlContent);
+      } else if (editorMode === 'rich') {
+        const currentContent = watch('content') || '';
+        setValue('content', currentContent);
+      }
     }
     setEditorMode(mode);
   };
