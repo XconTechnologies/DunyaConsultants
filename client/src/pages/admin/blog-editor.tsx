@@ -243,6 +243,14 @@ export default function BlogEditor() {
     { question: '', answer: '' }
   ]);
 
+  // HTML Block dialog state
+  const [showHtmlBlockDialog, setShowHtmlBlockDialog] = useState(false);
+  const [htmlBlockContent, setHtmlBlockContent] = useState({
+    html: '',
+    css: '',
+    javascript: ''
+  });
+
   const queryClient = useQueryClient();
 
   // Get auth headers
@@ -959,6 +967,54 @@ export default function BlogEditor() {
     setFaqItems(updated);
   };
 
+  // HTML Block handlers
+  const handleHtmlBlockClick = () => {
+    setShowHtmlBlockDialog(true);
+  };
+
+  const insertHtmlBlock = () => {
+    const { html, css, javascript } = htmlBlockContent;
+    
+    // Build the HTML block with style and script tags
+    let blockHtml = '<div class="custom-html-block">\n';
+    
+    if (css.trim()) {
+      blockHtml += `  <style>\n${css}\n  </style>\n`;
+    }
+    
+    if (html.trim()) {
+      blockHtml += `${html}\n`;
+    }
+    
+    if (javascript.trim()) {
+      blockHtml += `  <script>\n${javascript}\n  </script>\n`;
+    }
+    
+    blockHtml += '</div>\n\n';
+
+    // Insert based on current mode
+    if (editorMode === 'html') {
+      const currentContent = htmlContent || '';
+      setHtmlContent(currentContent + blockHtml);
+      setValue('content', currentContent + blockHtml);
+    } else {
+      // Rich text mode - insert at end
+      const currentContent = watch('content') || '';
+      setValue('content', currentContent + blockHtml);
+      setHtmlContent(currentContent + blockHtml);
+    }
+    
+    // Reset and close
+    setHtmlBlockContent({ html: '', css: '', javascript: '' });
+    setShowHtmlBlockDialog(false);
+    
+    toast({
+      title: "HTML Block Inserted",
+      description: "Custom HTML block has been added to your content",
+      className: "bg-green-500 text-white",
+    });
+  };
+
   // Format HTML code
   const formatHtmlCode = () => {
     console.log('Format button clicked!');
@@ -1381,6 +1437,17 @@ export default function BlogEditor() {
                     >
                       <HelpCircle className="w-4 h-4" />
                       <span className="ml-2">Insert FAQ</span>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleHtmlBlockClick}
+                      title="Insert HTML Block"
+                      data-testid="button-insert-html-block"
+                    >
+                      <Code2 className="w-4 h-4" />
+                      <span className="ml-2">Insert HTML Block</span>
                     </Button>
                   </div>
                 </div>
@@ -2192,6 +2259,79 @@ export default function BlogEditor() {
               data-testid="button-confirm-insert-faq"
             >
               Insert FAQ
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* HTML Block Dialog */}
+      <Dialog open={showHtmlBlockDialog} onOpenChange={setShowHtmlBlockDialog}>
+        <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Insert Custom HTML Block</DialogTitle>
+            <DialogDescription>
+              Add custom HTML, CSS, and JavaScript to your content
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {/* HTML Input */}
+            <div className="space-y-2">
+              <Label htmlFor="html-block-html" className="font-semibold">HTML</Label>
+              <Textarea
+                id="html-block-html"
+                placeholder="Enter your HTML code here..."
+                value={htmlBlockContent.html}
+                onChange={(e) => setHtmlBlockContent({ ...htmlBlockContent, html: e.target.value })}
+                rows={8}
+                className="font-mono text-sm"
+                data-testid="textarea-html-block-html"
+              />
+            </div>
+
+            {/* CSS Input */}
+            <div className="space-y-2">
+              <Label htmlFor="html-block-css" className="font-semibold">CSS</Label>
+              <Textarea
+                id="html-block-css"
+                placeholder="Enter your CSS styles here (without <style> tags)..."
+                value={htmlBlockContent.css}
+                onChange={(e) => setHtmlBlockContent({ ...htmlBlockContent, css: e.target.value })}
+                rows={6}
+                className="font-mono text-sm"
+                data-testid="textarea-html-block-css"
+              />
+            </div>
+
+            {/* JavaScript Input */}
+            <div className="space-y-2">
+              <Label htmlFor="html-block-js" className="font-semibold">JavaScript</Label>
+              <Textarea
+                id="html-block-js"
+                placeholder="Enter your JavaScript code here (without <script> tags)..."
+                value={htmlBlockContent.javascript}
+                onChange={(e) => setHtmlBlockContent({ ...htmlBlockContent, javascript: e.target.value })}
+                rows={6}
+                className="font-mono text-sm"
+                data-testid="textarea-html-block-js"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setShowHtmlBlockDialog(false);
+                setHtmlBlockContent({ html: '', css: '', javascript: '' });
+              }}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={insertHtmlBlock}
+              className="bg-blue-600 hover:bg-blue-700"
+              data-testid="button-confirm-insert-html-block"
+            >
+              Insert HTML Block
             </Button>
           </DialogFooter>
         </DialogContent>
