@@ -992,16 +992,30 @@ export default function BlogEditor() {
     
     blockHtml += '</div>\n\n';
 
-    // Insert based on current mode
-    if (editorMode === 'html') {
-      const currentContent = htmlContent || '';
-      setHtmlContent(currentContent + blockHtml);
-      setValue('content', currentContent + blockHtml);
+    // IMPORTANT: HTML blocks must be inserted in HTML mode to prevent escaping
+    // If in rich text mode, first convert to HTML, then insert
+    let currentContent = '';
+    
+    if (editorMode === 'rich') {
+      // Get the current rich text content and convert to HTML
+      const quillContent = watch('content') || '';
+      currentContent = quillContent;
+      
+      // Switch to HTML mode automatically
+      setEditorMode('html');
+      setHtmlContent(quillContent + blockHtml);
+      setValue('content', quillContent + blockHtml);
+      
+      toast({
+        title: "Switched to HTML Mode",
+        description: "HTML blocks work best in HTML mode. Auto-switched for you!",
+        className: "bg-blue-500 text-white",
+      });
     } else {
-      // Rich text mode - insert at end
-      const currentContent = watch('content') || '';
-      setValue('content', currentContent + blockHtml);
+      // Already in HTML mode
+      currentContent = htmlContent || '';
       setHtmlContent(currentContent + blockHtml);
+      setValue('content', currentContent + blockHtml);
     }
     
     // Reset and close
