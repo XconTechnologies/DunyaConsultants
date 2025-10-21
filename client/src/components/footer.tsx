@@ -83,9 +83,15 @@ export default function Footer() {
               <h4 className="text-lg font-bold mb-3 text-white">Quick Links</h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <Link href="/privacy-policy" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
+                  <Link href="/privacy-policy" className="text-blue-100 hover:!text-white transition-colors duration-300 flex items-center group">
                     <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
                     Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms-of-services" className="text-blue-100 hover:!text-white transition-colors duration-300 flex items-center group">
+                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
+                    Terms of Service
                   </Link>
                 </li>
               </ul>
