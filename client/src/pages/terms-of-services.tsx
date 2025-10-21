@@ -146,8 +146,7 @@ export default function TermsOfServices() {
                         <FileText className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Introduction</h2>
-                        <p className="text-sm text-gray-500">Last updated: October 21, 2025</p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Introduction</h2>
                       </div>
                     </div>
                     <div className="prose max-w-none text-gray-700 leading-relaxed space-y-4">

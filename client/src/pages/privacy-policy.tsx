@@ -686,22 +686,6 @@ export default function PrivacyPolicy() {
                   </CardContent>
                 </Card>
               </motion.div>
-
-              {/* Last Updated */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center py-6"
-              >
-                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-100 rounded-full">
-                  <Clock className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                  <p className="text-xs sm:text-sm text-gray-600 font-medium">
-                    Last Updated: October 2025
-                  </p>
-                </div>
-              </motion.div>
             </div>
           </div>
         </div>
