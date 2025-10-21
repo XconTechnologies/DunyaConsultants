@@ -289,7 +289,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Destinations"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -318,7 +318,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Test Prep"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -347,7 +347,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Offices"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -378,7 +378,7 @@ export default function Navigation() {
                           <div className="space-y-2">
                             {section.items.map((item: any, itemIdx: number) => (
                               <Link key={itemIdx} href={item.href}>
-                                <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
+                                <div className="group flex items-start space-x-2 p-2 rounded-lg transition-all duration-200">
                                   <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
                                   <div>
                                     <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
