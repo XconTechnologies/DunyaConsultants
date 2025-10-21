@@ -54,7 +54,7 @@ export default function TermsOfServices() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-lg rounded-2xl sm:rounded-3xl mb-6 md:mb-8 shadow-2xl"
+              className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-lg rounded-full mb-6 md:mb-8 shadow-2xl"
             >
               <Gavel className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 text-white" strokeWidth={1.5} />
             </motion.div>
