@@ -27,6 +27,7 @@ import {
 import CustomBlockEditor from '@/components/admin/custom-block-editor';
 import type { Block } from '@/components/admin/custom-block-editor';
 import { blocksToHtml } from '@/lib/blocks-to-html';
+import { htmlToBlocks } from '@/lib/html-to-blocks';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -537,6 +538,22 @@ export default function BlogEditor() {
     });
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  // Handle mode switching - convert HTML to blocks when switching to Blocks mode
+  useEffect(() => {
+    if (editorMode === 'blocks' && customBlocks.length === 0) {
+      // Get current content from form
+      const currentContent = getValues('content');
+      
+      if (currentContent && currentContent.trim() !== '') {
+        // Convert HTML to blocks
+        const blocks = htmlToBlocks(currentContent);
+        if (blocks.length > 0) {
+          setCustomBlocks(blocks);
+        }
+      }
+    }
+  }, [editorMode, customBlocks.length, getValues]);
 
   // Create new blog post or update existing
   const saveMutation = useMutation({
