@@ -96,8 +96,8 @@ interface BlogPost {
 export default function BlogEditor() {
   const [, setLocation] = useLocation();
   const [match, params] = useRoute("/admin/blog-editor/:id?");
-  const isEditing = Boolean(params?.id);
-  const blogId = params?.id ? parseInt(params.id) : undefined;
+  const isEditing = Boolean(params?.id && params.id !== 'new');
+  const blogId = params?.id && params.id !== 'new' ? parseInt(params.id) : undefined;
 
   // Check for existing editing sessions when opening a post
   const checkEditingConflicts = async (postId: number) => {
@@ -283,13 +283,13 @@ export default function BlogEditor() {
   // Load blog post for editing
   const { data: blogPost, isLoading, error, refetch } = useQuery<BlogPost>({
     queryKey: [`/api/admin/blog-posts/${blogId}`],
-    enabled: isEditing,
+    enabled: isEditing && blogId !== undefined && !isNaN(blogId),
   });
 
   // Load post categories
   const { data: postCategories = [] } = useQuery<any[]>({
     queryKey: [`/api/admin/blog-posts/${blogId}/categories`],
-    enabled: isEditing,
+    enabled: isEditing && blogId !== undefined && !isNaN(blogId),
   });
 
   // Form setup
