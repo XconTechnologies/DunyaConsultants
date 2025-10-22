@@ -22,8 +22,10 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle, Blocks
 } from "lucide-react";
+import BlockEditor from '@/components/admin/block-editor';
+import { OutputData } from '@editorjs/editorjs';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -219,9 +221,10 @@ export default function BlogEditor() {
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
   const [showEditRequestDialog, setShowEditRequestDialog] = useState(false);
   const [incomingEditRequest, setIncomingEditRequest] = useState<any>(null);
-  const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview'>('rich');
+  const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview' | 'blocks'>('blocks');
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
+  const [editorJSData, setEditorJSData] = useState<OutputData | undefined>(undefined);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
   // Link dialog state
@@ -616,6 +619,70 @@ export default function BlogEditor() {
     console.log('Form submitted with data:', data);
     setIsSaving(true);
     try {
+      // If in Blocks mode, convert EditorJS data to HTML
+      if (editorMode === 'blocks' && editorJSData) {
+        // Import the HTML generator from block-editor
+        const edjsHTML = (await import('editorjs-html')).default;
+        const edjsParser = edjsHTML();
+        
+        // Custom parsers for our custom blocks
+        const customParsers = {
+          faq: (block: any) => {
+            const items = block.data.items || [];
+            let html = '<div class="faq-section">\n';
+            items.forEach((item: any, index: number) => {
+              html += `  <div class="faq-item">\n`;
+              html += `    <button class="faq-question" data-faq-index="${index}">\n`;
+              html += `      <span>${item.question}</span>\n`;
+              html += `      <span class="faq-chevron ${index === 0 ? 'expanded' : ''}">▼</span>\n`;
+              html += `    </button>\n`;
+              html += `    <div class="faq-answer" style="display: ${index === 0 ? 'block' : 'none'}">${item.answer}</div>\n`;
+              html += `  </div>\n`;
+            });
+            html += '</div>';
+            return html;
+          },
+          nestedList: (block: any) => {
+            const renderList = (items: any[], style: string): string => {
+              const tag = style === 'ordered' ? 'ol' : 'ul';
+              let html = `<${tag}>\n`;
+              items.forEach(item => {
+                html += `  <li>${item.content}`;
+                if (item.items && item.items.length > 0) {
+                  html += '\n' + renderList(item.items, item.style || style);
+                }
+                html += '</li>\n';
+              });
+              html += `</${tag}>\n`;
+              return html;
+            };
+            
+            return renderList(block.data.items, block.data.style);
+          },
+        };
+
+        // Generate HTML
+        const htmlArray = edjsParser.parse(editorJSData);
+        
+        // Process custom blocks
+        let finalHtml = '';
+        editorJSData.blocks.forEach((block, index) => {
+          if (customParsers[block.type as keyof typeof customParsers]) {
+            finalHtml += customParsers[block.type as keyof typeof customParsers](block) + '\n';
+          } else if (htmlArray[index]) {
+            finalHtml += htmlArray[index] + '\n';
+          }
+        });
+        
+        // Update the form data with the generated HTML
+        data.content = finalHtml;
+        
+        // Store the raw EditorJS data as JSON in contentBlocks field (if exists)
+        if ('contentBlocks' in data) {
+          data.contentBlocks = editorJSData.blocks as any;
+        }
+      }
+      
       await saveMutation.mutateAsync(data);
     } finally {
       setIsSaving(false);
@@ -1364,6 +1431,21 @@ export default function BlogEditor() {
                       <Button
                         type="button"
                         size="sm"
+                        onClick={() => handleModeSwitch('blocks')}
+                        className={`px-3 py-1 text-xs transition-all ${
+                          editorMode === 'blocks' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            : 'bg-transparent text-gray-700 hover:bg-gray-200'
+                        }`}
+                        data-testid="button-blocks-mode"
+                        title="WordPress-like Block Editor (Recommended)"
+                      >
+                        <Blocks className="w-3 h-3 mr-1 inline" />
+                        Blocks
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
                         onClick={() => handleModeSwitch('rich')}
                         className={`px-3 py-1 text-xs transition-all ${
                           editorMode === 'rich' 
@@ -1466,7 +1548,22 @@ export default function BlogEditor() {
                   </div>
                 </div>
                 <div className="p-4">
-                  {editorMode === 'rich' ? (
+                  {editorMode === 'blocks' ? (
+                    // Block Editor Mode (WordPress-like)
+                    <div className="block-editor-container">
+                      <BlockEditor
+                        data={editorJSData}
+                        onChange={(data) => {
+                          setEditorJSData(data);
+                          // Auto-save to form field will be handled on form submit
+                        }}
+                        onReady={() => {
+                          console.log('BlockEditor is ready!');
+                        }}
+                        placeholder="Start writing your content using blocks... Click the '+' button to add new blocks!"
+                      />
+                    </div>
+                  ) : editorMode === 'rich' ? (
                     // Rich Text Editor Mode
                     <div className="react-quill-container overflow-auto" style={{ maxHeight: '600px', width: '100%' }}>
                       {editorMounted ? (
@@ -1569,7 +1666,9 @@ export default function BlogEditor() {
                   )}
                   
                   <div className="mt-2 text-sm text-gray-500">
-                    {editorMode === 'rich' ? (
+                    {editorMode === 'blocks' ? (
+                      <>🧱 <strong>Blocks Mode (WordPress-like):</strong> Click the '+' button to add blocks. Drag blocks to reorder. All blocks include Heading (H1-H6), Paragraph, Lists (nested), Tables, Images, Code, Raw HTML, FAQ, and more!</>
+                    ) : editorMode === 'rich' ? (
                       <>✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!</>
                     ) : editorMode === 'html' ? (
                       <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with inline/internal CSS and JavaScript. Your styles and scripts will work when the post is published.</>
