@@ -2919,7 +2919,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Content Blocks - Integrated with content */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
-                  <div className="mt-8">
+                  <div className="mt-8 prose prose-xl max-w-none">
                     <ContentBlocksRenderer 
                       blocks={blogPost.contentBlocks} 
                       content={blogPost.content}
@@ -2961,7 +2961,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 {/* Featured Image */}
                                 {blog.image && (
                                   <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
-                                    <img loading="lazy" 
+                                    <img 
                                       src={normalizeImageSrc(blog.image)} 
                                       alt={blog.title}
                                       className="w-full h-56 object-cover transition-transform hover:scale-105"

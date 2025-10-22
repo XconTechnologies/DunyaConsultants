@@ -20,7 +20,7 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
 
   // Otherwise, render blocks separately
   return (
-    <div className="content-blocks-wrapper space-y-6 mt-8">
+    <div className="content-blocks-wrapper space-y-6 mt-8 prose prose-xl max-w-none">
       {sortedBlocks.map((block) => (
         <div key={block.id}>
           {renderBlock(block)}
@@ -94,7 +94,7 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     }
   });
   
-  return <div className="integrated-content">{contentParts}</div>;
+  return <div className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
 }
 
 function renderBlock(block: ContentBlock) {
