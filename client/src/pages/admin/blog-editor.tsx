@@ -798,7 +798,7 @@ export default function BlogEditor() {
   };
 
   // Handle mode switch
-  const handleModeSwitch = (mode: 'rich' | 'html' | 'preview') => {
+  const handleModeSwitch = (mode: 'rich' | 'html' | 'preview' | 'blocks') => {
     if (mode === 'html' && editorMode === 'rich') {
       // Switching from rich to HTML
       const currentContent = watch('content') || '';
@@ -814,6 +814,9 @@ export default function BlogEditor() {
         const currentContent = watch('content') || '';
         setValue('content', currentContent);
       }
+    } else if (mode === 'blocks') {
+      // Switching to blocks mode - EditorJS will handle content separately
+      // No need to sync content here
     }
     setEditorMode(mode);
   };
