@@ -151,6 +151,9 @@ function SortableBlock({
             <ArrowDown className="w-4 h-4" />
           </button>
         </div>
+        <button {...attributes} {...listeners} className="mt-1 cursor-grab active:cursor-grabbing text-gray-400 hover:text-blue-600" title="Drag to reorder">
+          <GripVertical className="w-4 h-4" />
+        </button>
         <div className="flex-1">
           {children}
         </div>
