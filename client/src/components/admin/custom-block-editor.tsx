@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp, FileCode } from 'lucide-react';
 import { Label } from '@/components/ui/label';
+import { blocksToHtmlPreview } from '@/lib/blocks-to-html-preview';
 
 // Block type definitions
 export type BlockType = 'heading' | 'paragraph' | 'code' | 'list' | 'table' | 'image' | 'html' | 'faq';
@@ -486,6 +487,7 @@ function BlockRenderer({ block, onChange }: { block: Block; onChange: (block: Bl
 // Main Custom Block Editor Component
 export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: CustomBlockEditorProps) {
   const [showBlockMenu, setShowBlockMenu] = useState(false);
+  const [showHtmlView, setShowHtmlView] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const sensors = useSensors(
@@ -540,20 +542,37 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
 
   return (
     <div className="space-y-4">
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
-          {blocks.map((block) => (
-            <SortableBlock key={block.id} block={block} onDelete={() => deleteBlock(block.id)}>
-              <BlockRenderer block={block} onChange={(updated) => updateBlock(block.id, updated)} />
-            </SortableBlock>
-          ))}
-        </SortableContext>
-      </DndContext>
+      <div className="flex justify-end mb-2">
+        <Button variant="outline" size="sm" onClick={() => setShowHtmlView(!showHtmlView)}>
+          {showHtmlView ? <Eye className="w-4 h-4 mr-2" /> : <FileCode className="w-4 h-4 mr-2" />}
+          {showHtmlView ? 'Show Blocks' : 'View HTML'}
+        </Button>
+      </div>
 
-      {blocks.length === 0 && (
-        <div className="text-center py-12 text-gray-400 border-2 border-dashed border-gray-200 rounded-lg">
-          No blocks yet. Click "Add Block" to get started!
+      {showHtmlView ? (
+        <div className="bg-gray-50 border border-gray-300 rounded-lg p-4">
+          <pre className="overflow-auto text-sm font-mono whitespace-pre-wrap">
+            <code>{blocksToHtmlPreview(blocks)}</code>
+          </pre>
         </div>
+      ) : (
+        <>
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
+              {blocks.map((block) => (
+                <SortableBlock key={block.id} block={block} onDelete={() => deleteBlock(block.id)}>
+                  <BlockRenderer block={block} onChange={(updated) => updateBlock(block.id, updated)} />
+                </SortableBlock>
+              ))}
+            </SortableContext>
+          </DndContext>
+
+          {blocks.length === 0 && (
+            <div className="text-center py-12 text-gray-400 border-2 border-dashed border-gray-200 rounded-lg">
+              No blocks yet. Click "Add Block" to get started!
+            </div>
+          )}
+        </>
       )}
 
       <div className="relative" ref={menuRef}>
