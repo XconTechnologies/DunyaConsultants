@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp, FileCode } from 'lucide-react';
+import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp, FileCode, ArrowUp, ArrowDown, Check } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { blocksToHtmlPreview } from '@/lib/blocks-to-html-preview';
 
@@ -90,7 +91,27 @@ interface CustomBlockEditorProps {
 const generateId = () => `block_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
 // Sortable Block Wrapper
-function SortableBlock({ block, children, onDelete }: { block: Block; children: React.ReactNode; onDelete: () => void }) {
+function SortableBlock({ 
+  block, 
+  children, 
+  onDelete, 
+  isSelected, 
+  onSelect, 
+  onMoveUp, 
+  onMoveDown,
+  isFirst,
+  isLast
+}: { 
+  block: Block; 
+  children: React.ReactNode; 
+  onDelete: () => void;
+  isSelected: boolean;
+  onSelect: (selected: boolean) => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  isFirst: boolean;
+  isLast: boolean;
+}) {
   const {
     attributes,
     listeners,
@@ -105,11 +126,31 @@ function SortableBlock({ block, children, onDelete }: { block: Block; children: 
   };
 
   return (
-    <div ref={setNodeRef} style={style} className="group relative bg-white border border-gray-200 rounded-lg p-4 mb-3 hover:border-blue-300 transition-colors">
+    <div ref={setNodeRef} style={style} className={`group relative bg-white border rounded-lg p-4 mb-3 transition-colors ${isSelected ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-blue-300'}`}>
       <div className="flex items-start gap-2">
-        <button {...attributes} {...listeners} className="mt-1 cursor-grab active:cursor-grabbing text-gray-400 hover:text-blue-600">
-          <GripVertical className="w-5 h-5" />
-        </button>
+        <Checkbox 
+          checked={isSelected}
+          onCheckedChange={onSelect}
+          className="mt-1"
+        />
+        <div className="flex flex-col gap-1">
+          <button 
+            onClick={onMoveUp}
+            disabled={isFirst}
+            className="text-gray-400 hover:text-blue-600 disabled:opacity-30 disabled:cursor-not-allowed"
+            title="Move up"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+          <button 
+            onClick={onMoveDown}
+            disabled={isLast}
+            className="text-gray-400 hover:text-blue-600 disabled:opacity-30 disabled:cursor-not-allowed"
+            title="Move down"
+          >
+            <ArrowDown className="w-4 h-4" />
+          </button>
+        </div>
         <div className="flex-1">
           {children}
         </div>
@@ -488,6 +529,7 @@ function BlockRenderer({ block, onChange }: { block: Block; onChange: (block: Bl
 export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: CustomBlockEditorProps) {
   const [showBlockMenu, setShowBlockMenu] = useState(false);
   const [showHtmlView, setShowHtmlView] = useState(false);
+  const [selectedBlocks, setSelectedBlocks] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
 
   const sensors = useSensors(
@@ -538,11 +580,125 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
 
   const deleteBlock = (id: string) => {
     onChange(blocks.filter((b) => b.id !== id));
+    // Remove from selection if it was selected
+    const newSelection = new Set(selectedBlocks);
+    newSelection.delete(id);
+    setSelectedBlocks(newSelection);
+  };
+
+  const toggleSelection = (id: string, selected: boolean) => {
+    const newSelection = new Set(selectedBlocks);
+    if (selected) {
+      newSelection.add(id);
+    } else {
+      newSelection.delete(id);
+    }
+    setSelectedBlocks(newSelection);
+  };
+
+  const moveBlockUp = (id: string) => {
+    const index = blocks.findIndex((b) => b.id === id);
+    if (index > 0) {
+      onChange(arrayMove(blocks, index, index - 1));
+    }
+  };
+
+  const moveBlockDown = (id: string) => {
+    const index = blocks.findIndex((b) => b.id === id);
+    if (index < blocks.length - 1) {
+      onChange(arrayMove(blocks, index, index + 1));
+    }
+  };
+
+  const moveSelectedBlocksUp = () => {
+    if (selectedBlocks.size === 0) return;
+    
+    let newBlocks = [...blocks];
+    const selectedIds = Array.from(selectedBlocks);
+    
+    // Sort by index to move from top to bottom
+    const sortedIds = selectedIds.sort((a, b) => {
+      const aIndex = newBlocks.findIndex(block => block.id === a);
+      const bIndex = newBlocks.findIndex(block => block.id === b);
+      return aIndex - bIndex;
+    });
+    
+    // Move each selected block up
+    sortedIds.forEach(id => {
+      const index = newBlocks.findIndex(b => b.id === id);
+      if (index > 0) {
+        newBlocks = arrayMove(newBlocks, index, index - 1);
+      }
+    });
+    
+    onChange(newBlocks);
+  };
+
+  const moveSelectedBlocksDown = () => {
+    if (selectedBlocks.size === 0) return;
+    
+    let newBlocks = [...blocks];
+    const selectedIds = Array.from(selectedBlocks);
+    
+    // Sort by index in reverse to move from bottom to top
+    const sortedIds = selectedIds.sort((a, b) => {
+      const aIndex = newBlocks.findIndex(block => block.id === a);
+      const bIndex = newBlocks.findIndex(block => block.id === b);
+      return bIndex - aIndex;
+    });
+    
+    // Move each selected block down
+    sortedIds.forEach(id => {
+      const index = newBlocks.findIndex(b => b.id === id);
+      if (index < newBlocks.length - 1) {
+        newBlocks = arrayMove(newBlocks, index, index + 1);
+      }
+    });
+    
+    onChange(newBlocks);
+  };
+
+  const deleteSelectedBlocks = () => {
+    if (selectedBlocks.size === 0) return;
+    onChange(blocks.filter(b => !selectedBlocks.has(b.id)));
+    setSelectedBlocks(new Set());
+  };
+
+  const selectAll = () => {
+    setSelectedBlocks(new Set(blocks.map(b => b.id)));
+  };
+
+  const deselectAll = () => {
+    setSelectedBlocks(new Set());
   };
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end mb-2">
+      <div className="flex justify-between items-center mb-2 gap-2">
+        <div className="flex items-center gap-2">
+          {selectedBlocks.size > 0 && (
+            <>
+              <span className="text-sm text-gray-600">{selectedBlocks.size} selected</span>
+              <Button variant="outline" size="sm" onClick={moveSelectedBlocksUp} disabled={selectedBlocks.size === 0}>
+                <ArrowUp className="w-4 h-4 mr-1" /> Move Up
+              </Button>
+              <Button variant="outline" size="sm" onClick={moveSelectedBlocksDown} disabled={selectedBlocks.size === 0}>
+                <ArrowDown className="w-4 h-4 mr-1" /> Move Down
+              </Button>
+              <Button variant="outline" size="sm" onClick={deleteSelectedBlocks} className="text-red-600 hover:text-red-700">
+                <Trash2 className="w-4 h-4 mr-1" /> Delete
+              </Button>
+              <Button variant="ghost" size="sm" onClick={deselectAll}>
+                Clear
+              </Button>
+            </>
+          )}
+          {selectedBlocks.size === 0 && blocks.length > 0 && (
+            <Button variant="ghost" size="sm" onClick={selectAll}>
+              Select All
+            </Button>
+          )}
+        </div>
         <Button variant="outline" size="sm" onClick={() => setShowHtmlView(!showHtmlView)}>
           {showHtmlView ? <Eye className="w-4 h-4 mr-2" /> : <FileCode className="w-4 h-4 mr-2" />}
           {showHtmlView ? 'Show Blocks' : 'View HTML'}
@@ -559,8 +715,18 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
         <>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
-              {blocks.map((block) => (
-                <SortableBlock key={block.id} block={block} onDelete={() => deleteBlock(block.id)}>
+              {blocks.map((block, index) => (
+                <SortableBlock 
+                  key={block.id} 
+                  block={block} 
+                  onDelete={() => deleteBlock(block.id)}
+                  isSelected={selectedBlocks.has(block.id)}
+                  onSelect={(selected) => toggleSelection(block.id, selected)}
+                  onMoveUp={() => moveBlockUp(block.id)}
+                  onMoveDown={() => moveBlockDown(block.id)}
+                  isFirst={index === 0}
+                  isLast={index === blocks.length - 1}
+                >
                   <BlockRenderer block={block} onChange={(updated) => updateBlock(block.id, updated)} />
                 </SortableBlock>
               ))}
