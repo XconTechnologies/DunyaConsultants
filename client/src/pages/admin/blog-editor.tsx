@@ -228,6 +228,7 @@ export default function BlogEditor() {
   const [editorMounted, setEditorMounted] = useState(false);
   const [customBlocks, setCustomBlocks] = useState<Block[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const prevModeRef = useRef<'rich' | 'html' | 'preview' | 'blocks'>('rich');
   
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
@@ -539,21 +540,40 @@ export default function BlogEditor() {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  // Handle mode switching - convert HTML to blocks when switching to Blocks mode
+  // Handle mode switching - convert between HTML and blocks
   useEffect(() => {
-    if (editorMode === 'blocks' && customBlocks.length === 0) {
-      // Get current content from form
-      const currentContent = getValues('content');
-      
-      if (currentContent && currentContent.trim() !== '') {
-        // Convert HTML to blocks
-        const blocks = htmlToBlocks(currentContent);
-        if (blocks.length > 0) {
+    const prevMode = prevModeRef.current;
+    
+    // Detect mode change
+    if (prevMode !== editorMode) {
+      if (editorMode === 'blocks' && prevMode !== 'blocks') {
+        // Switching TO Blocks mode: convert current content to blocks
+        const currentContent = getValues('content');
+        
+        if (currentContent && currentContent.trim() !== '') {
+          const blocks = htmlToBlocks(currentContent);
           setCustomBlocks(blocks);
+        } else if (customBlocks.length === 0) {
+          // Start with empty paragraph if no content
+          setCustomBlocks([{
+            id: `block_${Date.now()}`,
+            type: 'paragraph',
+            text: ''
+          }]);
+        }
+      } else if (prevMode === 'blocks' && editorMode !== 'blocks') {
+        // Switching FROM Blocks mode: convert blocks to HTML
+        if (customBlocks.length > 0) {
+          const html = blocksToHtml(customBlocks);
+          setValue('content', html);
+          setHtmlContent(html);
         }
       }
+      
+      // Update previous mode
+      prevModeRef.current = editorMode;
     }
-  }, [editorMode, customBlocks.length, getValues]);
+  }, [editorMode, getValues, setValue, customBlocks]);
 
   // Create new blog post or update existing
   const saveMutation = useMutation({

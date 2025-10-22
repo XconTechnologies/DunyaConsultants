@@ -10,7 +10,8 @@ function blockToHtml(block: Block): string {
       return `<h${block.level}>${escapeHtml(block.text)}</h${block.level}>`;
     
     case 'paragraph':
-      return `<p>${escapeHtml(block.text)}</p>`;
+      // Don't escape HTML in paragraphs since they can contain rich formatting (spans, links, strong, etc.)
+      return `<p>${block.text}</p>`;
     
     case 'code':
       const language = block.language ? ` class="language-${escapeHtml(block.language)}"` : '';
@@ -43,7 +44,8 @@ function renderList(items: ListItem[], style: 'ul' | 'ol', depth = 0): string {
   let html = `<${tag}>\n`;
   
   items.forEach(item => {
-    html += `  <li>${escapeHtml(item.text)}`;
+    // Don't escape HTML in list items since they can contain rich formatting
+    html += `  <li>${item.text}`;
     if (item.children && item.children.length > 0) {
       html += '\n' + renderList(item.children, style, depth + 1);
     }
