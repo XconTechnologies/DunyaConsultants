@@ -1603,6 +1603,12 @@ export default function BlogEditor() {
                         <pre 
                           ref={htmlPreRef}
                           className="w-full h-[600px] p-4 font-mono text-sm overflow-auto bg-[#2d2d2d] m-0 pointer-events-none"
+                          style={{
+                            lineHeight: '1.5',
+                            whiteSpace: 'pre-wrap',
+                            wordWrap: 'break-word',
+                            tabSize: 2
+                          }}
                         >
                           <code className="language-markup" dangerouslySetInnerHTML={{ 
                             __html: Prism.highlight(htmlContent || '<!-- Write your HTML code here -->', Prism.languages.markup, 'markup') 
@@ -1621,6 +1627,10 @@ export default function BlogEditor() {
                             WebkitTextFillColor: 'transparent',
                             outline: 'none',
                             border: 'none',
+                            lineHeight: '1.5',
+                            whiteSpace: 'pre-wrap',
+                            wordWrap: 'break-word',
+                            tabSize: 2
                           }}
                           onFocus={(e) => {
                             e.target.style.outline = '2px solid rgb(59 130 246)';
