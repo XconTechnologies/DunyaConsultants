@@ -24,8 +24,9 @@ import {
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle, Blocks
 } from "lucide-react";
-import BlockEditor from '@/components/admin/block-editor';
-import { OutputData } from '@editorjs/editorjs';
+import CustomBlockEditor from '@/components/admin/custom-block-editor';
+import type { Block } from '@/components/admin/custom-block-editor';
+import { blocksToHtml } from '@/lib/blocks-to-html';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
@@ -224,7 +225,7 @@ export default function BlogEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html' | 'preview' | 'blocks'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const [editorMounted, setEditorMounted] = useState(false);
-  const [editorJSData, setEditorJSData] = useState<OutputData | undefined>(undefined);
+  const [customBlocks, setCustomBlocks] = useState<Block[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
   // Link dialog state
@@ -374,14 +375,10 @@ export default function BlogEditor() {
       
       setHtmlContent(blogPost.content || '');
       
-      // Initialize EditorJS data if contentBlocks exist
+      // Initialize custom blocks if contentBlocks exist
       if (blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) && blogPost.contentBlocks.length > 0) {
-        setEditorJSData({
-          time: Date.now(),
-          blocks: blogPost.contentBlocks as any[],
-          version: '2.28.0'
-        });
-        // Auto-switch to blocks mode if the post was created with EditorJS
+        setCustomBlocks(blogPost.contentBlocks as Block[]);
+        // Auto-switch to blocks mode if the post was created with blocks
         setEditorMode('blocks');
       }
 
@@ -630,71 +627,15 @@ export default function BlogEditor() {
     console.log('Form submitted with data:', data);
     setIsSaving(true);
     try {
-      // If in Blocks mode, convert EditorJS data to HTML
-      if (editorMode === 'blocks' && editorJSData) {
-        // Import the HTML generator from block-editor
-        const edjsHTML = (await import('editorjs-html')).default;
-        const edjsParser = edjsHTML();
+      // If in Blocks mode, convert custom blocks to HTML
+      if (editorMode === 'blocks' && customBlocks.length > 0) {
+        // Convert blocks to HTML
+        const html = blocksToHtml(customBlocks);
+        data.content = html;
         
-        // Custom parsers for our custom blocks
-        const customParsers = {
-          faq: (block: any) => {
-            const items = block.data.items || [];
-            let html = '<div class="faq-section" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; margin: 1.5rem 0;">\n';
-            items.forEach((item: any, index: number) => {
-              html += `  <div class="faq-item" style="border-bottom: 1px solid #e5e7eb;">\n`;
-              html += `    <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">\n`;
-              html += `      <span>${item.question}</span>\n`;
-              html += `      <svg class="faq-chevron${index === 0 ? ' expanded' : ''}" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem; ${index === 0 ? 'transform: rotate(180deg);' : ''}">\n`;
-              html += `        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>\n`;
-              html += `      </svg>\n`;
-              html += `    </div>\n`;
-              html += `    <div class="faq-answer" style="display: ${index === 0 ? 'block' : 'none'}; padding: ${index === 0 ? '0 1.5rem 1rem 1.5rem' : '0 1.5rem'}; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; ${index === 0 ? 'max-height: 1000px; opacity: 1;' : 'max-height: 0px; opacity: 0;'} transition: all 0.3s ease; overflow: hidden;">\n`;
-              html += `      <p style="margin: 0; padding-top: 0.5rem;">${item.answer}</p>\n`;
-              html += `    </div>\n`;
-              html += `  </div>\n`;
-            });
-            html += '</div>';
-            return html;
-          },
-          nestedList: (block: any) => {
-            const renderList = (items: any[], style: string): string => {
-              const tag = style === 'ordered' ? 'ol' : 'ul';
-              let html = `<${tag}>\n`;
-              items.forEach(item => {
-                html += `  <li>${item.content}`;
-                if (item.items && item.items.length > 0) {
-                  html += '\n' + renderList(item.items, item.style || style);
-                }
-                html += '</li>\n';
-              });
-              html += `</${tag}>\n`;
-              return html;
-            };
-            
-            return renderList(block.data.items, block.data.style);
-          },
-        };
-
-        // Generate HTML
-        const htmlArray = edjsParser.parse(editorJSData);
-        
-        // Process custom blocks
-        let finalHtml = '';
-        editorJSData.blocks.forEach((block, index) => {
-          if (customParsers[block.type as keyof typeof customParsers]) {
-            finalHtml += customParsers[block.type as keyof typeof customParsers](block) + '\n';
-          } else if (htmlArray[index]) {
-            finalHtml += htmlArray[index] + '\n';
-          }
-        });
-        
-        // Update the form data with the generated HTML
-        data.content = finalHtml;
-        
-        // Store the raw EditorJS data as JSON in contentBlocks field (if exists)
+        // Store the raw block data as JSON in contentBlocks field
         if ('contentBlocks' in data) {
-          data.contentBlocks = editorJSData.blocks as any;
+          data.contentBlocks = customBlocks as any;
         }
       }
       
@@ -1567,18 +1508,13 @@ export default function BlogEditor() {
                 </div>
                 <div className="p-4">
                   {editorMode === 'blocks' ? (
-                    // Block Editor Mode (WordPress-like)
+                    // Custom Block Editor Mode (WordPress-like)
                     <div className="block-editor-container">
-                      <BlockEditor
-                        data={editorJSData}
-                        onChange={(data) => {
-                          setEditorJSData(data);
-                          // Auto-save to form field will be handled on form submit
+                      <CustomBlockEditor
+                        blocks={customBlocks}
+                        onChange={(blocks) => {
+                          setCustomBlocks(blocks);
                         }}
-                        onReady={() => {
-                          console.log('BlockEditor is ready!');
-                        }}
-                        placeholder="Start writing your content using blocks... Click the '+' button to add new blocks!"
                       />
                     </div>
                   ) : editorMode === 'rich' ? (
