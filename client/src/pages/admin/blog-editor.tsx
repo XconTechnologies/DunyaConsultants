@@ -1605,9 +1605,10 @@ export default function BlogEditor() {
                           className="w-full h-[600px] p-4 font-mono text-sm overflow-auto bg-[#2d2d2d] m-0 pointer-events-none"
                           style={{
                             lineHeight: '1.5',
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word',
-                            tabSize: 2
+                            whiteSpace: 'pre',
+                            tabSize: 2,
+                            fontFamily: 'monospace',
+                            fontSize: '0.875rem'
                           }}
                         >
                           <code className="language-markup" dangerouslySetInnerHTML={{ 
@@ -1628,9 +1629,10 @@ export default function BlogEditor() {
                             outline: 'none',
                             border: 'none',
                             lineHeight: '1.5',
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word',
-                            tabSize: 2
+                            whiteSpace: 'pre',
+                            tabSize: 2,
+                            fontFamily: 'monospace',
+                            fontSize: '0.875rem'
                           }}
                           onFocus={(e) => {
                             e.target.style.outline = '2px solid rgb(59 130 246)';
