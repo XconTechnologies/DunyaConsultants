@@ -38,7 +38,8 @@ function blockToHtml(block: Block): string {
 }
 
 function renderList(items: ListItem[], style: 'ul' | 'ol', depth = 0): string {
-  if (items.length === 0) return '';
+  // Safety check for undefined items
+  if (!items || items.length === 0) return '';
   
   const tag = style === 'ol' ? 'ol' : 'ul';
   let html = `<${tag}>\n`;
@@ -57,6 +58,9 @@ function renderList(items: ListItem[], style: 'ul' | 'ol', depth = 0): string {
 }
 
 function renderTable(data: string[][]): string {
+  // Safety check for undefined data
+  if (!data || data.length === 0) return '';
+  
   let html = '<table class="border-collapse border border-gray-300 w-full">\n';
   html += '  <tbody>\n';
   
@@ -75,6 +79,9 @@ function renderTable(data: string[][]): string {
 }
 
 function renderFaq(items: FaqItem[]): string {
+  // Safety check for undefined items
+  if (!items || items.length === 0) return '';
+  
   let html = '<div class="faq-section" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; margin: 1.5rem 0;">\n';
   
   items.forEach((item, index) => {
