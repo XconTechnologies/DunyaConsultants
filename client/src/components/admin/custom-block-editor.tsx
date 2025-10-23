@@ -297,6 +297,9 @@ function CodeBlockComponent({ block, onChange }: { block: CodeBlock; onChange: (
 // List Block Component
 function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (block: ListBlock) => void }) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  
+  // Ensure items is always an array
+  const items = block.items || [];
 
   const toggleExpanded = (id: string) => {
     const newExpanded = new Set(expandedItems);
@@ -322,9 +325,9 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
           return item;
         });
       };
-      onChange({ ...block, items: updateItems(block.items) });
+      onChange({ ...block, items: updateItems(items) });
     } else {
-      onChange({ ...block, items: [...block.items, newItem] });
+      onChange({ ...block, items: [...items, newItem] });
     }
   };
 
@@ -340,7 +343,7 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
         return item;
       });
     };
-    onChange({ ...block, items: updateItems(block.items) });
+    onChange({ ...block, items: updateItems(items) });
   };
 
   const removeItem = (id: string) => {
@@ -350,7 +353,7 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
         children: item.children ? removeFromItems(item.children) : []
       }));
     };
-    onChange({ ...block, items: removeFromItems(block.items) });
+    onChange({ ...block, items: removeFromItems(items) });
   };
 
   const renderListItems = (items: ListItem[], depth = 0) => {
@@ -364,7 +367,7 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
             placeholder="List item..."
             className="flex-1"
           />
-          <Button size="sm" variant="outline" onClick={() => addItem(block.items, item.id)}>
+          <Button size="sm" variant="outline" onClick={() => addItem(items, item.id)}>
             <Plus className="w-3 h-3" />
           </Button>
           <Button size="sm" variant="outline" onClick={() => removeItem(item.id)}>
@@ -389,12 +392,12 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
             <SelectItem value="ol">Ordered (1.)</SelectItem>
           </SelectContent>
         </Select>
-        <Button size="sm" onClick={() => addItem(block.items)} className="ml-auto">
+        <Button size="sm" onClick={() => addItem(items)} className="ml-auto">
           <Plus className="w-4 h-4 mr-1" /> Add Item
         </Button>
       </div>
       <div className="space-y-1">
-        {renderListItems(block.items)}
+        {renderListItems(items)}
       </div>
     </div>
   );
@@ -402,34 +405,37 @@ function ListBlockComponent({ block, onChange }: { block: ListBlock; onChange: (
 
 // Table Block Component
 function TableBlockComponent({ block, onChange }: { block: TableBlock; onChange: (block: TableBlock) => void }) {
+  // Ensure data is always an array
+  const data = block.data || [[''],[''],['']]
+  
   const updateCell = (rowIndex: number, colIndex: number, value: string) => {
-    const newData = block.data.map((row, ri) =>
+    const newData = data.map((row, ri) =>
       row.map((cell, ci) => (ri === rowIndex && ci === colIndex ? value : cell))
     );
     onChange({ ...block, data: newData });
   };
 
   const addRow = () => {
-    const newRow = new Array(block.cols).fill('');
-    onChange({ ...block, rows: block.rows + 1, data: [...block.data, newRow] });
+    const newRow = new Array(block.cols || 3).fill('');
+    onChange({ ...block, rows: (block.rows || 3) + 1, data: [...data, newRow] });
   };
 
   const addColumn = () => {
-    const newData = block.data.map(row => [...row, '']);
-    onChange({ ...block, cols: block.cols + 1, data: newData });
+    const newData = data.map(row => [...row, '']);
+    onChange({ ...block, cols: (block.cols || 3) + 1, data: newData });
   };
 
   const removeRow = (index: number) => {
-    if (block.rows > 1) {
-      const newData = block.data.filter((_, i) => i !== index);
-      onChange({ ...block, rows: block.rows - 1, data: newData });
+    if ((block.rows || 3) > 1) {
+      const newData = data.filter((_, i) => i !== index);
+      onChange({ ...block, rows: (block.rows || 3) - 1, data: newData });
     }
   };
 
   const removeColumn = (index: number) => {
-    if (block.cols > 1) {
-      const newData = block.data.map(row => row.filter((_, i) => i !== index));
-      onChange({ ...block, cols: block.cols - 1, data: newData });
+    if ((block.cols || 3) > 1) {
+      const newData = data.map(row => row.filter((_, i) => i !== index));
+      onChange({ ...block, cols: (block.cols || 3) - 1, data: newData });
     }
   };
 
@@ -442,7 +448,7 @@ function TableBlockComponent({ block, onChange }: { block: TableBlock; onChange:
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <tbody>
-            {block.data.map((row, rowIndex) => (
+            {data.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {row.map((cell, colIndex) => (
                   <td key={colIndex} className="border border-gray-300 p-1">
@@ -461,7 +467,7 @@ function TableBlockComponent({ block, onChange }: { block: TableBlock; onChange:
               </tr>
             ))}
             <tr>
-              {block.data[0]?.map((_, colIndex) => (
+              {data[0]?.map((_, colIndex) => (
                 <td key={colIndex} className="p-1 text-center">
                   <Button size="sm" variant="ghost" onClick={() => removeColumn(colIndex)}>
                     <Trash2 className="w-3 h-3" />
@@ -528,20 +534,23 @@ function HtmlBlockComponent({ block, onChange }: { block: HtmlBlock; onChange: (
 
 // FAQ Block Component
 function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (block: FaqBlock) => void }) {
+  // Ensure items is always an array
+  const items = block.items || [];
+  
   const addFaqItem = () => {
     const newItem: FaqItem = { id: generateId(), question: '', answer: '' };
-    onChange({ ...block, items: [...block.items, newItem] });
+    onChange({ ...block, items: [...items, newItem] });
   };
 
   const updateFaqItem = (id: string, field: 'question' | 'answer', value: string) => {
-    const newItems = block.items.map(item =>
+    const newItems = items.map(item =>
       item.id === id ? { ...item, [field]: value } : item
     );
     onChange({ ...block, items: newItems });
   };
 
   const removeFaqItem = (id: string) => {
-    onChange({ ...block, items: block.items.filter(item => item.id !== id) });
+    onChange({ ...block, items: items.filter(item => item.id !== id) });
   };
 
   return (
@@ -549,7 +558,7 @@ function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (bl
       <Button size="sm" onClick={addFaqItem}>
         <Plus className="w-4 h-4 mr-1" /> Add FAQ Item
       </Button>
-      {block.items.map((item, index) => (
+      {items.map((item, index) => (
         <div key={item.id} className="border border-gray-200 rounded p-3 space-y-2">
           <div className="flex items-center justify-between">
             <Label className="text-sm font-medium">Question {index + 1}</Label>
