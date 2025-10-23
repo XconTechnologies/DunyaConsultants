@@ -339,16 +339,18 @@ ol.list-content li::marker {
   font-weight: 700;
 }
 
-/* Nested list styles - proper indentation */
+/* Nested list styles - proper indentation and inline positioning */
 .ql-editor ul ul,
 .ql-editor ol ul,
 .blog-content ul ul,
 .blog-content ol ul,
 .prose ul ul,
-.prose ol ul {
+.prose ol ul,
+ul.list-content ul {
   list-style-type: circle;
-  margin: 0.25rem 0 0.25rem 0;
-  padding-left: 2rem;
+  margin: 0;
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
 }
 
 .ql-editor ul ol,
@@ -356,10 +358,60 @@ ol.list-content li::marker {
 .blog-content ul ol,
 .blog-content ol ol,
 .prose ul ol,
-.prose ol ol {
+.prose ol ol,
+ul.list-content ol,
+ol.list-content ol {
   list-style-type: lower-alpha;
-  margin: 0.25rem 0 0.25rem 0;
-  padding-left: 2rem;
+  margin: 0;
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
+}
+
+/* Nested list items styling with brand colors */
+.ql-editor ul ul li,
+.ql-editor ol ul li,
+.blog-content ul ul li,
+.blog-content ol ul li,
+.prose ul ul li,
+.prose ol ul li,
+ul.list-content ul li {
+  list-style-type: circle;
+  margin: 0.25rem 0;
+}
+
+.ql-editor ul ul li::marker,
+.ql-editor ol ul li::marker,
+.blog-content ul ul li::marker,
+.blog-content ol ul li::marker,
+.prose ul ul li::marker,
+.prose ol ul li::marker,
+ul.list-content ul li::marker {
+  color: #1D50C9;
+  font-weight: 500;
+}
+
+.ql-editor ul ol li,
+.ql-editor ol ol li,
+.blog-content ul ol li,
+.blog-content ol ol li,
+.prose ul ol li,
+.prose ol ol li,
+ul.list-content ol li,
+ol.list-content ol li {
+  list-style-type: lower-alpha;
+  margin: 0.25rem 0;
+}
+
+.ql-editor ul ol li::marker,
+.ql-editor ol ol li::marker,
+.blog-content ul ol li::marker,
+.blog-content ol ol li::marker,
+.prose ul ol li::marker,
+.prose ol ol li::marker,
+ul.list-content ol li::marker,
+ol.list-content ol li::marker {
+  color: #1D50C9;
+  font-weight: 600;
 }
 
 /* Third level nested lists */
@@ -368,9 +420,12 @@ ol.list-content li::marker {
 .blog-content ul ul ul,
 .blog-content ol ul ul,
 .prose ul ul ul,
-.prose ol ul ul {
+.prose ol ul ul,
+ul.list-content ul ul {
   list-style-type: square;
-  padding-left: 2rem;
+  margin: 0;
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
 }
 
 .ql-editor ul ol ol,
@@ -378,9 +433,13 @@ ol.list-content li::marker {
 .blog-content ul ol ol,
 .blog-content ol ol ol,
 .prose ul ol ol,
-.prose ol ol ol {
+.prose ol ol ol,
+ul.list-content ol ol,
+ol.list-content ol ol {
   list-style-type: lower-roman;
-  padding-left: 2rem;
+  margin: 0;
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
 }
 
 /* Ensure list items display properly */

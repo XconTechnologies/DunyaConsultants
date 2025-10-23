@@ -356,9 +356,9 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
           {cleanText}
           {item.children && item.children.length > 0 && (
             style === 'ol' ? (
-              <ol className="mt-2">{renderListItems(item.children, depth + 1)}</ol>
+              <ol>{renderListItems(item.children, depth + 1)}</ol>
             ) : (
-              <ul className="mt-2">{renderListItems(item.children, depth + 1)}</ul>
+              <ul>{renderListItems(item.children, depth + 1)}</ul>
             )
           )}
         </li>
