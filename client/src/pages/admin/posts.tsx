@@ -212,24 +212,6 @@ export default function AllPosts() {
     return approver ? approver.username : "Unknown";
   };
 
-  // Selection handlers
-  const handleSelectBlog = (id: number, checked: boolean) => {
-    setSelectedIds(prev => 
-      checked ? [...prev, id] : prev.filter(selectedId => selectedId !== id)
-    );
-  };
-
-  const handleSelectAll = (checked: boolean) => {
-    const pagePostIds = paginatedPosts.map((post: BlogPost) => post.id);
-    if (checked) {
-      setSelectedIds([...new Set([...selectedIds, ...pagePostIds])]);
-    } else {
-      setSelectedIds(selectedIds.filter(id => !pagePostIds.includes(id)));
-    }
-  };
-
-  const isAllSelected = paginatedPosts.length > 0 && paginatedPosts.every((post: BlogPost) => selectedIds.includes(post.id));
-
   // Get unique years and months from posts
   const availableYears = Array.from(new Set(
     blogPosts
@@ -300,6 +282,24 @@ export default function AllPosts() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+
+  // Selection handlers
+  const handleSelectBlog = (id: number, checked: boolean) => {
+    setSelectedIds(prev => 
+      checked ? [...prev, id] : prev.filter(selectedId => selectedId !== id)
+    );
+  };
+
+  const handleSelectAll = (checked: boolean) => {
+    const pagePostIds = paginatedPosts.map((post: BlogPost) => post.id);
+    if (checked) {
+      setSelectedIds([...new Set([...selectedIds, ...pagePostIds])]);
+    } else {
+      setSelectedIds(selectedIds.filter(id => !pagePostIds.includes(id)));
+    }
+  };
+
+  const isAllSelected = paginatedPosts.length > 0 && paginatedPosts.every((post: BlogPost) => selectedIds.includes(post.id));
 
   // Clear all filters function
   const clearAllFilters = () => {
