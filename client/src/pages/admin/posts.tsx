@@ -82,6 +82,10 @@ export default function AllPosts() {
   const [monthFilter, setMonthFilter] = useState<string>('all');
   const [dateFilter, setDateFilter] = useState<string>('');
   
+  // Pagination states
+  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [currentPage, setCurrentPage] = useState(1);
+  
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -216,10 +220,15 @@ export default function AllPosts() {
   };
 
   const handleSelectAll = (checked: boolean) => {
-    setSelectedIds(checked ? blogPosts.map((post: BlogPost) => post.id) : []);
+    const pagePostIds = paginatedPosts.map((post: BlogPost) => post.id);
+    if (checked) {
+      setSelectedIds([...new Set([...selectedIds, ...pagePostIds])]);
+    } else {
+      setSelectedIds(selectedIds.filter(id => !pagePostIds.includes(id)));
+    }
   };
 
-  const isAllSelected = selectedIds.length === blogPosts.length && blogPosts.length > 0;
+  const isAllSelected = paginatedPosts.length > 0 && paginatedPosts.every((post: BlogPost) => selectedIds.includes(post.id));
 
   // Get unique years and months from posts
   const availableYears = Array.from(new Set(
@@ -280,6 +289,17 @@ export default function AllPosts() {
     
     return true;
   });
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [statusFilter, searchQuery, categoryFilter, yearFilter, monthFilter, dateFilter]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
 
   // Clear all filters function
   const clearAllFilters = () => {
@@ -645,7 +665,7 @@ export default function AllPosts() {
                       </TableCell>
                     </TableRow>
                   ) : (
-                    filteredPosts.map((post: BlogPost) => {
+                    paginatedPosts.map((post: BlogPost) => {
                       const categories = postCategories[post.id] || [];
                       return (
                         <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
@@ -753,6 +773,84 @@ export default function AllPosts() {
                   )}
                 </TableBody>
               </Table>
+
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-600">Items per page:</span>
+                    <Select
+                      value={itemsPerPage.toString()}
+                      onValueChange={(value) => {
+                        setItemsPerPage(parseInt(value));
+                        setCurrentPage(1);
+                      }}
+                    >
+                      <SelectTrigger className="w-20" data-testid="select-items-per-page">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="25">25</SelectItem>
+                        <SelectItem value="50">50</SelectItem>
+                        <SelectItem value="100">100</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <span className="text-sm text-gray-600">
+                      Showing {startIndex + 1} to {Math.min(endIndex, filteredPosts.length)} of {filteredPosts.length}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      data-testid="button-previous-page"
+                    >
+                      Previous
+                    </Button>
+                    
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={currentPage === pageNum ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
+                            data-testid={`button-page-${pageNum}`}
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      data-testid="button-next-page"
+                    >
+                      Next
+                    </Button>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
