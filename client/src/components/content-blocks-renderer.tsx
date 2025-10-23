@@ -117,6 +117,8 @@ function renderBlock(block: ContentBlock) {
       return <DividerBlock block={block} />;
     case 'schema':
       return <SchemaBlock block={block} />;
+    case 'list':
+      return <ListBlock block={block} />;
     default:
       return null;
   }
@@ -331,4 +333,42 @@ function SchemaBlock({ block }: { block: ContentBlock & { type: 'schema' } }) {
   } catch {
     return null;
   }
+}
+
+// List Block Renderer
+function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
+  const { items = [], style = 'ul' } = block.data;
+
+  if (!items || items.length === 0) {
+    return null;
+  }
+
+  const renderListItems = (listItems: any[], depth = 0) => {
+    return listItems.map((item: any, index: number) => {
+      // Remove leading bullets or numbers from text if present
+      const cleanText = (item.text || '')
+        .replace(/^[•●○■□▪▫◆◇‣⁃∙⦿⦾]+\s*/g, '') // Remove bullet points
+        .replace(/^\d+\.\s*/g, '') // Remove numbered list markers
+        .trim();
+
+      return (
+        <li key={item.id || index}>
+          {cleanText}
+          {item.children && item.children.length > 0 && (
+            style === 'ol' ? (
+              <ol className="mt-2">{renderListItems(item.children, depth + 1)}</ol>
+            ) : (
+              <ul className="mt-2">{renderListItems(item.children, depth + 1)}</ul>
+            )
+          )}
+        </li>
+      );
+    });
+  };
+
+  return style === 'ol' ? (
+    <ol className="list-content">{renderListItems(items)}</ol>
+  ) : (
+    <ul className="list-content">{renderListItems(items)}</ul>
+  );
 }
