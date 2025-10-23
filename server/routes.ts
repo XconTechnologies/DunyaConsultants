@@ -5193,10 +5193,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Update approval status
+      // Record approver and timestamp for both 'approved' and 'not_approved' statuses
       const updatedPost = await storage.updateBlogPost(id, {
         approvalStatus,
-        approvedAt: approvalStatus === 'approved' ? new Date() : null,
-        approverId: approvalStatus === 'approved' ? req.adminId : null,
+        approvedAt: approvalStatus !== 'editable' ? new Date() : null,
+        approverId: approvalStatus !== 'editable' ? req.adminId : null,
       });
 
       // Create audit log
@@ -5212,8 +5213,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }),
         after: JSON.stringify({
           approvalStatus,
-          approvedAt: approvalStatus === 'approved' ? new Date().toISOString() : null,
-          approverId: approvalStatus === 'approved' ? req.adminId : null
+          approvedAt: approvalStatus !== 'editable' ? new Date().toISOString() : null,
+          approverId: approvalStatus !== 'editable' ? req.adminId : null
         })
       });
 
