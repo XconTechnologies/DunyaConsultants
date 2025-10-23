@@ -55,6 +55,8 @@ export default function CategoriesPage() {
   const [editingCategory, setEditingCategory] = useState<EnhancedCategory | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [currentPage, setCurrentPage] = useState(1);
   const [formData, setFormData] = useState<CategoryFormData>({
     name: "",
     slug: "",
@@ -311,6 +313,23 @@ export default function CategoriesPage() {
       ...((!prev.slug || prev.slug === generateSlug(prev.name)) && { slug: generateSlug(name) })
     }));
   };
+
+  // Filter categories based on search
+  const filteredCategories = categories.filter(cat => 
+    cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (cat.description && cat.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedCategories = filteredCategories.slice(startIndex, endIndex);
 
   if (!authChecked || !adminUser) {
     return (
@@ -643,7 +662,7 @@ export default function CategoriesPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {categories.map((category) => (
+                      {paginatedCategories.map((category) => (
                         <TableRow key={category.id} data-testid={`category-row-${category.slug}`} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
                           <TableCell>
                             <div className="space-y-2">
@@ -683,6 +702,84 @@ export default function CategoriesPage() {
                       ))}
                     </TableBody>
                   </Table>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600">Items per page:</span>
+                        <Select
+                          value={itemsPerPage.toString()}
+                          onValueChange={(value) => {
+                            setItemsPerPage(parseInt(value));
+                            setCurrentPage(1);
+                          }}
+                        >
+                          <SelectTrigger className="w-20" data-testid="select-items-per-page">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="25">25</SelectItem>
+                            <SelectItem value="50">50</SelectItem>
+                            <SelectItem value="100">100</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <span className="text-sm text-gray-600">
+                          Showing {startIndex + 1} to {Math.min(endIndex, filteredCategories.length)} of {filteredCategories.length}
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCurrentPage(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          data-testid="button-previous-page"
+                        >
+                          Previous
+                        </Button>
+                        
+                        <div className="flex items-center gap-1">
+                          {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                            let pageNum;
+                            if (totalPages <= 5) {
+                              pageNum = i + 1;
+                            } else if (currentPage <= 3) {
+                              pageNum = i + 1;
+                            } else if (currentPage >= totalPages - 2) {
+                              pageNum = totalPages - 4 + i;
+                            } else {
+                              pageNum = currentPage - 2 + i;
+                            }
+                            
+                            return (
+                              <Button
+                                key={pageNum}
+                                variant={currentPage === pageNum ? "default" : "outline"}
+                                size="sm"
+                                onClick={() => setCurrentPage(pageNum)}
+                                className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
+                                data-testid={`button-page-${pageNum}`}
+                              >
+                                {pageNum}
+                              </Button>
+                            );
+                          })}
+                        </div>
+                        
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCurrentPage(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          data-testid="button-next-page"
+                        >
+                          Next
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 )}
               </CardContent>
             </Card>
