@@ -370,9 +370,11 @@ ul.list-content li > ul,
 ul.list-content li > ol,
 ol.list-content li > ul,
 ol.list-content li > ol {
-  margin-top: 0 !important;
+  margin-top: -0.8rem !important;
   margin-bottom: 0 !important;
-  padding-left: 1.5rem !important;
+  padding-left: 2rem !important;
+  position: relative !important;
+  top: 0.3rem !important;
 }
 
 .ql-editor ul ul,
