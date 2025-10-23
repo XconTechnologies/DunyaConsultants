@@ -453,8 +453,30 @@ table tr:hover {
   animation: mirror-slider 3s ease-in-out;
 }
 
+/* Mirror slider animation - back and forth from top-left to bottom-right */
+@keyframes mirror-slider-back-forth {
+  0% {
+    transform: translate(-100%, -100%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(100%, 100%);
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100%, -100%);
+    opacity: 0;
+  }
+}
+
 .animate-mirror-slider-infinite {
-  animation: mirror-slider 3s ease-in-out infinite;
+  animation: mirror-slider-back-forth 3s ease-in-out infinite;
 }
 
 /* Image scrolling animations */
