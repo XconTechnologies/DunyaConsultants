@@ -41,7 +41,7 @@ export default function AdminHeader({
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 lg:py-4">
           {/* Left Section: Branding + Mobile Menu */}
-          <div className="flex items-center space-x-3 lg:space-x-6">
+          <div className="flex items-center space-x-3 lg:space-x-4">
             {/* Hamburger menu for mobile */}
             <Button
               variant="ghost"
@@ -53,23 +53,17 @@ export default function AdminHeader({
               <Menu className="w-6 h-6" />
             </Button>
             
-            {/* Admin Panel Branding */}
-            <div className="flex items-center space-x-2 lg:space-x-3 border-r border-white/20 pr-3 lg:pr-6">
+            {/* Admin Panel Branding with Page Title */}
+            <div className="flex items-center space-x-2 lg:space-x-3">
               <div className="bg-white/10 p-2 rounded-lg hidden sm:block">
                 <LayoutDashboard className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h2 className="text-sm lg:text-base font-bold text-white">Admin Panel</h2>
-                <p className="text-xs text-blue-100 hidden sm:block">Content Management</p>
+                <h1 className="text-base lg:text-xl font-bold text-white">{title}</h1>
+                {subtitle && (
+                  <p className="text-blue-100 text-xs hidden sm:block">{subtitle}</p>
+                )}
               </div>
-            </div>
-
-            {/* Page Title */}
-            <div>
-              <h1 className="text-base lg:text-xl font-bold text-white">{title}</h1>
-              {subtitle && (
-                <p className="text-blue-100 text-xs hidden sm:block">{subtitle}</p>
-              )}
             </div>
           </div>
 
