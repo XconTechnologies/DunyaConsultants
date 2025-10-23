@@ -32,6 +32,7 @@ import {
 } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 import MobileNav from "@/components/admin/mobile-nav";
 
 interface BlogPost {
@@ -67,6 +68,7 @@ export default function AllPosts() {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // Get initial filter from URL params
   const urlParams = new URLSearchParams(window.location.search);
@@ -378,25 +380,34 @@ export default function AllPosts() {
       
       {/* Mobile Navigation */}
       <MobileNav currentUser={adminUser} />
-      
-      <div className="ml-64 p-8">
-        <div className="max-w-7xl mx-auto space-y-8">
-          {/* Header */}
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">All Posts</h1>
-              <p className="text-gray-600 mt-2 font-medium">Manage all blog posts</p>
-            </div>
-            {canCreateContent(adminUser) && (
+
+      {/* Top Header Bar */}
+      <div className="lg:ml-64">
+        <AdminHeader
+          currentUser={adminUser}
+          title="All Posts"
+          subtitle="Manage all blog posts"
+          onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          searchPlaceholder="Search posts..."
+          actionButtons={
+            canCreateContent(adminUser) ? (
               <Button 
                 onClick={() => setLocation("/admin/blog-editor")}
-                className="flex items-center space-x-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
+                className="flex items-center space-x-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm"
+                data-testid="button-add-new-post"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Post</span>
               </Button>
-            )}
-          </div>
+            ) : null
+          }
+        />
+      </div>
+      
+      <div className="lg:ml-64 p-8">
+        <div className="max-w-7xl mx-auto space-y-8">
 
           {/* Status Filter Counters */}
           <div className="flex items-center gap-3 py-4 border-b border-gray-200">
@@ -466,20 +477,7 @@ export default function AllPosts() {
                 )}
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                {/* Search Input */}
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <Input
-                    type="text"
-                    placeholder="Search posts..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-9 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
-                    data-testid="input-search-posts"
-                  />
-                </div>
-
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Category Filter */}
                 <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                   <SelectTrigger className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]" data-testid="select-category-filter">

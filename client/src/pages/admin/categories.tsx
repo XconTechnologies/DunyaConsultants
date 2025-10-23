@@ -30,6 +30,7 @@ import { Tag, Plus, Trash2, LogOut, Edit, Search } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
 import type { AdminUser, Category } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 import MobileNav from "@/components/admin/mobile-nav";
 
 interface EnhancedCategory extends Category {
@@ -52,6 +53,8 @@ export default function CategoriesPage() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<EnhancedCategory | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [formData, setFormData] = useState<CategoryFormData>({
     name: "",
     slug: "",
