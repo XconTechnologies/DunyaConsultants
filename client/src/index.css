@@ -370,19 +370,9 @@ ul.list-content li > ul,
 ul.list-content li > ol,
 ol.list-content li > ul,
 ol.list-content li > ol {
-  margin: 0.5rem 0 0 0 !important;
-  padding-left: 2.5rem !important;
-  display: block !important;
-}
-
-/* Reset any prose-specific list margins that might be interfering */
-.prose ul,
-.prose ol,
-.blog-content ul,
-.blog-content ol,
-article ul,
-article ol {
-  margin-bottom: 0.5rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 1.5rem !important;
 }
 
 .ql-editor ul ul,
@@ -425,9 +415,11 @@ article > ul ol {
 .blog-content ol ul > li,
 .prose ul ul > li,
 .prose ol ul > li,
+article ul ul > li,
+article ol ul > li,
 ul.list-content ul > li {
   list-style-type: circle !important;
-  margin: 0.3rem 0 !important;
+  margin-block: 0.2rem !important;
   padding-left: 0.25rem !important;
   line-height: 1.5 !important;
 }
@@ -449,11 +441,14 @@ ul.list-content ul > li::marker {
 .blog-content ol ol > li,
 .prose ul ol > li,
 .prose ol ol > li,
+article ul ol > li,
+article ol ol > li,
 ul.list-content ol > li,
 ol.list-content ol > li {
   list-style-type: lower-alpha !important;
-  margin: 0.3rem 0;
-  padding-left: 0.25rem;
+  margin-block: 0.2rem !important;
+  padding-left: 0.25rem !important;
+  line-height: 1.5 !important;
 }
 
 .ql-editor ul ol > li::marker,
