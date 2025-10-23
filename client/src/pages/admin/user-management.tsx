@@ -46,7 +46,10 @@ import {
   Upload,
   Settings,
   Eye,
-  EyeOff
+  EyeOff,
+  Calendar,
+  MapPin,
+  Sparkles
 } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
 import { canManageUsers, isAdmin } from "@/lib/permissions";
@@ -1228,40 +1231,130 @@ export default function UserManagement() {
 
       {/* Event Assignment Dialog */}
       <Dialog open={showEventAssignmentDialog} onOpenChange={setShowEventAssignmentDialog}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Assign Events to Events Manager</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <p className="text-sm text-gray-600">
-              Select the events this user will manage. They will be able to view registrations, scan QR codes, and manage these events.
-            </p>
-            
-            <div className="space-y-2 max-h-96 overflow-y-auto">
-              {events.map((event) => (
-                <div key={event.id} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
-                  <Checkbox
-                    id={`event-${event.id}`}
-                    checked={selectedEvents.includes(event.id)}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        setSelectedEvents([...selectedEvents, event.id]);
-                      } else {
-                        setSelectedEvents(selectedEvents.filter(id => id !== event.id));
-                      }
-                    }}
-                  />
-                  <Label htmlFor={`event-${event.id}`} className="flex-1 cursor-pointer">
-                    <div>
-                      <div className="font-medium">{event.title}</div>
-                      <div className="text-sm text-gray-500">{event.location} - {new Date(event.date).toLocaleDateString()}</div>
-                    </div>
-                  </Label>
-                </div>
-              ))}
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <DialogTitle className="text-2xl bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                  Assign Events to Events Manager
+                </DialogTitle>
+                <p className="text-sm text-gray-600 mt-1">
+                  Select the events this user will manage. They can view registrations, scan QR codes, and manage these events.
+                </p>
+              </div>
             </div>
+          </DialogHeader>
+          
+          <div className="space-y-4 mt-4">
+            {events.length === 0 ? (
+              <div className="text-center py-12 text-gray-500">
+                <Calendar className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                <p>No events available to assign</p>
+              </div>
+            ) : (
+              <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
+                {events.map((event) => {
+                  const isSelected = selectedEvents.includes(event.id);
+                  const eventDate = event.eventDate ? new Date(event.eventDate) : null;
+                  
+                  return (
+                    <div 
+                      key={event.id} 
+                      className={`relative group transition-all duration-200 ${
+                        isSelected 
+                          ? 'bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-400 shadow-md' 
+                          : 'bg-white border-2 border-gray-200 hover:border-purple-300 hover:shadow-sm'
+                      } rounded-xl p-4 cursor-pointer`}
+                      onClick={() => {
+                        if (isSelected) {
+                          setSelectedEvents(selectedEvents.filter(id => id !== event.id));
+                        } else {
+                          setSelectedEvents([...selectedEvents, event.id]);
+                        }
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <Checkbox
+                          id={`event-${event.id}`}
+                          checked={isSelected}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setSelectedEvents([...selectedEvents, event.id]);
+                            } else {
+                              setSelectedEvents(selectedEvents.filter(id => id !== event.id));
+                            }
+                          }}
+                          className="mt-1"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <h3 className="font-semibold text-gray-900 text-base leading-tight">
+                              {event.title}
+                            </h3>
+                            {event.eventType && (
+                              <Badge 
+                                className={`shrink-0 ${
+                                  event.eventType === 'Open Day' 
+                                    ? 'bg-blue-500' 
+                                    : event.eventType === 'Expo' 
+                                    ? 'bg-purple-500' 
+                                    : 'bg-green-500'
+                                } text-white text-xs`}
+                              >
+                                {event.eventType}
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
+                            {event.location && (
+                              <div className="flex items-center gap-1.5">
+                                <MapPin className="w-3.5 h-3.5 text-purple-500" />
+                                <span>{event.location}</span>
+                              </div>
+                            )}
+                            {eventDate && !isNaN(eventDate.getTime()) && (
+                              <div className="flex items-center gap-1.5">
+                                <Calendar className="w-3.5 h-3.5 text-purple-500" />
+                                <span>{eventDate.toLocaleDateString('en-US', { 
+                                  month: 'short', 
+                                  day: 'numeric', 
+                                  year: 'numeric' 
+                                })}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {isSelected && (
+                        <div className="absolute top-3 right-3 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            
+            {selectedEvents.length > 0 && (
+              <div className="bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-xl p-4">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-purple-600" />
+                  <p className="text-sm font-semibold text-purple-900">
+                    {selectedEvents.length} event{selectedEvents.length !== 1 ? 's' : ''} selected
+                  </p>
+                </div>
+              </div>
+            )}
 
-            <div className="flex justify-end space-x-2 pt-4">
+            <div className="flex justify-end gap-3 pt-4 border-t mt-4">
               <Button 
                 variant="outline" 
                 onClick={() => {
@@ -1278,6 +1371,8 @@ export default function UserManagement() {
                     setIsEditDialogOpen(true);
                   }
                 }}
+                className="px-6"
+                data-testid="button-cancel-event-assignment"
               >
                 Cancel
               </Button>
@@ -1337,8 +1432,19 @@ export default function UserManagement() {
                   }
                 }}
                 disabled={createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending || selectedEvents.length === 0}
+                className="px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg"
+                data-testid="button-save-event-assignment"
               >
-                {(createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending) ? "Saving..." : "Save Event Assignments"}
+                {(createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending) ? (
+                  <>
+                    <span className="animate-pulse">Saving...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Save Event Assignments
+                  </>
+                )}
               </Button>
             </div>
           </div>
