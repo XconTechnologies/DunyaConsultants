@@ -653,16 +653,17 @@ export default function CategoriesPage() {
                     <p className="text-sm text-gray-400">Create your first category to get started</p>
                   </div>
                 ) : (
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
-                        <TableHead className="font-semibold text-gray-700">Category</TableHead>
-                        <TableHead className="font-semibold text-gray-700">Posts</TableHead>
-                        <TableHead className="font-semibold text-gray-700 w-24 text-center">Delete</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {paginatedCategories.map((category) => (
+                  <>
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                          <TableHead className="font-semibold text-gray-700">Category</TableHead>
+                          <TableHead className="font-semibold text-gray-700">Posts</TableHead>
+                          <TableHead className="font-semibold text-gray-700 w-24 text-center">Delete</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {paginatedCategories.map((category) => (
                         <TableRow key={category.id} data-testid={`category-row-${category.slug}`} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
                           <TableCell>
                             <div className="space-y-2">
@@ -780,6 +781,7 @@ export default function CategoriesPage() {
                       </div>
                     </div>
                   )}
+                  </>
                 )}
               </CardContent>
             </Card>
