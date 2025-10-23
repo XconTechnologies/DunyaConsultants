@@ -453,18 +453,17 @@ export default function EventsPage() {
                       <div className="flex gap-3">
                         <Button
                           onClick={() => window.location.href = `/events/${event.slug}`}
-                          variant="outline"
-                          className="flex-1 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
-                          data-testid={`button-details-past-${event.id}`}
+                          className="flex-1 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 transition-transform duration-300 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-0 before:bg-white/30 before:transition-all before:duration-[3000ms] before:ease-linear hover:before:w-[200%] hover:before:h-[200%] before:animate-mirror-slider"
+                          data-testid={`button-watch-highlights-${event.id}`}
                         >
-                          See Details
+                          <span className="relative z-10">Watch Highlights</span>
                         </Button>
                         <Button
                           onClick={() => window.location.href = `/events/${event.slug}`}
-                          className="flex-1 bg-white border-0 shadow-md text-gray-900 hover:shadow-[0_10px_30px_rgba(29,80,201,0.2)] hover:animate-bob transition-all duration-300"
-                          data-testid={`button-view-details-${event.id}`}
+                          className="flex-1 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 transition-transform duration-300 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-0 before:bg-white/30 before:transition-all before:duration-[3000ms] before:ease-linear hover:before:w-[200%] hover:before:h-[200%] before:animate-mirror-slider"
+                          data-testid={`button-watch-recording-${event.id}`}
                         >
-                          Watch Recording
+                          <span className="relative z-10">Watch Recording</span>
                         </Button>
                       </div>
                     </CardContent>

@@ -434,6 +434,25 @@ table tr:hover {
   animation: diagonal-shimmer 0.8s ease-in-out;
 }
 
+/* Mirror slider animation from top-left to bottom-right over 3 seconds */
+@keyframes mirror-slider {
+  0% {
+    transform: translate(-100%, -100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 100%);
+    opacity: 0;
+  }
+}
+
+.animate-mirror-slider {
+  animation: mirror-slider 3s ease-in-out;
+}
+
 /* Image scrolling animations */
 @keyframes scroll-up {
   0% {
