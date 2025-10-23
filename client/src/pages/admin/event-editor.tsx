@@ -65,7 +65,7 @@ const eventSchema = z.object({
   image: z.string().min(1, "Thumbnail is required"),
   detailImage: z.string().optional(),
   eventDate: z.string().min(1, "Event date is required"),
-  eventType: z.enum(["Open Day", "Expo", "IELTS Masterclass"]),
+  eventType: z.enum(["Open Day", "Expo", "IELTS Masterclass", "AGMs", "Team Meetings", "Official Representative Meetings", "Student Ambassador Program"]),
   venue: z.string().optional(),
   location: z.string().optional(),
   country: z.array(z.string()).optional(),
@@ -85,7 +85,7 @@ interface Event {
   image: string;
   detailImage?: string;
   eventDate: string;
-  eventType: "Open Day" | "Expo" | "IELTS Masterclass";
+  eventType: "Open Day" | "Expo" | "IELTS Masterclass" | "AGMs" | "Team Meetings" | "Official Representative Meetings" | "Student Ambassador Program";
   venue?: string;
   location?: string;
   country?: string[];
@@ -663,6 +663,10 @@ export default function EventEditor() {
                             <SelectItem value="Open Day">Open Day</SelectItem>
                             <SelectItem value="Expo">Expo</SelectItem>
                             <SelectItem value="IELTS Masterclass">IELTS Masterclass</SelectItem>
+                            <SelectItem value="AGMs">AGMs</SelectItem>
+                            <SelectItem value="Team Meetings">Team Meetings</SelectItem>
+                            <SelectItem value="Official Representative Meetings">Official Representative Meetings</SelectItem>
+                            <SelectItem value="Student Ambassador Program">Student Ambassador Program</SelectItem>
                           </SelectContent>
                         </Select>
                       )}

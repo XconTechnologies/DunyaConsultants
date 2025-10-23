@@ -394,7 +394,7 @@ export const events = pgTable("events", {
   image: text("image").notNull(), // Thumbnail
   detailImage: text("detail_image"), // Banner image
   eventDate: timestamp("event_date").notNull(),
-  eventType: text("event_type", { enum: ["Open Day", "Expo", "IELTS Masterclass"] }).notNull(),
+  eventType: text("event_type", { enum: ["Open Day", "Expo", "IELTS Masterclass", "AGMs", "Team Meetings", "Official Representative Meetings", "Student Ambassador Program"] }).notNull(),
   location: text("location"),
   country: text("country").array(),
   studyLevel: text("study_level").array(),
