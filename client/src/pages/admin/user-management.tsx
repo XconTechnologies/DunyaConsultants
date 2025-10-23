@@ -295,15 +295,19 @@ export default function UserManagement() {
     enabled: showEventAssignmentDialog && eventAssignmentUserId !== null,
   });
 
-  // Update selected events when user assigned events are loaded
+  // Update selected events when user assigned events are loaded or dialog opens
   useEffect(() => {
-    if (showEventAssignmentDialog && userAssignedEvents.length > 0) {
-      setSelectedEvents(userAssignedEvents.map((e: any) => e.id));
-      setExistingEventAssignments(userAssignedEvents.map((e: any) => e.id));
-    } else if (showEventAssignmentDialog && eventAssignmentUserId === null) {
-      // Creating new user - start with empty selection
-      setSelectedEvents([]);
-      setExistingEventAssignments([]);
+    if (showEventAssignmentDialog) {
+      if (eventAssignmentUserId !== null) {
+        // Editing existing user - load their assignments (or empty array if none)
+        const assignedIds = userAssignedEvents.map((e: any) => e.id);
+        setSelectedEvents(assignedIds);
+        setExistingEventAssignments(assignedIds);
+      } else {
+        // Creating new user - start with empty selection
+        setSelectedEvents([]);
+        setExistingEventAssignments([]);
+      }
     }
   }, [userAssignedEvents, showEventAssignmentDialog, eventAssignmentUserId]);
 
