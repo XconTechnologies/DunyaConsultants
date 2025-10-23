@@ -20,6 +20,8 @@ import {
   Search,
   Filter,
   X,
+  User,
+  Clock,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -40,6 +42,8 @@ interface BlogPost {
   content: string;
   isPublished: boolean;
   approvalStatus?: 'approved' | 'not_approved' | 'editable';
+  approvedAt?: Date | null;
+  approverId?: number | null;
   publishedAt: Date | null;
   authorId: number;
   metaTitle: string | null;
@@ -193,6 +197,13 @@ export default function AllPosts() {
   const getAuthorName = (authorId: number) => {
     const author = authors.find((a: Author) => a.id === authorId);
     return author ? author.username : "Unknown";
+  };
+
+  // Get approver name helper
+  const getApproverName = (approverId: number | null | undefined) => {
+    if (!approverId) return null;
+    const approver = authors.find((a: Author) => a.id === approverId);
+    return approver ? approver.username : "Unknown";
   };
 
   // Selection handlers
@@ -696,29 +707,51 @@ export default function AllPosts() {
                             </div>
                           </TableCell>
                           <TableCell>
-                            <div className="flex flex-col gap-1">
+                            <div className="flex flex-col gap-2">
                               <Badge 
                                 variant={post.isPublished ? "default" : "secondary"}
                                 className={post.isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-sm" : "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-0"}
                               >
                                 {post.isPublished ? "Published" : "Draft"}
                               </Badge>
-                              <Badge 
-                                variant="outline"
-                                className={
-                                  post.approvalStatus === 'approved' 
-                                    ? "bg-green-50 text-green-700 border-green-300" 
+                              <div className="space-y-1">
+                                <Badge 
+                                  variant="outline"
+                                  className={
+                                    post.approvalStatus === 'approved' 
+                                      ? "bg-green-50 text-green-700 border-green-300" 
+                                      : post.approvalStatus === 'not_approved'
+                                      ? "bg-red-50 text-red-700 border-red-300"
+                                      : "bg-blue-50 text-blue-700 border-blue-300"
+                                  }
+                                >
+                                  {post.approvalStatus === 'approved' 
+                                    ? "✓ Approved" 
                                     : post.approvalStatus === 'not_approved'
-                                    ? "bg-red-50 text-red-700 border-red-300"
-                                    : "bg-blue-50 text-blue-700 border-blue-300"
-                                }
-                              >
-                                {post.approvalStatus === 'approved' 
-                                  ? "✓ Approved" 
-                                  : post.approvalStatus === 'not_approved'
-                                  ? "✗ Not Approved"
-                                  : "✎ Editable"}
-                              </Badge>
+                                    ? "✗ Not Approved"
+                                    : "✎ Editable"}
+                                </Badge>
+                                {post.approvalStatus !== 'editable' && post.approverId && (
+                                  <div className="flex flex-col gap-0.5 text-xs text-gray-600">
+                                    <div className="flex items-center gap-1">
+                                      <User className="w-3 h-3" />
+                                      <span className="font-medium">{getApproverName(post.approverId)}</span>
+                                    </div>
+                                    {post.approvedAt && (
+                                      <div className="flex items-center gap-1">
+                                        <Clock className="w-3 h-3" />
+                                        <span>{new Date(post.approvedAt).toLocaleDateString('en-US', { 
+                                          month: 'short', 
+                                          day: 'numeric',
+                                          year: 'numeric',
+                                          hour: '2-digit',
+                                          minute: '2-digit'
+                                        })}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </TableCell>
                           <TableCell className="text-center">
