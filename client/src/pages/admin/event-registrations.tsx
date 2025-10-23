@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2, Check, QrCode } from "lucide-react";
+import { CheckCircle2, XCircle, Calendar, Mail, Phone, GraduationCap, MapPin, Download, FileSpreadsheet, Trash2, Check, QrCode, ChevronLeft, ChevronRight } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -683,78 +683,86 @@ export default function EventRegistrationsPage() {
 
                         {/* Pagination Controls */}
                         {totalPages > 1 && (
-                          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm text-gray-600">Items per page:</span>
-                              <Select
-                                value={itemsPerPage.toString()}
-                                onValueChange={(value) => {
-                                  setItemsPerPage(parseInt(value));
-                                  setCurrentPage(event.id, 1);
-                                }}
-                              >
-                                <SelectTrigger className="w-20" data-testid="select-items-per-page">
-                                  <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="25">25</SelectItem>
-                                  <SelectItem value="50">50</SelectItem>
-                                  <SelectItem value="100">100</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <span className="text-sm text-gray-600">
-                                Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
-                              </span>
-                            </div>
-                            
-                            <div className="flex items-center gap-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setCurrentPage(event.id, currentPage - 1)}
-                                disabled={currentPage === 1}
-                                data-testid="button-previous-page"
-                              >
-                                Previous
-                              </Button>
-                              
-                              <div className="flex items-center gap-1">
-                                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                                  let pageNum;
-                                  if (totalPages <= 5) {
-                                    pageNum = i + 1;
-                                  } else if (currentPage <= 3) {
-                                    pageNum = i + 1;
-                                  } else if (currentPage >= totalPages - 2) {
-                                    pageNum = totalPages - 4 + i;
-                                  } else {
-                                    pageNum = currentPage - 2 + i;
-                                  }
-                                  
-                                  return (
-                                    <Button
-                                      key={pageNum}
-                                      variant={currentPage === pageNum ? "default" : "outline"}
-                                      size="sm"
-                                      onClick={() => setCurrentPage(event.id, pageNum)}
-                                      className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
-                                      data-testid={`button-page-${pageNum}`}
-                                    >
-                                      {pageNum}
-                                    </Button>
-                                  );
-                                })}
+                          <div className="mt-6 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 border border-gray-200 rounded-lg shadow-sm">
+                            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                              <div className="flex items-center gap-3">
+                                <span className="text-sm font-medium text-gray-700">Items per page:</span>
+                                <Select
+                                  value={itemsPerPage.toString()}
+                                  onValueChange={(value) => {
+                                    setItemsPerPage(parseInt(value));
+                                    setCurrentPage(event.id, 1);
+                                  }}
+                                >
+                                  <SelectTrigger className="w-20 h-9 border-gray-300 bg-white shadow-sm hover:border-[#1D50C9] transition-colors" data-testid="select-items-per-page">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="25">25</SelectItem>
+                                    <SelectItem value="50">50</SelectItem>
+                                    <SelectItem value="100">100</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <span className="text-sm text-gray-600 bg-white px-3 py-1.5 rounded-md border border-gray-200 shadow-sm">
+                                  Showing <span className="font-semibold text-[#1D50C9]">{((currentPage - 1) * itemsPerPage) + 1}</span> to <span className="font-semibold text-[#1D50C9]">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-semibold text-[#1D50C9]">{totalItems}</span>
+                                </span>
                               </div>
                               
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setCurrentPage(event.id, currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                                data-testid="button-next-page"
-                              >
-                                Next
-                              </Button>
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(event.id, currentPage - 1)}
+                                  disabled={currentPage === 1}
+                                  className="h-9 px-3 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition-all duration-200"
+                                  data-testid="button-previous-page"
+                                >
+                                  <ChevronLeft className="w-4 h-4 mr-1" />
+                                  Previous
+                                </Button>
+                                
+                                <div className="flex items-center gap-1 mx-2">
+                                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                    let pageNum;
+                                    if (totalPages <= 5) {
+                                      pageNum = i + 1;
+                                    } else if (currentPage <= 3) {
+                                      pageNum = i + 1;
+                                    } else if (currentPage >= totalPages - 2) {
+                                      pageNum = totalPages - 4 + i;
+                                    } else {
+                                      pageNum = currentPage - 2 + i;
+                                    }
+                                    
+                                    return (
+                                      <Button
+                                        key={pageNum}
+                                        variant={currentPage === pageNum ? "default" : "outline"}
+                                        size="sm"
+                                        onClick={() => setCurrentPage(event.id, pageNum)}
+                                        className={currentPage === pageNum 
+                                          ? "h-9 w-9 p-0 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md font-semibold" 
+                                          : "h-9 w-9 p-0 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] shadow-sm transition-all duration-200"}
+                                        data-testid={`button-page-${pageNum}`}
+                                      >
+                                        {pageNum}
+                                      </Button>
+                                    );
+                                  })}
+                                </div>
+                                
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(event.id, currentPage + 1)}
+                                  disabled={currentPage === totalPages}
+                                  className="h-9 px-3 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition-all duration-200"
+                                  data-testid="button-next-page"
+                                >
+                                  Next
+                                  <ChevronRight className="w-4 h-4 ml-1" />
+                                </Button>
+                              </div>
                             </div>
                           </div>
                         )}
@@ -1011,78 +1019,86 @@ export default function EventRegistrationsPage() {
 
                               {/* Pagination Controls */}
                               {totalPages > 1 && (
-                                <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-sm text-gray-600">Items per page:</span>
-                                    <Select
-                                      value={itemsPerPage.toString()}
-                                      onValueChange={(value) => {
-                                        setItemsPerPage(parseInt(value));
-                                        setCurrentPage(event.id, 1);
-                                      }}
-                                    >
-                                      <SelectTrigger className="w-20" data-testid="select-items-per-page">
-                                        <SelectValue />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="25">25</SelectItem>
-                                        <SelectItem value="50">50</SelectItem>
-                                        <SelectItem value="100">100</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                    <span className="text-sm text-gray-600">
-                                      Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
-                                    </span>
-                                  </div>
-                                  
-                                  <div className="flex items-center gap-2">
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      onClick={() => setCurrentPage(event.id, currentPage - 1)}
-                                      disabled={currentPage === 1}
-                                      data-testid="button-previous-page"
-                                    >
-                                      Previous
-                                    </Button>
-                                    
-                                    <div className="flex items-center gap-1">
-                                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                                        let pageNum;
-                                        if (totalPages <= 5) {
-                                          pageNum = i + 1;
-                                        } else if (currentPage <= 3) {
-                                          pageNum = i + 1;
-                                        } else if (currentPage >= totalPages - 2) {
-                                          pageNum = totalPages - 4 + i;
-                                        } else {
-                                          pageNum = currentPage - 2 + i;
-                                        }
-                                        
-                                        return (
-                                          <Button
-                                            key={pageNum}
-                                            variant={currentPage === pageNum ? "default" : "outline"}
-                                            size="sm"
-                                            onClick={() => setCurrentPage(event.id, pageNum)}
-                                            className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
-                                            data-testid={`button-page-${pageNum}`}
-                                          >
-                                            {pageNum}
-                                          </Button>
-                                        );
-                                      })}
+                                <div className="mt-6 p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 border border-gray-200 rounded-lg shadow-sm">
+                                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-sm font-medium text-gray-700">Items per page:</span>
+                                      <Select
+                                        value={itemsPerPage.toString()}
+                                        onValueChange={(value) => {
+                                          setItemsPerPage(parseInt(value));
+                                          setCurrentPage(event.id, 1);
+                                        }}
+                                      >
+                                        <SelectTrigger className="w-20 h-9 border-gray-300 bg-white shadow-sm hover:border-[#1D50C9] transition-colors" data-testid="select-items-per-page">
+                                          <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                          <SelectItem value="25">25</SelectItem>
+                                          <SelectItem value="50">50</SelectItem>
+                                          <SelectItem value="100">100</SelectItem>
+                                        </SelectContent>
+                                      </Select>
+                                      <span className="text-sm text-gray-600 bg-white px-3 py-1.5 rounded-md border border-gray-200 shadow-sm">
+                                        Showing <span className="font-semibold text-[#1D50C9]">{((currentPage - 1) * itemsPerPage) + 1}</span> to <span className="font-semibold text-[#1D50C9]">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-semibold text-[#1D50C9]">{totalItems}</span>
+                                      </span>
                                     </div>
                                     
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      onClick={() => setCurrentPage(event.id, currentPage + 1)}
-                                      disabled={currentPage === totalPages}
-                                      data-testid="button-next-page"
-                                    >
-                                      Next
-                                    </Button>
+                                    <div className="flex items-center gap-1">
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setCurrentPage(event.id, currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                        className="h-9 px-3 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition-all duration-200"
+                                        data-testid="button-previous-page"
+                                      >
+                                        <ChevronLeft className="w-4 h-4 mr-1" />
+                                        Previous
+                                      </Button>
+                                      
+                                      <div className="flex items-center gap-1 mx-2">
+                                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                          let pageNum;
+                                          if (totalPages <= 5) {
+                                            pageNum = i + 1;
+                                          } else if (currentPage <= 3) {
+                                            pageNum = i + 1;
+                                          } else if (currentPage >= totalPages - 2) {
+                                            pageNum = totalPages - 4 + i;
+                                          } else {
+                                            pageNum = currentPage - 2 + i;
+                                          }
+                                          
+                                          return (
+                                            <Button
+                                              key={pageNum}
+                                              variant={currentPage === pageNum ? "default" : "outline"}
+                                              size="sm"
+                                              onClick={() => setCurrentPage(event.id, pageNum)}
+                                              className={currentPage === pageNum 
+                                                ? "h-9 w-9 p-0 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md font-semibold" 
+                                                : "h-9 w-9 p-0 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] shadow-sm transition-all duration-200"}
+                                              data-testid={`button-page-${pageNum}`}
+                                            >
+                                              {pageNum}
+                                            </Button>
+                                          );
+                                        })}
+                                      </div>
+                                      
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setCurrentPage(event.id, currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        className="h-9 px-3 bg-white border-gray-300 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition-all duration-200"
+                                        data-testid="button-next-page"
+                                      >
+                                        Next
+                                        <ChevronRight className="w-4 h-4 ml-1" />
+                                      </Button>
+                                    </div>
                                   </div>
                                 </div>
                               )}
