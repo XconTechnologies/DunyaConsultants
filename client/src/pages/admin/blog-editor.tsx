@@ -643,7 +643,9 @@ export default function BlogEditor() {
       return response.json();
     },
     onSuccess: () => {
+      // Invalidate both the single post and the posts list
       queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
       refetch();
       toast({
         title: "Approval Status Updated",
