@@ -456,22 +456,13 @@ table tr:hover {
 /* Mirror slider animation - back and forth from top-left to bottom-right */
 @keyframes mirror-slider-back-forth {
   0% {
-    transform: translate(-100%, -100%);
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
+    transform: translate(-50%, -50%);
   }
   50% {
-    transform: translate(100%, 100%);
-    opacity: 0;
-  }
-  75% {
-    opacity: 1;
+    transform: translate(0%, 0%);
   }
   100% {
-    transform: translate(-100%, -100%);
-    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 }
 
