@@ -42,11 +42,18 @@ function renderList(items: ListItem[], style: 'ul' | 'ol', depth = 0): string {
   if (!items || items.length === 0) return '';
   
   const tag = style === 'ol' ? 'ol' : 'ul';
-  let html = `<${tag}>\n`;
+  const classes = depth === 0 ? ' class="list-content"' : '';
+  let html = `<${tag}${classes}>\n`;
   
   items.forEach(item => {
+    // Remove leading bullets or numbers from text if present
+    let cleanText = item.text
+      .replace(/^[•●○■□▪▫◆◇‣⁃∙⦿⦾]+\s*/g, '') // Remove bullet points
+      .replace(/^\d+\.\s*/g, '') // Remove numbered list markers
+      .trim();
+    
     // Don't escape HTML in list items since they can contain rich formatting
-    html += `  <li>${item.text}`;
+    html += `  <li>${cleanText}`;
     if (item.children && item.children.length > 0) {
       html += '\n' + renderList(item.children, style, depth + 1);
     }
