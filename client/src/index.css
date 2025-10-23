@@ -155,6 +155,16 @@ ol.list-content li {
   font-weight: 400;
 }
 
+/* Override list item margins for tighter spacing */
+.prose > ul > li,
+.prose > ol > li,
+.blog-content > ul > li,
+.blog-content > ol > li,
+ul.list-content > li,
+ol.list-content > li {
+  margin: 0.5rem 0 !important;
+}
+
 /* Media Queries for Tablets (e.g., 768px to 1024px) */
 @media (max-width: 1024px) {
   html {
@@ -307,10 +317,18 @@ ol.list-content {
 .blog-content ul li,
 .prose ul li,
 ul.list-content li {
-  list-style-type: disc;
+  list-style-type: disc !important;
   margin: 0.5rem 0;
   line-height: 1.6;
   padding-left: 0.25rem;
+}
+
+/* Main list items only - not nested */
+.ql-editor > ul > li,
+.blog-content > ul > li,
+.prose > ul > li,
+ul.list-content > li {
+  list-style-type: disc !important;
 }
 
 .ql-editor ul li::marker,
@@ -346,12 +364,25 @@ ol.list-content li::marker {
 .blog-content li > ol,
 .prose li > ul,
 .prose li > ol,
+article li > ul,
+article li > ol,
 ul.list-content li > ul,
+ul.list-content li > ol,
+ol.list-content li > ul,
 ol.list-content li > ol {
-  margin-top: 0.25rem;
-  margin-bottom: 0;
-  padding-left: 1.75rem;
-  display: block;
+  margin: 0.5rem 0 0 0 !important;
+  padding-left: 2.5rem !important;
+  display: block !important;
+}
+
+/* Reset any prose-specific list margins that might be interfering */
+.prose ul,
+.prose ol,
+.blog-content ul,
+.blog-content ol,
+article ul,
+article ol {
+  margin-bottom: 0.5rem !important;
 }
 
 .ql-editor ul ul,
@@ -360,8 +391,14 @@ ol.list-content li > ol {
 .blog-content ol ul,
 .prose ul ul,
 .prose ol ul,
-ul.list-content ul {
+article ul ul,
+article ol ul,
+ul.list-content ul,
+.prose > ul ul,
+.blog-content > ul ul,
+article > ul ul {
   list-style-type: circle !important;
+  margin-top: 0.25rem !important;
 }
 
 .ql-editor ul ol,
@@ -370,9 +407,15 @@ ul.list-content ul {
 .blog-content ol ol,
 .prose ul ol,
 .prose ol ol,
+article ul ol,
+article ol ol,
 ul.list-content ol,
-ol.list-content ol {
+ol.list-content ol,
+.prose > ul ol,
+.blog-content > ul ol,
+article > ul ol {
   list-style-type: lower-alpha !important;
+  margin-top: 0.25rem !important;
 }
 
 /* Nested list items with circle bullets and brand colors */
@@ -384,8 +427,9 @@ ol.list-content ol {
 .prose ol ul > li,
 ul.list-content ul > li {
   list-style-type: circle !important;
-  margin: 0.3rem 0;
-  padding-left: 0.25rem;
+  margin: 0.3rem 0 !important;
+  padding-left: 0.25rem !important;
+  line-height: 1.5 !important;
 }
 
 .ql-editor ul ul > li::marker,
