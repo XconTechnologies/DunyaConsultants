@@ -221,6 +221,9 @@ export default function UserManagement() {
   const [showEventAssignmentDialog, setShowEventAssignmentDialog] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState<number[]>([]);
   const [pendingUserUpdate, setPendingUserUpdate] = useState<{id: number, updates: Partial<AdminUser>} | null>(null);
+  const [pendingUserCreate, setPendingUserCreate] = useState<CreateUserFormData | null>(null);
+  const [eventAssignmentUserId, setEventAssignmentUserId] = useState<number | null>(null);
+  const [existingEventAssignments, setExistingEventAssignments] = useState<number[]>([]);
 
   // Check authentication
   useEffect(() => {
@@ -278,6 +281,32 @@ export default function UserManagement() {
     enabled: showEventAssignmentDialog,
   });
 
+  // Fetch existing event assignments for user
+  const { data: userAssignedEvents = [], refetch: refetchUserEvents } = useQuery<any[]>({
+    queryKey: ["/api/admin/users", eventAssignmentUserId, "/events"],
+    queryFn: async () => {
+      if (!eventAssignmentUserId) return [];
+      const response = await fetch(`/api/admin/users/${eventAssignmentUserId}/events`, {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error('Failed to fetch user events');
+      return response.json();
+    },
+    enabled: showEventAssignmentDialog && eventAssignmentUserId !== null,
+  });
+
+  // Update selected events when user assigned events are loaded
+  useEffect(() => {
+    if (showEventAssignmentDialog && userAssignedEvents.length > 0) {
+      setSelectedEvents(userAssignedEvents.map((e: any) => e.id));
+      setExistingEventAssignments(userAssignedEvents.map((e: any) => e.id));
+    } else if (showEventAssignmentDialog && eventAssignmentUserId === null) {
+      // Creating new user - start with empty selection
+      setSelectedEvents([]);
+      setExistingEventAssignments([]);
+    }
+  }, [userAssignedEvents, showEventAssignmentDialog, eventAssignmentUserId]);
+
   // Create user mutation
   const createUserMutation = useMutation({
     mutationFn: async (userData: CreateUserFormData) => {
@@ -291,14 +320,25 @@ export default function UserManagement() {
       }
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
-      setIsCreateDialogOpen(false);
-      setCreateForm({ username: "", email: "", password: "", roles: ["editor"], permissions: {} });
-      toast({
-        title: "Success",
-        description: "User created successfully",
-      });
+      
+      // If we created an events manager with pending event assignments
+      if (pendingUserCreate && selectedEvents.length > 0 && data.id) {
+        // Assign events to the newly created user
+        assignEventsMutation.mutate({
+          userId: data.id,
+          eventIds: selectedEvents
+        });
+      } else {
+        // Normal user creation
+        setIsCreateDialogOpen(false);
+        setCreateForm({ username: "", email: "", password: "", roles: ["editor"], permissions: {} });
+        toast({
+          title: "Success",
+          description: "User created successfully",
+        });
+      }
     },
     onError: (error: any) => {
       toast({
@@ -422,24 +462,67 @@ export default function UserManagement() {
       return Promise.all(promises);
     },
     onSuccess: async () => {
-      toast({
-        title: "Success",
-        description: "Events assigned successfully",
-      });
-      
       // Now update the user role if we have pending update
       if (pendingUserUpdate) {
         updateUserMutation.mutate(pendingUserUpdate);
         setPendingUserUpdate(null);
+        
+        toast({
+          title: "Success",
+          description: "User updated and events assigned successfully",
+        });
+      } else if (pendingUserCreate) {
+        // For newly created user with event assignments
+        setPendingUserCreate(null);
+        setCreateForm({ username: "", email: "", password: "", roles: ["editor"], permissions: {} });
+        
+        toast({
+          title: "Success",
+          description: "User created and events assigned successfully",
+        });
+      } else {
+        // Just event assignments (no pending user operation)
+        toast({
+          title: "Success",
+          description: "Events assigned successfully",
+        });
       }
       
       setShowEventAssignmentDialog(false);
       setSelectedEvents([]);
+      setEventAssignmentUserId(null);
+      setExistingEventAssignments([]);
     },
     onError: (error: any) => {
       toast({
         title: "Error",
         description: error.message || "Failed to assign events",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Remove event assignment mutation
+  const removeEventAssignmentMutation = useMutation({
+    mutationFn: async ({ userId, eventId }: { userId: number; eventId: number }) => {
+      const response = await fetch(`/api/admin/event-assignments/${userId}/${eventId}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error('Failed to remove event assignment');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Event assignment removed",
+      });
+      refetchUserEvents();
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to remove event assignment",
         variant: "destructive",
       });
     },
@@ -508,7 +591,17 @@ export default function UserManagement() {
       permissions: mergedPermissions
     };
     
-    createUserMutation.mutate(userData);
+    // Check if events_manager role is selected
+    if (createForm.roles.includes('events_manager')) {
+      // Show event assignment dialog first
+      setPendingUserCreate(userData);
+      setIsCreateDialogOpen(false);
+      setEventAssignmentUserId(null); // null means creating new user
+      setShowEventAssignmentDialog(true);
+    } else {
+      // Create user directly
+      createUserMutation.mutate(userData);
+    }
   };
 
   const handleEditUser = (user: AdminUser) => {
@@ -1104,13 +1197,14 @@ export default function UserManagement() {
                       updates.password = editPassword;
                     }
                     
-                    // Check if events_manager role is being added
+                    // Check if events_manager role is selected (new or existing)
                     const wasEventsManager = editingUser.roles?.includes('events_manager') || false;
                     const isEventsManager = editRoles.includes('events_manager');
                     
-                    if (isEventsManager && !wasEventsManager) {
-                      // Show event assignment dialog first
+                    if (isEventsManager) {
+                      // Show event assignment dialog (for both new and existing events managers)
                       setPendingUserUpdate({ id: editingUser.id, updates });
+                      setEventAssignmentUserId(editingUser.id);
                       setIsEditDialogOpen(false);
                       setShowEventAssignmentDialog(true);
                     } else {
@@ -1169,15 +1263,22 @@ export default function UserManagement() {
                 onClick={() => {
                   setShowEventAssignmentDialog(false);
                   setSelectedEvents([]);
+                  setExistingEventAssignments([]);
                   setPendingUserUpdate(null);
-                  // Reopen edit dialog
-                  setIsEditDialogOpen(true);
+                  setPendingUserCreate(null);
+                  setEventAssignmentUserId(null);
+                  // Reopen the appropriate dialog
+                  if (pendingUserCreate) {
+                    setIsCreateDialogOpen(true);
+                  } else if (pendingUserUpdate) {
+                    setIsEditDialogOpen(true);
+                  }
                 }}
               >
                 Cancel
               </Button>
               <Button 
-                onClick={() => {
+                onClick={async () => {
                   if (selectedEvents.length === 0) {
                     toast({
                       title: "Validation Error",
@@ -1187,16 +1288,53 @@ export default function UserManagement() {
                     return;
                   }
                   
-                  if (pendingUserUpdate) {
-                    assignEventsMutation.mutate({
-                      userId: pendingUserUpdate.id,
-                      eventIds: selectedEvents
-                    });
+                  // For creating new user
+                  if (pendingUserCreate) {
+                    // Create user first, event assignment will happen in createUserMutation.onSuccess
+                    createUserMutation.mutate(pendingUserCreate);
+                    return;
+                  }
+                  
+                  // For editing existing user
+                  if (pendingUserUpdate && eventAssignmentUserId) {
+                    // Determine which events to add and remove
+                    const eventsToAdd = selectedEvents.filter(id => !existingEventAssignments.includes(id));
+                    const eventsToRemove = existingEventAssignments.filter(id => !selectedEvents.includes(id));
+                    
+                    try {
+                      // Remove unselected events
+                      for (const eventId of eventsToRemove) {
+                        await removeEventAssignmentMutation.mutateAsync({
+                          userId: eventAssignmentUserId,
+                          eventId
+                        });
+                      }
+                      
+                      // Add newly selected events
+                      if (eventsToAdd.length > 0) {
+                        await assignEventsMutation.mutateAsync({
+                          userId: eventAssignmentUserId,
+                          eventIds: eventsToAdd
+                        });
+                      } else {
+                        // If only removing, still need to update the user
+                        if (pendingUserUpdate) {
+                          updateUserMutation.mutate(pendingUserUpdate);
+                          setPendingUserUpdate(null);
+                        }
+                        setShowEventAssignmentDialog(false);
+                        setSelectedEvents([]);
+                        setExistingEventAssignments([]);
+                        setEventAssignmentUserId(null);
+                      }
+                    } catch (error) {
+                      console.error('Error updating event assignments:', error);
+                    }
                   }
                 }}
-                disabled={assignEventsMutation.isPending || selectedEvents.length === 0}
+                disabled={createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending || selectedEvents.length === 0}
               >
-                {assignEventsMutation.isPending ? "Assigning..." : `Assign ${selectedEvents.length} Event${selectedEvents.length !== 1 ? 's' : ''}`}
+                {(createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending) ? "Saving..." : "Save Event Assignments"}
               </Button>
             </div>
           </div>
