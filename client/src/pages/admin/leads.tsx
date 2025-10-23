@@ -46,6 +46,8 @@ export default function LeadsManagement() {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [selectedLead, setSelectedLead] = useState<Consultation | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [currentPage, setCurrentPage] = useState(1);
   const queryClient = useQueryClient();
 
   // Check authentication
@@ -117,10 +119,13 @@ export default function LeadsManagement() {
 
   // Selection handlers
   const toggleSelectAll = () => {
-    if (selectedIds.length === filteredLeads.length) {
-      setSelectedIds([]);
+    const pageLeadIds = paginatedLeads.map(lead => lead.id);
+    const allPageSelected = pageLeadIds.every(id => selectedIds.includes(id));
+    
+    if (allPageSelected) {
+      setSelectedIds(selectedIds.filter(id => !pageLeadIds.includes(id)));
     } else {
-      setSelectedIds(filteredLeads.map(lead => lead.id));
+      setSelectedIds([...new Set([...selectedIds, ...pageLeadIds])]);
     }
   };
 
@@ -153,6 +158,17 @@ export default function LeadsManagement() {
     
     return matchesSource && matchesStatus && matchesSearch;
   });
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sourceFilter, statusFilter, searchQuery]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredLeads.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedLeads = filteredLeads.slice(startIndex, endIndex);
 
   // Get unique sources
   const uniqueSources = Array.from(new Set(leads.map(lead => lead.source || "website")));
@@ -445,7 +461,7 @@ export default function LeadsManagement() {
                           {isAdmin && (
                             <TableHead className="w-12">
                               <Checkbox
-                                checked={selectedIds.length === filteredLeads.length && filteredLeads.length > 0}
+                                checked={paginatedLeads.length > 0 && paginatedLeads.every(lead => selectedIds.includes(lead.id))}
                                 onCheckedChange={toggleSelectAll}
                                 data-testid="checkbox-select-all"
                               />
@@ -461,7 +477,7 @@ export default function LeadsManagement() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {filteredLeads.map((lead) => (
+                        {paginatedLeads.map((lead) => (
                           <TableRow 
                             key={lead.id}
                             onClick={() => handleRowClick(lead)}
@@ -549,6 +565,84 @@ export default function LeadsManagement() {
                         ))}
                       </TableBody>
                     </Table>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Items per page:</span>
+                          <Select
+                            value={itemsPerPage.toString()}
+                            onValueChange={(value) => {
+                              setItemsPerPage(parseInt(value));
+                              setCurrentPage(1);
+                            }}
+                          >
+                            <SelectTrigger className="w-20" data-testid="select-items-per-page">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="25">25</SelectItem>
+                              <SelectItem value="50">50</SelectItem>
+                              <SelectItem value="100">100</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <span className="text-sm text-gray-600">
+                            Showing {startIndex + 1} to {Math.min(endIndex, filteredLeads.length)} of {filteredLeads.length}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            data-testid="button-previous-page"
+                          >
+                            Previous
+                          </Button>
+                          
+                          <div className="flex items-center gap-1">
+                            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                              let pageNum;
+                              if (totalPages <= 5) {
+                                pageNum = i + 1;
+                              } else if (currentPage <= 3) {
+                                pageNum = i + 1;
+                              } else if (currentPage >= totalPages - 2) {
+                                pageNum = totalPages - 4 + i;
+                              } else {
+                                pageNum = currentPage - 2 + i;
+                              }
+                              
+                              return (
+                                <Button
+                                  key={pageNum}
+                                  variant={currentPage === pageNum ? "default" : "outline"}
+                                  size="sm"
+                                  onClick={() => setCurrentPage(pageNum)}
+                                  className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
+                                  data-testid={`button-page-${pageNum}`}
+                                >
+                                  {pageNum}
+                                </Button>
+                              );
+                            })}
+                          </div>
+                          
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            data-testid="button-next-page"
+                          >
+                            Next
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </CardContent>
