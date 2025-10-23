@@ -453,6 +453,10 @@ table tr:hover {
   animation: mirror-slider 3s ease-in-out;
 }
 
+.animate-mirror-slider-infinite {
+  animation: mirror-slider 3s ease-in-out infinite;
+}
+
 /* Image scrolling animations */
 @keyframes scroll-up {
   0% {
