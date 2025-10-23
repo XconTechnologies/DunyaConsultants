@@ -38,6 +38,8 @@ export default function EventRegistrationsPage() {
   const [selectedRegistration, setSelectedRegistration] = useState<EventRegistration | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [generatingQR, setGeneratingQR] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [currentPages, setCurrentPages] = useState<Record<number, number>>({});
   const { toast } = useToast();
 
   // Get event ID from URL parameters
@@ -334,6 +336,21 @@ export default function EventRegistrationsPage() {
     return daysUntil < 0;
   });
 
+  // Pagination helper function
+  const getPaginatedData = (data: EventRegistration[], eventId: number) => {
+    const currentPage = currentPages[eventId] || 1;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedData = data.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    
+    return { paginatedData, currentPage, totalPages, totalItems: data.length };
+  };
+
+  const setCurrentPage = (eventId: number, page: number) => {
+    setCurrentPages(prev => ({ ...prev, [eventId]: page }));
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30">
       <AdminSidebar 
@@ -434,6 +451,7 @@ export default function EventRegistrationsPage() {
 
                     {upcomingEvents.map((event: Event) => {
                 const eventRegs = registrationsByEvent[event.id] || [];
+                const { paginatedData, currentPage, totalPages, totalItems } = getPaginatedData(eventRegs, event.id);
                 const attendedCount = eventRegs.filter((r: EventRegistration) => r.isAttended).length;
                 const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
 
@@ -570,12 +588,13 @@ export default function EventRegistrationsPage() {
                                 <TableRow className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100/50">
                                   <TableHead className="w-12 py-4 hidden sm:table-cell">
                                     <Checkbox
-                                      checked={eventRegs.length > 0 && selectedIds.length === eventRegs.length}
+                                      checked={paginatedData.length > 0 && paginatedData.every(r => selectedIds.includes(r.id))}
                                       onCheckedChange={(checked) => {
                                         if (checked) {
-                                          setSelectedIds(eventRegs.map(r => r.id));
+                                          const newIds = [...new Set([...selectedIds, ...paginatedData.map(r => r.id)])];
+                                          setSelectedIds(newIds);
                                         } else {
-                                          setSelectedIds([]);
+                                          setSelectedIds(selectedIds.filter(id => !paginatedData.map(r => r.id).includes(id)));
                                         }
                                       }}
                                       data-testid="checkbox-select-all"
@@ -589,7 +608,7 @@ export default function EventRegistrationsPage() {
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
-                                {eventRegs.map((reg: EventRegistration) => (
+                                {paginatedData.map((reg: EventRegistration) => (
                                   <TableRow 
                                     key={reg.id} 
                                     className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 cursor-pointer"
@@ -661,6 +680,84 @@ export default function EventRegistrationsPage() {
                             </Table>
                           </div>
                         </div>
+
+                        {/* Pagination Controls */}
+                        {totalPages > 1 && (
+                          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm text-gray-600">Items per page:</span>
+                              <Select
+                                value={itemsPerPage.toString()}
+                                onValueChange={(value) => {
+                                  setItemsPerPage(parseInt(value));
+                                  setCurrentPage(event.id, 1);
+                                }}
+                              >
+                                <SelectTrigger className="w-20" data-testid="select-items-per-page">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="25">25</SelectItem>
+                                  <SelectItem value="50">50</SelectItem>
+                                  <SelectItem value="100">100</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <span className="text-sm text-gray-600">
+                                Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
+                              </span>
+                            </div>
+                            
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setCurrentPage(event.id, currentPage - 1)}
+                                disabled={currentPage === 1}
+                                data-testid="button-previous-page"
+                              >
+                                Previous
+                              </Button>
+                              
+                              <div className="flex items-center gap-1">
+                                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                  let pageNum;
+                                  if (totalPages <= 5) {
+                                    pageNum = i + 1;
+                                  } else if (currentPage <= 3) {
+                                    pageNum = i + 1;
+                                  } else if (currentPage >= totalPages - 2) {
+                                    pageNum = totalPages - 4 + i;
+                                  } else {
+                                    pageNum = currentPage - 2 + i;
+                                  }
+                                  
+                                  return (
+                                    <Button
+                                      key={pageNum}
+                                      variant={currentPage === pageNum ? "default" : "outline"}
+                                      size="sm"
+                                      onClick={() => setCurrentPage(event.id, pageNum)}
+                                      className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
+                                      data-testid={`button-page-${pageNum}`}
+                                    >
+                                      {pageNum}
+                                    </Button>
+                                  );
+                                })}
+                              </div>
+                              
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setCurrentPage(event.id, currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                                data-testid="button-next-page"
+                              >
+                                Next
+                              </Button>
+                            </div>
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   </TabsContent>
@@ -702,6 +799,7 @@ export default function EventRegistrationsPage() {
 
                     {pastEvents.map((event: Event) => {
                       const eventRegs = registrationsByEvent[event.id] || [];
+                      const { paginatedData, currentPage, totalPages, totalItems } = getPaginatedData(eventRegs, event.id);
                       const attendedCount = eventRegs.filter((r: EventRegistration) => r.isAttended).length;
                       const eligibleCount = eventRegs.filter((r: EventRegistration) => r.prizeStatus === 'eligible' || r.prizeStatus === 'distributed').length;
 
@@ -828,12 +926,12 @@ export default function EventRegistrationsPage() {
                                       <TableRow className="bg-gradient-to-r from-gray-50 to-slate-50 hover:from-gray-100 hover:to-slate-100">
                                         <TableHead className="w-[50px]">
                                           <Checkbox 
-                                            checked={eventRegs.every((reg: EventRegistration) => selectedIds.includes(reg.id))}
+                                            checked={paginatedData.length > 0 && paginatedData.every((reg: EventRegistration) => selectedIds.includes(reg.id))}
                                             onCheckedChange={(checked) => {
                                               if (checked) {
-                                                setSelectedIds([...new Set([...selectedIds, ...eventRegs.map((r: EventRegistration) => r.id)])]);
+                                                setSelectedIds([...new Set([...selectedIds, ...paginatedData.map((r: EventRegistration) => r.id)])]);
                                               } else {
-                                                setSelectedIds(selectedIds.filter(id => !eventRegs.some((r: EventRegistration) => r.id === id)));
+                                                setSelectedIds(selectedIds.filter(id => !paginatedData.some((r: EventRegistration) => r.id === id)));
                                               }
                                             }}
                                           />
@@ -846,7 +944,7 @@ export default function EventRegistrationsPage() {
                                       </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                      {eventRegs.map((reg: EventRegistration) => (
+                                      {paginatedData.map((reg: EventRegistration) => (
                                         <TableRow 
                                           key={reg.id} 
                                           className="hover:bg-gray-50/50 cursor-pointer transition-colors"
@@ -910,6 +1008,84 @@ export default function EventRegistrationsPage() {
                                   </Table>
                                 </div>
                               </div>
+
+                              {/* Pagination Controls */}
+                              {totalPages > 1 && (
+                                <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm text-gray-600">Items per page:</span>
+                                    <Select
+                                      value={itemsPerPage.toString()}
+                                      onValueChange={(value) => {
+                                        setItemsPerPage(parseInt(value));
+                                        setCurrentPage(event.id, 1);
+                                      }}
+                                    >
+                                      <SelectTrigger className="w-20" data-testid="select-items-per-page">
+                                        <SelectValue />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectItem value="25">25</SelectItem>
+                                        <SelectItem value="50">50</SelectItem>
+                                        <SelectItem value="100">100</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                    <span className="text-sm text-gray-600">
+                                      Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className="flex items-center gap-2">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => setCurrentPage(event.id, currentPage - 1)}
+                                      disabled={currentPage === 1}
+                                      data-testid="button-previous-page"
+                                    >
+                                      Previous
+                                    </Button>
+                                    
+                                    <div className="flex items-center gap-1">
+                                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                        let pageNum;
+                                        if (totalPages <= 5) {
+                                          pageNum = i + 1;
+                                        } else if (currentPage <= 3) {
+                                          pageNum = i + 1;
+                                        } else if (currentPage >= totalPages - 2) {
+                                          pageNum = totalPages - 4 + i;
+                                        } else {
+                                          pageNum = currentPage - 2 + i;
+                                        }
+                                        
+                                        return (
+                                          <Button
+                                            key={pageNum}
+                                            variant={currentPage === pageNum ? "default" : "outline"}
+                                            size="sm"
+                                            onClick={() => setCurrentPage(event.id, pageNum)}
+                                            className={currentPage === pageNum ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3]" : ""}
+                                            data-testid={`button-page-${pageNum}`}
+                                          >
+                                            {pageNum}
+                                          </Button>
+                                        );
+                                      })}
+                                    </div>
+                                    
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => setCurrentPage(event.id, currentPage + 1)}
+                                      disabled={currentPage === totalPages}
+                                      data-testid="button-next-page"
+                                    >
+                                      Next
+                                    </Button>
+                                  </div>
+                                </div>
+                              )}
                             </CardContent>
                           </Card>
                         </TabsContent>
