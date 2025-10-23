@@ -453,17 +453,18 @@ export default function EventsPage() {
                       <div className="flex gap-3">
                         <Button
                           onClick={() => window.location.href = `/events/${event.slug}`}
-                          className="flex-1 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 transition-transform duration-300 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-0 before:bg-white/30 before:transition-all before:duration-[3000ms] before:ease-linear hover:before:w-[200%] hover:before:h-[200%] before:animate-mirror-slider"
-                          data-testid={`button-watch-highlights-${event.id}`}
+                          variant="outline"
+                          className="flex-1 bg-white border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
+                          data-testid={`button-details-past-${event.id}`}
                         >
-                          <span className="relative z-10">Watch Highlights</span>
+                          See Details
                         </Button>
                         <Button
                           onClick={() => window.location.href = `/events/${event.slug}`}
                           className="flex-1 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 transition-transform duration-300 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-0 before:bg-white/30 before:transition-all before:duration-[3000ms] before:ease-linear hover:before:w-[200%] hover:before:h-[200%] before:animate-mirror-slider"
-                          data-testid={`button-watch-recording-${event.id}`}
+                          data-testid={`button-watch-highlights-${event.id}`}
                         >
-                          <span className="relative z-10">Watch Recording</span>
+                          <span className="relative z-10">Watch Highlights</span>
                         </Button>
                       </div>
                     </CardContent>
