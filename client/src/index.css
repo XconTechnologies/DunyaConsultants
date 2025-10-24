@@ -289,7 +289,7 @@ table tr:hover {
 }
 
 /* ============================================
-   LIST STYLES - Default Browser Behavior
+   LIST STYLES - Clean Default Styling
    ============================================ */
 
 /* Base list containers */
@@ -307,19 +307,79 @@ ol.list-content {
   padding-left: 2.5em;
 }
 
-/* List item markers - brand blue color */
-.ql-editor ul li::marker,
-.blog-content ul li::marker,
-.prose ul li::marker,
-article ul li::marker,
-ul.list-content li::marker {
-  color: #1D50C9;
+/* Main level list items */
+.ql-editor ul > li,
+.blog-content ul > li,
+.prose ul > li,
+article ul > li,
+ul.list-content > li {
+  list-style-type: disc;
+  margin: 0.5em 0;
 }
 
-.ql-editor ol li::marker,
-.blog-content ol li::marker,
-.prose ol li::marker,
-article ol li::marker,
+.ql-editor ol > li,
+.blog-content ol > li,
+.prose ol > li,
+article ol > li,
+ol.list-content > li {
+  list-style-type: decimal;
+  margin: 0.5em 0;
+}
+
+/* Nested lists (2nd level) */
+.ql-editor ul ul,
+.blog-content ul ul,
+.prose ul ul,
+article ul ul,
+ul.list-content ul {
+  list-style-type: circle;
+  margin: 0.25em 0;
+  padding-left: 1.5em;
+}
+
+.ql-editor ul ol,
+.ql-editor ol ol,
+.blog-content ul ol,
+.blog-content ol ol,
+.prose ul ol,
+.prose ol ol,
+article ul ol,
+article ol ol,
+ul.list-content ol,
+ol.list-content ol {
+  list-style-type: lower-alpha;
+  margin: 0.25em 0;
+  padding-left: 1.5em;
+}
+
+/* Third level nested lists */
+.ql-editor ul ul ul,
+.blog-content ul ul ul,
+.prose ul ul ul,
+article ul ul ul,
+ul.list-content ul ul {
+  list-style-type: square;
+}
+
+.ql-editor ul ol ol,
+.ql-editor ol ol ol,
+.blog-content ul ol ol,
+.blog-content ol ol ol,
+.prose ul ol ol,
+.prose ol ol ol,
+article ul ol ol,
+article ol ol ol,
+ul.list-content ol ol,
+ol.list-content ol ol {
+  list-style-type: lower-roman;
+}
+
+/* All list item markers - brand blue color */
+.ql-editor li::marker,
+.blog-content li::marker,
+.prose li::marker,
+article li::marker,
+ul.list-content li::marker,
 ol.list-content li::marker {
   color: #1D50C9;
 }
