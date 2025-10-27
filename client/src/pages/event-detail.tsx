@@ -347,7 +347,7 @@ export default function EventDetailPage() {
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Event</h3>
                   <div 
-                    className="text-gray-700 text-lg leading-relaxed prose prose-lg max-w-none"
+                    className="blog-content prose prose-xl max-w-none"
                     dangerouslySetInnerHTML={{ __html: event.fullDescription || '' }}
                   />
                 </div>

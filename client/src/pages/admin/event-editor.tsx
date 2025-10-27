@@ -603,7 +603,7 @@ export default function EventEditor() {
                     </div>
                   ) : (
                     <div 
-                      className="prose max-w-none p-4 bg-gray-50 rounded-lg min-h-[400px]"
+                      className="blog-content prose prose-xl max-w-none p-4 bg-gray-50 rounded-lg min-h-[400px]"
                       dangerouslySetInnerHTML={{ __html: form.watch('fullDescription') || '<p class="text-gray-400">No content to preview</p>' }}
                     />
                   )}
