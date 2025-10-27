@@ -346,9 +346,10 @@ export default function EventDetailPage() {
                 {/* About This Event */}
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Event</h3>
-                  <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-wrap">
-                    {event.fullDescription}
-                  </p>
+                  <div 
+                    className="text-gray-700 text-lg leading-relaxed prose prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: event.fullDescription || '' }}
+                  />
                 </div>
 
                 {/* Study Destination Cards */}
