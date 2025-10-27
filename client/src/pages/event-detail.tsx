@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Calendar, MapPin, GraduationCap, Download, CheckCircle, Clock } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Globe, Download, CheckCircle, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Event } from "@shared/schema";
@@ -438,7 +438,7 @@ export default function EventDetailPage() {
                       {event.country && Array.isArray(event.country) && event.country.length > 0 && (
                         <div>
                           <div className="flex items-center gap-2 text-gray-600 mb-1">
-                            <GraduationCap className="w-5 h-5 text-[#1D50C9]" />
+                            <Globe className="w-5 h-5 text-[#1D50C9]" />
                             <span className="font-semibold">Study Destinations</span>
                           </div>
                           <div className="flex flex-wrap gap-2 ml-7">
