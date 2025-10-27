@@ -324,8 +324,6 @@ export default function EventDetailPage() {
                   </div>
                 )}
                 
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Details</h2>
-                
                 {/* Study Level Section */}
                 {event.studyLevel && Array.isArray(event.studyLevel) && event.studyLevel.length > 0 && (
                   <div className="mb-8">
@@ -343,9 +341,9 @@ export default function EventDetailPage() {
                   </div>
                 )}
 
-                {/* About This Event */}
+                {/* Event Details */}
                 <div className="mb-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Event</h3>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Details</h2>
                   <div 
                     className="blog-content prose prose-xl max-w-none"
                     dangerouslySetInnerHTML={{ __html: event.fullDescription || '' }}
