@@ -413,15 +413,32 @@ export default function EventDetailPage() {
                         <div>
                           <div className="flex items-center gap-2 text-gray-600 mb-1">
                             <MapPin className="w-5 h-5 text-[#1D50C9]" />
-                            <span className="font-semibold">Location</span>
+                            <span className="font-semibold">Venue</span>
                           </div>
                           <p className="text-gray-900 ml-7">{event.location}</p>
+                        </div>
+                      )}
+
+                      {event.studyLevel && Array.isArray(event.studyLevel) && event.studyLevel.length > 0 && (
+                        <div>
+                          <div className="flex items-center gap-2 text-gray-600 mb-1">
+                            <GraduationCap className="w-5 h-5 text-[#1D50C9]" />
+                            <span className="font-semibold">Study Level</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2 ml-7">
+                            {event.studyLevel.map((level) => (
+                              <span key={level} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                                {level}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       )}
 
                       {event.country && Array.isArray(event.country) && event.country.length > 0 && (
                         <div>
                           <div className="flex items-center gap-2 text-gray-600 mb-1">
+                            <GraduationCap className="w-5 h-5 text-[#1D50C9]" />
                             <span className="font-semibold">Study Destinations</span>
                           </div>
                           <div className="flex flex-wrap gap-2 ml-7">
