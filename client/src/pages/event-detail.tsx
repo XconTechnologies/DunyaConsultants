@@ -327,10 +327,10 @@ export default function EventDetailPage() {
                 {/* Study Level Section */}
                 {event.studyLevel && Array.isArray(event.studyLevel) && event.studyLevel.length > 0 && (
                   <div className="mb-8">
-                    <div className="flex items-center gap-2 mb-3">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                       <GraduationCap className="w-6 h-6 text-[#1D50C9]" />
-                      <h3 className="text-xl font-semibold text-gray-900">Study Level</h3>
-                    </div>
+                      Study Level
+                    </h3>
                     <div className="flex flex-wrap gap-3">
                       {event.studyLevel.map((level) => (
                         <span key={level} className="px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white rounded-lg font-medium text-sm">
@@ -353,7 +353,7 @@ export default function EventDetailPage() {
                 {/* Study Destination Cards */}
                 {event.country && Array.isArray(event.country) && event.country.length > 0 && (
                   <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Study Destinations</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Study Destinations</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {event.country.map((country) => (
                         <Card key={country} className="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
