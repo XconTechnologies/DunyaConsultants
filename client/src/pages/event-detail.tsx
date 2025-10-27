@@ -343,7 +343,7 @@ export default function EventDetailPage() {
 
                 {/* Event Details */}
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Details</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">About This Event</h2>
                   <div 
                     className="blog-content prose prose-xl max-w-none"
                     dangerouslySetInnerHTML={{ __html: event.fullDescription || '' }}
@@ -674,7 +674,6 @@ export default function EventDetailPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
       {/* Success Modal with QR Code - Canva Style Card */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="max-w-3xl p-0 border-0 shadow-2xl overflow-hidden">
