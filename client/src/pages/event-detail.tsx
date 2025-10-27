@@ -350,33 +350,6 @@ export default function EventDetailPage() {
                   />
                 </div>
 
-                {/* Study Destination Cards */}
-                {event.country && Array.isArray(event.country) && event.country.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Study Destinations</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                      {event.country.map((country) => (
-                        <Card key={country} className="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                          <CardContent className="p-6 text-center">
-                            <ReactCountryFlag
-                              countryCode={getCountryCode(country)}
-                              svg
-                              style={{
-                                width: '64px',
-                                height: '64px',
-                                borderRadius: '50%',
-                                objectFit: 'cover',
-                              }}
-                              className="mx-auto mb-3"
-                            />
-                            <h4 className="text-gray-900 font-bold text-lg">{country}</h4>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
                 {/* Event Media Section */}
                 {event && (
                   <EventMediaDisplay
