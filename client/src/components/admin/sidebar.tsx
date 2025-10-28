@@ -17,7 +17,8 @@ import {
   Activity,
   Database,
   Mail,
-  FileEdit
+  FileEdit,
+  Building2
 } from "lucide-react";
 import { 
   isAdmin
@@ -138,6 +139,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/url-shortener",
     icon: Link2,
     description: "Create and manage short URLs"
+  },
+  {
+    title: "Branch Icons",
+    href: "/admin/branch-icons",
+    icon: Building2,
+    description: "Manage branch icons carousel"
   },
   {
     title: "Backup",
