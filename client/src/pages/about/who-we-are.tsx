@@ -247,7 +247,7 @@ export default function WhoWeAre() {
                   <div className="space-y-8">
                     {/* Company Overview */}
                     <div>
-                      <h3 className="text-2xl font-bold text-[#1D50C9] mb-4 flex items-center">
+                      <h3 className="text-2xl font-bold mb-4 flex items-center" style={{ color: '#1D50C9' }}>
                         <Globe className="w-6 h-6 mr-3 text-[#1D50C9]" />
                         Who We Are
                       </h3>
@@ -269,7 +269,7 @@ export default function WhoWeAre() {
                         <p className="text-sm text-gray-600">Strategic locations across Pakistan ensuring local support everywhere</p>
                       </div>
 
-                      <Link href="/about/team">
+                      <Link href="/about/team" className="no-underline">
                         <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer">
                           <div className="flex items-center mb-3">
                             <Users className="w-8 h-8 text-green-600 mr-3" />
