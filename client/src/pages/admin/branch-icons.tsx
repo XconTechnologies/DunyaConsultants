@@ -38,29 +38,43 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive }: {
   };
 
   return (
-    <TableRow ref={setNodeRef} style={style}>
+    <TableRow 
+      ref={setNodeRef} 
+      style={style}
+      className="border-b border-gray-100 hover:bg-blue-50/30 transition-colors"
+    >
       <TableCell>
-        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing">
-          <GripVertical className="h-5 w-5 text-gray-400" />
+        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-2 rounded hover:bg-blue-100/50 transition-colors">
+          <GripVertical className="h-5 w-5 text-[#1D50C9]" />
         </div>
       </TableCell>
-      <TableCell className="font-medium">{icon.name}</TableCell>
+      <TableCell className="font-semibold text-gray-900">{icon.name}</TableCell>
       <TableCell>
-        <img src={icon.iconUrl} alt={icon.name} className="h-12 w-12 object-contain rounded border border-gray-200" />
+        <div className="p-2 bg-white rounded-lg border-2 border-blue-100 inline-block shadow-sm">
+          <img src={icon.iconUrl} alt={icon.name} className="h-12 w-12 object-contain" />
+        </div>
       </TableCell>
-      <TableCell className="max-w-xs truncate text-sm text-gray-600">{icon.route}</TableCell>
+      <TableCell className="max-w-xs truncate text-sm text-gray-600 font-mono bg-gray-50 rounded px-2 py-1">{icon.route}</TableCell>
       <TableCell>
-        <Badge variant={icon.isActive ? "default" : "secondary"} className={icon.isActive ? "bg-green-500" : "bg-gray-400"}>
+        <Badge 
+          variant={icon.isActive ? "default" : "secondary"} 
+          className={icon.isActive 
+            ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0" 
+            : "bg-gray-300 text-gray-700 border-0"
+          }
+        >
           {icon.isActive ? "Active" : "Inactive"}
         </Badge>
       </TableCell>
       <TableCell>
-        <div className="flex gap-2">
+        <div className="flex gap-1 justify-end">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => onToggleActive(icon)}
             data-testid={`button-toggle-active-${icon.id}`}
+            className="hover:bg-blue-100 hover:text-[#1D50C9]"
+            title={icon.isActive ? "Hide from carousel" : "Show in carousel"}
           >
             {icon.isActive ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </Button>
@@ -69,6 +83,8 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive }: {
             size="sm"
             onClick={() => onEdit(icon)}
             data-testid={`button-edit-${icon.id}`}
+            className="hover:bg-blue-100 hover:text-[#1D50C9]"
+            title="Edit branch icon"
           >
             <Pencil className="h-4 w-4" />
           </Button>
@@ -76,8 +92,9 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive }: {
             variant="ghost"
             size="sm"
             onClick={() => onDelete(icon.id)}
-            className="text-red-600 hover:text-red-700"
+            className="text-red-600 hover:bg-red-50 hover:text-red-700"
             data-testid={`button-delete-${icon.id}`}
+            title="Delete branch icon"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -308,7 +325,7 @@ export default function BranchIconsManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-indigo-50/30 flex">
       <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 lg:ml-64">
@@ -316,54 +333,73 @@ export default function BranchIconsManagement() {
         
         <div className="p-4 sm:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-6">
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900" data-testid="text-page-title">
-                  Branch Icons Management
-                </h1>
-                <p className="text-gray-600 mt-1">Manage icons displayed in the branches carousel</p>
-              </div>
-              <div className="flex gap-2">
-                {icons.length === 0 && (
+            {/* Page Header */}
+            <div className="mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent pb-2" data-testid="text-page-title">
+                    Branch Icons Management
+                  </h1>
+                  <p className="text-gray-600 mt-2">Manage icons displayed in the branches carousel on your homepage</p>
+                </div>
+                <div className="flex gap-2">
+                  {icons.length === 0 && (
+                    <Button 
+                      onClick={() => seedMutation.mutate()} 
+                      variant="outline"
+                      disabled={seedMutation.isPending}
+                      data-testid="button-seed-data"
+                      className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all"
+                    >
+                      <Upload className="h-4 w-4 mr-2" />
+                      {seedMutation.isPending ? "Importing..." : "Import Previous Data"}
+                    </Button>
+                  )}
                   <Button 
-                    onClick={() => seedMutation.mutate()} 
-                    variant="outline"
-                    disabled={seedMutation.isPending}
-                    data-testid="button-seed-data"
+                    onClick={() => handleOpenDialog()} 
+                    data-testid="button-add-icon"
+                    className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg transition-all"
                   >
-                    <Upload className="h-4 w-4 mr-2" />
-                    {seedMutation.isPending ? "Importing..." : "Import Previous Data"}
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Icon
                   </Button>
-                )}
-                <Button onClick={() => handleOpenDialog()} data-testid="button-add-icon">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Icon
-                </Button>
+                </div>
               </div>
             </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Branch Icons ({icons.length})</CardTitle>
+            {/* Main Card */}
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50/30 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-[#2563eb]/5 border-b">
+                <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">
+                  <GripVertical className="w-5 h-5 text-[#1D50C9]" />
+                  Branch Icons ({icons.length})
+                </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-6">
                 {isLoading ? (
-                  <div className="text-center py-8 text-gray-500">Loading...</div>
+                  <div className="text-center py-12">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#1D50C9]"></div>
+                    <p className="mt-4 text-gray-600">Loading branch icons...</p>
+                  </div>
                 ) : icons.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">
-                    No branch icons yet. Create one to get started.
+                  <div className="text-center py-16 px-4">
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#1D50C9]/10 to-[#1845B3]/10 flex items-center justify-center">
+                      <GripVertical className="w-10 h-10 text-[#1D50C9]" />
+                    </div>
+                    <p className="text-gray-600 text-lg mb-2">No branch icons yet</p>
+                    <p className="text-gray-500 text-sm">Click "Import Previous Data" or "Add Icon" to get started</p>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto -mx-6 px-6">
                     <Table>
                       <TableHeader>
-                        <TableRow>
-                          <TableHead className="w-12"></TableHead>
-                          <TableHead>Name</TableHead>
-                          <TableHead>Icon</TableHead>
-                          <TableHead>Route</TableHead>
-                          <TableHead>Status</TableHead>
-                          <TableHead>Actions</TableHead>
+                        <TableRow className="border-b border-gray-200 hover:bg-transparent">
+                          <TableHead className="w-12 text-gray-700 font-semibold"></TableHead>
+                          <TableHead className="text-gray-700 font-semibold">Name</TableHead>
+                          <TableHead className="text-gray-700 font-semibold">Icon</TableHead>
+                          <TableHead className="text-gray-700 font-semibold">Route</TableHead>
+                          <TableHead className="text-gray-700 font-semibold">Status</TableHead>
+                          <TableHead className="text-gray-700 font-semibold text-right">Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -399,9 +435,9 @@ export default function BranchIconsManagement() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50/30">
           <DialogHeader>
-            <DialogTitle data-testid="text-dialog-title">
+            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent pb-2" data-testid="text-dialog-title">
               {editingIcon ? "Edit Branch Icon" : "Add Branch Icon"}
             </DialogTitle>
           </DialogHeader>
@@ -460,16 +496,22 @@ export default function BranchIconsManagement() {
               </Label>
             </div>
 
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={handleCloseDialog}>
+            <DialogFooter className="gap-2">
+              <Button 
+                type="button" 
+                variant="outline" 
+                onClick={handleCloseDialog}
+                className="border-gray-300 hover:bg-gray-50"
+              >
                 Cancel
               </Button>
               <Button 
                 type="submit" 
                 disabled={createMutation.isPending || updateMutation.isPending}
                 data-testid="button-submit"
+                className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
               >
-                {editingIcon ? "Update" : "Create"}
+                {createMutation.isPending || updateMutation.isPending ? "Saving..." : (editingIcon ? "Update" : "Create")}
               </Button>
             </DialogFooter>
           </form>
