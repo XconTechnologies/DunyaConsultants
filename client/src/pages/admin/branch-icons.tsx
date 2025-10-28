@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import AdminSidebar from "@/components/admin/sidebar";
@@ -15,7 +16,7 @@ import { Plus, Pencil, Trash2, GripVertical, Eye, EyeOff, Upload } from "lucide-
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import type { BranchIcon } from "@shared/schema";
+import type { BranchIcon, AdminUser } from "@shared/schema";
 
 function SortableRow({ icon, onEdit, onDelete, onToggleActive }: { 
   icon: BranchIcon; 
@@ -88,6 +89,9 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive }: {
 
 export default function BranchIconsManagement() {
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingIcon, setEditingIcon] = useState<BranchIcon | null>(null);
   const [formData, setFormData] = useState({
@@ -96,6 +100,29 @@ export default function BranchIconsManagement() {
     route: "",
     isActive: true,
   });
+
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+    const adminUserStr = localStorage.getItem("adminUser");
+    const userToken = localStorage.getItem("userToken");
+    const userStr = localStorage.getItem("user");
+
+    const token = adminToken || userToken;
+    const user = adminUserStr || userStr;
+
+    if (!token || !user) {
+      setLocation("/admin/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setCurrentUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/admin/login");
+    }
+  }, [setLocation]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -272,12 +299,20 @@ export default function BranchIconsManagement() {
     }
   };
 
+  if (!authChecked || !currentUser) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      <AdminSidebar />
+      <AdminSidebar currentUser={currentUser} />
       
       <div className="flex-1 lg:ml-64">
-        <AdminHeader />
+        <AdminHeader currentUser={currentUser} title="Branch Icons Management" />
         
         <div className="p-4 sm:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
