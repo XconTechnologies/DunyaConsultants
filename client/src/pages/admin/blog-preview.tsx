@@ -127,7 +127,7 @@ export default function AdminBlogPreview() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold mb-6 leading-tight text-white"
+              className="font-bold mb-6 leading-[1.5rem] text-white"
               style={{ fontSize: '48px' }}
             >
               {blogPost.title}

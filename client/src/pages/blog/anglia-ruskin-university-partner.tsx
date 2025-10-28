@@ -31,7 +31,7 @@ export default function AngliaRuskinUniversityPartner() {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-[1.5rem]">
               Anglia Ruskin University – A Trusted Partner of Dunya Consultants
             </h1>
             

@@ -31,7 +31,7 @@ export default function UKLLMToPakistaniBar() {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-[1.5rem]">
               From UK LLM to Pakistani Bar: How to Convert Your Degree for Legal Practice?
             </h1>
             

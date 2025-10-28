@@ -17,7 +17,7 @@ export function FinlandVisaApplicationFromPakistan() {
                 Visa Guides
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
               Finland Admissions 2025 – Finland Application Fee & Deadline 2025
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

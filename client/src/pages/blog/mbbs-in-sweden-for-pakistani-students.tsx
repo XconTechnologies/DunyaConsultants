@@ -120,7 +120,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
             transition={{ duration: 0.8 }}
             className="text-white max-w-4xl"
           >
-            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
+            <h1 className="font-bold leading-[1.5rem] mb-8 text-white" style={{ fontSize: '64px' }}>
               MBBS in Sweden for Pakistani Students
             </h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">

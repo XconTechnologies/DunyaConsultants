@@ -18,7 +18,7 @@ export default function MSCBusinessAnalyticsInUK() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>MSc Business Analytics in UK</h1>
+            <h1 className="font-bold leading-[1.5rem] mb-8 text-white" style={{ fontSize: '64px' }}>MSc Business Analytics in UK</h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">Complete guide to pursuing Master's in Business Analytics at top UK universities</p>
           </div>
         </div>

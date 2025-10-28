@@ -18,7 +18,7 @@ export default function UKStudentDependentVisaNewRules() {
                 Visa Guide
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
               UK Student Dependent Visa – News, Requirements & Process Fees
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
