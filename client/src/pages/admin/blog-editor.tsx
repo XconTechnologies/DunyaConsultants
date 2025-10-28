@@ -1258,8 +1258,8 @@ export default function BlogEditor() {
                       return;
                     }
 
-                    // Create a preview URL with token in URL (temporary approach)
-                    const previewUrl = `${getBlogUrl(blogPost.slug)}?preview=true&token=${encodeURIComponent(token)}`;
+                    // Open the admin preview page
+                    const previewUrl = `/admin/blog-preview/${blogPost.id}`;
                     window.open(previewUrl, '_blank');
                   }}
                   data-testid="preview-blog"

@@ -756,7 +756,7 @@ export default function AllPosts() {
                                   <Button
                                     variant="ghost"
                                     size="sm"
-                                    onClick={() => window.open(postUrl, '_blank')}
+                                    onClick={() => window.open(`/admin/blog-preview/${post.id}`, '_blank')}
                                     data-testid={`button-preview-blog-${post.id}`}
                                     className="h-7 px-3 text-purple-600 hover:bg-purple-50"
                                   >
@@ -933,87 +933,95 @@ export default function AllPosts() {
       </div>
 
       {/* Right-Click Context Menu */}
-      {contextMenu?.show && (
-        <div
-          className="fixed z-50 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 min-w-[220px]"
-          style={{
-            left: `${contextMenu.x}px`,
-            top: `${contextMenu.y}px`,
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <button
-            onClick={() => {
-              window.open(getBlogUrl(contextMenu.postSlug), '_blank');
-              setContextMenu(null);
+      {contextMenu?.show && (() => {
+        // Use admin preview URL for drafts, public URL for published
+        const menuUrl = contextMenu.isPublished 
+          ? getBlogUrl(contextMenu.postSlug)
+          : `/admin/blog-preview/${contextMenu.postId}`;
+        
+        return (
+          <div
+            className="fixed z-50 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 min-w-[220px]"
+            style={{
+              left: `${contextMenu.x}px`,
+              top: `${contextMenu.y}px`,
             }}
-            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
-            data-testid="context-open-new-tab"
+            onClick={(e) => e.stopPropagation()}
           >
-            <ExternalLink className="w-4 h-4" />
-            Open in new tab
-          </button>
-          
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.origin + getBlogUrl(contextMenu.postSlug));
-              toast({ title: "URL copied to clipboard" });
-              setContextMenu(null);
-            }}
-            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
-            data-testid="context-copy-url"
-          >
-            <FileText className="w-4 h-4" />
-            Copy URL
-          </button>
-          
-          <button
-            onClick={() => {
-              const newWindow = window.open(getBlogUrl(contextMenu.postSlug), '_blank', 'noopener,noreferrer');
-              if (newWindow) newWindow.opener = null;
-              setContextMenu(null);
-            }}
-            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
-            data-testid="context-open-new-window"
-          >
-            <ExternalLink className="w-4 h-4" />
-            Open in new window
-          </button>
-          
-          <div className="border-t border-gray-200 my-1"></div>
-          
-          <button
-            onClick={() => {
-              setLocation(`/admin/blog-editor/${contextMenu.postId}`);
-              setContextMenu(null);
-            }}
-            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
-            data-testid="context-edit-post"
-          >
-            <Edit2 className="w-4 h-4" />
-            Edit post
-          </button>
-          
-          <button
-            onClick={() => {
-              const url = window.location.origin + getBlogUrl(contextMenu.postSlug);
-              const blob = new Blob([url], { type: 'text/plain' });
-              const link = document.createElement('a');
-              link.href = URL.createObjectURL(blob);
-              link.download = `${contextMenu.postSlug}-url.txt`;
-              link.click();
-              URL.revokeObjectURL(link.href);
-              toast({ title: "URL saved as text file" });
-              setContextMenu(null);
-            }}
-            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
-            data-testid="context-save-link"
-          >
-            <FileText className="w-4 h-4" />
-            Save link address as
-          </button>
-        </div>
-      )}
+            <button
+              onClick={() => {
+                window.open(menuUrl, '_blank');
+                setContextMenu(null);
+              }}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+              data-testid="context-open-new-tab"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open in new tab
+            </button>
+            
+            <button
+              onClick={() => {
+                const fullUrl = window.location.origin + menuUrl;
+                navigator.clipboard.writeText(fullUrl);
+                toast({ title: "URL copied to clipboard" });
+                setContextMenu(null);
+              }}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+              data-testid="context-copy-url"
+            >
+              <FileText className="w-4 h-4" />
+              Copy URL
+            </button>
+            
+            <button
+              onClick={() => {
+                const newWindow = window.open(menuUrl, '_blank', 'noopener,noreferrer');
+                if (newWindow) newWindow.opener = null;
+                setContextMenu(null);
+              }}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+              data-testid="context-open-new-window"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open in new window
+            </button>
+            
+            <div className="border-t border-gray-200 my-1"></div>
+            
+            <button
+              onClick={() => {
+                setLocation(`/admin/blog-editor/${contextMenu.postId}`);
+                setContextMenu(null);
+              }}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+              data-testid="context-edit-post"
+            >
+              <Edit2 className="w-4 h-4" />
+              Edit post
+            </button>
+            
+            <button
+              onClick={() => {
+                const url = window.location.origin + menuUrl;
+                const blob = new Blob([url], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${contextMenu.postSlug}-url.txt`;
+                link.click();
+                URL.revokeObjectURL(link.href);
+                toast({ title: "URL saved as text file" });
+                setContextMenu(null);
+              }}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+              data-testid="context-save-link"
+            >
+              <FileText className="w-4 h-4" />
+              Save link address as
+            </button>
+          </div>
+        );
+      })()}
     </div>
   );
 }
