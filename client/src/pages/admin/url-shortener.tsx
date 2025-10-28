@@ -284,34 +284,34 @@ export default function UrlShortenerPage() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50 flex">
       <AdminSidebar currentUser={adminUser} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <AdminHeader onMenuClick={() => setSidebarOpen(true)} />
-        <MobileNav />
+      <div className="flex-1 flex flex-col lg:ml-64">
+        <AdminHeader onMenuClick={() => setSidebarOpen(true)} currentUser={adminUser} />
+        <MobileNav currentUser={adminUser} />
         
-        <main className="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100">
+        <main className="flex-1 p-4 md:p-6 space-y-6 bg-gradient-to-br from-gray-50 to-gray-100">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Header with gradient background */}
-            <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-xl p-8 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
-              <div className="relative z-10 flex justify-between items-center">
-                <div className="flex items-center gap-4">
-                  <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                    <Link2 className="w-8 h-8 text-white" />
+            <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl md:rounded-2xl shadow-xl p-4 md:p-6 lg:p-8 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-white/10 rounded-full -mr-16 md:-mr-32 -mt-16 md:-mt-32"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 md:w-48 md:h-48 bg-white/10 rounded-full -ml-12 md:-ml-24 -mb-12 md:-mb-24"></div>
+              <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="bg-white/20 p-3 md:p-4 rounded-lg md:rounded-xl backdrop-blur-sm flex-shrink-0">
+                    <Link2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
                   </div>
                   <div>
-                    <h1 className="text-4xl font-bold mb-2">URL Shortener</h1>
-                    <p className="text-blue-100 text-lg">Transform long URLs into short, shareable links</p>
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-1 md:mb-2">URL Shortener</h1>
+                    <p className="text-blue-100 text-sm md:text-base lg:text-lg">Transform long URLs into short, shareable links</p>
                   </div>
                 </div>
                 
                 <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
                   <DialogTrigger asChild>
-                    <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg font-semibold px-6 py-6 text-lg" data-testid="button-create-short-url">
-                      <Plus className="w-5 h-5 mr-2" />
+                    <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 shadow-lg font-semibold px-4 md:px-6 py-4 md:py-6 text-base md:text-lg w-full md:w-auto" data-testid="button-create-short-url">
+                      <Plus className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                       Create Short URL
                     </Button>
                   </DialogTrigger>
@@ -434,60 +434,60 @@ export default function UrlShortenerPage() {
             </div>
 
             {/* Enhanced Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
+                <CardContent className="p-4 md:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-blue-600 mb-1">Total URLs</p>
-                      <p className="text-4xl font-bold text-[#1D50C9]">{shortUrls.length}</p>
+                      <p className="text-xs md:text-sm font-medium text-blue-600 mb-1">Total URLs</p>
+                      <p className="text-3xl md:text-4xl font-bold text-[#1D50C9]">{shortUrls.length}</p>
                     </div>
-                    <div className="bg-[#1D50C9] p-4 rounded-xl shadow-md">
-                      <Link2 className="w-8 h-8 text-white" />
+                    <div className="bg-[#1D50C9] p-3 md:p-4 rounded-xl shadow-md flex-shrink-0">
+                      <Link2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
                   </div>
-                  <div className="mt-4 flex items-center text-xs text-blue-600">
-                    <BarChart3 className="w-4 h-4 mr-1" />
+                  <div className="mt-3 md:mt-4 flex items-center text-xs text-blue-600">
+                    <BarChart3 className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                     <span>All shortened links</span>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
+                <CardContent className="p-4 md:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-green-600 mb-1">Total Clicks</p>
-                      <p className="text-4xl font-bold text-green-700">
+                      <p className="text-xs md:text-sm font-medium text-green-600 mb-1">Total Clicks</p>
+                      <p className="text-3xl md:text-4xl font-bold text-green-700">
                         {shortUrls.reduce((sum, url) => sum + (url.clicks || 0), 0)}
                       </p>
                     </div>
-                    <div className="bg-green-600 p-4 rounded-xl shadow-md">
-                      <BarChart3 className="w-8 h-8 text-white" />
+                    <div className="bg-green-600 p-3 md:p-4 rounded-xl shadow-md flex-shrink-0">
+                      <BarChart3 className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
                   </div>
-                  <div className="mt-4 flex items-center text-xs text-green-600">
-                    <Activity className="w-4 h-4 mr-1" />
+                  <div className="mt-3 md:mt-4 flex items-center text-xs text-green-600">
+                    <Activity className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                     <span>Total link visits</span>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
+              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 sm:col-span-2 lg:col-span-1">
+                <CardContent className="p-4 md:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-purple-600 mb-1">Active URLs</p>
-                      <p className="text-4xl font-bold text-purple-700">
+                      <p className="text-xs md:text-sm font-medium text-purple-600 mb-1">Active URLs</p>
+                      <p className="text-3xl md:text-4xl font-bold text-purple-700">
                         {shortUrls.filter(url => url.isActive).length}
                       </p>
                     </div>
-                    <div className="bg-purple-600 p-4 rounded-xl shadow-md">
-                      <Eye className="w-8 h-8 text-white" />
+                    <div className="bg-purple-600 p-3 md:p-4 rounded-xl shadow-md flex-shrink-0">
+                      <Eye className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
                   </div>
-                  <div className="mt-4 flex items-center text-xs text-purple-600">
-                    <RefreshCw className="w-4 h-4 mr-1" />
+                  <div className="mt-3 md:mt-4 flex items-center text-xs text-purple-600">
+                    <RefreshCw className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                     <span>Currently accessible</span>
                   </div>
                 </CardContent>
@@ -496,41 +496,41 @@ export default function UrlShortenerPage() {
 
             {/* Short URLs Table */}
             <Card className="shadow-xl border-gray-200">
-              <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-3 rounded-lg">
-                    <Link2 className="w-5 h-5 text-white" />
+              <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 p-4 md:p-6">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-2 md:p-3 rounded-lg flex-shrink-0">
+                    <Link2 className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-2xl">Your Short URLs</CardTitle>
-                    <CardDescription className="text-base">
+                    <CardTitle className="text-lg md:text-2xl">Your Short URLs</CardTitle>
+                    <CardDescription className="text-sm md:text-base">
                       Manage your shortened URLs and track their performance
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 {isLoading ? (
                   <div className="flex justify-center py-12">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1D50C9]"></div>
                   </div>
                 ) : shortUrls.length === 0 ? (
-                  <div className="text-center py-16">
-                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <Link2 className="w-12 h-12 text-[#1D50C9]" />
+                  <div className="text-center py-12 md:py-16 px-4">
+                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                      <Link2 className="w-10 h-10 md:w-12 md:h-12 text-[#1D50C9]" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">No short URLs yet</h3>
-                    <p className="text-gray-600 mb-8 text-lg">Create your first short URL to start tracking clicks and sharing links easily</p>
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3">No short URLs yet</h3>
+                    <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">Create your first short URL to start tracking clicks and sharing links easily</p>
                     <Button 
                       onClick={() => setIsDialogOpen(true)} 
-                      className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#153a92] text-white px-8 py-6 text-lg"
+                      className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#153a92] text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg"
                     >
-                      <Plus className="w-5 h-5 mr-2" />
+                      <Plus className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                       Create Your First URL
                     </Button>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto -mx-4 md:mx-0">
                     <Table>
                       <TableHeader>
                         <TableRow>
