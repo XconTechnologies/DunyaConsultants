@@ -165,9 +165,7 @@ export default function UrlShortenerPage() {
         title: "Success",
         description: editingUrl ? "Short URL updated successfully" : "Short URL created successfully",
       });
-      setIsDialogOpen(false);
-      setEditingUrl(null);
-      form.reset();
+      handleDialogChange(false);
     },
     onError: (error: Error) => {
       toast({
@@ -233,11 +231,14 @@ export default function UrlShortenerPage() {
     setIsDialogOpen(true);
   };
 
-  // Handle dialog close
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-    setEditingUrl(null);
-    form.reset();
+  // Handle dialog state change
+  const handleDialogChange = (open: boolean) => {
+    setIsDialogOpen(open);
+    if (!open) {
+      // Only reset when closing
+      setEditingUrl(null);
+      form.reset();
+    }
   };
 
   // Conditional returns for auth checks
@@ -266,7 +267,7 @@ export default function UrlShortenerPage() {
                 <p className="text-gray-600 mt-1">Create and manage short URLs</p>
               </div>
               
-              <Dialog open={isDialogOpen} onOpenChange={handleDialogClose}>
+              <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#153a92] text-white" data-testid="button-create-short-url">
                     <Plus className="w-4 h-4 mr-2" />
@@ -342,7 +343,7 @@ export default function UrlShortenerPage() {
                     </div>
 
                     <div className="flex justify-end space-x-2 pt-4">
-                      <Button type="button" variant="outline" onClick={handleDialogClose} data-testid="button-cancel">
+                      <Button type="button" variant="outline" onClick={() => handleDialogChange(false)} data-testid="button-cancel">
                         Cancel
                       </Button>
                       <Button 
