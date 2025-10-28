@@ -68,7 +68,7 @@ export default function Navigation() {
         },
       ],
       featured: {
-        title: "More Than 5 Years of Excellence",
+        title: "4+ Years of Excellence",
         description: "Trusted by thousands of students worldwide",
         cta: "Learn More",
         href: "/about"
