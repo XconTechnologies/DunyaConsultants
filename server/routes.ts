@@ -6,7 +6,7 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, consultations
+  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, insertShortUrlSchema, InsertShortUrl, consultations
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql } from "drizzle-orm";
@@ -1356,6 +1356,180 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ==============================================
+  // URL SHORTENER ROUTES
+  // ==============================================
+
+  // Create short URL (Admin only)
+  app.post("/api/admin/short-urls", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const result = insertShortUrlSchema.safeParse({
+        ...req.body,
+        createdBy: req.adminId
+      });
+
+      if (!result.success) {
+        return res.status(400).json({ error: "Invalid data", details: result.error });
+      }
+
+      // Check if short code already exists
+      const existing = await storage.getShortUrlByCode(result.data.shortCode);
+      if (existing) {
+        return res.status(400).json({ message: "Short code already exists" });
+      }
+
+      const shortUrl = await storage.createShortUrl(result.data);
+      res.status(201).json(shortUrl);
+    } catch (error) {
+      console.error("Error creating short URL:", error);
+      res.status(500).json({ message: "Failed to create short URL" });
+    }
+  });
+
+  // Get all short URLs (Admin only)
+  app.get("/api/admin/short-urls", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const shortUrls = await storage.getShortUrls();
+      res.json(shortUrls);
+    } catch (error) {
+      console.error("Error fetching short URLs:", error);
+      res.status(500).json({ message: "Failed to fetch short URLs" });
+    }
+  });
+
+  // Get single short URL (Admin only)
+  app.get("/api/admin/short-urls/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const shortUrl = await storage.getShortUrl(id);
+
+      if (!shortUrl) {
+        return res.status(404).json({ message: "Short URL not found" });
+      }
+
+      res.json(shortUrl);
+    } catch (error) {
+      console.error("Error fetching short URL:", error);
+      res.status(500).json({ message: "Failed to fetch short URL" });
+    }
+  });
+
+  // Update short URL (Admin only)
+  app.put("/api/admin/short-urls/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      
+      // Validate input with partial schema
+      const updateSchema = insertShortUrlSchema.partial().omit({ createdBy: true, shortCode: true });
+      const result = updateSchema.safeParse(req.body);
+      
+      if (!result.success) {
+        return res.status(400).json({ error: "Invalid data", details: result.error });
+      }
+
+      // Check if short URL exists
+      const existing = await storage.getShortUrl(id);
+      if (!existing) {
+        return res.status(404).json({ message: "Short URL not found" });
+      }
+
+      const shortUrl = await storage.updateShortUrl(id, result.data);
+      res.json(shortUrl);
+    } catch (error) {
+      console.error("Error updating short URL:", error);
+      res.status(500).json({ message: "Failed to update short URL" });
+    }
+  });
+
+  // Trash short URL (Admin only)
+  app.post("/api/admin/short-urls/:id/trash", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+      
+      const shortUrl = await storage.trashShortUrl(id, req.adminId, reason);
+      res.json(shortUrl);
+    } catch (error) {
+      console.error("Error trashing short URL:", error);
+      res.status(500).json({ message: "Failed to trash short URL" });
+    }
+  });
+
+  // Restore short URL (Admin only)
+  app.post("/api/admin/short-urls/:id/restore", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const shortUrl = await storage.restoreShortUrl(id);
+      res.json(shortUrl);
+    } catch (error) {
+      console.error("Error restoring short URL:", error);
+      res.status(500).json({ message: "Failed to restore short URL" });
+    }
+  });
+
+  // Get trashed short URLs (Admin only)
+  app.get("/api/admin/short-urls/trashed", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const shortUrls = await storage.getTrashedShortUrls();
+      res.json(shortUrls);
+    } catch (error) {
+      console.error("Error fetching trashed short URLs:", error);
+      res.status(500).json({ message: "Failed to fetch trashed short URLs" });
+    }
+  });
+
+  // Public redirect route - /s/:code
+  app.get("/s/:code", async (req, res) => {
+    try {
+      const shortCode = req.params.code;
+      const shortUrl = await storage.getShortUrlByCode(shortCode);
+
+      if (!shortUrl) {
+        return res.status(404).send("Short URL not found");
+      }
+
+      if (!shortUrl.isActive) {
+        return res.status(410).send("This short URL has been disabled");
+      }
+
+      // Increment click counter
+      await storage.incrementShortUrlClick(shortCode);
+
+      // Redirect to original URL
+      res.redirect(shortUrl.originalUrl);
+    } catch (error) {
+      console.error("Error redirecting short URL:", error);
+      res.status(500).send("Error processing redirect");
+    }
+  });
 
   // Engagement tracking routes
   app.post("/api/engagement/track", async (req, res) => {

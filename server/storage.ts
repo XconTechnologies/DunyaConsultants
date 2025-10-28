@@ -1,7 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
-  categories, blogPostCategories, events, eventRegistrations, qrCodes, backupConfigs, backupHistory,
+  categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, backupConfigs, backupHistory,
   customForms, formFields, customFormSubmissions,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
@@ -16,7 +16,7 @@ import {
   type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
   type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
-  type QrCode, type InsertQrCode,
+  type QrCode, type InsertQrCode, type ShortUrl, type InsertShortUrl,
   type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory,
   type CustomForm, type InsertCustomForm, type FormField, type InsertFormField,
   type CustomFormSubmission, type InsertCustomFormSubmission
@@ -68,6 +68,17 @@ export interface IStorage {
   restoreQrCode(id: number): Promise<QrCode>;
   getTrashedQrCodes(): Promise<QrCode[]>;
   getUserQRCodes(userId: number): Promise<QrCode[]>; // Get QR codes created by specific user
+  
+  // URL Shortener Management
+  createShortUrl(shortUrl: InsertShortUrl): Promise<ShortUrl>;
+  getShortUrls(): Promise<ShortUrl[]>;
+  getShortUrl(id: number): Promise<ShortUrl | undefined>;
+  getShortUrlByCode(shortCode: string): Promise<ShortUrl | undefined>;
+  incrementShortUrlClick(shortCode: string): Promise<ShortUrl>;
+  updateShortUrl(id: number, data: Partial<InsertShortUrl>): Promise<ShortUrl>;
+  trashShortUrl(id: number, trashedBy: number, reason?: string): Promise<ShortUrl>;
+  restoreShortUrl(id: number): Promise<ShortUrl>;
+  getTrashedShortUrls(): Promise<ShortUrl[]>;
   
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
@@ -576,6 +587,83 @@ export class DatabaseStorage implements IStorage {
       .from(qrCodes)
       .where(eq(qrCodes.createdBy, userId))
       .orderBy(desc(qrCodes.createdAt));
+  }
+
+  // URL Shortener Management
+  async createShortUrl(insertShortUrl: InsertShortUrl): Promise<ShortUrl> {
+    const [shortUrl] = await db.insert(shortUrls).values(insertShortUrl).returning();
+    return shortUrl;
+  }
+
+  async getShortUrls(): Promise<ShortUrl[]> {
+    return await db.select()
+      .from(shortUrls)
+      .where(sql`${shortUrls.trashedAt} IS NULL`)
+      .orderBy(desc(shortUrls.createdAt));
+  }
+
+  async getShortUrl(id: number): Promise<ShortUrl | undefined> {
+    const [shortUrl] = await db.select().from(shortUrls).where(eq(shortUrls.id, id));
+    return shortUrl || undefined;
+  }
+
+  async getShortUrlByCode(shortCode: string): Promise<ShortUrl | undefined> {
+    const [shortUrl] = await db.select()
+      .from(shortUrls)
+      .where(eq(shortUrls.shortCode, shortCode));
+    return shortUrl || undefined;
+  }
+
+  async incrementShortUrlClick(shortCode: string): Promise<ShortUrl> {
+    const [shortUrl] = await db.update(shortUrls)
+      .set({ 
+        clicks: sql`${shortUrls.clicks} + 1`,
+        lastAccessedAt: sql`NOW()`
+      })
+      .where(eq(shortUrls.shortCode, shortCode))
+      .returning();
+    return shortUrl;
+  }
+
+  async updateShortUrl(id: number, data: Partial<InsertShortUrl>): Promise<ShortUrl> {
+    const [shortUrl] = await db.update(shortUrls)
+      .set(data)
+      .where(eq(shortUrls.id, id))
+      .returning();
+    return shortUrl;
+  }
+
+  async trashShortUrl(id: number, trashedBy: number, reason?: string): Promise<ShortUrl> {
+    const [shortUrl] = await db.update(shortUrls)
+      .set({ 
+        trashedAt: new Date(), 
+        trashedBy, 
+        trashReason: reason || 'Moved to trash',
+        isActive: false
+      })
+      .where(eq(shortUrls.id, id))
+      .returning();
+    return shortUrl;
+  }
+
+  async restoreShortUrl(id: number): Promise<ShortUrl> {
+    const [shortUrl] = await db.update(shortUrls)
+      .set({ 
+        trashedAt: null, 
+        trashedBy: null, 
+        trashReason: null,
+        isActive: true
+      })
+      .where(eq(shortUrls.id, id))
+      .returning();
+    return shortUrl;
+  }
+
+  async getTrashedShortUrls(): Promise<ShortUrl[]> {
+    return await db.select()
+      .from(shortUrls)
+      .where(sql`${shortUrls.trashedAt} IS NOT NULL`)
+      .orderBy(desc(shortUrls.trashedAt));
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {

@@ -473,6 +473,25 @@ export const qrCodes = pgTable("qr_codes", {
   createdByIdx: index("qr_codes_created_by_idx").on(table.createdBy),
 }));
 
+// Short URLs for URL shortener
+export const shortUrls = pgTable("short_urls", {
+  id: serial("id").primaryKey(),
+  shortCode: text("short_code").notNull().unique(), // The short identifier (e.g., "abc123")
+  originalUrl: text("original_url").notNull(), // The full destination URL
+  title: text("title"), // Optional title/description
+  clicks: integer("clicks").default(0).notNull(), // Number of times accessed
+  isActive: boolean("is_active").default(true).notNull(), // Enable/disable the short URL
+  createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  lastAccessedAt: timestamp("last_accessed_at"), // Last time the short URL was used
+}, (table) => ({
+  shortCodeIdx: uniqueIndex("short_urls_short_code_idx").on(table.shortCode),
+  createdByIdx: index("short_urls_created_by_idx").on(table.createdBy),
+}));
+
 // Admin Notifications
 export const adminNotifications = pgTable("admin_notifications", {
   id: serial("id").primaryKey(),
@@ -798,6 +817,16 @@ export const insertQrCodeSchema = createInsertSchema(qrCodes).omit({
   createdAt: true,
 });
 
+export const insertShortUrlSchema = createInsertSchema(shortUrls).omit({
+  id: true,
+  clicks: true,
+  trashedAt: true,
+  trashedBy: true,
+  trashReason: true,
+  createdAt: true,
+  lastAccessedAt: true,
+});
+
 export const insertAdminNotificationSchema = createInsertSchema(adminNotifications).omit({
   id: true,
   isRead: true,
@@ -931,6 +960,8 @@ export type InsertEventRegistration = z.infer<typeof insertEventRegistrationSche
 export type EventRegistration = typeof eventRegistrations.$inferSelect;
 export type InsertQrCode = z.infer<typeof insertQrCodeSchema>;
 export type QrCode = typeof qrCodes.$inferSelect;
+export type InsertShortUrl = z.infer<typeof insertShortUrlSchema>;
+export type ShortUrl = typeof shortUrls.$inferSelect;
 export type InsertAdminNotification = z.infer<typeof insertAdminNotificationSchema>;
 export type AdminNotification = typeof adminNotifications.$inferSelect;
 export type InsertBackupConfig = z.infer<typeof insertBackupConfigSchema>;

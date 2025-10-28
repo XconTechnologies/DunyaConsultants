@@ -9,6 +9,7 @@ import {
   Calendar,
   Trash2,
   QrCode,
+  Link2,
   ClipboardList,
   X,
   ChevronDown,
@@ -131,6 +132,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/qr-codes",
     icon: QrCode,
     description: "Generate custom QR codes"
+  },
+  {
+    title: "URL Shortener",
+    href: "/admin/url-shortener",
+    icon: Link2,
+    description: "Create and manage short URLs"
   },
   {
     title: "Backup",
