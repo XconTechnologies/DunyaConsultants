@@ -3995,6 +3995,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         publishedAt
       } as any);
       
+      // Handle category assignments if provided
+      if (req.body.categoryIds && Array.isArray(req.body.categoryIds) && req.body.categoryIds.length > 0) {
+        try {
+          await storage.updateBlogPostCategories(post.id, req.body.categoryIds);
+        } catch (categoryError) {
+          console.error('Failed to assign categories to new post:', categoryError);
+          // Don't fail the entire operation if category assignment fails
+        }
+      }
+      
       // Auto-assign the post to its creator (unless they're an admin, who sees all posts anyway)
       if (req.adminRole !== 'admin') {
         try {
@@ -4067,7 +4077,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Define safe fields that all users can update
       const safeFields = [
         'title', 'slug', 'excerpt', 'content', 'contentBlocks',
-        'category', 'metaDescription', 'focusKeyword',
+        'category', 'categoryIds', 'metaDescription', 'focusKeyword',
         'featuredImage', 'featuredImageAlt', 'featuredImageTitle', 'featuredImageOriginalName'
       ];
       
@@ -4185,7 +4195,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
+      // Handle category assignments if provided
+      const categoryIds = sanitizedUpdates.categoryIds;
+      delete sanitizedUpdates.categoryIds; // Remove from updates object since it's not a direct field
+      
       const post = await storage.updateBlogPost(id, sanitizedUpdates);
+      
+      // Update category assignments after updating the post
+      if (categoryIds !== undefined && Array.isArray(categoryIds)) {
+        try {
+          await storage.updateBlogPostCategories(id, categoryIds);
+        } catch (categoryError) {
+          console.error('Failed to update categories for post:', categoryError);
+          // Don't fail the entire operation if category assignment fails
+        }
+      }
       
       // Create comprehensive audit log for blog post update
       const changedFields = Object.keys(sanitizedUpdates).filter(key => 
