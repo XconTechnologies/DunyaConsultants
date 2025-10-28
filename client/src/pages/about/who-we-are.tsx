@@ -247,7 +247,7 @@ export default function WhoWeAre() {
                   <div className="space-y-8">
                     {/* Company Overview */}
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                      <h3 className="text-2xl font-bold text-[#1D50C9] mb-4 flex items-center">
                         <Globe className="w-6 h-6 mr-3 text-[#1D50C9]" />
                         Who We Are
                       </h3>
@@ -258,7 +258,7 @@ export default function WhoWeAre() {
 
                     {/* Key Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300">
                         <div className="flex items-center mb-3">
                           <Building2 className="w-8 h-8 text-[#1D50C9] mr-3" />
                           <div>
@@ -270,7 +270,7 @@ export default function WhoWeAre() {
                       </div>
 
                       <Link href="/about/team">
-                        <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                        <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer">
                           <div className="flex items-center mb-3">
                             <Users className="w-8 h-8 text-green-600 mr-3" />
                             <div>
@@ -282,7 +282,7 @@ export default function WhoWeAre() {
                         </div>
                       </Link>
 
-                      <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
+                      <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300">
                         <div className="flex items-center mb-3">
                           <Globe className="w-8 h-8 text-purple-600 mr-3" />
                           <div>
@@ -293,7 +293,7 @@ export default function WhoWeAre() {
                         <p className="text-sm text-gray-600">Global network spanning major study destinations</p>
                       </div>
 
-                      <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
+                      <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300">
                         <div className="flex items-center mb-3">
                           <GraduationCap className="w-8 h-8 text-orange-600 mr-3" />
                           <div>
