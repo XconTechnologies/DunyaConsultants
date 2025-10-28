@@ -221,17 +221,28 @@ export default function BranchIconsManagement() {
 
   const seedMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("POST", "/api/admin/branch-icons/seed");
+      const response = await apiRequest("POST", "/api/admin/branch-icons/seed");
+      return await response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
       toast({ title: "Successfully imported all previous branch icons!" });
     },
     onError: (error: any) => {
-      toast({ 
-        title: error?.message || "Failed to seed branch icons", 
-        variant: "destructive" 
-      });
+      const errorMessage = error?.message || "Failed to seed branch icons";
+      
+      if (errorMessage.includes("401") || errorMessage.includes("expired") || errorMessage.includes("Invalid")) {
+        toast({ 
+          title: "Session Expired", 
+          description: "Please log out and log back in to continue.",
+          variant: "destructive" 
+        });
+      } else {
+        toast({ 
+          title: errorMessage, 
+          variant: "destructive" 
+        });
+      }
     },
   });
 

@@ -7238,14 +7238,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Seed branch icons with previous data (Admin only - one-time use)
-  app.post("/api/admin/branch-icons/seed", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+  // Seed branch icons with previous data (Public on first use, then admin-only)
+  // This endpoint allows public access ONLY when the database is empty for initial migration
+  app.post("/api/admin/branch-icons/seed", async (req: AuthenticatedRequest, res) => {
     try {
       const existingIcons = await storage.getBranchIcons();
+      
+      // If icons already exist, require admin authentication
       if (existingIcons.length > 0) {
+        // Check authentication
+        const token = req.headers.authorization?.replace('Bearer ', '');
+        if (!token) {
+          return res.status(401).json({ message: 'Authentication required to re-seed' });
+        }
+
+        const session = await storage.getAdminSession(token);
+        if (!session) {
+          return res.status(401).json({ message: 'Invalid or expired token' });
+        }
+
+        const admin = await storage.getAdminById(session.adminUserId);
+        if (!admin || !admin.isActive) {
+          return res.status(401).json({ message: 'Admin account inactive' });
+        }
+
+        // Check if user has admin role
+        const roles = Array.isArray(admin.roles) ? admin.roles : [admin.roles];
+        if (!roles.includes('admin')) {
+          return res.status(403).json({ message: 'Admin access required' });
+        }
+
         return res.status(400).json({ message: 'Branch icons already exist. Clear them first if you want to re-seed.' });
       }
 
+      // Database is empty - allow seeding without authentication
       const branchesData = [
         { name: "Karachi", iconUrl: "/assets/4_1753704363746.webp", route: "/offices/karachi", displayOrder: 0 },
         { name: "Sargodha", iconUrl: "/assets/5_1753704363747.webp", route: "/offices/sargodha-head-office", displayOrder: 1 },
