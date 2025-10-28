@@ -7238,6 +7238,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Seed branch icons with previous data (Admin only - one-time use)
+  app.post("/api/admin/branch-icons/seed", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const existingIcons = await storage.getBranchIcons();
+      if (existingIcons.length > 0) {
+        return res.status(400).json({ message: 'Branch icons already exist. Clear them first if you want to re-seed.' });
+      }
+
+      const branchesData = [
+        { name: "Karachi", iconUrl: "/assets/4_1753704363746.webp", route: "/offices/karachi", displayOrder: 0 },
+        { name: "Sargodha", iconUrl: "/assets/5_1753704363747.webp", route: "/offices/sargodha-head-office", displayOrder: 1 },
+        { name: "Gujrat", iconUrl: "/assets/6_1753704363748.webp", route: "/offices/gujrat", displayOrder: 2 },
+        { name: "Faisalabad", iconUrl: "/assets/8_1753704363742.webp", route: "/offices/faisalabad", displayOrder: 3 },
+        { name: "Sialkot", iconUrl: "/assets/12_1753704363741.webp", route: "/offices/sialkot", displayOrder: 4 },
+        { name: "Multan", iconUrl: "/assets/15_1753704363733.webp", route: "/offices/multan", displayOrder: 5 },
+        { name: "Bahawalpur", iconUrl: "/assets/9_1753704363743.webp", route: "/offices/bahawalpur", displayOrder: 6 },
+        { name: "Sheikhupura", iconUrl: "/assets/13_1753704363739.webp", route: "/offices/sheikhupura", displayOrder: 7 },
+        { name: "Mardan", iconUrl: "/assets/14_1753704363737.webp", route: "/offices/mardan", displayOrder: 8 },
+        { name: "Mian Channu", iconUrl: "/assets/10_1753704363744.webp", route: "/offices/mianchannu", displayOrder: 9 },
+        { name: "Mandi Bahauddin", iconUrl: "/assets/11_1753704363740.webp", route: "/offices/mandi-bahauddin", displayOrder: 10 },
+        { name: "Lahore", iconUrl: "/assets/2_1753704363745.webp", route: "/offices/lahore-dha", displayOrder: 11 }
+      ];
+
+      const createdIcons = [];
+      for (const branchData of branchesData) {
+        const icon = await storage.createBranchIcon({
+          ...branchData,
+          isActive: true
+        });
+        createdIcons.push(icon);
+      }
+
+      res.json({ 
+        message: `Successfully seeded ${createdIcons.length} branch icons`,
+        icons: createdIcons
+      });
+    } catch (error) {
+      console.error('Error seeding branch icons:', error);
+      res.status(500).json({ message: 'Failed to seed branch icons' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

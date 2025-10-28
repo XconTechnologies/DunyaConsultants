@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, GripVertical, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, GripVertical, Eye, EyeOff, Upload } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -175,6 +175,22 @@ export default function BranchIconsManagement() {
     },
   });
 
+  const seedMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("/api/admin/branch-icons/seed", "POST");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
+      toast({ title: "Successfully imported all previous branch icons!" });
+    },
+    onError: (error: any) => {
+      toast({ 
+        title: error?.message || "Failed to seed branch icons", 
+        variant: "destructive" 
+      });
+    },
+  });
+
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
@@ -272,10 +288,23 @@ export default function BranchIconsManagement() {
                 </h1>
                 <p className="text-gray-600 mt-1">Manage icons displayed in the branches carousel</p>
               </div>
-              <Button onClick={() => handleOpenDialog()} data-testid="button-add-icon">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Icon
-              </Button>
+              <div className="flex gap-2">
+                {icons.length === 0 && (
+                  <Button 
+                    onClick={() => seedMutation.mutate()} 
+                    variant="outline"
+                    disabled={seedMutation.isPending}
+                    data-testid="button-seed-data"
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    {seedMutation.isPending ? "Importing..." : "Import Previous Data"}
+                  </Button>
+                )}
+                <Button onClick={() => handleOpenDialog()} data-testid="button-add-icon">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Icon
+                </Button>
+              </div>
             </div>
 
             <Card>
