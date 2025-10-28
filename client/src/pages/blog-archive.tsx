@@ -238,7 +238,7 @@ export default function BlogArchive() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-3xl md:text-7xl font-bold mb-6 leading-[1.5rem]"
+                className="text-3xl md:text-7xl font-bold mb-6 leading-tight"
               >
                 Blog
               </motion.h1>

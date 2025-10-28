@@ -18,7 +18,7 @@ export default function EngineeringLawProgramsCanada() {
                 Study in Canada
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               Engineering and Law Programs in Canada: Best Universities for Pakistani Students in 2025
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

@@ -19,7 +19,7 @@ export default function NewYearResolutionsForStudents2025() {
         <div className="absolute inset-0 bg-gradient-to-r from-#1e3a8a/80 to-[#1a73e8]/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
-            <h1 className="font-bold leading-[1.5rem] mb-8 text-white" style={{ fontSize: '64px' }}>New Year Resolutions for Students 2025</h1>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>New Year Resolutions for Students 2025</h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">Study Abroad Goals & Success Strategies</p>
           </div>
         </div>

@@ -146,7 +146,7 @@ export default function MardanOffice() {
               <span className="text-sm font-medium">Mardan Office</span>
             </div>
             
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.5rem] mb-8 text-white">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
               Dunya Consultants Mardan | Study Abroad & Visa Experts
             </h1>
             
@@ -448,7 +448,7 @@ export default function MardanOffice() {
                       <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <CheckCircle className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-[1.5rem]">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
                         {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
                       </h3>
                       <p className="text-xs text-gray-600 leading-relaxed">

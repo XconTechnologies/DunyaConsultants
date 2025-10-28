@@ -19,7 +19,7 @@ export default function StudyGapAcceptableUKMasters() {
                 Study Abroad Guide
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               How Much Study Gap is Acceptable in UK for Masters?
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

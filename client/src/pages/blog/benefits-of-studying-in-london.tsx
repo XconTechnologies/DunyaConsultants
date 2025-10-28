@@ -18,7 +18,7 @@ export default function BenefitsOfStudyingInLondon() {
                 Study Destinations
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               Top Reasons to Study in London
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

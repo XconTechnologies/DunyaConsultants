@@ -868,7 +868,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold mb-6 leading-[1.5rem] text-white"
+              className="font-bold mb-6 leading-tight text-white"
               style={{ fontSize: '48px' }}
             >
               {blogPost.title}
@@ -1892,7 +1892,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
                                         {timelineSteps.map((step: {title: string, content: string}, stepIndex: number) => (
                                           <div key={stepIndex} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
-                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-[1.5rem]">
+                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-tight">
                                               {step.title}
                                             </h4>
                                             <div className="space-y-1">
@@ -1970,7 +1970,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
                                         {timelineSteps.map((step: {title: string, content: string}, stepIndex: number) => (
                                           <div key={stepIndex} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
-                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-[1.5rem]">
+                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-tight">
                                               {step.title}
                                             </h4>
                                             <div className="space-y-1">
@@ -2167,9 +2167,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 
                                 if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                                   return (
-                                    <div key={pIndex} className="flex items-start leading-[1.5rem] mb-2">
+                                    <div key={pIndex} className="flex items-start leading-tight mb-2">
                                       <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
-                                      <span className="text-gray-700 text-base leading-[1.5rem]">
+                                      <span className="text-gray-700 text-base leading-tight">
                                         {(() => {
                                           let processedText = paragraph.replace(/^[-•]\s*/, '');
                                           // Handle bold text **text** -> <strong>text</strong>
@@ -2868,7 +2868,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             // Handle numbered lists (1., 2., 3., etc.)
                             if (/^\d+\.\s/.test(paragraph.trim())) {
                               return (
-                                <div key={pIndex} className="flex items-start leading-[1.5rem] mt-[5px] mb-[5px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
+                                <div key={pIndex} className="flex items-start leading-tight mt-[5px] mb-[5px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                   <span className="mr-3 font-semibold text-base leading-none mt-0.5 text-[#000000]">
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
@@ -3772,7 +3772,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.5rem]"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >Study Abroad Blogs</motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}

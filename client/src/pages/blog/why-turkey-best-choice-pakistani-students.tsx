@@ -27,7 +27,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-[1.5rem]">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
               Why Turkey is Best Choice for Pakistani Students?
             </h1>
             

@@ -110,7 +110,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
             transition={{ duration: 0.8 }}
             className="text-white max-w-4xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-[1.5rem]">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               MBBS in Australia for Pakistani Students
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl leading-relaxed">

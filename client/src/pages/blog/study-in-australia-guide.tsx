@@ -69,7 +69,7 @@ export default function StudyInAustraliaGuide() {
                 Study Destination
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-[1.5rem]">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               Study in Australia: Complete Guide for Pakistani Students
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
@@ -588,7 +588,7 @@ export default function StudyInAustraliaGuide() {
                             {blog.category}
                           </span>
                         </div>
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm leading-[1.5rem]">
+                        <h4 className="font-semibold text-gray-900 mb-2 text-sm leading-tight">
                           {blog.title}
                         </h4>
                         <p className="text-gray-600 text-xs leading-relaxed mb-3 line-clamp-2">

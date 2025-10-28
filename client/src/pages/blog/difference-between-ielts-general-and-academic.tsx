@@ -18,7 +18,7 @@ export default function DifferenceBetweenIELTSGeneralAndAcademic() {
                 Test Preparation
               </span>
             </div>
-            <h1 className="font-bold leading-[1.5rem] mb-8 text-white" style={{ fontSize: '64px' }}>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
               Difference Between IELTS General and Academic
             </h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
