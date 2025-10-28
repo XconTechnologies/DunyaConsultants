@@ -78,7 +78,7 @@ export default function ConsultationBookingSection() {
                 fontSize: '1.1rem',
                 display: 'block'
               }}>
-                30-Minute Session
+                20 Minutes Session
               </h3>
               <p style={{
                 ...whiteTextStyle,
