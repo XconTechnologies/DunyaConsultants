@@ -164,7 +164,7 @@ export default function BranchIconsManagement() {
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
       const maxOrder = Math.max(...icons.map(i => i.displayOrder), -1);
-      return await apiRequest("/api/admin/branch-icons", "POST", {
+      return await apiRequest("POST", "/api/admin/branch-icons", {
         ...data,
         displayOrder: maxOrder + 1,
       });
@@ -181,7 +181,7 @@ export default function BranchIconsManagement() {
 
   const updateMutation = useMutation({
     mutationFn: async (data: { id: number; updates: Partial<typeof formData> }) => {
-      return await apiRequest(`/api/admin/branch-icons/${data.id}`, "PATCH", data.updates);
+      return await apiRequest("PATCH", `/api/admin/branch-icons/${data.id}`, data.updates);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
@@ -195,7 +195,7 @@ export default function BranchIconsManagement() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      return await apiRequest(`/api/admin/branch-icons/${id}`, "DELETE");
+      return await apiRequest("DELETE", `/api/admin/branch-icons/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
@@ -208,7 +208,7 @@ export default function BranchIconsManagement() {
 
   const reorderMutation = useMutation({
     mutationFn: async (iconOrders: { id: number; displayOrder: number }[]) => {
-      return await apiRequest("/api/admin/branch-icons/reorder", "POST", { iconOrders });
+      return await apiRequest("POST", "/api/admin/branch-icons/reorder", { iconOrders });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
@@ -221,7 +221,7 @@ export default function BranchIconsManagement() {
 
   const seedMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("/api/admin/branch-icons/seed", "POST");
+      return await apiRequest("POST", "/api/admin/branch-icons/seed");
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/branch-icons"] });
