@@ -123,7 +123,7 @@ export default function WhoWeAre() {
               <Star className="w-10 h-10" />
             </motion.div>
             
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Why We Are{" "}
               <span className="text-white">
                 Unique

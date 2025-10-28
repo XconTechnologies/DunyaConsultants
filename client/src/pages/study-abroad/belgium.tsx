@@ -107,7 +107,7 @@ Address: Alif Tower, Sargodha
             >
               <Castle className="w-10 h-10" />
             </motion.div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Study in <span className="text-white">Belgium</span>
             </h1>
             <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
