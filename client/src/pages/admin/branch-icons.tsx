@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import AdminSidebar from "@/components/admin-sidebar";
-import AdminHeader from "@/components/admin-header";
+import AdminSidebar from "@/components/admin/sidebar";
+import AdminHeader from "@/components/admin/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -111,11 +111,11 @@ export default function BranchIconsManagement() {
   const [sortedIcons, setSortedIcons] = useState<BranchIcon[]>([]);
 
   // Update sorted icons when data changes
-  useState(() => {
+  useEffect(() => {
     if (icons.length > 0) {
       setSortedIcons([...icons]);
     }
-  });
+  }, [icons]);
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
@@ -255,11 +255,6 @@ export default function BranchIconsManagement() {
       deleteMutation.mutate(id);
     }
   };
-
-  // Keep sortedIcons in sync with icons
-  if (sortedIcons.length === 0 && icons.length > 0) {
-    setSortedIcons([...icons]);
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
