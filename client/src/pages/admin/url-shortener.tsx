@@ -45,9 +45,9 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { ShortUrl as ShortUrlType, AdminUser } from "@shared/schema";
 
 const shortUrlSchema = z.object({
-  shortCode: z.string().min(3, "Short code must be at least 3 characters").max(20, "Short code must be at most 20 characters"),
+  shortCode: z.string().min(1, "Short code is required").max(20, "Short code must be at most 20 characters").regex(/^[a-zA-Z0-9_-]+$/, "Only letters, numbers, hyphens and underscores allowed"),
   originalUrl: z.string().url("Must be a valid URL"),
-  title: z.string().optional(),
+  title: z.string().optional().or(z.literal("")),
   isActive: z.boolean().default(true),
 });
 
@@ -61,6 +61,8 @@ export default function UrlShortenerPage() {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingUrl, setEditingUrl] = useState<ShortUrlType | null>(null);
+  const [isFetchingTitle, setIsFetchingTitle] = useState(false);
+  const [useCustomCode, setUseCustomCode] = useState(false);
 
   // Auth check
   useEffect(() => {
@@ -132,6 +134,32 @@ export default function UrlShortenerPage() {
     }
     form.setValue('shortCode', code);
   };
+
+  // Auto-fetch title from URL
+  const fetchTitle = async (url: string) => {
+    try {
+      setIsFetchingTitle(true);
+      const response = await fetch('/api/fetch-url-title', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ url }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.title) {
+          form.setValue('title', data.title);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch title:', error);
+    } finally {
+      setIsFetchingTitle(false);
+    }
+  };
+
+  // Watch URL changes to auto-fetch title
+  const watchedUrl = form.watch('originalUrl');
+  const watchedTitle = form.watch('title');
 
   // Create/Update short URL mutation
   const saveMutation = useMutation({
@@ -235,9 +263,13 @@ export default function UrlShortenerPage() {
   const handleDialogChange = (open: boolean) => {
     setIsDialogOpen(open);
     if (!open) {
-      // Only reset when closing
+      // Reset when closing
       setEditingUrl(null);
+      setUseCustomCode(false);
       form.reset();
+    } else if (!editingUrl) {
+      // Generate code when opening for new URL
+      generateShortCode();
     }
   };
 
@@ -252,7 +284,7 @@ export default function UrlShortenerPage() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <AdminSidebar currentUser={adminUser} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
       <div className="flex-1 flex flex-col overflow-hidden">
         <AdminHeader onMenuClick={() => setSidebarOpen(true)} />
@@ -284,32 +316,6 @@ export default function UrlShortenerPage() {
                   
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="shortCode">Short Code</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="shortCode"
-                          {...form.register("shortCode")}
-                          placeholder="abc123"
-                          disabled={!!editingUrl}
-                          data-testid="input-short-code"
-                        />
-                        {!editingUrl && (
-                          <Button type="button" variant="outline" onClick={generateShortCode} data-testid="button-generate-code">
-                            <RefreshCw className="w-4 h-4" />
-                          </Button>
-                        )}
-                      </div>
-                      {form.formState.errors.shortCode && (
-                        <p className="text-sm text-red-600">{form.formState.errors.shortCode.message}</p>
-                      )}
-                      {!editingUrl && (
-                        <p className="text-sm text-gray-500">
-                          Your short URL will be: {window.location.origin}/s/{form.watch("shortCode") || "code"}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
                       <Label htmlFor="originalUrl">Destination URL</Label>
                       <Input
                         id="originalUrl"
@@ -323,13 +329,70 @@ export default function UrlShortenerPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="title">Title (Optional)</Label>
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="title">Title (Optional)</Label>
+                        {watchedUrl && (
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => fetchTitle(watchedUrl)} 
+                            disabled={isFetchingTitle || !watchedUrl}
+                            data-testid="button-fetch-title"
+                          >
+                            {isFetchingTitle ? "Fetching..." : "Auto-fetch"}
+                          </Button>
+                        )}
+                      </div>
                       <Input
                         id="title"
                         {...form.register("title")}
-                        placeholder="My Campaign Link"
+                        placeholder="Leave empty or auto-fetch from URL"
                         data-testid="input-title"
                       />
+                      <p className="text-xs text-gray-500">Optional: Add a descriptive title for easier management</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      {!editingUrl && (
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Switch
+                            id="useCustomCode"
+                            checked={useCustomCode}
+                            onCheckedChange={(checked) => {
+                              setUseCustomCode(checked);
+                              if (!checked) {
+                                generateShortCode();
+                              }
+                            }}
+                            data-testid="switch-use-custom-code"
+                          />
+                          <Label htmlFor="useCustomCode">Use custom short code</Label>
+                        </div>
+                      )}
+                      <Label htmlFor="shortCode">Short Code</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="shortCode"
+                          {...form.register("shortCode")}
+                          placeholder="abc123"
+                          disabled={!!editingUrl || !useCustomCode}
+                          data-testid="input-short-code"
+                        />
+                        {!editingUrl && !useCustomCode && (
+                          <Button type="button" variant="outline" onClick={generateShortCode} data-testid="button-generate-code">
+                            <RefreshCw className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </div>
+                      {form.formState.errors.shortCode && (
+                        <p className="text-sm text-red-600">{form.formState.errors.shortCode.message}</p>
+                      )}
+                      {!editingUrl && (
+                        <p className="text-sm text-gray-500">
+                          Your short URL will be: {window.location.origin}/s/{form.watch("shortCode") || "code"}
+                        </p>
+                      )}
                     </div>
 
                     <div className="flex items-center space-x-2">

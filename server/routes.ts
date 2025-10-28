@@ -1506,6 +1506,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Fetch URL title for auto-fill (Admin only)
+  app.post("/api/fetch-url-title", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const { url } = req.body;
+      if (!url) {
+        return res.status(400).json({ message: "URL is required" });
+      }
+
+      // Fetch the URL and extract title
+      const response = await fetch(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; DunyaBot/1.0)'
+        },
+        signal: AbortSignal.timeout(5000) // 5 second timeout
+      });
+
+      if (!response.ok) {
+        return res.json({ title: null, error: "Failed to fetch URL" });
+      }
+
+      const html = await response.text();
+      
+      // Try to extract title from HTML
+      const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+      const ogTitleMatch = html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["']/i);
+      
+      const title = ogTitleMatch?.[1] || titleMatch?.[1] || null;
+      
+      res.json({ title: title?.trim() || null });
+    } catch (error) {
+      console.error("Error fetching URL title:", error);
+      res.json({ title: null, error: "Failed to fetch title" });
+    }
+  });
+
   // Public redirect route - /s/:code
   app.get("/s/:code", async (req, res) => {
     try {
