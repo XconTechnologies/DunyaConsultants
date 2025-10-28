@@ -71,6 +71,29 @@ export default function AllPosts() {
   const [authChecked, setAuthChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [hasHoverCapability, setHasHoverCapability] = useState(true); // Default to true for SSR
+  const [contextMenu, setContextMenu] = useState<{
+    show: boolean;
+    x: number;
+    y: number;
+    postId: number;
+    postSlug: string;
+    isPublished: boolean;
+  } | null>(null);
+
+  // Detect if device has hover capability
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover)');
+    setHasHoverCapability(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setHasHoverCapability(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
   
   // Get initial filter from URL params
   const urlParams = new URLSearchParams(window.location.search);
@@ -90,6 +113,15 @@ export default function AllPosts() {
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Close context menu on click outside
+  useEffect(() => {
+    const handleClickOutside = () => setContextMenu(null);
+    if (contextMenu?.show) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [contextMenu]);
 
   // Get auth headers helper
   const getAuthHeaders = () => {
@@ -669,8 +701,27 @@ export default function AllPosts() {
                   ) : (
                     paginatedPosts.map((post: BlogPost) => {
                       const categories = postCategories[post.id] || [];
+                      const postUrl = getBlogUrl(post.slug);
+                      const isHovered = hoveredRow === post.id;
+                      
                       return (
-                        <TableRow key={post.id} className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200">
+                        <TableRow 
+                          key={post.id} 
+                          className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-200 group"
+                          onMouseEnter={() => setHoveredRow(post.id)}
+                          onMouseLeave={() => setHoveredRow(null)}
+                          onContextMenu={(e) => {
+                            e.preventDefault();
+                            setContextMenu({
+                              show: true,
+                              x: e.clientX,
+                              y: e.clientY,
+                              postId: post.id,
+                              postSlug: post.slug,
+                              isPublished: post.isPublished
+                            });
+                          }}
+                        >
                           <TableCell className="py-4">
                             {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
                               <Checkbox
@@ -682,20 +733,35 @@ export default function AllPosts() {
                           </TableCell>
                           <TableCell>
                             <div className="space-y-2">
-                              <div className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors">
+                              <div 
+                                className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors cursor-pointer"
+                                onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                                data-testid={`title-blog-${post.id}`}
+                              >
                                 {post.title}
                               </div>
-                              <div className="flex items-center gap-3 flex-wrap">
-                                {post.isPublished && (
+                              <div className={`flex items-center gap-3 flex-wrap transition-opacity duration-200 ${hasHoverCapability ? (isHovered ? 'opacity-100' : 'opacity-0') : 'opacity-100'}`}>
+                                {post.isPublished ? (
                                   <Button
                                     variant="ghost"
                                     size="sm"
-                                    onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
+                                    onClick={() => window.open(postUrl, '_blank')}
                                     data-testid={`button-view-blog-${post.id}`}
                                     className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
                                   >
                                     <Eye className="w-3.5 h-3.5 mr-1.5" />
                                     View
+                                  </Button>
+                                ) : (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => window.open(postUrl, '_blank')}
+                                    data-testid={`button-preview-blog-${post.id}`}
+                                    className="h-7 px-3 text-purple-600 hover:bg-purple-50"
+                                  >
+                                    <Eye className="w-3.5 h-3.5 mr-1.5" />
+                                    Preview
                                   </Button>
                                 )}
                                 {canEditContent(adminUser) && (
@@ -865,6 +931,89 @@ export default function AllPosts() {
           </Card>
         </div>
       </div>
+
+      {/* Right-Click Context Menu */}
+      {contextMenu?.show && (
+        <div
+          className="fixed z-50 bg-white rounded-lg shadow-2xl border border-gray-200 py-2 min-w-[220px]"
+          style={{
+            left: `${contextMenu.x}px`,
+            top: `${contextMenu.y}px`,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => {
+              window.open(getBlogUrl(contextMenu.postSlug), '_blank');
+              setContextMenu(null);
+            }}
+            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+            data-testid="context-open-new-tab"
+          >
+            <ExternalLink className="w-4 h-4" />
+            Open in new tab
+          </button>
+          
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.origin + getBlogUrl(contextMenu.postSlug));
+              toast({ title: "URL copied to clipboard" });
+              setContextMenu(null);
+            }}
+            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+            data-testid="context-copy-url"
+          >
+            <FileText className="w-4 h-4" />
+            Copy URL
+          </button>
+          
+          <button
+            onClick={() => {
+              const newWindow = window.open(getBlogUrl(contextMenu.postSlug), '_blank', 'noopener,noreferrer');
+              if (newWindow) newWindow.opener = null;
+              setContextMenu(null);
+            }}
+            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+            data-testid="context-open-new-window"
+          >
+            <ExternalLink className="w-4 h-4" />
+            Open in new window
+          </button>
+          
+          <div className="border-t border-gray-200 my-1"></div>
+          
+          <button
+            onClick={() => {
+              setLocation(`/admin/blog-editor/${contextMenu.postId}`);
+              setContextMenu(null);
+            }}
+            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+            data-testid="context-edit-post"
+          >
+            <Edit2 className="w-4 h-4" />
+            Edit post
+          </button>
+          
+          <button
+            onClick={() => {
+              const url = window.location.origin + getBlogUrl(contextMenu.postSlug);
+              const blob = new Blob([url], { type: 'text/plain' });
+              const link = document.createElement('a');
+              link.href = URL.createObjectURL(blob);
+              link.download = `${contextMenu.postSlug}-url.txt`;
+              link.click();
+              URL.revokeObjectURL(link.href);
+              toast({ title: "URL saved as text file" });
+              setContextMenu(null);
+            }}
+            className="w-full px-4 py-2 text-left hover:bg-blue-50 text-sm text-gray-700 flex items-center gap-2"
+            data-testid="context-save-link"
+          >
+            <FileText className="w-4 h-4" />
+            Save link address as
+          </button>
+        </div>
+      )}
     </div>
   );
 }
