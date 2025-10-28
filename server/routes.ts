@@ -7147,6 +7147,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ========================================
+  // BRANCH ICONS MANAGEMENT ROUTES
+  // ========================================
+
+  // Public route: Get all active branch icons
+  app.get("/api/branch-icons", async (req, res) => {
+    try {
+      const icons = await storage.getBranchIcons();
+      const activeIcons = icons.filter(icon => icon.isActive);
+      res.json(activeIcons);
+    } catch (error) {
+      console.error('Error fetching branch icons:', error);
+      res.status(500).json({ message: 'Failed to fetch branch icons' });
+    }
+  });
+
+  // Get all branch icons (Admin only)
+  app.get("/api/admin/branch-icons", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const icons = await storage.getBranchIcons();
+      res.json(icons);
+    } catch (error) {
+      console.error('Error fetching branch icons:', error);
+      res.status(500).json({ message: 'Failed to fetch branch icons' });
+    }
+  });
+
+  // Get branch icon by ID (Admin only)
+  app.get("/api/admin/branch-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      const icon = await storage.getBranchIcon(iconId);
+      
+      if (!icon) {
+        return res.status(404).json({ message: 'Branch icon not found' });
+      }
+
+      res.json(icon);
+    } catch (error) {
+      console.error('Error fetching branch icon:', error);
+      res.status(500).json({ message: 'Failed to fetch branch icon' });
+    }
+  });
+
+  // Create branch icon (Admin only)
+  app.post("/api/admin/branch-icons", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const icon = await storage.createBranchIcon(req.body);
+      res.status(201).json(icon);
+    } catch (error) {
+      console.error('Error creating branch icon:', error);
+      res.status(500).json({ message: 'Failed to create branch icon' });
+    }
+  });
+
+  // Update branch icon (Admin only)
+  app.patch("/api/admin/branch-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      const icon = await storage.updateBranchIcon(iconId, req.body);
+      res.json(icon);
+    } catch (error) {
+      console.error('Error updating branch icon:', error);
+      res.status(500).json({ message: 'Failed to update branch icon' });
+    }
+  });
+
+  // Delete branch icon (Admin only)
+  app.delete("/api/admin/branch-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      await storage.deleteBranchIcon(iconId);
+      res.json({ message: 'Branch icon deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting branch icon:', error);
+      res.status(500).json({ message: 'Failed to delete branch icon' });
+    }
+  });
+
+  // Reorder branch icons (Admin only)
+  app.post("/api/admin/branch-icons/reorder", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { iconOrders } = req.body;
+      await storage.reorderBranchIcons(iconOrders);
+      res.json({ message: 'Branch icons reordered successfully' });
+    } catch (error) {
+      console.error('Error reordering branch icons:', error);
+      res.status(500).json({ message: 'Failed to reorder branch icons' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

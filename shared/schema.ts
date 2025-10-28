@@ -919,6 +919,24 @@ export const insertCustomFormSubmissionSchema = createInsertSchema(customFormSub
   submittedAt: true,
 });
 
+// Branch Icons for Homepage Carousel
+export const branchIcons = pgTable("branch_icons", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(), // City name
+  iconUrl: text("icon_url").notNull(), // URL to uploaded icon image
+  route: text("route").notNull(), // Link to office page
+  displayOrder: integer("display_order").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertBranchIconSchema = createInsertSchema(branchIcons).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Admin Dashboard Types
 export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
 export type AdminUser = typeof adminUsers.$inferSelect;
@@ -974,3 +992,5 @@ export type InsertFormField = z.infer<typeof insertFormFieldSchema>;
 export type FormField = typeof formFields.$inferSelect;
 export type InsertCustomFormSubmission = z.infer<typeof insertCustomFormSubmissionSchema>;
 export type CustomFormSubmission = typeof customFormSubmissions.$inferSelect;
+export type InsertBranchIcon = z.infer<typeof insertBranchIconSchema>;
+export type BranchIcon = typeof branchIcons.$inferSelect;

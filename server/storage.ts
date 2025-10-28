@@ -2,7 +2,7 @@ import {
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
   categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, backupConfigs, backupHistory,
-  customForms, formFields, customFormSubmissions,
+  customForms, formFields, customFormSubmissions, branchIcons,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -19,7 +19,8 @@ import {
   type QrCode, type InsertQrCode, type ShortUrl, type InsertShortUrl,
   type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory,
   type CustomForm, type InsertCustomForm, type FormField, type InsertFormField,
-  type CustomFormSubmission, type InsertCustomFormSubmission
+  type CustomFormSubmission, type InsertCustomFormSubmission,
+  type BranchIcon, type InsertBranchIcon
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -283,6 +284,14 @@ export interface IStorage {
   createCustomFormSubmission(submission: InsertCustomFormSubmission): Promise<CustomFormSubmission>;
   updateCustomFormSubmission(id: number, updates: Partial<CustomFormSubmission>): Promise<CustomFormSubmission>;
   deleteCustomFormSubmission(id: number): Promise<void>;
+  
+  // Branch Icons Management
+  getBranchIcons(): Promise<BranchIcon[]>;
+  getBranchIcon(id: number): Promise<BranchIcon | undefined>;
+  createBranchIcon(icon: InsertBranchIcon): Promise<BranchIcon>;
+  updateBranchIcon(id: number, updates: Partial<InsertBranchIcon>): Promise<BranchIcon>;
+  deleteBranchIcon(id: number): Promise<void>;
+  reorderBranchIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void>;
 }
 
 
@@ -2275,6 +2284,48 @@ export class DatabaseStorage implements IStorage {
 
   async deleteCustomFormSubmission(id: number): Promise<void> {
     await db.delete(customFormSubmissions).where(eq(customFormSubmissions.id, id));
+  }
+
+  // Branch Icons Management
+  async getBranchIcons(): Promise<BranchIcon[]> {
+    return await db.select()
+      .from(branchIcons)
+      .orderBy(asc(branchIcons.displayOrder));
+  }
+
+  async getBranchIcon(id: number): Promise<BranchIcon | undefined> {
+    const [icon] = await db.select()
+      .from(branchIcons)
+      .where(eq(branchIcons.id, id))
+      .limit(1);
+    return icon;
+  }
+
+  async createBranchIcon(icon: InsertBranchIcon): Promise<BranchIcon> {
+    const [newIcon] = await db.insert(branchIcons)
+      .values(icon)
+      .returning();
+    return newIcon;
+  }
+
+  async updateBranchIcon(id: number, updates: Partial<InsertBranchIcon>): Promise<BranchIcon> {
+    const [updated] = await db.update(branchIcons)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(branchIcons.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteBranchIcon(id: number): Promise<void> {
+    await db.delete(branchIcons).where(eq(branchIcons.id, id));
+  }
+
+  async reorderBranchIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void> {
+    for (const { id, displayOrder } of iconOrders) {
+      await db.update(branchIcons)
+        .set({ displayOrder, updatedAt: new Date() })
+        .where(eq(branchIcons.id, id));
+    }
   }
 }
 
