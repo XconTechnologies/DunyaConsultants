@@ -36,7 +36,7 @@ export default function WhyChooseUs() {
   const advantages = [
     {
       icon: Award,
-      title: "More Than 5 Years of Excellence",
+      title: "4+ Years of Excellence",
       description: "Trusted by thousands of students worldwide with proven track record of success",
       stats: "98% Success Rate"
     },

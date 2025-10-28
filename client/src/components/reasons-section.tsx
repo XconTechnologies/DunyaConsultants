@@ -18,7 +18,7 @@ export default function ReasonsSection() {
   const reasons = [
     {
       icon: <Award className="w-8 h-8" />,
-      title: "More Than 5 Years of Excellence",
+      title: "4+ Years of Excellence",
       description: "Established in 2009, we have successfully guided thousands of students with our proven track record and expertise in international education.",
       gradient: "from-blue-400 to-blue-500"
     },
