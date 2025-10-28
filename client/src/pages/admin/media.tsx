@@ -41,6 +41,7 @@ import {
   Calendar,
   User,
   FileText,
+  Copy,
 } from "lucide-react";
 import type { AdminUser, Media } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
@@ -350,6 +351,23 @@ export default function MediaManagement() {
     }
   };
 
+  // Handle copy URL to clipboard
+  const handleCopyUrl = async (url: string) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast({
+        title: "Success",
+        description: "Media URL copied to clipboard",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to copy URL",
+        variant: "destructive",
+      });
+    }
+  };
+
   // Get file type icon
   const getFileTypeIcon = (mimeType: string) => {
     if (mimeType.startsWith("image/")) return <Image className="h-4 w-4" />;
@@ -588,8 +606,19 @@ export default function MediaManagement() {
                           <Button
                             size="sm"
                             variant="secondary"
+                            onClick={() => handleCopyUrl(media.url)}
+                            className="h-8 w-8 p-0 bg-white/90 backdrop-blur-sm hover:bg-white border-0"
+                            title="Copy URL"
+                            data-testid={`button-copy-${media.id}`}
+                          >
+                            <Copy className="h-4 w-4 text-gray-700" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
                             onClick={() => window.open(media.url, '_blank')}
                             className="h-8 w-8 p-0 bg-white/90 backdrop-blur-sm hover:bg-white border-0"
+                            title="View"
                             data-testid={`button-view-${media.id}`}
                           >
                             <Eye className="h-4 w-4 text-gray-700" />
@@ -599,6 +628,7 @@ export default function MediaManagement() {
                             variant="secondary"
                             onClick={() => handleEdit(media)}
                             className="h-8 w-8 p-0 bg-white/90 backdrop-blur-sm hover:bg-white border-0"
+                            title="Edit"
                             data-testid={`button-edit-${media.id}`}
                           >
                             <Edit2 className="h-4 w-4 text-gray-700" />
@@ -608,6 +638,7 @@ export default function MediaManagement() {
                             variant="destructive"
                             onClick={() => handleDelete(media.id)}
                             className="h-8 w-8 p-0 bg-red-500/90 backdrop-blur-sm hover:bg-red-600 border-0"
+                            title="Delete"
                             data-testid={`button-delete-${media.id}`}
                           >
                             <Trash2 className="h-4 w-4 text-white" />
@@ -703,7 +734,17 @@ export default function MediaManagement() {
                           <Button
                             size="sm"
                             variant="ghost"
+                            onClick={() => handleCopyUrl(media.url)}
+                            title="Copy URL"
+                            data-testid={`button-list-copy-${media.id}`}
+                          >
+                            <Copy className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
                             onClick={() => window.open(media.url, '_blank')}
+                            title="View"
                             data-testid={`button-list-view-${media.id}`}
                           >
                             <Eye className="h-4 w-4" />
@@ -712,6 +753,7 @@ export default function MediaManagement() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleEdit(media)}
+                            title="Edit"
                             data-testid={`button-list-edit-${media.id}`}
                           >
                             <Edit2 className="h-4 w-4" />
@@ -720,6 +762,7 @@ export default function MediaManagement() {
                             size="sm"
                             variant="ghost"
                             onClick={() => handleDelete(media.id)}
+                            title="Delete"
                             data-testid={`button-list-delete-${media.id}`}
                           >
                             <Trash2 className="h-4 w-4" />
