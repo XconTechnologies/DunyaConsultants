@@ -39,7 +39,7 @@ export default function BranchesCarousel() {
 
         {/* Infinite Scrolling Carousel */}
         <div 
-          className="relative overflow-hidden min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]"
+          className="relative overflow-hidden min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -59,7 +59,7 @@ export default function BranchesCarousel() {
               {duplicatedBranches.map((branch, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex items-center justify-center"
+                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex flex-col items-center justify-center"
                 >
                   {/* Clean Icon Container with Link */}
                   <Link href={branch.route} className="block">
@@ -69,6 +69,12 @@ export default function BranchesCarousel() {
                         alt={`${branch.name} landmark`}
                         className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300"
                       />
+                    </div>
+                    {/* City Name Label */}
+                    <div className="mt-2 sm:mt-3 text-center">
+                      <p className="text-xs sm:text-sm lg:text-base font-semibold text-[#1D50C9] group-hover:text-[#1845B3] transition-colors duration-300">
+                        {branch.name}
+                      </p>
                     </div>
                   </Link>
                 </div>
