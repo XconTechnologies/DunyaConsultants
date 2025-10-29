@@ -6,15 +6,41 @@ import type { BranchIcon } from "@shared/schema";
 
 export default function BranchesCarousel() {
   const [isHovered, setIsHovered] = useState(false);
+  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  
+  // Check screen size for all breakpoints
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setScreenSize('mobile');
+      } else if (width < 1024) {
+        setScreenSize('tablet');
+      } else {
+        setScreenSize('desktop');
+      }
+    };
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
   
   // Fetch branch icons from database
   const { data: branches = [], isLoading } = useQuery<BranchIcon[]>({
     queryKey: ["/api/branch-icons"],
   });
   
-  // Triple the array for seamless infinite scrolling
-  const duplicatedBranches = [...branches, ...branches, ...branches];
-  const totalDistance = -120 * branches.length;
+  // Double the array for seamless infinite scrolling
+  const duplicatedBranches = [...branches, ...branches];
+  
+  // Calculate exact scroll distance including gaps for seamless loop
+  // Mobile: w-28 (112px) + gap-2 (8px)
+  // Tablet (sm): w-32 (128px) + gap-3 (12px)
+  // Desktop (lg): w-40 (160px) + gap-4 (16px)
+  const itemWidth = screenSize === 'mobile' ? 112 : screenSize === 'tablet' ? 128 : 160;
+  const gapSize = screenSize === 'mobile' ? 8 : screenSize === 'tablet' ? 12 : 16;
+  // Total distance = (n items × width) + ((n-1) gaps × gap size)
+  const totalDistance = -(branches.length * itemWidth + (branches.length - 1) * gapSize);
 
   return (
     <section className="py-8 lg:py-12 pb-16 lg:pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
@@ -50,9 +76,9 @@ export default function BranchesCarousel() {
             <div className="text-center py-8 text-gray-500">No branches available</div>
           ) : (
             <div
-              className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform py-4 animate-scroll"
+              className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform animate-scroll"
               style={{ 
-                width: `${120 * duplicatedBranches.length}px`,
+                width: `${itemWidth * duplicatedBranches.length + gapSize * (duplicatedBranches.length - 1)}px`,
                 animationPlayState: isHovered ? 'paused' : 'running'
               }}
             >
@@ -63,13 +89,13 @@ export default function BranchesCarousel() {
                 >
                   {/* Icon Card with City Name */}
                   <Link href={branch.route} className="block">
-                    <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center">
+                    <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-4 flex flex-col items-center justify-center gap-2">
                       <img loading="lazy" 
                         src={branch.iconUrl} 
                         alt={`${branch.name} landmark`}
                         className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain group-hover:scale-105 transition-transform duration-300"
                       />
-                      <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center">
+                      <p className="text-xs sm:text-sm font-semibold text-[#1D50C9] text-center">
                         {branch.name}
                       </p>
                     </div>
@@ -87,8 +113,8 @@ export default function BranchesCarousel() {
       
       <style>{`
         @keyframes scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(${totalDistance}px); }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(${totalDistance}px); }
         }
         .animate-scroll {
           animation: scroll 12s linear infinite;
