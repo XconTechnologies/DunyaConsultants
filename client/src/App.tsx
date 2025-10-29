@@ -87,7 +87,7 @@ const QRScannerPage = lazy(() => import("@/pages/admin/qr-scanner"));
 const EventRegistrationsPage = lazy(() => import("@/pages/admin/event-registrations"));
 const QrCodesPage = lazy(() => import("@/pages/admin/qr-codes"));
 const UrlShortenerPage = lazy(() => import("@/pages/admin/url-shortener"));
-const BranchIconsPage = lazy(() => import("@/pages/admin/branch-icons"));
+const IconManagementPage = lazy(() => import("@/pages/admin/icon-management"));
 const AdminIndex = lazy(() => import("@/pages/admin/index"));
 const CategoryPage = lazy(() => import("@/pages/category"));
 const CategoriesIndexPage = lazy(() => import("@/pages/categories"));
@@ -209,7 +209,7 @@ function Router() {
       <Route path="/admin/event-registrations" component={EventRegistrationsPage} />
       <Route path="/admin/qr-codes" component={QrCodesPage} />
       <Route path="/admin/url-shortener" component={UrlShortenerPage} />
-      <Route path="/admin/branch-icons" component={BranchIconsPage} />
+      <Route path="/admin/branch-icons" component={IconManagementPage} />
       <Route path="/admin/media" component={MediaManagement} />
       <Route path="/admin/trash" component={TrashManagement} />
       <Route path="/dashboard">

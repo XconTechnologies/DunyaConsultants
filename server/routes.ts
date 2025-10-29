@@ -7392,6 +7392,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Seed university icons with sample data (Public on first use, then admin-only)
+  app.post("/api/admin/university-icons/seed", async (req: AuthenticatedRequest, res) => {
+    try {
+      const existingIcons = await storage.getUniversityIcons();
+      
+      // If icons already exist, require admin authentication
+      if (existingIcons.length > 0) {
+        const token = req.headers.authorization?.replace('Bearer ', '');
+        if (!token) {
+          return res.status(401).json({ message: 'Authentication required to re-seed' });
+        }
+
+        const session = await storage.getAdminSession(token);
+        if (!session) {
+          return res.status(401).json({ message: 'Invalid or expired token' });
+        }
+
+        const admin = await storage.getAdminById(session.adminUserId);
+        if (!admin || !admin.isActive) {
+          return res.status(401).json({ message: 'Admin account inactive' });
+        }
+
+        const roles = Array.isArray(admin.roles) ? admin.roles : [admin.roles];
+        if (!roles.includes('admin')) {
+          return res.status(403).json({ message: 'Admin access required' });
+        }
+
+        return res.status(400).json({ message: 'University icons already exist. Clear them first if you want to re-seed.' });
+      }
+
+      // Sample university data - user should replace with actual data
+      const universitiesData = [
+        { name: "Harvard University", logoUrl: "/assets/universities/harvard.png", route: "/universities/harvard", displayOrder: 0 },
+        { name: "Oxford University", logoUrl: "/assets/universities/oxford.png", route: "/universities/oxford", displayOrder: 1 },
+        { name: "Cambridge University", logoUrl: "/assets/universities/cambridge.png", route: "/universities/cambridge", displayOrder: 2 },
+        { name: "MIT", logoUrl: "/assets/universities/mit.png", route: "/universities/mit", displayOrder: 3 },
+        { name: "Stanford University", logoUrl: "/assets/universities/stanford.png", route: "/universities/stanford", displayOrder: 4 },
+        { name: "University of Toronto", logoUrl: "/assets/universities/toronto.png", route: "/universities/toronto", displayOrder: 5 },
+        { name: "University of Melbourne", logoUrl: "/assets/universities/melbourne.png", route: "/universities/melbourne", displayOrder: 6 },
+        { name: "ETH Zurich", logoUrl: "/assets/universities/eth-zurich.png", route: "/universities/eth-zurich", displayOrder: 7 },
+      ];
+
+      const createdIcons = [];
+      for (const uniData of universitiesData) {
+        const icon = await storage.createUniversityIcon({
+          ...uniData,
+          isActive: true
+        });
+        createdIcons.push(icon);
+      }
+
+      res.json({ 
+        message: `Successfully seeded ${createdIcons.length} university icons`,
+        icons: createdIcons
+      });
+    } catch (error) {
+      console.error('Error seeding university icons:', error);
+      res.status(500).json({ message: 'Failed to seed university icons' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
