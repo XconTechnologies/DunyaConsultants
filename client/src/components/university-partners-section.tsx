@@ -182,7 +182,7 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} id="university-partners" className="py-16 lg:py-24 bg-white">
+    <section ref={ref} id="university-partners" className="pt-16 lg:pt-24 pb-8 lg:pb-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -220,37 +220,46 @@ export default function UniversityPartnersSection() {
             {/* Bottom fade overlay */}
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             
-            {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className="overflow-y-hidden overflow-x-visible">
-                <motion.div
-                  className="flex flex-col gap-1"
-                  animate={{
-                    y: [0, -100 * column.length]
-                  }}
-                  transition={{
-                    duration: 15 + columnIndex * 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {/* Duplicate column for seamless loop */}
-                  {[...column, ...column].map((university, index) => (
-                    <div
-                      key={`${university.name}-${columnIndex}-${index}`}
-                      className={`flex items-center justify-center p-2 ${isMobile ? 'w-28 h-16' : 'w-36 h-20'}`}
-                    >
-                      <img
-                        src={university.logoUrl}
-                        alt={`${university.name} logo`}
-                        loading="lazy"
-                        decoding="async"
-                        className="block max-h-full max-w-full object-contain object-center pointer-events-none"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            ))}
+            {columns.map((column, columnIndex) => {
+              // Calculate the total height of one set of logos for seamless loop
+              const itemHeight = isMobile ? 16 * 4 : 20 * 4; // h-16 or h-20 in pixels (multiplied by 4 for rem to px)
+              const gapSize = 4; // gap-1 = 4px in Tailwind
+              // Total height = (n items × item height) + ((n-1) gaps × gap size)
+              const totalHeight = column.length * itemHeight + (column.length - 1) * gapSize;
+              
+              return (
+                <div key={columnIndex} className="overflow-y-hidden overflow-x-visible">
+                  <motion.div
+                    className="flex flex-col gap-1"
+                    animate={{
+                      y: [0, -totalHeight]
+                    }}
+                    transition={{
+                      duration: 15 + columnIndex * 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                      repeatType: "loop"
+                    }}
+                  >
+                    {/* Duplicate column for seamless loop */}
+                    {[...column, ...column].map((university, index) => (
+                      <div
+                        key={`${university.name}-${columnIndex}-${index}`}
+                        className={`flex items-center justify-center p-2 ${isMobile ? 'w-28 h-16' : 'w-36 h-20'}`}
+                      >
+                        <img
+                          src={university.logoUrl}
+                          alt={`${university.name} logo`}
+                          loading="lazy"
+                          decoding="async"
+                          className="block max-h-full max-w-full object-contain object-center pointer-events-none"
+                        />
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
