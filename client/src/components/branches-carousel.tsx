@@ -43,10 +43,10 @@ export default function BranchesCarousel() {
   const totalDistance = -(branches.length * itemWidth + (branches.length - 1) * gapSize);
 
   return (
-    <section className="py-8 lg:py-12 pb-16 lg:pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center mb-4 sm:mb-6 lg:mb-8">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
