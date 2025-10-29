@@ -65,7 +65,7 @@ export default function BranchesCarousel() {
 
         {/* Infinite Scrolling Carousel */}
         <div 
-          className="relative overflow-hidden min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]"
+          className="relative overflow-hidden h-[160px] sm:h-[180px] lg:h-[200px] flex items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
