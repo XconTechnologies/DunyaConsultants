@@ -7306,6 +7306,92 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // University Icons Management Routes
+  // Public endpoint to get all active university icons
+  app.get("/api/university-icons", async (req, res) => {
+    try {
+      const icons = await storage.getUniversityIcons();
+      const activeIcons = icons.filter(icon => icon.isActive);
+      res.json(activeIcons);
+    } catch (error) {
+      console.error('Error fetching university icons:', error);
+      res.status(500).json({ message: 'Failed to fetch university icons' });
+    }
+  });
+
+  // Admin endpoint to get all university icons (including inactive)
+  app.get("/api/admin/university-icons", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const icons = await storage.getUniversityIcons();
+      res.json(icons);
+    } catch (error) {
+      console.error('Error fetching university icons:', error);
+      res.status(500).json({ message: 'Failed to fetch university icons' });
+    }
+  });
+
+  // Get single university icon (Admin only)
+  app.get("/api/admin/university-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      const icon = await storage.getUniversityIcon(iconId);
+      if (!icon) {
+        return res.status(404).json({ message: 'University icon not found' });
+      }
+      res.json(icon);
+    } catch (error) {
+      console.error('Error fetching university icon:', error);
+      res.status(500).json({ message: 'Failed to fetch university icon' });
+    }
+  });
+
+  // Create university icon (Admin only)
+  app.post("/api/admin/university-icons", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const icon = await storage.createUniversityIcon(req.body);
+      res.json(icon);
+    } catch (error) {
+      console.error('Error creating university icon:', error);
+      res.status(500).json({ message: 'Failed to create university icon' });
+    }
+  });
+
+  // Update university icon (Admin only)
+  app.patch("/api/admin/university-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      const icon = await storage.updateUniversityIcon(iconId, req.body);
+      res.json(icon);
+    } catch (error) {
+      console.error('Error updating university icon:', error);
+      res.status(500).json({ message: 'Failed to update university icon' });
+    }
+  });
+
+  // Delete university icon (Admin only)
+  app.delete("/api/admin/university-icons/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const iconId = parseInt(req.params.id);
+      await storage.deleteUniversityIcon(iconId);
+      res.json({ message: 'University icon deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting university icon:', error);
+      res.status(500).json({ message: 'Failed to delete university icon' });
+    }
+  });
+
+  // Reorder university icons (Admin only)
+  app.post("/api/admin/university-icons/reorder", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { iconOrders } = req.body;
+      await storage.reorderUniversityIcons(iconOrders);
+      res.json({ message: 'University icons reordered successfully' });
+    } catch (error) {
+      console.error('Error reordering university icons:', error);
+      res.status(500).json({ message: 'Failed to reorder university icons' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
