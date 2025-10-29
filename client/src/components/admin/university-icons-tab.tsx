@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Plus, Upload } from "lucide-react";
+import { Plus, Upload, Wrench } from "lucide-react";
 import { useIconManagement } from "@/hooks/use-icon-management";
 import { IconTable } from "@/components/admin/icon-table";
 import { IconFormDialog } from "@/components/admin/icon-form-dialog";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function UniversityIconsTab() {
+  const { toast } = useToast();
+  
   const config = {
     entityType: 'university' as const,
     apiEndpoint: '/api/admin/university-icons',
@@ -37,6 +42,29 @@ export default function UniversityIconsTab() {
     handleDelete,
   } = useIconManagement(config);
 
+  // Fix broken URLs mutation
+  const fixUrlsMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest('/api/admin/university-icons/fix-urls', {
+        method: 'POST',
+      });
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [config.queryKey] });
+      toast({
+        title: "URLs Fixed",
+        description: data.message || `Fixed ${data.updatedCount || 0} university icon URLs`,
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "Failed to fix URLs",
+      });
+    },
+  });
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
@@ -58,6 +86,18 @@ export default function UniversityIconsTab() {
             >
               <Upload className="h-4 w-4 mr-2" />
               {seedMutation.isPending ? "Importing..." : "Import Sample Data"}
+            </Button>
+          )}
+          {icons.length > 0 && (
+            <Button 
+              onClick={() => fixUrlsMutation.mutate()} 
+              variant="outline"
+              disabled={fixUrlsMutation.isPending}
+              data-testid="button-fix-urls"
+              className="border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white transition-all"
+            >
+              <Wrench className="h-4 w-4 mr-2" />
+              {fixUrlsMutation.isPending ? "Fixing URLs..." : "Fix Broken URLs"}
             </Button>
           )}
           <Button 

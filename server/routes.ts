@@ -7392,6 +7392,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Fix broken university icon URLs (one-time migration)
+  app.post("/api/admin/university-icons/fix-urls", async (req: AuthenticatedRequest, res) => {
+    try {
+      const existingIcons = await storage.getUniversityIcons();
+      
+      // URL mapping for fixing broken placeholder URLs
+      const urlMapping: Record<string, string> = {
+        "Harvard University": "https://logo.clearbit.com/harvard.edu",
+        "Oxford University": "https://logo.clearbit.com/ox.ac.uk",
+        "Cambridge University": "https://logo.clearbit.com/cam.ac.uk",
+        "MIT": "https://logo.clearbit.com/mit.edu",
+        "Stanford University": "https://logo.clearbit.com/stanford.edu",
+        "University of Toronto": "https://logo.clearbit.com/utoronto.ca",
+        "University of Melbourne": "https://logo.clearbit.com/unimelb.edu.au",
+        "ETH Zurich": "https://logo.clearbit.com/ethz.ch",
+      };
+
+      const updatedIcons = [];
+      for (const icon of existingIcons) {
+        const newLogoUrl = urlMapping[icon.name];
+        if (newLogoUrl && icon.logoUrl !== newLogoUrl) {
+          const updated = await storage.updateUniversityIcon(icon.id, {
+            ...icon,
+            logoUrl: newLogoUrl
+          });
+          updatedIcons.push(updated);
+        }
+      }
+
+      res.json({
+        message: `Fixed ${updatedIcons.length} university icon URLs`,
+        updatedCount: updatedIcons.length,
+        icons: updatedIcons
+      });
+    } catch (error) {
+      console.error('Error fixing university icon URLs:', error);
+      res.status(500).json({ message: 'Failed to fix university icon URLs' });
+    }
+  });
+
   // Seed university icons with sample data (Public on first use, then admin-only)
   app.post("/api/admin/university-icons/seed", async (req: AuthenticatedRequest, res) => {
     try {
@@ -7422,16 +7462,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'University icons already exist. Clear them first if you want to re-seed.' });
       }
 
-      // Sample university data - user should replace with actual data
+      // Sample university data with working logo URLs
       const universitiesData = [
-        { name: "Harvard University", logoUrl: "/assets/universities/harvard.png", route: "/universities/harvard", displayOrder: 0 },
-        { name: "Oxford University", logoUrl: "/assets/universities/oxford.png", route: "/universities/oxford", displayOrder: 1 },
-        { name: "Cambridge University", logoUrl: "/assets/universities/cambridge.png", route: "/universities/cambridge", displayOrder: 2 },
-        { name: "MIT", logoUrl: "/assets/universities/mit.png", route: "/universities/mit", displayOrder: 3 },
-        { name: "Stanford University", logoUrl: "/assets/universities/stanford.png", route: "/universities/stanford", displayOrder: 4 },
-        { name: "University of Toronto", logoUrl: "/assets/universities/toronto.png", route: "/universities/toronto", displayOrder: 5 },
-        { name: "University of Melbourne", logoUrl: "/assets/universities/melbourne.png", route: "/universities/melbourne", displayOrder: 6 },
-        { name: "ETH Zurich", logoUrl: "/assets/universities/eth-zurich.png", route: "/universities/eth-zurich", displayOrder: 7 },
+        { name: "Harvard University", logoUrl: "https://logo.clearbit.com/harvard.edu", route: "/universities/harvard", displayOrder: 0 },
+        { name: "Oxford University", logoUrl: "https://logo.clearbit.com/ox.ac.uk", route: "/universities/oxford", displayOrder: 1 },
+        { name: "Cambridge University", logoUrl: "https://logo.clearbit.com/cam.ac.uk", route: "/universities/cambridge", displayOrder: 2 },
+        { name: "MIT", logoUrl: "https://logo.clearbit.com/mit.edu", route: "/universities/mit", displayOrder: 3 },
+        { name: "Stanford University", logoUrl: "https://logo.clearbit.com/stanford.edu", route: "/universities/stanford", displayOrder: 4 },
+        { name: "University of Toronto", logoUrl: "https://logo.clearbit.com/utoronto.ca", route: "/universities/toronto", displayOrder: 5 },
+        { name: "University of Melbourne", logoUrl: "https://logo.clearbit.com/unimelb.edu.au", route: "/universities/melbourne", displayOrder: 6 },
+        { name: "ETH Zurich", logoUrl: "https://logo.clearbit.com/ethz.ch", route: "/universities/eth-zurich", displayOrder: 7 },
       ];
 
       const createdIcons = [];
