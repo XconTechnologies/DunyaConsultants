@@ -937,6 +937,24 @@ export const insertBranchIconSchema = createInsertSchema(branchIcons).omit({
   updatedAt: true,
 });
 
+// University Icons for Homepage Carousel
+export const universityIcons = pgTable("university_icons", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(), // University name
+  logoUrl: text("logo_url").notNull(), // URL to uploaded logo image
+  route: text("route"), // Optional link to university page
+  displayOrder: integer("display_order").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertUniversityIconSchema = createInsertSchema(universityIcons).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Admin Dashboard Types
 export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
 export type AdminUser = typeof adminUsers.$inferSelect;
@@ -994,3 +1012,5 @@ export type InsertCustomFormSubmission = z.infer<typeof insertCustomFormSubmissi
 export type CustomFormSubmission = typeof customFormSubmissions.$inferSelect;
 export type InsertBranchIcon = z.infer<typeof insertBranchIconSchema>;
 export type BranchIcon = typeof branchIcons.$inferSelect;
+export type InsertUniversityIcon = z.infer<typeof insertUniversityIconSchema>;
+export type UniversityIcon = typeof universityIcons.$inferSelect;

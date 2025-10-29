@@ -2,7 +2,7 @@ import {
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
   categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, backupConfigs, backupHistory,
-  customForms, formFields, customFormSubmissions, branchIcons,
+  customForms, formFields, customFormSubmissions, branchIcons, universityIcons,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -20,7 +20,8 @@ import {
   type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory,
   type CustomForm, type InsertCustomForm, type FormField, type InsertFormField,
   type CustomFormSubmission, type InsertCustomFormSubmission,
-  type BranchIcon, type InsertBranchIcon
+  type BranchIcon, type InsertBranchIcon,
+  type UniversityIcon, type InsertUniversityIcon
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -292,6 +293,14 @@ export interface IStorage {
   updateBranchIcon(id: number, updates: Partial<InsertBranchIcon>): Promise<BranchIcon>;
   deleteBranchIcon(id: number): Promise<void>;
   reorderBranchIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void>;
+  
+  // University Icons Management
+  getUniversityIcons(): Promise<UniversityIcon[]>;
+  getUniversityIcon(id: number): Promise<UniversityIcon | undefined>;
+  createUniversityIcon(icon: InsertUniversityIcon): Promise<UniversityIcon>;
+  updateUniversityIcon(id: number, updates: Partial<InsertUniversityIcon>): Promise<UniversityIcon>;
+  deleteUniversityIcon(id: number): Promise<void>;
+  reorderUniversityIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void>;
 }
 
 
@@ -2325,6 +2334,48 @@ export class DatabaseStorage implements IStorage {
       await db.update(branchIcons)
         .set({ displayOrder, updatedAt: new Date() })
         .where(eq(branchIcons.id, id));
+    }
+  }
+
+  // University Icons Management
+  async getUniversityIcons(): Promise<UniversityIcon[]> {
+    return await db.select()
+      .from(universityIcons)
+      .orderBy(asc(universityIcons.displayOrder));
+  }
+
+  async getUniversityIcon(id: number): Promise<UniversityIcon | undefined> {
+    const [icon] = await db.select()
+      .from(universityIcons)
+      .where(eq(universityIcons.id, id))
+      .limit(1);
+    return icon;
+  }
+
+  async createUniversityIcon(icon: InsertUniversityIcon): Promise<UniversityIcon> {
+    const [newIcon] = await db.insert(universityIcons)
+      .values(icon)
+      .returning();
+    return newIcon;
+  }
+
+  async updateUniversityIcon(id: number, updates: Partial<InsertUniversityIcon>): Promise<UniversityIcon> {
+    const [updated] = await db.update(universityIcons)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(universityIcons.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteUniversityIcon(id: number): Promise<void> {
+    await db.delete(universityIcons).where(eq(universityIcons.id, id));
+  }
+
+  async reorderUniversityIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void> {
+    for (const { id, displayOrder } of iconOrders) {
+      await db.update(universityIcons)
+        .set({ displayOrder, updatedAt: new Date() })
+        .where(eq(universityIcons.id, id));
     }
   }
 }
