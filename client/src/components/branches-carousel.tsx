@@ -76,7 +76,7 @@ export default function BranchesCarousel() {
             <div className="text-center py-8 text-gray-500">No branches available</div>
           ) : (
             <div
-              className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform animate-scroll"
+              className="flex gap-2 sm:gap-3 lg:gap-4 px-2 sm:px-3 lg:px-4 will-change-transform animate-scroll"
               style={{ 
                 width: `${itemWidth * duplicatedBranches.length + gapSize * (duplicatedBranches.length - 1)}px`,
                 animationPlayState: isHovered ? 'paused' : 'running'
