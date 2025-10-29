@@ -59,7 +59,7 @@ export default function BranchesCarousel() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4"
           >
-            Serving students across Pakistan with our extensive network of branches
+            Serving students globally with our extensive network of offices across Pakistan, UK, Turkey, Egypt, and Saudi Arabia
           </motion.p>
         </div>
 
