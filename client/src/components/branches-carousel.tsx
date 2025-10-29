@@ -12,12 +12,12 @@ export default function BranchesCarousel() {
     queryKey: ["/api/branch-icons"],
   });
   
-  // Duplicate array twice for seamless infinite scrolling
-  const duplicatedBranches = [...branches, ...branches];
+  // Triple the array for seamless infinite scrolling
+  const duplicatedBranches = [...branches, ...branches, ...branches];
   const totalDistance = -120 * branches.length;
 
   return (
-    <section className="py-8 lg:py-12 pb-6 lg:pb-8 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+    <section className="py-8 lg:py-12 pb-16 lg:pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -50,7 +50,7 @@ export default function BranchesCarousel() {
             <div className="text-center py-8 text-gray-500">No branches available</div>
           ) : (
             <div
-              className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform py-4 animate-scroll-seamless"
+              className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform py-4 animate-scroll"
               style={{ 
                 width: `${120 * duplicatedBranches.length}px`,
                 animationPlayState: isHovered ? 'paused' : 'running'
@@ -86,12 +86,12 @@ export default function BranchesCarousel() {
       </div>
       
       <style>{`
-        @keyframes scroll-seamless {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(${totalDistance}px); }
+        @keyframes scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(${totalDistance}px); }
         }
-        .animate-scroll-seamless {
-          animation: scroll-seamless ${Math.max(branches.length * 2, 20)}s linear infinite;
+        .animate-scroll {
+          animation: scroll 12s linear infinite;
         }
       `}</style>
     </section>
