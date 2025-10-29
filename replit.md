@@ -43,6 +43,8 @@ Preferred communication style: Simple, everyday language.
 - `auditLogs`: Activity tracking and audit trail
 - `backup_configs`: Database backup configuration settings
 - `backup_history`: Historical records of database backups
+- `branchIcons`: Office branch icons with drag-and-drop ordering for homepage carousel
+- `universityIcons`: University partner logos with drag-and-drop ordering for display across website
 
 ### Key Features
 - Contact Management (validated forms)
@@ -119,6 +121,27 @@ Preferred communication style: Simple, everyday language.
   - Cloud storage integration support (Google Drive, Dropbox, OneDrive) - requires API credentials to be configured
   - Note: Cloud integrations available but user opted for local backups only
   - Note: Restore is additive (not replacement) and has limited relational data support
+
+### Icon Management System
+- **Tabbed Admin Interface**: Single unified page (`/admin/branch-icons`) with tabs for managing both branch and university icons
+- **Branch Icons Management**: 
+  - CRUD operations for office branch icons displayed in homepage carousel
+  - Drag-and-drop reordering with real-time display order updates
+  - Toggle visibility (active/inactive) for individual icons
+  - Seed endpoint to import existing branch data (12 office locations)
+  - Fields: name, iconUrl, route, displayOrder, isActive
+- **University Icons Management**: 
+  - CRUD operations for university partner logos displayed across website
+  - Drag-and-drop reordering with real-time display order updates
+  - Toggle visibility (active/inactive) for individual logos
+  - Seed endpoint with sample university data (8 sample universities)
+  - Fields: name, logoUrl, route, displayOrder, isActive
+- **Shared Architecture**: 
+  - Custom `useIconManagement` hook for reusable CRUD logic
+  - Presentational components (`IconTable`, `IconFormDialog`) shared between both icon types
+  - Configurable image field names (iconUrl for branches, logoUrl for universities)
+  - Consistent API patterns for both entity types
+- **Security**: Seed endpoints allow unauthenticated access only when database is empty (initial setup), then require admin authentication
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.
