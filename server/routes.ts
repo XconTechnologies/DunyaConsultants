@@ -7397,33 +7397,111 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const existingIcons = await storage.getUniversityIcons();
       
-      // URL mapping for fixing broken placeholder URLs
-      const urlMapping: Record<string, string> = {
-        "Harvard University": "https://logo.clearbit.com/harvard.edu",
-        "Oxford University": "https://logo.clearbit.com/ox.ac.uk",
-        "Cambridge University": "https://logo.clearbit.com/cam.ac.uk",
-        "MIT": "https://logo.clearbit.com/mit.edu",
-        "Stanford University": "https://logo.clearbit.com/stanford.edu",
-        "University of Toronto": "https://logo.clearbit.com/utoronto.ca",
-        "University of Melbourne": "https://logo.clearbit.com/unimelb.edu.au",
-        "ETH Zurich": "https://logo.clearbit.com/ethz.ch",
+      // Helper function to convert university name to domain
+      const getDomainFromName = (name: string): string => {
+        // Common university domain mappings
+        const domainMap: Record<string, string> = {
+          "Harvard University": "harvard.edu",
+          "Oxford University": "ox.ac.uk",
+          "Cambridge University": "cam.ac.uk",
+          "MIT": "mit.edu",
+          "Stanford University": "stanford.edu",
+          "University of Toronto": "utoronto.ca",
+          "University of Melbourne": "unimelb.edu.au",
+          "ETH Zurich": "ethz.ch",
+          "Yale University": "yale.edu",
+          "Princeton University": "princeton.edu",
+          "Columbia University": "columbia.edu",
+          "University of Pennsylvania": "upenn.edu",
+          "Cornell University": "cornell.edu",
+          "Brown University": "brown.edu",
+          "Dartmouth College": "dartmouth.edu",
+          "Duke University": "duke.edu",
+          "Northwestern University": "northwestern.edu",
+          "Johns Hopkins University": "jhu.edu",
+          "California Institute of Technology": "caltech.edu",
+          "University of Chicago": "uchicago.edu",
+          "University of California, Berkeley": "berkeley.edu",
+          "UCLA": "ucla.edu",
+          "University of Michigan": "umich.edu",
+          "New York University": "nyu.edu",
+          "Boston University": "bu.edu",
+          "University of Southern California": "usc.edu",
+          "Carnegie Mellon University": "cmu.edu",
+          "University of Washington": "washington.edu",
+          "Georgia Institute of Technology": "gatech.edu",
+          "University of Texas at Austin": "utexas.edu",
+          "Imperial College London": "imperial.ac.uk",
+          "University College London": "ucl.ac.uk",
+          "London School of Economics": "lse.ac.uk",
+          "University of Edinburgh": "ed.ac.uk",
+          "King's College London": "kcl.ac.uk",
+          "University of Manchester": "manchester.ac.uk",
+          "University of Bristol": "bristol.ac.uk",
+          "University of Warwick": "warwick.ac.uk",
+          "University of Glasgow": "gla.ac.uk",
+          "University of Birmingham": "birmingham.ac.uk",
+          "University of Sydney": "sydney.edu.au",
+          "Australian National University": "anu.edu.au",
+          "University of Queensland": "uq.edu.au",
+          "Monash University": "monash.edu",
+          "UNSW Sydney": "unsw.edu.au",
+          "University of Adelaide": "adelaide.edu.au",
+          "University of Western Australia": "uwa.edu.au",
+          "McGill University": "mcgill.ca",
+          "University of British Columbia": "ubc.ca",
+          "University of Alberta": "ualberta.ca",
+          "McMaster University": "mcmaster.ca",
+          "University of Waterloo": "uwaterloo.ca",
+        };
+
+        // Check if we have a direct mapping
+        if (domainMap[name]) {
+          return domainMap[name];
+        }
+
+        // Try to generate domain from name (basic logic)
+        const cleaned = name.toLowerCase()
+          .replace(/^university of /i, '')
+          .replace(/^the /i, '')
+          .replace(/ university$/i, '')
+          .replace(/ college$/i, '')
+          .replace(/[^a-z0-9 ]/g, '')
+          .replace(/ /g, '');
+
+        // Return a basic domain (this may not always work, but user can manually edit)
+        return `${cleaned}.edu`;
       };
 
       const updatedIcons = [];
+      const skippedIcons = [];
+
       for (const icon of existingIcons) {
-        const newLogoUrl = urlMapping[icon.name];
-        if (newLogoUrl && icon.logoUrl !== newLogoUrl) {
+        // Check if logoUrl is broken (local path or placeholder)
+        const isBroken = icon.logoUrl.startsWith('/assets/') || 
+                        icon.logoUrl.startsWith('./') || 
+                        icon.logoUrl.includes('placeholder') ||
+                        !icon.logoUrl.startsWith('http');
+
+        if (isBroken) {
+          const domain = getDomainFromName(icon.name);
+          const newLogoUrl = `https://logo.clearbit.com/${domain}`;
+          
           const updated = await storage.updateUniversityIcon(icon.id, {
             ...icon,
             logoUrl: newLogoUrl
           });
           updatedIcons.push(updated);
+        } else {
+          skippedIcons.push(icon.name);
         }
       }
 
       res.json({
-        message: `Fixed ${updatedIcons.length} university icon URLs`,
+        message: `Fixed ${updatedIcons.length} university icon URLs (${skippedIcons.length} already valid)`,
         updatedCount: updatedIcons.length,
+        skippedCount: skippedIcons.length,
+        totalIcons: existingIcons.length,
         icons: updatedIcons
       });
     } catch (error) {
