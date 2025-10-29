@@ -59,20 +59,17 @@ export default function BranchesCarousel() {
               {duplicatedBranches.map((branch, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex flex-col items-center justify-center"
+                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex items-center justify-center"
                 >
-                  {/* Clean Icon Container with Link */}
+                  {/* Icon Card with City Name */}
                   <Link href={branch.route} className="block">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group">
+                    <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center">
                       <img loading="lazy" 
                         src={branch.iconUrl} 
                         alt={`${branch.name} landmark`}
-                        className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300"
+                        className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain group-hover:scale-105 transition-transform duration-300"
                       />
-                    </div>
-                    {/* City Name Label */}
-                    <div className="mt-2 sm:mt-3 text-center">
-                      <p className="text-xs sm:text-sm lg:text-base font-semibold text-[#1D50C9] group-hover:text-[#1845B3] transition-colors duration-300">
+                      <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center">
                         {branch.name}
                       </p>
                     </div>
