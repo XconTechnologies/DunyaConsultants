@@ -6,7 +6,8 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, insertShortUrlSchema, InsertShortUrl, consultations
+  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, insertShortUrlSchema, InsertShortUrl, consultations,
+  blogPosts, adminUsers, categories
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, desc } from "drizzle-orm";
