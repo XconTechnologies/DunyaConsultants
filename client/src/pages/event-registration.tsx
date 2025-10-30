@@ -457,7 +457,7 @@ export default function EventRegistration() {
                 type="button"
                 variant="outline"
                 onClick={() => setLocation(`/events/${eventSlug}`)}
-                className="w-full sm:flex-1 py-6 text-lg border-[#dadada] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 hover:scale-105"
+                className="w-full sm:flex-1 py-6 text-lg border-2 border-gray-300 text-gray-700 hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white hover:border-[#1D50C9] transition-all duration-300"
                 data-testid="button-cancel"
               >
                 Back to Details
@@ -466,7 +466,8 @@ export default function EventRegistration() {
               <Button
                 type="submit"
                 disabled={registerMutation.isPending}
-                className="w-full sm:flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
+                variant="outline"
+                className="w-full sm:flex-1 py-6 text-lg border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300"
                 data-testid="button-register"
                 onClick={() => {
                   // Track button click immediately for Facebook Pixel Event Setup Tool
