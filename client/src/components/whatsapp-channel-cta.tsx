@@ -16,9 +16,7 @@ export default function WhatsAppChannelCTA() {
                 <h3 className="whatsapp-cta-heading font-bold text-lg sm:text-xl mb-1">
                   Stay Updated with Our WhatsApp Channel
                 </h3>
-                <p className="whatsapp-cta-text text-sm sm:text-base">
-                  Get instant updates on visa news, scholarships, and study abroad opportunities!
-                </p>
+                <p className="whatsapp-cta-text text-sm sm:text-base">Get instant updates on visa news, and study abroad opportunities!</p>
               </div>
             </div>
 
