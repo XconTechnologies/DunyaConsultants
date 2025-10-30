@@ -176,38 +176,63 @@ export default function CategoryPage() {
       <Navigation />
       
       {/* Category Header */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] to-[#2563EB] overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative pt-32 pb-24 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center pt-[30px]"
           >
-            <div className="flex items-center justify-center mb-6">
-              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white flex items-center gap-2">
-                <Tag className="w-5 h-5 text-white" />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center mb-8"
+            >
+              <Badge className="px-6 py-3 text-lg bg-white/20 backdrop-blur-sm text-white flex items-center gap-2 border border-white/30 shadow-lg">
+                <Tag className="w-6 h-6 text-white" />
                 Category
               </Badge>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight drop-shadow-lg"
+            >
               {currentCategory.name}
-            </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed"
+            >
               Discover expert insights and comprehensive guides in {currentCategory.name.toLowerCase()}. 
               Stay informed with the latest updates and advice from our consultants.
-            </p>
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full border border-white/20">
-              <span className="text-lg font-bold text-white">{filteredPosts.length}</span>
-              <span className="text-white/90 ml-2">article{filteredPosts.length !== 1 ? 's' : ''} found</span>
-            </div>
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="inline-flex items-center px-6 py-3 bg-white/15 backdrop-blur-sm rounded-full border border-white/30 shadow-lg"
+            >
+              <span className="text-2xl font-bold text-white">{filteredPosts.length}</span>
+              <span className="text-white/90 ml-3 text-lg">article{filteredPosts.length !== 1 ? 's' : ''} found</span>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           
           {/* Back Button and Search in Single Row */}
@@ -220,7 +245,10 @@ export default function CategoryPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               {/* Back Button */}
               <Link href="/category">
-                <Button variant="outline">
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
+                >
                   <ChevronLeft className="w-4 h-4 mr-2" />
                   Back to All Categories
                 </Button>
@@ -238,7 +266,7 @@ export default function CategoryPage() {
                       setSearchTerm(e.target.value);
                       setCurrentPage(1);
                     }}
-                    className="pl-10 w-full sm:w-80"
+                    className="pl-10 w-full sm:w-80 border-2 border-[#1D50C9] focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent rounded-xl shadow-md"
                     data-testid="search-category-posts"
                   />
                 </div>
@@ -265,7 +293,7 @@ export default function CategoryPage() {
                 }
               </p>
               <Link href="/blog">
-                <Button>
+                <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:shadow-xl transition-all duration-300 hover:scale-105">
                   Browse All Articles
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -285,15 +313,16 @@ export default function CategoryPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link href={getBlogUrl(post.slug)}>
-                      <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                      <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-[#1D50C9] transition-all duration-300 cursor-pointer h-full group hover:-translate-y-1">
                         
                         {/* Featured Image */}
                         {post.image && (
                           <div className="relative overflow-hidden rounded-t-lg">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                             <img loading="lazy" 
                               src={post.image}
                               alt={post.title}
-                              className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover"
+                              className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                               style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
                               data-testid={`post-image-${post.id}`}
                             />
@@ -304,35 +333,35 @@ export default function CategoryPage() {
                           {/* Categories */}
                           <div className="flex flex-wrap gap-2 mb-3">
                             {post.categories && post.categories.slice(0, 2).map((category: any, catIndex: number) => (
-                              <Badge key={catIndex} variant="secondary" className="text-xs">
+                              <Badge key={catIndex} className="text-xs bg-gradient-to-r from-[#1D50C9]/10 to-[#1845B3]/10 text-[#1D50C9] border border-[#1D50C9]/20 hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300">
                                 {category.name}
                               </Badge>
                             ))}
                           </div>
                           
                           {/* Title */}
-                          <h3 className="font-semibold text-lg text-gray-900 mb-3 line-clamp-2 hover:text-[#1D50C9] transition-colors">
+                          <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-[#1D50C9] transition-colors duration-300">
                             {post.title}
                           </h3>
                           
                           {/* Excerpt */}
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                             {post.excerpt}
                           </p>
                           
                           {/* Meta Information and Read More - Same Line */}
-                          <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center justify-between text-sm pt-4 border-t border-gray-100">
                             <div className="flex items-center text-gray-500">
                               <div className="flex items-center">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                <span>{post.date}</span>
+                                <Calendar className="w-4 h-4 mr-1.5" />
+                                <span className="text-xs">{post.date}</span>
                               </div>
                             </div>
                             
                             {/* Read More Link */}
-                            <div className="flex items-center text-[#1D50C9] font-medium">
-                              <span>Read More</span>
-                              <ArrowRight className="w-4 h-4 ml-1" />
+                            <div className="flex items-center text-[#1D50C9] font-semibold group-hover:text-[#1845B3] transition-colors">
+                              <span className="text-sm">Read More</span>
+                              <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                             </div>
                           </div>
                         </CardContent>
@@ -355,6 +384,7 @@ export default function CategoryPage() {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     data-testid="prev-page"
+                    className="border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
@@ -364,7 +394,11 @@ export default function CategoryPage() {
                       key={page}
                       variant={currentPage === page ? "default" : "outline"}
                       onClick={() => handlePageChange(page)}
-                      className="min-w-[40px]"
+                      className={`min-w-[40px] border-2 transition-all duration-300 ${
+                        currentPage === page 
+                          ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9] text-white shadow-lg' 
+                          : 'border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white'
+                      }`}
                       data-testid={`page-${page}`}
                     >
                       {page}
@@ -376,6 +410,7 @@ export default function CategoryPage() {
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     data-testid="next-page"
+                    className="border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </Button>
