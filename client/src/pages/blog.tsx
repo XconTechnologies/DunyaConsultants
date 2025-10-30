@@ -3827,35 +3827,31 @@ export default function Blog() {
                 ? "all" 
                 : category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
               
-              return category.name === "All" ? (
+              const isSelected = selectedCategory === category.name;
+              
+              return (
                 <Button
                   key={category.name}
-                  variant={selectedCategory === category.name ? "default" : "outline"}
+                  variant={isSelected ? "default" : "outline"}
                   onClick={() => {
                     setSelectedCategory(category.name);
                     resetPagination();
                   }}
-                  className={`mb-2 border ${selectedCategory === category.name ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9]' : 'border-[#1D50C9]'}`}
+                  className={`mb-2 border ${
+                    isSelected 
+                      ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9] text-white' 
+                      : 'border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white'
+                  } ${category.isChild ? 'ml-6 relative' : ''} transition-all duration-300`}
                   data-testid={`category-button-${categorySlug}`}
                 >
+                  {category.isChild && (
+                    <span className="absolute -left-4 text-gray-400">└</span>
+                  )}
                   {category.name}
+                  {category.isParent && (
+                    <Tag className="w-3 h-3 ml-1" />
+                  )}
                 </Button>
-              ) : (
-                <Link key={category.name} href={`/category/${categorySlug}`}>
-                  <Button
-                    variant="outline"
-                    className={`mb-2 border border-[#1D50C9] ${category.isChild ? 'ml-6 relative' : ''}`}
-                    data-testid={`category-link-${categorySlug}`}
-                  >
-                    {category.isChild && (
-                      <span className="absolute -left-4 text-gray-400">└</span>
-                    )}
-                    {category.name}
-                    {category.isParent && (
-                      <Tag className="w-3 h-3 ml-1 text-blue-500" />
-                    )}
-                  </Button>
-                </Link>
               );
             })}
           </div>
