@@ -2914,6 +2914,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           )}
                         </div>
                       </section>
+                      {index === 1 && <WhatsAppChannelCTA />}
                     </div>
                     );
                   })}
@@ -2929,9 +2930,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     />
                   </div>
                 ) : null}
-
-                {/* WhatsApp Channel CTA */}
-                <WhatsAppChannelCTA />
 
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
