@@ -231,22 +231,42 @@ export default function BlogsCarouselSection() {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    let animationId: number;
+    let intervalId: NodeJS.Timeout;
     let isPaused = false;
     
-    const animate = () => {
-      if (!isPaused) {
-        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-          carousel.scrollLeft = 0;
-        } else {
-          carousel.scrollLeft += 1; // Smooth scroll speed
-        }
-      }
-      animationId = requestAnimationFrame(animate);
+    // Calculate card width including gap
+    const getCardWidth = () => {
+      const firstCard = carousel.querySelector('.blog-card');
+      if (!firstCard) return 384; // fallback to 96 * 4 (w-96 in pixels)
+      const cardWidth = firstCard.clientWidth;
+      const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
+      return cardWidth + gap;
     };
 
-    // Start animation
-    animationId = requestAnimationFrame(animate);
+    const scrollToNextCard = () => {
+      if (isPaused) return;
+      
+      const cardWidth = getCardWidth();
+      const maxScroll = carousel.scrollWidth / 2;
+      
+      // Smooth scroll to next card
+      carousel.style.scrollBehavior = 'smooth';
+      
+      if (carousel.scrollLeft >= maxScroll - cardWidth) {
+        // Reset to start smoothly
+        carousel.style.scrollBehavior = 'auto';
+        carousel.scrollLeft = 0;
+        // Re-enable smooth scrolling after reset
+        setTimeout(() => {
+          carousel.style.scrollBehavior = 'smooth';
+        }, 50);
+      } else {
+        carousel.scrollLeft += cardWidth;
+      }
+    };
+
+    // Auto-scroll every 3 seconds
+    intervalId = setInterval(scrollToNextCard, 3000);
 
     // Pause on hover
     const handleMouseEnter = () => {
@@ -261,8 +281,8 @@ export default function BlogsCarouselSection() {
     carousel.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      if (intervalId) {
+        clearInterval(intervalId);
       }
       carousel.removeEventListener('mouseenter', handleMouseEnter);
       carousel.removeEventListener('mouseleave', handleMouseLeave);
@@ -307,7 +327,7 @@ export default function BlogsCarouselSection() {
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-80 md:w-96"
+                className="flex-shrink-0 w-80 md:w-96 blog-card"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
