@@ -126,6 +126,16 @@ export default function EventRegistration() {
       return response.json();
     },
     onSuccess: (data: any) => {
+      // Facebook Pixel tracking for successful registration
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'CompleteRegistration', {
+          content_name: event?.title,
+          status: 'completed',
+          value: 1.00,
+          currency: 'USD'
+        });
+      }
+      
       if (data.registration?.qrCodeUrl) {
         setQrCodeUrl(data.registration.qrCodeUrl);
       }
