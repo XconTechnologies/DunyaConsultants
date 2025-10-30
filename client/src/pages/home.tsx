@@ -62,6 +62,10 @@ export default function Home() {
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
+        <ConsultationBookingSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
         <UpcomingEventsSection />
       </Suspense>
       
@@ -72,11 +76,6 @@ export default function Home() {
       <Suspense fallback={<SectionSkeleton />}>
         <AccreditationSection />
       </Suspense>
-      
-      <Suspense fallback={<SectionSkeleton />}>
-        <ConsultationBookingSection />
-      </Suspense>
-      
       
       <Suspense fallback={<SectionSkeleton />}>
         <UniversityPartnersSection />
