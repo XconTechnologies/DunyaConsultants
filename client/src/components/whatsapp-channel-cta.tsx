@@ -1,14 +1,9 @@
-import { motion } from "framer-motion";
 import { MessageCircle, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function WhatsAppChannelCTA() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+    <div
       className="w-screen relative left-1/2 right-1/2 -mx-[50vw] my-8"
     >
       <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] py-6 sm:py-8">
@@ -48,6 +43,6 @@ export default function WhatsAppChannelCTA() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

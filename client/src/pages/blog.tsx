@@ -1292,7 +1292,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     }
                     
                     return (
-                      <React.Fragment key={index}>
+                      <div key={`section-${index}`}>
                         <section 
                           id={section.id} 
                           className="mb-8 content-section"
@@ -2914,8 +2914,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           )}
                         </div>
                       </section>
-                      {index === 1 && <WhatsAppChannelCTA />}
-                    </React.Fragment>
+                    </div>
                     );
                   })}
                 </div>
@@ -2930,6 +2929,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     />
                   </div>
                 ) : null}
+
+                {/* WhatsApp Channel CTA */}
+                <WhatsAppChannelCTA />
 
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
