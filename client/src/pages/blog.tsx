@@ -3570,7 +3570,7 @@ export default function Blog() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Fetch blog posts from API with instant loading using initialData
+  // Fetch blog posts from API with optimized caching for instant loading
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
     queryFn: async () => {
@@ -3602,8 +3602,11 @@ export default function Blog() {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     })),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnMount: 'always'
+    staleTime: 10 * 60 * 1000, // 10 minutes - data stays fresh longer
+    gcTime: 15 * 60 * 1000, // 15 minutes - keep in cache longer
+    refetchOnMount: false, // Use cached data on mount for instant loading
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
+    refetchOnReconnect: false, // Don't refetch on network reconnect
   });
 
   // Transform API data to component format
@@ -3636,7 +3639,7 @@ export default function Blog() {
     slug: post.slug,
   })) : staticBlogPosts;
 
-  // Fetch hierarchical categories from public API
+  // Fetch hierarchical categories from public API with caching
   const { data: hierarchicalCategories = [] } = useQuery<any[]>({
     queryKey: ["/api/categories/hierarchical"],
     queryFn: async () => {
@@ -3652,6 +3655,11 @@ export default function Blog() {
       }
     },
     enabled: true,
+    staleTime: 15 * 60 * 1000, // 15 minutes - categories change rarely
+    gcTime: 30 * 60 * 1000, // 30 minutes cache time
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   // Interface for category structure
