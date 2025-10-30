@@ -454,6 +454,16 @@ export default function EventRegistration() {
             {/* Submit and Cancel Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <Button
+                type="button"
+                variant="outline"
+                onClick={() => setLocation(`/events/${eventSlug}`)}
+                className="w-full sm:flex-1 py-6 text-lg border-[#dadada] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 hover:scale-105"
+                data-testid="button-cancel"
+              >
+                Back to Details
+              </Button>
+              
+              <Button
                 type="submit"
                 disabled={registerMutation.isPending}
                 className="w-full sm:flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
@@ -476,16 +486,6 @@ export default function EventRegistration() {
                 ) : (
                   "Register Now"
                 )}
-              </Button>
-              
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setLocation(`/events/${eventSlug}`)}
-                className="w-full sm:flex-1 py-6 text-lg border-[#dadada] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 hover:scale-105"
-                data-testid="button-cancel"
-              >
-                Back to Details
               </Button>
             </div>
           </form>
