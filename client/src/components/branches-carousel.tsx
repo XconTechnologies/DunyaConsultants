@@ -52,7 +52,7 @@ export default function BranchesCarousel() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]"
-          >Our Branches</motion.h2>
+          >Global Network</motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,6 @@ export default function BranchesCarousel() {
           <div className="absolute top-0 right-0 w-8 sm:w-16 lg:w-24 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
         </div>
       </div>
-      
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
