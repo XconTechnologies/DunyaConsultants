@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function WhatsAppChannelCTA() {
   return (
-    <div className="my-8 px-4 sm:px-6 lg:px-8">
+    <div className="my-8 px-4 sm:px-6 lg:px-8 whatsapp-cta-container">
       <div className="max-w-4xl mx-auto">
         <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-xl p-6 sm:p-8 border border-blue-600/20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
@@ -13,10 +13,10 @@ export default function WhatsAppChannelCTA() {
                 <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
               <div className="text-white">
-                <h3 className="!text-white font-bold text-lg sm:text-xl mb-1" style={{ color: 'white' }}>
+                <h3 className="whatsapp-cta-heading font-bold text-lg sm:text-xl mb-1">
                   Stay Updated with Our WhatsApp Channel
                 </h3>
-                <p className="!text-white text-sm sm:text-base">
+                <p className="whatsapp-cta-text text-sm sm:text-base">
                   Get instant updates on visa news, scholarships, and study abroad opportunities!
                 </p>
               </div>

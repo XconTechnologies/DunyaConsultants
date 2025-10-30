@@ -1331,3 +1331,18 @@ p[class*="text-gray-700"] a:hover {
 .ql-faq .ql-stroke {
   display: none !important;
 }
+
+/* WhatsApp CTA Override Styles */
+.whatsapp-cta-container h3,
+.whatsapp-cta-heading,
+.whatsapp-cta-container .whatsapp-cta-heading {
+  color: #FFFFFF !important;
+  margin: 0 !important;
+}
+
+.whatsapp-cta-container p,
+.whatsapp-cta-text,
+.whatsapp-cta-container .whatsapp-cta-text {
+  color: #FFFFFF !important;
+  margin: 0 !important;
+}
