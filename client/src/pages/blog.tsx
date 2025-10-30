@@ -3573,6 +3573,13 @@ export default function Blog() {
   // Fetch blog posts from API with caching
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch blog posts: ${response.status}`);
+      }
+      return response.json();
+    },
     staleTime: 10 * 60 * 1000, // 10 minutes - blog posts don't change frequently
     gcTime: 30 * 60 * 1000, // 30 minutes cache
     refetchOnWindowFocus: false, // Don't refetch when window regains focus
