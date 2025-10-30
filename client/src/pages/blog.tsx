@@ -2931,9 +2931,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                 ) : null}
 
-                {/* WhatsApp Channel CTA - Positioned before Related Blogs */}
-                <WhatsAppChannelCTA />
-
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
                   <section className="mb-10">
