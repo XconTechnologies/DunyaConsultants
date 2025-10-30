@@ -3570,38 +3570,9 @@ export default function Blog() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Fetch blog posts from API with instant loading using initialData
+  // Fetch blog posts from API with caching
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
-    queryFn: async () => {
-      const response = await fetch('/api/blog-posts');
-      if (!response.ok) throw new Error('Failed to fetch blog posts');
-      return response.json();
-    },
-    initialData: staticBlogPosts.map(post => ({
-      id: parseInt(post.id),
-      title: post.title,
-      slug: post.slug,
-      content: post.content,
-      excerpt: post.excerpt,
-      category: post.category,
-      categories: [{
-        id: 1,
-        name: post.category,
-        slug: post.category.toLowerCase().replace(/\s+/g, '-'),
-        description: post.category
-      }],
-      status: 'published',
-      featuredImage: post.image,
-      featuredImageAlt: post.title,
-      readingTime: 8,
-      isPublished: true,
-      publishedAt: new Date().toISOString(),
-      authorName: post.author,
-      viewCount: post.views || 0,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    })),
     staleTime: 10 * 60 * 1000, // 10 minutes - blog posts don't change frequently
     gcTime: 30 * 60 * 1000, // 30 minutes cache
     refetchOnWindowFocus: false, // Don't refetch when window regains focus
