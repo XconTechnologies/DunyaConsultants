@@ -99,7 +99,7 @@ export default function UpcomingEventsSection() {
 
   if (isLoading) {
     return (
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
+      <section className="py-11 lg:py-19 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-pulse">
             <div className="h-8 bg-white/20 rounded w-1/3 mx-auto mb-4"></div>
@@ -123,7 +123,7 @@ export default function UpcomingEventsSection() {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
+    <section className="py-11 lg:py-19 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
