@@ -16,6 +16,7 @@ import ConsultationBookingSection from "@/components/consultation-booking-sectio
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 import { setMetaTags } from "@/lib/seo";
+import WhatsAppChannelCTA from "@/components/whatsapp-channel-cta";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -1291,16 +1292,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     }
                     
                     return (
-                      <section 
-                        key={index} 
-                        id={section.id} 
-                        className="mb-8 content-section"
-                        ref={(el) => {
-                          if (el) {
-                            setTimeout(() => initializeFAQs(el), 100);
-                          }
-                        }}
-                      >
+                      <React.Fragment key={index}>
+                        <section 
+                          id={section.id} 
+                          className="mb-8 content-section"
+                          ref={(el) => {
+                            if (el) {
+                              setTimeout(() => initializeFAQs(el), 100);
+                            }
+                          }}
+                        >
                         {section.title && (
                           (() => {
                             const cleanTitle = section.title.replace(/^#+\s*/, '');
@@ -2913,6 +2914,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           )}
                         </div>
                       </section>
+                      {index === 1 && <WhatsAppChannelCTA />}
+                    </React.Fragment>
                     );
                   })}
                 </div>
