@@ -13,7 +13,7 @@ export default function WhatsAppChannelCTA() {
                 <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-lg sm:text-xl mb-1" style={{ color: '#FFFFFF' }}>
+                <h3 className="font-bold text-lg sm:text-xl mb-1 text-[#ffffff]" style={{ color: '#FFFFFF' }}>
                   Stay Updated with Our WhatsApp Channel
                 </h3>
                 <p className="text-white text-sm sm:text-base">
