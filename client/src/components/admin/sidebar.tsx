@@ -141,10 +141,10 @@ const sidebarItems: SidebarItem[] = [
     description: "Create and manage short URLs"
   },
   {
-    title: "Branch Icons",
+    title: "Icons",
     href: "/admin/branch-icons",
     icon: Building2,
-    description: "Manage branch icons carousel"
+    description: "Manage branch and university icons"
   },
   {
     title: "Backup",
