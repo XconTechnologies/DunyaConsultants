@@ -3697,6 +3697,20 @@ export default function Blog() {
     });
   });
 
+  // Find top 5 most used categories (excluding "All")
+  const top5Categories = [...categories]
+    .filter(cat => cat.name !== "All")
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5)
+    .map(cat => cat.name);
+  
+  // Mark top 5 categories
+  categories.forEach(cat => {
+    if (top5Categories.includes(cat.name)) {
+      cat.isParent = true; // Use isParent to show tag icon
+    }
+  });
+
   // If we're viewing a specific blog post
   if (match && params) {
     const slug = `${params.year}/${params.month}/${params.day}/${params.slug}`;
