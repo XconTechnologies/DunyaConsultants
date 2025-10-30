@@ -52,7 +52,7 @@ export default function BranchesCarousel() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]"
-          >Global Network</motion.h2>
+          >Our Global Network</motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
