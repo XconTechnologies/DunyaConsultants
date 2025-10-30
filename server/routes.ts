@@ -9,7 +9,7 @@ import {
   insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, insertShortUrlSchema, InsertShortUrl, consultations
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, desc } from "drizzle-orm";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
@@ -5008,38 +5008,85 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Fallback to local data - if both page and limit are provided, fetch only needed data
-      if (page && limit) {
-        const offset = (page - 1) * limit;
+      // Fetch only essential fields for list view (excludes heavy content field)
+      const posts = await db
+        .select({
+          id: blogPosts.id,
+          title: blogPosts.title,
+          slug: blogPosts.slug,
+          metaTitle: blogPosts.metaTitle,
+          metaDescription: blogPosts.metaDescription,
+          focusKeyword: blogPosts.focusKeyword,
+          featuredImage: blogPosts.featuredImage,
+          featuredImageAlt: blogPosts.featuredImageAlt,
+          excerpt: blogPosts.excerpt,
+          category: blogPosts.category,
+          status: blogPosts.status,
+          viewCount: blogPosts.viewCount,
+          readingTime: blogPosts.readingTime,
+          isPublished: blogPosts.isPublished,
+          publishedAt: blogPosts.publishedAt,
+          authorName: adminUsers.username,
+          categoryId: categories.id,
+          categoryName: categories.name,
+          categorySlug: categories.slug,
+        })
+        .from(blogPosts)
+        .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
+        .leftJoin(blogPostCategories, eq(blogPosts.id, blogPostCategories.blogPostId))
+        .leftJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+        .where(eq(blogPosts.isPublished, true))
+        .orderBy(sql`${blogPosts.publishedAt} DESC`)
+        .limit(limit || 100);
+      
+      // Group categories by post
+      const postsMap: Record<number, any> = {};
+      const orderedPostIds: number[] = [];
+      
+      posts.forEach(row => {
+        const postId = row.id;
         
-        // Fetch only the posts for this page from database
-        const allPosts = await storage.getBlogPostsWithCategories(true);
-        const paginatedPosts = allPosts.slice(offset, offset + limit);
+        if (!postsMap[postId]) {
+          orderedPostIds.push(postId);
+          postsMap[postId] = {
+            id: row.id,
+            title: row.title,
+            slug: row.slug,
+            metaTitle: row.metaTitle,
+            metaDescription: row.metaDescription,
+            focusKeyword: row.focusKeyword,
+            featuredImage: row.featuredImage,
+            featuredImageAlt: row.featuredImageAlt,
+            excerpt: row.excerpt,
+            category: row.category,
+            status: row.status,
+            viewCount: row.viewCount,
+            readingTime: row.readingTime,
+            isPublished: row.isPublished,
+            publishedAt: row.publishedAt,
+            authorName: row.authorName || 'Dunya Consultants',
+            categories: [],
+            _source: 'local'
+          };
+        }
         
-        const mappedPosts = paginatedPosts.map((post) => ({
-          ...post,
-          _source: 'local',
-          featuredImage: post.featuredImage,
-        }));
-        
-        return res.json(mappedPosts);
-      }
+        if (row.categoryId && row.categoryName) {
+          const existingCategory = postsMap[postId].categories.find(
+            (c: any) => c.id === row.categoryId
+          );
+          
+          if (!existingCategory) {
+            postsMap[postId].categories.push({
+              id: row.categoryId,
+              name: row.categoryName,
+              slug: row.categorySlug,
+            });
+          }
+        }
+      });
       
-      // Fetch all posts or with limit (for non-paginated requests)
-      const postsWithCategories = await storage.getBlogPostsWithCategories(true);
-      
-      // Apply limit if specified
-      const limitedPosts = limit ? postsWithCategories.slice(0, limit) : postsWithCategories;
-      
-      // Map database fields to frontend expected format
-      const mappedPosts = limitedPosts.map((post) => ({
-        ...post,
-        _source: 'local',
-        featuredImage: post.featuredImage,
-        // categories are already included from the optimized query
-      }));
-      
-      res.json(mappedPosts);
+      const result = orderedPostIds.map(id => postsMap[id]);
+      res.json(result);
     } catch (error) {
       console.error('Error in blog posts API:', error);
       res.status(500).json({ message: 'Failed to fetch published blog posts' });

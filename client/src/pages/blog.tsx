@@ -3842,7 +3842,27 @@ export default function Blog() {
 
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {postsToDisplay.map((post: any, index: number) => (
+          {isLoading ? (
+            // Skeleton loader
+            Array.from({ length: 6 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden animate-pulse">
+                <div className="w-full h-56 bg-gray-200"></div>
+                <div className="p-6 space-y-3">
+                  <div className="h-4 bg-gray-200 rounded w-20"></div>
+                  <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                  </div>
+                  <div className="flex justify-between items-center pt-2">
+                    <div className="h-4 bg-gray-200 rounded w-24"></div>
+                    <div className="h-4 bg-gray-200 rounded w-20"></div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            postsToDisplay.map((post: any, index: number) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
@@ -3942,7 +3962,8 @@ export default function Blog() {
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
+          ))
+          )}
         </div>
 
         {/* Numbered Pagination */}
