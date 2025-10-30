@@ -364,7 +364,7 @@ export default function BlogList() {
         transition={{ duration: 0.6 }}
         className="bg-gradient-to-br from-blue-50 via-blue-50 to-pink-50 py-16"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-[30px]">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -411,7 +411,7 @@ export default function BlogList() {
               <Input
                 type="text"
                 placeholder="Search articles..."
-                className="pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="pl-10 pr-4 py-3 border border-[#1D50C9] rounded-xl focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -424,10 +424,10 @@ export default function BlogList() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border-2 ${
                       selectedCategory === category
-                        ? '#1D50C9 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white shadow-lg border-[#1D50C9]'
+                        : 'bg-white text-gray-700 hover:bg-gray-50 border-[#1D50C9]'
                     }`}
                   >
                     {category}

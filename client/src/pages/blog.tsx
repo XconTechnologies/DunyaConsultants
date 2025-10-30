@@ -3778,7 +3778,7 @@ export default function Blog() {
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white">
+          <div className="text-center text-white pt-[30px]">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -3813,7 +3813,7 @@ export default function Blog() {
                     setSearchTerm(e.target.value);
                     resetPagination();
                   }}
-                  className="pl-10"
+                  className="pl-10 border-[#1D50C9] focus:ring-[#1D50C9]"
                 />
               </div>
             </div>
@@ -3835,7 +3835,7 @@ export default function Blog() {
                     setSelectedCategory(category.name);
                     resetPagination();
                   }}
-                  className="mb-2"
+                  className={`mb-2 border-2 ${selectedCategory === category.name ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9]' : 'border-[#1D50C9]'}`}
                   data-testid={`category-button-${categorySlug}`}
                 >
                   {category.name}
@@ -3844,7 +3844,7 @@ export default function Blog() {
                 <Link key={category.name} href={`/category/${categorySlug}`}>
                   <Button
                     variant="outline"
-                    className={`mb-2 ${category.isChild ? 'ml-6 relative' : ''}`}
+                    className={`mb-2 border-2 border-[#1D50C9] ${category.isChild ? 'ml-6 relative' : ''}`}
                     data-testid={`category-link-${categorySlug}`}
                   >
                     {category.isChild && (
