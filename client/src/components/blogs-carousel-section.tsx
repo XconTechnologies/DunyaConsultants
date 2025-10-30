@@ -297,7 +297,7 @@ export default function BlogsCarouselSection() {
         >
           <div
             ref={carouselRef}
-            className="flex gap-4 md:gap-6 overflow-x-hidden will-change-scroll"
+            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
             style={{
               scrollBehavior: 'auto',
               width: '100%',
