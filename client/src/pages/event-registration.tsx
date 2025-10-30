@@ -458,6 +458,15 @@ export default function EventRegistration() {
                 disabled={registerMutation.isPending}
                 className="w-full sm:flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white py-6 text-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
                 data-testid="button-register"
+                onClick={() => {
+                  // Track button click immediately for Facebook Pixel Event Setup Tool
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'Lead', {
+                      content_name: event?.title || 'Event Registration',
+                      content_category: 'Event',
+                    });
+                  }
+                }}
               >
                 {registerMutation.isPending ? (
                   <>
