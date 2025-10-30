@@ -3979,7 +3979,7 @@ export default function Blog() {
               <Button
                 variant="outline"
                 onClick={() => goToPage(currentPage - 1)}
-                className="flex items-center space-x-1"
+                className="flex items-center space-x-1 border border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300"
                 data-testid="button-pagination-previous"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -3988,7 +3988,7 @@ export default function Blog() {
             )}
 
             {/* Page Numbers */}
-            <div className="flex space-x-1">
+            <div className="flex space-x-2">
               {(() => {
                 const pages = [];
                 
@@ -4027,16 +4027,22 @@ export default function Blog() {
                 
                 return pages.map((page, index) => {
                   if (page === '...') {
-                    return <span key={`ellipsis-${index}`} className="px-2 py-1">...</span>;
+                    return <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-400">...</span>;
                   }
                   
                   const pageNum = page as number;
+                  const isActive = pageNum === currentPage;
+                  
                   return (
                     <Button
                       key={pageNum}
-                      variant={pageNum === currentPage ? "default" : "outline"}
+                      variant={isActive ? "default" : "outline"}
                       onClick={() => goToPage(pageNum)}
-                      className={pageNum === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
+                      className={`border min-w-[40px] transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9] text-white shadow-md' 
+                          : 'border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white'
+                      }`}
                       data-testid={`button-pagination-${pageNum}`}
                     >
                       {pageNum}
@@ -4051,7 +4057,7 @@ export default function Blog() {
               <Button
                 variant="outline"
                 onClick={() => goToPage(currentPage + 1)}
-                className="flex items-center space-x-1"
+                className="flex items-center space-x-1 border border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300"
                 data-testid="button-pagination-next"
               >
                 <span>Next</span>
