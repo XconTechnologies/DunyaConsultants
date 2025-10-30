@@ -3849,7 +3849,7 @@ export default function Blog() {
                   )}
                   {category.name}
                   {category.isParent && (
-                    <Tag className="w-3 h-3 ml-1 text-[#FF6B35] fill-[#FF6B35]" />
+                    <Tag className="w-3 h-3 ml-1 text-[#FF6B35]" />
                   )}
                 </Button>
               );
