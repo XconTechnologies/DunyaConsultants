@@ -168,25 +168,7 @@ export default function ConsultationBookingSection() {
             </Button>
           </motion.div>
 
-          {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-6 flex items-center justify-center space-x-2"
-          >
-            <Clock className="w-4 h-4" style={whiteTextStyle} />
-            <span 
-              className="text-xs sm:text-sm text-center block sm:inline-block"
-              style={{
-                ...whiteTextStyle,
-                display: 'block'
-              }}
-            >
-              Available Monday to Saturday, 10 AM - 6 PM
-            </span>
           </motion.div>
-        </motion.div>
       </div>
 
       {/* Consultation Form Popup */}
