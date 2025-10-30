@@ -2,6 +2,8 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 const app = express();
 
@@ -143,6 +145,40 @@ app.use((req, res, next) => {
 
     res.status(status).json({ message });
     throw err;
+  });
+
+  // Dynamic canonical URL injection middleware - runs for ALL requests
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    // Only intercept HTML requests, not API or assets
+    if (req.path.startsWith('/api/') || req.path.startsWith('/assets/') || req.path.startsWith('/attached_assets/') || req.path.match(/\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
+      return next();
+    }
+
+    // Intercept response to inject dynamic meta tags
+    const originalSend = res.send;
+    res.send = function(data: any) {
+      if (typeof data === 'string' && data.includes('<!-- DYNAMIC_META_TAGS -->')) {
+        // Build the full URL from the request
+        const protocol = req.get('x-forwarded-proto')?.split(',')[0] || (req.secure ? 'https' : 'http');
+        const host = req.get('host') || 'dunyaconsultants.com';
+        const fullUrl = `${protocol}://${host}${req.originalUrl}`;
+        const baseUrl = `${protocol}://${host}`;
+
+        const dynamicMetaTags = `
+    <!-- Canonical URL for proper domain attribution -->
+    <link rel="canonical" href="${fullUrl}" />
+    
+    <!-- Facebook Domain Verification -->
+    <meta property="fb:app_id" content="1131878482257088" />
+    <meta property="og:site_name" content="Dunya Consultants" />
+    <meta property="og:url" content="${fullUrl}" />`;
+
+        data = data.replace('<!-- DYNAMIC_META_TAGS -->', dynamicMetaTags);
+      }
+      return originalSend.call(this, data);
+    } as any;
+
+    next();
   });
 
   // Social media crawler meta tag injection - must be before Vite
