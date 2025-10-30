@@ -3795,20 +3795,6 @@ export default function Blog() {
             >
               Expert insights, tips, and guides for your international education journey
             </motion.p>
-            
-            {/* Brand Tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center"
-            >
-              <div className="inline-flex items-center px-6 py-3 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm">
-                <span className="text-white font-medium text-sm sm:text-base whitespace-nowrap">
-                  Achievement <span className="mx-2">•</span> Success <span className="mx-2">•</span> Dreams Realized
-                </span>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
