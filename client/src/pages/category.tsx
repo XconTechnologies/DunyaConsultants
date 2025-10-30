@@ -313,7 +313,7 @@ export default function CategoryPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link href={getBlogUrl(post.slug)}>
-                      <Card className="bg-white border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-[#1D50C9] transition-all duration-300 cursor-pointer h-full group hover:-translate-y-1">
+                      <Card className="bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer h-full group hover:-translate-y-2">
                         
                         {/* Featured Image */}
                         {post.image && (
@@ -333,7 +333,7 @@ export default function CategoryPage() {
                           {/* Categories */}
                           <div className="flex flex-wrap gap-2 mb-3">
                             {post.categories && post.categories.slice(0, 2).map((category: any, catIndex: number) => (
-                              <Badge key={catIndex} className="text-xs bg-gradient-to-r from-[#1D50C9]/10 to-[#1845B3]/10 text-[#1D50C9] border border-[#1D50C9]/20 hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300">
+                              <Badge key={catIndex} className="text-xs bg-gradient-to-r from-[#1D50C9]/10 to-[#1845B3]/10 text-[#1D50C9] border border-[#1D50C9]/20 hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300 rounded-sm">
                                 {category.name}
                               </Badge>
                             ))}

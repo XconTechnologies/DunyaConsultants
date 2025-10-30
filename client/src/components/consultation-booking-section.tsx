@@ -21,7 +21,7 @@ export default function ConsultationBookingSection() {
   };
 
   return (
-    <section className="py-16" ref={ref} style={{ backgroundColor: '#f9fafb' }}>
+    <section className="py-16" ref={ref} style={{ background: 'linear-gradient(135deg, #1D50C9 0%, #1845B3 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Content */}
@@ -29,9 +29,8 @@ export default function ConsultationBookingSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="rounded-2xl p-8 lg:p-12 text-center shadow-xl max-w-5xl mx-auto"
+          className="rounded-2xl p-8 lg:p-12 text-center max-w-5xl mx-auto"
           style={{ 
-            background: 'linear-gradient(135deg, #1D50C9 0%, #1845B3 100%)',
             '--text-color': '#ffffff'
           } as React.CSSProperties}
         >
@@ -154,17 +153,17 @@ export default function ConsultationBookingSection() {
           >
             <CalendlyButton
               url="https://calendly.com/meet-dunya-consultants/20min"
-              text="Book Free Consultation"
-              className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              text="Get Free Consultation"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
               showIcon={false}
             />
             <Button
               onClick={() => setIsPopupOpen(true)}
-              className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
             >
-              Connect now
+              View All Articles
             </Button>
           </motion.div>
 
