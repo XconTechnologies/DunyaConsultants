@@ -16,7 +16,7 @@ export default function WhatsAppChannelCTA() {
                 <h3 className="text-white font-bold text-lg sm:text-xl mb-1">
                   Stay Updated with Our WhatsApp Channel
                 </h3>
-                <p className="text-white/90 text-sm sm:text-base">
+                <p className="text-white text-sm sm:text-base">
                   Get instant updates on visa news, scholarships, and study abroad opportunities!
                 </p>
               </div>
@@ -31,7 +31,7 @@ export default function WhatsAppChannelCTA() {
             >
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group px-6 py-3 rounded-xl"
+                className="w-full sm:w-auto bg-white text-[#1D50C9] hover:bg-blue-50 hover:scale-105 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group px-6 py-3 rounded-xl"
                 data-testid="button-join-whatsapp-channel"
               >
                 <Bell className="w-5 h-5 mr-2 group-hover:animate-pulse" />
