@@ -3835,7 +3835,7 @@ export default function Blog() {
                     setSelectedCategory(category.name);
                     resetPagination();
                   }}
-                  className={`mb-2 border-2 ${selectedCategory === category.name ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9]' : 'border-[#1D50C9]'}`}
+                  className={`mb-2 border ${selectedCategory === category.name ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9]' : 'border-[#1D50C9]'}`}
                   data-testid={`category-button-${categorySlug}`}
                 >
                   {category.name}
@@ -3844,7 +3844,7 @@ export default function Blog() {
                 <Link key={category.name} href={`/category/${categorySlug}`}>
                   <Button
                     variant="outline"
-                    className={`mb-2 border-2 border-[#1D50C9] ${category.isChild ? 'ml-6 relative' : ''}`}
+                    className={`mb-2 border border-[#1D50C9] ${category.isChild ? 'ml-6 relative' : ''}`}
                     data-testid={`category-link-${categorySlug}`}
                   >
                     {category.isChild && (
