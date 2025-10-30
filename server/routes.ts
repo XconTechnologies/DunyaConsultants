@@ -4958,16 +4958,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PUBLIC BLOG ROUTES
   // ==============================================
 
-  // Get all published blog posts (public) with optional limit and production sync
+  // Get all published blog posts (public) with optional pagination and production sync
   app.get("/api/blog-posts", async (req, res) => {
     try {
-      // Add cache-busting headers to ensure fresh data
+      // Optimize cache headers - allow 5 minutes of caching for better performance
       res.set({
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+        'Cache-Control': 'public, max-age=300, stale-while-revalidate=600',
+        'Vary': 'Accept-Encoding'
       });
       
+      const page = req.query.page ? parseInt(req.query.page as string) : undefined;
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const syncFromProduction = req.query.sync === 'production';
       
@@ -4990,7 +4990,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 : post.featuredImage
             }));
             
-            // Apply limit if specified
+            // Apply pagination if page and limit specified
+            if (page && limit) {
+              const offset = (page - 1) * limit;
+              const paginatedPosts = postsWithFixedImages.slice(offset, offset + limit);
+              return res.json(paginatedPosts);
+            }
+            
+            // Apply limit only if specified
             const limitedPosts = limit ? postsWithFixedImages.slice(0, limit) : postsWithFixedImages;
             return res.json(limitedPosts);
           } else {
@@ -5001,8 +5008,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Fallback to local data - use optimized method to avoid N+1 queries
-      const postsWithCategories = await storage.getBlogPostsWithCategories(true); // Only published posts with categories
+      // Fallback to local data - if both page and limit are provided, fetch only needed data
+      if (page && limit) {
+        const offset = (page - 1) * limit;
+        
+        // Fetch only the posts for this page from database
+        const allPosts = await storage.getBlogPostsWithCategories(true);
+        const paginatedPosts = allPosts.slice(offset, offset + limit);
+        
+        const mappedPosts = paginatedPosts.map((post) => ({
+          ...post,
+          _source: 'local',
+          featuredImage: post.featuredImage,
+        }));
+        
+        return res.json(mappedPosts);
+      }
+      
+      // Fetch all posts or with limit (for non-paginated requests)
+      const postsWithCategories = await storage.getBlogPostsWithCategories(true);
       
       // Apply limit if specified
       const limitedPosts = limit ? postsWithCategories.slice(0, limit) : postsWithCategories;
@@ -5011,7 +5035,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const mappedPosts = limitedPosts.map((post) => ({
         ...post,
         _source: 'local',
-        featuredImage: post.featuredImage, // Use the existing featuredImage field
+        featuredImage: post.featuredImage,
         // categories are already included from the optimized query
       }));
       

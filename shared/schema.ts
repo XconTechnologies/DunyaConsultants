@@ -337,7 +337,13 @@ export const blogPosts = pgTable("blog_posts", {
   trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  statusIdx: index("blog_posts_status_idx").on(table.status),
+  isPublishedIdx: index("blog_posts_is_published_idx").on(table.isPublished),
+  publishedAtIdx: index("blog_posts_published_at_idx").on(table.publishedAt),
+  categoryIdx: index("blog_posts_category_idx").on(table.category),
+  statusPublishedIdx: index("blog_posts_status_published_idx").on(table.status, table.isPublished, table.publishedAt),
+}));
 
 // Junction table for blog posts and categories (many-to-many relationship)
 export const blogPostCategories = pgTable("blog_post_categories", {

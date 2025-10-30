@@ -3535,7 +3535,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   
   // URL and pagination management  
-  const [location, setLocation] = useLocation();
+  const [location, navigate] = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
   
@@ -3602,8 +3602,10 @@ export default function Blog() {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     })),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnMount: 'always'
+    staleTime: 10 * 60 * 1000, // 10 minutes - blog posts don't change frequently
+    gcTime: 30 * 60 * 1000, // 30 minutes cache
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
+    refetchOnReconnect: false // Don't refetch when reconnecting
   });
 
   // Transform API data to component format
@@ -3876,97 +3878,98 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link href={getBlogUrl(post.slug)}>
-                <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <Card 
+                className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full"
+                onClick={() => navigate(getBlogUrl(post.slug))}
+              >
+                
+                {/* Featured Image */}
+                {post.image && (
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <img loading="lazy" 
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"
+                      style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        const originalSrc = img.src;
+                        
+                        // Try different extensions if not already tried
+                        if (!img.dataset.retryCount) {
+                          img.dataset.retryCount = '0';
+                        }
+                        
+                        const retryCount = parseInt(img.dataset.retryCount);
+                        const basePath = originalSrc.replace(/\.[^/.]+$/, '');
+                        const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
+                        
+                        if (retryCount < extensions.length) {
+                          const newSrc = basePath + extensions[retryCount];
+                          img.dataset.retryCount = String(retryCount + 1);
+                          img.src = newSrc;
+                          return;
+                        }
+                        
+                        // Try uploads API as final fallback
+                        if (retryCount === extensions.length) {
+                          const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
+                          img.dataset.retryCount = String(retryCount + 1);
+                          img.src = `/api/uploads/${filename}`;
+                          return;
+                        }
+                        
+                        // Hide image after all attempts failed
+                        img.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
+                <CardContent className="p-6">
                   
-                  {/* Featured Image */}
-                  {post.image && (
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <img loading="lazy" 
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"
-                        style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
-                        onError={(e) => {
-                          const img = e.currentTarget;
-                          const originalSrc = img.src;
-                          
-                          // Try different extensions if not already tried
-                          if (!img.dataset.retryCount) {
-                            img.dataset.retryCount = '0';
-                          }
-                          
-                          const retryCount = parseInt(img.dataset.retryCount);
-                          const basePath = originalSrc.replace(/\.[^/.]+$/, '');
-                          const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
-                          
-                          if (retryCount < extensions.length) {
-                            const newSrc = basePath + extensions[retryCount];
-                            img.dataset.retryCount = String(retryCount + 1);
-                            img.src = newSrc;
-                            return;
-                          }
-                          
-                          // Try uploads API as final fallback
-                          if (retryCount === extensions.length) {
-                            const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
-                            img.dataset.retryCount = String(retryCount + 1);
-                            img.src = `/api/uploads/${filename}`;
-                            return;
-                          }
-                          
-                          // Hide image after all attempts failed
-                          img.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
+                  {/* Category Badge */}
+                  <div 
+                    className="mb-3 inline-block"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const categorySlug = post.category.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                      navigate(`/category/${categorySlug}`);
+                    }}
+                  >
+                    <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9] hover:bg-[#1D50C9]/20 transition-colors cursor-pointer">
+                      {post.category}
+                    </Badge>
+                  </div>
 
-                  <CardContent className="p-6">
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Meta Information and Read More - Same Line */}
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center text-gray-500">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        <span>{post.date}</span>
+                      </div>
+                    </div>
                     
-                    {/* Category Badge */}
-                    <div className="mb-3">
-                      {(() => {
-                        const categorySlug = post.category.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-                        return (
-                          <Link href={`/category/${categorySlug}`}>
-                            <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9] hover:bg-[#1D50C9]/20 transition-colors cursor-pointer">
-                              {post.category}
-                            </Badge>
-                          </Link>
-                        );
-                      })()}
+                    {/* Read More Link */}
+                    <div className="flex items-center text-[#1D50C9] font-medium">
+                      <span>Read More</span>
+                      <ArrowRight className="w-4 h-4 ml-1" />
                     </div>
+                  </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                      {post.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-
-                    {/* Meta Information and Read More - Same Line */}
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center text-gray-500">
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                      </div>
-                      
-                      {/* Read More Link */}
-                      <div className="flex items-center text-[#1D50C9] font-medium">
-                        <span>Read More</span>
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </div>
-                    </div>
-
-                  </CardContent>
-                </Card>
-              </Link>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
