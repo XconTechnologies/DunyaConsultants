@@ -151,7 +151,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.6 }}
             >
               <Link href={`/events/${featuredEvent.slug}`}>
-                <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col" style={{ height: '600px' }} data-testid={`event-featured-${featuredEvent.id}`}>
+                <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col lg:h-[600px]" data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-[1.68/1]">
                     <img
@@ -166,7 +166,7 @@ export default function UpcomingEventsSection() {
                       </Badge>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-6">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col">
                     <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-6 mb-4">
                       {/* Left side: Title, Date, Venue */}
                       <div className="flex-1">
@@ -201,7 +201,7 @@ export default function UpcomingEventsSection() {
                       </div>
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-auto pt-4">
                       <Button 
                         className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
                         data-testid="button-see-details"
@@ -217,23 +217,12 @@ export default function UpcomingEventsSection() {
 
           {/* Side Events - Right Column with Auto-Scroll */}
           <div 
-            className="relative overflow-hidden" 
-            style={{ height: '600px', minHeight: '600px' }}
+            className="relative overflow-hidden lg:h-[600px] lg:min-h-[600px]"
           >
             <motion.div
               className="space-y-4"
-              animate={sideEvents.length > 3 ? {
-                y: [0, -(sideEvents.length * 136)],
-              } : {}}
-              transition={sideEvents.length > 3 ? {
-                y: {
-                  duration: sideEvents.length * 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
-              } : {}}
             >
-              {(sideEvents.length > 3 ? sideEvents.concat(sideEvents) : sideEvents).map((event, index) => (
+              {sideEvents.map((event, index) => (
                 <motion.div
                   key={`${event.id}-${index}`}
                   initial={{ opacity: 0, x: 20 }}
@@ -310,7 +299,7 @@ export default function UpcomingEventsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
+            className="text-center mt-8 lg:mt-12"
           >
             <Link href="/events">
               <Button 
