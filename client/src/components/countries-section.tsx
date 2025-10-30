@@ -257,9 +257,7 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-[30px]"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
-            Study Abroad Destinations
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">Destinations We Offer</h2>
           <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore world-class universities abroad and discover your perfect study destination with our overseas education consultants Pakistan. 
             From Ivy League institutions to innovative European schools, find the right fit for your academic journey and visa application support.
@@ -313,7 +311,6 @@ export default function CountriesSection() {
 
         </div>
       </div>
-
       {/* Country Details Modal */}
       {selectedCountry && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
