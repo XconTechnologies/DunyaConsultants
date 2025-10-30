@@ -248,7 +248,7 @@ export default function CountriesSection() {
   );
 
   return (
-    <div ref={ref} id="study-destinations" className="w-full py-12 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div ref={ref} id="study-destinations" className="w-full pt-12 pb-6 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
