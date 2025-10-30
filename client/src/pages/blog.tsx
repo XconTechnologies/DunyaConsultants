@@ -2914,10 +2914,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           )}
                         </div>
                       </section>
-                      {index === 1 && <WhatsAppChannelCTA />}
                     </div>
                     );
-                  })}
+                  }).reduce((acc: React.ReactNode[], element: any, idx: number) => {
+                    if (element !== null) {
+                      acc.push(element);
+                      // Add WhatsApp CTA after 2nd rendered section (before 3rd heading)
+                      if (acc.length === 2) {
+                        acc.push(<WhatsAppChannelCTA key="whatsapp-cta" />);
+                      }
+                    }
+                    return acc;
+                  }, [])}
                 </div>
 
                 {/* Content Blocks - Integrated with content */}
