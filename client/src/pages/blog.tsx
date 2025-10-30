@@ -3821,39 +3821,49 @@ export default function Blog() {
 
           {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
-            {categories.map((category: any) => {
-              // Create slug from category name
-              const categorySlug = category.name === "All" 
-                ? "all" 
-                : category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+            {(() => {
+              // Get top 5 most used categories (excluding "All")
+              const topCategories = categories
+                .filter((cat: any) => cat.name !== "All")
+                .sort((a: any, b: any) => b.count - a.count)
+                .slice(0, 5)
+                .map((cat: any) => cat.name);
               
-              const isSelected = selectedCategory === category.name;
-              
-              return (
-                <Button
-                  key={category.name}
-                  variant={isSelected ? "default" : "outline"}
-                  onClick={() => {
-                    setSelectedCategory(category.name);
-                    resetPagination();
-                  }}
-                  className={`mb-2 border ${
-                    isSelected 
-                      ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9] text-white' 
-                      : 'border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white'
-                  } ${category.isChild ? 'ml-6 relative' : ''} transition-all duration-300`}
-                  data-testid={`category-button-${categorySlug}`}
-                >
-                  {category.isChild && (
-                    <span className="absolute -left-4 text-gray-400">└</span>
-                  )}
-                  {category.name}
-                  {category.isParent && (
-                    <Tag className="w-3 h-3 ml-1 text-[#FF6B35]" />
-                  )}
-                </Button>
-              );
-            })}
+              return categories.map((category: any) => {
+                // Create slug from category name
+                const categorySlug = category.name === "All" 
+                  ? "all" 
+                  : category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                
+                const isSelected = selectedCategory === category.name;
+                const isTopCategory = topCategories.includes(category.name);
+                
+                return (
+                  <Button
+                    key={category.name}
+                    variant={isSelected ? "default" : "outline"}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      resetPagination();
+                    }}
+                    className={`mb-2 border ${
+                      isSelected 
+                        ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-[#1D50C9] text-white' 
+                        : 'border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white'
+                    } ${category.isChild ? 'ml-6 relative' : ''} transition-all duration-300`}
+                    data-testid={`category-button-${categorySlug}`}
+                  >
+                    {category.isChild && (
+                      <span className="absolute -left-4 text-gray-400">└</span>
+                    )}
+                    {category.name}
+                    {isTopCategory && (
+                      <Tag className="w-3 h-3 ml-1 text-[#FF6B35]" />
+                    )}
+                  </Button>
+                );
+              });
+            })()}
           </div>
         </div>
 
