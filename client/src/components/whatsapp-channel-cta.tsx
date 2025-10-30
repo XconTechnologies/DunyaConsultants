@@ -8,15 +8,15 @@ export default function WhatsAppChannelCTA() {
         <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-xl p-6 sm:p-8 border border-blue-600/20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             {/* Left Section - Icon and Text */}
-            <div className="flex items-center gap-3 sm:gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3 sm:gap-4 text-center sm:text-left text-white">
               <div className="bg-white/20 p-3 sm:p-4 rounded-full backdrop-blur-sm flex-shrink-0 shadow-lg">
                 <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <div>
-                <h3 className="font-bold text-lg sm:text-xl mb-1 text-[#ffffff]" style={{ color: '#FFFFFF' }}>
+              <div className="text-white">
+                <h3 className="!text-white font-bold text-lg sm:text-xl mb-1" style={{ color: 'white' }}>
                   Stay Updated with Our WhatsApp Channel
                 </h3>
-                <p className="text-white text-sm sm:text-base">
+                <p className="!text-white text-sm sm:text-base">
                   Get instant updates on visa news, scholarships, and study abroad opportunities!
                 </p>
               </div>
