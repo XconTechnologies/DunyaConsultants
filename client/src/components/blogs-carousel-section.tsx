@@ -384,9 +384,17 @@ export default function BlogsCarouselSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
+          <style>{`
+            @media (max-width: 767px) {
+              .blog-carousel-container {
+                padding-left: calc((100vw - 320px) / 2);
+                padding-right: calc((100vw - 320px) / 2);
+              }
+            }
+          `}</style>
           <div
             ref={carouselRef}
-            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
+            className="blog-carousel-container flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
             style={{
               scrollBehavior: 'auto',
               width: '100%',
