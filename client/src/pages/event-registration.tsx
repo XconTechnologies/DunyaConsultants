@@ -32,11 +32,11 @@ import EventRegisterButton from "@/components/EventRegisterButton";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
+  email: z.string().email("Invalid email address").optional().or(z.literal("")),
   whatsapp: z.string().min(10, "WhatsApp number must be at least 10 digits"),
-  city: z.string().min(2, "City is required"),
-  education: z.string().min(1, "Please select your education level"),
-  destinations: z.array(z.string()).min(1, "Please select at least one study destination"),
+  city: z.string().optional(),
+  education: z.string().optional(),
+  destinations: z.array(z.string()).optional(),
 });
 
 type RegistrationForm = z.infer<typeof registrationSchema>;
@@ -356,7 +356,7 @@ export default function EventRegistration() {
                   htmlFor="email" 
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
-                  Email *
+                  Email
                 </Label>
                 {form.formState.errors.email && (
                   <p className="text-red-500 text-sm mt-1">{form.formState.errors.email.message}</p>
@@ -376,7 +376,7 @@ export default function EventRegistration() {
                   htmlFor="city" 
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-1 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
-                  City *
+                  City
                 </Label>
                 {form.formState.errors.city && (
                   <p className="text-red-500 text-sm mt-1">{form.formState.errors.city.message}</p>
@@ -411,7 +411,7 @@ export default function EventRegistration() {
                     : 'top-1/2 -translate-y-1/2 text-gray-500'
                 }`}
               >
-                Education Level *
+                Education Level
               </Label>
               {form.formState.errors.education && (
                 <p className="text-red-500 text-sm mt-1">{form.formState.errors.education.message}</p>
@@ -421,7 +421,7 @@ export default function EventRegistration() {
             {/* Study Destinations - Multiple Select */}
             <div>
               <Label className="text-gray-700 font-medium mb-3 block">
-                Study Destinations *
+                Study Destinations
               </Label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 border border-[#dadada] rounded-lg bg-white">
                 {studyDestinations.map((destination) => {
