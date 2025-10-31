@@ -126,8 +126,19 @@ export default function EventRegistration() {
       return response.json();
     },
     onSuccess: (data: any) => {
-      // Facebook Pixel tracking for successful registration
+      if (data.registration?.qrCodeUrl) {
+        setQrCodeUrl(data.registration.qrCodeUrl);
+      }
+      setShowSuccessModal(true);
+      form.reset();
+      
+      // OPTION 1: Track virtual pageview for Event Setup Tool to detect
       if (typeof window !== 'undefined' && (window as any).fbq) {
+        // Track as PageView with URL parameter (Event Setup Tool can detect this)
+        window.history.pushState({}, '', `/events/register-now?event=${eventSlug}&registered=success`);
+        (window as any).fbq('track', 'PageView');
+        
+        // OPTION 2: Also track as standard event
         (window as any).fbq('track', 'CompleteRegistration', {
           content_name: event?.title,
           status: 'completed',
@@ -135,12 +146,6 @@ export default function EventRegistration() {
           currency: 'USD'
         });
       }
-      
-      if (data.registration?.qrCodeUrl) {
-        setQrCodeUrl(data.registration.qrCodeUrl);
-      }
-      setShowSuccessModal(true);
-      form.reset();
     },
     onError: (error: any) => {
       toast({
@@ -468,26 +473,13 @@ export default function EventRegistration() {
                 disabled={registerMutation.isPending}
                 variant="outline"
                 id="event-register-button"
-                className="w-full sm:flex-1 py-6 text-lg bg-[#FF6B35] border-2 border-[#FF6B35] text-white hover:bg-transparent hover:text-[#FF6B35] transition-all duration-300 font-semibold"
+                className="w-full sm:flex-1 py-6 text-lg bg-[#FF6B35] border-2 border-[#FF6B35] text-white hover:bg-transparent hover:text-[#FF6B35] transition-all duration-300 font-semibold fb-event-register"
                 data-testid="button-register"
                 data-event-name={event?.title}
                 data-pixel-event="Lead"
-                onClick={(e) => {
-                  // Track button click immediately for Facebook Pixel Event Setup Tool
-                  if (typeof window !== 'undefined' && (window as any).fbq) {
-                    (window as any).fbq('track', 'Lead', {
-                      content_name: event?.title || 'Event Registration',
-                      content_category: 'Event',
-                      event_id: event?.id,
-                    });
-                    
-                    // Also track as custom event for better detection
-                    (window as any).fbq('trackCustom', 'EventRegistrationButtonClick', {
-                      button_text: 'Register Now',
-                      event_name: event?.title,
-                    });
-                  }
-                }}
+                data-fb-event="Lead"
+                role="button"
+                aria-label="Register for event"
               >
                 {registerMutation.isPending ? (
                   <>
