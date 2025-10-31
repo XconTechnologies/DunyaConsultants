@@ -224,8 +224,8 @@ export default function BlogsCarouselSection() {
   // Get latest 10 blogs
   const latestBlogs = blogPosts.slice(0, 10);
 
-  // Duplicate the blogs for infinite scroll effect
-  const duplicatedBlogs = [...latestBlogs, ...latestBlogs];
+  // Triple the blogs for truly seamless infinite scroll
+  const duplicatedBlogs = [...latestBlogs, ...latestBlogs, ...latestBlogs];
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -233,42 +233,65 @@ export default function BlogsCarouselSection() {
 
     let intervalId: NodeJS.Timeout;
     let isPaused = false;
+    let isResetting = false;
     
     // Calculate card width including gap
     const getCardWidth = () => {
       const firstCard = carousel.querySelector('.blog-card');
-      if (!firstCard) return 384; // fallback to 96 * 4 (w-96 in pixels)
+      if (!firstCard) return window.innerWidth >= 768 ? 384 : 320; // w-96 or w-80 in pixels
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
       return cardWidth + gap;
     };
 
+    // Start at the middle set (second copy) for seamless looping
+    const initializePosition = () => {
+      const cardWidth = getCardWidth();
+      carousel.scrollLeft = cardWidth * latestBlogs.length;
+    };
+
+    // Initialize position after a short delay to ensure layout is ready
+    setTimeout(initializePosition, 100);
+
     const scrollToNextCard = () => {
-      if (isPaused) return;
+      if (isPaused || isResetting) return;
       
       const cardWidth = getCardWidth();
-      const maxScroll = carousel.scrollWidth / 2;
+      const singleSetWidth = cardWidth * latestBlogs.length;
+      const scrollPosition = carousel.scrollLeft;
       
       // Smooth scroll to next card
       carousel.style.scrollBehavior = 'smooth';
+      carousel.scrollLeft += cardWidth;
       
-      if (carousel.scrollLeft >= maxScroll - cardWidth) {
-        // Reset to start smoothly
-        carousel.style.scrollBehavior = 'auto';
-        carousel.scrollLeft = 0;
-        // Re-enable smooth scrolling after reset
-        setTimeout(() => {
-          carousel.style.scrollBehavior = 'smooth';
-        }, 50);
-      } else {
-        carousel.scrollLeft += cardWidth;
-      }
+      // Check if we need to reset (reached end of second set)
+      setTimeout(() => {
+        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
+          isResetting = true;
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            isResetting = false;
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+        // Reset if we scroll backwards past the first set
+        else if (carousel.scrollLeft <= cardWidth / 2) {
+          isResetting = true;
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            isResetting = false;
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+      }, 50);
     };
 
     // Auto-scroll every 3 seconds
     intervalId = setInterval(scrollToNextCard, 3000);
 
-    // Pause on hover
+    // Pause on hover and touch
     const handleMouseEnter = () => {
       isPaused = true;
     };
@@ -277,8 +300,36 @@ export default function BlogsCarouselSection() {
       isPaused = false;
     };
 
+    const handleTouchStart = () => {
+      isPaused = true;
+    };
+
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        isPaused = false;
+        // Check position after manual scroll
+        const cardWidth = getCardWidth();
+        const singleSetWidth = cardWidth * latestBlogs.length;
+        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        } else if (carousel.scrollLeft <= cardWidth / 2) {
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+      }, 100);
+    };
+
     carousel.addEventListener('mouseenter', handleMouseEnter);
     carousel.addEventListener('mouseleave', handleMouseLeave);
+    carousel.addEventListener('touchstart', handleTouchStart);
+    carousel.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       if (intervalId) {
@@ -286,8 +337,10 @@ export default function BlogsCarouselSection() {
       }
       carousel.removeEventListener('mouseenter', handleMouseEnter);
       carousel.removeEventListener('mouseleave', handleMouseLeave);
+      carousel.removeEventListener('touchstart', handleTouchStart);
+      carousel.removeEventListener('touchend', handleTouchEnd);
     };
-  }, []);
+  }, [latestBlogs.length]);
 
   return (
     <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50 overflow-hidden">
