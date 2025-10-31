@@ -23,17 +23,43 @@ interface EventRegisterButtonProps {
   };
 }
 
+// Manual fallback function with automatic retry
+function trackRegisterFallback(eventData?: { id?: number; title?: string }) {
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    try {
+      window.fbq('track', 'Lead', {
+        event_name: 'EventRegistration',
+        content_name: eventData?.title || 'Register Button Fallback',
+        content_category: 'Event',
+        event_id: eventData?.id,
+        source: 'Dunya Consultants Events Page',
+        trigger: 'Manual Fallback',
+      });
+      console.log('✅ Fallback: Facebook Pixel Lead event fired manually', {
+        event_name: eventData?.title || 'Event',
+        timestamp: new Date().toISOString(),
+      });
+    } catch (error) {
+      console.error('❌ Fallback Pixel error:', error);
+    }
+  } else {
+    console.warn('⚠️ fbq not defined, retrying in 2 seconds...');
+    // Automatic retry after 2 seconds
+    setTimeout(() => trackRegisterFallback(eventData), 2000);
+  }
+}
+
 export default function EventRegisterButton({ 
   registerMutation, 
   event 
 }: EventRegisterButtonProps) {
   
-  // Memoized tracking function to prevent recreation on each render
+  // Enhanced tracking function with fallback support
   const trackRegisterClick = useCallback(() => {
     // Check if Facebook Pixel is loaded
     if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
       try {
-        // Fire Lead event
+        // Fire Lead event immediately
         window.fbq('track', 'Lead', {
           event_name: 'EventRegistration',
           content_name: event?.title || 'Event Registration',
@@ -49,12 +75,15 @@ export default function EventRegisterButton({
         });
       } catch (error) {
         console.error('❌ Facebook Pixel error:', error);
+        // Try fallback on error
+        trackRegisterFallback(event);
       }
     } else {
-      console.warn('⚠️ fbq not found – Pixel may not be initialized.');
-      console.warn('Make sure Facebook Pixel base code is loaded in client/index.html');
+      // Manual fallback if fbq not available
+      console.warn('⚠️ fbq not found – triggering manual fallback with retry...');
+      trackRegisterFallback(event);
     }
-  }, [event?.id, event?.title]);
+  }, [event]);
 
   // Set up event listener with proper cleanup
   useEffect(() => {
