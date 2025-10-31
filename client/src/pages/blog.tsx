@@ -3047,7 +3047,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             key={`${blog.id}-${index}`}
                             className="flex-shrink-0 w-80 md:w-[320px] related-blog-card"
                             style={{
-                              scrollSnapAlign: 'center'
+                              scrollSnapAlign: 'start'
                             }}
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
