@@ -119,6 +119,13 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
   // Handle click outside to close
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      
+      // Don't close if clicking on a select option or dropdown menu
+      if (target.tagName === 'OPTION' || target.closest('select')) {
+        return;
+      }
+      
       if (showThankYou && thankYouRef.current && !thankYouRef.current.contains(event.target as Node)) {
         setShowThankYou(false);
         onClose();
