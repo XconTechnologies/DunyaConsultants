@@ -3045,7 +3045,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
-                            className="flex-shrink-0 w-80 md:w-[300px] related-blog-card"
+                            className="flex-shrink-0 w-80 md:w-[320px] related-blog-card"
                             style={{
                               scrollSnapAlign: 'center'
                             }}
