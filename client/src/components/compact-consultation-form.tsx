@@ -126,6 +126,16 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
         return;
       }
       
+      // Don't close if clicking on Radix UI Select dropdown (rendered in portal)
+      if (
+        target.closest('[role="listbox"]') || 
+        target.closest('[data-radix-select-content]') ||
+        target.closest('[data-radix-popper-content-wrapper]') ||
+        target.getAttribute('role') === 'option'
+      ) {
+        return;
+      }
+      
       if (showThankYou && thankYouRef.current && !thankYouRef.current.contains(event.target as Node)) {
         setShowThankYou(false);
         onClose();
