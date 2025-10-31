@@ -180,12 +180,12 @@ export default function BlogsCarouselSection() {
   // Production sync state (for development environment)
   const [useProductionData, setUseProductionData] = useState(false);
 
-  // Fetch latest 5 blog posts from API for carousel with production sync option
+  // Fetch latest 10 blog posts from API for carousel with production sync option
   const { data: blogPostsData, refetch } = useQuery({
-    queryKey: ['/api/blog-posts', { limit: 5, sync: useProductionData ? 'production' : 'local' }],
+    queryKey: ['/api/blog-posts', { limit: 10, sync: useProductionData ? 'production' : 'local' }],
     queryFn: async () => {
       const syncParam = useProductionData ? '&sync=production' : '';
-      const response = await fetch(`/api/blog-posts?limit=5${syncParam}`);
+      const response = await fetch(`/api/blog-posts?limit=10${syncParam}`);
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       return response.json();
     }
