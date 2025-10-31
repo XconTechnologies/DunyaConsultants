@@ -3058,16 +3058,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 
                                 {/* Featured Image */}
                                 {blog.image && (
-                                  <div className="relative overflow-hidden rounded-t-lg bg-gray-100" style={{ height: '192px' }}>
+                                  <div className="relative overflow-hidden rounded-t-lg bg-gray-100 h-48">
                                     <img 
                                       src={normalizeImageSrc(blog.image)} 
                                       alt={blog.title}
-                                      className="w-full h-full transition-transform hover:scale-105"
+                                      className="transition-transform hover:scale-105"
                                       style={{ 
                                         objectFit: 'cover', 
                                         objectPosition: 'center',
                                         width: '100%',
+                                        maxWidth: '100%',
                                         height: '100%',
+                                        display: 'block',
                                         imageRendering: 'auto',
                                         backfaceVisibility: 'hidden'
                                       }}
