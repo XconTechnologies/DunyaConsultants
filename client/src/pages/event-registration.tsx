@@ -467,14 +467,24 @@ export default function EventRegistration() {
                 type="submit"
                 disabled={registerMutation.isPending}
                 variant="outline"
-                className="w-full sm:flex-1 py-6 text-lg border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-gradient-to-r hover:from-[#1D50C9] hover:to-[#1845B3] hover:text-white transition-all duration-300"
+                id="event-register-button"
+                className="w-full sm:flex-1 py-6 text-lg bg-[#FF6B35] border-2 border-[#FF6B35] text-white hover:bg-[#ff5722] hover:border-[#ff5722] transition-all duration-300 font-semibold"
                 data-testid="button-register"
-                onClick={() => {
+                data-event-name={event?.title}
+                data-pixel-event="Lead"
+                onClick={(e) => {
                   // Track button click immediately for Facebook Pixel Event Setup Tool
                   if (typeof window !== 'undefined' && (window as any).fbq) {
                     (window as any).fbq('track', 'Lead', {
                       content_name: event?.title || 'Event Registration',
                       content_category: 'Event',
+                      event_id: event?.id,
+                    });
+                    
+                    // Also track as custom event for better detection
+                    (window as any).fbq('trackCustom', 'EventRegistrationButtonClick', {
+                      button_text: 'Register Now',
+                      event_name: event?.title,
                     });
                   }
                 }}
