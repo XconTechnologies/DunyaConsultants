@@ -366,7 +366,7 @@ export default function BlogsCarouselSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
+          className="relative -mx-4 sm:-mx-6 lg:mx-0"
         >
           <div
             ref={carouselRef}
@@ -374,13 +374,19 @@ export default function BlogsCarouselSection() {
             style={{
               scrollBehavior: 'auto',
               width: '100%',
-              WebkitOverflowScrolling: 'touch'
+              WebkitOverflowScrolling: 'touch',
+              scrollSnapType: 'x mandatory',
+              paddingLeft: 'max(1rem, calc((100vw - 320px) / 2))',
+              paddingRight: 'max(1rem, calc((100vw - 320px) / 2))'
             }}
           >
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
                 className="flex-shrink-0 w-80 md:w-96 blog-card"
+                style={{
+                  scrollSnapAlign: 'center'
+                }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
