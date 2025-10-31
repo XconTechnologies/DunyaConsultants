@@ -380,7 +380,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
   
   // Fetch blog posts for detail view (regular or preview mode)
   const { data: blogPostsData, isLoading } = useQuery({
-    queryKey: isPreviewMode ? ['/api/blog-posts', slug, 'preview'] : ['/api/blog-posts'],
+    queryKey: isPreviewMode ? ['/api/blog-posts', slug, 'preview'] : ['/api/blog-posts', slug],
     queryFn: async () => {
       if (isPreviewMode && adminToken) {
         // Preview mode: fetch specific post with authentication
@@ -393,10 +393,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
         const post = await response.json();
         return [post]; // Return as array for consistency
       } else {
-        // Regular mode: fetch all published posts
-        const response = await fetch('/api/blog-posts');
-        if (!response.ok) throw new Error('Failed to fetch blog posts');
-        return response.json();
+        // Regular mode: fetch specific post by slug (includes full content)
+        const response = await fetch(`/api/blog-posts/${slug}`);
+        if (!response.ok) throw new Error('Failed to fetch blog post');
+        const post = await response.json();
+        return [post]; // Return as array for consistency
       }
     },
     enabled: !isPreviewMode || !!adminToken // Only run if we have a token in preview mode
@@ -871,6 +872,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
     blogPost.content.trim().startsWith('<')
   )) {
     isHTMLContent = true;
+    console.log('✅ HTML Content detected:', {
+      hasContent: !!blogPost.content,
+      contentLength: blogPost.content?.length,
+      contentPreview: blogPost.content?.substring(0, 100)
+    });
     // For HTML content, create a single section to render as HTML
     contentSections = [{
       id: 'content',
