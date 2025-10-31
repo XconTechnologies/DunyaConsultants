@@ -238,7 +238,13 @@ export default function BlogsCarouselSection() {
     // Calculate card width including gap
     const getCardWidth = () => {
       const firstCard = carousel.querySelector('.blog-card');
-      if (!firstCard) return window.innerWidth >= 768 ? 384 : 320; // w-96 or w-80 in pixels
+      if (!firstCard) {
+        // Fallback calculation based on viewport
+        if (window.innerWidth >= 768) {
+          return (carousel.offsetWidth / 2); // Half width for desktop (2 cards visible)
+        }
+        return 320; // w-80 for mobile
+      }
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
       return cardWidth + gap;
@@ -370,23 +376,17 @@ export default function BlogsCarouselSection() {
         >
           <div
             ref={carouselRef}
-            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
+            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll px-4 sm:px-6 lg:px-0"
             style={{
               scrollBehavior: 'auto',
               width: '100%',
-              WebkitOverflowScrolling: 'touch',
-              scrollSnapType: 'x mandatory',
-              paddingLeft: 'max(1rem, calc((100vw - 320px) / 2))',
-              paddingRight: 'max(1rem, calc((100vw - 320px) / 2))'
+              WebkitOverflowScrolling: 'touch'
             }}
           >
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-80 md:w-96 blog-card"
-                style={{
-                  scrollSnapAlign: 'center'
-                }}
+                className="flex-shrink-0 w-80 md:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] blog-card"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
