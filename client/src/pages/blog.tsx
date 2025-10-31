@@ -1115,8 +1115,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                   {/* Regular Content Sections */}
                   {contentSections.filter((section: any, index: number) => {
-                    // Skip first section if it's the intro (no title)
-                    if (index === 0 && !section.title) return false;
+                    // Skip first section if it's the intro (no title) and already displayed above
+                    if (index === 0 && !section.title && !isHTMLContent) return false;
                     // Skip sections where title is just "Atlas University" without meaningful content
                     if (section.title.trim() === 'Atlas University' && (!section.content || section.content.trim().length === 0)) {
                       return false;
@@ -1177,7 +1177,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return false;
                     }
                     
-                    return section.title && section.title.trim() !== '';
+                    // Allow sections with titles OR sections with content (for blogs without section headings)
+                    return (section.title && section.title.trim() !== '') || (section.content && section.content.trim() !== '');
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
                     if (section.title === 'intro-before-main') {
