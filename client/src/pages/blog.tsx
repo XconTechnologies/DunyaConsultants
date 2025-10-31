@@ -1040,8 +1040,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       ref={(el) => {
                         if (el) {
                           setTimeout(() => {
-                            // Initialize FAQ functionality
-                            initializeFAQs(el);
+                            // Skip FAQ initialization for HTML content to prevent clearing the content
+                            // HTML content already has its own FAQ structure if needed
                             
                             // Execute inline and internal scripts safely
                             const scripts = el.querySelectorAll('script:not([data-executed])');
