@@ -3023,8 +3023,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         }
                         @media (min-width: 768px) {
                           .related-blog-carousel-container {
-                            max-width: calc(384px * 2 + 24px * 2 + 192px);
-                            margin: 0 auto;
+                            max-width: calc(384px * 2 + 24px + 192px);
+                            overflow-x: auto;
                           }
                         }
                         .related-blog-card a {
