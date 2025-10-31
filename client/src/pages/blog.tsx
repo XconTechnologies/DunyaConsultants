@@ -3021,6 +3021,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               padding-right: calc(50% - 192px);
                             }
                           }
+                          .related-blog-carousel-padding a,
+                          .related-blog-carousel-padding a:hover,
+                          .related-blog-carousel-padding a:focus,
+                          .related-blog-carousel-padding a:active {
+                            text-decoration: none !important;
+                            text-underline-offset: 0 !important;
+                          }
                         `}</style>
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div

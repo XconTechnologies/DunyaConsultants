@@ -391,6 +391,13 @@ export default function BlogsCarouselSection() {
                   padding-right: calc(50% - 192px);
                 }
               }
+              .blog-carousel-padding a,
+              .blog-carousel-padding a:hover,
+              .blog-carousel-padding a:focus,
+              .blog-carousel-padding a:active {
+                text-decoration: none !important;
+                text-underline-offset: 0 !important;
+              }
             `}</style>
             {duplicatedBlogs.map((post, index) => (
               <motion.div
