@@ -3023,9 +3023,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         }
                         @media (min-width: 768px) {
                           .related-blogs-wrapper {
-                            max-width: 1008px;
+                            max-width: 100%;
                             margin: 0 auto;
                             overflow: hidden;
+                          }
+                          .related-blog-card {
+                            width: 300px !important;
                           }
                         }
                         .related-blog-card a {
