@@ -518,8 +518,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     return categoryMatchedBlogs;
   })();
 
-  // Duplicate the blogs for infinite scroll effect
-  const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
+  // Triple the blogs for truly seamless infinite scroll
+  const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs, ...relatedBlogs];
 
   // Initialize FAQs for ALL blog content (always run this)
   useEffect(() => {
@@ -686,68 +686,120 @@ function BlogPostDetail({ slug }: { slug: string }) {
     return () => clearTimeout(timeoutId);
   }, [blogPost?.content, slug]);
 
-  // Infinite scroll animation for related blogs (always call this hook)
+  // Continuous loop carousel animation for related blogs
   useEffect(() => {
     const carousel = relatedBlogsCarouselRef.current;
-    if (!carousel) return;
+    if (!carousel || relatedBlogs.length === 0) return;
 
-    // Wait for content to load and measure
-    const startAnimation = () => {
-      if (carousel.scrollWidth <= carousel.clientWidth) {
-        // If content doesn't exceed container, no need to animate
-        return;
-      }
-
-      let animationId: number;
-      let isPaused = false;
-      
-      const animate = () => {
-        if (!isPaused && carousel) {
-          // Reset scroll position when we reach halfway point (since we duplicated content)
-          if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-            carousel.scrollLeft = 0;
-          } else {
-            carousel.scrollLeft += 1; // Smooth scroll speed
-          }
-        }
-        animationId = requestAnimationFrame(animate);
-      };
-
-      // Start animation
-      animationId = requestAnimationFrame(animate);
-
-      // Pause on hover
-      const handleMouseEnter = () => {
-        isPaused = true;
-      };
-
-      const handleMouseLeave = () => {
-        isPaused = false;
-      };
-
-      if (carousel) {
-        carousel.addEventListener('mouseenter', handleMouseEnter);
-        carousel.addEventListener('mouseleave', handleMouseLeave);
-      }
-
-      return () => {
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-        }
-        if (carousel) {
-          carousel.removeEventListener('mouseenter', handleMouseEnter);
-          carousel.removeEventListener('mouseleave', handleMouseLeave);
-        }
-      };
+    let intervalId: NodeJS.Timeout;
+    let isPaused = false;
+    let isResetting = false;
+    
+    // Calculate card width including gap
+    const getCardWidth = () => {
+      const firstCard = carousel.querySelector('.related-blog-card');
+      if (!firstCard) return window.innerWidth >= 768 ? 384 : 320; // w-96 or w-80 in pixels
+      const cardWidth = firstCard.clientWidth;
+      const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
+      return cardWidth + gap;
     };
 
-    // Small delay to ensure content is rendered
-    const timeoutId = setTimeout(startAnimation, 100);
+    // Start at the middle set (second copy) for seamless looping
+    const initializePosition = () => {
+      const cardWidth = getCardWidth();
+      carousel.scrollLeft = cardWidth * relatedBlogs.length;
+    };
+
+    // Initialize position after a short delay to ensure layout is ready
+    setTimeout(initializePosition, 100);
+
+    const scrollToNextCard = () => {
+      if (isPaused || isResetting) return;
+      
+      const cardWidth = getCardWidth();
+      const singleSetWidth = cardWidth * relatedBlogs.length;
+      
+      // Smooth scroll to next card
+      carousel.style.scrollBehavior = 'smooth';
+      carousel.scrollLeft += cardWidth;
+      
+      // Check if we need to reset (reached end of second set)
+      setTimeout(() => {
+        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
+          isResetting = true;
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            isResetting = false;
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+        // Reset if we scroll backwards past the first set
+        else if (carousel.scrollLeft <= cardWidth / 2) {
+          isResetting = true;
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            isResetting = false;
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+      }, 50);
+    };
+
+    // Auto-scroll every 3 seconds
+    intervalId = setInterval(scrollToNextCard, 3000);
+
+    // Pause on hover and touch
+    const handleMouseEnter = () => {
+      isPaused = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPaused = false;
+    };
+
+    const handleTouchStart = () => {
+      isPaused = true;
+    };
+
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        isPaused = false;
+        // Check position after manual scroll
+        const cardWidth = getCardWidth();
+        const singleSetWidth = cardWidth * relatedBlogs.length;
+        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        } else if (carousel.scrollLeft <= cardWidth / 2) {
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollLeft = singleSetWidth;
+          setTimeout(() => {
+            carousel.style.scrollBehavior = 'smooth';
+          }, 50);
+        }
+      }, 100);
+    };
+
+    carousel.addEventListener('mouseenter', handleMouseEnter);
+    carousel.addEventListener('mouseleave', handleMouseLeave);
+    carousel.addEventListener('touchstart', handleTouchStart);
+    carousel.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      clearTimeout(timeoutId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      carousel.removeEventListener('mouseenter', handleMouseEnter);
+      carousel.removeEventListener('mouseleave', handleMouseLeave);
+      carousel.removeEventListener('touchstart', handleTouchStart);
+      carousel.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [duplicatedRelatedBlogs]);
+  }, [relatedBlogs.length]);
 
   // Show loading state while data is being fetched
   if (isLoading) {
@@ -2939,34 +2991,37 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                 ) : null}
 
-                {/* Related Blogs Section - Infinite Scroll Carousel */}
+                {/* Related Blogs Section - Continuous Loop Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
                   <section className="mb-10">
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                     
-                    {/* Infinite Scroll Carousel */}
-                    <div className="relative">
+                    {/* Continuous Loop Carousel */}
+                    <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
                       <div
                         ref={relatedBlogsCarouselRef}
-                        className="flex gap-4 md:gap-6 will-change-scroll [&::-webkit-scrollbar]:hidden"
+                        className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
                         style={{
                           scrollBehavior: 'auto',
                           width: '100%',
                           WebkitOverflowScrolling: 'touch',
-                          overflowX: 'auto',
-                          scrollbarWidth: 'none',
-                          msOverflowStyle: 'none'
+                          scrollSnapType: 'x mandatory',
+                          paddingLeft: 'max(1rem, calc((100vw - 320px) / 2))',
+                          paddingRight: 'max(1rem, calc((100vw - 320px) / 2))'
                         }}
                       >
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
-                            className="flex-shrink-0 w-80 md:w-96"
+                            className="flex-shrink-0 w-80 md:w-96 related-blog-card"
+                            style={{
+                              scrollSnapAlign: 'center'
+                            }}
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
                           >
-                            <Link href={getBlogUrl(blog.slug)}>
+                            <Link href={getBlogUrl(blog.slug)} className="no-underline">
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
