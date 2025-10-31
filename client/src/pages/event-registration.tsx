@@ -846,7 +846,7 @@ export default function EventRegistration() {
             <Button
               onClick={() => {
                 // Open WhatsApp channel in new tab
-                window.open("https://whatsapp.com/channel/0029VapB06S1SLumqPjH8l3V", "_blank");
+                window.open("https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V", "_blank");
               }}
               variant="outline"
               className="flex-1 bg-transparent text-[#FF6B35] border-2 border-[#FF6B35] hover:bg-[#FF6B35] hover:text-white shadow-md transition-all"
