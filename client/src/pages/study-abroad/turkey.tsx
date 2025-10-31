@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { setStaticPageMeta } from "@/lib/seo";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Building2, Download } from "lucide-react";
-import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
@@ -313,74 +312,6 @@ Address: Alif Tower, Sargodha
           {/* Sidebar */}
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
             
-            {/* Smart Tools */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
-                  <Calculator className="w-5 h-5 mr-2" />
-                  Smart Tools for Turkey
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <SmartToolsPopup 
-                  country="Turkey" 
-                />
-              </CardContent>
-            </Card>
-            
-            {/* Documents Checklist */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
-                  <FileCheck className="w-5 h-5 mr-2" />
-                  Documents Requirements
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="bachelor" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="bachelor">Bachelor</TabsTrigger>
-                    <TabsTrigger value="master">Master</TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="bachelor" className="mt-4">
-                    <ul className="space-y-2">
-                      {bachelorDocuments.map((doc, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{doc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
-                      <p className="text-blue-700 text-xs"><strong>Note:</strong> For those with pending results can share hope certificate/predicted grades.</p>
-                    </div>
-                  </TabsContent>
-                  
-                  <TabsContent value="master" className="mt-4">
-                    <ul className="space-y-2">
-                      {masterDocuments.map((doc, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{doc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
-                      <p className="text-blue-700 text-xs"><strong>Note:</strong> For those with pending degree can share Provisional certificate/Completion certificate.</p>
-                    </div>
-                  </TabsContent>
-                </Tabs>
-                
-                <Button 
-                  onClick={downloadChecklist}
-                  className="w-full mt-6 text-[text-[#1D50C9]] hover:bg-[#0f3ba8] text-white">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Full Checklist
-                </Button>
-              </CardContent>
-            </Card>
-
             {/* Quick Contact */}
             <Card>
               <CardHeader>

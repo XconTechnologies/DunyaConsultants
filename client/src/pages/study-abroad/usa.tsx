@@ -12,7 +12,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
 import CountryFlag from "@/components/CountryFlag";
 import ApplicationForm from "@/components/ApplicationForm";
-import SmartToolsPopup from "@/components/SmartToolsPopup";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
@@ -299,48 +298,6 @@ Address: Alif Tower, Sargodha
           {/* Sidebar */}
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
             
-            {/* Smart Tools */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
-                  <Calculator className="w-5 h-5 mr-2" />
-                  Smart Tools for USA
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <SmartToolsPopup 
-                  country="USA" 
-                />
-              </CardContent>
-            </Card>
-            
-            {/* Documents Checklist */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
-                  <FileCheck className="w-5 h-5 mr-2" />
-                  Documents Checklist
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {documentChecklist.map((doc, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{doc}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button 
-                  onClick={downloadChecklist}
-                  className="w-full mt-6 bg-[#1D50C9] hover:bg-[#0f3ba8] text-white"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Full Checklist
-                </Button>
-              </CardContent>
-            </Card>
-
             {/* Quick Contact */}
             <Card>
               <CardHeader>
