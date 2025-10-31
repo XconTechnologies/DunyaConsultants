@@ -28,6 +28,7 @@ import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-r
 import type { Event } from "@shared/schema";
 import dunyaLogo from "@assets/dunya-logo-blue.png";
 import { setStaticPageMeta } from "@/lib/seo";
+import EventRegisterButton from "@/components/EventRegisterButton";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -468,28 +469,11 @@ export default function EventRegistration() {
                 Back to Details
               </Button>
               
-              <Button
-                type="submit"
-                disabled={registerMutation.isPending}
-                variant="outline"
-                id="event-register-button"
-                className="w-full sm:flex-1 py-6 text-lg bg-[#FF6B35] border-2 border-[#FF6B35] text-white hover:bg-transparent hover:text-[#FF6B35] transition-all duration-300 font-semibold fb-event-register"
-                data-testid="button-register"
-                data-event-name={event?.title}
-                data-pixel-event="Lead"
-                data-fb-event="Lead"
-                role="button"
-                aria-label="Register for event"
-              >
-                {registerMutation.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Registering...
-                  </>
-                ) : (
-                  "Register Now"
-                )}
-              </Button>
+              
+              <EventRegisterButton 
+                registerMutation={registerMutation}
+                event={event}
+              />
             </div>
           </form>
         </div>
