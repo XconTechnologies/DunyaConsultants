@@ -701,7 +701,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
       if (!firstCard) {
         // Fallback calculation based on viewport
         if (window.innerWidth >= 768) {
-          return (carousel.offsetWidth / 2); // Half width for desktop (2 cards visible)
+          return (carousel.offsetWidth / 2.5); // 2.5 cards visible for desktop
         }
         return 320; // w-80 for mobile
       }
@@ -3016,7 +3016,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
-                            className="flex-shrink-0 w-80 md:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] related-blog-card"
+                            className="flex-shrink-0 w-80 md:w-[calc(40%-9.6px)] lg:w-[calc(40%-9.6px)] related-blog-card"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
