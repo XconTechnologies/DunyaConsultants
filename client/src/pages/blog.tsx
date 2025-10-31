@@ -3022,9 +3022,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           }
                         }
                         @media (min-width: 768px) {
-                          .related-blog-carousel-container {
-                            max-width: calc(384px * 2 + 24px + 192px);
-                            overflow-x: auto;
+                          .related-blogs-wrapper {
+                            max-width: 1008px;
+                            margin: 0 auto;
+                            overflow: hidden;
                           }
                         }
                         .related-blog-card a {
@@ -3034,16 +3035,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           text-decoration: none !important;
                         }
                       `}</style>
-                      <div
-                        ref={relatedBlogsCarouselRef}
-                        className="related-blog-carousel-container flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
-                        style={{
-                          scrollBehavior: 'auto',
-                          width: '100%',
-                          WebkitOverflowScrolling: 'touch',
-                          scrollSnapType: 'x mandatory'
-                        }}
-                      >
+                      <div className="related-blogs-wrapper">
+                        <div
+                          ref={relatedBlogsCarouselRef}
+                          className="related-blog-carousel-container flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
+                          style={{
+                            scrollBehavior: 'auto',
+                            width: '100%',
+                            WebkitOverflowScrolling: 'touch',
+                            scrollSnapType: 'x mandatory'
+                          }}
+                        >
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
@@ -3124,6 +3126,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             </Link>
                           </motion.div>
                         ))}
+                        </div>
                       </div>
                     </div>
                   </section>
