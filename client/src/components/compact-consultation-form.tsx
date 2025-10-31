@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
@@ -84,6 +84,57 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const formRef = useRef<HTMLDivElement>(null);
+  const thankYouRef = useRef<HTMLDivElement>(null);
+
+  // Get page source from current URL
+  const getPageSource = () => {
+    if (typeof window === 'undefined') return 'website';
+    
+    const path = window.location.pathname;
+    const url = window.location.href;
+    
+    // Map specific paths to readable source names
+    if (path === '/' || path === '') return 'Homepage';
+    if (path.includes('/ielts')) return 'IELTS Page';
+    if (path.includes('/pte')) return 'PTE Page';
+    if (path.includes('/duolingo')) return 'Duolingo Page';
+    if (path.includes('/offices/')) {
+      const officeName = path.split('/offices/')[1]?.replace(/-/g, ' ').replace(/\//g, '');
+      return officeName ? `${officeName.charAt(0).toUpperCase() + officeName.slice(1)} Office` : 'Office Page';
+    }
+    if (path.includes('/study-abroad/')) {
+      const country = path.split('/study-abroad/')[1]?.replace(/-/g, ' ').replace(/\//g, '');
+      return country ? `Study ${country.charAt(0).toUpperCase() + country.slice(1)}` : 'Study Abroad Page';
+    }
+    if (path.includes('/blog/')) return 'Blog Page';
+    if (path.includes('/events')) return 'Events Page';
+    if (path.includes('/services')) return 'Services Page';
+    if (path.includes('/contact')) return 'Contact Page';
+    if (path.includes('/about')) return 'About Page';
+    
+    return url || 'website';
+  };
+
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showThankYou && thankYouRef.current && !thankYouRef.current.contains(event.target as Node)) {
+        setShowThankYou(false);
+        onClose();
+      } else if (!showThankYou && formRef.current && !formRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, showThankYou, onClose]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -154,7 +205,8 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
         otherTestName: formData.otherTestName,
         testScore: formData.testScore,
         interestedCountries: formData.interestedCountries,
-        message: formData.message
+        message: formData.message,
+        source: getPageSource() // Add page source tracking
       };
 
       const response = await fetch('/api/consultations', {
@@ -168,7 +220,8 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
       if (response.ok) {
         trackEvent("consultation_form_submitted", {
           countries: formData.interestedCountries.join(", "),
-          hasLanguageTest: formData.hasLanguageTest
+          hasLanguageTest: formData.hasLanguageTest,
+          source: getPageSource()
         });
         
         trackConsultationBooking({
@@ -194,10 +247,11 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
           message: ""
         });
 
-        setTimeout(() => {
-          setShowThankYou(false);
-          onClose();
-        }, 3000);
+        // Remove the 3-second timeout - user must manually close
+        // setTimeout(() => {
+        //   setShowThankYou(false);
+        //   onClose();
+        // }, 3000);
       } else {
         alert("Error submitting form. Please try again.");
       }
@@ -211,14 +265,27 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
 
   if (!isOpen) return null;
 
+  const handleCloseThankYou = () => {
+    setShowThankYou(false);
+    onClose();
+  };
+
   if (showThankYou) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <motion.div
+          ref={thankYouRef}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl max-w-md w-full p-8 text-center shadow-2xl"
+          className="bg-white rounded-2xl max-w-md w-full p-8 text-center shadow-2xl relative"
         >
+          <button
+            onClick={handleCloseThankYou}
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            data-testid="button-close-thankyou"
+          >
+            <X className="w-6 h-6" />
+          </button>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -232,7 +299,7 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
             Your consultation request has been received. Our expert will contact you shortly.
           </p>
           <a
-            href="https://wa.me/923261111947"
+            href="https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all"
@@ -241,7 +308,7 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Chat on WhatsApp
+            Join Our WhatsApp Channel
           </a>
         </motion.div>
       </div>
@@ -251,6 +318,7 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <motion.div
+        ref={formRef}
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
