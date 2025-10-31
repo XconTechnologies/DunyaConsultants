@@ -382,7 +382,7 @@ export default function BlogsCarouselSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative -mx-4 sm:-mx-6 lg:mx-0"
+          className="relative"
         >
           <div
             ref={carouselRef}
@@ -391,9 +391,7 @@ export default function BlogsCarouselSection() {
               scrollBehavior: 'auto',
               width: '100%',
               WebkitOverflowScrolling: 'touch',
-              scrollSnapType: 'x mandatory',
-              paddingLeft: 'max(1rem, calc((100vw - 320px) / 2))',
-              paddingRight: 'max(1rem, calc((100vw - 320px) / 2))'
+              scrollSnapType: 'x mandatory'
             }}
           >
             {duplicatedBlogs.map((post, index) => (
