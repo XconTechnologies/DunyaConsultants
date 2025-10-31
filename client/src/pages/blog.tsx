@@ -3017,9 +3017,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       <style>{`
                         @media (max-width: 767px) {
                           .related-blog-carousel-container {
-                            padding-left: calc((100vw - 320px) / 2);
-                            padding-right: calc((100vw - 320px) / 2);
+                            padding-left: 10px;
+                            padding-right: 10px;
                           }
+                        }
+                        .related-blog-card a {
+                          text-decoration: none !important;
+                        }
+                        .related-blog-card a:hover {
+                          text-decoration: none !important;
                         }
                       `}</style>
                       <div
@@ -3052,7 +3058,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     <img 
                                       src={normalizeImageSrc(blog.image)} 
                                       alt={blog.title}
-                                      className="w-full h-56 object-cover transition-transform hover:scale-105"
+                                      className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                                       style={{ 
                                         objectFit: 'cover', 
                                         objectPosition: 'center',
