@@ -3013,11 +3013,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                     
                     {/* Infinite Scroll Carousel */}
-                    <div className="relative">
+                    <div className="relative -mx-4 md:-mx-6">
                       <style>{`
                         .related-blog-carousel-container {
-                          padding-left: 0;
-                          padding-right: 0;
+                          padding-left: 16px;
+                          padding-right: 16px;
+                        }
+                        @media (min-width: 768px) {
+                          .related-blog-carousel-container {
+                            padding-left: 24px;
+                            padding-right: 24px;
+                          }
                         }
                         .related-blog-card a {
                           text-decoration: none !important;
