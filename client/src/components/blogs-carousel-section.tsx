@@ -233,7 +233,7 @@ export default function BlogsCarouselSection() {
 
     let intervalId: NodeJS.Timeout;
     let isPaused = false;
-    let isResetting = false;
+    let isTransitioning = false;
     
     // Calculate card width including gap
     const getCardWidth = () => {
@@ -247,49 +247,56 @@ export default function BlogsCarouselSection() {
     // Start at the middle set (second copy) for seamless looping
     const initializePosition = () => {
       const cardWidth = getCardWidth();
+      carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = cardWidth * latestBlogs.length;
+      setTimeout(() => {
+        carousel.style.scrollBehavior = 'smooth';
+      }, 100);
     };
 
     // Initialize position after a short delay to ensure layout is ready
-    setTimeout(initializePosition, 100);
+    setTimeout(initializePosition, 150);
 
     const scrollToNextCard = () => {
-      if (isPaused || isResetting) return;
+      if (isPaused || isTransitioning) return;
       
       const cardWidth = getCardWidth();
       const singleSetWidth = cardWidth * latestBlogs.length;
-      const scrollPosition = carousel.scrollLeft;
       
       // Smooth scroll to next card
-      carousel.style.scrollBehavior = 'smooth';
       carousel.scrollLeft += cardWidth;
       
-      // Check if we need to reset (reached end of second set)
+      // Check if we're approaching the end of the second set
+      // Reset position seamlessly during the scroll
       setTimeout(() => {
-        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
-          isResetting = true;
+        const currentScroll = carousel.scrollLeft;
+        const threshold = singleSetWidth * 2 - cardWidth;
+        
+        // If we've scrolled past the second set, jump to equivalent position in first set
+        if (currentScroll >= threshold) {
+          isTransitioning = true;
           carousel.style.scrollBehavior = 'auto';
-          carousel.scrollLeft = singleSetWidth;
+          carousel.scrollLeft = currentScroll - singleSetWidth;
           setTimeout(() => {
-            isResetting = false;
             carousel.style.scrollBehavior = 'smooth';
+            isTransitioning = false;
           }, 50);
         }
-        // Reset if we scroll backwards past the first set
-        else if (carousel.scrollLeft <= cardWidth / 2) {
-          isResetting = true;
+        // If scrolled before first set, jump to equivalent position in second set
+        else if (currentScroll < cardWidth) {
+          isTransitioning = true;
           carousel.style.scrollBehavior = 'auto';
-          carousel.scrollLeft = singleSetWidth;
+          carousel.scrollLeft = currentScroll + singleSetWidth;
           setTimeout(() => {
-            isResetting = false;
             carousel.style.scrollBehavior = 'smooth';
+            isTransitioning = false;
           }, 50);
         }
-      }, 50);
+      }, 600); // Wait for scroll animation to complete
     };
 
-    // Auto-scroll every 3 seconds
-    intervalId = setInterval(scrollToNextCard, 3000);
+    // Auto-scroll every 3.5 seconds (slightly longer for better UX)
+    intervalId = setInterval(scrollToNextCard, 3500);
 
     // Pause on hover and touch
     const handleMouseEnter = () => {
@@ -310,26 +317,34 @@ export default function BlogsCarouselSection() {
         // Check position after manual scroll
         const cardWidth = getCardWidth();
         const singleSetWidth = cardWidth * latestBlogs.length;
-        if (carousel.scrollLeft >= singleSetWidth * 2 - cardWidth / 2) {
+        const currentScroll = carousel.scrollLeft;
+        
+        if (currentScroll >= singleSetWidth * 2 - cardWidth) {
           carousel.style.scrollBehavior = 'auto';
-          carousel.scrollLeft = singleSetWidth;
+          carousel.scrollLeft = currentScroll - singleSetWidth;
           setTimeout(() => {
             carousel.style.scrollBehavior = 'smooth';
           }, 50);
-        } else if (carousel.scrollLeft <= cardWidth / 2) {
+        } else if (currentScroll < cardWidth) {
           carousel.style.scrollBehavior = 'auto';
-          carousel.scrollLeft = singleSetWidth;
+          carousel.scrollLeft = currentScroll + singleSetWidth;
           setTimeout(() => {
             carousel.style.scrollBehavior = 'smooth';
           }, 50);
         }
-      }, 100);
+      }, 150);
+    };
+
+    // Handle window resize to recalculate positions
+    const handleResize = () => {
+      initializePosition();
     };
 
     carousel.addEventListener('mouseenter', handleMouseEnter);
     carousel.addEventListener('mouseleave', handleMouseLeave);
     carousel.addEventListener('touchstart', handleTouchStart);
     carousel.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       if (intervalId) {
@@ -339,6 +354,7 @@ export default function BlogsCarouselSection() {
       carousel.removeEventListener('mouseleave', handleMouseLeave);
       carousel.removeEventListener('touchstart', handleTouchStart);
       carousel.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('resize', handleResize);
     };
   }, [latestBlogs.length]);
 
