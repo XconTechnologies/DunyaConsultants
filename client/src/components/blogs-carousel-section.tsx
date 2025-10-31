@@ -239,11 +239,8 @@ export default function BlogsCarouselSection() {
     const getCardWidth = () => {
       const firstCard = carousel.querySelector('.blog-card');
       if (!firstCard) {
-        // Fallback calculation based on viewport
-        if (window.innerWidth >= 768) {
-          return (carousel.offsetWidth / 2); // Half width for desktop (2 cards visible)
-        }
-        return 320; // w-80 for mobile
+        // Fallback: w-80 (320px) for mobile, w-96 (384px) for desktop
+        return window.innerWidth >= 768 ? 384 : 320;
       }
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
@@ -372,21 +369,33 @@ export default function BlogsCarouselSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative -mx-4 sm:-mx-6 lg:mx-0"
+          className="relative"
         >
           <div
             ref={carouselRef}
-            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll px-4 sm:px-6 lg:px-0"
+            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll blog-carousel-padding"
             style={{
               scrollBehavior: 'auto',
               width: '100%',
               WebkitOverflowScrolling: 'touch'
             }}
           >
+            <style>{`
+              .blog-carousel-padding {
+                padding-left: calc(50% - 160px);
+                padding-right: calc(50% - 160px);
+              }
+              @media (min-width: 768px) {
+                .blog-carousel-padding {
+                  padding-left: calc(50% - 192px);
+                  padding-right: calc(50% - 192px);
+                }
+              }
+            `}</style>
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-80 md:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] blog-card"
+                className="flex-shrink-0 w-80 md:w-96 blog-card"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}

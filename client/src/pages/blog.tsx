@@ -699,11 +699,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     const getCardWidth = () => {
       const firstCard = carousel.querySelector('.related-blog-card');
       if (!firstCard) {
-        // Fallback calculation based on viewport
-        if (window.innerWidth >= 768) {
-          return (carousel.offsetWidth / 2.5); // 2.5 cards visible for desktop
-        }
-        return 320; // w-80 for mobile
+        // Fallback: w-80 (320px) for mobile, w-96 (384px) for desktop
+        return window.innerWidth >= 768 ? 384 : 320;
       }
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
@@ -3003,20 +3000,32 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                     
                     {/* Continuous Loop Carousel */}
-                    <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
+                    <div className="relative">
                       <div
                         ref={relatedBlogsCarouselRef}
-                        className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll px-4 sm:px-6 lg:px-8"
+                        className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll related-blog-carousel-padding"
                         style={{
                           scrollBehavior: 'auto',
                           width: '100%',
                           WebkitOverflowScrolling: 'touch'
                         }}
                       >
+                        <style>{`
+                          .related-blog-carousel-padding {
+                            padding-left: calc(50% - 160px);
+                            padding-right: calc(50% - 160px);
+                          }
+                          @media (min-width: 768px) {
+                            .related-blog-carousel-padding {
+                              padding-left: calc(50% - 192px);
+                              padding-right: calc(50% - 192px);
+                            }
+                          }
+                        `}</style>
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
-                            className="flex-shrink-0 w-80 md:w-[calc(40%-9.6px)] lg:w-[calc(40%-9.6px)] related-blog-card"
+                            className="flex-shrink-0 w-80 md:w-96 related-blog-card"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
