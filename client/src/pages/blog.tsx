@@ -3015,11 +3015,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     {/* Infinite Scroll Carousel */}
                     <div className="relative">
                       <style>{`
-                        @media (max-width: 767px) {
-                          .related-blog-carousel-container {
-                            padding-left: 10px;
-                            padding-right: 10px;
-                          }
+                        .related-blog-carousel-container {
+                          padding-left: 0;
+                          padding-right: 0;
                         }
                         .related-blog-card a {
                           text-decoration: none !important;
