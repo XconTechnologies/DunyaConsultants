@@ -382,27 +382,23 @@ export default function BlogsCarouselSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative -mx-4 sm:-mx-6 lg:mx-0"
+          className="relative overflow-hidden"
         >
           <div
             ref={carouselRef}
-            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
+            className="flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll px-8 md:px-0"
             style={{
               scrollBehavior: 'auto',
               width: '100%',
               WebkitOverflowScrolling: 'touch',
               scrollSnapType: 'x mandatory',
-              paddingLeft: 'max(1rem, calc((100vw - 320px) / 2))',
-              paddingRight: 'max(1rem, calc((100vw - 320px) / 2))'
+              scrollPadding: '0 calc(50% - 160px)'
             }}
           >
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-80 md:w-96 blog-card"
-                style={{
-                  scrollSnapAlign: 'center'
-                }}
+                className="flex-shrink-0 w-80 md:w-96 blog-card snap-center"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
