@@ -164,6 +164,7 @@ export default function StatsBanner() {
             href="https://www.facebook.com/DunyaConsultant/"
             target="_blank"
             rel="nofollow noopener noreferrer"
+            aria-label="Visit our Facebook page"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaFacebook className="w-3 h-3 text-white" />
@@ -172,6 +173,7 @@ export default function StatsBanner() {
             href="https://www.instagram.com/dunya.consultants/"
             target="_blank"
             rel="nofollow noopener noreferrer"
+            aria-label="Follow us on Instagram"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaInstagram className="w-3 h-3 text-white" />
@@ -180,6 +182,7 @@ export default function StatsBanner() {
             href="https://www.tiktok.com/@dunya.consultants"
             target="_blank"
             rel="nofollow noopener noreferrer"
+            aria-label="Watch us on TikTok"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaTiktok className="w-3 h-3 text-white" />
@@ -188,6 +191,7 @@ export default function StatsBanner() {
             href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
             target="_blank"
             rel="nofollow noopener noreferrer"
+            aria-label="Subscribe to our YouTube channel"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaYoutube className="w-3 h-3 text-white" />
@@ -196,6 +200,7 @@ export default function StatsBanner() {
             href="https://pk.linkedin.com/company/dunyaconsultant"
             target="_blank"
             rel="nofollow noopener noreferrer"
+            aria-label="Connect with us on LinkedIn"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaLinkedin className="w-3 h-3 text-white" />
@@ -212,6 +217,7 @@ export default function StatsBanner() {
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="nofollow noopener noreferrer"
+              aria-label="Visit our Facebook page"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaFacebook className="w-4 h-4 text-white" />
@@ -220,6 +226,7 @@ export default function StatsBanner() {
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="nofollow noopener noreferrer"
+              aria-label="Follow us on Instagram"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaInstagram className="w-4 h-4 text-white" />
@@ -228,6 +235,7 @@ export default function StatsBanner() {
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="nofollow noopener noreferrer"
+              aria-label="Watch us on TikTok"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaTiktok className="w-4 h-4 text-white" />
@@ -236,6 +244,7 @@ export default function StatsBanner() {
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="nofollow noopener noreferrer"
+              aria-label="Subscribe to our YouTube channel"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaYoutube className="w-4 h-4 text-white" />
@@ -244,6 +253,7 @@ export default function StatsBanner() {
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="nofollow noopener noreferrer"
+              aria-label="Connect with us on LinkedIn"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaLinkedin className="w-4 h-4 text-white" />
