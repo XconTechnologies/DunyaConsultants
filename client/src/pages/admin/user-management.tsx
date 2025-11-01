@@ -1280,15 +1280,7 @@ export default function UserManagement() {
                         <Checkbox
                           id={`event-${event.id}`}
                           checked={isSelected}
-                          onCheckedChange={(checked) => {
-                            if (checked) {
-                              setSelectedEvents([...selectedEvents, event.id]);
-                            } else {
-                              setSelectedEvents(selectedEvents.filter(id => id !== event.id));
-                            }
-                          }}
                           className="mt-1"
-                          onClick={(e) => e.stopPropagation()}
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-3 mb-2">
