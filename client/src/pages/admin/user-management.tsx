@@ -617,7 +617,7 @@ export default function UserManagement() {
     setEditPassword("");
     setShowEditPassword(false);
     // Initialize edit roles with legacy fallback
-    const userRoles = user.roles?.length ? user.roles : (user.role ? [user.role] : ['editor']);
+    const userRoles = user.roles?.length ? user.roles : (('role' in user && user.role) ? [user.role as string] : ['editor']);
     setEditRoles(userRoles);
     // Initialize edit permissions with user's current permissions
     setEditPermissions(user.permissions || {});
@@ -1370,10 +1370,11 @@ export default function UserManagement() {
               </Button>
               <Button 
                 onClick={async () => {
-                  if (selectedEvents.length === 0) {
+                  // For new users, require at least one event
+                  if (pendingUserCreate && selectedEvents.length === 0) {
                     toast({
                       title: "Validation Error",
-                      description: "Please select at least one event to assign",
+                      description: "Please select at least one event to assign to the new events manager",
                       variant: "destructive",
                     });
                     return;
@@ -1407,23 +1408,32 @@ export default function UserManagement() {
                           userId: eventAssignmentUserId,
                           eventIds: eventsToAdd
                         });
+                        // User update happens in assignEventsMutation.onSuccess
                       } else {
-                        // If only removing, still need to update the user
-                        if (pendingUserUpdate) {
-                          updateUserMutation.mutate(pendingUserUpdate);
-                          setPendingUserUpdate(null);
-                        }
+                        // If only removing events, update the user now
+                        await updateUserMutation.mutateAsync(pendingUserUpdate);
+                        setPendingUserUpdate(null);
                         setShowEventAssignmentDialog(false);
                         setSelectedEvents([]);
                         setExistingEventAssignments([]);
                         setEventAssignmentUserId(null);
+                        
+                        toast({
+                          title: "Success",
+                          description: "User updated and event assignments saved successfully",
+                        });
                       }
                     } catch (error) {
                       console.error('Error updating event assignments:', error);
+                      toast({
+                        title: "Error",
+                        description: "Failed to update event assignments",
+                        variant: "destructive",
+                      });
                     }
                   }
                 }}
-                disabled={createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending || selectedEvents.length === 0}
+                disabled={createUserMutation.isPending || assignEventsMutation.isPending || removeEventAssignmentMutation.isPending}
                 className="px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg"
                 data-testid="button-save-event-assignment"
               >
