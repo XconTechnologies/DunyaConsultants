@@ -20,6 +20,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { setMetaTags } from "@/lib/seo";
 import EventMediaDisplay from "@/components/event-media-display";
+import LoadingFallback from "@/components/loading-fallback";
 
 const studyDestinations = [
   { name: "Australia", code: "AU" },
@@ -173,18 +174,7 @@ export default function EventDetailPage() {
   }, [event]);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex items-center justify-center h-96">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading event details...</p>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
+    return <LoadingFallback message="Loading event details..." />;
   }
 
   if (!event) {

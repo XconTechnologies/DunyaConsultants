@@ -7,7 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { lazy, Suspense } from "react";
 import { useAnalytics } from "./hooks/use-analytics";
-import { Loader2 } from "lucide-react";
+import LoadingFallback from "@/components/loading-fallback";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
@@ -238,16 +238,6 @@ function Router() {
     </>
   );
 }
-
-// Loading fallback component for code splitting
-const LoadingFallback = () => (
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
-    <div className="text-center">
-      <Loader2 className="w-12 h-12 animate-spin text-[#1D50C9] mx-auto mb-4" />
-      <p className="text-gray-600">Loading...</p>
-    </div>
-  </div>
-);
 
 function App() {
   // Google Analytics is now initialized via requestIdleCallback in index.html for better performance

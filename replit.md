@@ -201,7 +201,13 @@ Preferred communication style: Simple, everyday language.
 - **Network Waterfall**: 
   - Critical path reduced from 2,613ms to ~1,500-1,800ms (30-40% improvement)
   - Parallel resource loading where possible
-- **Note**: Logo files (DC White Logo, DC Blue Logo) are currently 170-175KB each and should be optimized to modern formats (WebP) for further performance gains
+- **Standardized Loading States**: 
+  - Unified loading component across all pages (white background, blue spinner, custom message)
+  - Consistent user experience during page transitions and data fetching
+- **Image Optimization Notes**:
+  - **Logo files**: DC White Logo is 175KB and should be optimized to ~50-80KB (use TinyPNG, ImageOptim, or convert to WebP)
+  - **Uploaded images**: Large event/university images (170-270KB) should be compressed before upload
+  - **Recommended**: Compress all PNGs with TinyPNG or convert to WebP format for 60-80% size reduction
 - **Note**: For production deployment, run `npm run build` to generate optimized bundle with tree-shaking and minification
 
 ## External Dependencies
