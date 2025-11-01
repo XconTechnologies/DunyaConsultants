@@ -435,7 +435,7 @@ export default function EventDetailPage() {
                       data-testid="button-register-event"
                     >
                       <span className="relative z-10">
-                        {isPastEvent ? "View Recording" : "Register Now"}
+                        {isPastEvent ? "View Recording" : "Reserve Your Spot"}
                       </span>
                       <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
                     </Button>

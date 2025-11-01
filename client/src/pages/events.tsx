@@ -389,7 +389,7 @@ export default function EventsPage() {
                           className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
                           data-testid={`button-register-${event.id}`}
                         >
-                          <span className="relative z-10">Register Now</span>
+                          <span className="relative z-10">Get Started</span>
                           <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
                         </Button>
                       </div>
