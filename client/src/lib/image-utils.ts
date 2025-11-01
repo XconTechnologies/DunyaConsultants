@@ -1,0 +1,72 @@
+/**
+ * Frontend utility to extract alt text from image filenames
+ * Keeps frontend and backend in sync for image handling
+ */
+
+/**
+ * Extract human-readable alt text from an image filename
+ * @param filename - The image filename or URL
+ * @returns Clean alt text
+ */
+export function extractAltText(filename: string | null | undefined): string {
+  if (!filename) return '';
+  
+  // Extract filename from URL if needed
+  const name = filename.split('/').pop() || filename;
+  
+  // Remove file extension
+  let altText = name.replace(/\.(webp|png|jpg|jpeg|gif|svg)$/i, '');
+  
+  // Remove timestamp patterns (numbers with 13+ digits)
+  altText = altText.replace(/_\d{13,}/g, '');
+  
+  // Remove hash patterns (8+ character alphanumeric strings)
+  altText = altText.replace(/_[a-f0-9]{8,}/gi, '');
+  
+  // Remove remaining underscores and replace with spaces
+  altText = altText.replace(/_/g, ' ');
+  
+  // Replace hyphens with spaces
+  altText = altText.replace(/-/g, ' ');
+  
+  // Remove multiple spaces
+  altText = altText.replace(/\s+/g, ' ');
+  
+  // Trim whitespace
+  altText = altText.trim();
+  
+  // Capitalize first letter of each word
+  altText = altText.split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+  
+  return altText;
+}
+
+/**
+ * Get image props with automatic alt text
+ * @param src - Image source URL
+ * @param customAlt - Optional custom alt text (overrides auto-generated)
+ * @returns Object with src and alt
+ */
+export function getImageProps(src: string | null | undefined, customAlt?: string) {
+  return {
+    src: src || '',
+    alt: customAlt || extractAltText(src),
+  };
+}
+
+/**
+ * Convert image URL to WebP format if not already
+ * @param url - Original image URL
+ * @returns WebP URL
+ */
+export function toWebP(url: string | null | undefined): string {
+  if (!url) return '';
+  
+  // If already WebP, return as-is
+  if (url.endsWith('.webp')) return url;
+  
+  // Replace extension with .webp
+  return url.replace(/\.(png|jpg|jpeg|gif)$/i, '.webp');
+}

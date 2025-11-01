@@ -24,6 +24,7 @@ import { generateUniqueToken, generateRegistrationQRCode } from "./qr-service";
 import { appendToSheet } from "./google-sheets-service";
 import sgMail from '@sendgrid/mail';
 import QRCode from 'qrcode';
+import { getImageMetadata, extractAltTextFromFilename } from "./image-utils";
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -4923,27 +4924,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     // Check if file exists
     if (fs.existsSync(filePath)) {
+      // Get image metadata including content type and alt text
+      const metadata = getImageMetadata(filename, req.get('Accept'));
+      
       if (req.method === 'HEAD') {
-        // For HEAD requests, just send headers
+        // For HEAD requests, send headers with metadata
         res.set({
-          'Content-Type': req.get('Content-Type') || 'image/webp',
-          'Content-Length': fs.statSync(filePath).size.toString()
+          'Content-Type': metadata.contentType,
+          'Content-Length': fs.statSync(filePath).size.toString(),
+          'X-Image-Alt': metadata.alt, // Custom header with auto-generated alt text
+          'Cache-Control': 'public, max-age=31536000, immutable'
         });
         res.status(200).end();
       } else {
+        // For GET requests, send file with proper headers
+        res.set({
+          'Content-Type': metadata.contentType,
+          'X-Image-Alt': metadata.alt,
+          'Cache-Control': 'public, max-age=31536000, immutable'
+        });
         res.sendFile(filePath);
       }
     } else {
       // Fallback to existing demo image
       const demoImagePath = path.join(process.cwd(), 'attached_assets', 'GRE-Test-Fee-in-Pakistan.webp');
       if (fs.existsSync(demoImagePath)) {
+        const demoMetadata = getImageMetadata('GRE-Test-Fee-in-Pakistan.webp', req.get('Accept'));
+        
         if (req.method === 'HEAD') {
           res.set({
-            'Content-Type': 'image/webp',
-            'Content-Length': fs.statSync(demoImagePath).size.toString()
+            'Content-Type': demoMetadata.contentType,
+            'Content-Length': fs.statSync(demoImagePath).size.toString(),
+            'X-Image-Alt': demoMetadata.alt,
+            'Cache-Control': 'public, max-age=31536000, immutable'
           });
           res.status(200).end();
         } else {
+          res.set({
+            'Content-Type': demoMetadata.contentType,
+            'X-Image-Alt': demoMetadata.alt,
+            'Cache-Control': 'public, max-age=31536000, immutable'
+          });
           res.sendFile(demoImagePath);
         }
       } else {
