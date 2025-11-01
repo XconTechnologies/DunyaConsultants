@@ -5,8 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { useEffect, lazy, Suspense } from "react";
-import { initGA } from "./lib/analytics";
+import { lazy, Suspense } from "react";
 import { useAnalytics } from "./hooks/use-analytics";
 import { Loader2 } from "lucide-react";
 import Home from "@/pages/home";
@@ -63,7 +62,7 @@ const IstanbulOffice = lazy(() => import("@/pages/offices/istanbul"));
 const CairoOffice = lazy(() => import("@/pages/offices/cairo"));
 const EdinburghOffice = lazy(() => import("@/pages/offices/edinburgh"));
 const StudyAbroadJourney = lazy(() => import("@/pages/study-abroad-journey"));
-import EngagementTracker from "@/components/gamification/engagement-tracker";
+const EngagementTracker = lazy(() => import("@/components/gamification/engagement-tracker"));
 // Lazy-loaded Admin Pages for better performance
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
 const UserLogin = lazy(() => import("@/pages/user-login"));
@@ -251,33 +250,21 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  // Initialize Google Analytics when app loads
-  useEffect(() => {
-    // Verify required environment variable is present
-    if (!import.meta.env.VITE_GA_MEASUREMENT_ID) {
-      console.warn('Missing required Google Analytics key: VITE_GA_MEASUREMENT_ID');
-    } else {
-      initGA();
-      // Track the initial page view after initialization
-      window.setTimeout(() => {
-        const currentPath = window.location.pathname;
-        import('./lib/analytics').then(({ trackPageView }) => {
-          trackPageView(currentPath);
-        });
-      }, 100);
-    }
-  }, []);
-
+  // Google Analytics is now initialized via requestIdleCallback in index.html for better performance
+  // No need to initialize here anymore
+  
   return (
     <QueryClientProvider client={queryClient}>
-      <EngagementTracker>
-        <TooltipProvider>
-          <Toaster />
-          <Suspense fallback={<LoadingFallback />}>
-            <Router />
-          </Suspense>
-        </TooltipProvider>
-      </EngagementTracker>
+      <Suspense fallback={<LoadingFallback />}>
+        <EngagementTracker>
+          <TooltipProvider>
+            <Toaster />
+            <Suspense fallback={<LoadingFallback />}>
+              <Router />
+            </Suspense>
+          </TooltipProvider>
+        </EngagementTracker>
+      </Suspense>
     </QueryClientProvider>
   );
 }
