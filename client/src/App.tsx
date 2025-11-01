@@ -65,8 +65,6 @@ const IstanbulOffice = lazy(() => import("@/pages/offices/istanbul"));
 const CairoOffice = lazy(() => import("@/pages/offices/cairo"));
 const EdinburghOffice = lazy(() => import("@/pages/offices/edinburgh"));
 const StudyAbroadJourney = lazy(() => import("@/pages/study-abroad-journey"));
-// Lazy load EngagementTracker to avoid HMR issues
-const EngagementTracker = lazy(() => import("@/components/gamification/engagement-tracker"));
 // Lazy-loaded Admin Pages for better performance
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
 const UserLogin = lazy(() => import("@/pages/user-login"));
@@ -273,16 +271,12 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={null}>
-        <EngagementTracker>
-          <TooltipProvider>
-            <Toaster />
-            <Suspense fallback={<LoadingFallback />}>
-              <Router />
-            </Suspense>
-          </TooltipProvider>
-        </EngagementTracker>
-      </Suspense>
+      <TooltipProvider>
+        <Toaster />
+        <Suspense fallback={<LoadingFallback />}>
+          <Router />
+        </Suspense>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
