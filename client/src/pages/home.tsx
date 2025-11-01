@@ -4,9 +4,9 @@ import StatsBanner from "@/components/stats-banner";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
 import { setStaticPageMeta } from "@/lib/seo";
+import AboutCompany from "@/components/about-company";
 
-// Lazy load ALL heavy components for better performance
-const AboutCompany = lazy(() => import("@/components/about-company"));
+// Lazy load only below-the-fold components for better LCP
 const BranchesCarousel = lazy(() => import("@/components/branches-carousel"));
 const UpcomingEventsSection = lazy(() => import("@/components/upcoming-events-section"));
 const IeltsSection = lazy(() => import("@/components/ielts-section"));
@@ -14,7 +14,6 @@ const CountriesSection = lazy(() => import("@/components/countries-section"));
 const AccreditationSection = lazy(() => import("@/components/accreditation-section"));
 const ConsultationBookingSection = lazy(() => import("@/components/consultation-booking-section"));
 const UniversityPartnersSection = lazy(() => import("@/components/university-partners-section"));
-// const EventsSection = lazy(() => import("@/components/events-section"));
 const BlogsCarouselSection = lazy(() => import("@/components/blogs-carousel-section"));
 const BusinessProposalsSection = lazy(() => import("@/components/business-proposals-section"));
 
@@ -48,10 +47,7 @@ export default function Home() {
       <ScrollProgress />
       <Navigation />
       <StatsBanner />
-      
-      <Suspense fallback={<SectionSkeleton />}>
-        <AboutCompany />
-      </Suspense>
+      <AboutCompany />
       
       <Suspense fallback={<SectionSkeleton />}>
         <IeltsSection />
