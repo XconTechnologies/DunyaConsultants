@@ -9,8 +9,6 @@ import { useEffect, lazy, Suspense } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import { Loader2 } from "lucide-react";
-// Global ReactQuill CSS import to ensure proper loading
-import 'react-quill/dist/quill.snow.css';
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 

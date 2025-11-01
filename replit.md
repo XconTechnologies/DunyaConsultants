@@ -181,7 +181,13 @@ Preferred communication style: Simple, everyday language.
   - Local asset usage instead of external URLs
 - **Resource Hints**: Added modulepreload hints for faster JavaScript loading
 - **Cache Strategy**: Production assets cached for 1 year (images, CSS, JS, fonts)
+- **Code Splitting**: 
+  - All non-critical pages lazy loaded with React.lazy()
+  - ReactQuill CSS moved from global import to blog-editor only (reduces main bundle)
+  - Aggressive Tailwind CSS purging configured
+- **Bundle Optimization**: Removed unused imports from main App.tsx bundle
 - **Note**: Logo files (DC White Logo, DC Blue Logo) are currently 170-175KB each and should be optimized to modern formats (WebP) for further performance gains
+- **Note**: For production deployment, run `npm run build` to generate optimized bundle with tree-shaking and minification
 
 ## External Dependencies
 - `@neondatabase/serverless`: PostgreSQL connectivity
