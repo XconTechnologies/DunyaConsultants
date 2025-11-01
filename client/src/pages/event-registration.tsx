@@ -501,6 +501,7 @@ export default function EventRegistration() {
                 src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
                 alt="Dunya Consultants" 
                 className="h-10 mx-auto"
+                loading="lazy"
               />
             </div>
             

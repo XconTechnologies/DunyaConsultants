@@ -12,57 +12,59 @@ import { Loader2 } from "lucide-react";
 // Global ReactQuill CSS import to ensure proper loading
 import 'react-quill/dist/quill.snow.css';
 import Home from "@/pages/home";
-import CostCalculator from "@/pages/cost-calculator";
-import CourseMatchTool from "@/pages/course-match-tool";
-import DocumentChecklist from "@/pages/document-checklist";
-import Events from "@/pages/events";
-import EventDetail from "@/pages/event-detail";
-import EventRegistration from "@/pages/event-registration";
-
-import IELTS from "@/pages/ielts";
-import IELTSExamDay from "@/pages/ielts-exam-day";
-import PTE from "@/pages/test-prep/pte";
-import Duolingo from "@/pages/test-prep/duolingo";
-import CountryGuide from "@/pages/country-guide";
-import USAGuide from "@/pages/country-guides/usa";
-import UKGuide from "@/pages/country-guides/uk";
-import CanadaGuide from "@/pages/country-guides/canada";
-import AustraliaGuide from "@/pages/country-guides/australia";
-import BusinessCardGenerator from "@/pages/business-card-generator";
-import Blog from "@/pages/blog";
-import ContactPage from "@/pages/contact";
-import FAQsPage from "@/pages/faqs";
-import ScholarshipsPage from "@/pages/scholarships";
-import ServicesPage from "@/pages/services";
 import NotFound from "@/pages/not-found";
-import OfficesList from "@/pages/offices/OfficesList";
-import OfficeDetails from "@/pages/offices/OfficeDetails";
-import SargodhaHeadOffice from "@/pages/offices/SargodhaHeadOffice";
-import LahoreDHA from "@/pages/offices/LahoreDHA";
-import LahoreDHACity from "@/pages/offices/LahoreDHACity";
-import LahoreJohar from "@/pages/offices/lahore-johar";
-import Islamabad from "@/pages/offices/islamabad";
-import Karachi from "@/pages/offices/karachi";
-import IslamabadBlueArea from "@/pages/offices/IslamabadBlueArea";
-import KarachiGulshan from "@/pages/offices/KarachiGulshan";
-import FaisalabadCivilLines from "@/pages/offices/FaisalabadCivilLines";
-import FaisalabadOffice from "@/pages/offices/FaisalabadOffice";
-import GujranwalaOffice from "@/pages/offices/gujranwala";
-import SialkotOffice from "@/pages/offices/sialkot";
-import GujratOffice from "@/pages/offices/gujrat";
-import BahawalpurOffice from "@/pages/offices/bahawalpur";
-import MianChannuOffice from "@/pages/offices/mianchannu";
-import MandiBahauddinOffice from "@/pages/offices/mandi-bahauddin";
-import SheikhupuraOffice from "@/pages/offices/sheikhupura";
-import MultanOffice from "@/pages/offices/multan";
-import PeshawarOffice from "@/pages/offices/peshawar";
-import JhelumOffice from "@/pages/offices/jhelum";
-import MardanOffice from "@/pages/offices/mardan";
-import JeddahOffice from "@/pages/offices/jeddah";
-import IstanbulOffice from "@/pages/offices/istanbul";
-import CairoOffice from "@/pages/offices/cairo";
-import EdinburghOffice from "@/pages/offices/edinburgh";
-import StudyAbroadJourney from "@/pages/study-abroad-journey";
+
+// Lazy-load non-critical pages for better performance
+const CostCalculator = lazy(() => import("@/pages/cost-calculator"));
+const CourseMatchTool = lazy(() => import("@/pages/course-match-tool"));
+const DocumentChecklist = lazy(() => import("@/pages/document-checklist"));
+const Events = lazy(() => import("@/pages/events"));
+const EventDetail = lazy(() => import("@/pages/event-detail"));
+const EventRegistration = lazy(() => import("@/pages/event-registration"));
+const IELTS = lazy(() => import("@/pages/ielts"));
+const IELTSExamDay = lazy(() => import("@/pages/ielts-exam-day"));
+const PTE = lazy(() => import("@/pages/test-prep/pte"));
+const Duolingo = lazy(() => import("@/pages/test-prep/duolingo"));
+const CountryGuide = lazy(() => import("@/pages/country-guide"));
+const USAGuide = lazy(() => import("@/pages/country-guides/usa"));
+const UKGuide = lazy(() => import("@/pages/country-guides/uk"));
+const CanadaGuide = lazy(() => import("@/pages/country-guides/canada"));
+const AustraliaGuide = lazy(() => import("@/pages/country-guides/australia"));
+const BusinessCardGenerator = lazy(() => import("@/pages/business-card-generator"));
+const Blog = lazy(() => import("@/pages/blog"));
+const ContactPage = lazy(() => import("@/pages/contact"));
+const FAQsPage = lazy(() => import("@/pages/faqs"));
+const ScholarshipsPage = lazy(() => import("@/pages/scholarships"));
+const ServicesPage = lazy(() => import("@/pages/services"));
+// Lazy-load office pages
+const OfficesList = lazy(() => import("@/pages/offices/OfficesList"));
+const OfficeDetails = lazy(() => import("@/pages/offices/OfficeDetails"));
+const SargodhaHeadOffice = lazy(() => import("@/pages/offices/SargodhaHeadOffice"));
+const LahoreDHA = lazy(() => import("@/pages/offices/LahoreDHA"));
+const LahoreDHACity = lazy(() => import("@/pages/offices/LahoreDHACity"));
+const LahoreJohar = lazy(() => import("@/pages/offices/lahore-johar"));
+const Islamabad = lazy(() => import("@/pages/offices/islamabad"));
+const Karachi = lazy(() => import("@/pages/offices/karachi"));
+const IslamabadBlueArea = lazy(() => import("@/pages/offices/IslamabadBlueArea"));
+const KarachiGulshan = lazy(() => import("@/pages/offices/KarachiGulshan"));
+const FaisalabadCivilLines = lazy(() => import("@/pages/offices/FaisalabadCivilLines"));
+const FaisalabadOffice = lazy(() => import("@/pages/offices/FaisalabadOffice"));
+const GujranwalaOffice = lazy(() => import("@/pages/offices/gujranwala"));
+const SialkotOffice = lazy(() => import("@/pages/offices/sialkot"));
+const GujratOffice = lazy(() => import("@/pages/offices/gujrat"));
+const BahawalpurOffice = lazy(() => import("@/pages/offices/bahawalpur"));
+const MianChannuOffice = lazy(() => import("@/pages/offices/mianchannu"));
+const MandiBahauddinOffice = lazy(() => import("@/pages/offices/mandi-bahauddin"));
+const SheikhupuraOffice = lazy(() => import("@/pages/offices/sheikhupura"));
+const MultanOffice = lazy(() => import("@/pages/offices/multan"));
+const PeshawarOffice = lazy(() => import("@/pages/offices/peshawar"));
+const JhelumOffice = lazy(() => import("@/pages/offices/jhelum"));
+const MardanOffice = lazy(() => import("@/pages/offices/mardan"));
+const JeddahOffice = lazy(() => import("@/pages/offices/jeddah"));
+const IstanbulOffice = lazy(() => import("@/pages/offices/istanbul"));
+const CairoOffice = lazy(() => import("@/pages/offices/cairo"));
+const EdinburghOffice = lazy(() => import("@/pages/offices/edinburgh"));
+const StudyAbroadJourney = lazy(() => import("@/pages/study-abroad-journey"));
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 // Lazy-loaded Admin Pages for better performance
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
@@ -97,22 +99,22 @@ const FormSubmissions = lazy(() => import("@/pages/admin/form-submissions"));
 
 
 
-// Study Abroad Pages
-import StudyAbroadUSA from "@/pages/study-abroad/usa";
-import StudyAbroadUK from "@/pages/study-abroad/uk";
-import StudyAbroadCanada from "@/pages/study-abroad/canada";
-import StudyAbroadFinland from "@/pages/study-abroad/finland";
-import StudyAbroadAustralia from "@/pages/study-abroad/australia";
-import StudyAbroadBelgium from "@/pages/study-abroad/belgium";
-import StudyAbroadTurkey from "@/pages/study-abroad/turkey";
+// Lazy-load Study Abroad Pages
+const StudyAbroadUSA = lazy(() => import("@/pages/study-abroad/usa"));
+const StudyAbroadUK = lazy(() => import("@/pages/study-abroad/uk"));
+const StudyAbroadCanada = lazy(() => import("@/pages/study-abroad/canada"));
+const StudyAbroadFinland = lazy(() => import("@/pages/study-abroad/finland"));
+const StudyAbroadAustralia = lazy(() => import("@/pages/study-abroad/australia"));
+const StudyAbroadBelgium = lazy(() => import("@/pages/study-abroad/belgium"));
+const StudyAbroadTurkey = lazy(() => import("@/pages/study-abroad/turkey"));
 
-// About Pages
-import WhoWeAre from "@/pages/about/who-we-are";
-import WhyChooseUs from "@/pages/about/why-choose-us";
-import OurSuccessStories from "@/pages/about/our-success-stories";
-import TeamPage from "@/pages/about/team";
-import PrivacyPolicy from "@/pages/privacy-policy";
-import TermsOfServices from "@/pages/terms-of-services";
+// Lazy-load About Pages
+const WhoWeAre = lazy(() => import("@/pages/about/who-we-are"));
+const WhyChooseUs = lazy(() => import("@/pages/about/why-choose-us"));
+const OurSuccessStories = lazy(() => import("@/pages/about/our-success-stories"));
+const TeamPage = lazy(() => import("@/pages/about/team"));
+const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
+const TermsOfServices = lazy(() => import("@/pages/terms-of-services"));
 
 function Router() {
   // Track page views when routes change - Google Analytics integration
