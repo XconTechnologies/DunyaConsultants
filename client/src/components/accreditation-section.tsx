@@ -143,7 +143,7 @@ export default function AccreditationSection() {
                           alt={`${accreditation.name} logo`}
                           width={80}
                           height={80}
-                          className="max-w-full max-h-full object-contain"
+                          imageClassName="max-w-full max-h-full object-contain"
                           loading="lazy"
                           decoding="async"
                         />
@@ -154,7 +154,7 @@ export default function AccreditationSection() {
                         alt={`${accreditation.name} logo`}
                         width={80}
                         height={80}
-                        className="max-w-full max-h-full object-contain"
+                        imageClassName="max-w-full max-h-full object-contain"
                         loading="lazy"
                         decoding="async"
                       />

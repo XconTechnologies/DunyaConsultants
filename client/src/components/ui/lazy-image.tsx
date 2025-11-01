@@ -4,6 +4,7 @@ interface LazyImageProps {
   src: string;
   alt: string;
   className?: string;
+  imageClassName?: string;
   placeholder?: string;
   width?: number;
   height?: number;
@@ -20,6 +21,7 @@ export function LazyImage({
   src,
   alt,
   className = '',
+  imageClassName = '',
   placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDEuNjY2NjdDNS4zOTc2MyAxLjY2NjY3IDEuNjY2NjcgNS4zOTc2MyAxLjY2NjY3IDEwQzEuNjY2NjcgMTQuNjAyNCA1LjM5NzYzIDE4LjMzMzMgMTAgMTguMzMzM0MxNC42MDI0IDE4LjMzMzMgMTguMzMzMyAxNC42MDI0IDE4LjMzMzMgMTBDMTguMzMzMyA1LjM5NzYzIDE0LjYwMjQgMS42NjY2NyAxMCAxLjY2NjY3WiIgZmlsbD0iI0Y0RjRGNSIvPgo8L3N2Zz4K',
   width,
   height,
@@ -101,7 +103,9 @@ export function LazyImage({
         onError={handleError}
         className={`transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${hasError ? 'filter blur-sm' : ''} w-full h-full object-cover`}
+        } ${hasError ? 'filter blur-sm' : ''} ${
+          imageClassName || 'w-full h-full object-cover'
+        }`}
         style={{
           aspectRatio: width && height ? `${width}/${height}` : undefined,
         }}
