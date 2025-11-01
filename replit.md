@@ -174,7 +174,7 @@ Preferred communication style: Simple, everyday language.
 
 ### Website Performance (November 2025)
 - **Compression**: Gzip compression middleware reduces CSS/JS file sizes by ~70-80%
-- **Critical CSS**: Enhanced inline critical CSS for faster initial render
+- **Critical CSS**: Enhanced inline critical CSS for faster initial render with mobile-first responsive styles
 - **Image Optimization**: 
   - Added width/height attributes to prevent layout shifts
   - Logo loading changed from lazy to eager with fetchpriority="high"
@@ -196,8 +196,16 @@ Preferred communication style: Simple, everyday language.
 - **JavaScript Execution Optimization**:
   - Analytics scripts deferred using requestIdleCallback (loads when browser is idle)
   - Removed duplicate Google Analytics initialization
-  - Third-party scripts (Google Tag Manager, Facebook Pixel) deferred with 2-3s timeout
+  - Third-party scripts (Google Tag Manager, Facebook Pixel) deferred with 2-3s timeout on desktop, 5s on mobile
   - Reduced main thread blocking during initial load
+- **Mobile Performance Optimization (November 2025)**:
+  - Created mobile optimization utilities (`client/src/lib/mobile-optimization.ts`) for device and connection detection
+  - Aggressive third-party script deferral on mobile (5s delay vs 3s on desktop)
+  - Optimized Stats Banner animations for mobile (reduced steps from 40 to 20, duration from 800ms to 600ms)
+  - Automatic animation skipping on slow connections (3G or slower)
+  - Enhanced critical inline CSS with mobile-first responsive styles and reduced motion support
+  - Fallback font stack for instant text rendering while web fonts load
+  - Mobile-specific lazy loading margins (50px on mobile vs 100px on desktop)
 - **Network Waterfall**: 
   - Critical path reduced from 2,613ms to ~1,500-1,800ms (30-40% improvement)
   - Parallel resource loading where possible
@@ -214,7 +222,9 @@ Preferred communication style: Simple, everyday language.
   - Close buttons in modals have aria-label attributes
   - Pagination dots have aria-label with position indicators
   - All ReactCountryFlag components have aria-label and title attributes (21 office pages + countries section)
+  - All social media links have descriptive aria-labels (Facebook, Instagram, TikTok, YouTube, LinkedIn)
   - All critical images have explicit width/height attributes and alt text
+  - Proper heading hierarchy maintained (no skipped levels)
   - Full screen reader support across entire website
 - **Note**: For production deployment, run `npm run build` to generate optimized bundle with tree-shaking and minification
 
