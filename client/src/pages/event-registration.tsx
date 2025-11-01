@@ -122,7 +122,7 @@ export default function EventRegistration() {
         phone: data.whatsapp,
         city: data.city,
         education: data.education,
-        destination: data.destinations.join(", "),
+        destination: data.destinations?.join(", ") || "",
       });
       return response.json();
     },

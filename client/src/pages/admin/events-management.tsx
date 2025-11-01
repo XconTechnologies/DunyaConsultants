@@ -49,6 +49,7 @@ interface EventFormData {
   studyLevel: string[];
   venue: string;
   isActive: boolean;
+  registrationEnabled: boolean;
 }
 
 const AVAILABLE_COUNTRIES = [
@@ -78,9 +79,10 @@ interface EventsTableProps {
   handleDelete: (id: number) => void;
   setLocation: (location: string) => void;
   toggleActiveMutation: any;
+  toggleRegistrationMutation: any;
 }
 
-function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation }: EventsTableProps) {
+function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation, toggleRegistrationMutation }: EventsTableProps) {
   if (events.length === 0) {
     return (
       <div className="text-center py-12">
@@ -103,6 +105,7 @@ function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation }
             <TableHead className="font-semibold text-gray-700">Location</TableHead>
             <TableHead className="font-semibold text-gray-700">Type</TableHead>
             <TableHead className="font-semibold text-gray-700">Status</TableHead>
+            <TableHead className="font-semibold text-gray-700">Registration</TableHead>
             <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -159,6 +162,21 @@ function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation }
                   ) : (
                     <EyeOff className="w-4 h-4" />
                   )}
+                </Button>
+              </TableCell>
+              <TableCell>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => toggleRegistrationMutation.mutate({ id: event.id, registrationEnabled: !event.registrationEnabled })}
+                  className={`rounded-lg transition-all duration-300 ${
+                    event.registrationEnabled 
+                      ? "bg-blue-50 hover:bg-blue-100 text-blue-700" 
+                      : "bg-gray-50 hover:bg-gray-100 text-gray-400"
+                  }`}
+                  data-testid={`button-toggle-registration-${event.id}`}
+                >
+                  {event.registrationEnabled ? "Enabled" : "Disabled"}
                 </Button>
               </TableCell>
               <TableCell className="text-right">
@@ -365,6 +383,26 @@ export default function EventsManagement() {
     },
   });
 
+  // Toggle registration enabled
+  const toggleRegistrationMutation = useMutation({
+    mutationFn: async ({ id, registrationEnabled }: { id: number; registrationEnabled: boolean }) => {
+      const response = await fetch(`/api/admin/events/${id}`, {
+        method: "PATCH",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ registrationEnabled }),
+      });
+      if (!response.ok) throw new Error("Failed to toggle registration");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/events"] });
+      toast({
+        title: "Success",
+        description: "Registration setting updated",
+      });
+    },
+  });
+
   const resetForm = () => {
     setFormData({
       title: "",
@@ -380,6 +418,7 @@ export default function EventsManagement() {
       studyLevel: [],
       venue: "",
       isActive: true,
+      registrationEnabled: true,
     });
   };
 
@@ -555,6 +594,7 @@ export default function EventsManagement() {
                     handleDelete={handleDelete}
                     setLocation={setLocation}
                     toggleActiveMutation={toggleActiveMutation}
+                    toggleRegistrationMutation={toggleRegistrationMutation}
                   />
                 </TabsContent>
 
@@ -564,6 +604,7 @@ export default function EventsManagement() {
                     handleDelete={handleDelete}
                     setLocation={setLocation}
                     toggleActiveMutation={toggleActiveMutation}
+                    toggleRegistrationMutation={toggleRegistrationMutation}
                   />
                 </TabsContent>
               </Tabs>

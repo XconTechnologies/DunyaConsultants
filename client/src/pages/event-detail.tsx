@@ -353,10 +353,10 @@ export default function EventDetailPage() {
                 {/* Event Media Section */}
                 {event && (
                   <EventMediaDisplay
-                    recordings={event.recordings}
-                    images={event.images}
-                    videos={event.videos}
-                    documents={event.documents}
+                    recordings={event.recordings || undefined}
+                    images={event.images || undefined}
+                    videos={event.videos || undefined}
+                    documents={event.documents || undefined}
                   />
                 )}
               </motion.div>
@@ -425,20 +425,31 @@ export default function EventDetailPage() {
                       )}
                     </div>
 
-                    <Button
-                      onClick={() => {
-                        if (!isPastEvent && event) {
-                          setLocation(`/events/register-now?event=${event.slug}`);
-                        }
-                      }}
-                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
-                      data-testid="button-register-event"
-                    >
-                      <span className="relative z-10">
-                        {isPastEvent ? "View Recording" : "Reserve Your Spot"}
-                      </span>
-                      <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                    </Button>
+                    {!isPastEvent && event.registrationEnabled === false ? (
+                      <Button
+                        onClick={() => window.open('https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V', '_blank')}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
+                        data-testid="button-whatsapp-channel"
+                      >
+                        <span className="relative z-10">Join WhatsApp Channel</span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          if (!isPastEvent && event) {
+                            setLocation(`/events/register-now?event=${event.slug}`);
+                          }
+                        }}
+                        className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
+                        data-testid="button-register-event"
+                      >
+                        <span className="relative z-10">
+                          {isPastEvent ? "View Recording" : "Reserve Your Spot"}
+                        </span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
