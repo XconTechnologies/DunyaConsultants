@@ -342,6 +342,7 @@ export default function EventsSection() {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
+            aria-label="Previous event"
             className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
             style={{ color: "#1D50C9" }}
           >
@@ -349,6 +350,7 @@ export default function EventsSection() {
           </button>
           <button
             onClick={nextSlide}
+            aria-label="Next event"
             className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
             style={{ color: "#1D50C9" }}
           >

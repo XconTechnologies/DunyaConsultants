@@ -244,6 +244,7 @@ export default function SuccessStoriesCarousel() {
             onClick={prevSlide}
             variant="outline"
             size="icon"
+            aria-label="Previous success story"
             className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm border-white/50 hover:bg-white shadow-lg"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -253,6 +254,7 @@ export default function SuccessStoriesCarousel() {
             onClick={nextSlide}
             variant="outline"
             size="icon"
+            aria-label="Next success story"
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm border-white/50 hover:bg-white shadow-lg"
           >
             <ChevronRight className="w-5 h-5" />
@@ -265,6 +267,7 @@ export default function SuccessStoriesCarousel() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to success story ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? 'bg-primary scale-125'

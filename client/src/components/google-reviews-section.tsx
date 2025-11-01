@@ -157,12 +157,14 @@ export default function GoogleReviewsSection() {
             <div className="flex items-center gap-2">
               <button
                 onClick={prevReview}
+                aria-label="Previous review"
                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={nextReview}
+                aria-label="Next review"
                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
               >
                 <ChevronRight className="w-5 h-5" />

@@ -220,6 +220,7 @@ export default function TestimonialsSection() {
               onClick={prevSlide}
               variant="outline"
               size="icon"
+              aria-label="Previous testimonial"
               className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #1845B3 shadow-md"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -231,6 +232,7 @@ export default function TestimonialsSection() {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? '#1845B3 scale-125' 
@@ -244,6 +246,7 @@ export default function TestimonialsSection() {
               onClick={nextSlide}
               variant="outline"
               size="icon"
+              aria-label="Next testimonial"
               className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #1845B3 shadow-md"
             >
               <ChevronRight className="w-5 h-5" />

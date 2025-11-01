@@ -208,6 +208,14 @@ Preferred communication style: Simple, everyday language.
   - **Logo files**: DC White Logo is 175KB and should be optimized to ~50-80KB (use TinyPNG, ImageOptim, or convert to WebP)
   - **Uploaded images**: Large event/university images (170-270KB) should be compressed before upload
   - **Recommended**: Compress all PNGs with TinyPNG or convert to WebP format for 60-80% size reduction
+- **Accessibility Compliance (November 2025)**:
+  - All navigation buttons have descriptive aria-label attributes (Previous/Next for carousels)
+  - Mobile menu toggle has dynamic aria-label (Open menu / Close menu)
+  - Close buttons in modals have aria-label attributes
+  - Pagination dots have aria-label with position indicators
+  - All ReactCountryFlag components have aria-label and title attributes (21 office pages + countries section)
+  - All critical images have explicit width/height attributes and alt text
+  - Full screen reader support across entire website
 - **Note**: For production deployment, run `npm run build` to generate optimized bundle with tree-shaking and minification
 
 ## External Dependencies

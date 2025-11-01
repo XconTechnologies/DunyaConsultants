@@ -194,6 +194,8 @@ export default function CountriesSection() {
             <ReactCountryFlag 
               countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
               svg 
+              aria-label={`${country.name} flag`}
+              title={`${country.name} flag`}
               style={{
                 width: '100%',
                 height: '100%',
@@ -296,6 +298,7 @@ export default function CountriesSection() {
           {/* Navigation Arrows - Outside Cards */}
           <button
             onClick={prevSlide}
+            aria-label="Previous country"
             className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
             style={{ color: "#1D50C9" }}
           >
@@ -303,6 +306,7 @@ export default function CountriesSection() {
           </button>
           <button
             onClick={nextSlide}
+            aria-label="Next country"
             className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
             style={{ color: "#1D50C9" }}
           >
@@ -318,6 +322,7 @@ export default function CountriesSection() {
             <div className="relative p-6">
               <button
                 onClick={() => setSelectedCountry(null)}
+                aria-label="Close country details"
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               >
                 <X className="w-6 h-6" />
@@ -328,6 +333,8 @@ export default function CountriesSection() {
                   <ReactCountryFlag 
                     countryCode={countryCodesMap[selectedCountry.name as keyof typeof countryCodesMap] || selectedCountry.code} 
                     svg 
+                    aria-label={`${selectedCountry.name} flag`}
+                    title={`${selectedCountry.name} flag`}
                     style={{
                       width: '100%',
                       height: '100%',

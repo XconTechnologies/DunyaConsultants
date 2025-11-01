@@ -246,6 +246,7 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
               className={`${
                 !isScrolled 
                   ? 'text-white hover:bg-white/20 drop-shadow-md' 

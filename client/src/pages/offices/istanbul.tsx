@@ -230,6 +230,8 @@ export default function IstanbulOffice() {
                               <ReactCountryFlag 
                                 countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
                                 svg 
+                                aria-label={`${country} flag`}
+                                title={`${country} flag`}
                                 style={{
                                   width: '100%',
                                   height: '100%',
