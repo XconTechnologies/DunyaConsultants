@@ -63,120 +63,186 @@
   * {
     @apply border-border;
   }
-  
-  /* ============================================
-     GLOBAL TYPOGRAPHY SYSTEM - ENTIRE WEBSITE
-     Desktop First Approach with Responsive Breakpoints
-     ============================================ */
-
-  /* Base styles for larger screens (Desktop First Approach) */
-  html {
-    font-size: 16px; /* 1rem = 16px */
-  }
-
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    font-size: 1rem; /* 16px */
-    line-height: 1.5; /* 24px */
-    font-weight: 400;
   }
+}
 
-  h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    font-weight: 700;
+/* Blog Post Typography Hierarchy - Base styles for larger screens (Desktop First Approach) */
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5; /* 24px */
+  font-weight: 400;
+}
+
+/* Blog content specific typography */
+.prose h1,
+.blog-content h1,
+article h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.prose h2,
+.blog-content h2,
+article h2 {
+  font-size: 2.5rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.prose h3,
+.blog-content h3,
+article h3 {
+  font-size: 1.75rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.prose h4,
+.blog-content h4,
+article h4 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.prose h5,
+.blog-content h5,
+article h5 {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.prose h6,
+.blog-content h6,
+article h6 {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.5; /* 27px */
+  font-weight: 400;
+}
+
+.prose a,
+.blog-content a,
+article a {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.prose a:hover,
+.blog-content a:hover,
+article a:hover {
+  text-decoration: underline;
+}
+
+.prose li,
+.blog-content li,
+article li,
+ul.list-content li,
+ol.list-content li {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6; /* ~28.8px */
+  font-weight: 400;
+}
+
+/* Override list item margins for tighter spacing */
+.prose > ul > li,
+.prose > ol > li,
+.blog-content > ul > li,
+.blog-content > ol > li,
+ul.list-content > li,
+ol.list-content > li {
+  margin: 0.5rem 0 !important;
+}
+
+/* Media Queries for Tablets (e.g., 768px to 1024px) */
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px; /* Slightly smaller base font size */
   }
-
-  h2 {
-    font-size: 2.5rem;
-    line-height: 1.25;
-    font-weight: 700;
+  
+  .prose h1,
+  .blog-content h1,
+  article h1 {
+    font-size: 2.5rem; /* ~37.5px */
   }
-
-  h3 {
-    font-size: 1.75rem;
-    line-height: 1.4;
-    font-weight: 600;
+  
+  .prose h2,
+  .blog-content h2,
+  article h2 {
+    font-size: 2.1rem; /* ~31.5px - Adjusted for tablet */
   }
-
-  h4 {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    font-weight: 700;
+  
+  .prose h3,
+  .blog-content h3,
+  article h3 {
+    font-size: 1.6rem; /* ~24px - Adjusted for tablet */
   }
-
-  h5 {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    font-weight: 600;
+  
+  .prose h4,
+  .blog-content h4,
+  article h4 {
+    font-size: 1.25rem; /* ~18.75px */
   }
-
-  h6 {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.5; /* 27px */
-    font-weight: 600;
+  
+  .prose li,
+  .blog-content li,
+  article li,
+  ul.list-content li,
+  ol.list-content li {
+    font-size: 1rem; /* ~15px */
   }
+}
 
-  a {
-    font-size: 1rem; /* 16px */
-    line-height: 1.5;
-    font-weight: 400;
-    text-decoration: none;
+/* Media Queries for Mobile Devices (e.g., up to 767px) */
+@media (max-width: 767px) {
+  html {
+    font-size: 14px; /* Even smaller base font size for mobile */
   }
-
-  a:hover {
-    text-decoration: underline;
+  
+  .prose h1,
+  .blog-content h1,
+  article h1 {
+    font-size: 2rem; /* ~28px */
   }
-
-  li {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.6; /* ~28.8px */
-    font-weight: 400;
+  
+  .prose h2,
+  .blog-content h2,
+  article h2 {
+    font-size: 1.8rem; /* ~25.2px - Adjusted for mobile */
   }
-
-  /* Media Queries for Tablets (e.g., 768px to 1024px) */
-  @media (max-width: 1024px) {
-    html {
-      font-size: 15px; /* Slightly smaller base font size */
-    }
-    h1 {
-      font-size: 2.5rem; /* ~37.5px */
-    }
-    h2 {
-      font-size: 2.1rem; /* ~31.5px - Adjusted for tablet */
-    }
-    h3 {
-      font-size: 1.6rem; /* ~24px - Adjusted for tablet */
-    }
-    h4 {
-      font-size: 1.25rem; /* ~18.75px */
-    }
-    li {
-      font-size: 1rem; /* ~15px */
-    }
+  
+  .prose h3,
+  .blog-content h3,
+  article h3 {
+    font-size: 1.4rem; /* ~19.6px - Adjusted for mobile */
   }
-
-  /* Media Queries for Mobile Devices (e.g., up to 767px) */
-  @media (max-width: 767px) {
-    html {
-      font-size: 14px; /* Even smaller base font size for mobile */
-    }
-    h1 {
-      font-size: 2rem; /* ~28px */
-    }
-    h2 {
-      font-size: 1.8rem; /* ~25.2px - Adjusted for mobile */
-    }
-    h3 {
-      font-size: 1.4rem; /* ~19.6px - Adjusted for mobile */
-    }
-    h4 {
-      font-size: 1.125rem; /* ~15.75px */
-    }
-    body, a, li {
-      font-size: 1rem; /* ~14px */
-    }
+  
+  .prose h4,
+  .blog-content h4,
+  article h4 {
+    font-size: 1.125rem; /* ~15.75px */
+  }
+  
+  .prose a,
+  .blog-content a,
+  article a,
+  .prose li,
+  .blog-content li,
+  article li,
+  ul.list-content li,
+  ol.list-content li {
+    font-size: 1rem; /* ~14px */
   }
 }
 
