@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { LazyImage } from "@/components/ui/lazy-image";
 
 // Import accreditation images
 import britishCouncilLogo from "@assets/Group 1000008328_1758700076447.png";
@@ -135,24 +136,24 @@ export default function AccreditationSection() {
                         href={accreditation.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center"
+                        className="flex items-center justify-center w-full h-full"
                       >
-                        <img
+                        <LazyImage
                           src={accreditation.logo}
                           alt={`${accreditation.name} logo`}
-                          width="80"
-                          height="80"
+                          width={80}
+                          height={80}
                           className="max-w-full max-h-full object-contain"
                           loading="lazy"
                           decoding="async"
                         />
                       </a>
                     ) : (
-                      <img
+                      <LazyImage
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
-                        width="80"
-                        height="80"
+                        width={80}
+                        height={80}
                         className="max-w-full max-h-full object-contain"
                         loading="lazy"
                         decoding="async"
