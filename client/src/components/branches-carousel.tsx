@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import SmartImage from "@/components/ui/smart-image";
 import type { BranchIcon } from "@shared/schema";
 
 export default function BranchesCarousel() {
@@ -92,12 +93,11 @@ export default function BranchesCarousel() {
                   {/* Icon Card with City Name */}
                   <Link href={branch.route} className="block">
                     <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center">
-                      <img 
+                      <SmartImage
                         src={branch.iconUrl} 
-                        alt={`${branch.name} landmark`}
-                        width="64"
-                        height="64"
-                        loading="lazy"
+                        alt={`${branch.name} office landmark`}
+                        width={64}
+                        height={64}
                         className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                       <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center">

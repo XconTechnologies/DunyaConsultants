@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getBlogUrl } from "@/lib/blog-utils";
+import SmartImage from "@/components/ui/smart-image";
 
 // Unified image src normalization function (same as blog.tsx)
 const normalizeImageSrc = (image: string) => {
@@ -419,12 +420,12 @@ export default function BlogsCarouselSection() {
                     {/* Featured Image - Exact same as blog page */}
                     {post.image && (
                       <div className="relative overflow-hidden rounded-t-lg">
-                        <img loading="lazy" 
+                        <SmartImage
                           src={post.image}
                           alt={post.title}
                           className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
-                          onError={(e) => {
+                          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                             e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
                           }}
                         />

@@ -6,6 +6,7 @@ import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import SmartImage from "@/components/ui/smart-image";
 import type { Event } from "@shared/schema";
 
 interface TimeRemaining {
@@ -154,13 +155,12 @@ export default function UpcomingEventsSection() {
                 <Card ref={cardRef} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white flex flex-col lg:h-[600px]" data-testid={`event-featured-${featuredEvent.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-[1.68/1]">
-                    <img
+                    <SmartImage
                       src={featuredEvent.image}
                       alt={featuredEvent.title}
-                      width="600"
-                      height="357"
+                      width={600}
+                      height={357}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
                     />
                     <div className="absolute top-4 right-4">
                       <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm">

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
+import SmartImage from "@/components/ui/smart-image";
 import aboutImage from "@assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp";
 
 
@@ -46,13 +47,12 @@ export default function AboutCompany() {
           
           {/* Left Side - Image */}
           <div className="relative order-2 lg:order-1">
-            <img
+            <SmartImage
               src={aboutImage}
-              alt="best-study-abroad-consultants-in-pakistan"
-              width="600"
-              height="600"
+              alt="Best study abroad consultants in Pakistan"
+              width={600}
+              height={600}
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
-              loading="lazy"
             />
           </div>
 
