@@ -170,6 +170,19 @@ Preferred communication style: Simple, everyday language.
 - **Production Cache Headers**: Static assets cached for 1 year in production (images, CSS, JS, fonts) for optimal performance
 - **Security**: All meta tag values are HTML-escaped to prevent injection attacks
 
+## Performance Optimizations
+
+### Website Performance (November 2025)
+- **Compression**: Gzip compression middleware reduces CSS/JS file sizes by ~70-80%
+- **Critical CSS**: Enhanced inline critical CSS for faster initial render
+- **Image Optimization**: 
+  - Added width/height attributes to prevent layout shifts
+  - Logo loading changed from lazy to eager with fetchpriority="high"
+  - Local asset usage instead of external URLs
+- **Resource Hints**: Added modulepreload hints for faster JavaScript loading
+- **Cache Strategy**: Production assets cached for 1 year (images, CSS, JS, fonts)
+- **Note**: Logo files (DC White Logo, DC Blue Logo) are currently 170-175KB each and should be optimized to modern formats (WebP) for further performance gains
+
 ## External Dependencies
 - `@neondatabase/serverless`: PostgreSQL connectivity
 - `drizzle-orm`: Type-safe database operations

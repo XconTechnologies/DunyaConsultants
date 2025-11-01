@@ -27,6 +27,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import type { Event } from "@shared/schema";
 import dunyaLogo from "@assets/dunya-logo-blue.png";
+import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
 import { setStaticPageMeta } from "@/lib/seo";
 import EventRegisterButton from "@/components/EventRegisterButton";
 
@@ -498,10 +499,12 @@ export default function EventRegistration() {
           <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] px-6 py-6 rounded-t-lg">
             <div className="text-center mb-4">
               <img 
-                src="https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png" 
-                alt="Dunya Consultants" 
+                src={logoImageWhite} 
+                alt="Dunya Consultants"
+                width="120"
+                height="40"
                 className="h-10 mx-auto"
-                loading="lazy"
+                loading="eager"
               />
             </div>
             
