@@ -10,6 +10,7 @@ import { useAnalytics } from "./hooks/use-analytics";
 import LoadingFallback from "@/components/loading-fallback";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
+import EngagementTracker from "@/components/gamification/engagement-tracker";
 
 // Lazy-load non-critical pages for better performance
 const CostCalculator = lazy(() => import("@/pages/cost-calculator"));
@@ -62,7 +63,6 @@ const IstanbulOffice = lazy(() => import("@/pages/offices/istanbul"));
 const CairoOffice = lazy(() => import("@/pages/offices/cairo"));
 const EdinburghOffice = lazy(() => import("@/pages/offices/edinburgh"));
 const StudyAbroadJourney = lazy(() => import("@/pages/study-abroad-journey"));
-const EngagementTracker = lazy(() => import("@/components/gamification/engagement-tracker"));
 // Lazy-loaded Admin Pages for better performance
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
 const UserLogin = lazy(() => import("@/pages/user-login"));
@@ -245,16 +245,14 @@ function App() {
   
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<LoadingFallback />}>
-        <EngagementTracker>
-          <TooltipProvider>
-            <Toaster />
-            <Suspense fallback={<LoadingFallback />}>
-              <Router />
-            </Suspense>
-          </TooltipProvider>
-        </EngagementTracker>
-      </Suspense>
+      <EngagementTracker>
+        <TooltipProvider>
+          <Toaster />
+          <Suspense fallback={<LoadingFallback />}>
+            <Router />
+          </Suspense>
+        </TooltipProvider>
+      </EngagementTracker>
     </QueryClientProvider>
   );
 }
