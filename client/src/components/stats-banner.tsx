@@ -311,9 +311,9 @@ export default function StatsBanner() {
                       />
                     </div>
                     
-                    <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                    <p className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
                       {stat.label}
-                    </h3>
+                    </p>
                     
                     <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
                       {stat.description}
@@ -355,9 +355,9 @@ export default function StatsBanner() {
                     />
                   </div>
                   
-                  <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                  <p className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
                     {stats[4].label}
-                  </h3>
+                  </p>
                   
                   <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
                     {stats[4].description}
