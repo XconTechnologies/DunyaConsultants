@@ -48,3 +48,28 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 - `lucide-react`: For icons.
 - `class-variance-authority`: For component variant management.
 - `@google/genai`: For Google Gemini AI integration (chatbot functionality).
+
+## Performance Optimizations
+
+### Network Payload Optimization (November 2025)
+- **Current Issue**: Total network payload is 6.43MB across all devices (widescreen, desktop, tablet, mobile)
+- **Primary Causes**: Uncompressed/unoptimized images (933KB ICEF logo, 175KB DC logo, 100-200KB university logos each)
+- **Code-Level Optimizations Implemented**:
+  - LazyImage component with Intersection Observer for progressive loading
+  - Proper width/height attributes to prevent layout shifts
+  - Async decoding for non-blocking image processing
+  - Loading placeholders and skeleton states
+- **Required Manual Actions**:
+  - **CRITICAL**: Compress ICEF Agency logo from 933KB → ~250KB (73% reduction)
+  - Compress DC White Logo from 175KB → ~60KB (66% reduction)
+  - Batch compress 48 university logos from ~7.2MB → ~1.8MB total (75% reduction)
+  - Compress office images (Istanbul, Cairo) from 200-300KB → 60-100KB each
+  - **Tools**: TinyPNG (tinypng.com), Squoosh (squoosh.app), or ImageOptim
+  - **Target**: Reduce total payload from ~10.3MB to ~2.7MB (74% overall reduction)
+  - **See**: `IMAGE_OPTIMIZATION_GUIDE.md` for detailed compression instructions
+- **Mobile Optimization**: Additional performance optimizations for mobile devices
+  - Mobile detection utilities for device-specific optimizations
+  - Reduced animation steps on mobile (20 vs 40 on desktop)
+  - Slower connection detection (3G or slower)
+  - Deferred third-party scripts (5s on mobile vs 3s on desktop)
+  - Critical inline CSS with mobile-first responsive styles
