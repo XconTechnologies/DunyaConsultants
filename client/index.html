@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/favicon.png">
     
-    <!-- Google Analytics - Deferred with requestIdleCallback -->
+    <!-- Google Analytics - Deferred aggressively on mobile -->
     <script>
       function loadGA() {
         var script = document.createElement('script');
@@ -29,14 +29,17 @@
         gtag('config', 'G-RSMDBGDBDJ');
       }
       
+      var isMobile = window.innerWidth < 768;
+      var delay = isMobile ? 5000 : 3000; // 5s on mobile, 3s on desktop
+      
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadGA, {timeout: 3000});
+        requestIdleCallback(loadGA, {timeout: delay});
       } else {
-        setTimeout(loadGA, 2000);
+        setTimeout(loadGA, delay);
       }
     </script>
     
-    <!-- Meta Pixel Code - Deferred with requestIdleCallback -->
+    <!-- Meta Pixel Code - Deferred aggressively on mobile -->
     <script>
     function loadFBPixel() {
       !function(f,b,e,v,n,t,s)
@@ -51,10 +54,13 @@
       fbq('track', 'PageView');
     }
     
+    var isMobileFB = window.innerWidth < 768;
+    var delayFB = isMobileFB ? 5000 : 3000; // 5s on mobile, 3s on desktop
+    
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadFBPixel, {timeout: 3000});
+      requestIdleCallback(loadFBPixel, {timeout: delayFB});
     } else {
-      setTimeout(loadFBPixel, 2000);
+      setTimeout(loadFBPixel, delayFB);
     }
     </script>
     <!-- End Meta Pixel Code -->

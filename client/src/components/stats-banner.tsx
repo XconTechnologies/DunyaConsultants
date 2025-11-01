@@ -18,6 +18,7 @@ import {
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import { shouldReduceAnimations, isMobileDevice } from "@/lib/mobile-optimization";
 
 const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix: string; isVisible: boolean }) => {
   const [count, setCount] = useState(0);
@@ -25,8 +26,14 @@ const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix
   useEffect(() => {
     if (!isVisible) return;
     
-    const duration = 800;
-    const steps = 40;
+    // Skip animation on mobile with reduced motion preference or slow connection
+    if (shouldReduceAnimations()) {
+      setCount(number);
+      return;
+    }
+    
+    const duration = isMobileDevice() ? 600 : 800; // Faster on mobile
+    const steps = isMobileDevice() ? 20 : 40; // Fewer steps on mobile
     const increment = number / steps;
     let current = 0;
     
