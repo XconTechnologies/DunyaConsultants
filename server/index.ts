@@ -1,4 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
@@ -24,6 +25,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   }
   next();
 });
+
+// Enable gzip compression for all responses
+app.use(compression({
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  },
+  threshold: 1024,
+  level: 6
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
