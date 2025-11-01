@@ -1280,7 +1280,7 @@ export default function UserManagement() {
                         <Checkbox
                           id={`event-${event.id}`}
                           checked={isSelected}
-                          className="mt-1"
+                          className="mt-1 pointer-events-none"
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-3 mb-2">
