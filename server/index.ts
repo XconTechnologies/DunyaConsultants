@@ -4,8 +4,21 @@ import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
 import { readFileSync } from "fs";
 import { join } from "path";
+import compression from "compression";
 
 const app = express();
+
+// Enable gzip/deflate compression for all responses (improves mobile performance)
+app.use(compression({
+  level: 6,
+  threshold: 1024,
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
 
 // 301 Redirect from www to non-www (security-hardened)
 app.use((req: Request, res: Response, next: NextFunction) => {
