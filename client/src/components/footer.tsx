@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin, FileText, Calculator } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useEffect } from 'react';
+import SmartImage from "@/components/ui/smart-image";
 
 import Asset_1 from "@assets/Asset-1.png";
 import BritishCouncilLogo from "@assets/image_1756901212132.png";
@@ -42,13 +43,12 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="mb-6">
                 <Link href="/">
-                  <img 
+                  <SmartImage
                     src={logoImageWhite} 
-                    alt="Dunya Consultants Logo" 
-                    width="120"
-                    height="40"
+                    alt="Dunya Consultants - Study Abroad Education Consultants" 
+                    width={120}
+                    height={40}
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
                   />
                 </Link>
               </div>

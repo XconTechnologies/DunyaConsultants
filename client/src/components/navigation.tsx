@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, Award, Phone, MapPin, Building2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
+import SmartImage from "@/components/ui/smart-image";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
 import CompactConsultationForm from "@/components/compact-consultation-form";
@@ -168,13 +169,12 @@ export default function Navigation() {
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Link href="/" onClick={handleHomeClick}>
-                  <img 
-                    loading="eager"
-                    fetchpriority="high"
-                    width="120"
-                    height="40"
+                  <SmartImage
                     src={isScrolled ? logoImageBlue : logoImageWhite} 
-                    alt="Dunya Consultants Logo" 
+                    alt="Dunya Consultants - Study Abroad Visa Consultants" 
+                    width={120}
+                    height={40}
+                    priority={true}
                     className="h-10 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
                   />
                 </Link>

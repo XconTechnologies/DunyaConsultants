@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useMemo } from "react";
+import SmartImage from "@/components/ui/smart-image";
 import { LazyImage } from "@/components/ui/lazy-image";
 
 // Import university logos - original 10
@@ -247,13 +248,11 @@ export default function UniversityPartnersSection() {
                         key={`${university.name}-${columnIndex}-${index}`}
                         className={`flex items-center justify-center p-2 ${isMobile ? 'w-28 h-16' : 'w-36 h-20'}`}
                       >
-                        <img
+                        <SmartImage
                           src={university.logoUrl}
-                          alt={`${university.name} logo`}
-                          width={isMobile ? "112" : "144"}
-                          height={isMobile ? "64" : "80"}
-                          loading="lazy"
-                          decoding="async"
+                          alt={`${university.name} - partner university`}
+                          width={isMobile ? 112 : 144}
+                          height={isMobile ? 64 : 80}
                           className="block max-h-full max-w-full object-contain object-center pointer-events-none"
                         />
                       </div>
