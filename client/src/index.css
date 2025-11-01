@@ -63,123 +63,120 @@
   * {
     @apply border-border;
   }
+  
+  /* ============================================
+     GLOBAL TYPOGRAPHY SYSTEM - ENTIRE WEBSITE
+     Desktop First Approach with Responsive Breakpoints
+     ============================================ */
+
+  /* Base styles for larger screens (Desktop First Approach) */
+  html {
+    font-size: 16px; /* 1rem = 16px */
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    font-size: 1rem; /* 16px */
+    line-height: 1.5; /* 24px */
+    font-weight: 400;
   }
-}
 
-/* ============================================
-   GLOBAL TYPOGRAPHY SYSTEM - ENTIRE WEBSITE
-   Desktop First Approach with Responsive Breakpoints
-   ============================================ */
-
-/* Base styles for larger screens (Desktop First Approach) */
-html {
-  font-size: 16px; /* 1rem = 16px */
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem; /* 16px */
-  line-height: 1.5; /* 24px */
-  font-weight: 400;
-}
-
-h1 {
-  font-size: 3rem;
-  line-height: 1.2;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 2.5rem;
-  line-height: 1.25;
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 1.75rem;
-  line-height: 1.4;
-  font-weight: 600;
-}
-
-h4 {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  font-weight: 700;
-}
-
-h5 {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  font-weight: 600;
-}
-
-h6 {
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.5; /* 27px */
-  font-weight: 600;
-}
-
-a {
-  font-size: 1rem; /* 16px */
-  line-height: 1.5;
-  font-weight: 400;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-li {
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.6; /* ~28.8px */
-  font-weight: 400;
-}
-
-/* Media Queries for Tablets (e.g., 768px to 1024px) */
-@media (max-width: 1024px) {
-  html {
-    font-size: 15px; /* Slightly smaller base font size */
-  }
   h1 {
-    font-size: 2.5rem; /* ~37.5px */
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
   }
+
   h2 {
-    font-size: 2.1rem; /* ~31.5px - Adjusted for tablet */
+    font-size: 2.5rem;
+    line-height: 1.25;
+    font-weight: 700;
   }
+
   h3 {
-    font-size: 1.6rem; /* ~24px - Adjusted for tablet */
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-weight: 600;
   }
+
   h4 {
-    font-size: 1.25rem; /* ~18.75px */
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 700;
   }
+
+  h5 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  h6 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5; /* 27px */
+    font-weight: 600;
+  }
+
+  a {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
   li {
-    font-size: 1rem; /* ~15px */
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6; /* ~28.8px */
+    font-weight: 400;
   }
-}
 
-/* Media Queries for Mobile Devices (e.g., up to 767px) */
-@media (max-width: 767px) {
-  html {
-    font-size: 14px; /* Even smaller base font size for mobile */
+  /* Media Queries for Tablets (e.g., 768px to 1024px) */
+  @media (max-width: 1024px) {
+    html {
+      font-size: 15px; /* Slightly smaller base font size */
+    }
+    h1 {
+      font-size: 2.5rem; /* ~37.5px */
+    }
+    h2 {
+      font-size: 2.1rem; /* ~31.5px - Adjusted for tablet */
+    }
+    h3 {
+      font-size: 1.6rem; /* ~24px - Adjusted for tablet */
+    }
+    h4 {
+      font-size: 1.25rem; /* ~18.75px */
+    }
+    li {
+      font-size: 1rem; /* ~15px */
+    }
   }
-  h1 {
-    font-size: 2rem; /* ~28px */
-  }
-  h2 {
-    font-size: 1.8rem; /* ~25.2px - Adjusted for mobile */
-  }
-  h3 {
-    font-size: 1.4rem; /* ~19.6px - Adjusted for mobile */
-  }
-  h4 {
-    font-size: 1.125rem; /* ~15.75px */
-  }
-  body, a, li {
-    font-size: 1rem; /* ~14px */
+
+  /* Media Queries for Mobile Devices (e.g., up to 767px) */
+  @media (max-width: 767px) {
+    html {
+      font-size: 14px; /* Even smaller base font size for mobile */
+    }
+    h1 {
+      font-size: 2rem; /* ~28px */
+    }
+    h2 {
+      font-size: 1.8rem; /* ~25.2px - Adjusted for mobile */
+    }
+    h3 {
+      font-size: 1.4rem; /* ~19.6px - Adjusted for mobile */
+    }
+    h4 {
+      font-size: 1.125rem; /* ~15.75px */
+    }
+    body, a, li {
+      font-size: 1rem; /* ~14px */
+    }
   }
 }
 
