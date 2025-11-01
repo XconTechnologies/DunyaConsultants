@@ -1268,11 +1268,18 @@ export default function UserManagement() {
                           ? 'bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-400 shadow-md' 
                           : 'bg-white border-2 border-gray-200 hover:border-purple-300 hover:shadow-sm'
                       } rounded-xl p-4 cursor-pointer`}
-                      onClick={() => {
+                      onClick={(e) => {
+                        console.log('🔵 Event card clicked:', event.title, 'Current selected:', selectedEvents);
+                        e.stopPropagation();
+                        
                         if (isSelected) {
-                          setSelectedEvents(selectedEvents.filter(id => id !== event.id));
+                          const newSelection = selectedEvents.filter(id => id !== event.id);
+                          console.log('🔴 Unselecting event. New selection:', newSelection);
+                          setSelectedEvents(newSelection);
                         } else {
-                          setSelectedEvents([...selectedEvents, event.id]);
+                          const newSelection = [...selectedEvents, event.id];
+                          console.log('🟢 Selecting event. New selection:', newSelection);
+                          setSelectedEvents(newSelection);
                         }
                       }}
                     >
