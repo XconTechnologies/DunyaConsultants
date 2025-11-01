@@ -45,6 +45,8 @@ export default function Footer() {
                   <img 
                     src={logoImageWhite} 
                     alt="Dunya Consultants Logo" 
+                    width="120"
+                    height="40"
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />

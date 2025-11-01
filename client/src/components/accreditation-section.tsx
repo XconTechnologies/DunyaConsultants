@@ -140,6 +140,8 @@ export default function AccreditationSection() {
                         <img
                           src={accreditation.logo}
                           alt={`${accreditation.name} logo`}
+                          width="80"
+                          height="80"
                           className="max-w-full max-h-full object-contain"
                           loading="lazy"
                           decoding="async"
@@ -149,6 +151,8 @@ export default function AccreditationSection() {
                       <img
                         src={accreditation.logo}
                         alt={`${accreditation.name} logo`}
+                        width="80"
+                        height="80"
                         className="max-w-full max-h-full object-contain"
                         loading="lazy"
                         decoding="async"

@@ -190,9 +190,12 @@ export default function TestimonialsSection() {
                     {/* Student Info */}
                     <div className="flex items-center">
                       <div className="relative">
-                        <img loading="lazy" 
+                        <img 
                           src={testimonial.image} 
                           alt={testimonial.name}
+                          width="48"
+                          height="48"
+                          loading="lazy"
                           className="w-12 h-12 rounded-full object-cover border-2 border-blue-200"
                         />
                         <div className="absolute -bottom-1 -right-1 w-5 h-5 #1D50C9 rounded-full flex items-center justify-center">

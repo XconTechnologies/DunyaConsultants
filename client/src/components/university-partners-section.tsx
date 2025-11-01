@@ -250,6 +250,8 @@ export default function UniversityPartnersSection() {
                         <img
                           src={university.logoUrl}
                           alt={`${university.name} logo`}
+                          width={isMobile ? "112" : "144"}
+                          height={isMobile ? "64" : "80"}
                           loading="lazy"
                           decoding="async"
                           className="block max-h-full max-w-full object-contain object-center pointer-events-none"

@@ -264,9 +264,12 @@ export default function CoursesSection() {
             >
               {/* Course Image */}
               <div className="relative h-48 overflow-hidden">
-                <img loading="lazy" 
+                <img 
                   src={course.image}
                   alt={course.title}
+                  width="400"
+                  height="192"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />

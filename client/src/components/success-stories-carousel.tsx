@@ -110,7 +110,7 @@ export default function SuccessStoriesCarousel() {
           
           <div className="flex items-center justify-center space-x-4">
             <div className="flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-lg">
-              <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-5 h-5" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" width="20" height="20" loading="lazy" className="w-5 h-5" />
               <span className="text-sm font-medium text-gray-700">4.8 ★★★★★</span>
               <span className="text-xs text-gray-500">(127+ reviews)</span>
             </div>
@@ -172,6 +172,8 @@ export default function SuccessStoriesCarousel() {
                                 <img
                                   src={review.image}
                                   alt={review.name}
+                                  width="48"
+                                  height="48"
                                   className="w-full h-full object-cover"
                                   loading="lazy"
                                 />
@@ -184,7 +186,7 @@ export default function SuccessStoriesCarousel() {
 
                             <div className="space-y-2">
                               <div className="flex items-center space-x-2 text-sm text-neutral-600">
-                                <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-4 h-4" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" width="16" height="16" loading="lazy" className="w-4 h-4" />
                                 <span>Google Review</span>
                               </div>
                               <div className="flex items-center space-x-2 text-sm text-neutral-600">
@@ -209,6 +211,8 @@ export default function SuccessStoriesCarousel() {
                               <img
                                 src={review.image}
                                 alt={review.name}
+                                width="128"
+                                height="128"
                                 className="w-full h-full object-cover"
                                 loading="lazy"
                               />

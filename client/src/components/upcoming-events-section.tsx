@@ -157,6 +157,8 @@ export default function UpcomingEventsSection() {
                     <img
                       src={featuredEvent.image}
                       alt={featuredEvent.title}
+                      width="600"
+                      height="357"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
@@ -238,6 +240,8 @@ export default function UpcomingEventsSection() {
                           <img
                             src={event.image}
                             alt={event.title}
+                            width="112"
+                            height="96"
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             loading="lazy"
                           />
