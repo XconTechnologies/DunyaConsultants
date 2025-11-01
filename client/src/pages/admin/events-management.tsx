@@ -100,22 +100,47 @@ function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation, 
       <Table>
         <TableHeader>
           <TableRow className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
-            <TableHead className="font-semibold text-gray-700">Title</TableHead>
+            <TableHead className="font-semibold text-gray-700">Name</TableHead>
             <TableHead className="font-semibold text-gray-700">Date</TableHead>
             <TableHead className="font-semibold text-gray-700">Location</TableHead>
             <TableHead className="font-semibold text-gray-700">Type</TableHead>
             <TableHead className="font-semibold text-gray-700">Status</TableHead>
             <TableHead className="font-semibold text-gray-700">Registration</TableHead>
-            <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {events.map((event) => (
             <TableRow 
               key={event.id} 
-              className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200"
+              className="group border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors duration-200"
             >
-              <TableCell className="font-medium text-gray-900">{event.title}</TableCell>
+              <TableCell className="font-medium text-gray-900">
+                <div className="flex items-center justify-between">
+                  <span>{event.title}</span>
+                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setLocation(`/admin/event-editor/${event.id}`)}
+                      className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] transition-colors duration-200 h-8 px-3"
+                      data-testid={`button-edit-${event.id}`}
+                    >
+                      <Edit2 className="w-4 h-4 mr-1" />
+                      <span className="text-xs">Edit</span>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(event.id)}
+                      className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200 h-8 px-3"
+                      data-testid={`button-delete-${event.id}`}
+                    >
+                      <Trash2 className="w-4 h-4 mr-1" />
+                      <span className="text-xs">Trash</span>
+                    </Button>
+                  </div>
+                </div>
+              </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2 text-gray-700">
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
@@ -178,28 +203,6 @@ function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation, 
                 >
                   {event.registrationEnabled ? "Enabled" : "Disabled"}
                 </Button>
-              </TableCell>
-              <TableCell className="text-right">
-                <div className="flex justify-end gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setLocation(`/admin/event-editor/${event.id}`)}
-                    className="rounded-lg hover:bg-blue-50 hover:text-[#1D50C9] transition-colors duration-200"
-                    data-testid={`button-edit-${event.id}`}
-                  >
-                    <Edit2 className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDelete(event.id)}
-                    className="rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors duration-200"
-                    data-testid={`button-delete-${event.id}`}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
               </TableCell>
             </TableRow>
           ))}
