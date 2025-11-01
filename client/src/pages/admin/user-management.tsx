@@ -301,18 +301,20 @@ export default function UserManagement() {
   // Update selected events when user assigned events are loaded or dialog opens
   useEffect(() => {
     if (showEventAssignmentDialog) {
-      if (eventAssignmentUserId !== null) {
+      if (eventAssignmentUserId !== null && userAssignedEvents.length >= 0) {
         // Editing existing user - load their assignments (or empty array if none)
         const assignedIds = userAssignedEvents.map((e: any) => e.id);
         setSelectedEvents(assignedIds);
         setExistingEventAssignments(assignedIds);
-      } else {
-        // Creating new user - start with empty selection
+        console.log('📋 Loaded existing assignments:', assignedIds);
+      } else if (eventAssignmentUserId === null) {
+        // Creating new user - start with empty selection ONLY on first open
         setSelectedEvents([]);
         setExistingEventAssignments([]);
+        console.log('📋 Initialized empty selection for new user');
       }
     }
-  }, [userAssignedEvents, showEventAssignmentDialog, eventAssignmentUserId]);
+  }, [showEventAssignmentDialog, eventAssignmentUserId]);
 
   // Create user mutation
   const createUserMutation = useMutation({
