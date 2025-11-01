@@ -4,21 +4,8 @@ import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
 import { readFileSync } from "fs";
 import { join } from "path";
-import compression from "compression";
 
 const app = express();
-
-// Enable gzip/deflate compression for all responses (improves mobile performance)
-app.use(compression({
-  level: 6,
-  threshold: 1024,
-  filter: (req, res) => {
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    return compression.filter(req, res);
-  }
-}));
 
 // 301 Redirect from www to non-www (security-hardened)
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -41,37 +28,17 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Performance and security headers middleware
+// Cache headers middleware for static assets (production only)
 app.use((req: Request, res: Response, next: NextFunction) => {
   const isProduction = app.get("env") === "production";
   
-  // Security headers (all environments)
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  
-  // Cache headers for static assets (production only)
+  // Only apply cache headers in production and for static assets from /assets or /attached_assets
   if (isProduction && (req.url.startsWith('/assets/') || req.url.startsWith('/attached_assets/'))) {
     if (req.url.match(/\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff|woff2|ttf|eot)$/)) {
       // All hashed assets: cache for 1 year (immutable)
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-      
-      // Add Vary header for mobile optimization
-      res.setHeader('Vary', 'Accept-Encoding');
     }
   }
-  
-  // Service worker cache
-  if (req.url === '/sw.js') {
-    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-    res.setHeader('Service-Worker-Allowed', '/');
-  }
-  
-  // HTML files - no cache
-  if (req.url.endsWith('.html') || req.url === '/') {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  }
-  
   next();
 });
 

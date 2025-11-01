@@ -397,11 +397,11 @@ export default function EventsPage() {
                         ) : (
                           <Button
                             onClick={() => window.open('https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V', '_blank')}
-                            className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
+                            className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
                             data-testid={`button-whatsapp-${event.id}`}
                           >
                             <span className="relative z-10">Join WhatsApp</span>
-                            <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                            <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
                           </Button>
                         )}
                       </div>
