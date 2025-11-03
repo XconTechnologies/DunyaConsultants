@@ -235,14 +235,20 @@ export default function BlogsCarouselSection() {
     let intervalId: NodeJS.Timeout;
     let isPaused = false;
     let isTransitioning = false;
+    let cachedCardWidth = 0;
     
-    // Calculate card width including gap
+    // Calculate card width including gap - optimized to prevent forced reflow
     const getCardWidth = () => {
+      if (cachedCardWidth > 0) return cachedCardWidth;
+      
+      // Use requestAnimationFrame to batch DOM reads
       const firstCard = carousel.querySelector('.blog-card');
       if (!firstCard) return window.innerWidth >= 768 ? 384 : 320; // w-96 or w-80 in pixels
+      
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
-      return cardWidth + gap;
+      cachedCardWidth = cardWidth + gap;
+      return cachedCardWidth;
     };
 
     // Start at the middle set (second copy) for seamless looping
