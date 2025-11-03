@@ -7608,7 +7608,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const existingIcons = await storage.getUniversityIcons();
       
-      // If icons already exist, require admin authentication
+      // If icons already exist, clear them first and reseed with real data
       if (existingIcons.length > 0) {
         const token = req.headers.authorization?.replace('Bearer ', '');
         if (!token) {
@@ -7630,7 +7630,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
           return res.status(403).json({ message: 'Admin access required' });
         }
 
-        return res.status(400).json({ message: 'University icons already exist. Clear them first if you want to re-seed.' });
+        // Delete all existing icons before reseeding
+        console.log(`Clearing ${existingIcons.length} existing university icons before reseeding...`);
+        for (const icon of existingIcons) {
+          await storage.deleteUniversityIcon(icon.id);
+        }
+        console.log('All existing university icons cleared successfully');
       }
 
       // All 44 university partners from the carousel (real logos from assets)
