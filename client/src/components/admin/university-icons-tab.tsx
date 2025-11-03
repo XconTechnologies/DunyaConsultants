@@ -76,30 +76,20 @@ export default function UniversityIconsTab() {
           </p>
         </div>
         <div className="flex gap-2">
-          {icons.length === 0 && (
-            <Button 
-              onClick={() => seedMutation.mutate()} 
-              variant="outline"
-              disabled={seedMutation.isPending}
-              data-testid="button-seed-university-data"
-              className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all"
-            >
-              <Upload className="h-4 w-4 mr-2" />
-              {seedMutation.isPending ? "Importing..." : "Import Sample Data"}
-            </Button>
-          )}
-          {icons.length > 0 && (
-            <Button 
-              onClick={() => fixUrlsMutation.mutate()} 
-              variant="outline"
-              disabled={fixUrlsMutation.isPending}
-              data-testid="button-fix-urls"
-              className="border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white transition-all"
-            >
-              <Wrench className="h-4 w-4 mr-2" />
-              {fixUrlsMutation.isPending ? "Fixing URLs..." : "Fix Broken URLs"}
-            </Button>
-          )}
+          <Button 
+            onClick={() => seedMutation.mutate()} 
+            variant="outline"
+            disabled={seedMutation.isPending}
+            data-testid="button-seed-university-data"
+            className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all"
+          >
+            <Upload className="h-4 w-4 mr-2" />
+            {seedMutation.isPending 
+              ? "Importing..." 
+              : icons.length === 0 
+                ? "Import All 44 Universities" 
+                : "Clear & Import All 44 Universities"}
+          </Button>
           <Button 
             onClick={() => handleOpenDialog()} 
             data-testid="button-add-university-icon"
