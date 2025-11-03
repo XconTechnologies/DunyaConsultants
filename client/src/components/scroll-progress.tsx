@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const rafId = useRef<number | null>(null);
+  const ticking = useRef(false);
 
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -10,10 +12,23 @@ export default function ScrollProgress() {
       const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = scrollPx / winHeightPx;
       setScrollProgress(scrolled);
+      ticking.current = false;
     };
 
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
+    const requestTick = () => {
+      if (!ticking.current) {
+        rafId.current = requestAnimationFrame(updateScrollProgress);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', requestTick);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
   }, []);
 
   return (
