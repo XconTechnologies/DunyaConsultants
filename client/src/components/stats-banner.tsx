@@ -274,9 +274,9 @@ export default function StatsBanner() {
 
         {/* Stats Cards */}
         <div className="max-w-5xl mx-auto px-2 sm:px-4">
-          {/* First 4 items in grid (mobile: 2x2, tablet: 3+1, desktop: all 5) */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
-            {stats.slice(0, 4).map((stat, index) => {
+          {/* Desktop/Widescreen: All 5 in one row */}
+          <div className="hidden lg:grid lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
+            {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
                 <div
@@ -325,58 +325,221 @@ export default function StatsBanner() {
               );
             })}
           </div>
-          
-          {/* 5th item - centered on mobile and tablet, part of grid on desktop */}
-          <div className="flex justify-center mt-2 sm:mt-3 lg:mt-0 lg:hidden">
-            {stats.slice(4, 5).map((stat, index) => {
-              const actualIndex = index + 4;
-              const IconComponent = stat.icon;
-              return (
-                <div
-                  key={actualIndex}
-                  className="group relative cursor-pointer w-full max-w-[200px]"
-                  onClick={() => handleStatClick(actualIndex)}
-                >
-                  {/* Background Pattern */}
-                  <div 
-                    className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
-                    style={{ background: stat.bgPattern }}
-                  />
-                  
-                  {/* Glow Effect */}
-                  <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
-                  
-                  {/* Main Card */}
-                  <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
-                    {/* Icon Container */}
-                    <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
-                      <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
-                        <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
-                      </div>
-                    </div>
 
-                    {/* Content */}
-                    <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
-                      <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
-                        <AnimatedCounter 
-                          number={stat.number} 
-                          suffix={stat.suffix} 
-                          isVisible={isInView} 
-                        />
+          {/* Tablet: 3 in first row, 2 centered in second row */}
+          <div className="hidden md:block lg:hidden">
+            {/* First 3 items */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              {stats.slice(0, 3).map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="group relative cursor-pointer w-full"
+                    onClick={() => handleStatClick(index)}
+                  >
+                    {/* Background Pattern */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                      style={{ background: stat.bgPattern }}
+                    />
+                    
+                    {/* Glow Effect */}
+                    <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
+                    
+                    {/* Main Card */}
+                    <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                      {/* Icon Container */}
+                      <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                          <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
                       </div>
-                      
-                      <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
-                        {stat.label}
-                      </h3>
-                      
-                      <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
-                        {stat.description}
-                      </p>
+
+                      {/* Content */}
+                      <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                        <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                          <AnimatedCounter 
+                            number={stat.number} 
+                            suffix={stat.suffix} 
+                            isVisible={isInView} 
+                          />
+                        </div>
+                        
+                        <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                          {stat.label}
+                        </h3>
+                        
+                        <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
+                          {stat.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+            
+            {/* Last 2 items centered */}
+            <div className="flex justify-center gap-2 sm:gap-3 mt-2 sm:mt-3">
+              {stats.slice(3, 5).map((stat, index) => {
+                const actualIndex = index + 3;
+                const IconComponent = stat.icon;
+                return (
+                  <div
+                    key={actualIndex}
+                    className="group relative cursor-pointer w-full max-w-[200px]"
+                    onClick={() => handleStatClick(actualIndex)}
+                  >
+                    {/* Background Pattern */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                      style={{ background: stat.bgPattern }}
+                    />
+                    
+                    {/* Glow Effect */}
+                    <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
+                    
+                    {/* Main Card */}
+                    <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                      {/* Icon Container */}
+                      <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                          <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                        <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                          <AnimatedCounter 
+                            number={stat.number} 
+                            suffix={stat.suffix} 
+                            isVisible={isInView} 
+                          />
+                        </div>
+                        
+                        <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                          {stat.label}
+                        </h3>
+                        
+                        <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
+                          {stat.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile: 2x2 grid then 1 centered */}
+          <div className="md:hidden">
+            {/* First 4 items in 2x2 grid */}
+            <div className="grid grid-cols-2 gap-2">
+              {stats.slice(0, 4).map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="group relative cursor-pointer w-full"
+                    onClick={() => handleStatClick(index)}
+                  >
+                    {/* Background Pattern */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                      style={{ background: stat.bgPattern }}
+                    />
+                    
+                    {/* Glow Effect */}
+                    <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
+                    
+                    {/* Main Card */}
+                    <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                      {/* Icon Container */}
+                      <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                          <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                        <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                          <AnimatedCounter 
+                            number={stat.number} 
+                            suffix={stat.suffix} 
+                            isVisible={isInView} 
+                          />
+                        </div>
+                        
+                        <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                          {stat.label}
+                        </h3>
+                        
+                        <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
+                          {stat.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* 5th item centered */}
+            <div className="flex justify-center mt-2">
+              {stats.slice(4, 5).map((stat, index) => {
+                const actualIndex = index + 4;
+                const IconComponent = stat.icon;
+                return (
+                  <div
+                    key={actualIndex}
+                    className="group relative cursor-pointer w-full max-w-[200px]"
+                    onClick={() => handleStatClick(actualIndex)}
+                  >
+                    {/* Background Pattern */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                      style={{ background: stat.bgPattern }}
+                    />
+                    
+                    {/* Glow Effect */}
+                    <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
+                    
+                    {/* Main Card */}
+                    <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                      {/* Icon Container */}
+                      <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                          <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                        <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                          <AnimatedCounter 
+                            number={stat.number} 
+                            suffix={stat.suffix} 
+                            isVisible={isInView} 
+                          />
+                        </div>
+                        
+                        <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                          {stat.label}
+                        </h3>
+                        
+                        <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
+                          {stat.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
