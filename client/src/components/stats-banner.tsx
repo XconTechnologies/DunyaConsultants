@@ -273,13 +273,13 @@ export default function StatsBanner() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl mx-auto px-2 sm:px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl mx-auto px-2 sm:px-4 md:justify-items-center">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
               <div
                 key={index}
-                className={`group relative cursor-pointer ${index === 3 ? 'md:col-start-2 lg:col-start-auto' : ''}`}
+                className={`group relative cursor-pointer w-full ${index === 3 ? 'md:col-start-2 lg:col-start-auto' : ''}`}
                 onClick={() => handleStatClick(index)}
               >
                 {/* Background Pattern */}
