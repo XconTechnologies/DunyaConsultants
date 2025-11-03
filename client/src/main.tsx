@@ -19,15 +19,7 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   }
 }
 
-// Preload critical font
-if (typeof window !== 'undefined') {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.href = 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2';
-  link.as = 'font';
-  link.type = 'font/woff2';
-  link.crossOrigin = 'anonymous';
-  document.head.appendChild(link);
-}
+// Log script loaded for debugging
+console.log('script loaded');
 
 createRoot(document.getElementById("root")!).render(<App />);
