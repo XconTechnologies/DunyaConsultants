@@ -7712,17 +7712,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ];
 
       const createdIcons = [];
+      const createdMediaFiles = [];
+      const adminUserId = req.user?.id || 1; // Use authenticated admin or default to 1
+      
       for (const uniData of universitiesData) {
+        // Create university icon
         const icon = await storage.createUniversityIcon({
           ...uniData,
           isActive: true
         });
         createdIcons.push(icon);
+        
+        // Also add to media library
+        try {
+          const filename = uniData.logoUrl.replace('/attached_assets/', '');
+          const filePath = path.resolve(process.cwd(), 'attached_assets', filename);
+          
+          // Check if file exists
+          if (fs.existsSync(filePath)) {
+            // Check if already in media library
+            const existingMedia = await storage.getMediaByFilename(filename);
+            
+            if (!existingMedia) {
+              const stats = fs.statSync(filePath);
+              const ext = path.extname(filename).toLowerCase();
+              
+              // Determine MIME type
+              let mimeType = 'application/octet-stream';
+              if (['.jpg', '.jpeg'].includes(ext)) mimeType = 'image/jpeg';
+              else if (ext === '.png') mimeType = 'image/png';
+              else if (ext === '.gif') mimeType = 'image/gif';
+              else if (ext === '.webp') mimeType = 'image/webp';
+              else if (ext === '.svg') mimeType = 'image/svg+xml';
+              
+              // Create media entry
+              const media = await storage.createMedia({
+                filename,
+                originalName: `${uniData.name} Logo`,
+                mimeType,
+                size: stats.size,
+                url: uniData.logoUrl,
+                alt: `${uniData.name} - University Partner Logo`,
+                uploadedBy: adminUserId,
+              });
+              createdMediaFiles.push(media);
+            }
+          }
+        } catch (mediaError) {
+          console.warn(`Could not add ${uniData.name} logo to media library:`, mediaError);
+          // Continue with next icon even if media creation fails
+        }
       }
 
       res.json({ 
-        message: `Successfully seeded ${createdIcons.length} university icons`,
-        icons: createdIcons
+        message: `Successfully seeded ${createdIcons.length} university icons and ${createdMediaFiles.length} media files`,
+        icons: createdIcons,
+        mediaFiles: createdMediaFiles.length
       });
     } catch (error) {
       console.error('Error seeding university icons:', error);
