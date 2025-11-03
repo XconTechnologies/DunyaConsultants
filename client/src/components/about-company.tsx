@@ -46,13 +46,14 @@ export default function AboutCompany() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-stretch">
           
           {/* Left Side - Image */}
-          <div className="relative order-2 lg:order-1">
+          <div className="relative order-2 lg:order-1 flex items-center justify-center bg-white rounded-2xl shadow-lg overflow-hidden">
             <SmartImage
               src={aboutImage}
               alt="Best study abroad consultants in Pakistan"
               width={600}
               height={600}
-              className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
+              className="w-full h-auto object-cover rounded-2xl"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
             />
           </div>
 
