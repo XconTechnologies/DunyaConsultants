@@ -116,7 +116,34 @@
     <link rel="modulepreload" href="/src/pages/home.tsx">
     
     <!-- Font stylesheet with font-display:swap for immediate text rendering -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Deferred on mobile to eliminate render-blocking -->
+    <script>
+      (function() {
+        var isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          // On mobile: Defer font loading until after critical rendering
+          var fontLink = document.createElement('link');
+          fontLink.rel = 'stylesheet';
+          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+          
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() {
+              document.head.appendChild(fontLink);
+            }, {timeout: 1000});
+          } else {
+            setTimeout(function() {
+              document.head.appendChild(fontLink);
+            }, 500);
+          }
+        } else {
+          // On desktop: Load fonts normally (synchronously)
+          var fontLink = document.createElement('link');
+          fontLink.rel = 'stylesheet';
+          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+          document.head.appendChild(fontLink);
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none"
