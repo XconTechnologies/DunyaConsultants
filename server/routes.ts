@@ -7633,7 +7633,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'University icons already exist. Clear them first if you want to re-seed.' });
       }
 
-      // All 48 university partners from the carousel (real logos from assets)
+      // All 44 university partners from the carousel (real logos from assets)
       const universitiesData = [
         // UK Universities (First Priority)
         { name: "Southampton Solent University", logoUrl: "/attached_assets/IMG-20250425-WA0016_1750755121093.jpg", route: "", displayOrder: 0 },
