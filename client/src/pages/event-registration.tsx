@@ -27,7 +27,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
 import type { Event } from "@shared/schema";
 import dunyaLogo from "@assets/dunya-logo-blue.png";
-import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
+import logoImageWhite from "@assets/logo-white.webp";
 import { setStaticPageMeta } from "@/lib/seo";
 import EventRegisterButton from "@/components/EventRegisterButton";
 

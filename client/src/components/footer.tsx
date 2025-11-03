@@ -9,7 +9,7 @@ import Asset_1 from "@assets/Asset-1.png";
 import BritishCouncilLogo from "@assets/image_1756901212132.png";
 import DuolingoLogo from "@assets/image_1756901218470.png";
 import LanguageCertLogo from "@assets/image_1756901223335.png";
-import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
+import logoImageWhite from "@assets/logo-white.webp";
 
 export default function Footer() {
   useEffect(() => {
