@@ -7633,16 +7633,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'University icons already exist. Clear them first if you want to re-seed.' });
       }
 
-      // Sample university data with working logo URLs
+      // All 48 university partners from the carousel (real logos from assets)
       const universitiesData = [
-        { name: "Harvard University", logoUrl: "https://logo.clearbit.com/harvard.edu", route: "/universities/harvard", displayOrder: 0 },
-        { name: "Oxford University", logoUrl: "https://logo.clearbit.com/ox.ac.uk", route: "/universities/oxford", displayOrder: 1 },
-        { name: "Cambridge University", logoUrl: "https://logo.clearbit.com/cam.ac.uk", route: "/universities/cambridge", displayOrder: 2 },
-        { name: "MIT", logoUrl: "https://logo.clearbit.com/mit.edu", route: "/universities/mit", displayOrder: 3 },
-        { name: "Stanford University", logoUrl: "https://logo.clearbit.com/stanford.edu", route: "/universities/stanford", displayOrder: 4 },
-        { name: "University of Toronto", logoUrl: "https://logo.clearbit.com/utoronto.ca", route: "/universities/toronto", displayOrder: 5 },
-        { name: "University of Melbourne", logoUrl: "https://logo.clearbit.com/unimelb.edu.au", route: "/universities/melbourne", displayOrder: 6 },
-        { name: "ETH Zurich", logoUrl: "https://logo.clearbit.com/ethz.ch", route: "/universities/eth-zurich", displayOrder: 7 },
+        // UK Universities (First Priority)
+        { name: "Southampton Solent University", logoUrl: "/attached_assets/IMG-20250425-WA0016_1750755121093.jpg", route: "", displayOrder: 0 },
+        { name: "QA Partnership", logoUrl: "/attached_assets/Untitled design (14)_1750755121095.jpg", route: "", displayOrder: 1 },
+        { name: "Ulster University", logoUrl: "/attached_assets/IMG-20250425-WA0015_1750755121095.jpg", route: "", displayOrder: 2 },
+        { name: "Canterbury Christ Church University", logoUrl: "/attached_assets/Uni-Logos-10_1750756376770.jpg", route: "", displayOrder: 3 },
+        { name: "University of Gloucestershire", logoUrl: "/attached_assets/Uni-Logos-20-1_1750756376772.jpg", route: "", displayOrder: 4 },
+        { name: "Ulster University", logoUrl: "/attached_assets/Uni-Logos-21_1750756376773.jpg", route: "", displayOrder: 5 },
+        { name: "University of Northampton", logoUrl: "/attached_assets/Uni-Logos-25-1_1750756376774.jpg", route: "", displayOrder: 6 },
+        { name: "The University of Law", logoUrl: "/attached_assets/Uni-Logos-3-03-2048x878_1750756376779.jpg", route: "", displayOrder: 7 },
+        { name: "Hartpury University", logoUrl: "/attached_assets/download_1750756910273.jpg", route: "", displayOrder: 8 },
+        { name: "Eton College", logoUrl: "/attached_assets/download-1_1750756910275.jpg", route: "", displayOrder: 9 },
+        { name: "Teesside University", logoUrl: "/attached_assets/Teesside-University-logo_1750756910279.jpg", route: "", displayOrder: 10 },
+        { name: "Leeds Trinity University", logoUrl: "/attached_assets/Uni-Logos-2-01_1750757117512.jpg", route: "", displayOrder: 11 },
+        { name: "Anglia Ruskin University", logoUrl: "/attached_assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750757117517.jpg", route: "", displayOrder: 12 },
+        { name: "University for the Creative Arts", logoUrl: "/attached_assets/Artboard-1-copy-3-2_1750757117518.jpg", route: "", displayOrder: 13 },
+        
+        // Wales Universities
+        { name: "University of South Wales", logoUrl: "/attached_assets/IMG-20250425-WA0017_1750755121094.jpg", route: "", displayOrder: 14 },
+        { name: "Bangor University", logoUrl: "/attached_assets/Uni-Logos-2-08-1_1750756376776.jpg", route: "", displayOrder: 15 },
+        
+        // Scotland Universities
+        { name: "Abertay University", logoUrl: "/attached_assets/Uni-Logos-3-06-2048x878_1750756577521.jpg", route: "", displayOrder: 16 },
+        { name: "Heriot-Watt University", logoUrl: "/attached_assets/Uni-Logos-3-07-2048x879_1750756577522.jpg", route: "", displayOrder: 17 },
+        
+        // Germany Universities
+        { name: "Berlin School of Business & Innovation", logoUrl: "/attached_assets/Uni-Logos-3-16-2048x878_1750755121097.jpg", route: "", displayOrder: 18 },
+        { name: "Arden University Berlin", logoUrl: "/attached_assets/Uni-Logos-3-17-2048x879_1750755121098.jpg", route: "", displayOrder: 19 },
+        { name: "GBS Global Applied Knowledge", logoUrl: "/attached_assets/Uni-Logos-3-05-2048x879_1750756577520.jpg", route: "", displayOrder: 20 },
+        { name: "University of Europe for Applied Sciences", logoUrl: "/attached_assets/Artboard-1-copy-42_1750756910272.jpg", route: "", displayOrder: 21 },
+        { name: "Gisma University of Applied Sciences", logoUrl: "/attached_assets/Uni-Logos-2-04-1_1750757117514.jpg", route: "", displayOrder: 22 },
+        
+        // Canada Universities
+        { name: "Concordia University", logoUrl: "/attached_assets/Uni-Logos-18-1_1750756376771.jpg", route: "", displayOrder: 23 },
+        { name: "University Canada West", logoUrl: "/attached_assets/Uni-Logos-3-01-2048x878_1750756376777.jpg", route: "", displayOrder: 24 },
+        { name: "Capilano University", logoUrl: "/attached_assets/Artboard-1-copy-19-3_1750756910268.jpg", route: "", displayOrder: 25 },
+        { name: "University of Niagara Falls Canada", logoUrl: "/attached_assets/Artboard-1-copy-41-1_1750756910271.jpg", route: "", displayOrder: 26 },
+        { name: "Fanshawe College", logoUrl: "/attached_assets/Uni-Logos-2-06-1_1750757117515.jpg", route: "", displayOrder: 27 },
+        
+        // USA Universities
+        { name: "Avila University", logoUrl: "/attached_assets/Uni-Logos-3-18-2048x878_1750755121099.jpg", route: "", displayOrder: 28 },
+        { name: "LIM College", logoUrl: "/attached_assets/Uni-Logos-3-11-2048x879_1750756577525.jpg", route: "", displayOrder: 29 },
+        { name: "Herzing University", logoUrl: "/attached_assets/Uni-Logos-3-13-2048x879_1750756577527.jpg", route: "", displayOrder: 30 },
+        { name: "Webster University", logoUrl: "/attached_assets/Artboard-1-copy-4_1750757117520.jpg", route: "", displayOrder: 31 },
+        
+        // Australia Universities
+        { name: "Southern Cross Institute", logoUrl: "/attached_assets/Uni-Logos-3-15-1-2048x879_1750755121096.jpg", route: "", displayOrder: 32 },
+        { name: "Skills Australia Institute", logoUrl: "/attached_assets/Uni-Logos-3-22-2048x878_1750756376768.jpg", route: "", displayOrder: 33 },
+        
+        // Turkey Universities
+        { name: "Kadir Has University", logoUrl: "/attached_assets/Uni-Logos-3-02-2048x877_1750756376778.jpg", route: "", displayOrder: 34 },
+        { name: "Bahçeşehir University", logoUrl: "/attached_assets/Uni-Logos-3-08-2048x878_1750756577523.jpg", route: "", displayOrder: 35 },
+        { name: "Beykoz University", logoUrl: "/attached_assets/Artboard-1-copy-14-2_1750756910267.jpg", route: "", displayOrder: 36 },
+        { name: "Halic University", logoUrl: "/attached_assets/Halic-University-15-2048x879_1750756910276.jpg", route: "", displayOrder: 37 },
+        
+        // Netherlands Universities
+        { name: "University of Applied Sciences Europe", logoUrl: "/attached_assets/Uni-Logos-3-14-2048x878_1750755121096.jpg", route: "", displayOrder: 38 },
+        { name: "IC University of Applied Sciences", logoUrl: "/attached_assets/Artboard-1-copy-5_1750756577528.jpg", route: "", displayOrder: 39 },
+        
+        // Ireland Universities
+        { name: "IBAT College Dublin", logoUrl: "/attached_assets/Uni-Logos-3-20-2048x878_1750755121100.jpg", route: "", displayOrder: 40 },
+        
+        // France Universities
+        { name: "College de Paris", logoUrl: "/attached_assets/Uni-Logos-3-09-2048x879_1750756577524.jpg", route: "", displayOrder: 41 },
+        
+        // UAE Universities
+        { name: "De Montfort University Dubai", logoUrl: "/attached_assets/Group 1000008937_1759736620706.png", route: "", displayOrder: 42 },
+        
+        // Caribbean Universities
+        { name: "GUS Medical & Veterinary Schools", logoUrl: "/attached_assets/Uni-Logos-3-12-2048x878_1750756577526.jpg", route: "", displayOrder: 43 }
       ];
 
       const createdIcons = [];
