@@ -63,9 +63,19 @@ export default function IconManagement() {
             </div>
 
             <Tabs defaultValue="branch-icons" className="w-full">
-              <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
-                <TabsTrigger value="branch-icons">Branch Icons</TabsTrigger>
-                <TabsTrigger value="university-icons">University Icons</TabsTrigger>
+              <TabsList className="grid w-full max-w-md grid-cols-2 mb-6 bg-gray-100 p-1.5 h-12">
+                <TabsTrigger 
+                  value="branch-icons"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:font-semibold transition-all duration-200"
+                >
+                  Branch Icons
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="university-icons"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1D50C9] data-[state=active]:to-[#1845B3] data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:font-semibold transition-all duration-200"
+                >
+                  University Icons
+                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="branch-icons" className="mt-0">
