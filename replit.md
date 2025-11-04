@@ -29,7 +29,7 @@ The application features a professional dark blue gradient design with custom br
 - **Consultation Booking**: Real-time calendar functionality.
 - **WhatsApp Integration**: Direct contact button for instant consultations.
 - **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings and a three-state approval workflow.
-- **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles.
+- **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles. Includes WebP conversion functionality for university icons using `/attached_assets/` paths (fixed November 2025).
 - **SEO & Social Media Integration**: Server-side social meta tags for all critical pages, automatic featured image fallback, and production cache headers.
 
 ### System Design Choices
@@ -50,6 +50,16 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 - `@google/genai`: For Google Gemini AI integration (chatbot functionality).
 
 ## Performance Optimizations
+
+### Core Web Vitals Improvements (November 2025)
+- **LCP Optimization**: Improved from 5s → 4.23s through:
+  - Restored critical JavaScript module preloading (`/src/main.tsx`)
+  - Fixed logo preload path to use correct asset location
+  - Optimized font loading with preload + inline critical CSS (weights 400, 600)
+  - Async loading of remaining font weights (300, 500, 700)
+- **Server Performance**: Balanced compression level (6) for optimal CPU/speed trade-off
+- **Monitoring**: Added Server-Timing headers for performance tracking
+- **Status**: LCP 4.23s (target: <2.5s), FCP/TTFB/INP need field testing
 
 ### Network Payload Optimization (November 2025)
 - **Current Issue**: Total network payload is 6.43MB across all devices (widescreen, desktop, tablet, mobile)

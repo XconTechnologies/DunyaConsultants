@@ -7747,6 +7747,83 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Convert university icons to WebP format
+  app.post("/api/admin/university-icons/convert-to-webp", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const icons = await storage.getUniversityIcons();
+      const results = [];
+      const errors = [];
+
+      for (const icon of icons) {
+        try {
+          // Only convert if using attached_assets path and not already WebP
+          if (!icon.logoUrl.startsWith('/attached_assets/') || icon.logoUrl.endsWith('.webp')) {
+            continue;
+          }
+
+          // Get the file path
+          const filename = path.basename(icon.logoUrl);
+          const oldFilePath = path.join(process.cwd(), 'attached_assets', filename);
+
+          // Check if file exists
+          if (!fs.existsSync(oldFilePath)) {
+            errors.push({ icon: icon.name, error: `File not found: ${filename}` });
+            continue;
+          }
+
+          // Generate new WebP filename
+          const nameWithoutExt = path.parse(filename).name;
+          const newFilename = `${nameWithoutExt}.webp`;
+          const newFilePath = path.join(process.cwd(), 'attached_assets', newFilename);
+
+          // Convert to WebP using sharp
+          const oldSize = fs.statSync(oldFilePath).size;
+          await sharp(oldFilePath)
+            .webp({ quality: 85 })
+            .toFile(newFilePath);
+          
+          const newSize = fs.statSync(newFilePath).size;
+          const savings = oldSize - newSize;
+
+          // Update the icon with new URL
+          const newLogoUrl = `/attached_assets/${newFilename}`;
+          await storage.updateUniversityIcon(icon.id, {
+            ...icon,
+            logoUrl: newLogoUrl
+          });
+
+          results.push({
+            icon: icon.name,
+            oldUrl: icon.logoUrl,
+            newUrl: newLogoUrl,
+            savings,
+            oldSize,
+            newSize
+          });
+
+          // Delete old file
+          try {
+            fs.unlinkSync(oldFilePath);
+          } catch (deleteError) {
+            console.warn(`Failed to delete old file: ${oldFilePath}`, deleteError);
+          }
+        } catch (iconError: any) {
+          errors.push({ icon: icon.name, error: iconError.message });
+        }
+      }
+
+      res.json({
+        converted: results.length,
+        errors: errors.length,
+        results,
+        errorDetails: errors
+      });
+    } catch (error) {
+      console.error('Error converting university icons to WebP:', error);
+      res.status(500).json({ message: 'Failed to convert university icons to WebP' });
+    }
+  });
+
   // Seed university icons with sample data (Public on first use, then admin-only)
   app.post("/api/admin/university-icons/seed", async (req: AuthenticatedRequest, res) => {
     try {

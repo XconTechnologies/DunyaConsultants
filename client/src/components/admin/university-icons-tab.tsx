@@ -73,21 +73,8 @@ export default function UniversityIconsTab() {
   // Convert to WebP mutation
   const convertToWebPMutation = useMutation({
     mutationFn: async () => {
-      // Get all media IDs from university icons that need conversion
-      const iconMediaIds = icons
-        .map(icon => {
-          const media = mediaFiles.find((m: any) => m.url === icon.iconUrl);
-          return media?.id;
-        })
-        .filter((id): id is number => id !== undefined);
-
-      if (iconMediaIds.length === 0) {
-        throw new Error("No images found to convert");
-      }
-
-      return await apiRequest('/api/admin/media/convert-to-webp', {
+      return await apiRequest('/api/admin/university-icons/convert-to-webp', {
         method: 'POST',
-        body: JSON.stringify({ mediaIds: iconMediaIds }),
       });
     },
     onSuccess: (data) => {
