@@ -52,14 +52,21 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 ## Performance Optimizations
 
 ### Core Web Vitals Improvements (November 2025)
-- **LCP Optimization**: Improved from 5s → 4.23s through:
+- **LCP Optimization**: Improved from 5s → 4.23s → 3.78s (best stable) through:
   - Restored critical JavaScript module preloading (`/src/main.tsx`)
   - Fixed logo preload path to use correct asset location
   - Optimized font loading with preload + inline critical CSS (weights 400, 600)
   - Async loading of remaining font weights (300, 500, 700)
+  - **NEW (Nov 4)**: Prioritized LCP image preload (AboutCompany image instead of logo)
+  - **NEW (Nov 4)**: Created responsive image variants (480w, 768w, 1024w) with srcset
+  - **NEW (Nov 4)**: Added imagesrcset/imagesizes to preload hints for mobile optimization
+  - **NEW (Nov 4)**: Fixed 21 branch icon 404 errors to reduce network noise
+  - **NEW (Nov 4)**: Deferred Calendly CSS/JS to requestIdleCallback/setTimeout
+  - **NEW (Nov 4)**: Added Early Hints via Link headers (limited impact without HTTP 103)
 - **Server Performance**: Balanced compression level (6) for optimal CPU/speed trade-off
 - **Monitoring**: Added Server-Timing headers for performance tracking
-- **Status**: LCP 4.23s (target: <2.5s), FCP/TTFB/INP need field testing
+- **Status**: LCP ~3.78s stable (target: <2.5s), 17% mobile byte savings from responsive images
+- **Remaining**: Need production build testing; consider deferring Navigation/ScrollProgress hydration
 
 ### Network Payload Optimization (November 2025)
 - **Current Issue**: Total network payload is 6.43MB across all devices (widescreen, desktop, tablet, mobile)

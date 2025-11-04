@@ -171,8 +171,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       // Critical fonts
       '</assets/fonts/inter-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
       '</assets/fonts/inter-600.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
-      // LCP image
-      '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; fetchpriority=high',
+      // LCP image with responsive srcset
+      '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; imagesrcset="/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210-480w.webp 480w, /attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210-768w.webp 768w, /attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp 1280w"; imagesizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"; fetchpriority=high',
       // Logo
       '</attached_assets/logo-white.webp>; rel=preload; as=image',
       // Main module

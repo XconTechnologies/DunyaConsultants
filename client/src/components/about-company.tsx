@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
-import SmartImage from "@/components/ui/smart-image";
+import { Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
 import aboutImage from "@assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp";
+import aboutImage480 from "@assets/best-study-abroad-consultants-in-pakistan_1757420372210-480w.webp";
+import aboutImage768 from "@assets/best-study-abroad-consultants-in-pakistan_1757420372210-768w.webp";
 
 
 const expandableContent = [
@@ -47,13 +48,16 @@ export default function AboutCompany() {
           
           {/* Left Side - Image */}
           <div className="relative order-2 lg:order-1 flex items-center justify-center bg-white rounded-2xl shadow-lg overflow-hidden">
-            <SmartImage
+            <img
               src={aboutImage}
+              srcSet={`${aboutImage480} 480w, ${aboutImage768} 768w, ${aboutImage} 1280w`}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
               alt="Best study abroad consultants in Pakistan"
               width={600}
               height={600}
+              loading="eager"
+              fetchpriority="high"
               className="w-full h-auto object-cover rounded-2xl"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
             />
           </div>
 
