@@ -116,7 +116,8 @@
     <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- Preload critical images only for LCP optimization -->
-    <link rel="preload" as="image" href="/attached_assets/logo-white.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/attached_assets/logo-white.webp">
     
     <!-- Preload critical font for instant rendering -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" crossorigin>
@@ -151,15 +152,27 @@
     </div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Calendly CSS -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></noscript>
-    
-    <!-- Calendly config -->
+    <!-- Defer Calendly loading until after page is interactive -->
     <script>
-      window.addEventListener('load', function() {
-        window.CalendlyConfig = {url: 'https://calendly.com/meet-dunya-consultants/20min'};
-      });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          var calendlyCSS = document.createElement('link');
+          calendlyCSS.rel = 'stylesheet';
+          calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(calendlyCSS);
+          
+          window.CalendlyConfig = {url: 'https://calendly.com/meet-dunya-consultants/20min'};
+        }, {timeout: 3000});
+      } else {
+        setTimeout(function() {
+          var calendlyCSS = document.createElement('link');
+          calendlyCSS.rel = 'stylesheet';
+          calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(calendlyCSS);
+          
+          window.CalendlyConfig = {url: 'https://calendly.com/meet-dunya-consultants/20min'};
+        }, 2000);
+      }
     </script>
   </body>
 </html>
