@@ -158,6 +158,36 @@ app.use((req, res, next) => {
   next();
 });
 
+// Early Hints middleware - sends Link headers for critical resources to enable browser preloading
+app.use((req: Request, res: Response, next: NextFunction) => {
+  // Only for HTML page requests (not API or static assets)
+  if (!req.path.startsWith('/api/') && 
+      !req.path.startsWith('/assets/') && 
+      !req.path.startsWith('/attached_assets/') && 
+      !req.path.match(/\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
+    
+    // Set Link headers for critical resources (Early Hints compatible)
+    const linkHeaders = [
+      // Critical fonts
+      '</assets/fonts/inter-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
+      '</assets/fonts/inter-600.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
+      // LCP image
+      '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; fetchpriority=high',
+      // Logo
+      '</attached_assets/logo-white.webp>; rel=preload; as=image',
+      // Main module
+      '</src/main.tsx>; rel=modulepreload',
+      // DNS prefetch for external resources
+      '<https://fonts.googleapis.com>; rel=preconnect',
+      '<https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+    ];
+    
+    res.setHeader('Link', linkHeaders.join(', '));
+  }
+  
+  next();
+});
+
 (async () => {
   const server = await registerRoutes(app);
 
