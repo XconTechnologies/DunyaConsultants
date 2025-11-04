@@ -180,6 +180,25 @@ export default function MediaManagement() {
     setCurrentPage(1);
   }, [searchTerm, filterType]);
 
+  // Adjust itemsPerPage if it's no longer in available options
+  useEffect(() => {
+    // Guard against empty options - reset to default
+    if (pageSizeOptions.length === 0) {
+      if (itemsPerPage !== 25) {
+        setItemsPerPage(25);
+        setCurrentPage(1);
+      }
+      return;
+    }
+    
+    if (!pageSizeOptions.includes(itemsPerPage)) {
+      // Set to largest available option
+      const largestOption = pageSizeOptions[pageSizeOptions.length - 1];
+      setItemsPerPage(largestOption);
+      setCurrentPage(1);
+    }
+  }, [pageSizeOptions, itemsPerPage]);
+
   // Upload media mutation
   const uploadMutation = useMutation({
     mutationFn: async (files: FileList) => {
