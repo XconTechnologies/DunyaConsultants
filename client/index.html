@@ -112,43 +112,25 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
     
-    <!-- Preload critical modules only -->
+    <!-- Restore critical module preload for faster JS hydration -->
     <link rel="modulepreload" href="/src/main.tsx">
     
-    <!-- Preload critical images for LCP optimization -->
-    <link rel="preload" as="image" href="/api/uploads/DC_White_Logo_1762150988991_bc1f59b10da13089.webp" media="(max-width: 767px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/api/uploads/DC_White_Logo_1762150988991_bc1f59b10da13089.webp" media="(min-width: 768px)" fetchpriority="high">
+    <!-- Preload critical images only for LCP optimization -->
+    <link rel="preload" as="image" href="/attached_assets/logo-white.webp" fetchpriority="high">
     
-    <!-- Preload Inter font subset for immediate text rendering -->
+    <!-- Preload critical font for instant rendering -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hjp-Ek-_EeA.woff2" crossorigin>
     
-    <!-- Font loading optimized for FCP/LCP -->
-    <script>
-      (function() {
-        var isMobile = window.innerWidth < 768;
-        var fontLink = document.createElement('link');
-        fontLink.rel = 'stylesheet';
-        fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-        
-        if (isMobile) {
-          // On mobile: Defer font loading aggressively (wait for idle time)
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(function() {
-              document.head.appendChild(fontLink);
-            }, {timeout: 800});
-          } else {
-            setTimeout(function() {
-              document.head.appendChild(fontLink);
-            }, 400);
-          }
-        } else {
-          // On desktop: Load fonts immediately but async
-          fontLink.media = 'print';
-          fontLink.onload = function() { this.media = 'all'; };
-          document.head.appendChild(fontLink);
-        }
-      })();
-    </script>
+    <!-- Inline only critical font declaration for FCP -->
+    <style>
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2) format('woff2')}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hjp-Ek-_EeA.woff2) format('woff2')}
+    </style>
+    
+    <!-- Load remaining font weights async -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap"></noscript>
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none"

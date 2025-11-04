@@ -26,7 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Enable aggressive gzip compression for all responses
+// Enable balanced gzip compression for optimal CPU/speed trade-off
 app.use(compression({
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
@@ -34,8 +34,8 @@ app.use(compression({
     }
     return compression.filter(req, res);
   },
-  threshold: 512, // Compress smaller files (reduced from 1024)
-  level: 9 // Maximum compression (increased from 6)
+  threshold: 1024, // Standard threshold for compression
+  level: 6 // Balanced compression level for good ratio without CPU overhead
 }));
 
 app.use(express.json());
@@ -129,9 +129,18 @@ app.use((req, res, next) => {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
+  
+  // Override writeHead to add Server-Timing header before headers are sent
+  const originalWriteHead = res.writeHead;
+  res.writeHead = function(...args: any[]) {
+    const duration = Date.now() - start;
+    res.setHeader('Server-Timing', `total;dur=${duration}`);
+    return originalWriteHead.apply(this, args);
+  } as any;
 
   res.on("finish", () => {
     const duration = Date.now() - start;
+    
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
