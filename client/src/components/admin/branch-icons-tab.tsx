@@ -62,10 +62,8 @@ export default function BranchIconsTab() {
         throw new Error("No images found to convert");
       }
 
-      return await apiRequest('/api/admin/media/convert-to-webp', {
-        method: 'POST',
-        body: JSON.stringify({ mediaIds: iconMediaIds }),
-      });
+      const res = await apiRequest('POST', '/api/admin/media/convert-to-webp', { mediaIds: iconMediaIds });
+      return await res.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [config.queryKey] });

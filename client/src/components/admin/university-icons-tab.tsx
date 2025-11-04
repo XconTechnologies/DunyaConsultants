@@ -45,9 +45,8 @@ export default function UniversityIconsTab() {
   // Fix broken URLs mutation
   const fixUrlsMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest('/api/admin/university-icons/fix-urls', {
-        method: 'POST',
-      });
+      const res = await apiRequest('POST', '/api/admin/university-icons/fix-urls');
+      return await res.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [config.queryKey] });
@@ -73,9 +72,8 @@ export default function UniversityIconsTab() {
   // Convert to WebP mutation
   const convertToWebPMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest('/api/admin/university-icons/convert-to-webp', {
-        method: 'POST',
-      });
+      const res = await apiRequest('POST', '/api/admin/university-icons/convert-to-webp');
+      return await res.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [config.queryKey] });

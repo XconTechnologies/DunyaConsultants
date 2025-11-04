@@ -70,11 +70,8 @@ export default function ContactSection() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await apiRequest("/api/contacts", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      return response;
+      const response = await apiRequest("POST", "/api/contacts", data);
+      return response.json();
     },
     onSuccess: () => {
       form.reset();

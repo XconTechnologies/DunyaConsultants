@@ -58,15 +58,12 @@ export default function EligibilityChecker() {
     mutationFn: async (data: FormData) => {
       const eligibilityResult = calculateEligibility(data);
       
-      const response = await apiRequest("/api/eligibility-check", {
-        method: "POST",
-        body: JSON.stringify({
-          ...data,
-          result: eligibilityResult,
-        }),
+      const response = await apiRequest("POST", "/api/eligibility-check", {
+        ...data,
+        result: eligibilityResult,
       });
       
-      return { response, result: eligibilityResult };
+      return { response: await response.json(), result: eligibilityResult };
     },
     onSuccess: (data) => {
       setResult(data.result);
