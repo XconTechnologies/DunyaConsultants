@@ -2,21 +2,21 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-// Initialize comprehensive Core Web Vitals monitoring in development
-if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-  // Track LCP (Largest Contentful Paint) - target <2.5s
-  const lcpObserver = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-      console.log('✓ LCP:', Math.round(entry.startTime) + 'ms', entry.startTime < 2500 ? '✅ GOOD' : entry.startTime < 4000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
-    }
-  });
-  
-  // Track FCP (First Contentful Paint) - target <1.8s
+// Initialize comprehensive Core Web Vitals monitoring
+if (typeof window !== 'undefined') {
+  // Track FCP (First Contentful Paint) - target <1.8s - MUST BE FIRST
   const fcpObserver = new PerformanceObserver((list) => {
     for (const entry of list.getEntries()) {
       if (entry.name === 'first-contentful-paint') {
         console.log('✓ FCP:', Math.round(entry.startTime) + 'ms', entry.startTime < 1800 ? '✅ GOOD' : entry.startTime < 3000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
       }
+    }
+  });
+  
+  // Track LCP (Largest Contentful Paint) - target <2.5s
+  const lcpObserver = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      console.log('✓ LCP:', Math.round(entry.startTime) + 'ms', entry.startTime < 2500 ? '✅ GOOD' : entry.startTime < 4000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
     }
   });
   
@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   });
   
   try {
-    lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-    fcpObserver.observe({ entryTypes: ['paint'] });
+    fcpObserver.observe({ type: 'paint', buffered: true });
+    lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
     inpObserver.observe({ type: 'first-input', buffered: true });
   } catch (e) {
     // Observer not supported
@@ -43,6 +43,14 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     if (navTiming) {
       const ttfb = navTiming.responseStart - navTiming.requestStart;
       console.log('✓ TTFB:', Math.round(ttfb) + 'ms', ttfb < 800 ? '✅ GOOD' : ttfb < 1800 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
+    }
+    
+    // Fallback: Check performance timeline for FCP if observer didn't catch it
+    const paintEntries = performance.getEntriesByType('paint');
+    const fcpEntry = paintEntries.find(entry => entry.name === 'first-contentful-paint');
+    if (fcpEntry && !window.__fcpLogged) {
+      console.log('✓ FCP (fallback):', Math.round(fcpEntry.startTime) + 'ms', fcpEntry.startTime < 1800 ? '✅ GOOD' : fcpEntry.startTime < 3000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
+      (window as any).__fcpLogged = true;
     }
   });
 }

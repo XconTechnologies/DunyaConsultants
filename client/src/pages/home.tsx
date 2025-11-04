@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Navigation from "@/components/navigation";
 import StatsBanner from "@/components/stats-banner";
 import ScrollProgress from "@/components/scroll-progress";
@@ -35,17 +35,41 @@ const SectionSkeleton = () => (
 );
 
 export default function Home() {
+  // Defer Navigation and ScrollProgress to improve LCP
+  const [showDeferredComponents, setShowDeferredComponents] = useState(false);
+
   useEffect(() => {
     setStaticPageMeta(
       'Home',
       'Your trusted partner for studying abroad. Expert visa consultation, university applications, test preparation, and end-to-end support for international students from Pakistan.'
     );
+
+    // Defer Navigation and ScrollProgress hydration until after initial render
+    // This reduces initial JavaScript execution time and improves LCP
+    const deferTimer = typeof requestIdleCallback !== 'undefined'
+      ? requestIdleCallback(() => setShowDeferredComponents(true))
+      : setTimeout(() => setShowDeferredComponents(true), 100);
+
+    return () => {
+      if (typeof requestIdleCallback !== 'undefined') {
+        cancelIdleCallback(deferTimer as number);
+      } else {
+        clearTimeout(deferTimer as number);
+      }
+    };
   }, []);
 
   return (
     <div className="min-h-screen">
-      <ScrollProgress />
-      <Navigation />
+      {showDeferredComponents && (
+        <>
+          <ScrollProgress />
+          <Navigation />
+        </>
+      )}
+      {!showDeferredComponents && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-transparent z-50" />
+      )}
       <StatsBanner />
       <AboutCompany />
       
