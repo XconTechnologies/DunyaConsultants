@@ -104,42 +104,47 @@
       @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
     </style>
     
-    <!-- Resource hints for performance -->
+    <!-- Aggressive resource hints for critical performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.cdn.icef.com">
+    <link rel="preconnect" href="https://www.cdn.icef.com" crossorigin>
     <link rel="dns-prefetch" href="https://assets.calendly.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
-    <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="modulepreload" href="/src/App.tsx">
-    <link rel="modulepreload" href="/src/pages/home.tsx">
     
-    <!-- Font stylesheet with font-display:swap for immediate text rendering -->
-    <!-- Deferred on mobile to eliminate render-blocking -->
+    <!-- Preload critical modules only -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    
+    <!-- Preload critical images for LCP optimization -->
+    <link rel="preload" as="image" href="/api/uploads/DC_White_Logo_1762150988991_bc1f59b10da13089.webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/api/uploads/DC_White_Logo_1762150988991_bc1f59b10da13089.webp" media="(min-width: 768px)" fetchpriority="high">
+    
+    <!-- Preload Inter font subset for immediate text rendering -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" crossorigin>
+    
+    <!-- Font loading optimized for FCP/LCP -->
     <script>
       (function() {
         var isMobile = window.innerWidth < 768;
+        var fontLink = document.createElement('link');
+        fontLink.rel = 'stylesheet';
+        fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+        
         if (isMobile) {
-          // On mobile: Defer font loading until after critical rendering
-          var fontLink = document.createElement('link');
-          fontLink.rel = 'stylesheet';
-          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-          
+          // On mobile: Defer font loading aggressively (wait for idle time)
           if ('requestIdleCallback' in window) {
             requestIdleCallback(function() {
               document.head.appendChild(fontLink);
-            }, {timeout: 1000});
+            }, {timeout: 800});
           } else {
             setTimeout(function() {
               document.head.appendChild(fontLink);
-            }, 500);
+            }, 400);
           }
         } else {
-          // On desktop: Load fonts normally (synchronously)
-          var fontLink = document.createElement('link');
-          fontLink.rel = 'stylesheet';
-          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+          // On desktop: Load fonts immediately but async
+          fontLink.media = 'print';
+          fontLink.onload = function() { this.media = 'all'; };
           document.head.appendChild(fontLink);
         }
       })();

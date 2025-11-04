@@ -26,7 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Enable gzip compression for all responses
+// Enable aggressive gzip compression for all responses
 app.use(compression({
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
@@ -34,8 +34,8 @@ app.use(compression({
     }
     return compression.filter(req, res);
   },
-  threshold: 1024,
-  level: 6
+  threshold: 512, // Compress smaller files (reduced from 1024)
+  level: 9 // Maximum compression (increased from 6)
 }));
 
 app.use(express.json());
