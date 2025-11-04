@@ -1,4 +1,7 @@
 import path from 'path';
+import sharp from 'sharp';
+import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 /**
  * Extract human-readable alt text from an image filename
@@ -107,4 +110,168 @@ export function formatImageForFrontend(imageUrl: string | null | undefined) {
     url: imageUrl,
     alt: extractAltTextFromFilename(filename),
   };
+}
+
+/**
+ * Image optimization options
+ */
+export interface ImageOptimizationOptions {
+  quality?: number; // 1-100, default 80
+  maxWidth?: number; // Max width in pixels, default: no limit
+  maxHeight?: number; // Max height in pixels, default: no limit
+  format?: 'webp' | 'jpeg' | 'png'; // Output format, default: webp
+  compressionLevel?: number; // 0-9 for PNG, default: 6
+}
+
+/**
+ * Optimize and convert image to WebP (or other format)
+ * Automatically compresses images and converts to modern formats
+ * 
+ * @param inputPath - Path to the original image
+ * @param outputPath - Path where optimized image will be saved
+ * @param options - Optimization options
+ * @returns Promise with metadata of optimized image
+ */
+export async function optimizeImage(
+  inputPath: string,
+  outputPath: string,
+  options: ImageOptimizationOptions = {}
+): Promise<{
+  width: number;
+  height: number;
+  size: number;
+  format: string;
+}> {
+  const {
+    quality = 80,
+    maxWidth,
+    maxHeight,
+    format = 'webp',
+    compressionLevel = 6,
+  } = options;
+
+  try {
+    let pipeline = sharp(inputPath);
+
+    // Get original metadata
+    const metadata = await pipeline.metadata();
+
+    // Resize if dimensions are specified
+    if (maxWidth || maxHeight) {
+      pipeline = pipeline.resize(maxWidth, maxHeight, {
+        fit: 'inside',
+        withoutEnlargement: true,
+      });
+    }
+
+    // Convert to specified format with compression
+    switch (format) {
+      case 'webp':
+        pipeline = pipeline.webp({ quality, effort: 6 });
+        break;
+      case 'jpeg':
+        pipeline = pipeline.jpeg({ quality, mozjpeg: true });
+        break;
+      case 'png':
+        pipeline = pipeline.png({ 
+          compressionLevel,
+          quality,
+          effort: 10,
+        });
+        break;
+    }
+
+    // Save optimized image
+    await pipeline.toFile(outputPath);
+
+    // Get stats of optimized image
+    const stats = await fsPromises.stat(outputPath);
+    const optimizedMetadata = await sharp(outputPath).metadata();
+
+    return {
+      width: optimizedMetadata.width || 0,
+      height: optimizedMetadata.height || 0,
+      size: stats.size,
+      format: optimizedMetadata.format || format,
+    };
+  } catch (error) {
+    throw new Error(`Image optimization failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+}
+
+/**
+ * Auto-optimize uploaded image
+ * Automatically converts to WebP and compresses based on image type
+ * 
+ * @param filePath - Path to uploaded file
+ * @param uploadDir - Upload directory
+ * @param originalFilename - Original filename
+ * @returns Promise with optimized file info
+ */
+export async function autoOptimizeUpload(
+  filePath: string,
+  uploadDir: string,
+  originalFilename: string
+): Promise<{
+  filename: string;
+  path: string;
+  width: number;
+  height: number;
+  size: number;
+  originalSize: number;
+  savings: string;
+}> {
+  try {
+    // Get original file stats
+    const originalStats = await fsPromises.stat(filePath);
+    const originalSize = originalStats.size;
+
+    // Generate new filename with .webp extension
+    const ext = path.extname(originalFilename);
+    const baseFilename = path.basename(filePath, path.extname(filePath));
+    const newFilename = `${baseFilename}.webp`;
+    const outputPath = path.join(uploadDir, newFilename);
+
+    // Determine optimization settings based on file size
+    const isLargeImage = originalSize > 500000; // > 500KB
+    const quality = isLargeImage ? 75 : 80; // More aggressive compression for large images
+
+    // Optimize image
+    const optimized = await optimizeImage(filePath, outputPath, {
+      quality,
+      format: 'webp',
+      maxWidth: 2000, // Limit max width to 2000px
+    });
+
+    // Delete original file if it's different from optimized
+    if (filePath !== outputPath) {
+      await fsPromises.unlink(filePath);
+    }
+
+    // Calculate savings
+    const savings = ((1 - optimized.size / originalSize) * 100).toFixed(1);
+
+    return {
+      filename: newFilename,
+      path: outputPath,
+      width: optimized.width,
+      height: optimized.height,
+      size: optimized.size,
+      originalSize,
+      savings: `${savings}%`,
+    };
+  } catch (error) {
+    // If optimization fails, return original file info
+    console.error('Image optimization failed, using original:', error);
+    const fallbackStats = await fsPromises.stat(filePath);
+    return {
+      filename: path.basename(filePath),
+      path: filePath,
+      width: 0,
+      height: 0,
+      size: fallbackStats.size,
+      originalSize: fallbackStats.size,
+      savings: '0%',
+    };
+  }
 }

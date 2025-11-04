@@ -24,7 +24,7 @@ import { generateUniqueToken, generateRegistrationQRCode } from "./qr-service";
 import { appendToSheet } from "./google-sheets-service";
 import sgMail from '@sendgrid/mail';
 import QRCode from 'qrcode';
-import { getImageMetadata, extractAltTextFromFilename } from "./image-utils";
+import { getImageMetadata, extractAltTextFromFilename, autoOptimizeUpload } from "./image-utils";
 import sharp from 'sharp';
 
 // Initialize Resend (conditional to allow server to start without API key)
@@ -4736,23 +4736,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const url = `/api/uploads/${filename}`;
+      // Automatically optimize and convert to WebP for image files
+      let optimizedFile = {
+        filename,
+        size: req.file.size,
+        originalSize: req.file.size,
+        savings: '0%',
+      };
+
+      const isImage = req.file.mimetype.startsWith('image/');
+      if (isImage) {
+        try {
+          optimizedFile = await autoOptimizeUpload(filePath, uploadDir, req.file.originalname);
+          console.log('Image optimized:', {
+            original: req.file.originalname,
+            optimized: optimizedFile.filename,
+            originalSize: `${(optimizedFile.originalSize / 1024).toFixed(1)}KB`,
+            optimizedSize: `${(optimizedFile.size / 1024).toFixed(1)}KB`,
+            savings: optimizedFile.savings,
+          });
+        } catch (optimizationError) {
+          console.warn('Image optimization failed, using original:', optimizationError);
+          // Continue with original file if optimization fails
+        }
+      }
+
+      const url = `/api/uploads/${optimizedFile.filename}`;
       
       console.log('File uploaded successfully:', {
         originalName: req.file.originalname,
-        filename: filename,
-        size: req.file.size,
+        filename: optimizedFile.filename,
+        size: optimizedFile.size,
         path: filePath,
-        url: url
+        url: url,
+        optimized: isImage,
+        savings: optimizedFile.savings,
       });
       
       res.json({ 
         success: true, 
         url: url,
-        filename: filename,
+        filename: optimizedFile.filename,
         originalName: req.file.originalname,
-        size: req.file.size,
-        message: "Image uploaded successfully" 
+        size: optimizedFile.size,
+        optimized: isImage,
+        savings: optimizedFile.savings,
+        message: isImage 
+          ? `Image uploaded and optimized (${optimizedFile.savings} smaller)` 
+          : "File uploaded successfully"
       });
     } catch (error) {
       console.error('Upload error:', error);
@@ -4790,10 +4821,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Get file info
-      const filename = req.file.filename;
+      let filename = req.file.filename;
+      let fileSize = req.file.size;
+      const filePath = path.join(uploadDir, req.file.filename);
+
+      // Automatically optimize and convert to WebP for image files
+      const isImage = req.file.mimetype.startsWith('image/') && mediaType === 'image';
+      if (isImage) {
+        try {
+          const optimized = await autoOptimizeUpload(filePath, uploadDir, req.file.originalname);
+          filename = optimized.filename;
+          fileSize = optimized.size;
+          console.log('Event media optimized:', {
+            original: req.file.originalname,
+            optimized: optimized.filename,
+            savings: optimized.savings,
+          });
+        } catch (optimizationError) {
+          console.warn('Image optimization failed, using original:', optimizationError);
+          // Continue with original file if optimization fails
+        }
+      }
+
       const fileUrl = `/api/uploads/${filename}`;
       const fileType = path.extname(req.file.originalname).toLowerCase();
-      const fileSize = req.file.size;
 
       // Create media object based on type
       const uploadedAt = new Date().toISOString();
@@ -5668,14 +5719,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'No file provided' });
       }
 
-      const { originalname, mimetype, size, filename } = req.file;
-      const fileUrl = `/api/uploads/${filename}`;
+      let finalFilename = req.file.filename;
+      let finalSize = req.file.size;
+      let finalMimetype = req.file.mimetype;
+      const filePath = path.join(uploadDir, req.file.filename);
+
+      // Automatically optimize and convert to WebP for image files
+      const isImage = req.file.mimetype.startsWith('image/');
+      if (isImage) {
+        try {
+          const optimized = await autoOptimizeUpload(filePath, uploadDir, req.file.originalname);
+          finalFilename = optimized.filename;
+          finalSize = optimized.size;
+          finalMimetype = 'image/webp';
+          console.log('Admin media optimized:', {
+            original: req.file.originalname,
+            optimized: optimized.filename,
+            savings: optimized.savings,
+          });
+        } catch (optimizationError) {
+          console.warn('Image optimization failed, using original:', optimizationError);
+          // Continue with original file if optimization fails
+        }
+      }
+
+      const fileUrl = `/api/uploads/${finalFilename}`;
 
       const media = await storage.createMedia({
-        filename,
-        originalName: originalname,
-        mimeType: mimetype,
-        size,
+        filename: finalFilename,
+        originalName: req.file.originalname,
+        mimeType: finalMimetype,
+        size: finalSize,
         url: fileUrl,
         uploadedBy: req.adminId!
       });
