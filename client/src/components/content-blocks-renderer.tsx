@@ -160,7 +160,7 @@ function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
 
 // Table Block Renderer
 function TableBlock({ block }: { block: ContentBlock & { type: 'table' } }) {
-  const { headers, cells, hasHeader } = block.data;
+  const { headers, cells, hasHeader } = block.data || {};
 
   if (!cells || cells.length === 0) {
     return null;
@@ -208,7 +208,7 @@ function HTMLBlock({ block }: { block: ContentBlock & { type: 'html' } }) {
 
 // Button Block Renderer
 function ButtonBlock({ block }: { block: ContentBlock & { type: 'button' } }) {
-  const { text, url, bgColor, textColor, alignment, borderWidth, borderRadius } = block.data;
+  const { text, url, bgColor, textColor, alignment, borderWidth, borderRadius } = block.data || {};
 
   const alignmentStyles = {
     left: 'justify-start',
@@ -242,7 +242,7 @@ function ButtonBlock({ block }: { block: ContentBlock & { type: 'button' } }) {
 
 // Image Block Renderer
 function ImageBlock({ block }: { block: ContentBlock & { type: 'image' } }) {
-  const { url, alt, alignment, width } = block.data;
+  const { url, alt, alignment, width } = block.data || {};
 
   if (!url) {
     return null;
@@ -268,7 +268,7 @@ function ImageBlock({ block }: { block: ContentBlock & { type: 'image' } }) {
 
 // YouTube Block Renderer
 function YouTubeBlock({ block }: { block: ContentBlock & { type: 'youtube' } }) {
-  const { videoId } = block.data;
+  const { videoId } = block.data || {};
 
   if (!videoId) {
     return null;
@@ -292,7 +292,7 @@ function YouTubeBlock({ block }: { block: ContentBlock & { type: 'youtube' } }) 
 
 // Spacer Block Renderer
 function SpacerBlock({ block }: { block: ContentBlock & { type: 'spacer' } }) {
-  const { height } = block.data;
+  const { height } = block.data || {};
 
   return (
     <div className="spacer-block" style={{ height: `${height || 40}px` }} />
@@ -301,7 +301,7 @@ function SpacerBlock({ block }: { block: ContentBlock & { type: 'spacer' } }) {
 
 // Divider Block Renderer
 function DividerBlock({ block }: { block: ContentBlock & { type: 'divider' } }) {
-  const { thickness, width } = block.data;
+  const { thickness, width } = block.data || {};
 
   return (
     <div className="divider-block flex justify-center">
@@ -319,7 +319,7 @@ function DividerBlock({ block }: { block: ContentBlock & { type: 'divider' } }) 
 
 // Schema Block Renderer (not visible to users, only crawlers)
 function SchemaBlock({ block }: { block: ContentBlock & { type: 'schema' } }) {
-  const { schemaJson } = block.data;
+  const { schemaJson } = block.data || {};
 
   try {
     const parsedSchema = JSON.parse(schemaJson || '{}');
@@ -337,7 +337,7 @@ function SchemaBlock({ block }: { block: ContentBlock & { type: 'schema' } }) {
 
 // List Block Renderer
 function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
-  const { items = [], style = 'ul' } = block.data;
+  const { items = [], style = 'ul' } = block.data || {};
 
   if (!items || items.length === 0) {
     return null;
