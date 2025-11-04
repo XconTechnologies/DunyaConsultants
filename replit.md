@@ -77,21 +77,29 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 - **Next Steps**: Lighthouse/WebPageTest validation against production build for realistic conditions
 
 ### Network Payload Optimization (November 2025)
-- **Current Issue**: Total network payload is 6.43MB across all devices (widescreen, desktop, tablet, mobile)
-- **Primary Causes**: Uncompressed/unoptimized images (933KB ICEF logo, 175KB DC logo, 100-200KB university logos each)
+- **Automatic Image Optimization** (Nov 4, 2025):
+  - **Server-side automatic WebP conversion**: All uploaded images are automatically converted to WebP format
+  - **Intelligent compression**: Images >500KB use 75% quality, smaller images use 80% quality
+  - **Maximum dimensions**: Auto-resize to 2000px width maximum to prevent oversized images
+  - **Sharp library integration**: Uses Sharp for high-performance image processing
+  - **Automatic file replacement**: Original files are replaced with optimized WebP versions
+  - **Savings tracking**: Logs show compression savings percentage for each upload
+  - **Applies to all upload endpoints**: `/api/upload`, `/api/admin/media/upload`, `/api/events/:id/media/upload`
+  - **Expected reduction**: 60-80% file size reduction on new uploads
+- **Cache Headers** (Optimized):
+  - Uploaded images: 1-year cache (`max-age=31536000, immutable`)
+  - Attached assets: 365-day cache in production
+  - Static assets (CSS/JS): 1-year cache with immutable flag
+  - Social meta pages: 1-hour cache for freshness
+- **Legacy Image Handling**:
+  - Existing images (pre-Nov 4): Remain in original format until replaced
+  - Manual compression still recommended for existing large assets (see `IMAGE_OPTIMIZATION_GUIDE.md`)
+  - ICEF Agency logo, DC logo, and university logos can benefit from manual re-upload
 - **Code-Level Optimizations Implemented**:
   - LazyImage component with Intersection Observer for progressive loading
   - Proper width/height attributes to prevent layout shifts
   - Async decoding for non-blocking image processing
   - Loading placeholders and skeleton states
-- **Required Manual Actions**:
-  - **CRITICAL**: Compress ICEF Agency logo from 933KB → ~250KB (73% reduction)
-  - Compress DC White Logo from 175KB → ~60KB (66% reduction)
-  - Batch compress 48 university logos from ~7.2MB → ~1.8MB total (75% reduction)
-  - Compress office images (Istanbul, Cairo) from 200-300KB → 60-100KB each
-  - **Tools**: TinyPNG (tinypng.com), Squoosh (squoosh.app), or ImageOptim
-  - **Target**: Reduce total payload from ~10.3MB to ~2.7MB (74% overall reduction)
-  - **See**: `IMAGE_OPTIMIZATION_GUIDE.md` for detailed compression instructions
 - **Mobile Optimization**: Additional performance optimizations for mobile devices
   - Mobile detection utilities for device-specific optimizations
   - Reduced animation steps on mobile (20 vs 40 on desktop)

@@ -43,18 +43,15 @@ export function extractAltTextFromFilename(filename: string): string {
 }
 
 /**
- * Get optimized content type for image serving
- * Always prefer WebP for modern browsers
+ * Get correct content type for image serving based on actual file extension
+ * Returns the proper MIME type for the file being served
  * 
  * @param filename - The image filename
- * @param acceptHeader - The Accept header from request
+ * @param acceptHeader - The Accept header from request (currently unused, reserved for future content negotiation)
  * @returns Content-Type string
  */
 export function getImageContentType(filename: string, acceptHeader?: string): string {
   const ext = path.extname(filename).toLowerCase();
-  
-  // Check if browser supports WebP
-  const supportsWebP = acceptHeader?.includes('image/webp');
   
   // Map extensions to content types
   const contentTypes: Record<string, string> = {
@@ -66,11 +63,7 @@ export function getImageContentType(filename: string, acceptHeader?: string): st
     '.svg': 'image/svg+xml',
   };
   
-  // Return WebP if file is WebP or if browser supports it
-  if (ext === '.webp' || supportsWebP) {
-    return 'image/webp';
-  }
-  
+  // Return correct content type based on actual file extension
   return contentTypes[ext] || 'image/jpeg';
 }
 
