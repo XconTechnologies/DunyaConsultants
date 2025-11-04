@@ -25,6 +25,7 @@ import { appendToSheet } from "./google-sheets-service";
 import sgMail from '@sendgrid/mail';
 import QRCode from 'qrcode';
 import { getImageMetadata, extractAltTextFromFilename } from "./image-utils";
+import sharp from 'sharp';
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -5920,6 +5921,149 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error importing media:', error);
       res.status(500).json({ message: 'Failed to import media files' });
+    }
+  });
+
+  // Convert media to WebP format (Admin/Editor access)
+  app.post("/api/admin/media/convert-to-webp", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { mediaIds } = req.body;
+      
+      if (!Array.isArray(mediaIds) || mediaIds.length === 0) {
+        return res.status(400).json({ message: 'Media IDs array is required' });
+      }
+
+      const results = [];
+      const errors = [];
+
+      for (const mediaId of mediaIds) {
+        try {
+          const media = await storage.getMediaById(mediaId);
+          if (!media) {
+            errors.push({ mediaId, error: 'Media not found' });
+            continue;
+          }
+
+          // Skip if already WebP
+          if (media.mimeType === 'image/webp') {
+            results.push({ mediaId, status: 'skipped', message: 'Already WebP format' });
+            continue;
+          }
+
+          // Skip non-image files
+          if (!media.mimeType?.startsWith('image/')) {
+            errors.push({ mediaId, error: 'Not an image file' });
+            continue;
+          }
+
+          // Skip SVG files (can't be converted to WebP)
+          if (media.mimeType === 'image/svg+xml') {
+            errors.push({ mediaId, error: 'SVG files cannot be converted to WebP' });
+            continue;
+          }
+
+          const uploadsDir = path.resolve(process.cwd(), 'uploads');
+          const oldFilePath = path.join(uploadsDir, media.filename);
+          
+          // Check if source file exists
+          if (!fs.existsSync(oldFilePath)) {
+            errors.push({ mediaId, error: 'Source file not found' });
+            continue;
+          }
+
+          // Generate new filename with .webp extension
+          const originalNameWithoutExt = media.originalName.replace(/\.[^.]+$/, '');
+          const filenameWithoutExt = media.filename.replace(/\.[^.]+$/, '');
+          const newFilename = `${filenameWithoutExt}.webp`;
+          const newOriginalName = `${originalNameWithoutExt}.webp`;
+          const newFilePath = path.join(uploadsDir, newFilename);
+
+          // Convert to WebP using sharp
+          await sharp(oldFilePath)
+            .webp({ quality: 85 }) // Good quality/size balance
+            .toFile(newFilePath);
+
+          // Get new file stats
+          const stats = fs.statSync(newFilePath);
+          
+          // Get image dimensions
+          const metadata = await sharp(newFilePath).metadata();
+
+          // Update database record
+          const updatedMedia = await storage.updateMedia(mediaId, {
+            filename: newFilename,
+            originalName: newOriginalName,
+            mimeType: 'image/webp',
+            size: stats.size,
+            url: `/api/uploads/${newFilename}`,
+            width: metadata.width,
+            height: metadata.height
+          });
+
+          // Update references in branch icons
+          await db.execute(sql`
+            UPDATE branch_icons 
+            SET icon_url = ${`/api/uploads/${newFilename}`}
+            WHERE icon_url = ${media.url}
+          `);
+
+          // Update references in university icons
+          await db.execute(sql`
+            UPDATE university_icons 
+            SET logo_url = ${`/api/uploads/${newFilename}`}
+            WHERE logo_url = ${media.url}
+          `);
+
+          // Update references in blog posts (featured images)
+          await db.execute(sql`
+            UPDATE blog_posts 
+            SET featured_image = ${`/api/uploads/${newFilename}`}
+            WHERE featured_image = ${media.url}
+          `);
+
+          // Delete old file
+          try {
+            fs.unlinkSync(oldFilePath);
+          } catch (deleteError) {
+            console.warn(`Failed to delete old file: ${oldFilePath}`, deleteError);
+          }
+
+          // Create audit log
+          await storage.createAuditLog({
+            actorId: req.adminId!,
+            role: req.adminRole!,
+            action: 'convert',
+            entity: 'media',
+            entityId: mediaId,
+            before: JSON.stringify({ filename: media.filename, mimeType: media.mimeType, size: media.size }),
+            after: JSON.stringify({ filename: newFilename, mimeType: 'image/webp', size: stats.size })
+          });
+
+          results.push({ 
+            mediaId, 
+            status: 'converted', 
+            oldSize: media.size,
+            newSize: stats.size,
+            savings: media.size - stats.size,
+            oldFilename: media.filename,
+            newFilename: newFilename
+          });
+        } catch (fileError) {
+          console.error(`Error converting media ${mediaId}:`, fileError);
+          errors.push({ mediaId, error: fileError.message });
+        }
+      }
+
+      res.json({
+        success: true,
+        converted: results.length,
+        errors: errors.length,
+        results,
+        errorDetails: errors
+      });
+    } catch (error) {
+      console.error('Error converting media to WebP:', error);
+      res.status(500).json({ message: 'Failed to convert media to WebP' });
     }
   });
 

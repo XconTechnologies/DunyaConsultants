@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Plus, Upload } from "lucide-react";
+import { Plus, Upload, FileText } from "lucide-react";
 import { useIconManagement } from "@/hooks/use-icon-management";
 import { IconTable } from "@/components/admin/icon-table";
 import { IconFormDialog } from "@/components/admin/icon-form-dialog";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function BranchIconsTab() {
+  const { toast } = useToast();
+  
   const config = {
     entityType: 'branch' as const,
     apiEndpoint: '/api/admin/branch-icons',
@@ -37,6 +42,58 @@ export default function BranchIconsTab() {
     handleDelete,
   } = useIconManagement(config);
 
+  // Get all media
+  const { data: mediaFiles = [] } = useQuery({
+    queryKey: ["/api/admin/media"],
+  });
+
+  // Convert to WebP mutation
+  const convertToWebPMutation = useMutation({
+    mutationFn: async () => {
+      // Get all media IDs from branch icons that need conversion
+      const iconMediaIds = icons
+        .map(icon => {
+          const media = mediaFiles.find((m: any) => m.url === icon.iconUrl);
+          return media?.id;
+        })
+        .filter((id): id is number => id !== undefined);
+
+      if (iconMediaIds.length === 0) {
+        throw new Error("No images found to convert");
+      }
+
+      return await apiRequest('/api/admin/media/convert-to-webp', {
+        method: 'POST',
+        body: JSON.stringify({ mediaIds: iconMediaIds }),
+      });
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [config.queryKey] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/media"] });
+      
+      const formatFileSize = (bytes: number) => {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      };
+      
+      const totalSavings = data.results.reduce((sum: number, r: any) => sum + (r.savings || 0), 0);
+      toast({
+        title: "Conversion Complete",
+        description: `Converted ${data.converted} branch icon(s) to WebP. Saved ${formatFileSize(totalSavings)}`,
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Conversion Failed",
+        description: error.message || "Failed to convert icons to WebP",
+      });
+    },
+  });
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
@@ -48,6 +105,16 @@ export default function BranchIconsTab() {
           </p>
         </div>
         <div className="flex gap-2">
+          <Button 
+            onClick={() => convertToWebPMutation.mutate()} 
+            variant="outline"
+            disabled={convertToWebPMutation.isPending || icons.length === 0}
+            data-testid="button-convert-all-webp"
+            className="border-green-600 text-green-700 hover:bg-green-50 transition-all"
+          >
+            <FileText className="h-4 w-4 mr-2" />
+            {convertToWebPMutation.isPending ? "Converting..." : "Convert All to WebP"}
+          </Button>
           {icons.length === 0 && (
             <Button 
               onClick={() => seedMutation.mutate()} 

@@ -291,6 +291,38 @@ export default function MediaManagement() {
     },
   });
 
+  // Convert to WebP mutation
+  const convertToWebPMutation = useMutation({
+    mutationFn: async (mediaIds: number[]) => {
+      const response = await fetch("/api/admin/media/convert-to-webp", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ mediaIds }),
+      });
+      if (!response.ok) throw new Error("Failed to convert media to WebP");
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/media"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/branch-icons"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/university-icons"] });
+      setSelectedMediaIds([]);
+      
+      const totalSavings = data.results.reduce((sum: number, r: any) => sum + (r.savings || 0), 0);
+      toast({
+        title: "Success",
+        description: `Converted ${data.converted} file(s) to WebP. Saved ${formatFileSize(totalSavings)}`,
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   // Handle file upload
   const handleUpload = () => {
     if (uploadFiles && uploadFiles.length > 0) {
@@ -478,16 +510,29 @@ export default function MediaManagement() {
               
               <div className="flex items-center space-x-3">
                 {selectedMediaIds.length > 0 && (
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={handleBulkDelete}
-                    className="h-10"
-                    data-testid="button-bulk-delete"
-                  >
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Delete ({selectedMediaIds.length})
-                  </Button>
+                  <>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => convertToWebPMutation.mutate(selectedMediaIds)}
+                      disabled={convertToWebPMutation.isPending}
+                      className="h-10 bg-green-50 text-green-700 border-green-300 hover:bg-green-100"
+                      data-testid="button-bulk-convert-webp"
+                    >
+                      <FileText className="h-4 w-4 mr-2" />
+                      {convertToWebPMutation.isPending ? "Converting..." : `Convert to WebP (${selectedMediaIds.length})`}
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={handleBulkDelete}
+                      className="h-10"
+                      data-testid="button-bulk-delete"
+                    >
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Delete ({selectedMediaIds.length})
+                    </Button>
+                  </>
                 )}
                 
                 <div className="flex items-center bg-gray-100 rounded-lg p-1">
@@ -633,6 +678,19 @@ export default function MediaManagement() {
                           >
                             <Edit2 className="h-4 w-4 text-gray-700" />
                           </Button>
+                          {media.mimeType.startsWith('image/') && media.mimeType !== 'image/webp' && media.mimeType !== 'image/svg+xml' && (
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              onClick={() => convertToWebPMutation.mutate([media.id])}
+                              disabled={convertToWebPMutation.isPending}
+                              className="h-8 w-8 p-0 bg-green-500/90 backdrop-blur-sm hover:bg-green-600 border-0"
+                              title="Convert to WebP"
+                              data-testid={`button-convert-webp-${media.id}`}
+                            >
+                              <FileText className="h-4 w-4 text-white" />
+                            </Button>
+                          )}
                           <Button
                             size="sm"
                             variant="destructive"
@@ -758,6 +816,19 @@ export default function MediaManagement() {
                           >
                             <Edit2 className="h-4 w-4" />
                           </Button>
+                          {media.mimeType.startsWith('image/') && media.mimeType !== 'image/webp' && media.mimeType !== 'image/svg+xml' && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => convertToWebPMutation.mutate([media.id])}
+                              disabled={convertToWebPMutation.isPending}
+                              title="Convert to WebP"
+                              className="text-green-600 hover:text-green-700 hover:bg-green-50"
+                              data-testid={`button-list-convert-webp-${media.id}`}
+                            >
+                              <FileText className="h-4 w-4" />
+                            </Button>
+                          )}
                           <Button
                             size="sm"
                             variant="ghost"
