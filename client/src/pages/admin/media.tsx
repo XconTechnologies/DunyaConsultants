@@ -54,7 +54,7 @@ export default function MediaManagement() {
   const [selectedMediaIds, setSelectedMediaIds] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const [editingMedia, setEditingMedia] = useState<Media | null>(null);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
@@ -63,6 +63,8 @@ export default function MediaManagement() {
     alt: "",
     filename: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(25);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -135,6 +137,48 @@ export default function MediaManagement() {
     
     return matchesSearch && matchesType;
   });
+
+  // Calculate smart pagination options
+  const totalItems = filteredMedia.length;
+  const getPageSizeOptions = () => {
+    const baseOptions = [25, 50, 75, 100];
+    const options = [...baseOptions];
+    
+    // Add 200 if total items >= 200
+    if (totalItems >= 200) {
+      options.push(200);
+    }
+    
+    // Add 500 if total items >= 500
+    if (totalItems >= 500) {
+      options.push(500);
+    }
+    
+    // Add 700 if total items >= 700
+    if (totalItems >= 700) {
+      options.push(700);
+    }
+    
+    // Add 1000 if total items >= 1000
+    if (totalItems >= 1000) {
+      options.push(1000);
+    }
+    
+    return options;
+  };
+
+  const pageSizeOptions = getPageSizeOptions();
+
+  // Pagination calculations
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedMedia = filteredMedia.slice(startIndex, endIndex);
+
+  // Reset to page 1 when search/filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filterType]);
 
   // Upload media mutation
   const uploadMutation = useMutation({
@@ -374,13 +418,26 @@ export default function MediaManagement() {
     }
   };
 
-  // Handle select all
+  // Handle select all (current page only)
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedMediaIds(filteredMedia.map((media: Media) => media.id));
+      const newSelections = [...selectedMediaIds, ...currentPageMediaIds.filter(id => !selectedMediaIds.includes(id))];
+      setSelectedMediaIds(newSelections);
     } else {
-      setSelectedMediaIds([]);
+      setSelectedMediaIds(selectedMediaIds.filter(id => !currentPageMediaIds.includes(id)));
     }
+  };
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Handle items per page change
+  const handleItemsPerPageChange = (value: number) => {
+    setItemsPerPage(value);
+    setCurrentPage(1); // Reset to first page
   };
 
   // Handle copy URL to clipboard
@@ -432,8 +489,9 @@ export default function MediaManagement() {
     );
   }
 
-  const isAllSelected = filteredMedia.length > 0 && selectedMediaIds.length === filteredMedia.length;
-  const isSomeSelected = selectedMediaIds.length > 0 && selectedMediaIds.length < filteredMedia.length;
+  const currentPageMediaIds = paginatedMedia.map((m: Media) => m.id);
+  const isAllSelected = paginatedMedia.length > 0 && currentPageMediaIds.every(id => selectedMediaIds.includes(id));
+  const isSomeSelected = selectedMediaIds.length > 0 && !isAllSelected;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -565,7 +623,7 @@ export default function MediaManagement() {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
               <p className="text-gray-600">Loading media files...</p>
             </div>
-          ) : filteredMedia.length === 0 ? (
+          ) : totalItems === 0 ? (
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm text-center py-16">
               <div className="max-w-md mx-auto">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -600,18 +658,18 @@ export default function MediaManagement() {
                 <Checkbox
                   checked={isAllSelected}
                   onCheckedChange={handleSelectAll}
-                  aria-label="Select all media"
+                  aria-label="Select all media on this page"
                   className="border-gray-300"
                   data-testid="checkbox-select-all"
                 />
                 <label className="ml-3 text-sm font-medium text-gray-700">
-                  Select All <span className="text-gray-500">({filteredMedia.length} files)</span>
+                  Select All on Page <span className="text-gray-500">({paginatedMedia.length} of {totalItems} files)</span>
                 </label>
               </div>
               
               {/* Grid View */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                {filteredMedia.map((media: Media) => (
+                {paginatedMedia.map((media: Media) => (
                   <div
                     key={media.id}
                     className="group relative bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-xl transition-all duration-300"
@@ -717,31 +775,137 @@ export default function MediaManagement() {
                   </div>
                 ))}
               </div>
+              
+              {/* Pagination Controls for Grid View */}
+              {totalPages > 1 && (
+                <div className="mt-6 bg-white rounded-xl border-2 border-gray-100 shadow-sm p-4">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm text-gray-600 font-medium">
+                        Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} files
+                      </span>
+                      <span className="text-gray-300">|</span>
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm text-gray-600 font-medium">Show:</label>
+                        <select
+                          value={itemsPerPage}
+                          onChange={(e) => handleItemsPerPageChange(Number(e.target.value))}
+                          className="px-3 py-1.5 border-2 border-gray-200 rounded-lg bg-white text-sm font-medium text-gray-700 hover:border-[#1D50C9]/30 focus:border-[#1D50C9] focus:ring-2 focus:ring-[#1D50C9]/20 transition-colors"
+                          data-testid="select-items-per-page-grid"
+                        >
+                          {pageSizeOptions.map((size) => (
+                            <option key={size} value={size}>
+                              {size} per page
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(1)}
+                        disabled={currentPage === 1}
+                        className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                        data-testid="button-first-page-grid"
+                      >
+                        First
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                        data-testid="button-prev-page-grid"
+                      >
+                        Previous
+                      </Button>
+                      
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                          let pageNum;
+                          if (totalPages <= 5) {
+                            pageNum = i + 1;
+                          } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                          } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = currentPage - 2 + i;
+                          }
+                          
+                          return (
+                            <Button
+                              key={pageNum}
+                              variant={currentPage === pageNum ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => handlePageChange(pageNum)}
+                              className={currentPage === pageNum 
+                                ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0" 
+                                : "border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50"
+                              }
+                              data-testid={`button-page-grid-${pageNum}`}
+                            >
+                              {pageNum}
+                            </Button>
+                          );
+                        })}
+                      </div>
+                      
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                        data-testid="button-next-page-grid"
+                      >
+                        Next
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(totalPages)}
+                        disabled={currentPage === totalPages}
+                        className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                        data-testid="button-last-page-grid"
+                      >
+                        Last
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             /* List View */
-            <Card>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12">
-                      <Checkbox
-                        checked={isAllSelected}
-                        onCheckedChange={handleSelectAll}
-                        aria-label="Select all media"
-                        data-testid="checkbox-select-all-list"
-                      />
-                    </TableHead>
-                    <TableHead>File</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Size</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Uploaded By</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredMedia.map((media: Media) => (
+            <>
+              <Card className="border-2 border-gray-100">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gradient-to-r from-blue-50/50 to-indigo-50/50 hover:from-blue-50 hover:to-indigo-50">
+                      <TableHead className="w-12">
+                        <Checkbox
+                          checked={isAllSelected}
+                          onCheckedChange={handleSelectAll}
+                          aria-label="Select all media on this page"
+                          className="border-[#1D50C9]/30"
+                          data-testid="checkbox-select-all-list"
+                        />
+                      </TableHead>
+                      <TableHead className="font-semibold text-gray-700">File</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Type</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Size</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Date</TableHead>
+                      <TableHead className="font-semibold text-gray-700">Uploaded By</TableHead>
+                      <TableHead className="text-right font-semibold text-gray-700">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedMedia.map((media: Media) => (
                     <TableRow key={media.id} data-testid={`row-media-${media.id}`}>
                       <TableCell>
                         <Checkbox
@@ -845,7 +1009,112 @@ export default function MediaManagement() {
                 </TableBody>
               </Table>
             </Card>
-          )}
+            
+            {/* Pagination Controls for List View */}
+            {totalPages > 1 && (
+              <div className="mt-6 bg-white rounded-xl border-2 border-gray-100 shadow-sm p-4">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-600 font-medium">
+                      Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} files
+                    </span>
+                    <span className="text-gray-300">|</span>
+                    <div className="flex items-center gap-2">
+                      <label className="text-sm text-gray-600 font-medium">Show:</label>
+                      <select
+                        value={itemsPerPage}
+                        onChange={(e) => handleItemsPerPageChange(Number(e.target.value))}
+                        className="px-3 py-1.5 border-2 border-gray-200 rounded-lg bg-white text-sm font-medium text-gray-700 hover:border-[#1D50C9]/30 focus:border-[#1D50C9] focus:ring-2 focus:ring-[#1D50C9]/20 transition-colors"
+                        data-testid="select-items-per-page"
+                      >
+                        {pageSizeOptions.map((size) => (
+                          <option key={size} value={size}>
+                            {size} per page
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(1)}
+                      disabled={currentPage === 1}
+                      className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                      data-testid="button-first-page"
+                    >
+                      First
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                      data-testid="button-prev-page"
+                    >
+                      Previous
+                    </Button>
+                    
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={currentPage === pageNum ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(pageNum)}
+                            className={currentPage === pageNum 
+                              ? "bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0" 
+                              : "border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50"
+                            }
+                            data-testid={`button-page-${pageNum}`}
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                      data-testid="button-next-page"
+                    >
+                      Next
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(totalPages)}
+                      disabled={currentPage === totalPages}
+                      className="border-2 border-gray-200 hover:border-[#1D50C9] hover:bg-blue-50 disabled:opacity-50"
+                      data-testid="button-last-page"
+                    >
+                      Last
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        )}
         </main>
       </div>
 
