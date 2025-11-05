@@ -109,3 +109,11 @@ See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimizati
   - Slower connection detection (3G or slower)
   - Deferred third-party scripts (5s on mobile vs 3s on desktop)
   - Critical inline CSS with mobile-first responsive styles
+  - **NEW (Nov 5)**: Responsive image optimization for mobile devices:
+    - Added `/api/images/optimize/:filename` endpoint for on-demand image optimization
+    - Supports width (`?w=320`) and quality (`?q=75`) query parameters
+    - SmartImage component now automatically generates srcset with mobile-optimized sizes (320w, 640w, 960w, 1280w, 1920w)
+    - Intelligent sizes attribute: `(max-width: 640px) 320px, (max-width: 960px) 640px, (max-width: 1280px) 960px, 1280px`
+    - Only applies to `/api/uploads/` images (attached_assets excluded)
+    - Expected mobile payload reduction: ~70-80% for large images
+    - 1-year cache headers for optimized images (`max-age=31536000, immutable`)
