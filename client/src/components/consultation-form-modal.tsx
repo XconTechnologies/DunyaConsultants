@@ -146,15 +146,9 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
       });
 
       if (response.ok) {
-        trackEvent("consultation_form_submitted", {
-          countries: formData.interestedCountries.join(", "),
-          hasLanguageTest: formData.hasLanguageTest
-        });
+        trackEvent("consultation_form_submitted", "engagement", formData.interestedCountries.join(", "));
         
-        trackConsultationBooking({
-          whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
-          email: formData.email
-        });
+        trackConsultationBooking();
 
         setShowThankYou(true);
         
