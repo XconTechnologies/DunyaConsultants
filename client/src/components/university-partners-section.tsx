@@ -4,10 +4,10 @@ import SmartImage from "@/components/ui/smart-image";
 import { LazyImage } from "@/components/ui/lazy-image";
 
 // Import university logos - original 10
-import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
-import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750755121094.jpg";
-import qaPartnershipLogo from "@assets/Untitled design (14)_1750755121095.jpg";
-import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750755121095.jpg";
+import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.webp";
+import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750755121094.webp";
+import qaPartnershipLogo from "@assets/Untitled design (14)_1750755121095.webp";
+import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750755121095.webp";
 import universityAppliedSciencesLogo from "@assets/Uni-Logos-3-14-2048x878_1750755121096.jpg";
 import southernCrossLogo from "@assets/Uni-Logos-3-15-1-2048x879_1750755121096.jpg";
 import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750755121097.jpg";
