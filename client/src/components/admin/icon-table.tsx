@@ -46,9 +46,10 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive, onPreview, imageF
     <TableRow 
       ref={setNodeRef} 
       style={style}
-      className="border-b border-gray-100 hover:bg-blue-50/30 transition-colors"
+      onClick={() => onPreview(icon)}
+      className="border-b border-gray-100 hover:bg-blue-50/30 transition-colors cursor-pointer"
     >
-      <TableCell>
+      <TableCell onClick={(e) => e.stopPropagation()}>
         <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-2 rounded hover:bg-blue-100/50 transition-colors">
           <GripVertical className="h-5 w-5 text-[#1D50C9]" />
         </div>
@@ -71,7 +72,7 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive, onPreview, imageF
           {icon.isActive ? "Active" : "Inactive"}
         </Badge>
       </TableCell>
-      <TableCell>
+      <TableCell onClick={(e) => e.stopPropagation()}>
         <div className="flex gap-1 justify-end">
           <Button
             variant="ghost"
