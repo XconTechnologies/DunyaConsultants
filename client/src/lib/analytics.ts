@@ -34,7 +34,9 @@ export const initGA = () => {
   `;
   document.head.appendChild(script2);
 
-  console.log('Google Analytics initialized with ID:', measurementId);
+  if (import.meta.env.DEV) {
+    console.log('Google Analytics initialized with ID:', measurementId);
+  }
 };
 
 // Track page views - useful for single-page applications

@@ -51,6 +51,9 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 
 ## Performance Optimizations
 
+### Performance Guide
+See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimization details, testing procedures, and best practices.
+
 ### Core Web Vitals Improvements (November 2025)
 - **LCP Optimization**: Improved from 5s → 4.23s → 3.78s → **1.95s (✅ GOOD)** through:
   - Restored critical JavaScript module preloading (`/src/main.tsx`)
