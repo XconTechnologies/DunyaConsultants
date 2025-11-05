@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Download, X } from "lucide-react";
+import { Download } from "lucide-react";
 import { useState } from "react";
 
 interface IconPreviewDialogProps {
@@ -58,25 +58,12 @@ export function IconPreviewDialog({ isOpen, onClose, icon, imageField }: IconPre
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Icon Preview
-              </DialogTitle>
-              <DialogDescription className="mt-1">
-                {icon.name}
-              </DialogDescription>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="hover:bg-gray-100"
-              data-testid="button-close-preview"
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+          <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+            Icon Preview
+          </DialogTitle>
+          <DialogDescription className="mt-1">
+            {icon.name}
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
