@@ -34,6 +34,7 @@ const ContactPage = lazy(() => import("@/pages/contact"));
 const FAQsPage = lazy(() => import("@/pages/faqs"));
 const ScholarshipsPage = lazy(() => import("@/pages/scholarships"));
 const ServicesPage = lazy(() => import("@/pages/services"));
+const BookConsultation = lazy(() => import("@/pages/book-consultation"));
 // Lazy-load office pages
 const OfficesList = lazy(() => import("@/pages/offices/OfficesList"));
 const OfficeDetails = lazy(() => import("@/pages/offices/OfficeDetails"));
@@ -150,6 +151,7 @@ function Router() {
       <Route path="/faqs" component={FAQsPage} />
       <Route path="/scholarships" component={ScholarshipsPage} />
       <Route path="/services" component={ServicesPage} />
+      <Route path="/book-consultation" component={BookConsultation} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-of-services" component={TermsOfServices} />
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
