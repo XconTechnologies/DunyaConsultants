@@ -26,7 +26,7 @@ The application features a professional dark blue gradient design with custom br
 - **Extensive Blog System**: SEO-optimized and dynamic content capabilities.
 - **Study Destination Guides**: Comprehensive guides for multiple countries (USA, UK, Canada, Finland, Australia, Belgium, Turkey).
 - **Event Management**: With registration forms.
-- **Consultation Booking**: Real-time calendar functionality with universal shareable link system. The consultation form popup can be accessed via `/book-consultation` URL, which opens the popup on any page without reload. The URL syncs with popup state for easy sharing via WhatsApp, email, QR codes, or social media.
+- **Consultation Booking**: Real-time calendar functionality.
 - **WhatsApp Integration**: Direct contact button for instant consultations.
 - **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings and a three-state approval workflow.
 - **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles. Includes WebP conversion functionality for university icons using `/attached_assets/` paths (fixed November 2025).
