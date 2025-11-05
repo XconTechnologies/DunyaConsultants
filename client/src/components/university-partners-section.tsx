@@ -8,12 +8,12 @@ import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.web
 import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750755121094.webp";
 import qaPartnershipLogo from "@assets/Untitled design (14)_1750755121095.webp";
 import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750755121095.webp";
-import universityAppliedSciencesLogo from "@assets/Uni-Logos-3-14-2048x878_1750755121096.jpg";
-import southernCrossLogo from "@assets/Uni-Logos-3-15-1-2048x879_1750755121096.jpg";
-import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750755121097.jpg";
-import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750755121098.jpg";
-import avilaUniversityLogo from "@assets/Uni-Logos-3-18-2048x878_1750755121099.jpg";
-import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750755121100.jpg";
+import universityAppliedSciencesLogo from "@assets/Uni-Logos-3-14-2048x878_1750755121096.webp";
+import southernCrossLogo from "@assets/Uni-Logos-3-15-1-2048x879_1750755121096.webp";
+import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750755121097.webp";
+import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750755121098.webp";
+import avilaUniversityLogo from "@assets/Uni-Logos-3-18-2048x878_1750755121099.webp";
+import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750755121100.webp";
 
 // Import additional university logos - batch 2 (12 logos)
 import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750756376768.jpg";
