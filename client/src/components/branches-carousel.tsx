@@ -121,7 +121,7 @@ export default function BranchesCarousel() {
           100% { transform: translateX(${totalDistance}px); }
         }
         .animate-scroll {
-          animation: scroll 12s linear infinite;
+          animation: scroll 40s linear infinite;
         }
       `}</style>
     </section>
