@@ -5028,6 +5028,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/uploads/:filename", handleUploadRequest);
   app.head("/api/uploads/:filename", handleUploadRequest);
 
+  // Image optimization endpoint - serves responsive images
+  app.get("/api/images/optimize/:filename", async (req, res) => {
+    try {
+      const { filename } = req.params;
+      const width = req.query.w ? parseInt(req.query.w as string) : undefined;
+      const quality = req.query.q ? parseInt(req.query.q as string) : 80;
+
+      const filePath = path.join(uploadsDir, filename);
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: 'Image not found' });
+      }
+
+      // Determine content type
+      const ext = path.extname(filename).toLowerCase();
+      let format: 'webp' | 'jpeg' | 'png' = 'webp';
+      if (ext === '.jpg' || ext === '.jpeg') format = 'jpeg';
+      else if (ext === '.png') format = 'png';
+
+      // Optimize image
+      let image = sharp(filePath);
+      
+      if (width) {
+        image = image.resize(width, null, {
+          fit: 'inside',
+          withoutEnlargement: true
+        });
+      }
+
+      // Apply format-specific optimization
+      if (format === 'webp') {
+        image = image.webp({ quality, effort: 4 });
+      } else if (format === 'jpeg') {
+        image = image.jpeg({ quality, mozjpeg: true });
+      } else if (format === 'png') {
+        image = image.png({ quality: Math.min(quality, 90), compressionLevel: 9 });
+      }
+
+      const buffer = await image.toBuffer();
+      
+      // Set cache headers
+      res.set({
+        'Content-Type': `image/${format}`,
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Content-Length': buffer.length.toString()
+      });
+
+      res.send(buffer);
+    } catch (error) {
+      console.error('Image optimization error:', error);
+      res.status(500).json({ message: 'Image optimization failed' });
+    }
+  });
+
   // ==============================================
   // PUBLIC BLOG ROUTES
   // ==============================================
