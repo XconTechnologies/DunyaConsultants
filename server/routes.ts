@@ -5035,7 +5035,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const width = req.query.w ? parseInt(req.query.w as string) : undefined;
       const quality = req.query.q ? parseInt(req.query.q as string) : 80;
 
-      const filePath = path.join(uploadsDir, filename);
+      const filePath = path.join(uploadDir, filename);
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ message: 'Image not found' });
       }
