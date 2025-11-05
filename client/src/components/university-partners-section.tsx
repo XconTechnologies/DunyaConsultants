@@ -16,46 +16,46 @@ import avilaUniversityLogo from "@assets/Uni-Logos-3-18-2048x878_1750755121099.w
 import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750755121100.webp";
 
 // Import additional university logos - batch 2 (12 logos)
-import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750756376768.jpg";
-import canterburyChristChurchLogo from "@assets/Uni-Logos-10_1750756376770.jpg";
-import concordiaUniversityLogo from "@assets/Uni-Logos-18-1_1750756376771.jpg";
-import gloucestershireLogo from "@assets/Uni-Logos-20-1_1750756376772.jpg";
-import ulsterUniversityNewLogo from "@assets/Uni-Logos-21_1750756376773.jpg";
-import northamptonLogo from "@assets/Uni-Logos-25-1_1750756376774.jpg";
-import bangorUniversityLogo from "@assets/Uni-Logos-2-08-1_1750756376776.jpg";
-import universityCanadaWestLogo from "@assets/Uni-Logos-3-01-2048x878_1750756376777.jpg";
-import kadirHasLogo from "@assets/Uni-Logos-3-02-2048x877_1750756376778.jpg";
-import universityOfLawLogo from "@assets/Uni-Logos-3-03-2048x878_1750756376779.jpg";
+import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750756376768.webp";
+import canterburyChristChurchLogo from "@assets/Uni-Logos-10_1750756376770.webp";
+import concordiaUniversityLogo from "@assets/Uni-Logos-18-1_1750756376771.webp";
+import gloucestershireLogo from "@assets/Uni-Logos-20-1_1750756376772.webp";
+import ulsterUniversityNewLogo from "@assets/Uni-Logos-21_1750756376773.webp";
+import northamptonLogo from "@assets/Uni-Logos-25-1_1750756376774.webp";
+import bangorUniversityLogo from "@assets/Uni-Logos-2-08-1_1750756376776.webp";
+import universityCanadaWestLogo from "@assets/Uni-Logos-3-01-2048x878_1750756376777.webp";
+import kadirHasLogo from "@assets/Uni-Logos-3-02-2048x877_1750756376778.webp";
+import universityOfLawLogo from "@assets/Uni-Logos-3-03-2048x878_1750756376779.webp";
 
 // Import additional university logos - batch 3 (10 logos)
 import deMontfortLogo from "@assets/Group 1000008937_1759736620706.png";
-import gbsGlobalLogo from "@assets/Uni-Logos-3-05-2048x879_1750756577520.jpg";
-import abertayUniversityLogo from "@assets/Uni-Logos-3-06-2048x878_1750756577521.jpg";
-import heriotWattLogo from "@assets/Uni-Logos-3-07-2048x879_1750756577522.jpg";
-import bahcesehirLogo from "@assets/Uni-Logos-3-08-2048x878_1750756577523.jpg";
-import collegeDeParisLogo from "@assets/Uni-Logos-3-09-2048x879_1750756577524.jpg";
-import limCollegeLogo from "@assets/Uni-Logos-3-11-2048x879_1750756577525.jpg";
-import gusMedicalLogo from "@assets/Uni-Logos-3-12-2048x878_1750756577526.jpg";
-import herzingUniversityLogo from "@assets/Uni-Logos-3-13-2048x879_1750756577527.jpg";
-import icUniversityLogo from "@assets/Artboard-1-copy-5_1750756577528.jpg";
+import gbsGlobalLogo from "@assets/Uni-Logos-3-05-2048x879_1750756577520.webp";
+import abertayUniversityLogo from "@assets/Uni-Logos-3-06-2048x878_1750756577521.webp";
+import heriotWattLogo from "@assets/Uni-Logos-3-07-2048x879_1750756577522.webp";
+import bahcesehirLogo from "@assets/Uni-Logos-3-08-2048x878_1750756577523.webp";
+import collegeDeParisLogo from "@assets/Uni-Logos-3-09-2048x879_1750756577524.webp";
+import limCollegeLogo from "@assets/Uni-Logos-3-11-2048x879_1750756577525.webp";
+import gusMedicalLogo from "@assets/Uni-Logos-3-12-2048x878_1750756577526.webp";
+import herzingUniversityLogo from "@assets/Uni-Logos-3-13-2048x879_1750756577527.webp";
+import icUniversityLogo from "@assets/Artboard-1-copy-5_1750756577528.webp";
 
 // Import additional university logos - batch 4 (10 logos)
-import beykozUniversityLogo from "@assets/Artboard-1-copy-14-2_1750756910267.jpg";
-import capilanoUniversityLogo from "@assets/Artboard-1-copy-19-3_1750756910268.jpg";
-import niagaraFallsLogo from "@assets/Artboard-1-copy-41-1_1750756910271.jpg";
-import universityOfEuropeLogo from "@assets/Artboard-1-copy-42_1750756910272.jpg";
-import hartpuryUniversityLogo from "@assets/download_1750756910273.jpg";
-import etonCollegeLogo from "@assets/download-1_1750756910275.jpg";
-import halicUniversityLogo from "@assets/Halic-University-15-2048x879_1750756910276.jpg";
-import teessideUniversityLogo from "@assets/Teesside-University-logo_1750756910279.jpg";
+import beykozUniversityLogo from "@assets/Artboard-1-copy-14-2_1750756910267.webp";
+import capilanoUniversityLogo from "@assets/Artboard-1-copy-19-3_1750756910268.webp";
+import niagaraFallsLogo from "@assets/Artboard-1-copy-41-1_1750756910271.webp";
+import universityOfEuropeLogo from "@assets/Artboard-1-copy-42_1750756910272.webp";
+import hartpuryUniversityLogo from "@assets/download_1750756910273.webp";
+import etonCollegeLogo from "@assets/download-1_1750756910275.webp";
+import halicUniversityLogo from "@assets/Halic-University-15-2048x879_1750756910276.webp";
+import teessideUniversityLogo from "@assets/Teesside-University-logo_1750756910279.webp";
 
 // Import additional university logos - batch 5 (6 logos)
-import leedsTrinityLogo from "@assets/Uni-Logos-2-01_1750757117512.jpg";
-import gismaUniversityLogo from "@assets/Uni-Logos-2-04-1_1750757117514.jpg";
-import fanshaweCollegeLogo from "@assets/Uni-Logos-2-06-1_1750757117515.jpg";
-import angliRuskinLogo from "@assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750757117517.jpg";
-import ucaLogo from "@assets/Artboard-1-copy-3-2_1750757117518.jpg";
-import websterUniversityNewLogo from "@assets/Artboard-1-copy-4_1750757117520.jpg";
+import leedsTrinityLogo from "@assets/Uni-Logos-2-01_1750757117512.webp";
+import gismaUniversityLogo from "@assets/Uni-Logos-2-04-1_1750757117514.webp";
+import fanshaweCollegeLogo from "@assets/Uni-Logos-2-06-1_1750757117515.webp";
+import angliRuskinLogo from "@assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750757117517.webp";
+import ucaLogo from "@assets/Artboard-1-copy-3-2_1750757117518.webp";
+import websterUniversityNewLogo from "@assets/Artboard-1-copy-4_1750757117520.webp";
 
 // University partners data - all 48 universities (organized by country priority: UK first, then others)
 const universityPartners = [
