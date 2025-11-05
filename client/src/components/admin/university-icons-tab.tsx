@@ -1,14 +1,18 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Upload, Wrench, FileText } from "lucide-react";
 import { useIconManagement } from "@/hooks/use-icon-management";
 import { IconTable } from "@/components/admin/icon-table";
 import { IconFormDialog } from "@/components/admin/icon-form-dialog";
+import { IconPreviewDialog } from "@/components/admin/icon-preview-dialog";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 export default function UniversityIconsTab() {
   const { toast } = useToast();
+  const [previewIcon, setPreviewIcon] = useState<any>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   
   const config = {
     entityType: 'university' as const,
@@ -102,6 +106,16 @@ export default function UniversityIconsTab() {
     },
   });
 
+  const handlePreview = (icon: any) => {
+    setPreviewIcon(icon);
+    setIsPreviewOpen(true);
+  };
+
+  const handleClosePreview = () => {
+    setIsPreviewOpen(false);
+    setPreviewIcon(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
@@ -156,6 +170,7 @@ export default function UniversityIconsTab() {
         onEdit={handleOpenDialog}
         onDelete={handleDelete}
         onToggleActive={handleToggleActive}
+        onPreview={handlePreview}
         isLoading={isLoading}
         imageField="logoUrl"
       />
@@ -171,6 +186,14 @@ export default function UniversityIconsTab() {
         isPending={createMutation.isPending || updateMutation.isPending}
         labels={config.labels}
         imageFieldLabel="Logo URL"
+      />
+
+      {/* Preview Dialog */}
+      <IconPreviewDialog
+        isOpen={isPreviewOpen}
+        onClose={handleClosePreview}
+        icon={previewIcon}
+        imageField="logoUrl"
       />
     </div>
   );

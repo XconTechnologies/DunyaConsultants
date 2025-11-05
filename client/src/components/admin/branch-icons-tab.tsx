@@ -1,14 +1,18 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Upload, FileText } from "lucide-react";
 import { useIconManagement } from "@/hooks/use-icon-management";
 import { IconTable } from "@/components/admin/icon-table";
 import { IconFormDialog } from "@/components/admin/icon-form-dialog";
+import { IconPreviewDialog } from "@/components/admin/icon-preview-dialog";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 export default function BranchIconsTab() {
   const { toast } = useToast();
+  const [previewIcon, setPreviewIcon] = useState<any>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   
   const config = {
     entityType: 'branch' as const,
@@ -92,6 +96,16 @@ export default function BranchIconsTab() {
     },
   });
 
+  const handlePreview = (icon: any) => {
+    setPreviewIcon(icon);
+    setIsPreviewOpen(true);
+  };
+
+  const handleClosePreview = () => {
+    setIsPreviewOpen(false);
+    setPreviewIcon(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
@@ -144,6 +158,7 @@ export default function BranchIconsTab() {
         onEdit={handleOpenDialog}
         onDelete={handleDelete}
         onToggleActive={handleToggleActive}
+        onPreview={handlePreview}
         isLoading={isLoading}
         imageField="iconUrl"
       />
@@ -159,6 +174,14 @@ export default function BranchIconsTab() {
         isPending={createMutation.isPending || updateMutation.isPending}
         labels={config.labels}
         imageFieldLabel="Icon URL"
+      />
+
+      {/* Preview Dialog */}
+      <IconPreviewDialog
+        isOpen={isPreviewOpen}
+        onClose={handleClosePreview}
+        icon={previewIcon}
+        imageField="iconUrl"
       />
     </div>
   );
