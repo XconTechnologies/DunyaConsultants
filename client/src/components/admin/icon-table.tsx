@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { GripVertical, Eye, EyeOff, Pencil, Trash2 } from "lucide-react";
+import { GripVertical, Eye, EyeOff, Pencil, Trash2, Maximize2 } from "lucide-react";
 
 interface IconData {
   id: number;
@@ -22,10 +22,11 @@ interface SortableRowProps {
   onEdit: (icon: IconData) => void;
   onDelete: (id: number) => void;
   onToggleActive: (icon: IconData) => void;
+  onPreview: (icon: IconData) => void;
   imageField: 'iconUrl' | 'logoUrl';
 }
 
-function SortableRow({ icon, onEdit, onDelete, onToggleActive, imageField }: SortableRowProps) {
+function SortableRow({ icon, onEdit, onDelete, onToggleActive, onPreview, imageField }: SortableRowProps) {
   const {
     attributes,
     listeners,
@@ -75,6 +76,16 @@ function SortableRow({ icon, onEdit, onDelete, onToggleActive, imageField }: Sor
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => onPreview(icon)}
+            data-testid={`button-preview-${icon.id}`}
+            className="hover:bg-purple-100 hover:text-purple-700"
+            title="Preview icon"
+          >
+            <Maximize2 className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onToggleActive(icon)}
             data-testid={`button-toggle-active-${icon.id}`}
             className="hover:bg-blue-100 hover:text-[#1D50C9]"
@@ -115,6 +126,7 @@ interface IconTableProps {
   onEdit: (icon: IconData) => void;
   onDelete: (id: number) => void;
   onToggleActive: (icon: IconData) => void;
+  onPreview: (icon: IconData) => void;
   isLoading: boolean;
   imageField: 'iconUrl' | 'logoUrl';
 }
@@ -125,7 +137,8 @@ export function IconTable({
   onDragEnd, 
   onEdit, 
   onDelete, 
-  onToggleActive, 
+  onToggleActive,
+  onPreview, 
   isLoading,
   imageField 
 }: IconTableProps) {
@@ -190,6 +203,7 @@ export function IconTable({
                       onEdit={onEdit}
                       onDelete={onDelete}
                       onToggleActive={onToggleActive}
+                      onPreview={onPreview}
                       imageField={imageField}
                     />
                   ))}
