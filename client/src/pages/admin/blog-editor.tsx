@@ -238,6 +238,9 @@ export default function BlogEditor() {
   // Track the current post ID to detect when we switch posts
   const currentPostIdRef = useRef<number | null>(null);
   
+  // Track the snapshot of blocks being saved for use in onSuccess callback
+  const pendingSaveSnapshotRef = useRef<string | null>(null);
+  
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
@@ -620,6 +623,18 @@ export default function BlogEditor() {
       return response.json();
     },
     onSuccess: (data) => {
+      // Update refs BEFORE refetch to prevent race condition
+      if (pendingSaveSnapshotRef.current && editorMode === 'blocks') {
+        const currentBlocksSnapshot = JSON.stringify(customBlocks);
+        // Only reset modification flag if blocks haven't changed since we started the save
+        if (pendingSaveSnapshotRef.current === currentBlocksSnapshot) {
+          lastSavedBlocksRef.current = pendingSaveSnapshotRef.current;
+          blocksModifiedRef.current = false;
+        }
+        // If they're different, keep blocksModifiedRef true to protect new changes
+        pendingSaveSnapshotRef.current = null; // Clear after processing
+      }
+      
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
       if (isEditing) {
         queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
@@ -702,12 +717,12 @@ export default function BlogEditor() {
     setIsSaving(true);
     try {
       // Capture the blocks being saved before mutation
-      let savedBlocksSnapshot: string | null = null;
+      pendingSaveSnapshotRef.current = null;
       
       // If in Blocks mode, convert custom blocks to HTML
       if (editorMode === 'blocks' && customBlocks.length > 0) {
         // Capture snapshot of blocks being saved
-        savedBlocksSnapshot = JSON.stringify(customBlocks);
+        pendingSaveSnapshotRef.current = JSON.stringify(customBlocks);
         
         // Convert blocks to HTML
         const html = blocksToHtml(customBlocks);
@@ -720,17 +735,6 @@ export default function BlogEditor() {
       }
       
       await saveMutation.mutateAsync(data);
-      
-      // After successful save, update the saved blocks reference only if blocks haven't changed
-      if (savedBlocksSnapshot && editorMode === 'blocks') {
-        const currentBlocksSnapshot = JSON.stringify(customBlocks);
-        // Only reset modification flag if blocks haven't changed since we started the save
-        if (savedBlocksSnapshot === currentBlocksSnapshot) {
-          lastSavedBlocksRef.current = savedBlocksSnapshot;
-          blocksModifiedRef.current = false;
-        }
-        // If they're different, keep blocksModifiedRef true to protect new changes
-      }
     } finally {
       setIsSaving(false);
     }
