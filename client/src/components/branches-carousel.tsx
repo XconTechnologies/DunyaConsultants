@@ -153,10 +153,10 @@ export default function BranchesCarousel() {
   }, [branches.length]);
 
   return (
-    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+    <section className="py-12 lg:py-16 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export default function BranchesCarousel() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative py-6 sm:py-8 lg:py-10">
           {isLoading ? (
             <div className="text-center py-8 text-gray-500">Loading branches...</div>
           ) : branches.length === 0 ? (
