@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsive Image Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+    .test-section { margin: 30px 0; border: 1px solid #ccc; padding: 20px; }
+    img { max-width: 100%; height: auto; display: block; margin: 10px 0; }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+    .info { background: #e3f2fd; padding: 10px; margin: 10px 0; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Responsive Image Delivery Test</h1>
+  
+  <div class="info">
+    <strong>Instructions:</strong> Open browser DevTools Network tab, resize your browser window, and reload to see different image sizes being loaded.
+  </div>
+
+  <div class="test-section">
+    <h2>Test 1: Uploaded Image with Responsive Variants</h2>
+    <p>This image should have srcset with multiple sizes (640w, 960w, 1280w)</p>
+    <img 
+      src="/api/uploads/Admission-and-Visa-Requirements-for-Studying-in-Sw_1762422659832_5b89b8b877f8fa3d.webp"
+      srcset="/api/uploads/Admission-and-Visa-Requirements-for-Studying-in-Sw_1762422659832_5b89b8b877f8fa3d-640w.webp 640w,
+              /api/uploads/Admission-and-Visa-Requirements-for-Studying-in-Sw_1762422659832_5b89b8b877f8fa3d-960w.webp 960w,
+              /api/uploads/Admission-and-Visa-Requirements-for-Studying-in-Sw_1762422659832_5b89b8b877f8fa3d-1280w.webp 1280w,
+              /api/uploads/Admission-and-Visa-Requirements-for-Studying-in-Sw_1762422659832_5b89b8b877f8fa3d.webp 2000w"
+      sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 1280px"
+      alt="Admission Requirements"
+    />
+    <div class="info">
+      <strong>Expected behavior:</strong>
+      <ul>
+        <li>Mobile (<480px): Loads 640w variant</li>
+        <li>Tablet (480-1024px): Loads 960w variant</li>
+        <li>Desktop (>1024px): Loads 1280w or original</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 2: Legacy Image (with only 960w and 1280w variants)</h2>
+    <p>This image only has 960w and 1280w variants</p>
+    <img 
+      src="/api/uploads/Bahawalpur_1761712551125_1e1b4c883cae298f.webp"
+      srcset="/api/uploads/Bahawalpur_1761712551125_1e1b4c883cae298f-640w.webp 640w,
+              /api/uploads/Bahawalpur_1761712551125_1e1b4c883cae298f-960w.webp 960w,
+              /api/uploads/Bahawalpur_1761712551125_1e1b4c883cae298f-1280w.webp 1280w,
+              /api/uploads/Bahawalpur_1761712551125_1e1b4c883cae298f.webp 2000w"
+      sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 1280px"
+      alt="Bahawalpur"
+    />
+    <div class="info">
+      <strong>Note:</strong> 640w will 404 (not available), browser will fall back to 960w or original
+    </div>
+  </div>
+
+  <script>
+    // Log which image was actually loaded
+    document.querySelectorAll('img[srcset]').forEach((img, index) => {
+      img.addEventListener('load', () => {
+        console.log(`Image ${index + 1} loaded:`, img.currentSrc);
+        console.log(`Viewport width: ${window.innerWidth}px`);
+        console.log(`Image natural width: ${img.naturalWidth}px`);
+      });
+      img.addEventListener('error', (e) => {
+        console.error(`Image ${index + 1} error:`, e);
+      });
+    });
+
+    // Log viewport changes
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        console.log(`Viewport resized to: ${window.innerWidth}px`);
+      }, 250);
+    });
+  </script>
+</body>
+</html>

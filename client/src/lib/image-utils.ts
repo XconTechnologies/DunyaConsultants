@@ -93,18 +93,26 @@ export function isUploadedImage(src: string): boolean {
 /**
  * Extract base filename from image URL (without width suffix and extension)
  * Example: "/api/uploads/image_123456-640w.webp" -> "image_123456"
+ * Example: "/api/uploads/image_123456.png" -> "image_123456"
  * @param src - Image source URL
  * @returns Base filename
  */
 export function getBaseFilename(src: string): string {
   const filename = src.split('/').pop() || '';
-  // Remove width suffix like -320w, -640w, etc.
-  return filename.replace(/-\d+w\.webp$/i, '').replace(/\.webp$/i, '');
+  
+  // First remove any extension (.webp, .png, .jpg, .jpeg, .gif)
+  let baseName = filename.replace(/\.(webp|png|jpg|jpeg|gif)$/i, '');
+  
+  // Then remove width suffix if present (e.g., -640w, -960w, -1280w)
+  baseName = baseName.replace(/-\d+w$/i, '');
+  
+  return baseName;
 }
 
 /**
  * Generate responsive srcset for uploaded images
  * Creates srcset with multiple sizes for optimal loading
+ * Conservative approach to avoid 404s on legacy images
  * @param src - Original image source URL
  * @returns srcset string or undefined if not applicable
  */
@@ -118,13 +126,16 @@ export function generateResponsiveSrcSet(src: string): string | undefined {
   const basePath = src.substring(0, lastSlashIndex + 1);
   const baseFilename = getBaseFilename(src);
   
-  // Standard responsive sizes (matching server pre-generation)
-  const sizes = [320, 640, 960, 1280];
+  // Conservative approach: Only use sizes that most legacy images have
+  // Legacy images typically have 960w and 1280w
+  // New uploads (after Nov 2025) have all sizes (320, 640, 960, 1280)
+  const srcSetParts: string[] = [];
   
-  // Build srcset with all available sizes
-  const srcSetParts = sizes.map(width => {
+  // Mobile and tablet sizes (commonly available)
+  const sizes = [640, 960, 1280];
+  sizes.forEach(width => {
     const url = `${basePath}${baseFilename}-${width}w.webp`;
-    return `${url} ${width}w`;
+    srcSetParts.push(`${url} ${width}w`);
   });
   
   // Add original as largest size
@@ -143,8 +154,8 @@ export function generateSizesAttribute(customSizes?: string): string {
   if (customSizes) return customSizes;
   
   // Default responsive sizes strategy:
-  // - Mobile (< 640px): 100vw (full width)
-  // - Tablet (640px - 1024px): 100vw
-  // - Desktop (> 1024px): 1280px max
-  return '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1280px';
+  // - Mobile portrait (< 480px): use 640w image (100vw)
+  // - Mobile landscape/Tablet (480px - 1024px): use 960w image (100vw)
+  // - Desktop (> 1024px): use 1280w or original image (1280px max)
+  return '(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 1280px';
 }
