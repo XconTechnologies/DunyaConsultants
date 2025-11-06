@@ -4969,8 +4969,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Serve uploaded files (GET and HEAD) with on-demand responsive variant generation
-  const handleUploadRequest = async (req: any, res: any) => {
+  // Serve uploaded files (GET and HEAD)
+  const handleUploadRequest = (req: any, res: any) => {
     const { filename } = req.params;
     const filePath = path.join(uploadDir, filename);
     
@@ -4998,55 +4998,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.sendFile(filePath);
       }
     } else {
-      // Check if this is a responsive variant request (e.g., filename-320w.webp)
-      const responsiveMatch = filename.match(/^(.+)-(320|640|960|1280)w\.webp$/);
-      
-      if (responsiveMatch) {
-        const [, baseFilename, widthStr] = responsiveMatch;
-        const width = parseInt(widthStr);
-        
-        // Look for the original file with any extension
-        const possibleExtensions = ['.webp', '.png', '.jpg', '.jpeg'];
-        let originalFile = null;
-        
-        for (const ext of possibleExtensions) {
-          const originalPath = path.join(uploadDir, `${baseFilename}${ext}`);
-          if (fs.existsSync(originalPath)) {
-            originalFile = originalPath;
-            break;
-          }
-        }
-        
-        if (originalFile) {
-          try {
-            // Generate the responsive variant on-the-fly and cache it
-            const quality = width <= 640 ? 75 : 80;
-            const buffer = await sharp(originalFile)
-              .resize(width, null, {
-                fit: 'inside',
-                withoutEnlargement: true,
-              })
-              .webp({ quality, effort: 2 })
-              .toBuffer();
-            
-            // Cache the generated file for future requests
-            await fsPromises.writeFile(filePath, buffer);
-            console.log(`Generated and cached responsive variant: ${filename}`);
-            
-            // Send the generated image
-            res.set({
-              'Content-Type': 'image/webp',
-              'X-Image-Alt': extractAltTextFromFilename(baseFilename),
-              'Cache-Control': 'public, max-age=31536000, immutable',
-              'Content-Length': buffer.length.toString()
-            });
-            return res.send(buffer);
-          } catch (error) {
-            console.error(`Failed to generate responsive variant ${filename}:`, error);
-          }
-        }
-      }
-      
       // Fallback to existing demo image
       const demoImagePath = path.join(process.cwd(), 'attached_assets', 'GRE-Test-Fee-in-Pakistan.webp');
       if (fs.existsSync(demoImagePath)) {

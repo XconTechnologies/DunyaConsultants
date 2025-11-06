@@ -46,35 +46,9 @@ export function SmartImage({ src, alt, title, priority, disableResponsive, ...pr
   
   // Generate responsive srcset for uploaded images (not for attached_assets)
   const { srcSet, sizes } = useMemo(() => {
-    // Skip responsive images if disabled or not an uploads URL
-    if (disableResponsive || !src.includes('/api/uploads/')) {
-      return { srcSet: undefined, sizes: undefined };
-    }
-
-    // Extract filename from /api/uploads/filename.ext
-    const filename = src.split('/api/uploads/')[1];
-    if (!filename) {
-      return { srcSet: undefined, sizes: undefined };
-    }
-
-    // Extract base filename (remove extension)
-    const baseFilename = filename.replace(/\.(webp|png|jpg|jpeg)$/i, '');
-
-    // Hybrid approach: Try pre-generated files first (new uploads), fall back to on-the-fly optimization (legacy)
-    // New uploads (after optimization) will have -320w.webp etc. files
-    // Legacy uploads will use the /api/images/optimize endpoint
-    const srcSet = [
-      `/api/uploads/${baseFilename}-320w.webp 320w`,
-      `/api/uploads/${baseFilename}-640w.webp 640w`,
-      `/api/uploads/${baseFilename}-960w.webp 960w`,
-      `/api/uploads/${baseFilename}-1280w.webp 1280w`,
-      `${src} 1920w` // Original size
-    ].join(', ');
-
-    // Responsive sizes for better mobile performance
-    const sizes = '(max-width: 640px) 320px, (max-width: 960px) 640px, (max-width: 1280px) 960px, 1280px';
-
-    return { srcSet, sizes };
+    // TEMPORARILY DISABLED: Responsive srcset causing performance issues
+    // Will be re-enabled after proper implementation
+    return { srcSet: undefined, sizes: undefined };
   }, [src, disableResponsive]);
   
   return (
