@@ -153,7 +153,7 @@ export default function BranchesCarousel() {
   }, [branches.length]);
 
   return (
-    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-visible">
+    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 !overflow-visible">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-4 sm:mb-6 lg:mb-8">
