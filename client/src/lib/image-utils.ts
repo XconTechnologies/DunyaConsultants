@@ -79,3 +79,72 @@ export function toWebP(url: string | null | undefined): string {
   // Replace extension with .webp
   return url.replace(/\.(png|jpg|jpeg|gif)$/i, '.webp');
 }
+
+/**
+ * Check if an image URL is from the uploads API (not attached_assets)
+ * Only uploaded images have responsive variants
+ * @param src - Image source URL
+ * @returns true if uploaded image
+ */
+export function isUploadedImage(src: string): boolean {
+  return src.includes('/api/uploads/') || src.includes('/api/admin/media/');
+}
+
+/**
+ * Extract base filename from image URL (without width suffix and extension)
+ * Example: "/api/uploads/image_123456-640w.webp" -> "image_123456"
+ * @param src - Image source URL
+ * @returns Base filename
+ */
+export function getBaseFilename(src: string): string {
+  const filename = src.split('/').pop() || '';
+  // Remove width suffix like -320w, -640w, etc.
+  return filename.replace(/-\d+w\.webp$/i, '').replace(/\.webp$/i, '');
+}
+
+/**
+ * Generate responsive srcset for uploaded images
+ * Creates srcset with multiple sizes for optimal loading
+ * @param src - Original image source URL
+ * @returns srcset string or undefined if not applicable
+ */
+export function generateResponsiveSrcSet(src: string): string | undefined {
+  if (!isUploadedImage(src)) {
+    return undefined;
+  }
+  
+  // Extract the directory path and base filename
+  const lastSlashIndex = src.lastIndexOf('/');
+  const basePath = src.substring(0, lastSlashIndex + 1);
+  const baseFilename = getBaseFilename(src);
+  
+  // Standard responsive sizes (matching server pre-generation)
+  const sizes = [320, 640, 960, 1280];
+  
+  // Build srcset with all available sizes
+  const srcSetParts = sizes.map(width => {
+    const url = `${basePath}${baseFilename}-${width}w.webp`;
+    return `${url} ${width}w`;
+  });
+  
+  // Add original as largest size
+  srcSetParts.push(`${src} 2000w`);
+  
+  return srcSetParts.join(', ');
+}
+
+/**
+ * Generate sizes attribute for responsive images
+ * Defines when to use which image size based on viewport
+ * @param customSizes - Optional custom sizes string
+ * @returns sizes attribute value
+ */
+export function generateSizesAttribute(customSizes?: string): string {
+  if (customSizes) return customSizes;
+  
+  // Default responsive sizes strategy:
+  // - Mobile (< 640px): 100vw (full width)
+  // - Tablet (640px - 1024px): 100vw
+  // - Desktop (> 1024px): 1280px max
+  return '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1280px';
+}
