@@ -235,6 +235,9 @@ export default function BlogEditor() {
   // Track if user manually switched editor mode
   const userChangedModeRef = useRef(false);
   
+  // Track the current post ID to detect when we switch posts
+  const currentPostIdRef = useRef<number | null>(null);
+  
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
@@ -359,8 +362,11 @@ export default function BlogEditor() {
 
   // Populate form when editing
   useEffect(() => {
-    // Reset user mode change flag when loading a different post
-    userChangedModeRef.current = false;
+    // Reset user mode change flag only when loading a different post
+    if (blogPost && blogPost.id !== currentPostIdRef.current) {
+      userChangedModeRef.current = false;
+      currentPostIdRef.current = blogPost.id;
+    }
     
     if (blogPost && isEditing) {
       reset({
