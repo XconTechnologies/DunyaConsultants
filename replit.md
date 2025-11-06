@@ -28,7 +28,7 @@ The application features a professional dark blue gradient design with custom br
 - **Event Management**: With registration forms.
 - **Consultation Booking**: Real-time calendar functionality.
 - **WhatsApp Integration**: Direct contact button for instant consultations.
-- **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings and a three-state approval workflow.
+- **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings, a three-state approval workflow, and blocks mode with race condition prevention for auto-save operations (November 2025).
 - **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles. Includes WebP conversion functionality for university icons using `/attached_assets/` paths (fixed November 2025).
 - **SEO & Social Media Integration**: Server-side social meta tags for all critical pages, automatic featured image fallback, and production cache headers.
 
