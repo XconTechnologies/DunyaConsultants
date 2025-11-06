@@ -30,7 +30,7 @@ export default function BranchesCarousel() {
       if (cachedCardWidth > 0) return cachedCardWidth;
       
       const firstCard = carousel.querySelector('.branch-card');
-      if (!firstCard) return window.innerWidth >= 640 ? 144 : 120; // w-36 or w-30 in pixels
+      if (!firstCard) return window.innerWidth >= 640 ? 144 : 80; // w-36 or w-20 in pixels
       
       const cardWidth = firstCard.clientWidth;
       const gap = window.innerWidth >= 640 ? 16 : 12; // sm:gap-4 or gap-3
@@ -182,12 +182,6 @@ export default function BranchesCarousel() {
           ) : (
             <>
               <style>{`
-                @media (max-width: 639px) {
-                  .branch-carousel-container {
-                    padding-left: calc((100vw - 120px) / 2);
-                    padding-right: calc((100vw - 120px) / 2);
-                  }
-                }
                 @media (min-width: 640px) {
                   .branch-carousel-container {
                     padding-left: calc((100vw - 144px) / 2);
@@ -197,7 +191,7 @@ export default function BranchesCarousel() {
               `}</style>
               <div
                 ref={carouselRef}
-                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll"
+                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll px-4 sm:px-0"
                 style={{
                   scrollBehavior: 'auto',
                   width: '100%',
@@ -208,20 +202,20 @@ export default function BranchesCarousel() {
                 {duplicatedBranches.map((branch, index) => (
                   <div
                     key={`${branch.id}-${index}`}
-                    className="flex-shrink-0 w-30 sm:w-36 branch-card my-4 sm:my-6"
+                    className="flex-shrink-0 w-20 sm:w-36 branch-card my-4 sm:my-6"
                     style={{
                       scrollSnapAlign: 'center'
                     }}
                   >
                     {/* Icon Card with City Name */}
                     <Link href={branch.route}>
-                      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center h-32 sm:h-36">
+                      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-2 sm:p-4 flex flex-col items-center justify-center h-28 sm:h-36">
                         <SmartImage
                           src={branch.iconUrl} 
                           alt={`${branch.name} office landmark`}
-                          className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="w-10 h-10 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
                         />
-                        <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
+                        <p className="mt-1 text-[10px] sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2 leading-tight">
                           {branch.name}
                         </p>
                       </div>
