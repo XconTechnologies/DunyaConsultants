@@ -197,7 +197,7 @@ export default function BranchesCarousel() {
               `}</style>
               <div
                 ref={carouselRef}
-                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll"
+                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll !overflow-y-visible"
                 style={{
                   scrollBehavior: 'auto',
                   width: '100%',
