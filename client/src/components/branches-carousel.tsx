@@ -219,7 +219,7 @@ export default function BranchesCarousel() {
                         <SmartImage
                           src={branch.iconUrl} 
                           alt={`${branch.name} office landmark`}
-                          className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                         <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
                           {branch.name}
