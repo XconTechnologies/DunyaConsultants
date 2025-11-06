@@ -66,7 +66,7 @@ See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimizati
   - Fixed 21 branch icon 404 errors to reduce network noise
   - Deferred Calendly CSS/JS to requestIdleCallback/setTimeout
   - Added Early Hints via Link headers (limited impact without HTTP 103)
-  - **NEW (Nov 4)**: Deferred Navigation/ScrollProgress hydration using requestIdleCallback
+  - **REVERTED (Nov 6)**: Removed deferred Navigation/ScrollProgress - was causing layout shifts and CLS issues
   - **NEW (Nov 4)**: Fixed FCP tracking with buffered observers and fallback mechanism
 - **FCP Tracking**: Successfully implemented with buffered observers (1.95s - close to 1.8s target)
 - **Server Performance**: Balanced compression level (6) for optimal CPU/speed trade-off
@@ -109,11 +109,10 @@ See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimizati
   - Slower connection detection (3G or slower)
   - Deferred third-party scripts (5s on mobile vs 3s on desktop)
   - Critical inline CSS with mobile-first responsive styles
-  - **NEW (Nov 5)**: Responsive image optimization for mobile devices:
-    - Added `/api/images/optimize/:filename` endpoint for on-demand image optimization
-    - Supports width (`?w=320`) and quality (`?q=75`) query parameters
-    - SmartImage component now automatically generates srcset with mobile-optimized sizes (320w, 640w, 960w, 1280w, 1920w)
-    - Intelligent sizes attribute: `(max-width: 640px) 320px, (max-width: 960px) 640px, (max-width: 1280px) 960px, 1280px`
-    - Only applies to `/api/uploads/` images (attached_assets excluded)
-    - Expected mobile payload reduction: ~70-80% for large images
-    - 1-year cache headers for optimized images (`max-age=31536000, immutable`)
+  - **REVERTED (Nov 6)**: Disabled responsive image srcset due to performance regression:
+    - Responsive srcset implementation caused Total Blocking Time to increase from 40ms to 630ms (15x worse)
+    - Hundreds of 404 requests for non-existent variant files on legacy images
+    - On-demand Sharp processing was blocking main thread during page render
+    - Pre-generation system during upload still active and working
+    - Future implementation should only generate variants at upload time, not on-demand
+    - SmartImage now uses single src without srcset for better performance and backwards compatibility
