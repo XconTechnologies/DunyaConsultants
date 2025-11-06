@@ -232,6 +232,9 @@ export default function BlogEditor() {
   const blocksModifiedRef = useRef<boolean>(false);
   const lastSavedBlocksRef = useRef<string>('[]');
   
+  // Track if user manually switched editor mode
+  const userChangedModeRef = useRef(false);
+  
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
@@ -356,6 +359,9 @@ export default function BlogEditor() {
 
   // Populate form when editing
   useEffect(() => {
+    // Reset user mode change flag when loading a different post
+    userChangedModeRef.current = false;
+    
     if (blogPost && isEditing) {
       reset({
         title: blogPost.title || "",
@@ -394,7 +400,8 @@ export default function BlogEditor() {
           lastSavedBlocksRef.current = serverBlocksJSON;
           blocksModifiedRef.current = false;
           // Auto-switch to blocks mode if the post was created with blocks
-          if (editorMode !== 'blocks') {
+          // BUT: Only if user hasn't manually changed the mode
+          if (editorMode !== 'blocks' && !userChangedModeRef.current) {
             setEditorMode('blocks');
           }
         } else {
@@ -837,6 +844,9 @@ export default function BlogEditor() {
       // Switching to blocks mode - EditorJS will handle content separately
       // No need to sync content here
     }
+    
+    // Mark that user manually changed the mode
+    userChangedModeRef.current = true;
     setEditorMode(mode);
   };
 
