@@ -27,7 +27,8 @@ import {
 import type { Media } from "@shared/schema";
 
 interface MediaSelectionModalProps {
-  isOpen: boolean;
+  open?: boolean; // Add open as alias for isOpen
+  isOpen?: boolean;
   onClose: () => void;
   onSelect: (media: Media) => void;
   allowedTypes?: string[]; // e.g., ["image/*"] for images only
@@ -36,6 +37,7 @@ interface MediaSelectionModalProps {
 }
 
 export default function MediaSelectionModal({
+  open,
   isOpen,
   onClose,
   onSelect,
@@ -43,6 +45,8 @@ export default function MediaSelectionModal({
   title = "Select Media",
   description = "Choose from your media library or upload a new file.",
 }: MediaSelectionModalProps) {
+  // Support both 'open' and 'isOpen' props for compatibility
+  const modalOpen = open ?? isOpen ?? false;
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedMedia, setSelectedMedia] = useState<Media | null>(null);
@@ -75,7 +79,7 @@ export default function MediaSelectionModal({
   // Fetch media files
   const { data: mediaFiles = [], isLoading } = useQuery({
     queryKey: ["/api/admin/media"],
-    enabled: isOpen,
+    enabled: modalOpen,
     queryFn: async () => {
       const response = await fetch("/api/admin/media", {
         headers: getAuthHeaders(),
@@ -205,7 +209,7 @@ export default function MediaSelectionModal({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
+    <Dialog open={modalOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden flex flex-col" data-testid="dialog-media-selection">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
