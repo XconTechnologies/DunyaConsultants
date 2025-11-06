@@ -229,6 +229,8 @@ export default function BlogEditor() {
   const [customBlocks, setCustomBlocks] = useState<Block[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const prevModeRef = useRef<'rich' | 'html' | 'preview' | 'blocks'>('rich');
+  const blocksModifiedRef = useRef<boolean>(false);
+  const lastSavedBlocksRef = useRef<string>('[]');
   
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
@@ -378,10 +380,30 @@ export default function BlogEditor() {
       setHtmlContent(blogPost.content || '');
       
       // Initialize custom blocks if contentBlocks exist
-      if (blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) && blogPost.contentBlocks.length > 0) {
-        setCustomBlocks(blogPost.contentBlocks as Block[]);
-        // Auto-switch to blocks mode if the post was created with blocks
-        setEditorMode('blocks');
+      // BUT: Don't overwrite if user has unsaved local changes in blocks mode
+      const serverBlocks = blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) ? blogPost.contentBlocks : [];
+      const serverBlocksJSON = JSON.stringify(serverBlocks);
+      
+      // Only update blocks if:
+      // 1. Not in blocks mode, OR
+      // 2. No local modifications, OR
+      // 3. Server data actually changed
+      if (editorMode !== 'blocks' || !blocksModifiedRef.current || serverBlocksJSON !== lastSavedBlocksRef.current) {
+        if (serverBlocks.length > 0) {
+          setCustomBlocks(serverBlocks as Block[]);
+          lastSavedBlocksRef.current = serverBlocksJSON;
+          blocksModifiedRef.current = false;
+          // Auto-switch to blocks mode if the post was created with blocks
+          if (editorMode !== 'blocks') {
+            setEditorMode('blocks');
+          }
+        } else {
+          // Reset modification flag when no blocks from server
+          lastSavedBlocksRef.current = '[]';
+          if (editorMode !== 'blocks') {
+            blocksModifiedRef.current = false;
+          }
+        }
       }
 
       // Check for conflicts and start session
@@ -391,7 +413,7 @@ export default function BlogEditor() {
         }
       });
     }
-  }, [blogPost, isEditing, adminUser]);
+  }, [blogPost, isEditing, adminUser, editorMode]);
 
   // Poll for edit requests
   useEffect(() => {
@@ -666,8 +688,14 @@ export default function BlogEditor() {
     console.log('Form submitted with data:', data);
     setIsSaving(true);
     try {
+      // Capture the blocks being saved before mutation
+      let savedBlocksSnapshot: string | null = null;
+      
       // If in Blocks mode, convert custom blocks to HTML
       if (editorMode === 'blocks' && customBlocks.length > 0) {
+        // Capture snapshot of blocks being saved
+        savedBlocksSnapshot = JSON.stringify(customBlocks);
+        
         // Convert blocks to HTML
         const html = blocksToHtml(customBlocks);
         data.content = html;
@@ -679,6 +707,17 @@ export default function BlogEditor() {
       }
       
       await saveMutation.mutateAsync(data);
+      
+      // After successful save, update the saved blocks reference only if blocks haven't changed
+      if (savedBlocksSnapshot && editorMode === 'blocks') {
+        const currentBlocksSnapshot = JSON.stringify(customBlocks);
+        // Only reset modification flag if blocks haven't changed since we started the save
+        if (savedBlocksSnapshot === currentBlocksSnapshot) {
+          lastSavedBlocksRef.current = savedBlocksSnapshot;
+          blocksModifiedRef.current = false;
+        }
+        // If they're different, keep blocksModifiedRef true to protect new changes
+      }
     } finally {
       setIsSaving(false);
     }
@@ -1553,6 +1592,8 @@ export default function BlogEditor() {
                         blocks={customBlocks}
                         onChange={(blocks) => {
                           setCustomBlocks(blocks);
+                          // Mark blocks as modified when user makes changes
+                          blocksModifiedRef.current = true;
                         }}
                       />
                     </div>
