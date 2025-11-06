@@ -174,7 +174,7 @@ export default function BranchesCarousel() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           {isLoading ? (
             <div className="text-center py-8 text-gray-500">Loading branches...</div>
           ) : branches.length === 0 ? (
