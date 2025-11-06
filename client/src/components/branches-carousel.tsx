@@ -208,7 +208,7 @@ export default function BranchesCarousel() {
                 {duplicatedBranches.map((branch, index) => (
                   <div
                     key={`${branch.id}-${index}`}
-                    className="flex-shrink-0 w-30 sm:w-36 branch-card"
+                    className="flex-shrink-0 w-30 sm:w-36 branch-card my-4 sm:my-6"
                     style={{
                       scrollSnapAlign: 'center'
                     }}
