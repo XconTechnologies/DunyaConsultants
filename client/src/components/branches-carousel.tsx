@@ -199,29 +199,34 @@ export default function BranchesCarousel() {
                   scrollSnapType: 'x mandatory'
                 }}
               >
-                {duplicatedBranches.map((branch, index) => (
-                  <div
-                    key={`${branch.id}-${index}`}
-                    className="flex-shrink-0 w-24 sm:w-36 branch-card my-4 sm:my-6"
-                    style={{
-                      scrollSnapAlign: 'center'
-                    }}
-                  >
-                    {/* Icon Card with City Name */}
-                    <Link href={branch.route}>
-                      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center h-32 sm:h-36">
-                        <SmartImage
-                          src={branch.iconUrl} 
-                          alt={`${branch.name} office landmark`}
-                          className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
-                          {branch.name}
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                {duplicatedBranches.map((branch, index) => {
+                  const isInitiallyVisible = index >= branches.length && index < branches.length + 6;
+                  
+                  return (
+                    <div
+                      key={`${branch.id}-${index}`}
+                      className="flex-shrink-0 w-24 sm:w-36 branch-card my-4 sm:my-6"
+                      style={{
+                        scrollSnapAlign: 'center'
+                      }}
+                    >
+                      {/* Icon Card with City Name */}
+                      <Link href={branch.route}>
+                        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group p-3 sm:p-4 flex flex-col items-center justify-center h-32 sm:h-36">
+                          <SmartImage
+                            src={branch.iconUrl} 
+                            alt={`${branch.name} office landmark`}
+                            className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
+                            priority={isInitiallyVisible}
+                          />
+                          <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
+                            {branch.name}
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Gradient Overlays for smooth fade effect */}

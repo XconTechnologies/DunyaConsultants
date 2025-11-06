@@ -5056,22 +5056,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Apply format-specific optimization
+      // Apply format-specific optimization with faster settings
       if (format === 'webp') {
-        image = image.webp({ quality, effort: 4 });
+        image = image.webp({ quality, effort: 2 });
       } else if (format === 'jpeg') {
         image = image.jpeg({ quality, mozjpeg: true });
       } else if (format === 'png') {
-        image = image.png({ quality: Math.min(quality, 90), compressionLevel: 9 });
+        image = image.png({ quality: Math.min(quality, 90), compressionLevel: 6 });
       }
 
       const buffer = await image.toBuffer();
       
-      // Set cache headers
+      // Generate ETag for conditional requests
+      const etag = crypto.createHash('md5').update(buffer).digest('hex');
+      
+      // Check if client has cached version
+      if (req.headers['if-none-match'] === etag) {
+        return res.status(304).end();
+      }
+      
+      // Set cache headers with ETag
       res.set({
         'Content-Type': `image/${format}`,
         'Cache-Control': 'public, max-age=31536000, immutable',
-        'Content-Length': buffer.length.toString()
+        'Content-Length': buffer.length.toString(),
+        'ETag': etag
       });
 
       res.send(buffer);
