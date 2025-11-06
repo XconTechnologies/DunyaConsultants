@@ -193,7 +193,71 @@ export async function optimizeImage(
 }
 
 /**
- * Auto-optimize uploaded image
+ * Pre-generate responsive image sizes for faster serving
+ * Creates optimized versions at common breakpoints
+ * 
+ * @param sourceFilePath - Path to source image
+ * @param uploadDir - Upload directory
+ * @param baseFilename - Base filename without extension
+ * @returns Promise with generated file info
+ */
+export async function preGenerateResponsiveSizes(
+  sourceFilePath: string,
+  uploadDir: string,
+  baseFilename: string
+): Promise<{
+  sizes: Array<{ width: number; filename: string; size: number }>;
+  totalSize: number;
+}> {
+  const responsiveSizes = [
+    { width: 320, quality: 75 },
+    { width: 640, quality: 75 },
+    { width: 960, quality: 80 },
+    { width: 1280, quality: 80 },
+  ];
+
+  const generatedSizes = [];
+  let totalSize = 0;
+
+  for (const { width, quality } of responsiveSizes) {
+    try {
+      const filename = `${baseFilename}-${width}w.webp`;
+      const outputPath = path.join(uploadDir, filename);
+
+      // Skip if already exists
+      if (fs.existsSync(outputPath)) {
+        const stats = await fsPromises.stat(outputPath);
+        generatedSizes.push({ width, filename, size: stats.size });
+        totalSize += stats.size;
+        continue;
+      }
+
+      // Generate optimized size with faster settings
+      const buffer = await sharp(sourceFilePath)
+        .resize(width, null, {
+          fit: 'inside',
+          withoutEnlargement: true,
+        })
+        .webp({ quality, effort: 2 })
+        .toBuffer();
+
+      await fsPromises.writeFile(outputPath, buffer);
+      
+      generatedSizes.push({ width, filename, size: buffer.length });
+      totalSize += buffer.length;
+    } catch (error) {
+      console.error(`Failed to generate ${width}w version:`, error);
+    }
+  }
+
+  return {
+    sizes: generatedSizes,
+    totalSize,
+  };
+}
+
+/**
+ * Auto-optimize uploaded image and pre-generate responsive sizes
  * Automatically converts to WebP and compresses based on image type
  * 
  * @param filePath - Path to uploaded file
@@ -213,6 +277,7 @@ export async function autoOptimizeUpload(
   size: number;
   originalSize: number;
   savings: string;
+  responsiveSizes?: Array<{ width: number; filename: string; size: number }>;
 }> {
   try {
     // Get original file stats
@@ -241,6 +306,10 @@ export async function autoOptimizeUpload(
       await fsPromises.unlink(filePath);
     }
 
+    // Pre-generate responsive sizes for faster serving
+    const responsive = await preGenerateResponsiveSizes(outputPath, uploadDir, baseFilename);
+    console.log(`Pre-generated ${responsive.sizes.length} responsive sizes (${(responsive.totalSize / 1024).toFixed(1)}KB total)`);
+
     // Calculate savings
     const savings = ((1 - optimized.size / originalSize) * 100).toFixed(1);
 
@@ -252,6 +321,7 @@ export async function autoOptimizeUpload(
       size: optimized.size,
       originalSize,
       savings: `${savings}%`,
+      responsiveSizes: responsive.sizes,
     };
   } catch (error) {
     // If optimization fails, return original file info

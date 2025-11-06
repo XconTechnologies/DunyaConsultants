@@ -246,7 +246,12 @@ export const consultations = pgTable("consultations", {
   assignedTo: text("assigned_to"),
   audioUrl: text("audio_url"),
   createdAt: timestamp("created_at").defaultNow(),
-});
+}, (table) => ({
+  statusIdx: index("consultations_status_idx").on(table.status),
+  emailIdx: index("consultations_email_idx").on(table.email),
+  createdAtIdx: index("consultations_created_at_idx").on(table.createdAt),
+  statusCreatedIdx: index("consultations_status_created_idx").on(table.status, table.createdAt),
+}));
 
 export const faqs = pgTable("faqs", {
   id: serial("id").primaryKey(),
@@ -303,7 +308,9 @@ export const categories = pgTable("categories", {
   trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  isActiveIdx: index("categories_is_active_idx").on(table.isActive),
+}));
 
 export const blogPosts = pgTable("blog_posts", {
   id: serial("id").primaryKey(),
@@ -460,7 +467,12 @@ export const eventRegistrations = pgTable("event_registrations", {
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
   trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  eventIdIdx: index("event_registrations_event_id_idx").on(table.eventId),
+  emailIdx: index("event_registrations_email_idx").on(table.email),
+  statusIdx: index("event_registrations_status_idx").on(table.status),
+  isAttendedIdx: index("event_registrations_is_attended_idx").on(table.isAttended),
+}));
 
 // QR Codes for admin-generated custom QR codes
 export const qrCodes = pgTable("qr_codes", {

@@ -57,12 +57,17 @@ export function SmartImage({ src, alt, title, priority, disableResponsive, ...pr
       return { srcSet: undefined, sizes: undefined };
     }
 
-    // Generate srcset for mobile optimization
+    // Extract base filename (remove extension)
+    const baseFilename = filename.replace(/\.(webp|png|jpg|jpeg)$/i, '');
+
+    // Hybrid approach: Try pre-generated files first (new uploads), fall back to on-the-fly optimization (legacy)
+    // New uploads (after optimization) will have -320w.webp etc. files
+    // Legacy uploads will use the /api/images/optimize endpoint
     const srcSet = [
-      `/api/images/optimize/${filename}?w=320&q=75 320w`,
-      `/api/images/optimize/${filename}?w=640&q=75 640w`,
-      `/api/images/optimize/${filename}?w=960&q=80 960w`,
-      `/api/images/optimize/${filename}?w=1280&q=80 1280w`,
+      `/api/uploads/${baseFilename}-320w.webp 320w`,
+      `/api/uploads/${baseFilename}-640w.webp 640w`,
+      `/api/uploads/${baseFilename}-960w.webp 960w`,
+      `/api/uploads/${baseFilename}-1280w.webp 1280w`,
       `${src} 1920w` // Original size
     ].join(', ');
 
