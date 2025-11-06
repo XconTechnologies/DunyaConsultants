@@ -153,7 +153,7 @@ export default function BranchesCarousel() {
   }, [branches.length]);
 
   return (
-    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 !overflow-visible">
+    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-x-hidden !overflow-y-visible">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-4 sm:mb-6 lg:mb-8">
@@ -197,12 +197,13 @@ export default function BranchesCarousel() {
               `}</style>
               <div
                 ref={carouselRef}
-                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll !overflow-y-visible"
+                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll overflow-y-visible"
                 style={{
                   scrollBehavior: 'auto',
                   width: '100%',
                   WebkitOverflowScrolling: 'touch',
-                  scrollSnapType: 'x mandatory'
+                  scrollSnapType: 'x mandatory',
+                  overflowY: 'visible'
                 }}
               >
                 {duplicatedBranches.map((branch, index) => (
