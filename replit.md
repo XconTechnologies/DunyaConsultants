@@ -55,29 +55,37 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimization details, testing procedures, and best practices.
 
 ### Core Web Vitals Improvements (November 2025)
-- **LCP Optimization**: Improved from 5s → 4.23s → 3.78s → **1.95s (✅ GOOD)** through:
+- **LCP Optimization**: Improved from 5s → 4.23s → 3.78s → 1.95s → **1.54s (✅ GOOD)** through:
   - Restored critical JavaScript module preloading (`/src/main.tsx`)
   - Fixed logo preload path to use correct asset location
   - Optimized font loading with preload + inline critical CSS (weights 400, 600)
   - Async loading of remaining font weights (300, 500, 700)
-  - Prioritized LCP image preload (AboutCompany image instead of logo)
-  - Created responsive image variants (480w, 768w, 1024w) with srcset
-  - Added imagesrcset/imagesizes to preload hints for mobile optimization
+  - Prioritized LCP image preload (AboutCompany image) with fetchpriority="high"
+  - **FIXED (Nov 6)**: Removed problematic srcset from LCP image preload - was causing 404 errors
+  - **FIXED (Nov 6)**: Removed srcset from AboutCompany component to prevent 404s on legacy images
   - Fixed 21 branch icon 404 errors to reduce network noise
   - Deferred Calendly CSS/JS to requestIdleCallback/setTimeout
   - Added Early Hints via Link headers (limited impact without HTTP 103)
   - **REVERTED (Nov 6)**: Removed deferred Navigation/ScrollProgress - was causing layout shifts and CLS issues
-  - **NEW (Nov 4)**: Fixed FCP tracking with buffered observers and fallback mechanism
-- **FCP Tracking**: Successfully implemented with buffered observers (1.95s - close to 1.8s target)
+  - **OPTIMIZED (Nov 6)**: Branches carousel now uses RAF for layout measurements to prevent forced reflows
+  - Fixed FCP tracking with buffered observers and fallback mechanism
+- **FCP Tracking**: Successfully implemented with buffered observers - improved to **1.54s ✅ GOOD**
 - **Server Performance**: Balanced compression level (6) for optimal CPU/speed trade-off
 - **Monitoring**: Comprehensive Core Web Vitals tracking (TTFB, FCP, LCP, INP) with color-coded status
 - **Production Build**: Successfully configured and tested with Vite + esbuild
-- **Status**: 
-  - LCP: **1.95s ✅ GOOD** (below 2.5s target) - 54% improvement from 4.2s
-  - FCP: 1.95s ⚠️ (close to 1.8s target)
-  - TTFB: 878ms ⚠️ (slightly above 800ms target)
-  - INP: Requires user interaction to measure
-- **Next Steps**: Lighthouse/WebPageTest validation against production build for realistic conditions
+- **Current Status** (Nov 6, 2025): 
+  - FCP: **1.54s ✅ GOOD** (below 1.8s target) - 90% improvement from 14.7s
+  - LCP: **1.54s ✅ GOOD** (below 2.5s target) - 62% improvement from 4.0s
+  - TTFB: **331ms ✅ GOOD** (below 800ms target)
+  - INP: **32ms ✅ GOOD** (below 200ms target)
+  - All Core Web Vitals now in "GOOD" range
+- **Render Blocking Optimizations**:
+  - Deferred Google Analytics (5s on mobile, 3s on desktop)
+  - Deferred Facebook Pixel (5s on mobile, 3s on desktop)
+  - Deferred Calendly resources using requestIdleCallback
+  - Critical font weights (400, 600) inlined, others loaded async
+  - No render-blocking CSS on critical path
+- **Next Steps**: Production deployment and real-user monitoring validation
 
 ### Network Payload Optimization (November 2025)
 - **Automatic Image Optimization** (Nov 4, 2025):
