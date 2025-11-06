@@ -222,7 +222,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="bg-[#1D50C9] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-[#1D50C9] text-white w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-8 h-8" />
                 </div>
                 <div className="text-3xl font-bold text-[#1D50C9] mb-2">{stat.value}</div>
@@ -264,7 +264,7 @@ export default function ServicesPage() {
               >
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm bg-white">
                   <CardHeader className="pb-4">
-                    <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${service.color} text-white flex items-center justify-center mb-4`}>
+                    <div className={`w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-lg bg-gradient-to-r ${service.color} text-white flex items-center justify-center mb-4`}>
                       <service.icon className="w-8 h-8" />
                     </div>
                     <CardTitle className="text-xl text-gray-900">{service.title}</CardTitle>
@@ -358,7 +358,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="bg-[#1D50C9] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-[#1D50C9] text-white w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-full flex items-center justify-center mx-auto mb-6">
                   <benefit.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
@@ -378,7 +378,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="bg-[#1D50C9] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#1D50C9] text-white w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
@@ -392,7 +392,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-center"
             >
-              <div className="bg-[#1D50C9] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#1D50C9] text-white w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
@@ -406,7 +406,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center"
             >
-              <div className="bg-[#1D50C9] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#1D50C9] text-white w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Visit Us</h3>

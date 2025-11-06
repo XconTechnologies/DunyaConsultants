@@ -146,7 +146,7 @@ export default function ServicesOverview() {
             >
               <Card className="h-full bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
                 <CardHeader className="pb-6">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-4`}>
+                  <div className={`w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-4`}>
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   <CardTitle className="text-xl font-bold text-gray-900 mb-2">

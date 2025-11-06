@@ -118,7 +118,7 @@ export default function AssistanceSection() {
               {/* Header */}
               <div className="text-center mb-8">
                 <motion.div
-                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full mb-4"
+                  className="inline-flex items-center justify-center w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full mb-4"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
                   <Headphones className="w-8 h-8 text-white" />

@@ -116,7 +116,7 @@ export default function ReasonsSection() {
                 
                 {/* Icon */}
                 <motion.div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${reason.gradient} text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`inline-flex items-center justify-center w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] rounded-2xl bg-gradient-to-br ${reason.gradient} text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
                   whileHover={{ rotate: 5 }}
                 >
                   {reason.icon}

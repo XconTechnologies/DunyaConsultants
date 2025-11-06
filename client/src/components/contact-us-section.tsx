@@ -186,7 +186,7 @@ export default function ContactUsSection() {
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Phone className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -208,7 +208,7 @@ export default function ContactUsSection() {
               onClick={() => trackEvent('whatsapp_click', 'engagement', 'contact_page')}
             >
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <MessageCircle className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -227,7 +227,7 @@ export default function ContactUsSection() {
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-[54px] h-[54px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Mail className="w-8 h-8 text-white" />
                 </div>
                 <div>
