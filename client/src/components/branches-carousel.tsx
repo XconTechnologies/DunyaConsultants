@@ -25,17 +25,22 @@ export default function BranchesCarousel() {
     let isTransitioning = false;
     let cachedCardWidth = 0;
     
-    // Calculate card width including gap
+    // Calculate card width including gap - use RAF to avoid forced reflow
     const getCardWidth = () => {
       if (cachedCardWidth > 0) return cachedCardWidth;
       
       const firstCard = carousel.querySelector('.branch-card');
       if (!firstCard) return window.innerWidth >= 640 ? 144 : 96; // w-36 or w-24 in pixels
       
-      const cardWidth = firstCard.clientWidth;
-      const gap = window.innerWidth >= 640 ? 16 : 12; // sm:gap-4 or gap-3
-      cachedCardWidth = cardWidth + gap;
-      return cachedCardWidth;
+      // Use RAF to batch layout reads and avoid forced reflow
+      requestAnimationFrame(() => {
+        const cardWidth = (firstCard as HTMLElement).clientWidth;
+        const gap = window.innerWidth >= 640 ? 16 : 12; // sm:gap-4 or gap-3
+        cachedCardWidth = cardWidth + gap;
+      });
+      
+      // Return fallback for first call
+      return window.innerWidth >= 640 ? 144 : 96;
     };
 
     // Start at the middle set (second copy) for seamless looping
