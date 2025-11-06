@@ -153,7 +153,7 @@ export default function BranchesCarousel() {
   }, [branches.length]);
 
   return (
-    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-x-hidden !overflow-y-visible">
+    <section className="py-8 lg:py-12 pb-8 lg:pb-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-4 sm:mb-6 lg:mb-8">
@@ -197,13 +197,12 @@ export default function BranchesCarousel() {
               `}</style>
               <div
                 ref={carouselRef}
-                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll overflow-y-visible"
+                className="branch-carousel-container flex gap-3 sm:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll"
                 style={{
                   scrollBehavior: 'auto',
                   width: '100%',
                   WebkitOverflowScrolling: 'touch',
-                  scrollSnapType: 'x mandatory',
-                  overflowY: 'visible'
+                  scrollSnapType: 'x mandatory'
                 }}
               >
                 {duplicatedBranches.map((branch, index) => (
@@ -220,7 +219,7 @@ export default function BranchesCarousel() {
                         <SmartImage
                           src={branch.iconUrl} 
                           alt={`${branch.name} office landmark`}
-                          className="w-[54px] h-[54px] sm:w-[72px] sm:h-[72px] object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                         <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
                           {branch.name}
