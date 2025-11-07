@@ -42,9 +42,10 @@ import {
   Eye, 
   Plus,
   ExternalLink,
-  Image,
-  Type,
-  RefreshCw
+  RefreshCw,
+  Pencil,
+  Check,
+  X as XIcon
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -68,6 +69,8 @@ export default function QrCodesPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [viewQrCode, setViewQrCode] = useState<QrCodeType | null>(null);
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editTitle, setEditTitle] = useState("");
 
   // Auth check
   useEffect(() => {
@@ -227,6 +230,39 @@ export default function QrCodesPage() {
     },
   });
 
+  // Update QR code title mutation
+  const updateTitleMutation = useMutation({
+    mutationFn: async ({ id, title }: { id: number; title: string }) => {
+      const response = await fetch(`/api/admin/qr-codes/${id}`, {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ title }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update QR code title');
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/qr-codes"] });
+      setEditingId(null);
+      setEditTitle("");
+      toast({
+        title: "Success",
+        description: "QR code title updated successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update QR code title",
+        variant: "destructive",
+      });
+    },
+  });
+
 
   if (!authChecked) return null;
 
@@ -303,7 +339,12 @@ export default function QrCodesPage() {
         currentUser={adminUser!} 
       />
       <div className="flex-1 flex flex-col lg:ml-64">
-        <AdminHeader onMenuClick={() => setSidebarOpen(true)} currentUser={adminUser!} />
+        <AdminHeader 
+          onMenuClick={() => setSidebarOpen(true)} 
+          currentUser={adminUser!} 
+          title="QR Code Generator"
+          subtitle="Create and manage custom QR codes"
+        />
         <MobileNav currentUser={adminUser} />
         <div className="flex-1 p-6 space-y-6">
         {/* Page Header with Gradient */}
@@ -403,7 +444,6 @@ export default function QrCodesPage() {
                       <TableHead className="font-semibold text-gray-700">Preview</TableHead>
                       <TableHead className="font-semibold text-gray-700">Title</TableHead>
                       <TableHead className="font-semibold text-gray-700">Link</TableHead>
-                      <TableHead className="font-semibold text-gray-700">Embed Type</TableHead>
                       <TableHead className="font-semibold text-gray-700">Scans</TableHead>
                       <TableHead className="font-semibold text-gray-700">Created</TableHead>
                       <TableHead className="font-semibold text-gray-700">Actions</TableHead>
@@ -411,7 +451,7 @@ export default function QrCodesPage() {
                   </TableHeader>
                   <TableBody>
                     {qrCodes.map((qr) => (
-                      <TableRow key={qr.id} className="hover:bg-blue-50/20 transition-colors">
+                      <TableRow key={qr.id} className="hover:bg-blue-50/20 transition-colors group">
                         <TableCell>
                           {qr.qrImageUrl && !imageErrors.has(qr.id) ? (
                             <img loading="lazy" 
@@ -434,7 +474,62 @@ export default function QrCodesPage() {
                             </div>
                           )}
                         </TableCell>
-                        <TableCell className="font-semibold text-gray-900">{qr.title}</TableCell>
+                        <TableCell className="font-semibold text-gray-900">
+                          {editingId === qr.id ? (
+                            <div className="flex items-center gap-2">
+                              <Input
+                                value={editTitle}
+                                onChange={(e) => setEditTitle(e.target.value)}
+                                className="h-8"
+                                autoFocus
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    updateTitleMutation.mutate({ id: qr.id, title: editTitle });
+                                  } else if (e.key === 'Escape') {
+                                    setEditingId(null);
+                                    setEditTitle("");
+                                  }
+                                }}
+                              />
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-green-600 hover:text-green-700 hover:bg-green-50"
+                                onClick={() => updateTitleMutation.mutate({ id: qr.id, title: editTitle })}
+                                disabled={updateTitleMutation.isPending}
+                              >
+                                <Check className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                onClick={() => {
+                                  setEditingId(null);
+                                  setEditTitle("");
+                                }}
+                              >
+                                <XIcon className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <span>{qr.title}</span>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-[#1D50C9] hover:text-[#1845B3] hover:bg-blue-50"
+                                onClick={() => {
+                                  setEditingId(qr.id);
+                                  setEditTitle(qr.title);
+                                }}
+                                title="Edit title"
+                              >
+                                <Pencil className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          )}
+                        </TableCell>
                         <TableCell>
                           <a 
                             href={qr.link} 
@@ -445,20 +540,6 @@ export default function QrCodesPage() {
                             {qr.link.substring(0, 40)}...
                             <ExternalLink className="h-3.5 w-3.5" />
                           </a>
-                        </TableCell>
-                        <TableCell>
-                          <Badge 
-                            variant="outline" 
-                            className="capitalize border-gray-300 text-gray-700 bg-white/50"
-                          >
-                            {qr.embedType === "none" ? (
-                              "None"
-                            ) : qr.embedType === "text" ? (
-                              <><Type className="h-3 w-3 mr-1" /> Text</>
-                            ) : (
-                              <><Image className="h-3 w-3 mr-1" /> Image</>
-                            )}
-                          </Badge>
                         </TableCell>
                         <TableCell>
                           <Badge className="bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 border border-purple-200 shadow-sm">

@@ -1153,6 +1153,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update QR code (Admin only)
+  app.patch("/api/admin/qr-codes/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const { title } = req.body;
+
+      if (!title || typeof title !== 'string') {
+        return res.status(400).json({ message: "Title is required" });
+      }
+
+      const qrCode = await storage.getQrCode(id);
+      
+      if (!qrCode) {
+        return res.status(404).json({ message: "QR code not found" });
+      }
+
+      const updatedQrCode = await storage.updateQrCode(id, { title });
+      res.json(updatedQrCode);
+    } catch (error) {
+      console.error("Error updating QR code:", error);
+      res.status(500).json({ message: "Failed to update QR code" });
+    }
+  });
+
   // QR Code redirect endpoint - tracks scan and redirects to destination
   app.get("/qr/:id", async (req, res) => {
     try {
