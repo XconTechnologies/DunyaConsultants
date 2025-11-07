@@ -9,6 +9,24 @@ import { Badge } from "@/components/ui/badge";
 import SmartImage from "@/components/ui/smart-image";
 import type { Event } from "@shared/schema";
 
+// Unified image src normalization function (same as blog)
+const normalizeImageSrc = (image: string) => {
+  if (!image || image.trim() === '') {
+    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+  }
+  const trimmed = image.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  return `/api/uploads/${trimmed}`;
+};
+
 interface TimeRemaining {
   days: number;
   hours: number;
@@ -156,7 +174,7 @@ export default function UpcomingEventsSection() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="relative overflow-hidden aspect-[1.68/1]">
                     <SmartImage
-                      src={featuredEvent.image}
+                      src={normalizeImageSrc(featuredEvent.image)}
                       alt={featuredEvent.title}
                       width={600}
                       height={357}
@@ -237,13 +255,12 @@ export default function UpcomingEventsSection() {
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                       <div className="flex gap-4 p-4">
                         <div className="relative w-24 sm:w-28 h-20 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
-                          <img
-                            src={event.image}
+                          <SmartImage
+                            src={normalizeImageSrc(event.image)}
                             alt={event.title}
-                            width="112"
-                            height="96"
+                            width={112}
+                            height={96}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            loading="lazy"
                           />
                         </div>
                         <div className="flex-1 min-w-0 flex flex-col">
