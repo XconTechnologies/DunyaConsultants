@@ -104,7 +104,7 @@ export default function AdminHeader({
               variant="outline"
               size="sm"
               onClick={() => window.open('/', '_blank')}
-              className="flex items-center space-x-1.5 bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
+              className="flex items-center space-x-1.5 bg-white border-white text-[#1D50C9] hover:bg-blue-50 transition-colors"
               data-testid="button-visit-website"
             >
               <ExternalLink className="w-4 h-4" />
@@ -116,7 +116,7 @@ export default function AdminHeader({
               variant="outline"
               size="sm"
               onClick={handleLogout}
-              className="flex items-center space-x-1.5 bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
+              className="flex items-center space-x-1.5 bg-orange-500 border-orange-500 text-white hover:bg-orange-600 hover:border-orange-600 transition-colors"
               data-testid="button-logout"
             >
               <LogOut className="w-4 h-4" />
