@@ -203,11 +203,11 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
       
       {/* Sidebar */}
       <div className={cn(
-        "fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-[#1D50C9] to-[#1845B3] text-white shadow-xl z-50 transition-transform duration-300 ease-in-out",
+        "fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-[#1D50C9] to-[#1845B3] text-white shadow-xl z-50 transition-transform duration-300 ease-in-out flex flex-col",
         !isOpen && "-translate-x-full lg:translate-x-0"
       )}>
         {/* Header */}
-        <div className="p-6 border-b border-white/20">
+        <div className="p-6 border-b border-white/20 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -232,7 +232,7 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto min-h-0">
           {sidebarItems
             .filter((item) => {
               // Admin sees everything
