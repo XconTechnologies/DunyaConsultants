@@ -232,7 +232,10 @@ export default function AdminSidebar({ currentUser, isOpen = true, onClose }: Ad
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto min-h-0">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto min-h-0 scrollbar-hide" style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}>
           {sidebarItems
             .filter((item) => {
               // Admin sees everything
