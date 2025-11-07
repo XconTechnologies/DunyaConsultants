@@ -19,11 +19,13 @@ interface SmartImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt
  * Smart Image Component
  * Automatically detects and assigns alt text from filename or title if not provided
  * Serves images as WebP format for better performance
- * Automatically generates responsive srcset for mobile and desktop optimization
+ * 
+ * NOTE: Responsive srcset temporarily disabled to prevent 404 errors on legacy images
+ * without pre-generated variants. Will be re-enabled once backend tracks variant availability.
  * 
  * Features:
  * - Auto-generated alt text from filename
- * - Smart responsive srcset (only for uploaded images with pre-generated variants)
+ * - Smart responsive srcset (currently disabled - TODO: re-enable with proper variant tracking)
  * - Backwards compatible with legacy images (no 404s)
  * - Optimal image selection based on screen size
  * 
@@ -35,7 +37,6 @@ interface SmartImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt
  * @example
  * // Auto-responsive image with auto-generated alt
  * <SmartImage src="/api/uploads/best-study-abroad-consultants_123456.webp" />
- * // Browser automatically selects: 320w on mobile, 640w on tablet, 1280w on desktop
  * 
  * @example
  * // Priority image (LCP candidate)

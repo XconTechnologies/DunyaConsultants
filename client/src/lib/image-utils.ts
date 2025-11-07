@@ -121,27 +121,14 @@ export function generateResponsiveSrcSet(src: string): string | undefined {
     return undefined;
   }
   
-  // Extract the directory path and base filename
-  const lastSlashIndex = src.lastIndexOf('/');
-  const basePath = src.substring(0, lastSlashIndex + 1);
-  const baseFilename = getBaseFilename(src);
+  // TEMPORARY FIX: Disable responsive srcset to prevent 404 errors on legacy images
+  // Most legacy blog images don't have pre-generated variants (-640w.webp, etc.)
+  // TODO: Add backend support to track which images have responsive variants
+  // and only generate srcset for those images
   
-  // Conservative approach: Only use sizes that most legacy images have
-  // Legacy images typically have 960w and 1280w
-  // New uploads (after Nov 2025) have all sizes (320, 640, 960, 1280)
-  const srcSetParts: string[] = [];
-  
-  // Mobile and tablet sizes (commonly available)
-  const sizes = [640, 960, 1280];
-  sizes.forEach(width => {
-    const url = `${basePath}${baseFilename}-${width}w.webp`;
-    srcSetParts.push(`${url} ${width}w`);
-  });
-  
-  // Add original as largest size
-  srcSetParts.push(`${src} 2000w`);
-  
-  return srcSetParts.join(', ');
+  // For now, return undefined to use only the base image
+  // This ensures all images display correctly without 404 errors
+  return undefined;
 }
 
 /**
