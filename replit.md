@@ -132,3 +132,12 @@ See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimizati
     - **Fixed filename parsing**: Correctly handles all image formats (.png, .jpg, .webp) when generating variant URLs
     - **Automatic opt-in**: All uploaded images benefit from responsive delivery without code changes
     - **Sizes attribute**: Tells browser which size to use based on viewport: `(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 1280px`
+- **Blog Image 404 Fix** (Nov 7, 2025):
+  - **Comprehensive fallback system**: SmartImage and LazyImage now gracefully handle missing images with placeholder fallback
+  - **Shared placeholder**: Uses `/attached_assets/generated_images/Blog_placeholder_image_201b6785.png` for all broken images
+  - **State synchronization**: Components properly reset error/loaded states when src prop changes during navigation
+  - **Consumer callback composition**: onError callbacks are composed, allowing consumers to handle errors while preserving fallback behavior
+  - **Automatic srcset disabling**: Responsive variants are disabled when errors occur to prevent further 404 floods
+  - **Database cleanup**: Updated 14 blog posts with broken featured_image paths to use placeholder
+  - **Production status**: Zero blog image 404 errors - reduced from hundreds of 404s to zero
+  - **Type safety**: Proper SyntheticEvent types for React's onError handlers
