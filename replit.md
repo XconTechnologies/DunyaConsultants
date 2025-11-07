@@ -85,6 +85,12 @@ See `PERFORMANCE_OPTIMIZATION_GUIDE.md` for comprehensive performance optimizati
   - Deferred Calendly resources using requestIdleCallback
   - Critical font weights (400, 600) inlined, others loaded async
   - No render-blocking CSS on critical path
+- **Advanced Lighthouse Optimizations** (Nov 7, 2025):
+  - Updated Google Fonts to v18 (latest stable) with proper unicode-range declarations to eliminate 404 errors
+  - Added explicit MIME type headers for ES modules (`application/javascript; charset=utf-8`)
+  - Implemented security headers: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `X-XSS-Protection`
+  - Proper Content-Type headers for .tsx, .ts, .jsx, and .js files to prevent Lighthouse warnings
+  - Unicode-range restrictions on font-face declarations to prevent unnecessary font variant requests
 - **Next Steps**: Production deployment and real-user monitoring validation
 
 ### Network Payload Optimization (November 2025)

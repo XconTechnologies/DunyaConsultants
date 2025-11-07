@@ -41,6 +41,24 @@ app.use(compression({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Set proper MIME types for ES modules to eliminate Lighthouse warnings
+app.use((req: Request, res: Response, next: NextFunction) => {
+  // Ensure ES modules have correct MIME type
+  if (req.url.endsWith('.tsx') || req.url.endsWith('.ts') || req.url.endsWith('.jsx')) {
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  } else if (req.url.endsWith('.js') && !req.url.includes('node_modules')) {
+    // Only set for our own modules, not third-party
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  }
+  
+  // Add security headers for advanced optimization
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  next();
+});
+
 // Cache headers middleware for static assets (production only)
 app.use((req: Request, res: Response, next: NextFunction) => {
   const isProduction = app.get("env") === "production";
