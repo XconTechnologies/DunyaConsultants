@@ -4,8 +4,8 @@ import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, Award, Phone, Map
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import SmartImage from "@/components/ui/smart-image";
-import logoImageBlue from "@assets/logo-blue.webp";
-import logoImageWhite from "@assets/logo-white.webp";
+import logoImageBlue from "@assets/logo-blue-optimized.webp";
+import logoImageWhite from "@assets/logo-white-optimized.webp";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 
 export default function Navigation() {
