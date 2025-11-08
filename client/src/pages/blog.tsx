@@ -3046,15 +3046,23 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
                   <div className="space-y-6">
                     {(() => {
-                      // Insert WhatsApp CTA after ~20% of blocks or after 12 blocks (whichever is smaller)
-                      // Minimum of 2 blocks to ensure CTA never appears before content
-                      const insertAfter = Math.max(
-                        2,
-                        Math.min(
-                          Math.floor(blogPost.contentBlocks.length * 0.20),
-                          12
-                        )
-                      );
+                      // Find the first FAQ block to insert WhatsApp CTA before it
+                      const faqBlockIndex = blogPost.contentBlocks.findIndex((block: any) => {
+                        const type = block.type || block.__component || '';
+                        return type.toLowerCase().includes('faq');
+                      });
+                      
+                      // If FAQ block found, insert CTA before it
+                      // Otherwise, insert after ~20% of blocks (min 2, max 12)
+                      const insertAfter = faqBlockIndex > 0 
+                        ? faqBlockIndex
+                        : Math.max(
+                            2,
+                            Math.min(
+                              Math.floor(blogPost.contentBlocks.length * 0.20),
+                              12
+                            )
+                          );
                       
                       return (
                         <>
@@ -3065,9 +3073,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             </div>
                           ))}
                           
-                          {/* Insert WhatsApp CTA */}
+                          {/* Insert WhatsApp CTA with data attribute to prevent FAQ reorganization */}
                           {blogPost.contentBlocks.length > insertAfter && (
-                            <WhatsAppChannelCTA />
+                            <div data-faq-ignore="true">
+                              <WhatsAppChannelCTA />
+                            </div>
                           )}
                           
                           {/* Render remaining blocks */}
@@ -3397,10 +3407,14 @@ const forceFAQInitialization = (container: HTMLElement) => {
         let nextP = parent.nextElementSibling;
         let attempts = 0;
         
-        // Skip empty elements
-        while (nextP && !nextP.textContent?.trim() && attempts < 3) {
-          nextP = nextP.nextElementSibling;
-          attempts++;
+        // Skip empty elements and elements with data-faq-ignore
+        while (nextP && attempts < 3) {
+          if ((nextP as HTMLElement).dataset?.faqIgnore === 'true' || !nextP.textContent?.trim()) {
+            nextP = nextP.nextElementSibling;
+            attempts++;
+          } else {
+            break;
+          }
         }
         
         if (nextP && nextP.tagName === 'P' && nextP.textContent?.trim()) {
@@ -3422,10 +3436,14 @@ const forceFAQInitialization = (container: HTMLElement) => {
       let nextElement = heading.nextElementSibling;
       let attempts = 0;
       
-      // Skip empty elements
-      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
-        nextElement = nextElement.nextElementSibling;
-        attempts++;
+      // Skip empty elements and elements with data-faq-ignore
+      while (nextElement && attempts < 3) {
+        if ((nextElement as HTMLElement).dataset?.faqIgnore === 'true' || !nextElement.textContent?.trim()) {
+          nextElement = nextElement.nextElementSibling;
+          attempts++;
+        } else {
+          break;
+        }
       }
       
       if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && nextElement.textContent?.trim()) {
@@ -3519,7 +3537,13 @@ const autoDetectAndConvertFAQs = (container: HTMLElement) => {
                       text.match(/^(what|how|why|when|where|who|can|do|does|is|are|will|would|should)/);
     
     if (isQuestion) {
-      const nextElement = heading.nextElementSibling;
+      let nextElement = heading.nextElementSibling;
+      
+      // Skip elements with data-faq-ignore attribute
+      while (nextElement && (nextElement as HTMLElement).dataset?.faqIgnore === 'true') {
+        nextElement = nextElement.nextElementSibling;
+      }
+      
       if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV')) {
         // Convert to FAQ structure
         convertToFAQStructure(heading as HTMLElement, nextElement as HTMLElement);
@@ -3553,11 +3577,16 @@ const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
       // Look for the answer in the next sibling or next few siblings
       let nextElement = element.nextElementSibling;
       
-      // Skip empty elements and find the actual answer
+      // Skip empty elements and elements with data-faq-ignore, find the actual answer
       let attempts = 0;
-      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
-        nextElement = nextElement.nextElementSibling;
-        attempts++;
+      while (nextElement && attempts < 3) {
+        // Skip if element has data-faq-ignore or is empty
+        if ((nextElement as HTMLElement).dataset?.faqIgnore === 'true' || !nextElement.textContent?.trim()) {
+          nextElement = nextElement.nextElementSibling;
+          attempts++;
+        } else {
+          break;
+        }
       }
       
       if (nextElement && 
