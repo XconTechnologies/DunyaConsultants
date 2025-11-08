@@ -1,4 +1,5 @@
 import type { ContentBlock } from "@shared/schema";
+import WhatsAppChannelCTA from "@/components/whatsapp-channel-cta";
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
@@ -60,6 +61,7 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   }
   
   // Add content elements with blocks inserted after them
+  let whatsappCtaInserted = false;
   elements.forEach((el, index) => {
     contentParts.push(
       <div 
@@ -67,6 +69,16 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
         dangerouslySetInnerHTML={{ __html: el.outerHTML }}
       />
     );
+    
+    // Insert WhatsApp CTA after 2nd element (similar to WordPress implementation)
+    if (index === 1 && !whatsappCtaInserted) {
+      contentParts.push(
+        <div key="whatsapp-cta">
+          <WhatsAppChannelCTA />
+        </div>
+      );
+      whatsappCtaInserted = true;
+    }
     
     // Insert blocks after this element
     const blocksAfter = blocksByPosition.get(index + 1);
