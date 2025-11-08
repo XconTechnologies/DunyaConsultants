@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Study Abroad Consultants in Pakistan - Dunya Consultants</title>
+    <meta name="description" content="Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!" />
+    <meta name="google-site-verification" content="iRGygOiJOs-MlD_sSIm9t_vWAvAhD10oG27ppJZXLNk" />
+    
+    <!-- Dynamic canonical and OG URLs will be injected by server middleware -->
+    <!-- DYNAMIC_META_TAGS -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon.png">
+    
+    <!-- Google Analytics - Deferred aggressively on mobile -->
+    <script type="513d4bbf8fd9062bace34706-text/javascript">
+      function loadGA() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-RSMDBGDBDJ';
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RSMDBGDBDJ');
+      }
+      
+      var isMobile = window.innerWidth < 768;
+      var delay = isMobile ? 5000 : 3000; // 5s on mobile, 3s on desktop
+      
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGA, {timeout: delay});
+      } else {
+        setTimeout(loadGA, delay);
+      }
+    </script>
+    
+    <!-- Meta Pixel Code - Deferred aggressively on mobile -->
+    <script type="513d4bbf8fd9062bace34706-text/javascript">
+    function loadFBPixel() {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1131878482257088');
+      fbq('track', 'PageView');
+    }
+    
+    var isMobileFB = window.innerWidth < 768;
+    var delayFB = isMobileFB ? 5000 : 3000; // 5s on mobile, 3s on desktop
+    
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadFBPixel, {timeout: delayFB});
+    } else {
+      setTimeout(loadFBPixel, delayFB);
+    }
+    </script>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Critical inline CSS - Expanded for mobile performance -->
+    <style>
+      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+      html{-webkit-text-size-adjust:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5;tab-size:4}
+      body{margin:0;padding:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden;font-size:16px}
+      .critical-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
+      .hero-gradient{background:linear-gradient(135deg,#1D50C9 0%,#2764E8 100%)}
+      .loading-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+      .loading-spinner{width:60px;height:60px;position:relative}
+      .loading-spinner::before,.loading-spinner::after{content:'';position:absolute;border-radius:50%}
+      .loading-spinner::before{width:100%;height:100%;border:3px solid #e5e7eb;opacity:0.3}
+      .loading-spinner::after{width:100%;height:100%;border:3px solid transparent;border-top-color:#1D50C9;border-right-color:#1D50C9;animation:spin 0.8s cubic-bezier(0.68,-0.55,0.265,1.55) infinite}
+      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+      .loading-dots{display:flex;gap:0.5rem;align-items:center;justify-content:center}
+      .loading-dot{width:8px;height:8px;background:#1D50C9;border-radius:50%;animation:bounce 1.4s ease-in-out infinite}
+      .loading-dot:nth-child(1){animation-delay:0s}
+      .loading-dot:nth-child(2){animation-delay:0.2s}
+      .loading-dot:nth-child(3){animation-delay:0.4s}
+      @keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+      .loading-text{color:#666;font-size:1.125rem;font-weight:500;letter-spacing:0.05em}
+      img{max-width:100%;height:auto;display:block;loading:lazy}
+      button,input,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
+      h1,h2,h3,h4,h5,h6,p{margin:0}
+      h1{font-size:2rem;line-height:1.2;font-weight:700}
+      h2{font-size:1.5rem;line-height:1.3;font-weight:700}
+      h3{font-weight:600}
+      h4{font-weight:700}
+      h5{font-weight:600}
+      h6{font-weight:600}
+      p{font-size:1rem;line-height:1.6}
+      a{color:inherit;text-decoration:none}
+      #root{min-height:100vh}
+      .container{width:100%;max-width:1280px;margin:0 auto;padding:0 1rem}
+      .nav{position:fixed;top:0;width:100%;background:#fff;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+      @media(min-width:640px){.container{padding:0 1.5rem}}
+      @media(min-width:1024px){.container{padding:0 2rem}}
+      @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+    </style>
+    
+    <!-- Aggressive resource hints for critical performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.cdn.icef.com" crossorigin>
+    <link rel="dns-prefetch" href="https://assets.calendly.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    
+    <!-- Restore critical module preload for faster JS hydration -->
+    <link rel="modulepreload" href="data:application/octet-stream;base64,aW1wb3J0IHsgY3JlYXRlUm9vdCB9IGZyb20gInJlYWN0LWRvbS9jbGllbnQiOwppbXBvcnQgQXBwIGZyb20gIi4vQXBwIjsKaW1wb3J0ICIuL2luZGV4LmNzcyI7CgovLyBJbml0aWFsaXplIGNvbXByZWhlbnNpdmUgQ29yZSBXZWIgVml0YWxzIG1vbml0b3JpbmcKaWYgKHR5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnKSB7CiAgLy8gVHJhY2sgRkNQIChGaXJzdCBDb250ZW50ZnVsIFBhaW50KSAtIHRhcmdldCA8MS44cyAtIE1VU1QgQkUgRklSU1QKICBjb25zdCBmY3BPYnNlcnZlciA9IG5ldyBQZXJmb3JtYW5jZU9ic2VydmVyKChsaXN0KSA9PiB7CiAgICBmb3IgKGNvbnN0IGVudHJ5IG9mIGxpc3QuZ2V0RW50cmllcygpKSB7CiAgICAgIGlmIChlbnRyeS5uYW1lID09PSAnZmlyc3QtY29udGVudGZ1bC1wYWludCcpIHsKICAgICAgICBjb25zb2xlLmxvZygn4pyTIEZDUDonLCBNYXRoLnJvdW5kKGVudHJ5LnN0YXJ0VGltZSkgKyAnbXMnLCBlbnRyeS5zdGFydFRpbWUgPCAxODAwID8gJ+KchSBHT09EJyA6IGVudHJ5LnN0YXJ0VGltZSA8IDMwMDAgPyAn4pqg77iPIE5FRURTIElNUFJPVkVNRU5UJyA6ICfinYwgUE9PUicpOwogICAgICB9CiAgICB9CiAgfSk7CiAgCiAgLy8gVHJhY2sgTENQIChMYXJnZXN0IENvbnRlbnRmdWwgUGFpbnQpIC0gdGFyZ2V0IDwyLjVzCiAgY29uc3QgbGNwT2JzZXJ2ZXIgPSBuZXcgUGVyZm9ybWFuY2VPYnNlcnZlcigobGlzdCkgPT4gewogICAgZm9yIChjb25zdCBlbnRyeSBvZiBsaXN0LmdldEVudHJpZXMoKSkgewogICAgICBjb25zb2xlLmxvZygn4pyTIExDUDonLCBNYXRoLnJvdW5kKGVudHJ5LnN0YXJ0VGltZSkgKyAnbXMnLCBlbnRyeS5zdGFydFRpbWUgPCAyNTAwID8gJ+KchSBHT09EJyA6IGVudHJ5LnN0YXJ0VGltZSA8IDQwMDAgPyAn4pqg77iPIE5FRURTIElNUFJPVkVNRU5UJyA6ICfinYwgUE9PUicpOwogICAgfQogIH0pOwogIAogIC8vIFRyYWNrIElOUCAoSW50ZXJhY3Rpb24gdG8gTmV4dCBQYWludCkgLSB0YXJnZXQgPDIwMG1zCiAgY29uc3QgaW5wT2JzZXJ2ZXIgPSBuZXcgUGVyZm9ybWFuY2VPYnNlcnZlcigobGlzdCkgPT4gewogICAgZm9yIChjb25zdCBlbnRyeSBvZiBsaXN0LmdldEVudHJpZXMoKSkgewogICAgICBpZiAoZW50cnkuZHVyYXRpb24gPiAwKSB7CiAgICAgICAgY29uc29sZS5sb2coJ+KckyBJTlA6JywgTWF0aC5yb3VuZChlbnRyeS5kdXJhdGlvbikgKyAnbXMnLCBlbnRyeS5kdXJhdGlvbiA8IDIwMCA/ICfinIUgR09PRCcgOiBlbnRyeS5kdXJhdGlvbiA8IDUwMCA/ICfimqDvuI8gTkVFRFMgSU1QUk9WRU1FTlQnIDogJ+KdjCBQT09SJyk7CiAgICAgIH0KICAgIH0KICB9KTsKICAKICB0cnkgewogICAgZmNwT2JzZXJ2ZXIub2JzZXJ2ZSh7IHR5cGU6ICdwYWludCcsIGJ1ZmZlcmVkOiB0cnVlIH0pOwogICAgbGNwT2JzZXJ2ZXIub2JzZXJ2ZSh7IHR5cGU6ICdsYXJnZXN0LWNvbnRlbnRmdWwtcGFpbnQnLCBidWZmZXJlZDogdHJ1ZSB9KTsKICAgIGlucE9ic2VydmVyLm9ic2VydmUoeyB0eXBlOiAnZmlyc3QtaW5wdXQnLCBidWZmZXJlZDogdHJ1ZSB9KTsKICB9IGNhdGNoIChlKSB7CiAgICAvLyBPYnNlcnZlciBub3Qgc3VwcG9ydGVkCiAgfQogIAogIC8vIFRyYWNrIFRURkIgKFRpbWUgdG8gRmlyc3QgQnl0ZSkgdXNpbmcgTmF2aWdhdGlvbiBUaW1pbmcKICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignbG9hZCcsICgpID0+IHsKICAgIGNvbnN0IG5hdlRpbWluZyA9IHBlcmZvcm1hbmNlLmdldEVudHJpZXNCeVR5cGUoJ25hdmlnYXRpb24nKVswXSBhcyBQZXJmb3JtYW5jZU5hdmlnYXRpb25UaW1pbmc7CiAgICBpZiAobmF2VGltaW5nKSB7CiAgICAgIGNvbnN0IHR0ZmIgPSBuYXZUaW1pbmcucmVzcG9uc2VTdGFydCAtIG5hdlRpbWluZy5yZXF1ZXN0U3RhcnQ7CiAgICAgIGNvbnNvbGUubG9nKCfinJMgVFRGQjonLCBNYXRoLnJvdW5kKHR0ZmIpICsgJ21zJywgdHRmYiA8IDgwMCA/ICfinIUgR09PRCcgOiB0dGZiIDwgMTgwMCA/ICfimqDvuI8gTkVFRFMgSU1QUk9WRU1FTlQnIDogJ+KdjCBQT09SJyk7CiAgICB9CiAgICAKICAgIC8vIEZhbGxiYWNrOiBDaGVjayBwZXJmb3JtYW5jZSB0aW1lbGluZSBmb3IgRkNQIGlmIG9ic2VydmVyIGRpZG4ndCBjYXRjaCBpdAogICAgY29uc3QgcGFpbnRFbnRyaWVzID0gcGVyZm9ybWFuY2UuZ2V0RW50cmllc0J5VHlwZSgncGFpbnQnKTsKICAgIGNvbnN0IGZjcEVudHJ5ID0gcGFpbnRFbnRyaWVzLmZpbmQoZW50cnkgPT4gZW50cnkubmFtZSA9PT0gJ2ZpcnN0LWNvbnRlbnRmdWwtcGFpbnQnKTsKICAgIGlmIChmY3BFbnRyeSAmJiAhd2luZG93Ll9fZmNwTG9nZ2VkKSB7CiAgICAgIGNvbnNvbGUubG9nKCfinJMgRkNQIChmYWxsYmFjayk6JywgTWF0aC5yb3VuZChmY3BFbnRyeS5zdGFydFRpbWUpICsgJ21zJywgZmNwRW50cnkuc3RhcnRUaW1lIDwgMTgwMCA/ICfinIUgR09PRCcgOiBmY3BFbnRyeS5zdGFydFRpbWUgPCAzMDAwID8gJ+KaoO+4jyBORUVEUyBJTVBST1ZFTUVOVCcgOiAn4p2MIFBPT1InKTsKICAgICAgKHdpbmRvdyBhcyBhbnkpLl9fZmNwTG9nZ2VkID0gdHJ1ZTsKICAgIH0KICB9KTsKfQoKLy8gTG9nIHNjcmlwdCBsb2FkZWQgZm9yIGRlYnVnZ2luZwpjb25zb2xlLmxvZygnc2NyaXB0IGxvYWRlZCcpOwoKY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgicm9vdCIpISkucmVuZGVyKDxBcHAgLz4pOwo=">
+    
+    <!-- Preload critical images only for LCP optimization -->
+    <link rel="preload" as="image" 
+      href="/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp"
+      fetchpriority="high">
+    <link rel="preload" as="image" href="/attached_assets/logo-white-optimized.webp" fetchpriority="high">
+    
+    <!-- Preload critical font for instant rendering (latest stable version) -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" crossorigin>
+    
+    <!-- Inline only critical font declaration for FCP -->
+    <style>
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+      @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    </style>
+    
+    <!-- Load remaining font weights async -->
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="513d4bbf8fd9062bace34706-|49"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap"></noscript>
+    <script type="513d4bbf8fd9062bace34706-module" crossorigin src="/assets/index-D_DJ4E1K.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Be2Vz3W9.css">
+  </head>
+  <body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1131878482257088&ev=PageView&noscript=1"
+    /></noscript>
+    <div id="root">
+      <div class="critical-section" style="background:#fff">
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading</div>
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Defer Calendly loading until after page is interactive -->
+    <script type="513d4bbf8fd9062bace34706-text/javascript">
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          var calendlyCSS = document.createElement('link');
+          calendlyCSS.rel = 'stylesheet';
+          calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(calendlyCSS);
+          
+          window.CalendlyConfig = {url: 'https://calendly.com/meet-dunya-consultants/20min'};
+        }, {timeout: 3000});
+      } else {
+        setTimeout(function() {
+          var calendlyCSS = document.createElement('link');
+          calendlyCSS.rel = 'stylesheet';
+          calendlyCSS.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(calendlyCSS);
+          
+          window.CalendlyConfig = {url: 'https://calendly.com/meet-dunya-consultants/20min'};
+        }, 2000);
+      }
+    </script>
+  <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="513d4bbf8fd9062bace34706-|49" defer></script></body>
+</html>
