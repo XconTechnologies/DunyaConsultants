@@ -5533,23 +5533,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Get published blog posts - REMOVED DUPLICATE (keeping earlier version)
 
-  // Get single published blog post by slug (fixed publication consistency)
-  app.get("/api/blog-posts/:slug", async (req, res) => {
-    try {
-      const post = await storage.getBlogPostBySlug(req.params.slug);
-      if (!post || !post.isPublished) {
-        return res.status(404).json({ message: 'Blog post not found' });
-      }
-      // Increment view count for published posts
-      await storage.incrementBlogViews(post.id);
-      res.json(post);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch blog post' });
-    }
-  });
-
   // Preview blog post (including drafts) - requires authentication
-  app.get("/api/blog-posts/:slug/preview", async (req, res) => {
+  // Must come BEFORE the general blog-posts/:slug route to avoid conflict
+  app.get("/api/blog-posts/*/preview", async (req, res) => {
     try {
       // Check for authentication token
       const token = req.headers.authorization?.replace('Bearer ', '');
@@ -5564,8 +5550,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: 'Invalid or expired token' });
       }
 
+      // Extract slug from path (remove /api/blog-posts/ and /preview)
+      const slug = req.path.replace('/api/blog-posts/', '').replace('/preview', '');
+      
       // Get the blog post (regardless of publication status)
-      const post = await storage.getBlogPostBySlug(req.params.slug);
+      const post = await storage.getBlogPostBySlug(slug);
       if (!post) {
         return res.status(404).json({ message: 'Blog post not found' });
       }
@@ -5575,6 +5564,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Preview error:', error);
       res.status(500).json({ message: 'Failed to fetch blog post preview' });
+    }
+  });
+
+  // Get single published blog post by slug (fixed publication consistency)
+  // Supports both simple slugs and date-based slugs (e.g., 2024/08/29/slug-name)
+  app.get("/api/blog-posts/*", async (req, res) => {
+    try {
+      // Extract slug from path (remove /api/blog-posts/ prefix)
+      const slug = req.path.replace('/api/blog-posts/', '');
+      
+      const post = await storage.getBlogPostBySlug(slug);
+      if (!post || !post.isPublished) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      // Increment view count for published posts
+      await storage.incrementBlogViews(post.id);
+      res.json(post);
+    } catch (error) {
+      console.error('Failed to fetch blog post:', error);
+      res.status(500).json({ message: 'Failed to fetch blog post' });
     }
   });
 
