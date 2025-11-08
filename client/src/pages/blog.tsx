@@ -403,6 +403,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
     enabled: !isPreviewMode || !!adminToken // Only run if we have a token in preview mode
   });
 
+  // Fetch ALL blog posts for related blogs carousel
+  const { data: allBlogPostsData } = useQuery({
+    queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) throw new Error('Failed to fetch all blog posts');
+      return response.json();
+    }
+  });
+
   // Transform API data to component format
   const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
     id: post.id,
@@ -480,11 +490,39 @@ function BlogPostDetail({ slug }: { slug: string }) {
     }
   }, [blogPost]);
 
+  // Transform all blog posts data for related blogs carousel
+  const allBlogPosts = allBlogPostsData ? allBlogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    categories: post.categories || [],
+    slug: post.slug,
+    image: normalizeImageSrc(post.featuredImage || ''),
+    date: (() => {
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
+    views: post.view_count || 0,
+    tags: post.tags || []
+  })) : [];
+
   // Get related blogs based on shared categories (always run this)
   const relatedBlogs = (() => {
-    if (!blogPost || !blogPost.categories || blogPost.categories.length === 0) {
-      // Fallback to latest 5 if no categories
-      return blogPosts
+    if (!blogPost || !blogPost.categories || blogPost.categories.length === 0 || !allBlogPosts.length) {
+      // Fallback to latest 5 if no categories or no data
+      return allBlogPosts
         .filter((post: any) => post.slug !== slug)
         .slice(0, 5);
     }
@@ -493,7 +531,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     const currentCategories = blogPost.categories.map((cat: any) => cat.name);
     
     // Filter blogs that share at least one category with the current blog
-    const categoryMatchedBlogs = blogPosts
+    const categoryMatchedBlogs = allBlogPosts
       .filter((post: any) => {
         if (post.slug === slug) return false; // Exclude current blog
         
@@ -506,7 +544,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     
     // If we don't have enough category-matched blogs, fill with latest blogs
     if (categoryMatchedBlogs.length < 5) {
-      const additionalBlogs = blogPosts
+      const additionalBlogs = allBlogPosts
         .filter((post: any) => 
           post.slug !== slug && 
           !categoryMatchedBlogs.some((matched: any) => matched.slug === post.slug)
@@ -2997,18 +3035,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       </section>
                     </div>
                     );
-                  }).reduce((acc: React.ReactNode[], element: any, idx: number) => {
-                    if (element !== null) {
-                      acc.push(element);
-                      // Add WhatsApp CTA after 1st section for HTML content (admin dashboard posts)
-                      // or after 2nd section for WordPress posts
-                      const shouldInsertCTA = (isHTMLContent && acc.length === 1) || (!isHTMLContent && acc.length === 2);
-                      if (shouldInsertCTA) {
-                        acc.push(<WhatsAppChannelCTA key="whatsapp-cta" />);
-                      }
-                    }
-                    return acc;
-                  }, [])}
+                  })}
                 </div>
 
                 {/* Content Blocks - Integrated with content */}
