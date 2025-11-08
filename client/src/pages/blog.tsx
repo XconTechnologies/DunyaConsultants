@@ -3000,8 +3000,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   }).reduce((acc: React.ReactNode[], element: any, idx: number) => {
                     if (element !== null) {
                       acc.push(element);
-                      // Add WhatsApp CTA after 2nd rendered section (before 3rd heading)
-                      if (acc.length === 2) {
+                      // Add WhatsApp CTA after 1st section for HTML content (admin dashboard posts)
+                      // or after 2nd section for WordPress posts
+                      const shouldInsertCTA = (isHTMLContent && acc.length === 1) || (!isHTMLContent && acc.length === 2);
+                      if (shouldInsertCTA) {
                         acc.push(<WhatsAppChannelCTA key="whatsapp-cta" />);
                       }
                     }
