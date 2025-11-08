@@ -3045,24 +3045,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Content Blocks - Admin dashboard posts */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
                   <div className="space-y-6">
-                    {/* Render first 2 blocks */}
-                    {blogPost.contentBlocks.slice(0, 2).map((block: any, index: number) => (
-                      <div key={`block-${block.id || index}`} className="prose prose-xl max-w-none">
-                        <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                      </div>
-                    ))}
-                    
-                    {/* Insert WhatsApp CTA after first 2 blocks */}
-                    {blogPost.contentBlocks.length >= 2 && (
-                      <WhatsAppChannelCTA />
-                    )}
-                    
-                    {/* Render remaining blocks */}
-                    {blogPost.contentBlocks.slice(2).map((block: any, index: number) => (
-                      <div key={`block-after-${block.id || index}`} className="prose prose-xl max-w-none">
-                        <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                      </div>
-                    ))}
+                    {(() => {
+                      // Insert WhatsApp CTA after ~20% of blocks or after 12 blocks (whichever is smaller)
+                      // Minimum of 2 blocks to ensure CTA never appears before content
+                      const insertAfter = Math.max(
+                        2,
+                        Math.min(
+                          Math.floor(blogPost.contentBlocks.length * 0.20),
+                          12
+                        )
+                      );
+                      
+                      return (
+                        <>
+                          {/* Render blocks before WhatsApp CTA */}
+                          {blogPost.contentBlocks.slice(0, insertAfter).map((block: any, index: number) => (
+                            <div key={`block-${block.id || index}`} className="prose prose-xl max-w-none">
+                              <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                            </div>
+                          ))}
+                          
+                          {/* Insert WhatsApp CTA */}
+                          {blogPost.contentBlocks.length > insertAfter && (
+                            <WhatsAppChannelCTA />
+                          )}
+                          
+                          {/* Render remaining blocks */}
+                          {blogPost.contentBlocks.slice(insertAfter).map((block: any, index: number) => (
+                            <div key={`block-after-${block.id || index}`} className="prose prose-xl max-w-none">
+                              <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                            </div>
+                          ))}
+                        </>
+                      );
+                    })()}
                   </div>
                 ) : null}
 
