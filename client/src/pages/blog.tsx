@@ -3042,14 +3042,27 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   })}
                 </div>
 
-                {/* Content Blocks - Integrated with content */}
+                {/* Content Blocks - Admin dashboard posts */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
-                  <div className="mt-8 prose prose-xl max-w-none">
-                    <ContentBlocksRenderer 
-                      blocks={blogPost.contentBlocks} 
-                      content={blogPost.content}
-                      integrated={true}
-                    />
+                  <div className="space-y-6">
+                    {/* Render first 2 blocks */}
+                    {blogPost.contentBlocks.slice(0, 2).map((block: any, index: number) => (
+                      <div key={`block-${block.id || index}`} className="prose prose-xl max-w-none">
+                        <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                      </div>
+                    ))}
+                    
+                    {/* Insert WhatsApp CTA after first 2 blocks */}
+                    {blogPost.contentBlocks.length >= 2 && (
+                      <WhatsAppChannelCTA />
+                    )}
+                    
+                    {/* Render remaining blocks */}
+                    {blogPost.contentBlocks.slice(2).map((block: any, index: number) => (
+                      <div key={`block-after-${block.id || index}`} className="prose prose-xl max-w-none">
+                        <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                      </div>
+                    ))}
                   </div>
                 ) : null}
 
