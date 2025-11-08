@@ -17,6 +17,7 @@ import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/li
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 import { setMetaTags } from "@/lib/seo";
 import WhatsAppChannelCTA from "@/components/whatsapp-channel-cta";
+import SmartImage from "@/components/ui/smart-image";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -497,8 +498,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     categories: post.categories || [],
+    author: post.authorName || "Dunya Consultants",
     slug: post.slug,
-    image: normalizeImageSrc(post.featuredImage || ''),
+    image: normalizeImageSrc(post.featuredImage || post.featured_image || ''),
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
@@ -514,8 +516,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
         return 'Unknown Date';
       }
     })(),
+    readTime: "5 min",
     views: post.view_count || 0,
-    tags: post.tags || []
+    tags: post.tags || [],
+    featured: false
   })) : [];
 
   // Get related blogs based on shared categories (always run this)
@@ -3099,34 +3103,25 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
-                                {blog.image && (
-                                  <div className="relative overflow-hidden rounded-t-lg bg-gray-100 h-48">
-                                    <img 
-                                      src={normalizeImageSrc(blog.image)} 
-                                      alt={blog.title}
-                                      className="transition-transform hover:scale-105"
-                                      style={{ 
-                                        objectFit: 'cover', 
-                                        objectPosition: 'center',
-                                        width: '100%',
-                                        maxWidth: '100%',
-                                        height: '100%',
-                                        display: 'block',
-                                        imageRendering: 'auto',
-                                        backfaceVisibility: 'hidden'
-                                      }}
-                                      loading="lazy"
-                                      decoding="async"
-                                      onLoad={(e) => {
-                                        e.currentTarget.style.opacity = '1';
-                                      }}
-                                      onError={(e) => {
-                                        // Hide image on error
-                                        e.currentTarget.style.display = 'none';
-                                      }}
-                                    />
-                                  </div>
-                                )}
+                                <div className="relative overflow-hidden rounded-t-lg bg-gray-100 h-48">
+                                  <SmartImage 
+                                    src={blog.image || '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'} 
+                                    alt={blog.title}
+                                    className="transition-transform hover:scale-105"
+                                    style={{ 
+                                      objectFit: 'cover', 
+                                      objectPosition: 'center',
+                                      width: '100%',
+                                      maxWidth: '100%',
+                                      height: '100%',
+                                      display: 'block',
+                                      imageRendering: 'auto',
+                                      backfaceVisibility: 'hidden'
+                                    }}
+                                    loading="lazy"
+                                    decoding="async"
+                                  />
+                                </div>
 
                                 <CardContent className="p-6">
                                   
