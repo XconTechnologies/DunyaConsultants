@@ -1125,8 +1125,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     </div>
                   )}
 
-                  {/* Regular Content Sections - Skip if contentBlocks exist (admin dashboard posts) */}
-                  {!blogPost.contentBlocks && contentSections.filter((section: any, index: number) => {
+                  {/* Regular Content Sections - Skip only if contentBlocks has actual content */}
+                  {!(blogPost.contentBlocks && blogPost.contentBlocks.length > 0) && contentSections.filter((section: any, index: number) => {
                     // Skip first section if it's the intro (no title) and already displayed above
                     if (index === 0 && !section.title && !isHTMLContent) return false;
                     // Skip sections where title is just "Atlas University" without meaningful content
