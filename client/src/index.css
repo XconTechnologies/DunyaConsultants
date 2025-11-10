@@ -1353,8 +1353,10 @@ p[class*="text-gray-700"] a:hover {
 
 /* New FAQ Container Styles */
 .faq-container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
   font-family: 'Poppins', sans-serif;
 }
 

@@ -1095,8 +1095,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* Handle HTML content or regular intro sections */}
-                  {isHTMLContent ? (
+                  {/* Handle HTML content or regular intro sections - Skip if content blocks exist */}
+                  {isHTMLContent && !(blogPost.contentBlocks && blogPost.contentBlocks.length > 0) ? (
                     <div 
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
@@ -1150,7 +1150,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         }
                       }}
                     />
-                  ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
+                  ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && !(blogPost.contentBlocks && blogPost.contentBlocks.length > 0) && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
                         {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
@@ -3053,7 +3053,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Content Blocks - Admin dashboard posts */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
-                  <div className="space-y-6">
+                  <div className="space-y-6" data-has-content-blocks="true">
                     {(() => {
                       // Find the first FAQ block to insert WhatsApp CTA before it
                       const faqBlockIndex = blogPost.contentBlocks.findIndex((block: any) => {
@@ -3076,11 +3076,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return (
                         <>
                           {/* Render blocks before WhatsApp CTA */}
-                          {blogPost.contentBlocks.slice(0, insertAfter).map((block: any, index: number) => (
-                            <div key={`block-${block.id || index}`} className="prose prose-xl max-w-none">
-                              <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                            </div>
-                          ))}
+                          {blogPost.contentBlocks.slice(0, insertAfter).map((block: any, index: number) => {
+                            const blockType = block.type || block.__component || '';
+                            const isFAQBlock = blockType.toLowerCase().includes('faq');
+                            return (
+                              <div key={`block-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
+                                <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                              </div>
+                            );
+                          })}
                           
                           {/* Insert WhatsApp CTA with data attribute to prevent FAQ reorganization */}
                           {blogPost.contentBlocks.length > insertAfter && (
@@ -3090,11 +3094,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           )}
                           
                           {/* Render remaining blocks */}
-                          {blogPost.contentBlocks.slice(insertAfter).map((block: any, index: number) => (
-                            <div key={`block-after-${block.id || index}`} className="prose prose-xl max-w-none">
-                              <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                            </div>
-                          ))}
+                          {blogPost.contentBlocks.slice(insertAfter).map((block: any, index: number) => {
+                            const blockType = block.type || block.__component || '';
+                            const isFAQBlock = blockType.toLowerCase().includes('faq');
+                            return (
+                              <div key={`block-after-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
+                                <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                              </div>
+                            );
+                          })}
                         </>
                       );
                     })()}
@@ -3472,6 +3480,17 @@ const initializeFAQs = (container: HTMLElement) => {
   // Prevent multiple initialization on the same container
   if (container.dataset.faqInitialized === 'true') return;
   container.dataset.faqInitialized = 'true';
+  
+  // Check if page has content blocks - if so, skip auto-detection entirely
+  const hasContentBlocks = document.querySelector('[data-has-content-blocks="true"]');
+  if (hasContentBlocks) {
+    // Only handle existing .faq-question elements from content blocks
+    const faqQuestions = container.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+      setupFAQHandler(question as HTMLElement);
+    });
+    return; // Skip all auto-detection
+  }
   
   // Method 1: Handle existing .faq-question elements
   const faqQuestions = container.querySelectorAll('.faq-question');
