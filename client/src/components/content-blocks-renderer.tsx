@@ -36,8 +36,24 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = content;
   
-  const elements = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table');
+  // Select ALL elements first, then filter to only top-level ones (not nested)
+  const allElements = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table');
+  const elements = Array.from(allElements).filter(el => {
+    // Check if any parent (up to tempDiv) is also in the selection
+    let parent = el.parentElement;
+    while (parent && parent !== tempDiv) {
+      if (allElements && Array.from(allElements).includes(parent as any)) {
+        return false; // This element is nested inside another selected element
+      }
+      parent = parent.parentElement;
+    }
+    return true; // This is a top-level element
+  });
   const contentParts: JSX.Element[] = [];
+  
+  // Debug: Log element count and types
+  console.log(`IntegratedContentRenderer: Found ${elements.length} top-level elements`, 
+    elements.map((el, i) => `${i}: ${el.tagName}`).join(', '));
   
   // Group blocks by position
   const blocksByPosition = new Map<number, ContentBlock[]>();
