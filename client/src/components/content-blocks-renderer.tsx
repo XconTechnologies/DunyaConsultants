@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { ContentBlock } from "@shared/schema";
 import WhatsAppChannelCTA from "@/components/whatsapp-channel-cta";
 
@@ -144,30 +145,47 @@ function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
   const questions = blockData.data?.questions || blockData.items || [
     {
       question: blockData.data?.question || '',
-      answer: blockData.data?.answer || '',
-      questionBgColor: blockData.data?.questionBgColor || '#f3f4f6',
-      answerBgColor: blockData.data?.answerBgColor || '#ffffff'
+      answer: blockData.data?.answer || ''
     }
   ];
 
+  // Add toggle functionality after component mounts
+  useEffect(() => {
+    const handleFaqClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains('faq-question')) {
+        const item = target.closest('.faq-item');
+        const allItems = document.querySelectorAll('.faq-item');
+        
+        // Close all other items
+        allItems.forEach(i => {
+          if (i !== item) i.classList.remove('active');
+        });
+        
+        // Toggle current item
+        item?.classList.toggle('active');
+      }
+    };
+
+    document.addEventListener('click', handleFaqClick);
+    return () => document.removeEventListener('click', handleFaqClick);
+  }, []);
+
   return (
-    <div className="faq-block">
-      {questions.map((q: any, index: number) => (
-        <div key={index} className="border rounded-lg overflow-hidden">
-          <div 
-            className="p-4 font-semibold"
-            style={{ backgroundColor: q.questionBgColor || '#f3f4f6' }}
-          >
-            {q.question}
+    <div className="faq-container">
+      <h2>FAQs</h2>
+      <div id="faq-list">
+        {questions.map((q: any, index: number) => (
+          <div key={index} className="faq-item">
+            <button className="faq-question">
+              {q.question}
+            </button>
+            <div className="faq-answer">
+              <p>{q.answer}</p>
+            </div>
           </div>
-          <div 
-            className="p-4"
-            style={{ backgroundColor: q.answerBgColor || '#ffffff' }}
-          >
-            {q.answer}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

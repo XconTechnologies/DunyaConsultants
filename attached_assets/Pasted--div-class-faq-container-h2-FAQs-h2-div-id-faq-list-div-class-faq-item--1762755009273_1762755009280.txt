@@ -1,0 +1,129 @@
+<div class="faq-container">
+  <h2>FAQs</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <button class="faq-question">Can I study medical courses in Germany after the 12th?</button>
+      <div class="faq-answer">
+        <p>Yes, you can apply for medicine courses in Germany after completing your 12th. You will need to submit your 12th-grade mark sheet.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-form">
+    <h3>Add New FAQ</h3>
+    <input type="text" id="new-question" placeholder="Enter question" />
+    <textarea id="new-answer" placeholder="Enter answer"></textarea>
+    <button id="add-faq">Add FAQ</button>
+  </div>
+</div>
+
+<style>
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+  }
+  .faq-container h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .faq-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    background: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  .faq-question:hover {
+    background: #f9f9f9;
+  }
+  .faq-answer {
+    display: none;
+    padding: 15px;
+    background: #fff;
+    color: #444;
+    line-height: 1.6;
+  }
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+  .faq-form {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 2px solid #e0e0e0;
+  }
+  .faq-form input,
+  .faq-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  .faq-form button {
+    padding: 10px 20px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .faq-form button:hover {
+    background: #1e40af;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqList = document.getElementById('faq-list');
+    const addFaqBtn = document.getElementById('add-faq');
+    const newQuestion = document.getElementById('new-question');
+    const newAnswer = document.getElementById('new-answer');
+
+    // Toggle answer visibility
+    faqList.addEventListener('click', function (e) {
+      if (e.target.classList.contains('faq-question')) {
+        const item = e.target.parentElement;
+        const allItems = document.querySelectorAll('.faq-item');
+        allItems.forEach(i => {
+          if (i !== item) i.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      }
+    });
+
+    // Add new FAQ dynamically
+    addFaqBtn.addEventListener('click', function () {
+      const q = newQuestion.value.trim();
+      const a = newAnswer.value.trim();
+
+      if (!q || !a) return alert('Please enter both question and answer');
+
+      const faqItem = document.createElement('div');
+      faqItem.classList.add('faq-item');
+      faqItem.innerHTML = `
+        <button class="faq-question">${q}</button>
+        <div class="faq-answer"><p>${a}</p></div>
+      `;
+
+      faqList.appendChild(faqItem);
+      newQuestion.value = '';
+      newAnswer.value = '';
+    });
+  });
+</script>
