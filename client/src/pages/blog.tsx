@@ -745,10 +745,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
       
       // Use requestAnimationFrame to batch DOM reads
       const firstCard = carousel.querySelector('.related-blog-card');
-      if (!firstCard) return window.innerWidth >= 768 ? 384 : 320; // w-96 or w-80 in pixels
+      if (!firstCard) {
+        // Fallback: mobile is 85% of viewport, desktop is ~33.33% of container
+        const containerWidth = carousel.clientWidth;
+        return window.innerWidth >= 768 ? containerWidth / 3 : containerWidth * 0.85;
+      }
       
       const cardWidth = firstCard.clientWidth;
-      const gap = window.innerWidth >= 768 ? 24 : 16; // md:gap-6 or gap-4
+      const gap = window.innerWidth >= 768 ? 16 : 12; // md:gap-4 or gap-3
       cachedCardWidth = cardWidth + gap;
       return cachedCardWidth;
     };
@@ -3098,16 +3102,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                     
                     {/* Infinite Scroll Carousel */}
-                    <div className="relative -mx-4 md:-mx-6">
+                    <div className="relative -mx-4 md:-mx-0">
                       <style>{`
                         .related-blog-carousel-container {
-                          padding-left: 16px;
-                          padding-right: 16px;
+                          padding-left: 7.5%;
+                          padding-right: 7.5%;
                         }
                         @media (min-width: 768px) {
                           .related-blog-carousel-container {
-                            padding-left: 24px;
-                            padding-right: 24px;
+                            padding-left: 0;
+                            padding-right: 0;
                           }
                         }
                         .related-blog-card a {
@@ -3119,7 +3123,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       `}</style>
                       <div
                         ref={relatedBlogsCarouselRef}
-                        className="related-blog-carousel-container flex gap-4 md:gap-6 overflow-x-scroll scrollbar-hide will-change-scroll"
+                        className="related-blog-carousel-container flex gap-3 md:gap-4 overflow-x-scroll scrollbar-hide will-change-scroll"
                         style={{
                           scrollBehavior: 'auto',
                           width: '100%',
@@ -3130,9 +3134,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         {duplicatedRelatedBlogs.map((blog, index) => (
                           <motion.div
                             key={`${blog.id}-${index}`}
-                            className="flex-shrink-0 w-80 md:w-[320px] related-blog-card"
+                            className="flex-shrink-0 w-[85%] md:w-[calc(33.333%_-_11px)] related-blog-card"
                             style={{
-                              scrollSnapAlign: window.innerWidth >= 768 ? 'start' : 'center'
+                              scrollSnapAlign: 'center'
                             }}
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
