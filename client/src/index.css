@@ -1443,9 +1443,11 @@ p[class*="text-gray-700"] a:hover {
   border-radius: inherit !important;
 }
 
-/* Remove hover effects from consultation feature headings */
+/* Remove hover effects from consultation and WhatsApp block headings */
 [data-block-type="consultation"] h3,
-[data-block-type="consultation"] h3:hover {
+[data-block-type="consultation"] h3:hover,
+[data-block-type="whatsappChannel"] h3,
+[data-block-type="whatsappChannel"] h3:hover {
   color: white !important;
   text-decoration: none !important;
   cursor: default !important;
