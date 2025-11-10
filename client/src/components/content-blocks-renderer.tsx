@@ -139,12 +139,14 @@ function renderBlock(block: ContentBlock) {
 // FAQ Block Renderer
 function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
   // Support both old single question format and new multiple questions format
-  const questions = block.data.questions || [
+  // Handle both block.data.questions (schema format) and block.items (actual format)
+  const blockData = block as any;
+  const questions = blockData.data?.questions || blockData.items || [
     {
-      question: block.data.question || '',
-      answer: block.data.answer || '',
-      questionBgColor: block.data.questionBgColor || '#f3f4f6',
-      answerBgColor: block.data.answerBgColor || '#ffffff'
+      question: blockData.data?.question || '',
+      answer: blockData.data?.answer || '',
+      questionBgColor: blockData.data?.questionBgColor || '#f3f4f6',
+      answerBgColor: blockData.data?.answerBgColor || '#ffffff'
     }
   ];
 
