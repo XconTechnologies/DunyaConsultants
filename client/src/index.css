@@ -85,6 +85,13 @@ body {
 }
 
 /* Blog content specific typography */
+/* Force Inter font for all article content */
+.prose,
+.blog-content,
+article {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+}
+
 .prose h1,
 .blog-content h1,
 article h1 {
