@@ -16,7 +16,6 @@ import ConsultationBookingSection from "@/components/consultation-booking-sectio
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 import { setMetaTags } from "@/lib/seo";
-import WhatsAppChannelCTA from "@/components/whatsapp-channel-cta";
 import SmartImage from "@/components/ui/smart-image";
 
 // Unified image src normalization function
@@ -3097,58 +3096,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Content Blocks - Admin dashboard posts */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
                   <div className="space-y-6" data-has-content-blocks="true">
-                    {(() => {
-                      // Find the first FAQ block to insert WhatsApp CTA before it
-                      const faqBlockIndex = blogPost.contentBlocks.findIndex((block: any) => {
-                        const type = block.type || block.__component || '';
-                        return type.toLowerCase().includes('faq');
-                      });
-                      
-                      // If FAQ block found, insert CTA before it
-                      // Otherwise, insert after ~20% of blocks (min 2, max 12)
-                      const insertAfter = faqBlockIndex > 0 
-                        ? faqBlockIndex
-                        : Math.max(
-                            2,
-                            Math.min(
-                              Math.floor(blogPost.contentBlocks.length * 0.20),
-                              12
-                            )
-                          );
-                      
+                    {blogPost.contentBlocks.map((block: any, index: number) => {
+                      const blockType = block.type || block.__component || '';
+                      const isFAQBlock = blockType.toLowerCase().includes('faq');
                       return (
-                        <>
-                          {/* Render blocks before WhatsApp CTA */}
-                          {blogPost.contentBlocks.slice(0, insertAfter).map((block: any, index: number) => {
-                            const blockType = block.type || block.__component || '';
-                            const isFAQBlock = blockType.toLowerCase().includes('faq');
-                            return (
-                              <div key={`block-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
-                                <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                              </div>
-                            );
-                          })}
-                          
-                          {/* Insert WhatsApp CTA with data attribute to prevent FAQ reorganization */}
-                          {blogPost.contentBlocks.length > insertAfter && (
-                            <div data-faq-ignore="true">
-                              <WhatsAppChannelCTA />
-                            </div>
-                          )}
-                          
-                          {/* Render remaining blocks */}
-                          {blogPost.contentBlocks.slice(insertAfter).map((block: any, index: number) => {
-                            const blockType = block.type || block.__component || '';
-                            const isFAQBlock = blockType.toLowerCase().includes('faq');
-                            return (
-                              <div key={`block-after-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
-                                <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                              </div>
-                            );
-                          })}
-                        </>
+                        <div key={`block-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
+                          <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                        </div>
                       );
-                    })()}
+                    })}
                   </div>
                 ) : null}
 
