@@ -1210,7 +1210,7 @@ p[class*="text-gray-700"] a:hover {
 
 /* FAQ Styles - Shadcn/UI Style to match reference */
 .faq-section {
-  margin: 2rem 0 !important;
+  margin: 0 !important;
 }
 
 .faq-section h2,

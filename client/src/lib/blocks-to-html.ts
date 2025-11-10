@@ -89,7 +89,7 @@ function renderFaq(items: FaqItem[]): string {
   // Safety check for undefined items
   if (!items || items.length === 0) return '';
   
-  let html = '<div class="faq-section" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; margin: 1.5rem 0;">\n';
+  let html = '<div class="faq-section" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white;">\n';
   
   items.forEach((item, index) => {
     html += '  <div class="faq-item" style="border-bottom: 1px solid #e5e7eb;">\n';

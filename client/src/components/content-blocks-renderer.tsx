@@ -149,7 +149,7 @@ function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
   ];
 
   return (
-    <div className="faq-block space-y-4">
+    <div className="faq-block">
       {questions.map((q: any, index: number) => (
         <div key={index} className="border rounded-lg overflow-hidden">
           <div 
