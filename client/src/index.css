@@ -1442,3 +1442,11 @@ p[class*="text-gray-700"] a:hover {
   text-transform: none !important;
   border-radius: inherit !important;
 }
+
+/* Remove hover effects from consultation feature headings */
+[data-block-type="consultation"] h3,
+[data-block-type="consultation"] h3:hover {
+  color: white !important;
+  text-decoration: none !important;
+  cursor: default !important;
+}
