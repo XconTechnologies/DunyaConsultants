@@ -55,7 +55,7 @@ const stripFaqSections = (html: string, contentBlocks: any[]): string => {
   const faqContainers = tempDiv.querySelectorAll('.faq-container, .faq-list, #faq-list, [class*="faq-"]');
   faqContainers.forEach(el => el.remove());
   
-  // Find and remove FAQ headings and their following content
+  // Find and remove FAQ headings and ALL their following content until next major heading
   const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p > strong, p > b');
   headings.forEach(heading => {
     const text = heading.textContent?.trim() || '';
@@ -65,46 +65,49 @@ const stripFaqSections = (html: string, contentBlocks: any[]): string => {
       // Remove the heading
       const parent = heading.tagName.toLowerCase().startsWith('h') ? heading : heading.parentElement;
       if (parent) {
-        // Also remove following lists and FAQ-like content
+        // Remove ALL following elements until we hit another major heading
         let nextEl = parent.nextElementSibling;
         parent.remove();
         
-        // Remove following ordered/unordered lists that look like FAQs
         while (nextEl) {
           const tagName = nextEl.tagName.toLowerCase();
-          const hasQuestions = nextEl.textContent?.includes('?');
           
-          if ((tagName === 'ol' || tagName === 'ul' || tagName === 'div') && hasQuestions) {
-            const toRemove = nextEl;
-            nextEl = nextEl.nextElementSibling;
-            toRemove.remove();
-          } else if (tagName === 'p' && hasQuestions && nextEl.textContent?.trim().match(/^\d+\./)) {
-            // Remove numbered FAQ questions (1. Question?)
-            const toRemove = nextEl;
-            nextEl = nextEl.nextElementSibling;
-            toRemove.remove();
-          } else {
+          // Stop if we hit another major heading (h2 or h3)
+          if (tagName === 'h2' || tagName === 'h3') {
             break;
           }
+          
+          // Remove this element and continue
+          const toRemove = nextEl;
+          nextEl = nextEl.nextElementSibling;
+          toRemove.remove();
         }
       }
     }
   });
   
   // Remove individual numbered FAQ items (paragraphs starting with numbers and ending with ?)
-  const paragraphs = tempDiv.querySelectorAll('p');
-  paragraphs.forEach(p => {
+  // This handles cases where FAQs are inline without a heading
+  const paragraphs = Array.from(tempDiv.querySelectorAll('p'));
+  for (let i = 0; i < paragraphs.length; i++) {
+    const p = paragraphs[i];
     const text = p.textContent?.trim() || '';
+    
+    // Check if this is a numbered question (e.g., "1. Does the UK Embassy verify bank statements?")
     if (/^\d+\.\s+.+\?$/.test(text)) {
-      // This looks like a numbered FAQ question, remove it and potentially the answer
-      const nextP = p.nextElementSibling;
       p.remove();
-      // If next element is also a paragraph without a question mark, it might be the answer
-      if (nextP && nextP.tagName === 'P' && !nextP.textContent?.includes('?')) {
-        nextP.remove();
+      
+      // Also remove the next paragraph if it looks like an answer (doesn't start with a number and doesn't end with ?)
+      const nextP = paragraphs[i + 1];
+      if (nextP && nextP.parentElement) {
+        const nextText = nextP.textContent?.trim() || '';
+        if (!nextText.match(/^\d+\./) && nextText.length > 20) {
+          nextP.remove();
+          i++; // Skip the next paragraph since we just removed it
+        }
       }
     }
-  });
+  }
   
   return tempDiv.innerHTML;
 };
