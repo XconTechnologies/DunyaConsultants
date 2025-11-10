@@ -3096,19 +3096,21 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Content Blocks - Admin dashboard posts */}
                 {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
                   <div className="space-y-6" data-has-content-blocks="true">
-                    {blogPost.contentBlocks.map((block: any, index: number) => {
-                      const blockType = block.type || block.__component || '';
-                      const isFAQBlock = blockType.toLowerCase().includes('faq');
-                      const isConsultationBlock = blockType === 'consultation';
-                      const isWhatsAppBlock = blockType === 'whatsappChannel';
-                      const isSpecialBlock = isFAQBlock || isConsultationBlock || isWhatsAppBlock;
-                      
-                      return (
-                        <div key={`block-${block.id || index}`} className={isSpecialBlock ? "w-full" : "prose prose-xl max-w-none"}>
-                          <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                        </div>
-                      );
-                    })}
+                    {[...blogPost.contentBlocks]
+                      .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
+                      .map((block: any, index: number) => {
+                        const blockType = block.type || block.__component || '';
+                        const isFAQBlock = blockType.toLowerCase().includes('faq');
+                        const isConsultationBlock = blockType === 'consultation';
+                        const isWhatsAppBlock = blockType === 'whatsappChannel';
+                        const isSpecialBlock = isFAQBlock || isConsultationBlock || isWhatsAppBlock;
+                        
+                        return (
+                          <div key={`block-${block.id || index}`} className={isSpecialBlock ? "w-full" : "prose prose-xl max-w-none"}>
+                            <ContentBlocksRenderer blocks={[block]} integrated={false} />
+                          </div>
+                        );
+                      })}
                   </div>
                 ) : null}
 
