@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator, List, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useRoute, useLocation } from "wouter";
@@ -910,6 +910,49 @@ function BlogPostDetail({ slug }: { slug: string }) {
     );
   }
 
+  // Memoize sanitized HTML content that removes FAQ sections when FAQ blocks exist
+  const sanitizedHTMLContent = useMemo(() => {
+    if (!blogPost?.content) return '';
+    
+    // Check if we have FAQ blocks in content blocks
+    const hasFAQBlock = blogPost.contentBlocks && blogPost.contentBlocks.length > 0 && 
+      blogPost.contentBlocks.some((block: any) => {
+        const type = block.type || block.__component || '';
+        return type.toLowerCase().includes('faq');
+      });
+    
+    // If no FAQ blocks, return content as-is
+    if (!hasFAQBlock) return blogPost.content;
+    
+    // Guard for SSR - only run DOM manipulation in browser
+    if (typeof document === 'undefined') return blogPost.content;
+    
+    // Remove FAQ-related HTML elements
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = blogPost.content;
+    
+    // Remove elements with faq classes
+    tempDiv.querySelectorAll('.faq-container, .faq-item, .faq-question, .faq-answer, [class*="faq"]').forEach(el => el.remove());
+    
+    // Remove headings that look like FAQ titles
+    tempDiv.querySelectorAll('h2, h3').forEach(heading => {
+      const text = heading.textContent?.toLowerCase() || '';
+      if (text.includes('faq') || text.includes('frequently asked question')) {
+        // Remove the heading and subsequent FAQ-like content
+        let next = heading.nextElementSibling;
+        heading.remove();
+        // Remove following elements that look like Q&A
+        while (next && (next.tagName === 'OL' || next.tagName === 'UL' || next.classList.contains('faq'))) {
+          const toRemove = next;
+          next = next.nextElementSibling;
+          toRemove.remove();
+        }
+      }
+    });
+    
+    return tempDiv.innerHTML;
+  }, [blogPost?.content, blogPost?.contentBlocks]);
+
   // Parse content based on format
   let contentSections;
   let isHTMLContent = false;
@@ -938,7 +981,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     contentSections = [{
       id: 'content',
       title: '',
-      content: blogPost.content
+      content: sanitizedHTMLContent
     }];
   } else if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
     try {
@@ -1095,8 +1138,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* Handle HTML content or regular intro sections - Skip if content blocks exist */}
-                  {isHTMLContent && !(blogPost.contentBlocks && blogPost.contentBlocks.length > 0) ? (
+                  {/* Handle HTML content or regular intro sections */}
+                  {isHTMLContent ? (
                     <div 
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
@@ -1150,7 +1193,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         }
                       }}
                     />
-                  ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && !(blogPost.contentBlocks && blogPost.contentBlocks.length > 0) && (
+                  ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
                         {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
