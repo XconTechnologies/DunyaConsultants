@@ -7,14 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp, FileCode, ArrowUp, ArrowDown, Check, Heading, Type, List, Table, Image as ImageIcon, FileText, HelpCircle } from 'lucide-react';
+import { Plus, Trash2, GripVertical, Code, Eye, EyeOff, ChevronDown, ChevronUp, FileCode, ArrowUp, ArrowDown, Check, Heading, Type, List, Table, Image as ImageIcon, FileText, HelpCircle, Calendar, MessageCircle } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { blocksToHtmlPreview } from '@/lib/blocks-to-html-preview';
 
 // Block type definitions
-export type BlockType = 'heading' | 'paragraph' | 'code' | 'list' | 'table' | 'image' | 'html' | 'faq';
+export type BlockType = 'heading' | 'paragraph' | 'code' | 'list' | 'table' | 'image' | 'html' | 'faq' | 'consultation' | 'whatsappChannel';
 
 export interface BaseBlock {
   id: string;
@@ -80,7 +80,20 @@ export interface FaqBlock extends BaseBlock {
   items: FaqItem[];
 }
 
-export type Block = HeadingBlock | ParagraphBlock | CodeBlock | ListBlock | TableBlock | ImageBlock | HtmlBlock | FaqBlock;
+export interface ConsultationBlock extends BaseBlock {
+  type: 'consultation';
+  title: string;
+  description: string;
+}
+
+export interface WhatsAppChannelBlock extends BaseBlock {
+  type: 'whatsappChannel';
+  title: string;
+  description: string;
+  channelUrl: string;
+}
+
+export type Block = HeadingBlock | ParagraphBlock | CodeBlock | ListBlock | TableBlock | ImageBlock | HtmlBlock | FaqBlock | ConsultationBlock | WhatsAppChannelBlock;
 
 interface CustomBlockEditorProps {
   blocks: Block[];
@@ -102,6 +115,8 @@ const getBlockIcon = (type: BlockType) => {
     case 'image': return <ImageIcon className="w-4 h-4" />;
     case 'html': return <FileCode className="w-4 h-4" />;
     case 'faq': return <HelpCircle className="w-4 h-4" />;
+    case 'consultation': return <Calendar className="w-4 h-4" />;
+    case 'whatsappChannel': return <MessageCircle className="w-4 h-4" />;
   }
 };
 
@@ -116,6 +131,8 @@ const getBlockTypeName = (type: BlockType) => {
     case 'image': return 'Image';
     case 'html': return 'HTML';
     case 'faq': return 'FAQ';
+    case 'consultation': return 'Consultation';
+    case 'whatsappChannel': return 'WhatsApp Channel';
   }
 };
 
@@ -583,6 +600,64 @@ function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (bl
   );
 }
 
+// Consultation Block Component
+function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBlock; onChange: (block: ConsultationBlock) => void }) {
+  return (
+    <div className="space-y-3">
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Title</Label>
+        <Input
+          value={block.title}
+          onChange={(e) => onChange({ ...block, title: e.target.value })}
+          placeholder="Enter consultation title..."
+        />
+      </div>
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Description</Label>
+        <Textarea
+          value={block.description}
+          onChange={(e) => onChange({ ...block, description: e.target.value })}
+          placeholder="Enter consultation description..."
+          className="min-h-[100px]"
+        />
+      </div>
+    </div>
+  );
+}
+
+// WhatsApp Channel Block Component
+function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppChannelBlock; onChange: (block: WhatsAppChannelBlock) => void }) {
+  return (
+    <div className="space-y-3">
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Title</Label>
+        <Input
+          value={block.title}
+          onChange={(e) => onChange({ ...block, title: e.target.value })}
+          placeholder="Enter WhatsApp channel title..."
+        />
+      </div>
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Description</Label>
+        <Textarea
+          value={block.description}
+          onChange={(e) => onChange({ ...block, description: e.target.value })}
+          placeholder="Enter channel description..."
+          className="min-h-[80px]"
+        />
+      </div>
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Channel URL</Label>
+        <Input
+          value={block.channelUrl}
+          onChange={(e) => onChange({ ...block, channelUrl: e.target.value })}
+          placeholder="https://whatsapp.com/channel/..."
+        />
+      </div>
+    </div>
+  );
+}
+
 // Main Block Renderer
 function BlockRenderer({ block, onChange }: { block: Block; onChange: (block: Block) => void }) {
   switch (block.type) {
@@ -602,6 +677,10 @@ function BlockRenderer({ block, onChange }: { block: Block; onChange: (block: Bl
       return <HtmlBlockComponent block={block} onChange={onChange} />;
     case 'faq':
       return <FaqBlockComponent block={block} onChange={onChange} />;
+    case 'consultation':
+      return <ConsultationBlockComponent block={block} onChange={onChange} />;
+    case 'whatsappChannel':
+      return <WhatsAppChannelBlockComponent block={block} onChange={onChange} />;
     default:
       return null;
   }
@@ -650,6 +729,10 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           return { id: baseId, type, html: '', showPreview: false } as HtmlBlock;
         case 'faq':
           return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }] } as FaqBlock;
+        case 'consultation':
+          return { id: baseId, type, title: 'Book Your Free Consultation', description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.' } as ConsultationBlock;
+        case 'whatsappChannel':
+          return { id: baseId, type, title: 'Stay Updated with Our WhatsApp Channel', description: 'Get instant updates on visa news, and study abroad opportunities!', channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V' } as WhatsAppChannelBlock;
       }
     })();
     onChange([...blocks, newBlock]);
@@ -961,6 +1044,22 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
               >
                 <HelpCircle className="w-4 h-4 mr-2" />
                 FAQ
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => addBlock('consultation')} 
+                className="justify-start h-12 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700"
+              >
+                <Calendar className="w-4 h-4 mr-2" />
+                Consultation
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => addBlock('whatsappChannel')} 
+                className="justify-start h-12 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                WhatsApp
               </Button>
             </div>
           </div>
