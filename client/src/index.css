@@ -1444,6 +1444,15 @@ p[class*="text-gray-700"] a:hover {
   border-radius: inherit !important;
 }
 
+/* Force FAQ questions to normal case (not uppercase) */
+.faq-question,
+.faq-question *,
+button.faq-question,
+.faq-item .faq-question,
+.faq-container .faq-question {
+  text-transform: none !important;
+}
+
 /* Remove hover effects from consultation and WhatsApp block headings */
 [data-block-type="consultation"] h3,
 [data-block-type="consultation"] h3:hover,
