@@ -39,6 +39,76 @@ const normalizeImageSrc = (image: string) => {
   return `/attached_assets/${trimmed}`;
 };
 
+// Strip FAQ sections from HTML when FAQ content blocks exist
+const stripFaqSections = (html: string, contentBlocks: any[]): string => {
+  if (!html || !contentBlocks) return html;
+  
+  // Check if there are any FAQ blocks
+  const hasFaqBlocks = contentBlocks.some((block: any) => block.type === 'faq');
+  if (!hasFaqBlocks) return html;
+  
+  // Parse HTML and remove FAQ-related sections
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  // Remove FAQ containers
+  const faqContainers = tempDiv.querySelectorAll('.faq-container, .faq-list, #faq-list, [class*="faq-"]');
+  faqContainers.forEach(el => el.remove());
+  
+  // Find and remove FAQ headings and their following content
+  const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p > strong, p > b');
+  headings.forEach(heading => {
+    const text = heading.textContent?.trim() || '';
+    const isFaqHeading = /^faqs?$/i.test(text) || /^frequently asked questions$/i.test(text);
+    
+    if (isFaqHeading) {
+      // Remove the heading
+      const parent = heading.tagName.toLowerCase().startsWith('h') ? heading : heading.parentElement;
+      if (parent) {
+        // Also remove following lists and FAQ-like content
+        let nextEl = parent.nextElementSibling;
+        parent.remove();
+        
+        // Remove following ordered/unordered lists that look like FAQs
+        while (nextEl) {
+          const tagName = nextEl.tagName.toLowerCase();
+          const hasQuestions = nextEl.textContent?.includes('?');
+          
+          if ((tagName === 'ol' || tagName === 'ul' || tagName === 'div') && hasQuestions) {
+            const toRemove = nextEl;
+            nextEl = nextEl.nextElementSibling;
+            toRemove.remove();
+          } else if (tagName === 'p' && hasQuestions && nextEl.textContent?.trim().match(/^\d+\./)) {
+            // Remove numbered FAQ questions (1. Question?)
+            const toRemove = nextEl;
+            nextEl = nextEl.nextElementSibling;
+            toRemove.remove();
+          } else {
+            break;
+          }
+        }
+      }
+    }
+  });
+  
+  // Remove individual numbered FAQ items (paragraphs starting with numbers and ending with ?)
+  const paragraphs = tempDiv.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const text = p.textContent?.trim() || '';
+    if (/^\d+\.\s+.+\?$/.test(text)) {
+      // This looks like a numbered FAQ question, remove it and potentially the answer
+      const nextP = p.nextElementSibling;
+      p.remove();
+      // If next element is also a paragraph without a question mark, it might be the answer
+      if (nextP && nextP.tagName === 'P' && !nextP.textContent?.includes('?')) {
+        nextP.remove();
+      }
+    }
+  });
+  
+  return tempDiv.innerHTML;
+};
+
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
   {
@@ -878,43 +948,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
   const sanitizedHTMLContent = useMemo(() => {
     if (!blogPost?.content) return '';
     
-    // Check if we have FAQ blocks in content blocks
-    const hasFAQBlock = blogPost && blogPost.contentBlocks && blogPost.contentBlocks.length > 0 && 
-      blogPost.contentBlocks.some((block: any) => {
-        const type = block.type || block.__component || '';
-        return type.toLowerCase().includes('faq');
-      });
-    
-    // If no FAQ blocks, return content as-is
-    if (!hasFAQBlock) return blogPost?.content || '';
-    
     // Guard for SSR - only run DOM manipulation in browser
     if (typeof document === 'undefined') return blogPost?.content || '';
     
-    // Remove FAQ-related HTML elements
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = blogPost.content;
-    
-    // Remove elements with faq classes
-    tempDiv.querySelectorAll('.faq-container, .faq-item, .faq-question, .faq-answer, [class*="faq"]').forEach(el => el.remove());
-    
-    // Remove headings that look like FAQ titles
-    tempDiv.querySelectorAll('h2, h3').forEach(heading => {
-      const text = heading.textContent?.toLowerCase() || '';
-      if (text.includes('faq') || text.includes('frequently asked question')) {
-        // Remove the heading and subsequent FAQ-like content
-        let next = heading.nextElementSibling;
-        heading.remove();
-        // Remove following elements that look like Q&A
-        while (next && (next.tagName === 'OL' || next.tagName === 'UL' || next.classList.contains('faq'))) {
-          const toRemove = next;
-          next = next.nextElementSibling;
-          toRemove.remove();
-        }
-      }
-    });
-    
-    return tempDiv.innerHTML;
+    // Use the comprehensive stripFaqSections function
+    return stripFaqSections(blogPost.content, blogPost.contentBlocks || []);
   }, [blogPost?.content, blogPost?.contentBlocks]);
 
   // Show loading state while data is being fetched
