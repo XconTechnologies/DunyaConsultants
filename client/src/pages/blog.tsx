@@ -1180,8 +1180,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* Handle HTML content or regular intro sections */}
-                  {isHTMLContent ? (
+                  {/* If contentBlocks exist, use integrated rendering to insert blocks at their positions */}
+                  {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
+                    <ContentBlocksRenderer 
+                      blocks={blogPost.contentBlocks} 
+                      integrated={true} 
+                      content={sanitizedHTMLContent}
+                    />
+                  ) : isHTMLContent ? (
+                    /* Handle HTML content without content blocks */
                     <div 
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
@@ -3136,26 +3143,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   })}
                 </div>
 
-                {/* Content Blocks - Admin dashboard posts */}
-                {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
-                  <div className="space-y-6" data-has-content-blocks="true">
-                    {[...blogPost.contentBlocks]
-                      .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
-                      .map((block: any, index: number) => {
-                        const blockType = block.type || block.__component || '';
-                        const isFAQBlock = blockType.toLowerCase().includes('faq');
-                        const isConsultationBlock = blockType === 'consultation';
-                        const isWhatsAppBlock = blockType === 'whatsappChannel';
-                        const isSpecialBlock = isFAQBlock || isConsultationBlock || isWhatsAppBlock;
-                        
-                        return (
-                          <div key={`block-${block.id || index}`} className={isSpecialBlock ? "w-full" : "prose prose-xl max-w-none"}>
-                            <ContentBlocksRenderer blocks={[block]} integrated={false} />
-                          </div>
-                        );
-                      })}
-                  </div>
-                ) : null}
+                {/* Content Blocks are now rendered using integrated mode above - no separate rendering needed */}
 
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
