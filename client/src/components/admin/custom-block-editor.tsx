@@ -700,12 +700,21 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
     })
   );
 
+  // Helper function to update positions on all blocks
+  const updateBlockPositions = (blocksArray: Block[]) => {
+    return blocksArray.map((block, index) => ({
+      ...block,
+      position: index
+    }));
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
       const oldIndex = blocks.findIndex((b) => b.id === active.id);
       const newIndex = blocks.findIndex((b) => b.id === over.id);
-      onChange(arrayMove(blocks, oldIndex, newIndex));
+      const reorderedBlocks = arrayMove(blocks, oldIndex, newIndex);
+      onChange(updateBlockPositions(reorderedBlocks));
     }
   };
 
@@ -714,25 +723,25 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
       const baseId = generateId();
       switch (type) {
         case 'heading':
-          return { id: baseId, type, level: 2, text: '' } as HeadingBlock;
+          return { id: baseId, type, level: 2, text: '', position: blocks.length } as HeadingBlock;
         case 'paragraph':
-          return { id: baseId, type, text: '' } as ParagraphBlock;
+          return { id: baseId, type, text: '', position: blocks.length } as ParagraphBlock;
         case 'code':
-          return { id: baseId, type, code: '', language: '' } as CodeBlock;
+          return { id: baseId, type, code: '', language: '', position: blocks.length } as CodeBlock;
         case 'list':
-          return { id: baseId, type, style: 'ul', items: [{ id: generateId(), text: '', children: [] }] } as ListBlock;
+          return { id: baseId, type, style: 'ul', items: [{ id: generateId(), text: '', children: [] }], position: blocks.length } as ListBlock;
         case 'table':
-          return { id: baseId, type, rows: 2, cols: 2, data: [['', ''], ['', '']] } as TableBlock;
+          return { id: baseId, type, rows: 2, cols: 2, data: [['', ''], ['', '']], position: blocks.length } as TableBlock;
         case 'image':
-          return { id: baseId, type, url: '', alt: '' } as ImageBlock;
+          return { id: baseId, type, url: '', alt: '', position: blocks.length } as ImageBlock;
         case 'html':
-          return { id: baseId, type, html: '', showPreview: false } as HtmlBlock;
+          return { id: baseId, type, html: '', showPreview: false, position: blocks.length } as HtmlBlock;
         case 'faq':
-          return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }] } as FaqBlock;
+          return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }], position: blocks.length } as FaqBlock;
         case 'consultation':
-          return { id: baseId, type, title: 'Book Your Free Consultation', description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.' } as ConsultationBlock;
+          return { id: baseId, type, title: 'Book Your Free Consultation', description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.', position: blocks.length } as ConsultationBlock;
         case 'whatsappChannel':
-          return { id: baseId, type, title: 'Stay Updated with Our WhatsApp Channel', description: 'Get instant updates on visa news, and study abroad opportunities!', channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V' } as WhatsAppChannelBlock;
+          return { id: baseId, type, title: 'Stay Updated with Our WhatsApp Channel', description: 'Get instant updates on visa news, and study abroad opportunities!', channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V', position: blocks.length } as WhatsAppChannelBlock;
       }
     })();
     onChange([...blocks, newBlock]);
@@ -744,7 +753,8 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
   };
 
   const deleteBlock = (id: string) => {
-    onChange(blocks.filter((b) => b.id !== id));
+    const filteredBlocks = blocks.filter((b) => b.id !== id);
+    onChange(updateBlockPositions(filteredBlocks));
     // Remove from selection if it was selected
     const newSelection = new Set(selectedBlocks);
     newSelection.delete(id);
@@ -764,14 +774,16 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
   const moveBlockUp = (id: string) => {
     const index = blocks.findIndex((b) => b.id === id);
     if (index > 0) {
-      onChange(arrayMove(blocks, index, index - 1));
+      const reorderedBlocks = arrayMove(blocks, index, index - 1);
+      onChange(updateBlockPositions(reorderedBlocks));
     }
   };
 
   const moveBlockDown = (id: string) => {
     const index = blocks.findIndex((b) => b.id === id);
     if (index < blocks.length - 1) {
-      onChange(arrayMove(blocks, index, index + 1));
+      const reorderedBlocks = arrayMove(blocks, index, index + 1);
+      onChange(updateBlockPositions(reorderedBlocks));
     }
   };
 
@@ -796,7 +808,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
       }
     });
     
-    onChange(newBlocks);
+    onChange(updateBlockPositions(newBlocks));
   };
 
   const moveSelectedBlocksDown = () => {
@@ -820,12 +832,13 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
       }
     });
     
-    onChange(newBlocks);
+    onChange(updateBlockPositions(newBlocks));
   };
 
   const deleteSelectedBlocks = () => {
     if (selectedBlocks.size === 0) return;
-    onChange(blocks.filter(b => !selectedBlocks.has(b.id)));
+    const filteredBlocks = blocks.filter(b => !selectedBlocks.has(b.id));
+    onChange(updateBlockPositions(filteredBlocks));
     setSelectedBlocks(new Set());
   };
 
