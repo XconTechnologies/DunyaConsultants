@@ -1120,8 +1120,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   <img loading="lazy" 
                     src={normalizeImageSrc(blogPost.image)}
                     alt={blogPost.title}
-                    className="w-full h-auto max-w-full object-cover"
-                    style={{ maxWidth: '100%', height: 'auto', minHeight: '250px' }}
+                    className="w-full h-auto object-cover sm:min-h-[250px]"
+                    style={{ maxWidth: '100%', height: 'auto' }}
                     onError={(e) => {
                       const img = e.currentTarget;
                       const originalSrc = img.src;
