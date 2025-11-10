@@ -564,8 +564,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Triple the blogs for truly seamless infinite scroll
   const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs, ...relatedBlogs];
 
-  // Initialize FAQs for ALL blog content (always run this)
+  // Initialize FAQs only for HTML content (skip for content blocks posts)
   useEffect(() => {
+    // Skip FAQ auto-detection if post uses content blocks (they're already formatted)
+    if (blogPost?.contentBlocks && blogPost.contentBlocks.length > 0) {
+      return;
+    }
+    
     // Wait for content to be rendered, then initialize FAQs
     const timeoutId = setTimeout(() => {
       const contentContainer = document.querySelector('.blog-content, .prose');
@@ -612,7 +617,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [blogPost?.content, slug]); // Re-run when content changes
+  }, [blogPost?.content, blogPost?.contentBlocks, slug]); // Re-run when content changes
 
   // Execute scripts in custom HTML blocks
   useEffect(() => {
