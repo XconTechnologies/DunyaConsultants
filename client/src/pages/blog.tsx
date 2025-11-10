@@ -864,7 +864,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
       carousel.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('resize', handleResize);
     };
-  }, [relatedBlogs.length]);
+  }, [relatedBlogs, allBlogPosts]);
 
   // Show loading state while data is being fetched
   if (isLoading) {
