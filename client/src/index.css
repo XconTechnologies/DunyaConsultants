@@ -1251,6 +1251,7 @@ p[class*="text-gray-700"] a:hover {
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
   text-align: left !important;
+  text-transform: none !important;
   transition: background-color 0.2s ease !important;
 }
 
