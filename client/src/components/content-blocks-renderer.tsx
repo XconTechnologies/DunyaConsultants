@@ -402,8 +402,8 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   const { title = 'Book Your Free Consultation', description = 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors.' } = block.data || {};
 
   return (
-    <div className="my-8 w-full max-w-5xl mx-auto">
-      <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-2xl p-6 sm:p-10 border border-blue-600/20">
+    <div className="my-8 w-full max-w-5xl mx-auto" data-block-type="consultation">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-2xl p-6 sm:p-10 border border-blue-600/20" style={{ color: 'white' }}>
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">{title}</h2>
           <p className="text-white/90 text-base sm:text-lg max-w-3xl mx-auto">{description}</p>
@@ -475,8 +475,8 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
   const { title = 'Stay Updated with Our WhatsApp Channel', description = 'Get instant updates on visa news, and study abroad opportunities!', channelUrl = 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V' } = block.data || {};
 
   return (
-    <div className="my-8 w-full max-w-4xl mx-auto">
-      <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-xl p-6 sm:p-8 border border-blue-600/20">
+    <div className="my-8 w-full max-w-4xl mx-auto" data-block-type="whatsappChannel">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl shadow-xl p-6 sm:p-8 border border-blue-600/20" style={{ color: 'white' }}>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
           <div className="flex items-center gap-3 sm:gap-4 text-center sm:text-left text-white">
             <div className="bg-white/20 p-3 sm:p-4 rounded-full backdrop-blur-sm flex-shrink-0 shadow-lg">

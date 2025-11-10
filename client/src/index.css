@@ -1409,3 +1409,36 @@ p[class*="text-gray-700"] a:hover {
 .faq-item.active .faq-answer {
   display: block !important;
 }
+
+/* Consultation and WhatsApp Block Styling Overrides */
+/* Force white text and proper styling regardless of parent prose classes */
+[data-block-type="consultation"],
+[data-block-type="whatsappChannel"] {
+  color: white !important;
+}
+
+[data-block-type="consultation"] *,
+[data-block-type="whatsappChannel"] * {
+  color: inherit !important;
+}
+
+[data-block-type="consultation"] h2,
+[data-block-type="consultation"] h3,
+[data-block-type="consultation"] p,
+[data-block-type="whatsappChannel"] h3,
+[data-block-type="whatsappChannel"] p {
+  color: white !important;
+}
+
+/* Reset prose link and button styling for these blocks */
+[data-block-type="consultation"] a,
+[data-block-type="whatsappChannel"] a {
+  text-decoration: none !important;
+  font-weight: inherit !important;
+}
+
+[data-block-type="consultation"] button,
+[data-block-type="whatsappChannel"] button {
+  text-transform: none !important;
+  border-radius: inherit !important;
+}
