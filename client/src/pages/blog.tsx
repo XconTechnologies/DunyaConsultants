@@ -3099,8 +3099,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     {blogPost.contentBlocks.map((block: any, index: number) => {
                       const blockType = block.type || block.__component || '';
                       const isFAQBlock = blockType.toLowerCase().includes('faq');
+                      const isConsultationBlock = blockType === 'consultation';
+                      const isWhatsAppBlock = blockType === 'whatsappChannel';
+                      const isSpecialBlock = isFAQBlock || isConsultationBlock || isWhatsAppBlock;
+                      
                       return (
-                        <div key={`block-${block.id || index}`} className={isFAQBlock ? "w-full" : "prose prose-xl max-w-none"}>
+                        <div key={`block-${block.id || index}`} className={isSpecialBlock ? "w-full" : "prose prose-xl max-w-none"}>
                           <ContentBlocksRenderer blocks={[block]} integrated={false} />
                         </div>
                       );
