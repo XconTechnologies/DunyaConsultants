@@ -13,7 +13,9 @@ export type ContentBlock =
   | YouTubeBlock
   | SpacerBlock
   | DividerBlock
-  | SchemaBlock;
+  | SchemaBlock
+  | ConsultationBlock
+  | WhatsAppChannelBlock;
 
 export interface FAQBlock {
   id: string;
@@ -118,6 +120,27 @@ export interface SchemaBlock {
   position: number;
   data: {
     schemaJson: string;
+  };
+}
+
+export interface ConsultationBlock {
+  id: string;
+  type: 'consultation';
+  position: number;
+  data: {
+    title?: string;
+    description?: string;
+  };
+}
+
+export interface WhatsAppChannelBlock {
+  id: string;
+  type: 'whatsappChannel';
+  position: number;
+  data: {
+    title?: string;
+    description?: string;
+    channelUrl?: string;
   };
 }
 
