@@ -59,7 +59,9 @@ const stripFaqSections = (html: string, contentBlocks: any[]): string => {
   const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p > strong, p > b');
   headings.forEach(heading => {
     const text = heading.textContent?.trim() || '';
-    const isFaqHeading = /^faqs?$/i.test(text) || /^frequently asked questions$/i.test(text);
+    // Match various FAQ heading patterns including:
+    // "FAQs", "FAQ", "Frequently Asked Questions", "Frequently Asked Questions (FAQs)", etc.
+    const isFaqHeading = /^(faqs?|frequently\s+asked\s+questions?(\s*\(faqs?\))?)$/i.test(text);
     
     if (isFaqHeading) {
       // Remove the heading
