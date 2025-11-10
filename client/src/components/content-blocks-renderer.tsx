@@ -455,7 +455,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
             Book Free Consultation
           </a>
           <a
-            href="https://wa.me/923018505052"
+            href="https://dunyaconsultants.com/book-consultation"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1D50C9] hover:bg-blue-50 font-bold rounded-xl border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
