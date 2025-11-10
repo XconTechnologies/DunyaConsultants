@@ -3202,7 +3202,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
-                                <div className="relative overflow-hidden rounded-t-lg bg-gray-100 h-48">
+                                <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
                                   <SmartImage 
                                     src={blog.image || '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'} 
                                     alt={blog.title}
@@ -3212,7 +3212,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                       objectPosition: 'center',
                                       width: '100%',
                                       maxWidth: '100%',
-                                      height: '100%',
+                                      height: 'auto',
                                       display: 'block',
                                       imageRendering: 'auto',
                                       backfaceVisibility: 'hidden'
