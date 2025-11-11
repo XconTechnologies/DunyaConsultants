@@ -5914,43 +5914,79 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // MEDIA MANAGEMENT APIS
   // ==============================================
 
-  // Upload media file (Admin/Editor access)
-  app.post("/api/admin/media/upload", requireAuth, requireUser, upload.single('file'), async (req: AuthenticatedRequest, res) => {
+  // Upload media file (Admin/Editor access) - Uploads to Object Storage
+  app.post("/api/admin/media/upload", requireAuth, requireUser, uploadMemory.single('file'), async (req: AuthenticatedRequest, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'No file provided' });
       }
 
-      let finalFilename = req.file.filename;
-      let finalSize = req.file.size;
-      let finalMimetype = req.file.mimetype;
-      const filePath = path.join(uploadDir, req.file.filename);
-
-      // Automatically optimize and convert to WebP for image files
+      const objectStorageService = new ObjectStorageService();
       const isImage = req.file.mimetype.startsWith('image/');
+      
+      // Create temp directory if it doesn't exist
+      const tempDir = path.join(process.cwd(), 'temp');
+      if (!fs.existsSync(tempDir)) {
+        await fsPromises.mkdir(tempDir, { recursive: true });
+      }
+
+      // Generate unique filename for temp file
+      const timestamp = Date.now();
+      const hash = randomUUID().split('-')[0];
+      const tempFilename = `${path.parse(req.file.originalname).name}_${timestamp}_${hash}${path.extname(req.file.originalname)}`;
+      const tempPath = path.join(tempDir, tempFilename);
+
+      // Write buffer to temporary file
+      await fsPromises.writeFile(tempPath, req.file.buffer);
+
+      let finalPath = tempPath;
+      let finalSize = req.file.size;
+      let savings = '0%';
+
+      // Optimize images
       if (isImage) {
         try {
-          const optimized = await autoOptimizeUpload(filePath, uploadDir, req.file.originalname);
-          finalFilename = optimized.filename;
+          const optimized = await autoOptimizeUpload(tempPath, tempDir, req.file.originalname);
+          finalPath = optimized.path;
           finalSize = optimized.size;
-          finalMimetype = 'image/webp';
-          console.log('Admin media optimized:', {
+          savings = optimized.savings;
+          console.log('Image optimized for object storage:', {
             original: req.file.originalname,
-            optimized: optimized.filename,
-            savings: optimized.savings,
+            optimized: path.basename(finalPath),
+            originalSize: `${(req.file.size / 1024).toFixed(1)}KB`,
+            optimizedSize: `${(finalSize / 1024).toFixed(1)}KB`,
+            savings: savings,
           });
         } catch (optimizationError) {
           console.warn('Image optimization failed, using original:', optimizationError);
-          // Continue with original file if optimization fails
         }
       }
 
-      const fileUrl = `/api/uploads/${finalFilename}`;
+      // Upload to object storage
+      const objectPath = `/uploads/${randomUUID()}.${isImage ? 'webp' : path.extname(req.file.originalname).slice(1)}`;
+      const uploadResult = await objectStorageService.uploadObject(
+        finalPath,
+        objectPath,
+        isImage ? 'image/webp' : req.file.mimetype,
+        'public'
+      );
+
+      // Clean up temp files
+      try {
+        await fsPromises.unlink(finalPath);
+        if (isImage && finalPath !== tempPath && fs.existsSync(tempPath)) {
+          await fsPromises.unlink(tempPath);
+        }
+      } catch (cleanupError) {
+        console.warn('Failed to clean up temp files:', cleanupError);
+      }
+
+      const fileUrl = `/objects${objectPath}`;
 
       const media = await storage.createMedia({
-        filename: finalFilename,
+        filename: path.basename(objectPath),
         originalName: req.file.originalname,
-        mimeType: finalMimetype,
+        mimeType: isImage ? 'image/webp' : req.file.mimetype,
         size: finalSize,
         url: fileUrl,
         uploadedBy: req.adminId!
@@ -5964,6 +6000,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         entity: 'media',
         entityId: media.id
       });
+
+      console.log(`✅ Admin media uploaded to object storage: ${fileUrl} (${(finalSize / 1024).toFixed(1)}KB)`);
 
       res.status(201).json(media);
     } catch (error) {
