@@ -5961,8 +5961,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Upload to object storage
       const objectStorageService = new ObjectStorageService();
       const privateDir = objectStorageService.getPrivateObjectDir();
-      const objectId = randomUUID();
-      const objectName = `uploads/${objectId}${path.extname(finalPath)}`;
+      
+      // Generate readable filename from original name (lowercase with hyphens)
+      const baseFileName = path.parse(req.file.originalname).name;
+      const readableFilename = baseFileName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const timestamp = Date.now();
+      const hash = randomUUID().split('-')[0];
+      const finalExt = path.extname(finalPath);
+      const objectName = `uploads/${readableFilename}_${timestamp}_${hash}${finalExt}`;
       const fullObjectPath = `${privateDir}/${objectName}`;
 
       // Parse bucket and object name
@@ -5970,8 +5976,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const objectKey = fullObjectPath.split('/').slice(2).join('/');
 
       // Generate alt text and title from filename (lowercase with hyphens)
-      const baseFileName = path.parse(req.file.originalname).name;
-      const altText = baseFileName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const altText = readableFilename;
       const title = baseFileName.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
       // Upload file to object storage
