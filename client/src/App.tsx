@@ -71,7 +71,6 @@ const UserDashboard = lazy(() => import("@/pages/dashboard"));
 const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
 const BlogEditor = lazy(() => import("@/pages/admin/blog-editor"));
 const AdminBlogPreview = lazy(() => import("@/pages/admin/blog-preview"));
-const WordPressImportPage = lazy(() => import("@/pages/admin/wordpress-import-page"));
 const UserManagement = lazy(() => import("@/pages/admin/user-management"));
 const UserActivity = lazy(() => import("@/pages/admin/user-activity"));
 const BackupManagement = lazy(() => import("@/pages/admin/backup"));
@@ -229,7 +228,6 @@ function Router() {
       <Route path="/blog-editor/:id?" component={BlogEditor} />
       <Route path="/blog-editor" component={BlogEditor} />
       <Route path="/admin/blog-preview/:id" component={AdminBlogPreview} />
-      <Route path="/admin/wordpress-import" component={WordPressImportPage} />
       <Route path="/admin/event-editor/:id?" component={EventEditor} />
       <Route path="/admin/event-editor" component={EventEditor} />
       <Route path="/admin/form-management" component={FormManagement} />
