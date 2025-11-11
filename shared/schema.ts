@@ -365,9 +365,6 @@ export const blogPosts = pgTable("blog_posts", {
   trashedAt: timestamp("trashed_at"),
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
   trashReason: text("trash_reason"),
-  wordpressId: integer("wordpress_id"),
-  sourceUrl: text("source_url"),
-  lastSyncedAt: timestamp("last_synced_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
@@ -376,7 +373,6 @@ export const blogPosts = pgTable("blog_posts", {
   publishedAtIdx: index("blog_posts_published_at_idx").on(table.publishedAt),
   categoryIdx: index("blog_posts_category_idx").on(table.category),
   statusPublishedIdx: index("blog_posts_status_published_idx").on(table.status, table.isPublished, table.publishedAt),
-  wordpressIdIdx: index("blog_posts_wordpress_id_idx").on(table.wordpressId),
 }));
 
 // Junction table for blog posts and categories (many-to-many relationship)
