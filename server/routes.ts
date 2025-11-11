@@ -26,6 +26,8 @@ import sgMail from '@sendgrid/mail';
 import QRCode from 'qrcode';
 import { getImageMetadata, extractAltTextFromFilename, autoOptimizeUpload } from "./image-utils";
 import sharp from 'sharp';
+import { ObjectStorageService, ObjectNotFoundError, objectStorageClient } from "./objectStorage";
+import { randomUUID } from "crypto";
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -4708,6 +4710,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     fs.mkdirSync(uploadDir, { recursive: true });
   }
 
+  // Memory storage for uploads going to object storage
+  const uploadMemory = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 10 * 1024 * 1024, // 10MB limit
+      files: 1,
+      fieldNameSize: 100,
+      fieldSize: 1024 * 1024
+    },
+    fileFilter: (req, file, cb) => {
+      const allowedExtensions = ALLOWED_FILE_TYPES[file.mimetype as keyof typeof ALLOWED_FILE_TYPES];
+      const fileExt = path.extname(file.originalname).toLowerCase();
+      
+      if (allowedExtensions && allowedExtensions.includes(fileExt)) {
+        cb(null, true);
+      } else {
+        cb(new Error(`File type not allowed. Allowed types: ${Object.keys(ALLOWED_FILE_TYPES).join(', ')}`));
+      }
+    }
+  });
+
+  // Disk storage for legacy uploads (event media, etc.)
   const upload = multer({
     storage: multer.diskStorage({
       destination: (req, file, cb) => {
@@ -4718,14 +4742,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const sanitizedName = sanitizeFilename(file.originalname);
         const timestamp = Date.now();
         const randomSuffix = crypto.randomBytes(8).toString('hex');
-        // Prevent path traversal with secure filename
         const secureFilename = `${sanitizedName}_${timestamp}_${randomSuffix}${ext}`;
         cb(null, secureFilename);
       }
     }),
     limits: {
       fileSize: 10 * 1024 * 1024, // 10MB limit
-      files: 1, // Only allow single file upload
+      files: 1,
       fieldNameSize: 100,
       fieldSize: 1024 * 1024
     },
@@ -4733,7 +4756,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const allowedExtensions = ALLOWED_FILE_TYPES[file.mimetype as keyof typeof ALLOWED_FILE_TYPES];
       const fileExt = path.extname(file.originalname).toLowerCase();
       
-      // Validate both MIME type and file extension
       if (allowedExtensions && allowedExtensions.includes(fileExt)) {
         cb(null, true);
       } else {
@@ -4742,8 +4764,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Handle image uploads
-  app.post("/api/upload", upload.single('image'), async (req, res) => {
+  // Handle image uploads to object storage
+  app.post("/api/upload", uploadMemory.single('image'), async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ 
@@ -4752,65 +4774,101 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const filename = req.file.filename;
-      const filePath = path.join(uploadDir, filename);
-      
-      // Verify file was actually written to disk
-      if (!fs.existsSync(filePath)) {
-        console.error('Upload error: File not found on disk after upload:', filePath);
-        return res.status(500).json({ 
-          success: false, 
-          message: "File upload verification failed" 
-        });
+      const isImage = req.file.mimetype.startsWith('image/');
+      const tempDir = path.join(uploadDir, 'temp');
+      if (!fs.existsSync(tempDir)) {
+        fs.mkdirSync(tempDir, { recursive: true });
       }
 
-      // Automatically optimize and convert to WebP for image files
-      let optimizedFile = {
-        filename,
-        size: req.file.size,
-        originalSize: req.file.size,
-        savings: '0%',
-      };
+      // Generate temporary filename
+      const ext = path.extname(req.file.originalname).toLowerCase();
+      const tempFilename = `temp_${Date.now()}_${randomUUID()}${ext}`;
+      const tempPath = path.join(tempDir, tempFilename);
 
-      const isImage = req.file.mimetype.startsWith('image/');
+      // Write buffer to temporary file
+      await fsPromises.writeFile(tempPath, req.file.buffer);
+
+      let finalPath = tempPath;
+      let finalSize = req.file.size;
+      let savings = '0%';
+
+      // Optimize images
       if (isImage) {
         try {
-          optimizedFile = await autoOptimizeUpload(filePath, uploadDir, req.file.originalname);
-          console.log('Image optimized:', {
+          const optimized = await autoOptimizeUpload(tempPath, tempDir, req.file.originalname);
+          finalPath = optimized.path;
+          finalSize = optimized.size;
+          savings = optimized.savings;
+          console.log('Image optimized for object storage:', {
             original: req.file.originalname,
-            optimized: optimizedFile.filename,
-            originalSize: `${(optimizedFile.originalSize / 1024).toFixed(1)}KB`,
-            optimizedSize: `${(optimizedFile.size / 1024).toFixed(1)}KB`,
-            savings: optimizedFile.savings,
+            optimized: path.basename(finalPath),
+            originalSize: `${(req.file.size / 1024).toFixed(1)}KB`,
+            optimizedSize: `${(finalSize / 1024).toFixed(1)}KB`,
+            savings: savings,
           });
         } catch (optimizationError) {
           console.warn('Image optimization failed, using original:', optimizationError);
-          // Continue with original file if optimization fails
         }
       }
 
-      const url = `/api/uploads/${optimizedFile.filename}`;
+      // Upload to object storage
+      const objectStorageService = new ObjectStorageService();
+      const privateDir = objectStorageService.getPrivateObjectDir();
+      const objectId = randomUUID();
+      const objectName = `uploads/${objectId}${path.extname(finalPath)}`;
+      const fullObjectPath = `${privateDir}/${objectName}`;
+
+      // Parse bucket and object name
+      const bucketName = fullObjectPath.split('/')[1];
+      const objectKey = fullObjectPath.split('/').slice(2).join('/');
+
+      // Upload file to object storage
+      const bucket = objectStorageClient.bucket(bucketName);
+      const file = bucket.file(objectKey);
       
-      console.log('File uploaded successfully:', {
+      await file.save(await fsPromises.readFile(finalPath), {
+        contentType: req.file.mimetype,
+        metadata: {
+          metadata: {
+            'custom:aclPolicy': JSON.stringify({
+              owner: 'system',
+              visibility: 'public'
+            }),
+            originalName: req.file.originalname
+          }
+        }
+      });
+
+      // Clean up temporary files
+      try {
+        await fsPromises.unlink(tempPath);
+        if (finalPath !== tempPath) {
+          await fsPromises.unlink(finalPath);
+        }
+      } catch (cleanupError) {
+        console.warn('Failed to clean up temp files:', cleanupError);
+      }
+
+      const url = `/objects/${objectName}`;
+      
+      console.log('File uploaded to object storage:', {
         originalName: req.file.originalname,
-        filename: optimizedFile.filename,
-        size: optimizedFile.size,
-        path: filePath,
-        url: url,
+        objectPath: url,
+        size: finalSize,
         optimized: isImage,
-        savings: optimizedFile.savings,
+        savings: savings,
       });
       
       res.json({ 
         success: true, 
         url: url,
-        filename: optimizedFile.filename,
+        filename: path.basename(url),
         originalName: req.file.originalname,
-        size: optimizedFile.size,
+        size: finalSize,
         optimized: isImage,
-        savings: optimizedFile.savings,
+        savings: savings,
         message: isImage 
-          ? `Image uploaded and optimized (${optimizedFile.savings} smaller)` 
+          ? `Image uploaded and optimized (${savings} smaller)` 
           : "File uploaded successfully"
       });
     } catch (error) {
@@ -4997,18 +5055,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Serve uploaded files (GET and HEAD)
-  const handleUploadRequest = (req: any, res: any) => {
+  // Serve uploaded files (GET and HEAD) - checks object storage first, then local fallback
+  const handleUploadRequest = async (req: any, res: any) => {
     const { filename } = req.params;
+    
+    try {
+      // First, try to find in object storage
+      const objectStorageService = new ObjectStorageService();
+      const file = await objectStorageService.searchPublicObject(filename);
+      
+      if (file) {
+        // Found in object storage
+        const [metadata] = await file.getMetadata();
+        const imageMetadata = getImageMetadata(filename, req.get('Accept'));
+        
+        if (req.method === 'HEAD') {
+          res.set({
+            'Content-Type': metadata.contentType || imageMetadata.contentType,
+            'Content-Length': metadata.size,
+            'X-Image-Alt': imageMetadata.alt,
+            'Cache-Control': 'public, max-age=31536000, immutable'
+          });
+          res.status(200).end();
+        } else {
+          res.set({
+            'Content-Type': metadata.contentType || imageMetadata.contentType,
+            'X-Image-Alt': imageMetadata.alt,
+            'Cache-Control': 'public, max-age=31536000, immutable'
+          });
+          await objectStorageService.downloadObject(file, res, 31536000);
+        }
+        return;
+      }
+    } catch (error) {
+      console.log('Object storage lookup failed for', filename, '- falling back to local filesystem');
+    }
+
+    // Fallback to local filesystem
     const filePath = path.join(uploadDir, filename);
     
-    // Check if file exists
     if (fs.existsSync(filePath)) {
-      // Get image metadata including content type and alt text
       const metadata = getImageMetadata(filename, req.get('Accept'));
       
       if (req.method === 'HEAD') {
-        // For HEAD requests, send headers with metadata
         res.set({
           'Content-Type': metadata.contentType,
           'Content-Length': fs.statSync(filePath).size.toString(),
@@ -5017,7 +5106,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
         res.status(200).end();
       } else {
-        // For GET requests, send file with proper headers
         res.set({
           'Content-Type': metadata.contentType,
           'X-Image-Alt': metadata.alt,
@@ -5026,7 +5114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.sendFile(filePath);
       }
     } else {
-      // Fallback to existing demo image
+      // Fallback to demo image
       const demoImagePath = path.join(process.cwd(), 'attached_assets', 'GRE-Test-Fee-in-Pakistan.webp');
       if (fs.existsSync(demoImagePath)) {
         const demoMetadata = getImageMetadata('GRE-Test-Fee-in-Pakistan.webp', req.get('Accept'));
@@ -5055,6 +5143,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/uploads/:filename", handleUploadRequest);
   app.head("/api/uploads/:filename", handleUploadRequest);
+
+  // Serve objects from object storage
+  app.get("/objects/:objectPath(*)", async (req, res) => {
+    try {
+      const objectStorageService = new ObjectStorageService();
+      const objectFile = await objectStorageService.getObjectEntityFile(req.path);
+      await objectStorageService.downloadObject(objectFile, res, 31536000);
+    } catch (error) {
+      console.error("Error serving object from storage:", error);
+      if (error instanceof ObjectNotFoundError) {
+        return res.status(404).json({ message: 'Object not found' });
+      }
+      return res.status(500).json({ message: 'Error serving object' });
+    }
+  });
 
   // Image optimization endpoint - serves responsive images
   app.get("/api/images/optimize/:filename", async (req, res) => {
