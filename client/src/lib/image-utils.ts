@@ -82,12 +82,25 @@ export function toWebP(url: string | null | undefined): string {
 
 /**
  * Check if an image URL is from the uploads API or object storage (not attached_assets)
- * Only uploaded images have responsive variants
+ * NOTE: This checks if it's an uploaded image, but doesn't mean it has responsive variants!
+ * Use hasResponsiveVariants() to check if srcset should be generated
  * @param src - Image source URL
  * @returns true if uploaded image
  */
 export function isUploadedImage(src: string): boolean {
   return src.includes('/api/uploads/') || src.includes('/api/admin/media/') || src.includes('/objects/uploads/');
+}
+
+/**
+ * Check if an image has pre-generated responsive variants
+ * Only object storage images have responsive variants (640w, 960w, 1280w)
+ * Regular /api/uploads/ images do NOT have variants and should not use srcset
+ * @param src - Image source URL
+ * @returns true if image has responsive variants
+ */
+export function hasResponsiveVariants(src: string): boolean {
+  // Only object storage images have pre-generated responsive variants
+  return src.includes('/objects/uploads/');
 }
 
 /**
@@ -112,13 +125,14 @@ export function getBaseFilename(src: string): string {
 /**
  * Generate responsive srcset for uploaded images
  * Creates srcset with multiple sizes for optimal loading
- * Conservative approach to avoid 404s on legacy images
- * Preserves original path prefix (/api/uploads/ or /objects/uploads/)
+ * IMPORTANT: Only generates srcset for /objects/uploads/ images that have pre-generated variants
+ * Regular /api/uploads/ images do NOT have variants and will cause 404s if srcset is generated
  * @param src - Original image source URL
  * @returns srcset string or undefined if not applicable
  */
 export function generateResponsiveSrcSet(src: string): string | undefined {
-  if (!isUploadedImage(src)) {
+  // Only generate srcset for images that actually have responsive variants
+  if (!hasResponsiveVariants(src)) {
     return undefined;
   }
   
