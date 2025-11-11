@@ -28,6 +28,7 @@ import { getImageMetadata, extractAltTextFromFilename, autoOptimizeUpload } from
 import sharp from 'sharp';
 import { ObjectStorageService, ObjectNotFoundError, objectStorageClient } from "./objectStorage";
 import { randomUUID } from "crypto";
+import { WordPressService } from "./wordpress-service";
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -5218,6 +5219,311 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Image optimization error:', error);
       res.status(500).json({ message: 'Image optimization failed' });
+    }
+  });
+
+  // ==============================================
+  // WORDPRESS INTEGRATION ROUTES
+  // ==============================================
+
+  // Fetch WordPress posts from external WordPress site
+  app.post("/api/admin/wordpress/fetch", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { siteUrl, username, password, page = 1, perPage = 10, search } = req.body;
+
+      if (!siteUrl) {
+        return res.status(400).json({ message: "WordPress site URL is required" });
+      }
+
+      const wpService = new WordPressService(siteUrl, username, password);
+      
+      let result;
+      try {
+        result = await wpService.fetchPosts({
+          page,
+          perPage,
+          search,
+          orderby: 'modified',
+          order: 'desc'
+        });
+      } catch (error: any) {
+        // Handle WordPress API errors with proper status codes
+        if (error.status === 404) {
+          return res.status(404).json({ 
+            message: "WordPress site not found or API unavailable",
+            error: "Please verify the WordPress site URL is correct and has REST API enabled"
+          });
+        }
+        if (error.status === 401 || error.status === 403) {
+          return res.status(error.status).json({ 
+            message: "Authentication failed",
+            error: "Invalid WordPress credentials or insufficient permissions"
+          });
+        }
+        throw error; // Re-throw other errors
+      }
+
+      // Convert WordPress posts to our format for preview
+      const postsPreview = await Promise.all(
+        result.posts.map(async (wpPost) => {
+          try {
+            const converted = await wpService.convertToLocalFormat(wpPost);
+            return {
+              ...converted,
+              wpCategories: wpPost._embedded?.['wp:term']?.[0] || [],
+              wpAuthor: wpPost._embedded?.author?.[0]?.name || 'Unknown',
+              wpModified: wpPost.modified,
+            };
+          } catch (error) {
+            console.error(`Error converting WordPress post ${wpPost.id}:`, error);
+            return null;
+          }
+        })
+      );
+
+      // Filter out failed conversions
+      const validPosts = postsPreview.filter(p => p !== null);
+
+      res.json({
+        posts: validPosts,
+        total: result.total,
+        totalPages: result.totalPages,
+        currentPage: page
+      });
+    } catch (error: any) {
+      console.error("Error fetching WordPress posts:", error);
+      res.status(500).json({ 
+        message: "Failed to fetch WordPress posts", 
+        error: error.message 
+      });
+    }
+  });
+
+  // Import a WordPress post into local database
+  app.post("/api/admin/wordpress/import", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { 
+        siteUrl, 
+        username, 
+        password, 
+        postId, 
+        categoryMapping, 
+        authorId 
+      } = req.body;
+
+      if (!siteUrl || !postId) {
+        return res.status(400).json({ message: "WordPress site URL and post ID are required" });
+      }
+
+      const wpService = new WordPressService(siteUrl, username, password);
+      
+      // Fetch the specific post by ID with full details
+      let wpPost;
+      try {
+        wpPost = await wpService.fetchPostById(postId);
+      } catch (error: any) {
+        // Handle WordPress 404 (post not found) separately from other errors
+        if (error.status === 404) {
+          return res.status(404).json({ 
+            message: `WordPress post with ID ${postId} not found`,
+            error: "Post does not exist on the WordPress site"
+          });
+        }
+        // Handle authentication errors (401/403)
+        if (error.status === 401 || error.status === 403) {
+          return res.status(error.status).json({ 
+            message: "Authentication failed",
+            error: "Invalid WordPress credentials or insufficient permissions"
+          });
+        }
+        throw error; // Re-throw other errors to be caught by outer catch
+      }
+
+      // Convert to local format
+      const converted = await wpService.convertToLocalFormat(wpPost);
+
+      // Download featured image if available
+      let featuredImagePath: string | undefined;
+      if (converted.featuredImageUrl) {
+        try {
+          const imageBuffer = await wpService.downloadImage(converted.featuredImageUrl);
+          
+          // Upload to object storage using existing pipeline
+          const objectStorageService = new ObjectStorageService();
+          const privateDir = objectStorageService.getPrivateObjectDir();
+          const ext = path.extname(converted.featuredImageUrl) || '.jpg';
+          const objectId = randomUUID();
+          const objectName = `uploads/${objectId}${ext}`;
+          const fullObjectPath = `${privateDir}/${objectName}`;
+
+          // Parse bucket and object name
+          const bucketName = fullObjectPath.split('/')[1];
+          const objectKey = fullObjectPath.split('/').slice(2).join('/');
+
+          // Optimize image before uploading
+          const tempPath = path.join(process.cwd(), 'uploads', `temp_${objectId}${ext}`);
+          await fsPromises.writeFile(tempPath, imageBuffer);
+          
+          try {
+            await autoOptimizeUpload(tempPath);
+            const optimizedBuffer = await fsPromises.readFile(tempPath);
+
+            // Upload to object storage
+            const bucket = objectStorageClient.bucket(bucketName);
+            const file = bucket.file(objectKey);
+            await file.save(optimizedBuffer, {
+              contentType: `image/${ext.replace('.', '')}`,
+              metadata: {
+                metadata: {
+                  'custom:aclPolicy': JSON.stringify({
+                    owner: req.adminId || 'system',
+                    visibility: 'public'
+                  }),
+                  originalName: converted.featuredImageTitle || 'wordpress-import',
+                  source: 'wordpress-import'
+                }
+              }
+            });
+
+            featuredImagePath = `/objects/${objectName}`;
+          } finally {
+            // Clean up temp file
+            if (fs.existsSync(tempPath)) {
+              await fsPromises.unlink(tempPath);
+            }
+          }
+        } catch (error) {
+          console.error("Failed to download/upload featured image:", error);
+          // Continue without featured image
+        }
+      }
+
+      // Map WordPress categories to local categories
+      let localCategoryIds: number[] = [];
+      if (categoryMapping && Object.keys(categoryMapping).length > 0) {
+        localCategoryIds = Object.values(categoryMapping).map((id: any) => parseInt(id, 10));
+      }
+
+      // Check if post already exists (by wordpressId or slug)
+      const existingByWordpressId = await db
+        .select()
+        .from(blogPosts)
+        .where(eq(blogPosts.wordpressId, postId))
+        .limit(1);
+
+      const existingBySlug = await db
+        .select()
+        .from(blogPosts)
+        .where(eq(blogPosts.slug, converted.slug))
+        .limit(1);
+
+      if (existingByWordpressId.length > 0) {
+        // Update existing post
+        const [updated] = await db
+          .update(blogPosts)
+          .set({
+            title: converted.title,
+            content: converted.content,
+            contentBlocks: converted.contentBlocks as any,
+            excerpt: converted.excerpt,
+            featuredImage: featuredImagePath || converted.featuredImageUrl,
+            featuredImageAlt: converted.featuredImageAlt,
+            featuredImageTitle: converted.featuredImageTitle,
+            sourceUrl: converted.sourceUrl,
+            lastSyncedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(blogPosts.id, existingByWordpressId[0].id))
+          .returning();
+
+        // Update category associations
+        if (localCategoryIds.length > 0) {
+          await db.delete(blogPostCategories).where(eq(blogPostCategories.postId, updated.id));
+          await db.insert(blogPostCategories).values(
+            localCategoryIds.map(catId => ({
+              postId: updated.id,
+              categoryId: catId
+            }))
+          );
+        }
+
+        return res.json({ 
+          message: "WordPress post updated successfully", 
+          post: updated,
+          action: 'updated'
+        });
+      } else if (existingBySlug.length > 0) {
+        return res.status(409).json({ 
+          message: "A post with this slug already exists. Please change the slug or update the existing post.",
+          existingPost: existingBySlug[0]
+        });
+      }
+
+      // Create new post
+      const [newPost] = await db
+        .insert(blogPosts)
+        .values({
+          title: converted.title,
+          slug: converted.slug,
+          content: converted.content,
+          contentBlocks: converted.contentBlocks as any,
+          excerpt: converted.excerpt,
+          featuredImage: featuredImagePath || converted.featuredImageUrl,
+          featuredImageAlt: converted.featuredImageAlt,
+          featuredImageTitle: converted.featuredImageTitle,
+          wordpressId: converted.wordpressId,
+          sourceUrl: converted.sourceUrl,
+          lastSyncedAt: new Date(),
+          authorId: authorId || req.adminId,
+          status: 'draft', // Import as draft for review
+          isPublished: false,
+          approvalStatus: 'editable',
+        })
+        .returning();
+
+      // Add category associations
+      if (localCategoryIds.length > 0) {
+        await db.insert(blogPostCategories).values(
+          localCategoryIds.map(catId => ({
+            postId: newPost.id,
+            categoryId: catId
+          }))
+        );
+      }
+
+      res.json({ 
+        message: "WordPress post imported successfully", 
+        post: newPost,
+        action: 'created'
+      });
+    } catch (error: any) {
+      console.error("Error importing WordPress post:", error);
+      res.status(500).json({ 
+        message: "Failed to import WordPress post", 
+        error: error.message 
+      });
+    }
+  });
+
+  // Fetch WordPress categories
+  app.post("/api/admin/wordpress/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { siteUrl, username, password } = req.body;
+
+      if (!siteUrl) {
+        return res.status(400).json({ message: "WordPress site URL is required" });
+      }
+
+      const wpService = new WordPressService(siteUrl, username, password);
+      const wpCategories = await wpService.fetchCategories();
+
+      res.json({ categories: wpCategories });
+    } catch (error: any) {
+      console.error("Error fetching WordPress categories:", error);
+      res.status(500).json({ 
+        message: "Failed to fetch WordPress categories", 
+        error: error.message 
+      });
     }
   });
 

@@ -18,7 +18,8 @@ import {
   Database,
   Mail,
   FileEdit,
-  Building2
+  Building2,
+  Globe
 } from "lucide-react";
 import { 
   isAdmin
@@ -59,6 +60,12 @@ const sidebarItems: SidebarItem[] = [
         href: "/admin/categories",
         icon: Tag,
         description: "Manage blog categories"
+      },
+      {
+        title: "WordPress Import",
+        href: "/admin/wordpress-import",
+        icon: Globe,
+        description: "Import from WordPress"
       }
     ]
   },
