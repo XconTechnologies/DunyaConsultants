@@ -15,6 +15,14 @@ The application features a professional dark blue gradient design with custom br
 - **Frontend**: Built with React 18 and TypeScript, using Tailwind CSS with shadcn/ui for styling, TanStack Query for state management, Wouter for routing, React Hook Form with Zod for form handling, and Framer Motion for animations. Vite is used as the build tool.
 - **Backend**: Powered by Node.js 20 with Express.js and TypeScript, implementing a RESTful API with JSON responses. It includes centralized error handling and uses Resend for email services.
 - **Data Storage**: PostgreSQL 16 is the primary database, managed with Drizzle ORM and Drizzle Kit for schema management. It connects via the Neon Database serverless driver.
+- **Object Storage**: Replit App Storage (Google Cloud Storage) for unified image storage across development and production environments (November 2025).
+  - **ObjectStorageService**: Centralized service for uploading, downloading, and managing cloud objects
+  - **ACL Framework**: Public/private access control with metadata-based policies
+  - **Upload Flow**: Memory buffering → temp file optimization → cloud upload → cleanup
+  - **Backward Compatibility**: `/api/uploads/:filename` checks cloud first, then local filesystem fallback
+  - **Direct Access**: `/objects/*` route serves objects directly from cloud storage
+  - **Migration Script**: `scripts/migrate-uploads-to-object-storage.ts` for moving legacy local files
+  - **Bucket**: `replit-objstore-090be4a9-f182-4782-9681-f64d617da3cf`
 
 ### Feature Specifications
 - **Contact Management**: Validated forms for inquiries.
