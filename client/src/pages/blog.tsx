@@ -1142,14 +1142,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         return;
                       }
                       
-                      // Try uploads API as final fallback
-                      if (retryCount === extensions.length) {
-                        const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
-                        img.dataset.retryCount = String(retryCount + 1);
-                        img.src = `/api/uploads/${filename}`;
-                        return;
-                      }
-                      
                       // Hide image after all attempts failed
                       img.style.display = 'none';
                     }}
@@ -4156,14 +4148,6 @@ export default function Blog() {
                           const newSrc = basePath + extensions[retryCount];
                           img.dataset.retryCount = String(retryCount + 1);
                           img.src = newSrc;
-                          return;
-                        }
-                        
-                        // Try uploads API as final fallback
-                        if (retryCount === extensions.length) {
-                          const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
-                          img.dataset.retryCount = String(retryCount + 1);
-                          img.src = `/api/uploads/${filename}`;
                           return;
                         }
                         

@@ -81,13 +81,13 @@ export function toWebP(url: string | null | undefined): string {
 }
 
 /**
- * Check if an image URL is from the uploads API (not attached_assets)
+ * Check if an image URL is from the uploads API or object storage (not attached_assets)
  * Only uploaded images have responsive variants
  * @param src - Image source URL
  * @returns true if uploaded image
  */
 export function isUploadedImage(src: string): boolean {
-  return src.includes('/api/uploads/') || src.includes('/api/admin/media/');
+  return src.includes('/api/uploads/') || src.includes('/api/admin/media/') || src.includes('/objects/uploads/');
 }
 
 /**
@@ -113,6 +113,7 @@ export function getBaseFilename(src: string): string {
  * Generate responsive srcset for uploaded images
  * Creates srcset with multiple sizes for optimal loading
  * Conservative approach to avoid 404s on legacy images
+ * Preserves original path prefix (/api/uploads/ or /objects/uploads/)
  * @param src - Original image source URL
  * @returns srcset string or undefined if not applicable
  */
@@ -126,6 +127,10 @@ export function generateResponsiveSrcSet(src: string): string | undefined {
   const basePath = src.substring(0, lastSlashIndex + 1);
   const baseFilename = getBaseFilename(src);
   
+  // Get the original file extension from src
+  const filename = src.split('/').pop() || '';
+  const extension = filename.match(/\.(webp|png|jpg|jpeg|gif)$/i)?.[0] || '.webp';
+  
   // Conservative approach: Only use sizes that most legacy images have
   // Legacy images typically have 960w and 1280w
   // New uploads (after Nov 2025) have all sizes (320, 640, 960, 1280)
@@ -134,7 +139,7 @@ export function generateResponsiveSrcSet(src: string): string | undefined {
   // Mobile and tablet sizes (commonly available)
   const sizes = [640, 960, 1280];
   sizes.forEach(width => {
-    const url = `${basePath}${baseFilename}-${width}w.webp`;
+    const url = `${basePath}${baseFilename}-${width}w${extension}`;
     srcSetParts.push(`${url} ${width}w`);
   });
   
