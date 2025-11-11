@@ -5921,19 +5921,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'No file provided' });
       }
 
-      const objectStorageService = new ObjectStorageService();
       const isImage = req.file.mimetype.startsWith('image/');
-      
-      // Create temp directory if it doesn't exist
-      const tempDir = path.join(process.cwd(), 'temp');
+      const tempDir = path.join(uploadDir, 'temp');
       if (!fs.existsSync(tempDir)) {
-        await fsPromises.mkdir(tempDir, { recursive: true });
+        fs.mkdirSync(tempDir, { recursive: true });
       }
 
-      // Generate unique filename for temp file
-      const timestamp = Date.now();
-      const hash = randomUUID().split('-')[0];
-      const tempFilename = `${path.parse(req.file.originalname).name}_${timestamp}_${hash}${path.extname(req.file.originalname)}`;
+      // Generate temporary filename
+      const ext = path.extname(req.file.originalname).toLowerCase();
+      const tempFilename = `temp_${Date.now()}_${randomUUID()}${ext}`;
       const tempPath = path.join(tempDir, tempFilename);
 
       // Write buffer to temporary file
@@ -5963,32 +5959,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Upload to object storage
-      const objectPath = `/uploads/${randomUUID()}.${isImage ? 'webp' : path.extname(req.file.originalname).slice(1)}`;
-      const uploadResult = await objectStorageService.uploadObject(
-        finalPath,
-        objectPath,
-        isImage ? 'image/webp' : req.file.mimetype,
-        'public'
-      );
+      const objectStorageService = new ObjectStorageService();
+      const privateDir = objectStorageService.getPrivateObjectDir();
+      const objectId = randomUUID();
+      const objectName = `uploads/${objectId}${path.extname(finalPath)}`;
+      const fullObjectPath = `${privateDir}/${objectName}`;
 
-      // Clean up temp files
+      // Parse bucket and object name
+      const bucketName = fullObjectPath.split('/')[1];
+      const objectKey = fullObjectPath.split('/').slice(2).join('/');
+
+      // Generate alt text and title from filename (lowercase with hyphens)
+      const baseFileName = path.parse(req.file.originalname).name;
+      const altText = baseFileName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const title = baseFileName.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+      // Upload file to object storage
+      const bucket = objectStorageClient.bucket(bucketName);
+      const file = bucket.file(objectKey);
+      
+      await file.save(await fsPromises.readFile(finalPath), {
+        contentType: isImage ? 'image/webp' : req.file.mimetype,
+        metadata: {
+          metadata: {
+            'custom:aclPolicy': JSON.stringify({
+              owner: req.adminId!.toString(),
+              visibility: 'public'
+            }),
+            originalName: req.file.originalname,
+            alt: altText,
+            title: title
+          }
+        }
+      });
+
+      // Clean up temporary files
       try {
-        await fsPromises.unlink(finalPath);
-        if (isImage && finalPath !== tempPath && fs.existsSync(tempPath)) {
-          await fsPromises.unlink(tempPath);
+        await fsPromises.unlink(tempPath);
+        if (finalPath !== tempPath) {
+          await fsPromises.unlink(finalPath);
         }
       } catch (cleanupError) {
         console.warn('Failed to clean up temp files:', cleanupError);
       }
 
-      const fileUrl = `/objects${objectPath}`;
+      const url = `/objects/${objectName}`;
 
+      // Create media record in database
       const media = await storage.createMedia({
-        filename: path.basename(objectPath),
+        filename: path.basename(objectName),
         originalName: req.file.originalname,
         mimeType: isImage ? 'image/webp' : req.file.mimetype,
         size: finalSize,
-        url: fileUrl,
+        url: url,
+        alt: altText,
         uploadedBy: req.adminId!
       });
 
@@ -6001,7 +6025,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         entityId: media.id
       });
 
-      console.log(`✅ Admin media uploaded to object storage: ${fileUrl} (${(finalSize / 1024).toFixed(1)}KB)`);
+      console.log('✅ Media uploaded to object storage:', {
+        originalName: req.file.originalname,
+        objectPath: url,
+        size: `${(finalSize / 1024).toFixed(1)}KB`,
+        alt: altText,
+        title: title,
+        optimized: isImage,
+        savings: savings,
+      });
 
       res.status(201).json(media);
     } catch (error) {
