@@ -46,7 +46,6 @@ import {
 import type { AdminUser, Media } from "@shared/schema";
 import AdminSidebar from "@/components/admin/sidebar";
 import MobileNav from "@/components/admin/mobile-nav";
-import SmartImage from "@/components/ui/smart-image";
 
 export default function MediaManagement() {
   const [, setLocation] = useLocation();
@@ -709,7 +708,7 @@ export default function MediaManagement() {
                       </div>
                       
                       {media.mimeType.startsWith("image/") ? (
-                        <SmartImage
+                        <img
                           src={media.url}
                           alt={media.alt || media.originalName}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -938,7 +937,7 @@ export default function MediaManagement() {
                       <TableCell>
                         <div className="flex items-center space-x-3">
                           {media.mimeType.startsWith("image/") ? (
-                            <SmartImage
+                            <img
                               src={media.url}
                               alt={media.alt || media.originalName}
                               className="w-10 h-10 object-cover rounded"
