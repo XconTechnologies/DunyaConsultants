@@ -57,6 +57,15 @@ export class ObjectStorageService {
           "tool and set PUBLIC_OBJECT_SEARCH_PATHS env var (comma-separated paths)."
       );
     }
+    
+    // Add .private to search paths for backward compatibility with migrated uploads
+    // This ensures /api/uploads/:filename can find files in .private/uploads/ directory
+    const bucketId = "replit-objstore-090be4a9-f182-4782-9681-f64d617da3cf";
+    const privatePath = `/${bucketId}/.private`;
+    if (!paths.includes(privatePath)) {
+      paths.push(privatePath);
+    }
+    
     return paths;
   }
 
@@ -72,7 +81,9 @@ export class ObjectStorageService {
   }
 
   async searchPublicObject(filePath: string): Promise<File | null> {
-    for (const searchPath of this.getPublicObjectSearchPaths()) {
+    const searchPaths = this.getPublicObjectSearchPaths();
+    
+    for (const searchPath of searchPaths) {
       const fullPath = `${searchPath}/${filePath}`;
 
       const { bucketName, objectName } = parseObjectPath(fullPath);

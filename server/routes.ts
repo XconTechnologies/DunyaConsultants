@@ -5060,9 +5060,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const { filename } = req.params;
     
     try {
-      // First, try to find in object storage
+      // First, try to find in object storage (images are stored in uploads/ subdirectory)
       const objectStorageService = new ObjectStorageService();
-      const file = await objectStorageService.searchPublicObject(filename);
+      const file = await objectStorageService.searchPublicObject(`uploads/${filename}`);
       
       if (file) {
         // Found in object storage
