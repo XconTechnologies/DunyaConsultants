@@ -213,6 +213,7 @@ export default function BlogEditor() {
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const isFeaturedUploadRef = useRef(false);
   const editorRef = useRef<any>(null);
   const sessionHeartbeatRef = useRef<NodeJS.Timeout | null>(null);
   const [currentSessionId, setCurrentSessionId] = useState<number | null>(null);
@@ -761,6 +762,9 @@ export default function BlogEditor() {
     const formData = new FormData();
     formData.append('file', file);
 
+    // Capture the ref value at the start
+    const isFeaturedUpload = isFeaturedUploadRef.current;
+
     try {
       const token = localStorage.getItem('adminToken');
       const response = await fetch('/api/admin/media/upload', {
@@ -775,13 +779,14 @@ export default function BlogEditor() {
       
       const media = await response.json();
       
-      // If this is for featured image
-      if (showImageUpload) {
-        setValue('featuredImage', media.url);
-        setValue('featuredImageAlt', media.altText || '');
-        setValue('featuredImageTitle', media.title || '');
-        setValue('featuredImageOriginalName', media.originalName || '');
+      // If this is for featured image (check ref instead of state)
+      if (isFeaturedUpload) {
+        setValue('featuredImage', media.url, { shouldDirty: true });
+        setValue('featuredImageAlt', media.altText || '', { shouldDirty: true });
+        setValue('featuredImageTitle', media.title || '', { shouldDirty: true });
+        setValue('featuredImageOriginalName', media.originalName || '', { shouldDirty: true });
         setShowImageUpload(false);
+        isFeaturedUploadRef.current = false;
       } else {
         // Insert into content editor
         const quillEditor = editorRef.current?.getEditor();
@@ -805,6 +810,7 @@ export default function BlogEditor() {
       });
     } finally {
       setIsImageUploading(false);
+      isFeaturedUploadRef.current = false;
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -813,10 +819,10 @@ export default function BlogEditor() {
 
   // Handle media selection from library
   const handleMediaSelect = (media: Media) => {
-    setValue('featuredImage', media.url);
-    setValue('featuredImageAlt', media.altText || '');
-    setValue('featuredImageTitle', media.title || '');
-    setValue('featuredImageOriginalName', media.originalName || '');
+    setValue('featuredImage', media.url, { shouldDirty: true });
+    setValue('featuredImageAlt', media.altText || '', { shouldDirty: true });
+    setValue('featuredImageTitle', media.title || '', { shouldDirty: true });
+    setValue('featuredImageOriginalName', media.originalName || '', { shouldDirty: true });
     setShowMediaModal(false);
     
     toast({
@@ -1557,6 +1563,7 @@ export default function BlogEditor() {
                       size="sm"
                       onClick={() => {
                         setShowImageUpload(false);
+                        isFeaturedUploadRef.current = false;
                         fileInputRef.current?.click();
                       }}
                       title="Insert Image"
@@ -2008,6 +2015,7 @@ export default function BlogEditor() {
                         variant="outline"
                         onClick={() => {
                           setShowImageUpload(true);
+                          isFeaturedUploadRef.current = true;
                           fileInputRef.current?.click();
                         }}
                         disabled={isImageUploading}
