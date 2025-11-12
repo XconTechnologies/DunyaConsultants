@@ -1021,9 +1021,38 @@ export class DatabaseStorage implements IStorage {
       .where(eq(blogPosts.isPublished, published))
       .orderBy(desc(blogPosts.publishedAt));
       
+      // Optimize: Fetch all categories for all posts in one query
+      if (posts.length === 0) return [];
+      
+      const postIds = posts.map(p => p.id);
+      const allPostCategories = await db.select({
+        blogPostId: blogPostCategories.blogPostId,
+        categoryId: categories.id,
+        categoryName: categories.name,
+        categorySlug: categories.slug,
+      })
+      .from(blogPostCategories)
+      .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+      .where(inArray(blogPostCategories.blogPostId, postIds));
+      
+      // Group categories by post ID
+      const categoriesByPostId = new Map<number, Array<{id: number, name: string, slug: string}>>();
+      for (const pc of allPostCategories) {
+        if (!categoriesByPostId.has(pc.blogPostId)) {
+          categoriesByPostId.set(pc.blogPostId, []);
+        }
+        categoriesByPostId.get(pc.blogPostId)!.push({
+          id: pc.categoryId,
+          name: pc.categoryName,
+          slug: pc.categorySlug
+        });
+      }
+      
+      // Attach categories to posts
       return posts.map(post => ({
         ...post,
-        authorName: post.authorName || 'Dunya Consultants'
+        authorName: post.authorName || 'Dunya Consultants',
+        categories: categoriesByPostId.get(post.id) || []
       }));
     }
     
@@ -1058,9 +1087,38 @@ export class DatabaseStorage implements IStorage {
     .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
     .orderBy(desc(blogPosts.publishedAt));
     
+    // Optimize: Fetch all categories for all posts in one query
+    if (posts.length === 0) return [];
+    
+    const postIds = posts.map(p => p.id);
+    const allPostCategories = await db.select({
+      blogPostId: blogPostCategories.blogPostId,
+      categoryId: categories.id,
+      categoryName: categories.name,
+      categorySlug: categories.slug,
+    })
+    .from(blogPostCategories)
+    .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+    .where(inArray(blogPostCategories.blogPostId, postIds));
+    
+    // Group categories by post ID
+    const categoriesByPostId = new Map<number, Array<{id: number, name: string, slug: string}>>();
+    for (const pc of allPostCategories) {
+      if (!categoriesByPostId.has(pc.blogPostId)) {
+        categoriesByPostId.set(pc.blogPostId, []);
+      }
+      categoriesByPostId.get(pc.blogPostId)!.push({
+        id: pc.categoryId,
+        name: pc.categoryName,
+        slug: pc.categorySlug
+      });
+    }
+    
+    // Attach categories to posts
     return posts.map(post => ({
       ...post,
-      authorName: post.authorName || 'Dunya Consultants'
+      authorName: post.authorName || 'Dunya Consultants',
+      categories: categoriesByPostId.get(post.id) || []
     }));
   }
 
@@ -1069,9 +1127,25 @@ export class DatabaseStorage implements IStorage {
     return post || undefined;
   }
 
-  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  async getBlogPostBySlug(slug: string): Promise<any | undefined> {
     const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
-    return post || undefined;
+    
+    if (!post) return undefined;
+    
+    // Fetch categories for this post
+    const postCategories = await db.select({
+      id: categories.id,
+      name: categories.name,
+      slug: categories.slug,
+    })
+    .from(blogPostCategories)
+    .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+    .where(eq(blogPostCategories.blogPostId, post.id));
+    
+    return {
+      ...post,
+      categories: postCategories
+    };
   }
 
   async createBlogPost(insertBlogPost: InsertBlogPost): Promise<BlogPost> {
