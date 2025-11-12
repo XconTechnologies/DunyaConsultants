@@ -15,6 +15,7 @@ interface SmartImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt
   priority?: boolean; // Custom prop for eager loading (not passed to img tag)
   disableResponsive?: boolean; // Disable automatic responsive images
   sizes?: string; // Custom sizes attribute for responsive images
+  disableFallback?: boolean; // Disable fallback placeholder (for branch icons, university logos, etc.)
 }
 
 /**
@@ -54,6 +55,7 @@ export function SmartImage({
   priority, 
   disableResponsive, 
   sizes: customSizes,
+  disableFallback = false,
   onError: consumerOnError,
   ...props 
 }: SmartImageProps) {
@@ -95,7 +97,8 @@ export function SmartImage({
   }, [src, disableResponsive, customSizes, hasError]);
   
   const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    if (!hasError && imgSrc !== FALLBACK_PLACEHOLDER) {
+    // Only use fallback if not disabled (for blogs/events only)
+    if (!disableFallback && !hasError && imgSrc !== FALLBACK_PLACEHOLDER) {
       setHasError(true);
       setImgSrc(FALLBACK_PLACEHOLDER);
     }

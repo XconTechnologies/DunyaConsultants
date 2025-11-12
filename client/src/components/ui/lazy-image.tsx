@@ -23,6 +23,7 @@ interface LazyImageProps {
   sizes?: string;
   srcSet?: string;
   disableResponsive?: boolean; // Disable automatic responsive images
+  disableFallback?: boolean; // Disable fallback placeholder (for branch icons, university logos, etc.)
   onLoad?: () => void;
   onError?: (e: SyntheticEvent<HTMLImageElement, Event>) => void;
 }
@@ -42,6 +43,7 @@ export function LazyImage({
   sizes: customSizes,
   srcSet: customSrcSet,
   disableResponsive,
+  disableFallback = false,
   onLoad,
   onError,
 }: LazyImageProps) {
@@ -129,8 +131,8 @@ export function LazyImage({
     onError?.(e);
   };
   
-  // Use fallback placeholder on error
-  const actualSrc = hasError ? FALLBACK_PLACEHOLDER : src;
+  // Use fallback placeholder on error (only if not disabled)
+  const actualSrc = (hasError && !disableFallback) ? FALLBACK_PLACEHOLDER : src;
   const actualSrcSet = hasError ? undefined : responsiveSrcSet;
 
   return (

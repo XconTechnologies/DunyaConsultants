@@ -223,6 +223,7 @@ export default function BranchesCarousel() {
                             alt={`${branch.name} office landmark`}
                             className="w-12 h-12 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
                             priority={isInitiallyVisible}
+                            disableFallback={true}
                           />
                           <p className="mt-2 text-xs sm:text-sm font-semibold text-[#1D50C9] text-center line-clamp-2">
                             {branch.name}
