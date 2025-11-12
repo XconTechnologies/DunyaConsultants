@@ -4094,7 +4094,11 @@ export default function Blog() {
               </div>
             ))
           ) : (
-            postsToDisplay.map((post: any, index: number) => (
+            postsToDisplay.map((post: any, index: number) => {
+              const isHero = index === 0;
+              const isEarly = index < 3;
+              
+              return (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
@@ -4109,7 +4113,9 @@ export default function Blog() {
                 {/* Featured Image */}
                 {post.image && (
                   <div className="relative overflow-hidden rounded-t-lg">
-                    <img loading="lazy" 
+                    <SmartImage
+                      priority={isHero}
+                      loadingStrategy={isEarly ? 'eager' : 'lazy'}
                       src={post.image}
                       alt={post.title}
                       className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"
@@ -4186,7 +4192,8 @@ export default function Blog() {
                 </CardContent>
               </Card>
             </motion.div>
-          ))
+              );
+            })
           )}
         </div>
 
