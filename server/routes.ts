@@ -28,6 +28,8 @@ import { getImageMetadata, extractAltTextFromFilename, autoOptimizeUpload } from
 import sharp from 'sharp';
 import { ObjectStorageService, ObjectNotFoundError, objectStorageClient } from "./objectStorage";
 import { randomUUID } from "crypto";
+import { uploadFeaturedImage, replaceFeaturedImage, deleteFeaturedImage, isValidImageType } from "./featuredImages";
+import { getBaseUrl } from "./url-utils";
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -5907,6 +5909,83 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(201).json(revision);
     } catch (error) {
       res.status(500).json({ message: 'Failed to create revision' });
+    }
+  });
+
+  // ==============================================
+  // FEATURED IMAGE MANAGEMENT
+  // ==============================================
+
+  // Upload featured image for blog post (Admin/Editor access)
+  // Saves to /public/uploads/articles/ with readable filename and full public URL
+  app.post("/api/admin/blog-posts/featured-image/upload", requireAuth, requireUser, uploadMemory.single('image'), async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No image file provided' });
+      }
+
+      // Validate image type
+      if (!isValidImageType(req.file.mimetype)) {
+        return res.status(400).json({ 
+          message: 'Invalid image type. Only JPEG, PNG, and WebP are allowed.' 
+        });
+      }
+
+      // Get optional title from request body for better filename generation
+      const title = req.body.title || null;
+
+      // Upload and optimize the featured image
+      const result = await uploadFeaturedImage(
+        req.file.buffer,
+        req.file.originalname,
+        { title }
+      );
+
+      console.log('✅ Featured image uploaded:', {
+        originalName: result.originalName,
+        filename: result.filename,
+        url: result.url,
+        size: `${(result.size / 1024).toFixed(1)} KB`,
+        dimensions: `${result.width}x${result.height}`,
+      });
+
+      // Return the full URL and metadata for the blog post
+      res.status(201).json({
+        success: true,
+        featuredImage: result.url,
+        featuredImageAlt: result.alt,
+        featuredImageTitle: result.title,
+        featuredImageOriginalName: result.originalName,
+        filename: result.filename,
+        size: result.size,
+        width: result.width,
+        height: result.height,
+      });
+    } catch (error) {
+      console.error('Failed to upload featured image:', error);
+      res.status(500).json({ message: 'Failed to upload featured image' });
+    }
+  });
+
+  // Delete featured image (Admin/Editor access)
+  app.delete("/api/admin/blog-posts/featured-image", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { filename } = req.body;
+      
+      if (!filename) {
+        return res.status(400).json({ message: 'Filename is required' });
+      }
+
+      const deleted = await deleteFeaturedImage(filename);
+      
+      if (deleted) {
+        res.json({ success: true, message: 'Featured image deleted successfully' });
+      } else {
+        res.status(404).json({ message: 'Featured image not found' });
+      }
+    } catch (error) {
+      console.error('Failed to delete featured image:', error);
+      res.status(500).json({ message: 'Failed to delete featured image' });
     }
   });
 
