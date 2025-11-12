@@ -181,30 +181,60 @@ export function generateSizesAttribute(customSizes?: string): string {
 
 /**
  * Normalize featured image URL - handles full URLs, relative paths, and legacy formats
+ * Production-ready with environment-aware base URLs and validation
  * @param imageUrl - Image URL from blog post (can be full URL or relative path)
  * @returns Normalized image URL ready for rendering
  */
 export function normalizeFeaturedImageUrl(imageUrl: string | null | undefined): string {
-  const fallbackImage = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
-  
-  if (!imageUrl || imageUrl.trim() === '') {
-    return fallbackImage;
+  try {
+    // Dynamic base URL based on environment
+    const BASE_URL =
+      import.meta.env.MODE === 'production'
+        ? 'https://dunyaconsultants.com'
+        : `http://localhost:${import.meta.env.VITE_PORT || 5000}`;
+    
+    const fallbackImage = `${BASE_URL}/attached_assets/generated_images/Blog_placeholder_image_201b6785.png`;
+    
+    // Return fallback for empty/null URLs
+    if (!imageUrl || imageUrl.trim() === '') {
+      return fallbackImage;
+    }
+    
+    const trimmed = imageUrl.trim();
+    
+    // Already HTTPS - return as-is
+    if (trimmed.startsWith('https://')) {
+      return trimmed;
+    }
+    
+    // Convert HTTP to HTTPS for SEO and browser safety
+    if (trimmed.startsWith('http://')) {
+      return trimmed.replace('http://', 'https://');
+    }
+    
+    // Validate image extension to prevent 404s or script injection
+    const hasValidExtension = /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(trimmed);
+    
+    // Relative paths with leading slash
+    if (trimmed.startsWith('/')) {
+      // If it's a relative path but doesn't have a valid extension, use fallback
+      if (!hasValidExtension) {
+        return fallbackImage;
+      }
+      return `${BASE_URL}${trimmed}`;
+    }
+    
+    // Legacy formats without leading slash
+    if (!hasValidExtension) {
+      return fallbackImage;
+    }
+    
+    return `${BASE_URL}/${trimmed}`;
+  } catch (error) {
+    // Fallback to static path if any error occurs
+    console.error('Error normalizing featured image URL:', error);
+    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
   }
-  
-  const trimmed = imageUrl.trim();
-  
-  // Already a full URL (new format from Featured Image Management System)
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-    return trimmed;
-  }
-  
-  // Relative paths - add leading slash if needed
-  if (trimmed.startsWith('/')) {
-    return trimmed;
-  }
-  
-  // Legacy formats without leading slash
-  return `/${trimmed}`;
 }
 
 /**

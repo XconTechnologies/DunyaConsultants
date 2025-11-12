@@ -9,8 +9,14 @@ A dedicated system for managing blog post featured images with full public URLs 
   - Dev: `http://localhost:5000/uploads/articles/study-in-uk.webp`
   - Production: `https://dunyaconsultants.com/uploads/articles/study-in-uk.webp`
 - ✅ **Auto-Optimization**: All images converted to WebP, resized to max 1200px width
-- ✅ **Environment-Aware**: Automatically uses correct base URL based on environment
+- ✅ **Environment-Aware**: Automatically detects and uses correct base URL:
+  - Production: `NODE_ENV === 'production'` → `https://dunyaconsultants.com`
+  - Replit Production: Uses `REPLIT_DOMAINS` environment variable
+  - Replit Dev: Constructs URL from `REPL_SLUG` and `REPL_OWNER`
+  - Local Dev: Falls back to `http://localhost:${PORT}`
 - ✅ **Dedicated Storage**: Separate from general media in `/public/uploads/articles/`
+- ✅ **Production-Ready**: HTTP→HTTPS conversion, extension validation, error handling
+- ✅ **Edge Case Handling**: Fallback for emoji/special-character-only titles
 
 ## Usage
 
@@ -148,12 +154,31 @@ const imageProps = getBlogFeaturedImageProps(post);
 
 ## Environment Configuration
 
-The system automatically detects the environment:
+The system automatically detects the environment using a robust fallback chain:
 
-- **Production**: Uses `https://dunyaconsultants.com`
-- **Replit Production**: Detects via `REPLIT_DOMAINS` env var
-- **Replit Dev**: Uses Replit dev URL from `REPL_SLUG` and `REPL_OWNER`
-- **Local Dev**: Uses `http://localhost:{PORT}`
+### Server-Side (Node.js)
+```typescript
+// server/url-utils.ts - getBaseUrl()
+1. Production: NODE_ENV === 'production' → https://dunyaconsultants.com
+2. Replit Prod: REPLIT_DOMAINS → uses domain from env var
+3. Replit Dev: REPL_SLUG → https://{slug}.{owner}.repl.co
+4. Local Dev: Fallback → http://localhost:{PORT}
+```
+
+### Client-Side (Browser)
+```typescript
+// client/src/lib/image-utils.ts - normalizeFeaturedImageUrl()
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? 'https://dunyaconsultants.com'
+  : `http://localhost:${import.meta.env.VITE_PORT || 5000}`;
+```
+
+### Production-Ready Features
+- ✅ **HTTP→HTTPS Conversion**: All HTTP URLs automatically converted to HTTPS for SEO
+- ✅ **Extension Validation**: Only valid image extensions (jpg, png, webp, gif, svg) accepted
+- ✅ **Error Handling**: Try-catch wrapper prevents crashes from malformed data
+- ✅ **Fallback Images**: Dynamic fallback based on environment
+- ✅ **SEO-Friendly**: Alt text auto-generated from filenames if not provided
 
 ## Migration from Object Storage
 
