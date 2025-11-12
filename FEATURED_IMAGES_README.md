@@ -3,20 +3,30 @@
 ## Overview
 A dedicated system for managing blog post featured images with full public URLs that work across both development and production environments.
 
+**Important:** This system provides TWO storage options:
+1. **Featured Image Upload** (Recommended): Saves to local storage `/public/uploads/articles/` with readable filenames
+2. **Media Library Upload**: Saves to object storage `/objects/uploads/` (cloud storage)
+
+Both storage systems are fully supported and images display correctly from either location.
+
 ## Features
-- ✅ **Readable Filenames**: Images saved with SEO-friendly names (e.g., `study-in-uk.webp`)
+- ✅ **Dual Storage Support**: 
+  - Local storage: `/public/uploads/articles/` with readable filenames (Featured Image Upload)
+  - Object storage: `/objects/uploads/` with cloud storage (Media Library)
+- ✅ **Readable Filenames**: Featured images saved with SEO-friendly names (e.g., `study-in-uk.webp`)
 - ✅ **Full Public URLs**: Stored as complete URLs in database
-  - Dev: `http://localhost:5000/uploads/articles/study-in-uk.webp`
-  - Production: `https://dunyaconsultants.com/uploads/articles/study-in-uk.webp`
-- ✅ **Auto-Optimization**: All images converted to WebP, resized to max 1200px width
+  - Local: `http://localhost:5000/uploads/articles/study-in-uk.webp`
+  - Object: `http://localhost:5000/objects/uploads/uk-visa-settlement-updates_1762925143497_cc4a1623.webp`
+  - Production: `https://dunyaconsultants.com/...`
+- ✅ **Auto-Optimization**: All images converted to WebP, resized appropriately
 - ✅ **Environment-Aware**: Automatically detects and uses correct base URL:
   - Production: `NODE_ENV === 'production'` → `https://dunyaconsultants.com`
   - Replit Production: Uses `REPLIT_DOMAINS` environment variable
   - Replit Dev: Constructs URL from `REPL_SLUG` and `REPL_OWNER`
   - Local Dev: Falls back to `http://localhost:${PORT}`
-- ✅ **Dedicated Storage**: Separate from general media in `/public/uploads/articles/`
 - ✅ **Production-Ready**: HTTP→HTTPS conversion, extension validation, error handling
 - ✅ **Edge Case Handling**: Fallback for emoji/special-character-only titles
+- ✅ **No 404 Errors**: Smart srcset generation disabled for uploaded images (no responsive variants)
 
 ## Usage
 

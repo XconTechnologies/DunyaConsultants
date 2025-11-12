@@ -93,14 +93,16 @@ export function isUploadedImage(src: string): boolean {
 
 /**
  * Check if an image has pre-generated responsive variants
- * Only object storage images have responsive variants (640w, 960w, 1280w)
- * Regular /api/uploads/ images do NOT have variants and should not use srcset
+ * Currently, NO uploaded images have pre-generated variants
+ * Object storage and /api/uploads/ both only store the original file
+ * Generating srcset for these would cause 404 errors
  * @param src - Image source URL
  * @returns true if image has responsive variants
  */
 export function hasResponsiveVariants(src: string): boolean {
-  // Only object storage images have pre-generated responsive variants
-  return src.includes('/objects/uploads/');
+  // Currently no uploaded images have pre-generated responsive variants
+  // Object storage and local uploads only store the original file
+  return false;
 }
 
 /**
@@ -180,8 +182,11 @@ export function generateSizesAttribute(customSizes?: string): string {
 }
 
 /**
- * Normalize featured image URL - handles full URLs, relative paths, and legacy formats
+ * Normalize featured image URL - handles full URLs, relative paths, object storage, and legacy formats
  * Production-ready with environment-aware base URLs and validation
+ * Supports both storage systems:
+ * - Object Storage: /objects/uploads/ (cloud storage)
+ * - Local Storage: /uploads/articles/ (local filesystem)
  * @param imageUrl - Image URL from blog post (can be full URL or relative path)
  * @returns Normalized image URL ready for rendering
  */
@@ -215,9 +220,27 @@ export function normalizeFeaturedImageUrl(imageUrl: string | null | undefined): 
     // Validate image extension to prevent 404s or script injection
     const hasValidExtension = /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(trimmed);
     
+    // Handle object storage paths (/objects/uploads/)
+    // Always return full absolute URLs for consistency and SEO
+    if (trimmed.startsWith('/objects/')) {
+      if (!hasValidExtension) {
+        return fallbackImage;
+      }
+      // Return full absolute URL for object storage paths
+      return `${BASE_URL}${trimmed}`;
+    }
+    
+    // Handle featured image storage paths (/uploads/articles/)
+    // These are served via /api/uploads/ route or static files
+    if (trimmed.startsWith('/uploads/')) {
+      if (!hasValidExtension) {
+        return fallbackImage;
+      }
+      return `${BASE_URL}${trimmed}`;
+    }
+    
     // Relative paths with leading slash
     if (trimmed.startsWith('/')) {
-      // If it's a relative path but doesn't have a valid extension, use fallback
       if (!hasValidExtension) {
         return fallbackImage;
       }

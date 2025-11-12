@@ -39,13 +39,17 @@ The application features a professional dark blue gradient design with custom br
 - **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings, a three-state approval workflow, and blocks mode with race condition prevention for auto-save operations (November 2025).
 - **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles. Includes WebP conversion functionality for university icons using `/attached_assets/` paths (fixed November 2025).
 - **SEO & Social Media Integration**: Server-side social meta tags for all critical pages, automatic featured image fallback, and production cache headers.
-- **Featured Image Management System** (January 2026): Dedicated system for blog post featured images with:
-  - **Dual Storage**: Object storage (`/objects/uploads/`) for general media, local storage (`/public/uploads/articles/`) for featured images
-  - **Full Public URLs**: Database stores complete URLs (e.g., `https://dunyaconsultants.com/uploads/articles/study-in-uk.webp`)
-  - **Readable Filenames**: SEO-friendly names (e.g., `study-in-uk.webp`, not UUIDs) with automatic sanitization
+- **Featured Image Management System** (January 2026): Dual-storage system for blog post featured images:
+  - **Dual Storage Support**: 
+    - **Featured Image Upload**: Local storage at `/public/uploads/articles/` with readable SEO-friendly filenames (e.g., `study-in-uk.webp`)
+    - **Media Library Upload**: Object storage at `/objects/uploads/` with cloud-backed storage (e.g., `uk-visa-settlement-updates_1762925143497_cc4a1623.webp`)
+    - Both storage systems fully supported, images display correctly from either location
+  - **Full Public URLs**: Database stores complete environment-aware URLs
+  - **Smart URL Normalization**: Handles object storage paths (`/objects/uploads/`), local storage (`/uploads/articles/`), and HTTP→HTTPS conversion
   - **Environment-Aware**: Automatic dev/production URL generation via `server/url-utils.ts`
-  - **Auto-Optimization**: WebP conversion, max 1200px width, 80% quality
+  - **Auto-Optimization**: WebP conversion, intelligent sizing, quality compression
   - **Edge Case Handling**: Fallback to `blog-featured-image.webp` for emoji/special-char-only titles
+  - **No 404 Errors**: srcset generation disabled for uploaded images (no responsive variants exist)
   - **API Endpoints**: POST `/api/admin/blog-posts/featured-image/upload`, DELETE `/api/admin/blog-posts/featured-image`
   - **Client Utilities**: `getBlogFeaturedImageProps()`, `normalizeFeaturedImageUrl()` in `client/src/lib/image-utils.ts`
   - See `FEATURED_IMAGES_README.md` for usage guide
