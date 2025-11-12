@@ -5277,85 +5277,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Fetch only essential fields for list view (excludes heavy content field)
-      const posts = await db
-        .select({
-          id: blogPosts.id,
-          title: blogPosts.title,
-          slug: blogPosts.slug,
-          metaTitle: blogPosts.metaTitle,
-          metaDescription: blogPosts.metaDescription,
-          focusKeyword: blogPosts.focusKeyword,
-          featuredImage: blogPosts.featuredImage,
-          featuredImageAlt: blogPosts.featuredImageAlt,
-          excerpt: blogPosts.excerpt,
-          category: blogPosts.category,
-          status: blogPosts.status,
-          viewCount: blogPosts.viewCount,
-          readingTime: blogPosts.readingTime,
-          isPublished: blogPosts.isPublished,
-          publishedAt: blogPosts.publishedAt,
-          authorName: adminUsers.username,
-          categoryId: categories.id,
-          categoryName: categories.name,
-          categorySlug: categories.slug,
-        })
-        .from(blogPosts)
-        .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
-        .leftJoin(blogPostCategories, eq(blogPosts.id, blogPostCategories.blogPostId))
-        .leftJoin(categories, eq(blogPostCategories.categoryId, categories.id))
-        .where(eq(blogPosts.isPublished, true))
-        .orderBy(sql`${blogPosts.publishedAt} DESC`)
-        .limit(limit || 100);
+      // Use optimized storage method that excludes content and uses batched category loading
+      let posts = await storage.getBlogPostsForList(true); // Only published posts
       
-      // Group categories by post
-      const postsMap: Record<number, any> = {};
-      const orderedPostIds: number[] = [];
+      // Add _source flag for local posts
+      posts = posts.map(post => ({ ...post, _source: 'local' }));
       
-      posts.forEach(row => {
-        const postId = row.id;
-        
-        if (!postsMap[postId]) {
-          orderedPostIds.push(postId);
-          postsMap[postId] = {
-            id: row.id,
-            title: row.title,
-            slug: row.slug,
-            metaTitle: row.metaTitle,
-            metaDescription: row.metaDescription,
-            focusKeyword: row.focusKeyword,
-            featuredImage: row.featuredImage,
-            featuredImageAlt: row.featuredImageAlt,
-            excerpt: row.excerpt,
-            category: row.category,
-            status: row.status,
-            viewCount: row.viewCount,
-            readingTime: row.readingTime,
-            isPublished: row.isPublished,
-            publishedAt: row.publishedAt,
-            authorName: row.authorName || 'Dunya Consultants',
-            categories: [],
-            _source: 'local'
-          };
-        }
-        
-        if (row.categoryId && row.categoryName) {
-          const existingCategory = postsMap[postId].categories.find(
-            (c: any) => c.id === row.categoryId
-          );
-          
-          if (!existingCategory) {
-            postsMap[postId].categories.push({
-              id: row.categoryId,
-              name: row.categoryName,
-              slug: row.categorySlug,
-            });
-          }
-        }
-      });
+      // Apply pagination if specified
+      if (page && limit) {
+        const offset = (page - 1) * limit;
+        const paginatedPosts = posts.slice(offset, offset + limit);
+        return res.json(paginatedPosts);
+      }
       
-      const result = orderedPostIds.map(id => postsMap[id]);
-      res.json(result);
+      // Apply limit only if specified
+      const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      res.json(limitedPosts);
     } catch (error) {
       console.error('Error in blog posts API:', error);
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
@@ -5392,7 +5329,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/blog-posts/published", async (req, res) => {
     try {
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
-      const posts = await storage.getBlogPosts(true); // Only published posts
+      const posts = await storage.getBlogPostsForList(true); // Optimized: excludes content field
       
       // Apply limit if specified  
       const limitedPosts = limit ? posts.slice(0, limit) : posts;
