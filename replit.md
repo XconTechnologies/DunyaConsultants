@@ -39,6 +39,16 @@ The application features a professional dark blue gradient design with custom br
 - **Enterprise-Level CMS**: Features multi-user authentication, a multi-role system (Admin, Events Manager, Leads Manager, Editor, Publisher, Custom), granular checkbox-based permissions, dynamic permission refresh, post-level access control, and a user management interface. It includes an enhanced blog editor with SEO settings, a three-state approval workflow, and blocks mode with race condition prevention for auto-save operations (November 2025).
 - **Icon Management System**: A tabbed admin interface for managing and reordering both branch and university icons with CRUD operations and visibility toggles. Includes WebP conversion functionality for university icons using `/attached_assets/` paths (fixed November 2025).
 - **SEO & Social Media Integration**: Server-side social meta tags for all critical pages, automatic featured image fallback, and production cache headers.
+- **Featured Image Management System** (January 2026): Dedicated system for blog post featured images with:
+  - **Dual Storage**: Object storage (`/objects/uploads/`) for general media, local storage (`/public/uploads/articles/`) for featured images
+  - **Full Public URLs**: Database stores complete URLs (e.g., `https://dunyaconsultants.com/uploads/articles/study-in-uk.webp`)
+  - **Readable Filenames**: SEO-friendly names (e.g., `study-in-uk.webp`, not UUIDs) with automatic sanitization
+  - **Environment-Aware**: Automatic dev/production URL generation via `server/url-utils.ts`
+  - **Auto-Optimization**: WebP conversion, max 1200px width, 80% quality
+  - **Edge Case Handling**: Fallback to `blog-featured-image.webp` for emoji/special-char-only titles
+  - **API Endpoints**: POST `/api/admin/blog-posts/featured-image/upload`, DELETE `/api/admin/blog-posts/featured-image`
+  - **Client Utilities**: `getBlogFeaturedImageProps()`, `normalizeFeaturedImageUrl()` in `client/src/lib/image-utils.ts`
+  - See `FEATURED_IMAGES_README.md` for usage guide
 
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.

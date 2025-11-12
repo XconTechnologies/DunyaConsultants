@@ -67,14 +67,23 @@ async function generateUniqueFilename(baseName: string, extension: string): Prom
 /**
  * Sanitize and generate filename from original name or title
  * @param originalName - Original filename
- * @returns Sanitized base filename
+ * @param fallback - Fallback name if sanitization results in empty string
+ * @returns Sanitized base filename (never empty)
  */
-function sanitizeFilename(originalName: string): string {
+function sanitizeFilename(originalName: string, fallback: string = 'featured-image'): string {
   // Remove file extension
   const nameWithoutExt = path.parse(originalName).name;
   
   // Use the utility function to sanitize
-  return sanitizeFilenameUtil(nameWithoutExt);
+  const sanitized = sanitizeFilenameUtil(nameWithoutExt);
+  
+  // Fallback to prevent empty filenames from titles with only special chars/emojis
+  if (!sanitized || sanitized.trim() === '') {
+    console.warn(`⚠️  Empty filename after sanitization: "${originalName}", using fallback: "${fallback}"`);
+    return fallback;
+  }
+  
+  return sanitized;
 }
 
 /**
@@ -91,7 +100,13 @@ export async function uploadFeaturedImage(
 ): Promise<FeaturedImageUploadResult> {
   try {
     // Use title if provided, otherwise use original filename
-    const baseName = sanitizeFilename(options?.title || originalName);
+    // Sanitize with fallback to ensure we never get empty basenames
+    const baseName = sanitizeFilename(options?.title || originalName, 'blog-featured-image');
+    
+    // Runtime assertion: baseName must not be empty
+    if (!baseName || baseName.trim() === '') {
+      throw new Error('Failed to generate valid filename: basename is empty after sanitization');
+    }
     
     // Always convert to WebP for optimal performance
     const extension = '.webp';
