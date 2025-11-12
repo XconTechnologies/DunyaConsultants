@@ -17,27 +17,10 @@ import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/li
 import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 import { setMetaTags } from "@/lib/seo";
 import SmartImage from "@/components/ui/smart-image";
+import { normalizeFeaturedImageUrl, getBlogFeaturedImageProps } from "@/lib/image-utils";
 
-// Unified image src normalization function
-const normalizeImageSrc = (image: string) => {
-  if (!image || image.trim() === '') {
-    return '/attached_assets/placeholder.jpg'; // fallback for empty images
-  }
-  const trimmed = image.trim();
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-    return trimmed;
-  }
-  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  return `/attached_assets/${trimmed}`;
-};
+// Backward compatibility alias - now uses the unified utility
+const normalizeImageSrc = normalizeFeaturedImageUrl;
 
 // Strip FAQ sections from HTML when FAQ content blocks exist
 const stripFaqSections = (html: string, contentBlocks: any[]): string => {

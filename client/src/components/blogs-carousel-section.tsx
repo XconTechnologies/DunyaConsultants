@@ -7,27 +7,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getBlogUrl } from "@/lib/blog-utils";
 import SmartImage from "@/components/ui/smart-image";
+import { normalizeFeaturedImageUrl, getBlogFeaturedImageProps } from "@/lib/image-utils";
 
-// Unified image src normalization function (same as blog.tsx)
-const normalizeImageSrc = (image: string) => {
-  if (!image || image.trim() === '') {
-    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'; // fallback for empty images
-  }
-  const trimmed = image.trim();
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-    return trimmed;
-  }
-  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
-    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-  }
-  return `/attached_assets/${trimmed}`;
-};
+// Use the unified utility for image normalization
+const normalizeImageSrc = normalizeFeaturedImageUrl;
 
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
