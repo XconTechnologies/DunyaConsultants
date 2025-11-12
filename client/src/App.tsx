@@ -7,7 +7,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { lazy, Suspense } from "react";
 import { useAnalytics } from "./hooks/use-analytics";
-import LoadingFallback from "@/components/loading-fallback";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
@@ -250,7 +249,7 @@ function App() {
       <EngagementTracker>
         <TooltipProvider>
           <Toaster />
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={null}>
             <Router />
           </Suspense>
         </TooltipProvider>
