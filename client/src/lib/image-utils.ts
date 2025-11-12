@@ -178,3 +178,59 @@ export function generateSizesAttribute(customSizes?: string): string {
   // - Desktop (> 1024px): use 1280w or original image (1280px max)
   return '(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 1280px';
 }
+
+/**
+ * Normalize featured image URL - handles full URLs, relative paths, and legacy formats
+ * @param imageUrl - Image URL from blog post (can be full URL or relative path)
+ * @returns Normalized image URL ready for rendering
+ */
+export function normalizeFeaturedImageUrl(imageUrl: string | null | undefined): string {
+  const fallbackImage = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+  
+  if (!imageUrl || imageUrl.trim() === '') {
+    return fallbackImage;
+  }
+  
+  const trimmed = imageUrl.trim();
+  
+  // Already a full URL (new format from Featured Image Management System)
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  
+  // Relative paths - add leading slash if needed
+  if (trimmed.startsWith('/')) {
+    return trimmed;
+  }
+  
+  // Legacy formats without leading slash
+  return `/${trimmed}`;
+}
+
+/**
+ * Get blog post featured image properties
+ * @param post - Blog post object with featured image data
+ * @returns Object with src, alt, and title for the image
+ */
+export function getBlogFeaturedImageProps(post: {
+  featuredImage?: string | null;
+  featured_image?: string | null;
+  featuredImageAlt?: string | null;
+  featured_image_alt?: string | null;
+  featuredImageTitle?: string | null;
+  featured_image_title?: string | null;
+  title?: string;
+}) {
+  const imageUrl = post.featuredImage || post.featured_image;
+  const src = normalizeFeaturedImageUrl(imageUrl);
+  
+  // Use provided alt/title, or extract from filename, or fallback to post title
+  const alt = post.featuredImageAlt || post.featured_image_alt || extractAltText(imageUrl) || post.title || '';
+  const title = post.featuredImageTitle || post.featured_image_title || extractAltText(imageUrl) || post.title || '';
+  
+  return {
+    src,
+    alt,
+    title,
+  };
+}
