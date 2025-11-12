@@ -186,19 +186,20 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     
     // Set Link headers for critical resources (Early Hints compatible)
     const linkHeaders = [
-      // Critical fonts
-      '</assets/fonts/inter-400.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
-      '</assets/fonts/inter-600.woff2>; rel=preload; as=font; type=font/woff2; crossorigin',
-      // LCP image with responsive srcset
-      '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; imagesrcset="/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210-480w.webp 480w, /attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210-768w.webp 768w, /attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp 1280w"; imagesizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"; fetchpriority=high',
-      // Logo
-      '</attached_assets/logo-white.webp>; rel=preload; as=image',
       // Main module
       '</src/main.tsx>; rel=modulepreload',
       // DNS prefetch for external resources
       '<https://fonts.googleapis.com>; rel=preconnect',
       '<https://fonts.gstatic.com>; rel=preconnect; crossorigin'
     ];
+    
+    // Only preload homepage hero image on root path
+    if (req.path === '/' || req.path === '') {
+      linkHeaders.push(
+        // LCP image for homepage only
+        '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; fetchpriority=high'
+      );
+    }
     
     res.setHeader('Link', linkHeaders.join(', '));
   }
