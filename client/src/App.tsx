@@ -9,7 +9,10 @@ import { lazy, Suspense } from "react";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
-import EngagementTracker from "@/components/gamification/engagement-tracker";
+import { LoadingProvider } from "@/contexts/LoadingContext";
+import LoadingFallback from "@/components/loading-fallback";
+
+const EngagementTracker = lazy(() => import("@/components/gamification/engagement-tracker"));
 
 // Lazy-load non-critical pages for better performance
 const CostCalculator = lazy(() => import("@/pages/cost-calculator"));
@@ -246,14 +249,18 @@ function App() {
   
   return (
     <QueryClientProvider client={queryClient}>
-      <EngagementTracker>
-        <TooltipProvider>
-          <Toaster />
-          <Suspense fallback={null}>
-            <Router />
-          </Suspense>
-        </TooltipProvider>
-      </EngagementTracker>
+      <LoadingProvider>
+        <Suspense fallback={<LoadingFallback />}>
+          <EngagementTracker>
+            <TooltipProvider>
+              <Toaster />
+              <Suspense fallback={<LoadingFallback />}>
+                <Router />
+              </Suspense>
+            </TooltipProvider>
+          </EngagementTracker>
+        </Suspense>
+      </LoadingProvider>
     </QueryClientProvider>
   );
 }

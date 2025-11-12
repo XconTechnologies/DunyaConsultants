@@ -49,6 +49,11 @@ interface AuthenticatedRequest extends Request {
   user?: AdminUser;
 }
 
+// Helper for shared cache headers on public API endpoints
+function applyPublicCache(res: Response, maxAge: number = 60) {
+  res.set('Cache-Control', `public, max-age=${maxAge}, stale-while-revalidate=300`);
+}
+
 // Admin authentication middleware
 async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
@@ -309,8 +314,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/testimonials", async (req, res) => {
     try {
       const testimonials = await storage.getTestimonials();
+      applyPublicCache(res, 60);
       res.json(testimonials);
     } catch (error) {
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ 
         success: false, 
         message: "Failed to fetch testimonials" 
@@ -322,8 +329,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/events", async (req, res) => {
     try {
       const events = await storage.getEvents();
+      applyPublicCache(res, 60);
       res.json(events);
     } catch (error) {
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ 
         success: false, 
         message: "Failed to fetch events" 
@@ -5287,14 +5296,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (page && limit) {
         const offset = (page - 1) * limit;
         const paginatedPosts = posts.slice(offset, offset + limit);
+        applyPublicCache(res, 60);
         return res.json(paginatedPosts);
       }
       
       // Apply limit only if specified
       const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      applyPublicCache(res, 60);
       res.json(limitedPosts);
     } catch (error) {
       console.error('Error in blog posts API:', error);
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
   });
@@ -5333,8 +5345,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Apply limit if specified  
       const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      applyPublicCache(res, 60);
       res.json(limitedPosts);
     } catch (error) {
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
   });
@@ -7219,9 +7233,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/categories/hierarchical", async (req, res) => {
     try {
       const hierarchicalCategories = await storage.getHierarchicalCategories(); // All categories
+      applyPublicCache(res, 60);
       res.json(hierarchicalCategories);
     } catch (error) {
       console.error('Error fetching hierarchical categories:', error);
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ message: 'Failed to fetch hierarchical categories' });
     }
   });
@@ -7230,9 +7246,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/categories/parents", async (req, res) => {
     try {
       const parentCategories = await storage.getParentCategories(true); // Only active categories
+      applyPublicCache(res, 60);
       res.json(parentCategories);
     } catch (error) {
       console.error('Error fetching parent categories:', error);
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ message: 'Failed to fetch parent categories' });
     }
   });
@@ -7241,9 +7259,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/categories", async (req, res) => {
     try {
       const categories = await storage.getCategories(); // All categories
+      applyPublicCache(res, 60);
       res.json(categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
+      res.set('Cache-Control', 'no-store');
       res.status(500).json({ message: 'Failed to fetch categories' });
     }
   });
