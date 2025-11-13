@@ -1045,7 +1045,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
             >
               <div className="flex flex-wrap gap-2 justify-center">
                 {blogPost.categories && blogPost.categories.length > 0 ? (
-                  blogPost.categories.map((category: any, index: number) => {
+                  blogPost.categories.slice(0, 2).map((category: any, index: number) => {
                     const categorySlug = category.slug || category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
                     return (
                       <Link key={index} href={`/category/${categorySlug}`}>
@@ -3324,7 +3324,36 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* 3. Table of Contents */}
+              {/* 3. Categories */}
+              {blogPost.categories && blogPost.categories.length > 0 && (
+                <Card className="bg-white border border-gray-200 shadow-sm">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
+                      <Tag className="w-4 h-4 mr-2 text-[#1D50C9]" />
+                      Categories
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-2">
+                      {blogPost.categories.map((category: any, index: number) => {
+                        const categorySlug = category.slug || category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                        return (
+                          <Link key={index} href={`/category/${categorySlug}`}>
+                            <Badge 
+                              variant="secondary" 
+                              className="px-3 py-1.5 text-sm bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white cursor-pointer hover:shadow-md hover:scale-105 transition-all duration-200"
+                            >
+                              {category.name}
+                            </Badge>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 4. Table of Contents */}
               <TableOfContents content={blogPost.content} />
 
               {/* Quick Cost Calculator - Only for exchange programs post */}
