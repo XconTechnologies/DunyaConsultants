@@ -284,7 +284,7 @@ export default function ContactUsSection() {
                       <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">5+ Years Experience</h4>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">4+ Years Experience</h4>
                       <p className="text-gray-600">Trusted by thousands of students with our proven track record of success.</p>
                     </div>
                   </div>
