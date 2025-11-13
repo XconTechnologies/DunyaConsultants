@@ -23,9 +23,17 @@ interface EventRegisterButtonProps {
   };
 }
 
-// Manual fallback function with automatic retry
+// Manual fallback function with automatic retry (Production only)
 function trackRegisterFallback(eventData?: { id?: number; title?: string }) {
   if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    const isProd = window.location.hostname === 'dunyaconsultants.com' || 
+                   window.location.hostname === 'www.dunyaconsultants.com';
+    
+    if (!isProd) {
+      console.log('[Dev Mode] Facebook Pixel tracking skipped - not on production domain');
+      return;
+    }
+    
     try {
       window.fbq('track', 'Lead', {
         event_name: 'EventRegistration',
@@ -54,10 +62,18 @@ export default function EventRegisterButton({
   event 
 }: EventRegisterButtonProps) {
   
-  // Enhanced tracking function with fallback support
+  // Enhanced tracking function with fallback support (Production only)
   const trackRegisterClick = useCallback(() => {
     // Check if Facebook Pixel is loaded
     if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      const isProd = window.location.hostname === 'dunyaconsultants.com' || 
+                     window.location.hostname === 'www.dunyaconsultants.com';
+      
+      if (!isProd) {
+        console.log('[Dev Mode] Facebook Pixel tracking skipped - not on production domain');
+        return;
+      }
+      
       try {
         // Fire Lead event immediately
         window.fbq('track', 'Lead', {

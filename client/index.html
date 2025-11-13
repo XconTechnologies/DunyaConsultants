@@ -15,9 +15,18 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/favicon.png">
     
-    <!-- Google Analytics - Deferred aggressively on mobile -->
+    <!-- Google Analytics - Production Only -->
     <script>
       function loadGA() {
+        // Only load Google Analytics on production domain (dunyaconsultants.com)
+        var isProd = window.location.hostname === 'dunyaconsultants.com' || 
+                     window.location.hostname === 'www.dunyaconsultants.com';
+        
+        if (!isProd) {
+          console.log('[Dev Mode] Google Analytics disabled - not on production domain');
+          return;
+        }
+        
         var script = document.createElement('script');
         script.async = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-RSMDBGDBDJ';
@@ -39,9 +48,18 @@
       }
     </script>
     
-    <!-- Meta Pixel Code - Deferred aggressively on mobile -->
+    <!-- Meta Pixel Code - Production Only -->
     <script>
     function loadFBPixel() {
+      // Only load Facebook Pixel on production domain (dunyaconsultants.com)
+      var isProd = window.location.hostname === 'dunyaconsultants.com' || 
+                   window.location.hostname === 'www.dunyaconsultants.com';
+      
+      if (!isProd) {
+        console.log('[Dev Mode] Facebook Pixel disabled - not on production domain');
+        return;
+      }
+      
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};

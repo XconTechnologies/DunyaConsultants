@@ -134,19 +134,27 @@ export default function EventRegistration() {
       setShowSuccessModal(true);
       form.reset();
       
-      // OPTION 1: Track virtual pageview for Event Setup Tool to detect
+      // OPTION 1: Track virtual pageview for Event Setup Tool to detect (Production only)
       if (typeof window !== 'undefined' && (window as any).fbq) {
+        const isProd = window.location.hostname === 'dunyaconsultants.com' || 
+                       window.location.hostname === 'www.dunyaconsultants.com';
+        
         // Track as PageView with URL parameter (Event Setup Tool can detect this)
         window.history.pushState({}, '', `/events/register-now?event=${eventSlug}&registered=success`);
-        (window as any).fbq('track', 'PageView');
         
-        // OPTION 2: Also track as standard event
-        (window as any).fbq('track', 'CompleteRegistration', {
-          content_name: event?.title,
-          status: 'completed',
-          value: 1.00,
-          currency: 'USD'
-        });
+        if (isProd) {
+          (window as any).fbq('track', 'PageView');
+          
+          // OPTION 2: Also track as standard event
+          (window as any).fbq('track', 'CompleteRegistration', {
+            content_name: event?.title,
+            status: 'completed',
+            value: 1.00,
+            currency: 'USD'
+          });
+        } else {
+          console.log('[Dev Mode] Facebook Pixel tracking skipped - not on production domain');
+        }
       }
     },
     onError: (error: any) => {
