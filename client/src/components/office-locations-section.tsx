@@ -22,7 +22,7 @@ const offices: Office[] = [
     id: "sargodha",
     city: "Sargodha",
     name: "Head Office",
-    address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha",
+    address: "Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.",
     phone: "+92 321 9991947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-[#1D50C9] to-[#1845B3]",

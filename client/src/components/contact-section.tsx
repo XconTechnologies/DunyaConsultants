@@ -42,7 +42,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Head Office",
-    details: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
+    details: "Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.",
     description: "Visit us for personal consultation",
     color: "from-[#1D50C9] to-[#1845B3]"
   },
@@ -177,7 +177,7 @@ export default function ContactSection() {
                       <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
                       <p className="text-gray-600">Interactive Map</p>
                       <p className="text-sm text-gray-500">
-                        Alif Tower, Buhadur Shah Zafar Road, Sargodha
+                        Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.
                       </p>
                     </div>
                   </div>

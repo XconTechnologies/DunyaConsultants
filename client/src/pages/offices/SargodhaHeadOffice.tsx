@@ -598,7 +598,7 @@ export default function SargodhaHeadOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        Alif Tower, Buhadur Shah Zafar Road, Sargodha
+                        Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.
                       </p>
                     </div>
                   </div>

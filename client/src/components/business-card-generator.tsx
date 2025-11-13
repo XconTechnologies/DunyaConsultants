@@ -44,7 +44,7 @@ export default function BusinessCardGenerator() {
     email: "john.doe@dunyaconsultants.com",
     phone: "+92 304 1110947",
     website: "www.dunyaconsultants.com",
-    address: "Alif Tower, Sargodha",
+    address: "106 Sadium Road, Sargodha",
     bio: "Helping students achieve their dreams of studying abroad",
     theme: "blue",
     pattern: "dots"

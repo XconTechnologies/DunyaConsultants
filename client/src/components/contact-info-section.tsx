@@ -118,7 +118,7 @@ export default function ContactInfoSection() {
                   <div className="absolute top-full w-0.5 h-16 bg-blue-300/50"></div>
                 </div>
                 <div className="absolute top-28 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Alif Tower, Sargodha
+                  106 Sadium Road, Sargodha
                 </div>
               </motion.div>
 

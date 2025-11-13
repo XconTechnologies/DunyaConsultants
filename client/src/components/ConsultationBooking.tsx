@@ -39,7 +39,7 @@ export default function ConsultationBooking({ country, children }: ConsultationB
         </div>
         <div className="text-center text-sm text-gray-600">
           <p>📧 info@dunyaconsultants.com</p>
-          <p>📍 Alif Tower, Sargodha</p>
+          <p>📍 106 Sadium Road, Sargodha</p>
         </div>
       </div>
     </>

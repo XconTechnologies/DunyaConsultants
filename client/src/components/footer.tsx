@@ -141,7 +141,7 @@ export default function Footer() {
                       <div>
                         <p className="text-blue-100 text-xs font-medium">Head Office:</p>
                         <p className="text-white text-sm font-semibold leading-relaxed">
-                          Alif Tower, Buhadur shah zafar road, Sargodha
+                          Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.
                         </p>
                       </div>
                     </div>

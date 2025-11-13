@@ -43,7 +43,7 @@ Required Documents:
 Contact Information:
 UAN: (+92) 304 1110947
 Email: info@dunyaconsultants.com
-Address: Alif Tower, Sargodha
+Address: Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.
 
 © Dunya Consultants - Your trusted study abroad partner`;
 
@@ -330,7 +330,7 @@ Address: Alif Tower, Sargodha
                 
                 <div className="text-center text-sm text-gray-600">
                   <p>📧 info@dunyaconsultants.com</p>
-                  <p>📍 Alif Tower, Sargodha</p>
+                  <p>📍 Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.</p>
                 </div>
               </CardContent>
             </Card>

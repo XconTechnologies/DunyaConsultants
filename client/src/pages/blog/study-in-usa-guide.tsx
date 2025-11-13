@@ -410,7 +410,7 @@ export default function StudyInUSAGuide() {
                 <div className="space-y-2 text-sm text-gray-600">
                   <p><strong>Phone:</strong> +92 304 111 0947</p>
                   <p><strong>Email:</strong> info@dunyaconsultants.com</p>
-                  <p><strong>Address:</strong> Alif Tower, Buhadur Shah Zafar Road, Sargodha</p>
+                  <p><strong>Address:</strong> Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.</p>
                 </div>
               </div>
             </div>

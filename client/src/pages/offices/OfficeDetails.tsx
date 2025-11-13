@@ -17,7 +17,7 @@ const offices = [
     id: "sargodha-head",
     city: "Sargodha",
     name: "Head Office",
-    address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
+    address: "Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.",
     phone: "+92 304 1110947",
     email: "info@dunyaconsultants.com",
     hours: "Mon–Sat 9 AM–7 PM",
