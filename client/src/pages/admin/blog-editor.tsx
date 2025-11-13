@@ -355,14 +355,53 @@ export default function BlogEditor() {
     }
   }, [editorMounted, editorRef.current]);
 
+  // Helper: Get all parent categories for a given category (recursive)
+  const getAllParents = (categoryId: number, categoriesList: any[]): number[] => {
+    const category = categoriesList.find((cat: any) => cat.id === categoryId);
+    if (!category || !category.parentId) return [];
+    
+    const parents = [category.parentId];
+    const ancestorParents = getAllParents(category.parentId, categoriesList);
+    return [...parents, ...ancestorParents];
+  };
+
+  // Helper: Get all child categories for a given category (recursive)
+  const getAllChildren = (categoryId: number, categoriesList: any[]): number[] => {
+    const directChildren = categoriesList.filter((cat: any) => cat.parentId === categoryId);
+    const allChildren = directChildren.map((child: any) => child.id);
+    
+    // Recursively get children of children
+    directChildren.forEach((child: any) => {
+      const descendants = getAllChildren(child.id, categoriesList);
+      allChildren.push(...descendants);
+    });
+    
+    return allChildren;
+  };
+
+  // Helper: Normalize category IDs by ensuring all parent categories are included
+  const normalizeCategoryIds = (categoryIds: number[], categoriesList: any[]): number[] => {
+    const allRequiredIds = new Set<number>(categoryIds);
+    
+    // For each selected category, add all its parents
+    categoryIds.forEach(id => {
+      const parents = getAllParents(id, categoriesList);
+      parents.forEach(parentId => allRequiredIds.add(parentId));
+    });
+    
+    return Array.from(allRequiredIds);
+  };
+
   // Update selected category IDs when post categories load
   useEffect(() => {
-    if (postCategories.length > 0) {
-      const categoryIds = postCategories.map(cat => cat.id);
-      setSelectedCategoryIds(categoryIds);
-      setValue('categoryIds', categoryIds);
+    if (postCategories.length > 0 && categories.length > 0) {
+      const categoryIds = postCategories.map((cat: any) => cat.id);
+      // Normalize to ensure all parent categories are included
+      const normalizedIds = normalizeCategoryIds(categoryIds, categories);
+      setSelectedCategoryIds(normalizedIds);
+      setValue('categoryIds', normalizedIds);
     }
-  }, [postCategories]);
+  }, [postCategories, categories]);
 
   // Populate form when editing
   useEffect(() => {
@@ -741,14 +780,25 @@ export default function BlogEditor() {
     }
   };
 
-  // Handle category selection/deselection
+  // Handle category selection/deselection with automatic parent/child management
   const handleCategoryToggle = (categoryId: number, isSelected: boolean) => {
     let newSelectedIds: number[];
+    
     if (isSelected) {
-      newSelectedIds = [...selectedCategoryIds, categoryId];
+      // When selecting a category, also select all its parent categories
+      const parentsToAdd = getAllParents(categoryId, categories);
+      const idsToAdd = [categoryId, ...parentsToAdd];
+      
+      // Combine with existing selections and remove duplicates
+      newSelectedIds = Array.from(new Set([...selectedCategoryIds, ...idsToAdd]));
     } else {
-      newSelectedIds = selectedCategoryIds.filter(id => id !== categoryId);
+      // When deselecting a category, also deselect all its child categories
+      const childrenToRemove = getAllChildren(categoryId, categories);
+      const idsToRemove = [categoryId, ...childrenToRemove];
+      
+      newSelectedIds = selectedCategoryIds.filter(id => !idsToRemove.includes(id));
     }
+    
     setSelectedCategoryIds(newSelectedIds);
     setValue('categoryIds', newSelectedIds);
   };
@@ -1860,16 +1910,40 @@ export default function BlogEditor() {
                             const category = categories.find((cat: any) => cat.id === categoryId);
                             if (!category) return null;
                             
+                            const isParentCategory = !category.parentId;
+                            const hasChildren = getAllChildren(categoryId, categories).length > 0;
+                            
                             return (
-                              <div key={categoryId} className="flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-lg px-3 py-1.5">
-                                <span className="text-sm font-medium text-blue-800">
+                              <div 
+                                key={categoryId} 
+                                className={`flex items-center space-x-2 rounded-lg px-3 py-1.5 ${
+                                  isParentCategory 
+                                    ? 'bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] border border-blue-600 text-white' 
+                                    : 'bg-blue-50 border border-blue-200 text-blue-800'
+                                }`}
+                              >
+                                {!isParentCategory && (
+                                  <span className="text-xs text-blue-400">└─</span>
+                                )}
+                                <span className={`text-sm font-medium ${isParentCategory ? 'text-white' : 'text-blue-800'}`}>
                                   {category.name}
                                 </span>
+                                {isParentCategory && hasChildren && (
+                                  <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded text-white">Parent</span>
+                                )}
+                                {!isParentCategory && (
+                                  <span className="text-xs bg-blue-100 px-1.5 py-0.5 rounded text-blue-600">Child</span>
+                                )}
                                 <button
                                   type="button"
                                   onClick={() => handleCategoryToggle(categoryId, false)}
-                                  className="text-blue-600 hover:text-blue-800"
+                                  className={`${
+                                    isParentCategory 
+                                      ? 'text-white hover:text-blue-100' 
+                                      : 'text-blue-600 hover:text-blue-800'
+                                  }`}
                                   data-testid={`remove-category-${category.slug}`}
+                                  title={hasChildren ? "Removing this will also remove its children" : undefined}
                                 >
                                   <X className="w-3 h-3" />
                                 </button>
