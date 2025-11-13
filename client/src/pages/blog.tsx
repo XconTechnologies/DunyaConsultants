@@ -3341,7 +3341,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           <Link key={index} href={`/category/${categorySlug}`}>
                             <Badge 
                               variant="secondary" 
-                              className="px-3 py-1.5 text-sm bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white cursor-pointer hover:shadow-md hover:scale-105 transition-all duration-200"
+                              className="px-2.5 py-1 text-xs bg-blue-50 text-[#1D50C9] border border-blue-100 cursor-pointer hover:bg-blue-100 hover:shadow-sm transition-all duration-200 font-medium"
                             >
                               {category.name}
                             </Badge>
