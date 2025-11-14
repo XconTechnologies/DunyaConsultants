@@ -163,7 +163,8 @@ function SortableBlock({
   onMoveUp, 
   onMoveDown,
   isFirst,
-  isLast
+  isLast,
+  onInsertAfter
 }: { 
   block: Block; 
   children: React.ReactNode; 
@@ -174,7 +175,9 @@ function SortableBlock({
   onMoveDown: () => void;
   isFirst: boolean;
   isLast: boolean;
+  onInsertAfter: (blockType: BlockType) => void;
 }) {
+  const [showInsertMenu, setShowInsertMenu] = useState(false);
   const {
     attributes,
     listeners,
@@ -189,83 +192,206 @@ function SortableBlock({
   };
 
   return (
-    <div 
-      ref={setNodeRef} 
-      style={style} 
-      className={`group relative bg-white rounded-xl overflow-hidden transition-all duration-200 mb-4 ${
-        isSelected 
-          ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-100' 
-          : 'border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200'
-      }`}
-    >
-      {/* Block Header */}
-      <div className={`flex items-center justify-between px-4 py-2.5 border-b transition-colors ${
-        isSelected ? 'bg-blue-50 border-blue-100' : 'bg-gray-50 border-gray-100'
-      }`}>
-        <div className="flex items-center gap-3">
-          {/* Checkbox */}
-          <Checkbox 
-            checked={isSelected}
-            onCheckedChange={onSelect}
-            className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
-          />
+    <>
+      <div 
+        ref={setNodeRef} 
+        style={style} 
+        className={`group relative bg-white rounded-xl overflow-hidden transition-all duration-200 mb-1 ${
+          isSelected 
+            ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-100' 
+            : 'border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200'
+        }`}
+      >
+        {/* Block Header */}
+        <div className={`flex items-center justify-between px-4 py-2.5 border-b transition-colors ${
+          isSelected ? 'bg-blue-50 border-blue-100' : 'bg-gray-50 border-gray-100'
+        }`}>
+          <div className="flex items-center gap-3">
+            {/* Checkbox */}
+            <Checkbox 
+              checked={isSelected}
+              onCheckedChange={onSelect}
+              className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+            />
+            
+            {/* Block Type Badge */}
+            <Badge variant="outline" className="flex items-center gap-1.5 font-medium text-gray-700 border-gray-300">
+              {getBlockIcon(block.type)}
+              <span>{getBlockTypeName(block.type)}</span>
+            </Badge>
+          </div>
           
-          {/* Block Type Badge */}
-          <Badge variant="outline" className="flex items-center gap-1.5 font-medium text-gray-700 border-gray-300">
-            {getBlockIcon(block.type)}
-            <span>{getBlockTypeName(block.type)}</span>
-          </Badge>
+          {/* Controls */}
+          <div className="flex items-center gap-1">
+            {/* Move Buttons */}
+            <button 
+              onClick={onMoveUp}
+              disabled={isFirst}
+              className="p-1.5 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
+              title="Move up"
+            >
+              <ArrowUp className="w-4 h-4" />
+            </button>
+            <button 
+              onClick={onMoveDown}
+              disabled={isLast}
+              className="p-1.5 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
+              title="Move down"
+            >
+              <ArrowDown className="w-4 h-4" />
+            </button>
+            
+            {/* Drag Handle */}
+            <button 
+              {...attributes} 
+              {...listeners} 
+              className="p-1.5 rounded-md cursor-grab active:cursor-grabbing text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-colors" 
+              title="Drag to reorder"
+            >
+              <GripVertical className="w-4 h-4" />
+            </button>
+            
+            {/* Divider */}
+            <div className="w-px h-6 bg-gray-300 mx-1" />
+            
+            {/* Delete Button */}
+            <button 
+              onClick={onDelete} 
+              className="p-1.5 rounded-md text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+              title="Delete block"
+            >
+              <Trash2 className="w-4 h-4" />
+            </button>
+          </div>
         </div>
         
-        {/* Controls */}
-        <div className="flex items-center gap-1">
-          {/* Move Buttons */}
-          <button 
-            onClick={onMoveUp}
-            disabled={isFirst}
-            className="p-1.5 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
-            title="Move up"
-          >
-            <ArrowUp className="w-4 h-4" />
-          </button>
-          <button 
-            onClick={onMoveDown}
-            disabled={isLast}
-            className="p-1.5 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
-            title="Move down"
-          >
-            <ArrowDown className="w-4 h-4" />
-          </button>
-          
-          {/* Drag Handle */}
-          <button 
-            {...attributes} 
-            {...listeners} 
-            className="p-1.5 rounded-md cursor-grab active:cursor-grabbing text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-colors" 
-            title="Drag to reorder"
-          >
-            <GripVertical className="w-4 h-4" />
-          </button>
-          
-          {/* Divider */}
-          <div className="w-px h-6 bg-gray-300 mx-1" />
-          
-          {/* Delete Button */}
-          <button 
-            onClick={onDelete} 
-            className="p-1.5 rounded-md text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
-            title="Delete block"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
+        {/* Block Content */}
+        <div className="p-4">
+          {children}
         </div>
       </div>
-      
-      {/* Block Content */}
-      <div className="p-4">
-        {children}
+
+      {/* Insert Block After Button - Shows on hover */}
+      <div className="relative h-3 group/insert">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/insert:opacity-100 transition-opacity duration-200">
+          <button
+            onClick={() => setShowInsertMenu(!showInsertMenu)}
+            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-1.5 shadow-lg hover:shadow-xl transition-all transform hover:scale-110"
+            title="Insert block after"
+            data-testid={`insert-after-${block.id}`}
+          >
+            <Plus className="w-4 h-4" />
+          </button>
+        </div>
+        
+        {/* Insert Menu */}
+        {showInsertMenu && (
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl p-3 z-30 w-80">
+            <div className="grid grid-cols-2 gap-2">
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('heading'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-heading-${block.id}`}
+              >
+                <Heading className="w-3.5 h-3.5 mr-1.5" />
+                Heading
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('paragraph'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-paragraph-${block.id}`}
+              >
+                <Type className="w-3.5 h-3.5 mr-1.5" />
+                Paragraph
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('code'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-code-${block.id}`}
+              >
+                <Code className="w-3.5 h-3.5 mr-1.5" />
+                Code
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('list'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-list-${block.id}`}
+              >
+                <List className="w-3.5 h-3.5 mr-1.5" />
+                List
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('table'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-table-${block.id}`}
+              >
+                <Table className="w-3.5 h-3.5 mr-1.5" />
+                Table
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('image'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-image-${block.id}`}
+              >
+                <ImageIcon className="w-3.5 h-3.5 mr-1.5" />
+                Image
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('html'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-html-${block.id}`}
+              >
+                <FileCode className="w-3.5 h-3.5 mr-1.5" />
+                HTML
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('faq'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-faq-${block.id}`}
+              >
+                <HelpCircle className="w-3.5 h-3.5 mr-1.5" />
+                FAQ
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('tip'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-tip-${block.id}`}
+              >
+                <FileText className="w-3.5 h-3.5 mr-1.5" />
+                Tip
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('consultation'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs"
+                data-testid={`insert-consultation-${block.id}`}
+              >
+                <Calendar className="w-3.5 h-3.5 mr-1.5" />
+                Consultation
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => { onInsertAfter('whatsappChannel'); setShowInsertMenu(false); }} 
+                className="justify-start h-10 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 text-xs col-span-2"
+                data-testid={`insert-whatsapp-${block.id}`}
+              >
+                <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+                WhatsApp Channel
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 
@@ -937,58 +1063,74 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
     }
   };
 
+  const createBlock = (type: BlockType, position: number): Block => {
+    const baseId = generateId();
+    switch (type) {
+      case 'heading':
+        return { id: baseId, type, level: 2, text: '', position } as HeadingBlock;
+      case 'paragraph':
+        return { id: baseId, type, text: '', position } as ParagraphBlock;
+      case 'code':
+        return { id: baseId, type, code: '', language: '', position } as CodeBlock;
+      case 'list':
+        return { id: baseId, type, style: 'ul', items: [{ id: generateId(), text: '', children: [] }], position } as ListBlock;
+      case 'table':
+        return { id: baseId, type, rows: 2, cols: 2, data: [['', ''], ['', '']], position } as TableBlock;
+      case 'image':
+        return { id: baseId, type, url: '', alt: '', position } as ImageBlock;
+      case 'html':
+        return { id: baseId, type, html: '', showPreview: false, position } as HtmlBlock;
+      case 'faq':
+        return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }], position } as FaqBlock;
+      case 'tip':
+        return { id: baseId, type, prefix: 'Tip:', text: 'Enter your tip or advice here...', position } as TipBlock;
+      case 'consultation':
+        return { 
+          id: baseId, 
+          type, 
+          title: 'Book Your Free Consultation', 
+          description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.',
+          buttonText: 'Book Free Consultation',
+          buttonUrl: '/consultation',
+          buttonBgColor: '#1D50C9',
+          buttonTextColor: '#ffffff',
+          buttonBorderRadius: 8,
+          position 
+        } as ConsultationBlock;
+      case 'whatsappChannel':
+        return { 
+          id: baseId, 
+          type, 
+          title: 'Stay Updated with Our WhatsApp Channel', 
+          description: 'Get instant updates on visa news, and study abroad opportunities!', 
+          channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V',
+          buttonText: 'Join Channel',
+          buttonBgColor: '#25D366',
+          buttonTextColor: '#ffffff',
+          buttonBorderRadius: 8,
+          position 
+        } as WhatsAppChannelBlock;
+    }
+  };
+
   const addBlock = (type: BlockType) => {
-    const newBlock: Block = (() => {
-      const baseId = generateId();
-      switch (type) {
-        case 'heading':
-          return { id: baseId, type, level: 2, text: '', position: blocks.length } as HeadingBlock;
-        case 'paragraph':
-          return { id: baseId, type, text: '', position: blocks.length } as ParagraphBlock;
-        case 'code':
-          return { id: baseId, type, code: '', language: '', position: blocks.length } as CodeBlock;
-        case 'list':
-          return { id: baseId, type, style: 'ul', items: [{ id: generateId(), text: '', children: [] }], position: blocks.length } as ListBlock;
-        case 'table':
-          return { id: baseId, type, rows: 2, cols: 2, data: [['', ''], ['', '']], position: blocks.length } as TableBlock;
-        case 'image':
-          return { id: baseId, type, url: '', alt: '', position: blocks.length } as ImageBlock;
-        case 'html':
-          return { id: baseId, type, html: '', showPreview: false, position: blocks.length } as HtmlBlock;
-        case 'faq':
-          return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }], position: blocks.length } as FaqBlock;
-        case 'tip':
-          return { id: baseId, type, prefix: 'Tip:', text: 'Enter your tip or advice here...', position: blocks.length } as TipBlock;
-        case 'consultation':
-          return { 
-            id: baseId, 
-            type, 
-            title: 'Book Your Free Consultation', 
-            description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.',
-            buttonText: 'Book Free Consultation',
-            buttonUrl: '/consultation',
-            buttonBgColor: '#1D50C9',
-            buttonTextColor: '#ffffff',
-            buttonBorderRadius: 8,
-            position: blocks.length 
-          } as ConsultationBlock;
-        case 'whatsappChannel':
-          return { 
-            id: baseId, 
-            type, 
-            title: 'Stay Updated with Our WhatsApp Channel', 
-            description: 'Get instant updates on visa news, and study abroad opportunities!', 
-            channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V',
-            buttonText: 'Join Channel',
-            buttonBgColor: '#25D366',
-            buttonTextColor: '#ffffff',
-            buttonBorderRadius: 8,
-            position: blocks.length 
-          } as WhatsAppChannelBlock;
-      }
-    })();
+    const newBlock = createBlock(type, blocks.length);
     onChange([...blocks, newBlock]);
     setShowBlockMenu(false);
+  };
+
+  const insertBlockAfter = (afterBlockId: string, type: BlockType) => {
+    const afterIndex = blocks.findIndex((b) => b.id === afterBlockId);
+    if (afterIndex === -1) return;
+    
+    const newBlock = createBlock(type, afterIndex + 1);
+    const newBlocks = [
+      ...blocks.slice(0, afterIndex + 1),
+      newBlock,
+      ...blocks.slice(afterIndex + 1)
+    ];
+    
+    onChange(updateBlockPositions(newBlocks));
   };
 
   const updateBlock = (id: string, updatedBlock: Block) => {
@@ -1198,6 +1340,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
                   onMoveDown={() => moveBlockDown(block.id)}
                   isFirst={index === 0}
                   isLast={index === blocks.length - 1}
+                  onInsertAfter={(blockType) => insertBlockAfter(block.id, blockType)}
                 >
                   <BlockRenderer block={block} onChange={(updated) => updateBlock(block.id, updated)} />
                 </SortableBlock>
