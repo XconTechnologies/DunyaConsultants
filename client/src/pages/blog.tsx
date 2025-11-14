@@ -276,7 +276,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 function TableOfContents({ content, isVisible = true }: { content: string; isVisible?: boolean }) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
-  const [isClamped, setIsClamped] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [hasReachedBottom, setHasReachedBottom] = useState(false);
   const tocContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -305,14 +306,35 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     return () => clearTimeout(timeoutId);
   }, [content]);
 
-  // Intersection Observer to detect when to unclamp sticky TOC
+  // Intersection Observer to detect when TOC enters viewport and when it reaches bottom
   useEffect(() => {
-    const sentinel = document.getElementById('toc-sentinel');
-    if (!sentinel || !tocContainerRef.current) return;
+    if (!tocContainerRef.current) return;
 
-    const observer = new IntersectionObserver(
+    const tocElement = tocContainerRef.current;
+    const sentinel = document.getElementById('toc-sentinel');
+    
+    if (!sentinel) return;
+
+    // Observer for TOC entering viewport (makes it sticky)
+    const tocObserver = new IntersectionObserver(
       ([entry]) => {
-        setIsClamped(entry.isIntersecting);
+        // When TOC is about to leave viewport from top, make it sticky
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          setIsSticky(true);
+        } else if (entry.isIntersecting) {
+          setIsSticky(false);
+        }
+      },
+      {
+        rootMargin: '-80px 0px 0px 0px', // Account for header height
+        threshold: 0
+      }
+    );
+
+    // Observer for bottom sentinel (unsticks TOC)
+    const sentinelObserver = new IntersectionObserver(
+      ([entry]) => {
+        setHasReachedBottom(entry.isIntersecting);
       },
       {
         rootMargin: '0px',
@@ -320,10 +342,12 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
       }
     );
 
-    observer.observe(sentinel);
+    tocObserver.observe(tocElement);
+    sentinelObserver.observe(sentinel);
 
     return () => {
-      observer.disconnect();
+      tocObserver.disconnect();
+      sentinelObserver.disconnect();
     };
   }, []);
 
@@ -371,12 +395,24 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
 
   if (!isVisible || tocItems.length === 0) return null;
 
+  // Determine the positioning class based on sticky state and bottom boundary
+  const getPositionClass = () => {
+    if (hasReachedBottom) {
+      return ''; // Normal flow when reached bottom
+    }
+    if (isSticky) {
+      return 'lg:fixed lg:top-20'; // Fixed when sticky
+    }
+    return ''; // Normal flow by default
+  };
+
   return (
     <div 
       ref={tocContainerRef}
-      className={`${isClamped ? 'lg:static' : 'lg:sticky lg:self-start'} lg:top-20`}
+      className={`${getPositionClass()}`}
+      style={isSticky && !hasReachedBottom ? { width: tocContainerRef.current?.offsetWidth } : undefined}
     >
-      <Card className="bg-white border border-gray-200">
+      <Card className="bg-white border border-gray-200 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
             <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
