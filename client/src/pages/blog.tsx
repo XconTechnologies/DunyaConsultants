@@ -374,9 +374,9 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
   return (
     <div 
       ref={tocContainerRef}
-      className={`${isClamped ? 'lg:static' : 'lg:sticky'} lg:top-20`}
+      className={`${isClamped ? 'lg:static' : 'lg:sticky lg:self-start'} lg:top-20`}
     >
-      <Card className="bg-white border border-gray-200 max-h-[calc(100vh-7rem)] overflow-y-auto">
+      <Card className="bg-white border border-gray-200">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
             <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
