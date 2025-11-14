@@ -752,6 +752,76 @@ export default function BlogEditor() {
     },
   });
 
+  // Transform custom blocks to ContentBlock schema format
+  const transformToContentBlocks = (blocks: Block[]): any[] => {
+    return blocks.map((block) => {
+      const baseBlock = {
+        id: block.id,
+        type: block.type,
+        position: (block as any).position ?? 0
+      };
+
+      switch (block.type) {
+        case 'tip':
+          return {
+            ...baseBlock,
+            data: {
+              prefix: (block as any).prefix,
+              text: (block as any).text
+            }
+          };
+        
+        case 'consultation':
+          return {
+            ...baseBlock,
+            data: {
+              title: (block as any).title,
+              description: (block as any).description,
+              buttonText: (block as any).buttonText,
+              buttonUrl: (block as any).buttonUrl,
+              buttonBgColor: (block as any).buttonBgColor,
+              buttonTextColor: (block as any).buttonTextColor,
+              buttonBorderRadius: (block as any).buttonBorderRadius
+            }
+          };
+        
+        case 'whatsappChannel':
+          return {
+            ...baseBlock,
+            data: {
+              title: (block as any).title,
+              description: (block as any).description,
+              channelUrl: (block as any).channelUrl,
+              buttonText: (block as any).buttonText,
+              buttonBgColor: (block as any).buttonBgColor,
+              buttonTextColor: (block as any).buttonTextColor,
+              buttonBorderRadius: (block as any).buttonBorderRadius
+            }
+          };
+        
+        case 'faq':
+          return {
+            ...baseBlock,
+            data: {
+              questions: (block as any).items || []
+            }
+          };
+        
+        case 'html':
+          return {
+            ...baseBlock,
+            data: {
+              html: (block as any).html
+            }
+          };
+        
+        default:
+          // For other block types, return as-is
+          return block;
+      }
+    });
+  };
+
   const onSubmit = async (data: BlogForm) => {
     console.log('Form submitted with data:', data);
     setIsSaving(true);
@@ -768,9 +838,9 @@ export default function BlogEditor() {
         const html = blocksToHtml(customBlocks);
         data.content = html;
         
-        // Store the raw block data as JSON in contentBlocks field
+        // Transform blocks to ContentBlock schema format and store
         if ('contentBlocks' in data) {
-          data.contentBlocks = customBlocks as any;
+          data.contentBlocks = transformToContentBlocks(customBlocks) as any;
         }
       }
       

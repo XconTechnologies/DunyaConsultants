@@ -149,7 +149,10 @@ function renderBlock(block: ContentBlock) {
 
 // Tip Block Renderer
 function TipBlock({ block }: { block: ContentBlock & { type: 'tip' } }) {
-  const { prefix, text } = block.data;
+  // Handle both new format (data.prefix, data.text) and old format (prefix, text)
+  const blockData = block as any;
+  const prefix = blockData.data?.prefix || blockData.prefix || '';
+  const text = blockData.data?.text || blockData.text || '';
 
   if (!text) {
     return null;
@@ -501,15 +504,15 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
 
 // Consultation Block Renderer
 function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultation' } }) {
-  const { 
-    title = 'Book Your Free Consultation', 
-    description = 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors.',
-    buttonText = 'Book Free Consultation',
-    buttonUrl = '/consultation',
-    buttonBgColor = '#1D50C9',
-    buttonTextColor = '#ffffff',
-    buttonBorderRadius = 8
-  } = block.data || {};
+  // Handle both new format (data.*) and old format (direct properties)
+  const blockData = block as any;
+  const title = blockData.data?.title || blockData.title || 'Book Your Free Consultation';
+  const description = blockData.data?.description || blockData.description || 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors.';
+  const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Book Free Consultation';
+  const buttonUrl = blockData.data?.buttonUrl || blockData.buttonUrl || '/consultation';
+  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#1D50C9';
+  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
+  const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
 
   return (
     <div className="my-8 w-full max-w-5xl mx-auto" data-block-type="consultation">
@@ -577,15 +580,15 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
 
 // WhatsApp Channel Block Renderer
 function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type: 'whatsappChannel' } }) {
-  const { 
-    title = 'Stay Updated with Our WhatsApp Channel', 
-    description = 'Get instant updates on visa news, and study abroad opportunities!', 
-    channelUrl = 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V',
-    buttonText = 'Join Channel',
-    buttonBgColor = '#25D366',
-    buttonTextColor = '#ffffff',
-    buttonBorderRadius = 8
-  } = block.data || {};
+  // Handle both new format (data.*) and old format (direct properties)
+  const blockData = block as any;
+  const title = blockData.data?.title || blockData.title || 'Stay Updated with Our WhatsApp Channel';
+  const description = blockData.data?.description || blockData.description || 'Get instant updates on visa news, and study abroad opportunities!';
+  const channelUrl = blockData.data?.channelUrl || blockData.channelUrl || 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V';
+  const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Join Channel';
+  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#25D366';
+  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
+  const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
 
   return (
     <div className="my-8 w-full max-w-4xl mx-auto" data-block-type="whatsappChannel">
