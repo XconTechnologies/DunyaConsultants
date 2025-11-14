@@ -36,19 +36,15 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = content;
   
-  // Select ALL elements first, then filter to only top-level ones (not nested)
-  const allElements = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table');
-  const elements = Array.from(allElements).filter(el => {
-    // Check if any parent (up to tempDiv) is also in the selection
-    let parent = el.parentElement;
-    while (parent && parent !== tempDiv) {
-      if (allElements && Array.from(allElements).includes(parent as any)) {
-        return false; // This element is nested inside another selected element
-      }
-      parent = parent.parentElement;
+  // Get all top-level child nodes (element nodes only, skip text nodes with just whitespace)
+  const elements = Array.from(tempDiv.childNodes).filter(node => {
+    // Keep only element nodes (nodeType === 1)
+    if (node.nodeType !== 1) {
+      return false;
     }
-    return true; // This is a top-level element
-  });
+    return true;
+  }) as Element[];
+  
   const contentParts: JSX.Element[] = [];
   
   // Debug: Log element count and types
