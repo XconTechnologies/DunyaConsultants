@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { ContentBlock } from "@shared/schema";
 
 interface ContentBlocksRendererProps {
@@ -265,12 +265,71 @@ function TableBlock({ block }: { block: ContentBlock & { type: 'table' } }) {
 
 // HTML Block Renderer
 function HTMLBlock({ block }: { block: ContentBlock & { type: 'html' } }) {
-  return (
-    <div 
-      className="html-block"
-      dangerouslySetInnerHTML={{ __html: block.data.html || '' }}
-    />
-  );
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (!containerRef.current || !block.data.html) return;
+    
+    const container = containerRef.current;
+    const htmlContent = block.data.html;
+    
+    // Clear previous content
+    container.innerHTML = '';
+    
+    // Create a temporary div to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    
+    // Extract and handle style tags
+    const styleTags = tempDiv.querySelectorAll('style');
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      container.appendChild(newStyle);
+      styleTag.remove();
+    });
+    
+    // Extract and handle script tags
+    const scriptTags = tempDiv.querySelectorAll('script');
+    const scripts: HTMLScriptElement[] = [];
+    scriptTags.forEach(scriptTag => {
+      const newScript = document.createElement('script');
+      
+      // Copy all attributes
+      Array.from(scriptTag.attributes).forEach(attr => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      // Copy script content
+      if (scriptTag.src) {
+        newScript.src = scriptTag.src;
+      } else {
+        newScript.textContent = scriptTag.textContent;
+      }
+      
+      scripts.push(newScript);
+      scriptTag.remove();
+    });
+    
+    // Add remaining HTML content
+    container.innerHTML += tempDiv.innerHTML;
+    
+    // Execute scripts after DOM is ready
+    scripts.forEach(script => {
+      container.appendChild(script);
+    });
+    
+    // Cleanup function
+    return () => {
+      // Remove any added scripts and styles when component unmounts
+      const addedScripts = container.querySelectorAll('script');
+      const addedStyles = container.querySelectorAll('style');
+      addedScripts.forEach(s => s.remove());
+      addedStyles.forEach(s => s.remove());
+    };
+  }, [block.data.html]);
+  
+  return <div ref={containerRef} className="html-block" />;
 }
 
 // Button Block Renderer
