@@ -1,4 +1,4 @@
-import type { Block, ListItem, FaqItem } from '@/components/admin/custom-block-editor';
+import type { Block, ListItem, FaqItem, TipBlock } from '@/components/admin/custom-block-editor';
 
 export function blocksToHtml(blocks: Block[]): string {
   return blocks.map(blockToHtml).join('\n');
@@ -31,6 +31,9 @@ function blockToHtml(block: Block): string {
     
     case 'faq':
       return renderFaq(block.items);
+    
+    case 'tip':
+      return renderTip(block);
     
     default:
       return '';
@@ -82,6 +85,21 @@ function renderTable(data: string[][]): string {
   
   html += '  </tbody>\n';
   html += '</table>';
+  return html;
+}
+
+function renderTip(block: TipBlock): string {
+  // Safety check for empty text
+  if (!block.text) return '';
+  
+  let html = '<div class="tip-block" style="margin: 1.5rem 0; padding: 1rem 1.25rem; background: #fff7ed; border-left: 4px solid #f97316; border-radius: 0.375rem; font-family: Inter, Lato, sans-serif;">\n';
+  html += '  <p style="margin: 0; font-style: italic; font-size: 1.125rem; line-height: 1.7; color: #111827;">\n';
+  if (block.prefix) {
+    html += `    <strong style="font-style: normal;">${escapeHtml(block.prefix)} </strong>\n`;
+  }
+  html += `    ${escapeHtml(block.text)}\n`;
+  html += '  </p>\n';
+  html += '</div>';
   return html;
 }
 

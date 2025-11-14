@@ -14,7 +14,7 @@ import { Label } from '@/components/ui/label';
 import { blocksToHtmlPreview } from '@/lib/blocks-to-html-preview';
 
 // Block type definitions
-export type BlockType = 'heading' | 'paragraph' | 'code' | 'list' | 'table' | 'image' | 'html' | 'faq' | 'consultation' | 'whatsappChannel';
+export type BlockType = 'heading' | 'paragraph' | 'code' | 'list' | 'table' | 'image' | 'html' | 'faq' | 'tip' | 'consultation' | 'whatsappChannel';
 
 export interface BaseBlock {
   id: string;
@@ -93,7 +93,13 @@ export interface WhatsAppChannelBlock extends BaseBlock {
   channelUrl: string;
 }
 
-export type Block = HeadingBlock | ParagraphBlock | CodeBlock | ListBlock | TableBlock | ImageBlock | HtmlBlock | FaqBlock | ConsultationBlock | WhatsAppChannelBlock;
+export interface TipBlock extends BaseBlock {
+  type: 'tip';
+  prefix: string;
+  text: string;
+}
+
+export type Block = HeadingBlock | ParagraphBlock | CodeBlock | ListBlock | TableBlock | ImageBlock | HtmlBlock | FaqBlock | TipBlock | ConsultationBlock | WhatsAppChannelBlock;
 
 interface CustomBlockEditorProps {
   blocks: Block[];
@@ -115,6 +121,7 @@ const getBlockIcon = (type: BlockType) => {
     case 'image': return <ImageIcon className="w-4 h-4" />;
     case 'html': return <FileCode className="w-4 h-4" />;
     case 'faq': return <HelpCircle className="w-4 h-4" />;
+    case 'tip': return <FileText className="w-4 h-4" />;
     case 'consultation': return <Calendar className="w-4 h-4" />;
     case 'whatsappChannel': return <MessageCircle className="w-4 h-4" />;
   }
@@ -131,6 +138,7 @@ const getBlockTypeName = (type: BlockType) => {
     case 'image': return 'Image';
     case 'html': return 'HTML';
     case 'faq': return 'FAQ';
+    case 'tip': return 'Tip';
     case 'consultation': return 'Consultation';
     case 'whatsappChannel': return 'WhatsApp Channel';
   }
@@ -549,6 +557,49 @@ function HtmlBlockComponent({ block, onChange }: { block: HtmlBlock; onChange: (
   );
 }
 
+// Tip Block Component
+function TipBlockComponent({ block, onChange }: { block: TipBlock; onChange: (block: TipBlock) => void }) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label>Prefix (Optional)</Label>
+        <Input
+          value={block.prefix || ''}
+          onChange={(e) => onChange({ ...block, prefix: e.target.value })}
+          placeholder="e.g., Consultant Tip:, Pro Tip:, Note:"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Optional label to prepend to your tip
+        </p>
+      </div>
+
+      <div>
+        <Label>Tip Text</Label>
+        <Textarea
+          value={block.text || ''}
+          onChange={(e) => onChange({ ...block, text: e.target.value })}
+          placeholder="Enter your tip or advice here..."
+          className="min-h-[100px]"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          The main content of your tip - will be displayed in italics
+        </p>
+      </div>
+
+      <div className="mt-4 p-4 rounded-lg border-l-4" style={{
+        background: '#fff7ed',
+        borderLeftColor: '#f97316'
+      }}>
+        <p className="text-sm text-gray-600 font-medium mb-2">Preview:</p>
+        <div className="font-italic">
+          {block.prefix && <strong>{block.prefix} </strong>}
+          <em>{block.text || 'Your tip will appear here...'}</em>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // FAQ Block Component
 function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (block: FaqBlock) => void }) {
   // Ensure items is always an array
@@ -677,6 +728,8 @@ function BlockRenderer({ block, onChange }: { block: Block; onChange: (block: Bl
       return <HtmlBlockComponent block={block} onChange={onChange} />;
     case 'faq':
       return <FaqBlockComponent block={block} onChange={onChange} />;
+    case 'tip':
+      return <TipBlockComponent block={block} onChange={onChange} />;
     case 'consultation':
       return <ConsultationBlockComponent block={block} onChange={onChange} />;
     case 'whatsappChannel':
@@ -738,6 +791,8 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           return { id: baseId, type, html: '', showPreview: false, position: blocks.length } as HtmlBlock;
         case 'faq':
           return { id: baseId, type, items: [{ id: generateId(), question: '', answer: '' }], position: blocks.length } as FaqBlock;
+        case 'tip':
+          return { id: baseId, type, prefix: 'Tip:', text: 'Enter your tip or advice here...', position: blocks.length } as TipBlock;
         case 'consultation':
           return { id: baseId, type, title: 'Book Your Free Consultation', description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.', position: blocks.length } as ConsultationBlock;
         case 'whatsappChannel':
@@ -1057,6 +1112,14 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
               >
                 <HelpCircle className="w-4 h-4 mr-2" />
                 FAQ
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => addBlock('tip')} 
+                className="justify-start h-12 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Tip
               </Button>
               <Button 
                 variant="outline" 
