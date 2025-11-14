@@ -585,17 +585,6 @@ function TipBlockComponent({ block, onChange }: { block: TipBlock; onChange: (bl
           The main content of your tip - will be displayed in italics
         </p>
       </div>
-
-      <div className="mt-4 p-4 rounded-lg border-l-4" style={{
-        background: '#fff7ed',
-        borderLeftColor: '#f97316'
-      }}>
-        <p className="text-sm text-gray-600 font-medium mb-2">Preview:</p>
-        <div className="font-italic">
-          {block.prefix && <strong>{block.prefix} </strong>}
-          <em>{block.text || 'Your tip will appear here...'}</em>
-        </div>
-      </div>
     </div>
   );
 }
