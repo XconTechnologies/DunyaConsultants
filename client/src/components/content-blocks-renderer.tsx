@@ -268,7 +268,7 @@ function HTMLBlock({ block }: { block: ContentBlock & { type: 'html' } }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    if (!containerRef.current || !block.data.html) return;
+    if (!containerRef.current || !block.data?.html) return;
     
     const container = containerRef.current;
     const htmlContent = block.data.html;
@@ -327,7 +327,7 @@ function HTMLBlock({ block }: { block: ContentBlock & { type: 'html' } }) {
       addedScripts.forEach(s => s.remove());
       addedStyles.forEach(s => s.remove());
     };
-  }, [block.data.html]);
+  }, [block.data?.html]);
   
   return <div ref={containerRef} className="html-block" />;
 }
