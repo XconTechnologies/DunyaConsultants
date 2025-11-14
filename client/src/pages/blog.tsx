@@ -278,6 +278,7 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
   const [activeId, setActiveId] = useState<string>('');
   const [isSticky, setIsSticky] = useState(false);
   const [hasReachedBottom, setHasReachedBottom] = useState(false);
+  const [tocWidth, setTocWidth] = useState<number | null>(null);
   const tocContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -314,6 +315,10 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     const sentinel = document.getElementById('toc-sentinel');
     
     if (!sentinel) return;
+
+    // Capture the initial width
+    const initialWidth = tocElement.offsetWidth;
+    setTocWidth(initialWidth);
 
     // Observer for TOC entering viewport (makes it sticky)
     const tocObserver = new IntersectionObserver(
@@ -410,7 +415,7 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     <div 
       ref={tocContainerRef}
       className={`${getPositionClass()}`}
-      style={isSticky && !hasReachedBottom ? { width: tocContainerRef.current?.offsetWidth } : undefined}
+      style={isSticky && !hasReachedBottom && tocWidth ? { width: `${tocWidth}px` } : undefined}
     >
       <Card className="bg-white border border-gray-200 shadow-sm">
         <CardHeader className="pb-3">
