@@ -84,6 +84,11 @@ export interface ConsultationBlock extends BaseBlock {
   type: 'consultation';
   title: string;
   description: string;
+  buttonText: string;
+  buttonUrl: string;
+  buttonBgColor: string;
+  buttonTextColor: string;
+  buttonBorderRadius: number;
 }
 
 export interface WhatsAppChannelBlock extends BaseBlock {
@@ -91,6 +96,10 @@ export interface WhatsAppChannelBlock extends BaseBlock {
   title: string;
   description: string;
   channelUrl: string;
+  buttonText: string;
+  buttonBgColor: string;
+  buttonTextColor: string;
+  buttonBorderRadius: number;
 }
 
 export interface TipBlock extends BaseBlock {
@@ -643,13 +652,13 @@ function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (bl
 // Consultation Block Component
 function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBlock; onChange: (block: ConsultationBlock) => void }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div>
         <Label className="text-sm font-medium mb-2 block">Title</Label>
         <Input
           value={block.title}
           onChange={(e) => onChange({ ...block, title: e.target.value })}
-          placeholder="Enter consultation title..."
+          placeholder="Book Your Free Consultation"
         />
       </div>
       <div>
@@ -657,9 +666,97 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
         <Textarea
           value={block.description}
           onChange={(e) => onChange({ ...block, description: e.target.value })}
-          placeholder="Enter consultation description..."
+          placeholder="Ready to start your study abroad journey?"
           className="min-h-[100px]"
         />
+      </div>
+      
+      <div className="border-t pt-4">
+        <Label className="text-sm font-medium mb-3 block text-gray-700">Button Settings</Label>
+        
+        <div className="space-y-3">
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Button Text</Label>
+            <Input
+              value={block.buttonText}
+              onChange={(e) => onChange({ ...block, buttonText: e.target.value })}
+              placeholder="Book Free Consultation"
+            />
+          </div>
+          
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Button URL</Label>
+            <Input
+              value={block.buttonUrl}
+              onChange={(e) => onChange({ ...block, buttonUrl: e.target.value })}
+              placeholder="/consultation"
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Background Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.buttonBgColor}
+                  onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.buttonBgColor}
+                  onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
+                  placeholder="#1D50C9"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Text Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.buttonTextColor}
+                  onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.buttonTextColor}
+                  onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
+                  placeholder="#ffffff"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
+            <Input
+              type="number"
+              value={block.buttonBorderRadius}
+              onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
+              placeholder="8"
+              min="0"
+              max="50"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div className="mt-4 p-3 bg-gray-50 rounded border">
+        <p className="text-xs text-gray-600 mb-2 font-medium">Preview:</p>
+        <button 
+          className="px-6 py-3 font-semibold transition-all"
+          style={{
+            backgroundColor: block.buttonBgColor,
+            color: block.buttonTextColor,
+            borderRadius: `${block.buttonBorderRadius}px`
+          }}
+        >
+          {block.buttonText || 'Button Preview'}
+        </button>
       </div>
     </div>
   );
@@ -668,13 +765,13 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
 // WhatsApp Channel Block Component
 function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppChannelBlock; onChange: (block: WhatsAppChannelBlock) => void }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div>
         <Label className="text-sm font-medium mb-2 block">Title</Label>
         <Input
           value={block.title}
           onChange={(e) => onChange({ ...block, title: e.target.value })}
-          placeholder="Enter WhatsApp channel title..."
+          placeholder="Stay Updated with Our WhatsApp Channel"
         />
       </div>
       <div>
@@ -682,7 +779,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
         <Textarea
           value={block.description}
           onChange={(e) => onChange({ ...block, description: e.target.value })}
-          placeholder="Enter channel description..."
+          placeholder="Get instant updates on visa news and study abroad opportunities!"
           className="min-h-[80px]"
         />
       </div>
@@ -693,6 +790,86 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
           onChange={(e) => onChange({ ...block, channelUrl: e.target.value })}
           placeholder="https://whatsapp.com/channel/..."
         />
+      </div>
+      
+      <div className="border-t pt-4">
+        <Label className="text-sm font-medium mb-3 block text-gray-700">Button Settings</Label>
+        
+        <div className="space-y-3">
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Button Text</Label>
+            <Input
+              value={block.buttonText}
+              onChange={(e) => onChange({ ...block, buttonText: e.target.value })}
+              placeholder="Join Channel"
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Background Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.buttonBgColor}
+                  onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.buttonBgColor}
+                  onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
+                  placeholder="#25D366"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Text Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.buttonTextColor}
+                  onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.buttonTextColor}
+                  onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
+                  placeholder="#ffffff"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
+            <Input
+              type="number"
+              value={block.buttonBorderRadius}
+              onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
+              placeholder="8"
+              min="0"
+              max="50"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div className="mt-4 p-3 bg-gray-50 rounded border">
+        <p className="text-xs text-gray-600 mb-2 font-medium">Preview:</p>
+        <button 
+          className="px-6 py-3 font-semibold transition-all flex items-center gap-2"
+          style={{
+            backgroundColor: block.buttonBgColor,
+            color: block.buttonTextColor,
+            borderRadius: `${block.buttonBorderRadius}px`
+          }}
+        >
+          <MessageCircle className="w-4 h-4" />
+          {block.buttonText || 'Button Preview'}
+        </button>
       </div>
     </div>
   );
@@ -783,9 +960,31 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
         case 'tip':
           return { id: baseId, type, prefix: 'Tip:', text: 'Enter your tip or advice here...', position: blocks.length } as TipBlock;
         case 'consultation':
-          return { id: baseId, type, title: 'Book Your Free Consultation', description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.', position: blocks.length } as ConsultationBlock;
+          return { 
+            id: baseId, 
+            type, 
+            title: 'Book Your Free Consultation', 
+            description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.',
+            buttonText: 'Book Free Consultation',
+            buttonUrl: '/consultation',
+            buttonBgColor: '#1D50C9',
+            buttonTextColor: '#ffffff',
+            buttonBorderRadius: 8,
+            position: blocks.length 
+          } as ConsultationBlock;
         case 'whatsappChannel':
-          return { id: baseId, type, title: 'Stay Updated with Our WhatsApp Channel', description: 'Get instant updates on visa news, and study abroad opportunities!', channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V', position: blocks.length } as WhatsAppChannelBlock;
+          return { 
+            id: baseId, 
+            type, 
+            title: 'Stay Updated with Our WhatsApp Channel', 
+            description: 'Get instant updates on visa news, and study abroad opportunities!', 
+            channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V',
+            buttonText: 'Join Channel',
+            buttonBgColor: '#25D366',
+            buttonTextColor: '#ffffff',
+            buttonBorderRadius: 8,
+            position: blocks.length 
+          } as WhatsAppChannelBlock;
       }
     })();
     onChange([...blocks, newBlock]);
