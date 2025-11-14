@@ -102,6 +102,9 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem onClick={() => addBlock('tip')}>
+              Tip Block
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => addBlock('faq')}>
               FAQ Block
             </DropdownMenuItem>
@@ -224,6 +227,8 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
 
 function getDefaultDataForType(type: ContentBlock['type']): any {
   switch (type) {
+    case 'tip':
+      return { prefix: 'Tip:', text: 'Enter your tip or advice here...' };
     case 'faq':
       return { 
         questions: [
@@ -258,6 +263,8 @@ function getDefaultDataForType(type: ContentBlock['type']): any {
 
 function renderBlockEditor(block: ContentBlock, updateBlock: (blockId: string, data: any) => void) {
   switch (block.type) {
+    case 'tip':
+      return <TipBlockEditor block={block} updateBlock={updateBlock} />;
     case 'faq':
       return <FAQBlockEditor block={block} updateBlock={updateBlock} />;
     case 'table':
@@ -279,6 +286,51 @@ function renderBlockEditor(block: ContentBlock, updateBlock: (blockId: string, d
     default:
       return null;
   }
+}
+
+// Tip Block Editor
+function TipBlockEditor({ block, updateBlock }: any) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label>Prefix (Optional)</Label>
+        <Input
+          value={block.data.prefix || ''}
+          onChange={(e) => updateBlock(block.id, { prefix: e.target.value })}
+          placeholder="e.g., Consultant Tip:, Pro Tip:, Note:"
+          data-testid="input-tip-prefix"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Optional label to prepend to your tip (e.g., "Consultant Tip:")
+        </p>
+      </div>
+
+      <div>
+        <Label>Tip Text</Label>
+        <Textarea
+          value={block.data.text || ''}
+          onChange={(e) => updateBlock(block.id, { text: e.target.value })}
+          placeholder="Enter your tip or advice here..."
+          rows={4}
+          data-testid="textarea-tip-text"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          The main content of your tip - will be displayed in italics
+        </p>
+      </div>
+
+      <div className="mt-4 p-4 rounded-lg border-l-4" style={{
+        background: '#fff7ed',
+        borderLeftColor: '#f97316'
+      }}>
+        <p className="text-sm text-gray-600 font-medium mb-2">Preview:</p>
+        <div className="font-italic">
+          {block.data.prefix && <strong>{block.data.prefix} </strong>}
+          <em>{block.data.text || 'Your tip will appear here...'}</em>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // FAQ Block Editor

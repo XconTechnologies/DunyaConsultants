@@ -15,7 +15,8 @@ export type ContentBlock =
   | DividerBlock
   | SchemaBlock
   | ConsultationBlock
-  | WhatsAppChannelBlock;
+  | WhatsAppChannelBlock
+  | TipBlock;
 
 export interface FAQBlock {
   id: string;
@@ -141,6 +142,16 @@ export interface WhatsAppChannelBlock {
     title?: string;
     description?: string;
     channelUrl?: string;
+  };
+}
+
+export interface TipBlock {
+  id: string;
+  type: 'tip';
+  position: number;
+  data: {
+    prefix?: string;
+    text: string;
   };
 }
 

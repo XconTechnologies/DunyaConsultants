@@ -116,6 +116,8 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
 
 function renderBlock(block: ContentBlock) {
   switch (block.type) {
+    case 'tip':
+      return <TipBlock block={block} />;
     case 'faq':
       return <FAQBlock block={block} />;
     case 'table':
@@ -143,6 +145,31 @@ function renderBlock(block: ContentBlock) {
     default:
       return null;
   }
+}
+
+// Tip Block Renderer
+function TipBlock({ block }: { block: ContentBlock & { type: 'tip' } }) {
+  const { prefix, text } = block.data;
+
+  if (!text) {
+    return null;
+  }
+
+  return (
+    <div 
+      className="my-6 p-4 rounded-lg border-l-4"
+      style={{
+        background: '#fff7ed',
+        borderLeftColor: '#f97316'
+      }}
+      data-testid={`block-tip-${block.id}`}
+    >
+      <p className="font-family-inter text-base md:text-lg italic leading-relaxed m-0" style={{ fontFamily: 'Inter, Lato, sans-serif' }}>
+        {prefix && <strong className="not-italic">{prefix} </strong>}
+        {text}
+      </p>
+    </div>
+  );
 }
 
 // FAQ Block Renderer
