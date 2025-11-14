@@ -276,6 +276,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 function TableOfContents({ content, isVisible = true }: { content: string; isVisible?: boolean }) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const [isClamped, setIsClamped] = useState(false);
+  const tocContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!content) return;
@@ -302,6 +304,28 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
 
     return () => clearTimeout(timeoutId);
   }, [content]);
+
+  // Intersection Observer to detect when to unclamp sticky TOC
+  useEffect(() => {
+    const sentinel = document.getElementById('toc-sentinel');
+    if (!sentinel || !tocContainerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsClamped(entry.isIntersecting);
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0
+      }
+    );
+
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   // Track active heading based on scroll position
   useEffect(() => {
@@ -348,38 +372,43 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
   if (!isVisible || tocItems.length === 0) return null;
 
   return (
-    <Card className="bg-white border border-gray-200">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
-          <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
-          Table of Contents
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <nav className="space-y-1">
-          {tocItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleTocClick(item.id)}
-              className={`
-                block w-full text-left px-2 py-2 text-sm rounded-md transition-colors duration-200
-                ${activeId === item.id 
-                  ? 'bg-[#1D50C9]/10 text-[#1D50C9] font-medium border-l-2 border-[#1D50C9]' 
-                  : 'text-gray-600 hover:text-[#1D50C9] hover:bg-gray-50'
-                }
-              `}
-              style={{ 
-                marginLeft: `${(item.level - 2) * 16}px`,
-                fontSize: item.level === 2 ? '14px' : '13px'
-              }}
-              data-testid={`toc-item-${item.id}`}
-            >
-              {item.text}
-            </button>
-          ))}
-        </nav>
-      </CardContent>
-    </Card>
+    <div 
+      ref={tocContainerRef}
+      className={`${isClamped ? 'lg:static' : 'lg:sticky lg:top-24'} max-h-[calc(100vh-6rem)] overflow-auto`}
+    >
+      <Card className="bg-white border border-gray-200">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
+            <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
+            Table of Contents
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <nav className="space-y-1">
+            {tocItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleTocClick(item.id)}
+                className={`
+                  block w-full text-left px-2 py-2 text-sm rounded-md transition-colors duration-200
+                  ${activeId === item.id 
+                    ? 'bg-[#1D50C9]/10 text-[#1D50C9] font-medium border-l-2 border-[#1D50C9]' 
+                    : 'text-gray-600 hover:text-[#1D50C9] hover:bg-gray-50'
+                  }
+                `}
+                style={{ 
+                  marginLeft: `${(item.level - 2) * 16}px`,
+                  fontSize: item.level === 2 ? '14px' : '13px'
+                }}
+                data-testid={`toc-item-${item.id}`}
+              >
+                {item.text}
+              </button>
+            ))}
+          </nav>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
@@ -3234,6 +3263,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     </div>
                   </section>
                 </footer>
+
+                {/* Sentinel element for TOC sticky behavior */}
+                <div id="toc-sentinel" className="h-px" aria-hidden="true"></div>
 
               </div>
             </article>
