@@ -323,6 +323,11 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     // Observer for TOC entering viewport (makes it sticky)
     const tocObserver = new IntersectionObserver(
       ([entry]) => {
+        console.log('TOC Observer:', {
+          isIntersecting: entry.isIntersecting,
+          top: entry.boundingClientRect.top,
+          shouldStick: !entry.isIntersecting && entry.boundingClientRect.top < 0
+        });
         // When TOC is about to leave viewport from top, make it sticky
         if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
           setIsSticky(true);
@@ -339,6 +344,9 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     // Observer for bottom sentinel (unsticks TOC)
     const sentinelObserver = new IntersectionObserver(
       ([entry]) => {
+        console.log('Sentinel Observer:', {
+          isIntersecting: entry.isIntersecting
+        });
         setHasReachedBottom(entry.isIntersecting);
       },
       {
