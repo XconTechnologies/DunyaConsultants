@@ -22,21 +22,37 @@ import { normalizeFeaturedImageUrl, getBlogFeaturedImageProps } from "@/lib/imag
 // Backward compatibility alias - now uses the unified utility
 const normalizeImageSrc = normalizeFeaturedImageUrl;
 
-// Strip FAQ sections from HTML when FAQ content blocks exist
+// Strip content blocks from HTML when content blocks exist (FAQ, Tip, Consultation, WhatsApp)
 const stripFaqSections = (html: string, contentBlocks: any[]): string => {
   if (!html || !contentBlocks) return html;
   
-  // Check if there are any FAQ blocks
+  // Check if there are any blocks that need to be stripped
   const hasFaqBlocks = contentBlocks.some((block: any) => block.type === 'faq');
-  if (!hasFaqBlocks) return html;
+  const hasTipBlocks = contentBlocks.some((block: any) => block.type === 'tip');
+  const hasConsultationBlocks = contentBlocks.some((block: any) => block.type === 'consultation');
+  const hasWhatsAppBlocks = contentBlocks.some((block: any) => block.type === 'whatsappChannel');
   
-  // Parse HTML and remove FAQ-related sections
+  if (!hasFaqBlocks && !hasTipBlocks && !hasConsultationBlocks && !hasWhatsAppBlocks) return html;
+  
+  // Parse HTML and remove content block sections
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
   
-  // Remove FAQ containers
+  // Remove block containers
   const faqContainers = tempDiv.querySelectorAll('.faq-container, .faq-list, #faq-list, [class*="faq-"]');
   faqContainers.forEach(el => el.remove());
+  
+  // Remove Tip blocks
+  const tipBlocks = tempDiv.querySelectorAll('.tip-block');
+  tipBlocks.forEach(el => el.remove());
+  
+  // Remove Consultation blocks
+  const consultationBlocks = tempDiv.querySelectorAll('.consultation-block, [data-block-type="consultation"]');
+  consultationBlocks.forEach(el => el.remove());
+  
+  // Remove WhatsApp Channel blocks
+  const whatsappBlocks = tempDiv.querySelectorAll('.whatsapp-channel-block, [data-block-type="whatsappChannel"]');
+  whatsappBlocks.forEach(el => el.remove());
   
   // Find and remove FAQ headings and ALL their following content until next major heading
   const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p > strong, p > b');
