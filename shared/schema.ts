@@ -131,6 +131,20 @@ export interface ConsultationBlock {
   data: {
     title?: string;
     description?: string;
+    // Primary button
+    buttonText?: string;
+    buttonUrl?: string;
+    buttonBgColor?: string;
+    buttonTextColor?: string;
+    buttonBorderRadius?: number;
+    // Secondary button
+    button2Text?: string;
+    button2Url?: string;
+    button2BgColor?: string;
+    button2TextColor?: string;
+    button2BorderRadius?: number;
+    button2BorderWidth?: number;
+    button2BorderColor?: string;
   };
 }
 
@@ -142,6 +156,10 @@ export interface WhatsAppChannelBlock {
     title?: string;
     description?: string;
     channelUrl?: string;
+    buttonText?: string;
+    buttonBgColor?: string;
+    buttonTextColor?: string;
+    buttonBorderRadius?: number;
   };
 }
 
@@ -393,6 +411,18 @@ export const blogPostCategories = pgTable("blog_post_categories", {
   categoryId: integer("category_id").references(() => categories.id, { onDelete: "cascade" }).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+// Block defaults for storing global and upcoming default settings
+export const blockDefaults = pgTable("block_defaults", {
+  id: serial("id").primaryKey(),
+  blockType: text("block_type", { enum: ["consultation", "whatsappChannel", "tip", "faq"] }).notNull(),
+  scope: text("scope", { enum: ["global", "upcoming"] }).notNull(),
+  defaults: json("defaults").$type<Record<string, any>>(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  typeScopeIdx: uniqueIndex("block_defaults_type_scope_idx").on(table.blockType, table.scope),
+}));
 
 export const services = pgTable("services", {
   id: serial("id").primaryKey(),

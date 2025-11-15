@@ -2,7 +2,7 @@ import {
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
   categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, backupConfigs, backupHistory,
-  customForms, formFields, customFormSubmissions, branchIcons, universityIcons,
+  customForms, formFields, customFormSubmissions, branchIcons, universityIcons, blockDefaults,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -302,6 +302,11 @@ export interface IStorage {
   updateUniversityIcon(id: number, updates: Partial<InsertUniversityIcon>): Promise<UniversityIcon>;
   deleteUniversityIcon(id: number): Promise<void>;
   reorderUniversityIcons(iconOrders: { id: number; displayOrder: number }[]): Promise<void>;
+  
+  // Block Defaults Management
+  getBlockDefaults(blockType: string, scope: 'global' | 'upcoming'): Promise<Record<string, any> | undefined>;
+  setBlockDefaults(blockType: string, scope: 'global' | 'upcoming', defaults: Record<string, any>): Promise<void>;
+  applyDefaultsToAllPosts(blockType: string, defaults: Record<string, any>): Promise<number>;
 }
 
 
@@ -2590,6 +2595,86 @@ export class DatabaseStorage implements IStorage {
         .set({ displayOrder, updatedAt: new Date() })
         .where(eq(universityIcons.id, id));
     }
+  }
+
+  // Block Defaults Management
+  async getBlockDefaults(blockType: string, scope: 'global' | 'upcoming'): Promise<Record<string, any> | undefined> {
+    const [result] = await db.select()
+      .from(blockDefaults)
+      .where(and(
+        eq(blockDefaults.blockType, blockType),
+        eq(blockDefaults.scope, scope)
+      ))
+      .limit(1);
+    
+    return result?.defaults;
+  }
+
+  async setBlockDefaults(blockType: string, scope: 'global' | 'upcoming', defaults: Record<string, any>): Promise<void> {
+    const existing = await db.select()
+      .from(blockDefaults)
+      .where(and(
+        eq(blockDefaults.blockType, blockType),
+        eq(blockDefaults.scope, scope)
+      ))
+      .limit(1);
+
+    if (existing.length > 0) {
+      // Update existing
+      await db.update(blockDefaults)
+        .set({ defaults, updatedAt: new Date() })
+        .where(and(
+          eq(blockDefaults.blockType, blockType),
+          eq(blockDefaults.scope, scope)
+        ));
+    } else {
+      // Insert new
+      await db.insert(blockDefaults).values({
+        blockType,
+        scope,
+        defaults,
+      });
+    }
+  }
+
+  async applyDefaultsToAllPosts(blockType: string, defaults: Record<string, any>): Promise<number> {
+    // Get all blog posts
+    const posts = await db.select().from(blogPosts);
+    let updatedCount = 0;
+
+    for (const post of posts) {
+      if (!post.contentBlocks || !Array.isArray(post.contentBlocks)) {
+        continue;
+      }
+
+      let hasChanges = false;
+      const updatedBlocks = post.contentBlocks.map((block: any) => {
+        if (block.type === blockType) {
+          hasChanges = true;
+          // Only fill in missing values, don't overwrite existing ones
+          const mergedData = { ...block.data };
+          for (const key in defaults) {
+            if (mergedData[key] === undefined || mergedData[key] === null || mergedData[key] === '') {
+              mergedData[key] = defaults[key];
+            }
+          }
+          return { ...block, data: mergedData };
+        }
+        return block;
+      });
+
+      if (hasChanges) {
+        await db.update(blogPosts)
+          .set({ 
+            contentBlocks: updatedBlocks,
+            updatedAt: new Date()
+          })
+          .where(eq(blogPosts.id, post.id));
+        updatedCount++;
+      }
+    }
+
+    return updatedCount;
   }
 }
 

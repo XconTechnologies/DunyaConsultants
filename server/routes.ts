@@ -8383,6 +8383,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Block Defaults API
+  app.get('/api/admin/block-defaults/:blockType/:scope', requireAdmin, async (req, res) => {
+    try {
+      const { blockType, scope } = req.params;
+      
+      if (!['consultation', 'whatsappChannel', 'tip', 'faq'].includes(blockType)) {
+        return res.status(400).json({ message: 'Invalid block type' });
+      }
+      
+      if (!['global', 'upcoming'].includes(scope)) {
+        return res.status(400).json({ message: 'Invalid scope. Must be "global" or "upcoming"' });
+      }
+      
+      const defaults = await storage.getBlockDefaults(blockType, scope as 'global' | 'upcoming');
+      res.json({ defaults: defaults || {} });
+    } catch (error) {
+      console.error('Error fetching block defaults:', error);
+      res.status(500).json({ message: 'Failed to fetch block defaults' });
+    }
+  });
+
+  app.post('/api/admin/block-defaults/:blockType/:scope', requireAdmin, async (req, res) => {
+    try {
+      const { blockType, scope } = req.params;
+      const { defaults } = req.body;
+      
+      if (!['consultation', 'whatsappChannel', 'tip', 'faq'].includes(blockType)) {
+        return res.status(400).json({ message: 'Invalid block type' });
+      }
+      
+      if (!['global', 'upcoming'].includes(scope)) {
+        return res.status(400).json({ message: 'Invalid scope. Must be "global" or "upcoming"' });
+      }
+      
+      if (!defaults || typeof defaults !== 'object') {
+        return res.status(400).json({ message: 'Invalid defaults object' });
+      }
+      
+      await storage.setBlockDefaults(blockType, scope as 'global' | 'upcoming', defaults);
+      
+      // If scope is global, apply to all existing posts
+      let updatedCount = 0;
+      if (scope === 'global') {
+        updatedCount = await storage.applyDefaultsToAllPosts(blockType, defaults);
+      }
+      
+      res.json({ 
+        message: 'Block defaults saved successfully',
+        updatedPosts: updatedCount
+      });
+    } catch (error) {
+      console.error('Error saving block defaults:', error);
+      res.status(500).json({ message: 'Failed to save block defaults' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
