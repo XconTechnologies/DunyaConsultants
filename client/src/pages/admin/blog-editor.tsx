@@ -424,6 +424,15 @@ export default function BlogEditor() {
     }
     
     if (blogPost && isEditing) {
+      // Initialize categories from blogPost.categoryIds
+      const postCategoryIds = blogPost.categoryIds || [];
+      if (postCategoryIds.length > 0 && categories.length > 0) {
+        const normalizedIds = normalizeCategoryIds(postCategoryIds, categories);
+        setSelectedCategoryIds(normalizedIds);
+      } else {
+        setSelectedCategoryIds([]);
+      }
+      
       reset({
         title: blogPost.title || "",
         slug: blogPost.slug || "",
@@ -532,7 +541,7 @@ export default function BlogEditor() {
         }
       });
     }
-  }, [blogPost, isEditing, adminUser, editorMode]);
+  }, [blogPost, isEditing, adminUser, editorMode, categories]);
 
   // Poll for edit requests
   useEffect(() => {
