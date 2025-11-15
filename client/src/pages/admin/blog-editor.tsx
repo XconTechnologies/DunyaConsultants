@@ -625,19 +625,28 @@ export default function BlogEditor() {
     // Detect mode change
     if (prevMode !== editorMode) {
       if (editorMode === 'blocks' && prevMode !== 'blocks') {
-        // Switching TO Blocks mode: convert current content to blocks
-        const currentContent = getValues('content');
+        // Switching TO Blocks mode
+        // PREFER structured contentBlocks data over parsing HTML
+        const existingBlocks = getValues('contentBlocks');
         
-        if (currentContent && currentContent.trim() !== '') {
-          const blocks = htmlToBlocks(currentContent);
-          setCustomBlocks(blocks);
-        } else if (customBlocks.length === 0) {
-          // Start with empty paragraph if no content
-          setCustomBlocks([{
-            id: `block_${Date.now()}`,
-            type: 'paragraph',
-            text: ''
-          }]);
+        if (existingBlocks && Array.isArray(existingBlocks) && existingBlocks.length > 0) {
+          // Use the structured blocks from database
+          setCustomBlocks(existingBlocks as Block[]);
+        } else {
+          // Only parse HTML if no structured blocks exist
+          const currentContent = getValues('content');
+          
+          if (currentContent && currentContent.trim() !== '') {
+            const blocks = htmlToBlocks(currentContent);
+            setCustomBlocks(blocks);
+          } else {
+            // Start with empty paragraph if no content
+            setCustomBlocks([{
+              id: `block_${Date.now()}`,
+              type: 'paragraph',
+              text: ''
+            }]);
+          }
         }
       } else if (prevMode === 'blocks' && editorMode !== 'blocks') {
         // Switching FROM Blocks mode: convert blocks to HTML
