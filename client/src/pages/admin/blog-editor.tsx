@@ -296,10 +296,15 @@ export default function BlogEditor() {
     enabled: true,
   });
 
-  // Load categories
+  // Load categories with aggressive caching (pre-fetch + cache)
   const { data: categories = [], isLoading: categoriesLoading, refetch: refetchCategories } = useQuery<any[]>({
     queryKey: ['/api/admin/categories'],
     enabled: true,
+    staleTime: Infinity, // Categories rarely change, keep fresh indefinitely
+    gcTime: 1000 * 60 * 60, // Cache for 1 hour (formerly cacheTime)
+    refetchOnMount: false, // Don't refetch on component mount if cached
+    refetchOnWindowFocus: false, // Don't refetch on window focus
+    refetchOnReconnect: false, // Don't refetch on reconnect
   });
 
   // Load blog post for editing
