@@ -405,108 +405,159 @@ export default function BlogEditor() {
     return Array.from(allRequiredIds);
   };
 
-  // Update selected category IDs when post categories load
+  // EFFECT 1: Form Reset (non-category fields only)
+  // Populate form when editing - waits for blogPost to load
   useEffect(() => {
-    if (postCategories.length > 0 && categories.length > 0) {
-      const categoryIds = postCategories.map((cat: any) => cat.id);
+    // Only proceed if we have a blogPost and are in editing mode
+    if (!blogPost || !isEditing) return;
+    
+    // Reset user mode change flag only when loading a different post
+    if (blogPost.id !== currentPostIdRef.current) {
+      userChangedModeRef.current = false;
+      currentPostIdRef.current = blogPost.id;
+    }
+    
+    // Reset form with NON-category fields (categoryIds handled by separate effect)
+    reset({
+      title: blogPost.title || "",
+      slug: blogPost.slug || "",
+      excerpt: blogPost.excerpt || "",
+      content: blogPost.content || "",
+      contentBlocks: blogPost.contentBlocks || [],
+      category: blogPost.category || "General",
+      metaDescription: blogPost.metaDescription || "",
+      focusKeyword: blogPost.focusKeyword || "",
+      featuredImage: blogPost.featuredImage || "",
+      featuredImageAlt: blogPost.featuredImageAlt || "",
+      featuredImageTitle: blogPost.featuredImageTitle || "",
+      featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
+      publishedAt: blogPost.publishedAt || "",
+      isPublished: blogPost.isPublished,
+      status: (blogPost as any).status || "draft",
+      authorId: blogPost.authorId || adminUser?.id,
+    });
+    
+    setHtmlContent(blogPost.content || '');
+    
+    // Initialize custom blocks if contentBlocks exist
+    // BUT: Don't overwrite if user has unsaved local changes in blocks mode
+    const serverBlocks = blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) ? blogPost.contentBlocks : [];
+    const serverBlocksJSON = JSON.stringify(serverBlocks);
+    
+    // Transform server blocks from nested data structure to flat structure for editing
+    const transformServerBlocks = (blocks: any[]): Block[] => {
+      return blocks.map((block: any) => {
+        if (!block.data) return block; // Already in flat format
+        
+        // Flatten nested data structure
+        const { data, ...baseBlock } = block;
+        
+        switch (block.type) {
+          case 'tip':
+            return { ...baseBlock, prefix: data.prefix, text: data.text };
+          case 'consultation':
+            return {
+              ...baseBlock,
+              title: data.title,
+              description: data.description,
+              buttonText: data.buttonText,
+              buttonUrl: data.buttonUrl,
+              buttonBgColor: data.buttonBgColor,
+              buttonTextColor: data.buttonTextColor,
+              buttonBorderRadius: data.buttonBorderRadius,
+              secondButtonText: data.secondButtonText,
+              secondButtonUrl: data.secondButtonUrl,
+              secondButtonBgColor: data.secondButtonBgColor,
+              secondButtonTextColor: data.secondButtonTextColor,
+              secondButtonBorderRadius: data.secondButtonBorderRadius,
+              secondButtonBorderColor: data.secondButtonBorderColor,
+              secondButtonBorderWidth: data.secondButtonBorderWidth
+            };
+          case 'whatsappChannel':
+            return {
+              ...baseBlock,
+              title: data.title,
+              description: data.description,
+              channelUrl: data.channelUrl,
+              buttonText: data.buttonText,
+              buttonBgColor: data.buttonBgColor,
+              buttonTextColor: data.buttonTextColor,
+              buttonBorderRadius: data.buttonBorderRadius
+            };
+          case 'faq':
+            return { ...baseBlock, items: data.questions || [] };
+          case 'html':
+            return { ...baseBlock, html: data.html };
+          default:
+            return { ...baseBlock, ...data }; // Merge data into base for unknown types
+        }
+      });
+    };
+    
+    // Only update blocks if:
+    // 1. Not in blocks mode, OR
+    // 2. No local modifications, OR
+    // 3. Server data actually changed
+    if (editorMode !== 'blocks' || !blocksModifiedRef.current || serverBlocksJSON !== lastSavedBlocksRef.current) {
+      if (serverBlocks.length > 0) {
+        const flattenedBlocks = transformServerBlocks(serverBlocks);
+        setCustomBlocks(flattenedBlocks as Block[]);
+        lastSavedBlocksRef.current = serverBlocksJSON;
+        blocksModifiedRef.current = false;
+        // Auto-switch to blocks mode if the post was created with blocks
+        // BUT: Only if user hasn't manually changed the mode
+        if (editorMode !== 'blocks' && !userChangedModeRef.current) {
+          setEditorMode('blocks');
+        }
+      } else {
+        // Reset modification flag when no blocks from server
+        lastSavedBlocksRef.current = '[]';
+        if (editorMode !== 'blocks') {
+          blocksModifiedRef.current = false;
+        }
+      }
+    }
+
+    // Check for conflicts and start session
+    checkEditingConflicts(blogPost.id).then(canEdit => {
+      if (canEdit) {
+        startEditingSession(blogPost.id);
+      }
+    });
+  }, [blogPost, isEditing, adminUser, editorMode]);
+
+  // EFFECT 2: Category Synchronization
+  // Waits for BOTH blogPost AND categories to load before setting categoryIds
+  useEffect(() => {
+    if (!blogPost || !isEditing) return;
+    if (categories.length === 0) return; // Wait for categories to load
+    
+    // Priority order for category source:
+    // 1. justSavedCategoriesRef (categories we just saved)
+    // 2. postCategories query results
+    // 3. blogPost.categoryIds (from form reset)
+    let categoryIds: number[] = [];
+    
+    if (justSavedCategoriesRef.current.length > 0) {
+      // Use saved categories and clear the ref
+      categoryIds = justSavedCategoriesRef.current;
+      justSavedCategoriesRef.current = [];
+    } else if (postCategories.length > 0) {
+      // Use categories from junction table query
+      categoryIds = postCategories.map((cat: any) => cat.id);
+    } else if (blogPost.categoryIds && blogPost.categoryIds.length > 0) {
+      // Fallback to categoryIds from blogPost
+      categoryIds = blogPost.categoryIds;
+    }
+    
+    // Only update if we have category data
+    if (categoryIds.length > 0) {
       // Normalize to ensure all parent categories are included
       const normalizedIds = normalizeCategoryIds(categoryIds, categories);
       setSelectedCategoryIds(normalizedIds);
       setValue('categoryIds', normalizedIds);
     }
-  }, [postCategories, categories]);
-
-      Right now it only overrides sometimes, but needs to override on next render every time until used.
-      
-      setHtmlContent(blogPost.content || '');
-      
-      // Initialize custom blocks if contentBlocks exist
-      // BUT: Don't overwrite if user has unsaved local changes in blocks mode
-      const serverBlocks = blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) ? blogPost.contentBlocks : [];
-      const serverBlocksJSON = JSON.stringify(serverBlocks);
-      
-      // Transform server blocks from nested data structure to flat structure for editing
-      const transformServerBlocks = (blocks: any[]): Block[] => {
-        return blocks.map((block: any) => {
-          if (!block.data) return block; // Already in flat format
-          
-          // Flatten nested data structure
-          const { data, ...baseBlock } = block;
-          
-          switch (block.type) {
-            case 'tip':
-              return { ...baseBlock, prefix: data.prefix, text: data.text };
-            case 'consultation':
-              return {
-                ...baseBlock,
-                title: data.title,
-                description: data.description,
-                buttonText: data.buttonText,
-                buttonUrl: data.buttonUrl,
-                buttonBgColor: data.buttonBgColor,
-                buttonTextColor: data.buttonTextColor,
-                buttonBorderRadius: data.buttonBorderRadius,
-                secondButtonText: data.secondButtonText,
-                secondButtonUrl: data.secondButtonUrl,
-                secondButtonBgColor: data.secondButtonBgColor,
-                secondButtonTextColor: data.secondButtonTextColor,
-                secondButtonBorderRadius: data.secondButtonBorderRadius,
-                secondButtonBorderColor: data.secondButtonBorderColor,
-                secondButtonBorderWidth: data.secondButtonBorderWidth
-              };
-            case 'whatsappChannel':
-              return {
-                ...baseBlock,
-                title: data.title,
-                description: data.description,
-                channelUrl: data.channelUrl,
-                buttonText: data.buttonText,
-                buttonBgColor: data.buttonBgColor,
-                buttonTextColor: data.buttonTextColor,
-                buttonBorderRadius: data.buttonBorderRadius
-              };
-            case 'faq':
-              return { ...baseBlock, items: data.questions || [] };
-            case 'html':
-              return { ...baseBlock, html: data.html };
-            default:
-              return { ...baseBlock, ...data }; // Merge data into base for unknown types
-          }
-        });
-      };
-      
-      // Only update blocks if:
-      // 1. Not in blocks mode, OR
-      // 2. No local modifications, OR
-      // 3. Server data actually changed
-      if (editorMode !== 'blocks' || !blocksModifiedRef.current || serverBlocksJSON !== lastSavedBlocksRef.current) {
-        if (serverBlocks.length > 0) {
-          const flattenedBlocks = transformServerBlocks(serverBlocks);
-          setCustomBlocks(flattenedBlocks as Block[]);
-          lastSavedBlocksRef.current = serverBlocksJSON;
-          blocksModifiedRef.current = false;
-          // Auto-switch to blocks mode if the post was created with blocks
-          // BUT: Only if user hasn't manually changed the mode
-          if (editorMode !== 'blocks' && !userChangedModeRef.current) {
-            setEditorMode('blocks');
-          }
-        } else {
-          // Reset modification flag when no blocks from server
-          lastSavedBlocksRef.current = '[]';
-          if (editorMode !== 'blocks') {
-            blocksModifiedRef.current = false;
-          }
-        }
-      }
-
-      // Check for conflicts and start session
-      checkEditingConflicts(blogPost.id).then(canEdit => {
-        if (canEdit) {
-          startEditingSession(blogPost.id);
-        }
-      });
-    }
-  }, [blogPost, isEditing, adminUser, editorMode, categories]);
+  }, [blogPost?.id, blogPost?.categoryIds, categories, postCategories, isEditing]);
 
   // Poll for edit requests
   useEffect(() => {
