@@ -405,11 +405,12 @@ export default function BlogEditor() {
     return Array.from(allRequiredIds);
   };
 
-  // EFFECT 1: Form Reset (non-category fields only)
-  // Populate form when editing - waits for blogPost to load
+  // EFFECT 1: Form Reset (non-category, non-publishedAt, non-authorId fields)
+  // Populate form when editing - waits for blogPost to load completely
   useEffect(() => {
-    // Only proceed if we have a blogPost and are in editing mode
-    if (!blogPost || !isEditing) return;
+    // Guard: Only proceed when blogPost is fully loaded
+    if (!blogPost?.id) return;
+    if (!isEditing) return;
     
     // Reset user mode change flag only when loading a different post
     if (blogPost.id !== currentPostIdRef.current) {
@@ -417,8 +418,9 @@ export default function BlogEditor() {
       currentPostIdRef.current = blogPost.id;
     }
     
-    // Reset form with NON-category fields (categoryIds handled by separate effect)
-    reset({
+    // Build reset object with ONLY fields that exist on loaded blogPost
+    // DO NOT include categoryIds, publishedAt, or authorId here
+    const resetData: any = {
       title: blogPost.title || "",
       slug: blogPost.slug || "",
       excerpt: blogPost.excerpt || "",
@@ -431,11 +433,17 @@ export default function BlogEditor() {
       featuredImageAlt: blogPost.featuredImageAlt || "",
       featuredImageTitle: blogPost.featuredImageTitle || "",
       featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
-      publishedAt: blogPost.publishedAt || "",
       isPublished: blogPost.isPublished,
       status: (blogPost as any).status || "draft",
-      authorId: blogPost.authorId || adminUser?.id,
-    });
+    };
+    
+    // ONLY set authorId if it exists on blogPost
+    // Never use adminUser.id as fallback when editing
+    if (blogPost.authorId !== undefined) {
+      resetData.authorId = blogPost.authorId;
+    }
+    
+    reset(resetData);
     
     setHtmlContent(blogPost.content || '');
     
@@ -558,6 +566,28 @@ export default function BlogEditor() {
       setValue('categoryIds', normalizedIds);
     }
   }, [blogPost?.id, blogPost?.categoryIds, categories, postCategories, isEditing]);
+
+  // EFFECT 3: PublishedAt Synchronization
+  // Set publishedAt separately after blogPost loads (like categories)
+  useEffect(() => {
+    if (!blogPost?.id || !isEditing) return;
+    
+    // Only set publishedAt if it exists on blogPost
+    if (blogPost.publishedAt) {
+      setValue('publishedAt', blogPost.publishedAt);
+    }
+  }, [blogPost?.id, blogPost?.publishedAt, isEditing]);
+
+  // EFFECT 4: New Post Initialization
+  // Set default values for NEW posts only (not edits)
+  useEffect(() => {
+    if (isEditing) return; // Skip for existing posts
+    
+    // Set default authorId to current admin user when creating NEW post
+    if (adminUser?.id) {
+      setValue('authorId', adminUser.id);
+    }
+  }, [isEditing, adminUser?.id]);
 
   // Poll for edit requests
   useEffect(() => {
