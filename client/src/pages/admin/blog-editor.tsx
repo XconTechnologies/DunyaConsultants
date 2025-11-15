@@ -242,6 +242,13 @@ export default function BlogEditor() {
   // Track the snapshot of blocks being saved for use in onSuccess callback
   const pendingSaveSnapshotRef = useRef<string | null>(null);
   
+  // Autosave controller refs
+  const autosaveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const saveInFlightRef = useRef<boolean>(false);
+  const saveIntentRef = useRef<'manual' | 'autosave'>('manual');
+  const hasPendingChangesRef = useRef<boolean>(false);
+  const [autosaveState, setAutosaveState] = useState<'idle' | 'pending' | 'saving' | 'error'>('idle');
+  
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
@@ -609,14 +616,113 @@ export default function BlogEditor() {
     }
   };
 
-  // Watch content for changes
+  // Autosave controller functions (must be defined before useEffect hooks that use them)
+  const markDirty = useCallback(() => {
+    // Only track changes for existing posts (has ID)
+    if (!blogId) return;
+    
+    hasPendingChangesRef.current = true;
+    setAutosaveState('pending');
+    
+    // Reset the 10-second timer
+    if (autosaveTimerRef.current) {
+      clearTimeout(autosaveTimerRef.current);
+    }
+    
+    // Don't set timer if save is in flight
+    if (saveInFlightRef.current) return;
+    
+    autosaveTimerRef.current = setTimeout(() => {
+      triggerAutosave();
+    }, 10000); // 10 seconds of inactivity
+  }, [blogId]);
+  
+  const triggerAutosave = useCallback(async () => {
+    // Don't autosave if no pending changes or no ID or save in flight
+    if (!hasPendingChangesRef.current || !blogId || saveInFlightRef.current) {
+      return;
+    }
+    
+    console.log('Autosave triggered');
+    saveIntentRef.current = 'autosave';
+    setAutosaveState('saving');
+    
+    try {
+      const formValues = getValues();
+      
+      // If post is published, ensure autosave also publishes
+      const currentIsPublished = formValues.isPublished || blogPost?.isPublished;
+      if (currentIsPublished) {
+        formValues.isPublished = true;
+        formValues.status = 'published';
+      }
+      
+      // Set blocks snapshot for blocks mode
+      if (editorMode === 'blocks') {
+        const blocksSnapshot = JSON.stringify(customBlocks);
+        pendingSaveSnapshotRef.current = blocksSnapshot;
+        formValues.contentBlocks = customBlocks as any;
+        formValues.content = blocksToHtml(customBlocks);
+      }
+      
+      await saveMutation.mutateAsync(formValues);
+      
+      // Success
+      hasPendingChangesRef.current = false;
+      setAutosaveState('idle');
+    } catch (error) {
+      console.error('Autosave failed:', error);
+      setAutosaveState('error');
+      // Don't clear pending changes on error - user can manually save
+    }
+  }, [blogId, getValues, customBlocks, editorMode, blogPost]);
+
+  // Watch content for changes and mark dirty for autosave
   useEffect(() => {
     const subscription = watch((value) => {
       console.log('Form content changed:', value.content?.length || 0, 'characters');
       console.log('Raw blog post content:', value.content);
+      
+      // Mark as dirty when form changes (for autosave)
+      markDirty();
     });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, markDirty]);
+  
+  // Watch blocks changes for autosave
+  useEffect(() => {
+    // Only mark dirty for block changes (not initial load)
+    if (editorMode === 'blocks' && customBlocks.length > 0) {
+      const currentSnapshot = JSON.stringify(customBlocks);
+      if (lastSavedBlocksRef.current !== currentSnapshot) {
+        blocksModifiedRef.current = true;
+        markDirty();
+      }
+    }
+  }, [customBlocks, editorMode, markDirty]);
+  
+  // beforeunload warning for unsaved changes
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (hasPendingChangesRef.current) {
+        e.preventDefault();
+        e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+        return e.returnValue;
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+  
+  // Cleanup autosave timer on unmount
+  useEffect(() => {
+    return () => {
+      if (autosaveTimerRef.current) {
+        clearTimeout(autosaveTimerRef.current);
+      }
+    };
+  }, []);
 
   // Handle mode switching - convert between HTML and blocks
   useEffect(() => {
@@ -665,6 +771,9 @@ export default function BlogEditor() {
   // Create new blog post or update existing
   const saveMutation = useMutation({
     mutationFn: async (data: BlogForm) => {
+      // Set mutex lock
+      saveInFlightRef.current = true;
+      
       const url = isEditing ? `/api/admin/blog-posts/${blogId}` : '/api/admin/blog-posts';
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -672,6 +781,8 @@ export default function BlogEditor() {
       return response.json();
     },
     onSuccess: (data) => {
+      const isAutosave = saveIntentRef.current === 'autosave';
+      
       // Update refs BEFORE refetch to prevent race condition
       if (pendingSaveSnapshotRef.current && editorMode === 'blocks') {
         const currentBlocksSnapshot = JSON.stringify(customBlocks);
@@ -684,29 +795,53 @@ export default function BlogEditor() {
         pendingSaveSnapshotRef.current = null; // Clear after processing
       }
       
+      // Clear pending changes flag
+      hasPendingChangesRef.current = false;
+      
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
       if (isEditing) {
         queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
       }
       
-      toast({
-        title: "Success!",
-        description: isPublished ? "Blog post published successfully!" : "Blog post saved as draft!",
-        className: "bg-green-500 text-white",
-      });
+      // Only show toast for manual saves, not autosaves
+      if (!isAutosave) {
+        toast({
+          title: "Success!",
+          description: isPublished ? "Blog post published successfully!" : "Blog post saved as draft!",
+          className: "bg-green-500 text-white",
+        });
+      }
 
       if (!isEditing && data.id) {
         setLocation(`/admin/blog-editor/${data.id}`);
       } else {
         refetch();
       }
+      
+      // Release mutex lock and reset intent
+      saveInFlightRef.current = false;
+      saveIntentRef.current = 'manual';
     },
     onError: (error: any) => {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to save blog post",
-        variant: "destructive",
-      });
+      const isAutosave = saveIntentRef.current === 'autosave';
+      
+      // Only show error toast for manual saves
+      if (!isAutosave) {
+        toast({
+          title: "Error",
+          description: error.message || "Failed to save blog post",
+          variant: "destructive",
+        });
+      }
+      
+      // Release mutex lock and reset intent
+      saveInFlightRef.current = false;
+      saveIntentRef.current = 'manual';
+      
+      // Set error state for autosave
+      if (isAutosave) {
+        setAutosaveState('error');
+      }
     },
   });
 
@@ -833,6 +968,14 @@ export default function BlogEditor() {
 
   const onSubmit = async (data: BlogForm) => {
     console.log('Form submitted with data:', data);
+    
+    // Clear autosave timer for manual save
+    if (autosaveTimerRef.current) {
+      clearTimeout(autosaveTimerRef.current);
+      autosaveTimerRef.current = null;
+    }
+    saveIntentRef.current = 'manual';
+    
     setIsSaving(true);
     try {
       // Capture the blocks being saved before mutation
@@ -1436,6 +1579,36 @@ export default function BlogEditor() {
               <Badge variant={isPublished ? "default" : "secondary"}>
                 {isPublished ? "Published" : "Draft"}
               </Badge>
+              
+              {/* Autosave status indicator */}
+              {isEditing && blogId && (
+                <div className="text-sm flex items-center space-x-2">
+                  {autosaveState === 'idle' && !hasPendingChangesRef.current && (
+                    <span className="text-green-600 flex items-center">
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      All changes saved
+                    </span>
+                  )}
+                  {autosaveState === 'pending' && (
+                    <span className="text-gray-500">Unsaved changes...</span>
+                  )}
+                  {autosaveState === 'saving' && (
+                    <span className="text-blue-600 flex items-center">
+                      <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                      Saving...
+                    </span>
+                  )}
+                  {autosaveState === 'error' && (
+                    <span className="text-red-600 flex items-center">
+                      <AlertTriangle className="w-4 h-4 mr-1" />
+                      Error saving
+                    </span>
+                  )}
+                </div>
+              )}
+              
               {isEditing && blogPost?.id && (
                 <Button
                   variant="outline"
@@ -1468,6 +1641,14 @@ export default function BlogEditor() {
                 className="flex items-center space-x-2 bg-[#1D50C9] hover:bg-[#1642a8] text-white"
                 onClick={async () => {
                   console.log('Save Draft button clicked');
+                  
+                  // Clear autosave timer for manual save
+                  if (autosaveTimerRef.current) {
+                    clearTimeout(autosaveTimerRef.current);
+                    autosaveTimerRef.current = null;
+                  }
+                  saveIntentRef.current = 'manual';
+                  
                   const formValues = getValues();
                   console.log('Current form values:', formValues);
                   
