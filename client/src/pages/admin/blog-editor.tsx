@@ -42,20 +42,20 @@ import { html as beautifyHtml } from 'js-beautify';
 // Categories will be loaded dynamically from API
 
 const blogSchema = z.object({
-  title: z.string().optional().or(z.literal("")),
-  slug: z.string().optional().or(z.literal("")),
-  excerpt: z.string().optional().or(z.literal("")),
-  content: z.string().optional().or(z.literal("")),
-  contentBlocks: z.array(z.any()).optional(),
-  categoryIds: z.array(z.number()).optional(),
-  category: z.string().optional().or(z.literal("")), // Keep for backward compatibility
-  metaDescription: z.string().optional().or(z.literal("")),
-  focusKeyword: z.string().optional().or(z.literal("")),
-  featuredImage: z.string().optional().or(z.literal("")),
-  featuredImageAlt: z.string().optional().or(z.literal("")),
-  featuredImageTitle: z.string().optional().or(z.literal("")),
-  featuredImageOriginalName: z.string().optional().or(z.literal("")),
-  publishedAt: z.string().optional().or(z.literal("")),
+  title: z.string().default(""),
+  slug: z.string().default(""),
+  excerpt: z.string().default(""),
+  content: z.string().default(""),
+  contentBlocks: z.array(z.any()).default([]),
+  categoryIds: z.array(z.number()).default([]), // FIX: Ensures autosave stability
+  category: z.string().default(""), // Keep for backward compatibility
+  metaDescription: z.string().default(""),
+  focusKeyword: z.string().default(""),
+  featuredImage: z.string().default(""),
+  featuredImageAlt: z.string().default(""),
+  featuredImageTitle: z.string().default(""),
+  featuredImageOriginalName: z.string().default(""),
+  publishedAt: z.string().default(""),
   isPublished: z.boolean().default(false),
   status: z.enum(["draft", "in_review", "published", "archived"]).default("draft"),
   authorId: z.number().optional(),
