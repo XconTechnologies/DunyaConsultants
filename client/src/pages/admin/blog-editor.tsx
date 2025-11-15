@@ -431,6 +431,8 @@ export default function BlogEditor() {
         ? justSavedCategoriesRef.current 
         : (blogPost.categoryIds || []);
       
+      // Only update selectedCategoryIds if we have actual data AND categories are loaded
+      // DON'T clear them if we don't have data yet (prevents race condition with postCategories query)
       if (postCategoryIds.length > 0 && categories.length > 0) {
         const normalizedIds = normalizeCategoryIds(postCategoryIds, categories);
         setSelectedCategoryIds(normalizedIds);
@@ -438,8 +440,6 @@ export default function BlogEditor() {
         if (justSavedCategoriesRef.current.length > 0) {
           justSavedCategoriesRef.current = [];
         }
-      } else {
-        setSelectedCategoryIds([]);
       }
       
       reset({
@@ -897,14 +897,9 @@ export default function BlogEditor() {
       if (!isEditing && data.id) {
         setLocation(`/admin/blog-editor/${data.id}`);
       } else {
-        refetch().then(() => {
-          // After refetch completes, restore the categories that were just saved
-          // This prevents them from being cleared by the refetch
-          if (justSavedCategoriesRef.current.length > 0) {
-            setSelectedCategoryIds(justSavedCategoriesRef.current);
-            setValue('categoryIds', justSavedCategoriesRef.current);
-          }
-        });
+        // Refetch to get latest data
+        // Categories will be restored by the useEffect that watches postCategories
+        refetch();
       }
       
       // Release mutex lock and reset intent
