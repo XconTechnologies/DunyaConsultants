@@ -245,7 +245,7 @@ const offices: Office[] = [
     name: "Zahraa Maadi",
     address: "Zahraa Maadi, Carrefour street. Grand plaza tower, 5th floor, Office No 508, Cairo, Egypt",
     phone: "+201029094396",
-    hours: "Mon–Sat 10 AM–6 PM",
+    hours: "Sat–Thu 10 AM–6 PM",
     gradient: "custom-blue",
     region: "International",
     services: ["Visa Processing", "Student Counseling", "University Applications"]

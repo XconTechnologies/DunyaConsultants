@@ -162,7 +162,7 @@ export default function CairoOffice() {
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-5 h-5 mr-2" />
-                <span>Mon–Sat 10 AM–6 PM</span>
+                <span>Sat–Thu 10 AM–6 PM</span>
               </div>
             </div>
 
@@ -617,7 +617,7 @@ export default function CairoOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
                       <p className="text-blue-100 text-lg">
-                        Monday - Saturday: 10 AM - 6 PM
+                        Saturday - Thursday: 10 AM - 6 PM
                       </p>
                     </div>
                   </div>
