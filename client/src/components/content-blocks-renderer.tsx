@@ -504,11 +504,22 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   const blockData = block as any;
   const title = blockData.data?.title || blockData.title || 'Book Your Free Consultation';
   const description = blockData.data?.description || blockData.description || 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors.';
+  
+  // Primary button
   const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Book Free Consultation';
   const buttonUrl = blockData.data?.buttonUrl || blockData.buttonUrl || '/consultation';
-  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#1D50C9';
-  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
-  const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
+  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#FFFFFF';
+  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#1D50C9';
+  const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 12;
+  
+  // Secondary button (optional)
+  const button2Text = blockData.data?.button2Text || blockData.button2Text;
+  const button2Url = blockData.data?.button2Url || blockData.button2Url;
+  const button2BgColor = blockData.data?.button2BgColor || blockData.button2BgColor || 'rgba(255, 255, 255, 0.2)';
+  const button2TextColor = blockData.data?.button2TextColor || blockData.button2TextColor || '#FFFFFF';
+  const button2BorderRadius = blockData.data?.button2BorderRadius ?? blockData.button2BorderRadius ?? 12;
+  const button2BorderWidth = blockData.data?.button2BorderWidth ?? blockData.button2BorderWidth ?? 2;
+  const button2BorderColor = blockData.data?.button2BorderColor || blockData.button2BorderColor || '#FFFFFF';
 
   return (
     <div className="my-8 w-full max-w-5xl mx-auto" data-block-type="consultation">
@@ -550,7 +561,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
           </div>
         </div>
 
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href={buttonUrl}
             target={buttonUrl?.startsWith('http') ? '_blank' : undefined}
@@ -563,11 +574,25 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
               fontFamily: 'Inter, Lato, sans-serif !important'
             }}
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
             {buttonText}
           </a>
+          {button2Text && (
+            <a
+              href={button2Url}
+              target={button2Url?.startsWith('http') ? '_blank' : undefined}
+              rel={button2Url?.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center justify-center px-8 py-4 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:opacity-90 w-full sm:w-auto"
+              style={{ 
+                backgroundColor: button2BgColor,
+                color: button2TextColor,
+                borderRadius: `${button2BorderRadius}px`,
+                border: `${button2BorderWidth}px solid ${button2BorderColor}`,
+                fontFamily: 'Inter, Lato, sans-serif !important'
+              }}
+            >
+              {button2Text}
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -582,8 +607,8 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
   const description = blockData.data?.description || blockData.description || 'Get instant updates on visa news, and study abroad opportunities!';
   const channelUrl = blockData.data?.channelUrl || blockData.channelUrl || 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V';
   const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Join Channel';
-  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#25D366';
-  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
+  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#FFFFFF';
+  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#25D366';
   const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
 
   return (

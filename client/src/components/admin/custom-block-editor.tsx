@@ -777,6 +777,52 @@ function FaqBlockComponent({ block, onChange }: { block: FaqBlock; onChange: (bl
 
 // Consultation Block Component
 function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBlock; onChange: (block: ConsultationBlock) => void }) {
+  const [saveScope, setSaveScope] = useState<'current' | 'upcoming' | 'global'>('current');
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSaveAsDefault = async () => {
+    if (saveScope === 'current') {
+      // Just update the current block, no API call needed
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const defaults = {
+        title: block.title,
+        description: block.description,
+        buttonText: block.buttonText,
+        buttonUrl: block.buttonUrl,
+        buttonBgColor: block.buttonBgColor,
+        buttonTextColor: block.buttonTextColor,
+        buttonBorderRadius: block.buttonBorderRadius,
+        button2Text: block.button2Text,
+        button2Url: block.button2Url,
+        button2BgColor: block.button2BgColor,
+        button2TextColor: block.button2TextColor,
+        button2BorderRadius: block.button2BorderRadius,
+        button2BorderWidth: block.button2BorderWidth,
+        button2BorderColor: block.button2BorderColor,
+      };
+
+      const response = await fetch(`/api/admin/block-defaults/consultation/${saveScope}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ defaults }),
+      });
+
+      if (!response.ok) throw new Error('Failed to save defaults');
+
+      const result = await response.json();
+      alert(`✅ Defaults saved${saveScope === 'global' ? ` and applied to ${result.updatedPosts} existing articles` : ' for future articles'}!`);
+    } catch (error) {
+      console.error('Error saving defaults:', error);
+      alert('❌ Failed to save defaults');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div>
@@ -797,8 +843,9 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
         />
       </div>
       
+      {/* Primary Button Settings */}
       <div className="border-t pt-4">
-        <Label className="text-sm font-medium mb-3 block text-gray-700">Button Settings</Label>
+        <Label className="text-sm font-medium mb-3 block text-gray-700">Primary Button</Label>
         
         <div className="space-y-3">
           <div>
@@ -825,14 +872,14 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
               <div className="flex gap-2">
                 <Input
                   type="color"
-                  value={block.buttonBgColor}
+                  value={block.buttonBgColor || '#FFFFFF'}
                   onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
                   className="w-12 h-9 p-1 cursor-pointer"
                 />
                 <Input
-                  value={block.buttonBgColor}
+                  value={block.buttonBgColor || '#FFFFFF'}
                   onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
-                  placeholder="#1D50C9"
+                  placeholder="#FFFFFF"
                   className="flex-1"
                 />
               </div>
@@ -843,14 +890,14 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
               <div className="flex gap-2">
                 <Input
                   type="color"
-                  value={block.buttonTextColor}
+                  value={block.buttonTextColor || '#1D50C9'}
                   onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
                   className="w-12 h-9 p-1 cursor-pointer"
                 />
                 <Input
-                  value={block.buttonTextColor}
+                  value={block.buttonTextColor || '#1D50C9'}
                   onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
-                  placeholder="#ffffff"
+                  placeholder="#1D50C9"
                   className="flex-1"
                 />
               </div>
@@ -861,28 +908,190 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
             <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
             <Input
               type="number"
-              value={block.buttonBorderRadius}
+              value={block.buttonBorderRadius || 12}
               onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
-              placeholder="8"
+              placeholder="12"
               min="0"
               max="50"
             />
           </div>
         </div>
       </div>
+
+      {/* Secondary Button Settings */}
+      <div className="border-t pt-4">
+        <Label className="text-sm font-medium mb-3 block text-gray-700">Secondary Button (Optional)</Label>
+        
+        <div className="space-y-3">
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Button Text</Label>
+            <Input
+              value={block.button2Text || ''}
+              onChange={(e) => onChange({ ...block, button2Text: e.target.value })}
+              placeholder="Connect now"
+            />
+          </div>
+          
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Button URL</Label>
+            <Input
+              value={block.button2Url || ''}
+              onChange={(e) => onChange({ ...block, button2Url: e.target.value })}
+              placeholder="/contact"
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Background Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.button2BgColor || 'rgba(255, 255, 255, 0.2)'}
+                  onChange={(e) => onChange({ ...block, button2BgColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.button2BgColor || 'rgba(255, 255, 255, 0.2)'}
+                  onChange={(e) => onChange({ ...block, button2BgColor: e.target.value })}
+                  placeholder="rgba(255, 255, 255, 0.2)"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Text Color</Label>
+              <div className="flex gap-2">
+                <Input
+                  type="color"
+                  value={block.button2TextColor || '#FFFFFF'}
+                  onChange={(e) => onChange({ ...block, button2TextColor: e.target.value })}
+                  className="w-12 h-9 p-1 cursor-pointer"
+                />
+                <Input
+                  value={block.button2TextColor || '#FFFFFF'}
+                  onChange={(e) => onChange({ ...block, button2TextColor: e.target.value })}
+                  placeholder="#FFFFFF"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
+              <Input
+                type="number"
+                value={block.button2BorderRadius || 12}
+                onChange={(e) => onChange({ ...block, button2BorderRadius: parseInt(e.target.value) || 0 })}
+                placeholder="12"
+                min="0"
+                max="50"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Border Width (px)</Label>
+              <Input
+                type="number"
+                value={block.button2BorderWidth || 2}
+                onChange={(e) => onChange({ ...block, button2BorderWidth: parseInt(e.target.value) || 0 })}
+                placeholder="2"
+                min="0"
+                max="10"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Border Color</Label>
+              <Input
+                type="color"
+                value={block.button2BorderColor || '#FFFFFF'}
+                onChange={(e) => onChange({ ...block, button2BorderColor: e.target.value })}
+                className="w-full h-9 p-1 cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Save as Default Section */}
+      <div className="border-t pt-4 bg-blue-50 p-4 rounded">
+        <Label className="text-sm font-medium mb-3 block">Save as Default</Label>
+        <div className="space-y-3">
+          <div className="flex flex-col gap-2">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="current"
+                checked={saveScope === 'current'}
+                onChange={() => setSaveScope('current')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm">Current article only (no default)</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="upcoming"
+                checked={saveScope === 'upcoming'}
+                onChange={() => setSaveScope('upcoming')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm">Upcoming articles (new blocks will use these settings)</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="global"
+                checked={saveScope === 'global'}
+                onChange={() => setSaveScope('global')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm font-medium text-orange-600">Global (update ALL existing + future articles)</span>
+            </label>
+          </div>
+          {saveScope !== 'current' && (
+            <Button
+              onClick={handleSaveAsDefault}
+              disabled={isSaving}
+              className="w-full"
+              variant="default"
+            >
+              {isSaving ? 'Saving...' : `Save as ${saveScope === 'global' ? 'Global' : 'Upcoming'} Default`}
+            </Button>
+          )}
+        </div>
+      </div>
       
+      {/* Preview */}
       <div className="mt-4 p-3 bg-gray-50 rounded border">
         <p className="text-xs text-gray-600 mb-2 font-medium">Preview:</p>
-        <button 
-          className="px-6 py-3 font-semibold transition-all"
-          style={{
-            backgroundColor: block.buttonBgColor,
-            color: block.buttonTextColor,
-            borderRadius: `${block.buttonBorderRadius}px`
-          }}
-        >
-          {block.buttonText || 'Button Preview'}
-        </button>
+        <div className="flex flex-wrap gap-3">
+          <button 
+            className="px-6 py-3 font-semibold transition-all"
+            style={{
+              backgroundColor: block.buttonBgColor || '#FFFFFF',
+              color: block.buttonTextColor || '#1D50C9',
+              borderRadius: `${block.buttonBorderRadius || 12}px`
+            }}
+          >
+            {block.buttonText || 'Primary Button'}
+          </button>
+          {block.button2Text && (
+            <button 
+              className="px-6 py-3 font-semibold transition-all"
+              style={{
+                backgroundColor: block.button2BgColor || 'rgba(255, 255, 255, 0.2)',
+                color: block.button2TextColor || '#FFFFFF',
+                borderRadius: `${block.button2BorderRadius || 12}px`,
+                border: `${block.button2BorderWidth || 2}px solid ${block.button2BorderColor || '#FFFFFF'}`
+              }}
+            >
+              {block.button2Text}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
