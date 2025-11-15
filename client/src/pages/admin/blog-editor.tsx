@@ -416,51 +416,7 @@ export default function BlogEditor() {
     }
   }, [postCategories, categories]);
 
-  // Populate form when editing
-  useEffect(() => {
-    // Reset user mode change flag only when loading a different post
-    if (blogPost && blogPost.id !== currentPostIdRef.current) {
-      userChangedModeRef.current = false;
-      currentPostIdRef.current = blogPost.id;
-    }
-    
-    if (blogPost && isEditing) {
-      // Initialize categories from blogPost.categoryIds
-      // BUT: If we just saved, use the saved categories instead (they might not be in blogPost yet)
-      const postCategoryIds = justSavedCategoriesRef.current.length > 0 
-        ? justSavedCategoriesRef.current 
-        : (blogPost.categoryIds || []);
-      
-      // Only update selectedCategoryIds if we have actual data AND categories are loaded
-      // DON'T clear them if we don't have data yet (prevents race condition with postCategories query)
-      if (postCategoryIds.length > 0 && categories.length > 0) {
-        const normalizedIds = normalizeCategoryIds(postCategoryIds, categories);
-        setSelectedCategoryIds(normalizedIds);
-        // Clear the ref after using it
-        if (justSavedCategoriesRef.current.length > 0) {
-          justSavedCategoriesRef.current = [];
-        }
-      }
-      
-      reset({
-        title: blogPost.title || "",
-        slug: blogPost.slug || "",
-        excerpt: blogPost.excerpt || "",
-        content: blogPost.content || "",
-        contentBlocks: blogPost.contentBlocks || [],
-        categoryIds: blogPost.categoryIds || [],
-        category: blogPost.category || "General",
-        metaDescription: blogPost.metaDescription || "",
-        focusKeyword: blogPost.focusKeyword || "",
-        featuredImage: blogPost.featuredImage || "",
-        featuredImageAlt: blogPost.featuredImageAlt || "",
-        featuredImageTitle: blogPost.featuredImageTitle || "",
-        featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
-        publishedAt: blogPost.publishedAt || "",
-        isPublished: blogPost.isPublished,
-        status: (blogPost as any).status || "draft",
-        authorId: blogPost.authorId || adminUser?.id,
-      });
+      Right now it only overrides sometimes, but needs to override on next render every time until used.
       
       setHtmlContent(blogPost.content || '');
       
