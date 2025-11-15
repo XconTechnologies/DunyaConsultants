@@ -58,7 +58,7 @@ export default function CategoryPage() {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     categories: post.categories || [],
-    author: post.authorName || "Path Visa Consultants",
+    author: post.authorName || "Team Dunya Consultants",
     authorId: post.authorId,
     publishedAt: post.publishedAt || post.published_at || post.created_at,
     date: (() => {
@@ -150,7 +150,7 @@ export default function CategoryPage() {
     setMetaTags({
       title: currentCategory.name,
       metaTitle: (currentCategory as any).metaTitle || (currentCategory as any).meta_title,
-      description: `Explore our comprehensive ${currentCategory.name.toLowerCase()} articles and guides. Get expert insights and advice for studying abroad from Path Visa Consultants.`,
+      description: `Explore our comprehensive ${currentCategory.name.toLowerCase()} articles and guides. Get expert insights and advice for studying abroad from Team Dunya Consultants.`,
       metaDescription: (currentCategory as any).metaDescription || (currentCategory as any).meta_description,
       siteName: "Blog | Dunya Consultants"
     });

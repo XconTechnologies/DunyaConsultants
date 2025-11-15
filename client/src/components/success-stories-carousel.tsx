@@ -105,7 +105,7 @@ export default function SuccessStoriesCarousel() {
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-4">
-            Authentic Google reviews from real students who achieved their dreams with Path Visa Consultants
+            Authentic Google reviews from real students who achieved their dreams with Team Dunya Consultants
           </p>
           
           <div className="flex items-center justify-center space-x-4">

@@ -311,7 +311,7 @@ export default function BlogList() {
     title: post.title,
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
-    author: "Path Visa Consultants",
+    author: "Team Dunya Consultants",
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';

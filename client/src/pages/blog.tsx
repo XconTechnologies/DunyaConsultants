@@ -120,7 +120,7 @@ const staticBlogPosts = [
     title: "GRE Test Fee in Pakistan",
     excerpt: "Complete guide to GRE test fees, registration process, and format options for Pakistani students planning to study abroad.",
     category: "Test Preparation", 
-    author: "Path Visa Consultants",
+    author: "Team Dunya Consultants",
     date: "October 15, 2024",
     readTime: "8 min",
     views: 2450,
@@ -489,7 +489,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
   }
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = 'Blog Post - Path Visa Consultants';
+  const shareTitle = 'Blog Post - Team Dunya Consultants';
 
   const handleShare = (platform: string) => {
     const encodedUrl = encodeURIComponent(shareUrl);
@@ -566,7 +566,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     categories: post.categories || [],
-    author: post.authorName || "Path Visa Consultants",
+    author: post.authorName || "Team Dunya Consultants",
     authorId: post.authorId,
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
@@ -3935,7 +3935,7 @@ export default function Blog() {
     title: post.title,
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
-    author: "Path Visa Consultants",
+    author: "Team Dunya Consultants",
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
