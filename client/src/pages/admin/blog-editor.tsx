@@ -248,6 +248,7 @@ export default function BlogEditor() {
   const saveIntentRef = useRef<'manual' | 'autosave'>('manual');
   const hasPendingChangesRef = useRef<boolean>(false);
   const [autosaveState, setAutosaveState] = useState<'idle' | 'pending' | 'saving' | 'error'>('idle');
+  const justSavedCategoriesRef = useRef<number[]>([]);
   
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
@@ -425,10 +426,18 @@ export default function BlogEditor() {
     
     if (blogPost && isEditing) {
       // Initialize categories from blogPost.categoryIds
-      const postCategoryIds = blogPost.categoryIds || [];
+      // BUT: If we just saved, use the saved categories instead (they might not be in blogPost yet)
+      const postCategoryIds = justSavedCategoriesRef.current.length > 0 
+        ? justSavedCategoriesRef.current 
+        : (blogPost.categoryIds || []);
+      
       if (postCategoryIds.length > 0 && categories.length > 0) {
         const normalizedIds = normalizeCategoryIds(postCategoryIds, categories);
         setSelectedCategoryIds(normalizedIds);
+        // Clear the ref after using it
+        if (justSavedCategoriesRef.current.length > 0) {
+          justSavedCategoriesRef.current = [];
+        }
       } else {
         setSelectedCategoryIds([]);
       }
@@ -865,9 +874,15 @@ export default function BlogEditor() {
       // Clear pending changes flag
       hasPendingChangesRef.current = false;
       
+      // IMPORTANT: Preserve selected categories before invalidating queries
+      // Categories are stored in junction table and won't be in the refetched blogPost
+      const currentCategories = selectedCategoryIds;
+      justSavedCategoriesRef.current = currentCategories;
+      
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
       if (isEditing) {
         queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
+        queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}/categories`] });
       }
       
       // Only show toast for manual saves, not autosaves
@@ -882,7 +897,14 @@ export default function BlogEditor() {
       if (!isEditing && data.id) {
         setLocation(`/admin/blog-editor/${data.id}`);
       } else {
-        refetch();
+        refetch().then(() => {
+          // After refetch completes, restore the categories that were just saved
+          // This prevents them from being cleared by the refetch
+          if (justSavedCategoriesRef.current.length > 0) {
+            setSelectedCategoryIds(justSavedCategoriesRef.current);
+            setValue('categoryIds', justSavedCategoriesRef.current);
+          }
+        });
       }
       
       // Release mutex lock and reset intent
