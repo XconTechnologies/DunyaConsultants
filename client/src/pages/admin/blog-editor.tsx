@@ -451,13 +451,64 @@ export default function BlogEditor() {
       const serverBlocks = blogPost.contentBlocks && Array.isArray(blogPost.contentBlocks) ? blogPost.contentBlocks : [];
       const serverBlocksJSON = JSON.stringify(serverBlocks);
       
+      // Transform server blocks from nested data structure to flat structure for editing
+      const transformServerBlocks = (blocks: any[]): Block[] => {
+        return blocks.map((block: any) => {
+          if (!block.data) return block; // Already in flat format
+          
+          // Flatten nested data structure
+          const { data, ...baseBlock } = block;
+          
+          switch (block.type) {
+            case 'tip':
+              return { ...baseBlock, prefix: data.prefix, text: data.text };
+            case 'consultation':
+              return {
+                ...baseBlock,
+                title: data.title,
+                description: data.description,
+                buttonText: data.buttonText,
+                buttonUrl: data.buttonUrl,
+                buttonBgColor: data.buttonBgColor,
+                buttonTextColor: data.buttonTextColor,
+                buttonBorderRadius: data.buttonBorderRadius,
+                secondButtonText: data.secondButtonText,
+                secondButtonUrl: data.secondButtonUrl,
+                secondButtonBgColor: data.secondButtonBgColor,
+                secondButtonTextColor: data.secondButtonTextColor,
+                secondButtonBorderRadius: data.secondButtonBorderRadius,
+                secondButtonBorderColor: data.secondButtonBorderColor,
+                secondButtonBorderWidth: data.secondButtonBorderWidth
+              };
+            case 'whatsappChannel':
+              return {
+                ...baseBlock,
+                title: data.title,
+                description: data.description,
+                channelUrl: data.channelUrl,
+                buttonText: data.buttonText,
+                buttonBgColor: data.buttonBgColor,
+                buttonTextColor: data.buttonTextColor,
+                buttonBorderRadius: data.buttonBorderRadius
+              };
+            case 'faq':
+              return { ...baseBlock, items: data.questions || [] };
+            case 'html':
+              return { ...baseBlock, html: data.html };
+            default:
+              return { ...baseBlock, ...data }; // Merge data into base for unknown types
+          }
+        });
+      };
+      
       // Only update blocks if:
       // 1. Not in blocks mode, OR
       // 2. No local modifications, OR
       // 3. Server data actually changed
       if (editorMode !== 'blocks' || !blocksModifiedRef.current || serverBlocksJSON !== lastSavedBlocksRef.current) {
         if (serverBlocks.length > 0) {
-          setCustomBlocks(serverBlocks as Block[]);
+          const flattenedBlocks = transformServerBlocks(serverBlocks);
+          setCustomBlocks(flattenedBlocks as Block[]);
           lastSavedBlocksRef.current = serverBlocksJSON;
           blocksModifiedRef.current = false;
           // Auto-switch to blocks mode if the post was created with blocks
@@ -912,13 +963,16 @@ export default function BlogEditor() {
         position: (block as any).position ?? 0
       };
 
+      const blockData = (block as any).data || {};
+
       switch (block.type) {
         case 'tip':
           return {
             ...baseBlock,
             data: {
-              prefix: (block as any).prefix,
-              text: (block as any).text
+              // Try to get from data property first, then from root level
+              prefix: blockData.prefix ?? (block as any).prefix ?? '',
+              text: blockData.text ?? (block as any).text ?? ''
             }
           };
         
@@ -926,13 +980,20 @@ export default function BlogEditor() {
           return {
             ...baseBlock,
             data: {
-              title: (block as any).title,
-              description: (block as any).description,
-              buttonText: (block as any).buttonText,
-              buttonUrl: (block as any).buttonUrl,
-              buttonBgColor: (block as any).buttonBgColor,
-              buttonTextColor: (block as any).buttonTextColor,
-              buttonBorderRadius: (block as any).buttonBorderRadius
+              title: blockData.title ?? (block as any).title ?? '',
+              description: blockData.description ?? (block as any).description ?? '',
+              buttonText: blockData.buttonText ?? (block as any).buttonText ?? '',
+              buttonUrl: blockData.buttonUrl ?? (block as any).buttonUrl ?? '',
+              buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#1D50C9',
+              buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
+              buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8,
+              secondButtonText: blockData.secondButtonText ?? (block as any).secondButtonText,
+              secondButtonUrl: blockData.secondButtonUrl ?? (block as any).secondButtonUrl,
+              secondButtonBgColor: blockData.secondButtonBgColor ?? (block as any).secondButtonBgColor,
+              secondButtonTextColor: blockData.secondButtonTextColor ?? (block as any).secondButtonTextColor,
+              secondButtonBorderRadius: blockData.secondButtonBorderRadius ?? (block as any).secondButtonBorderRadius,
+              secondButtonBorderColor: blockData.secondButtonBorderColor ?? (block as any).secondButtonBorderColor,
+              secondButtonBorderWidth: blockData.secondButtonBorderWidth ?? (block as any).secondButtonBorderWidth
             }
           };
         
@@ -940,13 +1001,13 @@ export default function BlogEditor() {
           return {
             ...baseBlock,
             data: {
-              title: (block as any).title,
-              description: (block as any).description,
-              channelUrl: (block as any).channelUrl,
-              buttonText: (block as any).buttonText,
-              buttonBgColor: (block as any).buttonBgColor,
-              buttonTextColor: (block as any).buttonTextColor,
-              buttonBorderRadius: (block as any).buttonBorderRadius
+              title: blockData.title ?? (block as any).title ?? '',
+              description: blockData.description ?? (block as any).description ?? '',
+              channelUrl: blockData.channelUrl ?? (block as any).channelUrl ?? '',
+              buttonText: blockData.buttonText ?? (block as any).buttonText ?? '',
+              buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#25D366',
+              buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
+              buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8
             }
           };
         
@@ -954,7 +1015,7 @@ export default function BlogEditor() {
           return {
             ...baseBlock,
             data: {
-              questions: (block as any).items || []
+              questions: blockData.questions ?? (block as any).items ?? []
             }
           };
         
@@ -962,7 +1023,7 @@ export default function BlogEditor() {
           return {
             ...baseBlock,
             data: {
-              html: (block as any).html
+              html: blockData.html ?? (block as any).html ?? ''
             }
           };
         
