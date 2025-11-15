@@ -661,7 +661,9 @@ export default function BlogEditor() {
       if (editorMode === 'blocks') {
         const blocksSnapshot = JSON.stringify(customBlocks);
         pendingSaveSnapshotRef.current = blocksSnapshot;
-        formValues.contentBlocks = customBlocks as any;
+        
+        // Transform blocks to ContentBlock schema format (same as manual save)
+        formValues.contentBlocks = transformToContentBlocks(customBlocks) as any;
         formValues.content = blocksToHtml(customBlocks);
       }
       
