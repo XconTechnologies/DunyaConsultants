@@ -16,7 +16,8 @@ export type ContentBlock =
   | SchemaBlock
   | ConsultationBlock
   | WhatsAppChannelBlock
-  | TipBlock;
+  | TipBlock
+  | ListBlock;
 
 export interface FAQBlock {
   id: string;
@@ -159,6 +160,7 @@ export interface WhatsAppChannelBlock {
     buttonText?: string;
     buttonBgColor?: string;
     buttonTextColor?: string;
+    buttonHoverColor?: string;
     buttonBorderRadius?: number;
   };
 }
@@ -170,6 +172,20 @@ export interface TipBlock {
   data: {
     prefix?: string;
     text: string;
+  };
+}
+
+export interface ListBlock {
+  id: string;
+  type: 'list';
+  position: number;
+  data: {
+    style?: 'ul' | 'ol';
+    items?: Array<{
+      id: string;
+      text: string;
+      children?: any[];
+    }>;
   };
 }
 
