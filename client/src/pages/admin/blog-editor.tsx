@@ -473,13 +473,13 @@ export default function BlogEditor() {
               buttonBgColor: data.buttonBgColor,
               buttonTextColor: data.buttonTextColor,
               buttonBorderRadius: data.buttonBorderRadius,
-              secondButtonText: data.secondButtonText,
-              secondButtonUrl: data.secondButtonUrl,
-              secondButtonBgColor: data.secondButtonBgColor,
-              secondButtonTextColor: data.secondButtonTextColor,
-              secondButtonBorderRadius: data.secondButtonBorderRadius,
-              secondButtonBorderColor: data.secondButtonBorderColor,
-              secondButtonBorderWidth: data.secondButtonBorderWidth
+              button2Text: data.button2Text,
+              button2Url: data.button2Url,
+              button2BgColor: data.button2BgColor,
+              button2TextColor: data.button2TextColor,
+              button2BorderRadius: data.button2BorderRadius,
+              button2BorderColor: data.button2BorderColor,
+              button2BorderWidth: data.button2BorderWidth
             };
           case 'whatsappChannel':
             return {
@@ -490,6 +490,7 @@ export default function BlogEditor() {
               buttonText: data.buttonText,
               buttonBgColor: data.buttonBgColor,
               buttonTextColor: data.buttonTextColor,
+              buttonHoverColor: data.buttonHoverColor,
               buttonBorderRadius: data.buttonBorderRadius
             };
           case 'faq':
@@ -1050,13 +1051,13 @@ export default function BlogEditor() {
               buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#1D50C9',
               buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
               buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8,
-              secondButtonText: blockData.secondButtonText ?? (block as any).secondButtonText,
-              secondButtonUrl: blockData.secondButtonUrl ?? (block as any).secondButtonUrl,
-              secondButtonBgColor: blockData.secondButtonBgColor ?? (block as any).secondButtonBgColor,
-              secondButtonTextColor: blockData.secondButtonTextColor ?? (block as any).secondButtonTextColor,
-              secondButtonBorderRadius: blockData.secondButtonBorderRadius ?? (block as any).secondButtonBorderRadius,
-              secondButtonBorderColor: blockData.secondButtonBorderColor ?? (block as any).secondButtonBorderColor,
-              secondButtonBorderWidth: blockData.secondButtonBorderWidth ?? (block as any).secondButtonBorderWidth
+              button2Text: blockData.button2Text ?? (block as any).button2Text,
+              button2Url: blockData.button2Url ?? (block as any).button2Url,
+              button2BgColor: blockData.button2BgColor ?? (block as any).button2BgColor,
+              button2TextColor: blockData.button2TextColor ?? (block as any).button2TextColor,
+              button2BorderRadius: blockData.button2BorderRadius ?? (block as any).button2BorderRadius,
+              button2BorderColor: blockData.button2BorderColor ?? (block as any).button2BorderColor,
+              button2BorderWidth: blockData.button2BorderWidth ?? (block as any).button2BorderWidth
             }
           };
         
@@ -1070,6 +1071,7 @@ export default function BlogEditor() {
               buttonText: blockData.buttonText ?? (block as any).buttonText ?? '',
               buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#25D366',
               buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
+              buttonHoverColor: blockData.buttonHoverColor ?? (block as any).buttonHoverColor ?? '#1EA952',
               buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8
             }
           };
