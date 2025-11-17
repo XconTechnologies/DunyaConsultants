@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -107,57 +106,32 @@ export default function StudyAbroadUSA() {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6 backdrop-blur-sm"
-            >
-              <GraduationCap className="w-10 h-10" />
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl lg:text-5xl font-bold mb-6"
-            >
+            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-full mb-4 sm:mb-6 backdrop-blur-sm">
+              <GraduationCap className="w-8 h-8 sm:w-10 sm:h-10" />
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-4">
               Study in <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">USA</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg lg:text-xl mb-8 text-white/90 leading-relaxed max-w-4xl mx-auto"
-            >
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-white/90 leading-relaxed max-w-4xl mx-auto px-4">
               Your Complete Guide to Studying in the USA from Pakistan
-            </motion.p>
+            </p>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-3 mb-8"
-            >
-              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
-                <GraduationCap className="w-4 h-4 mr-2" />
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
+              <Badge variant="secondary" className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-white/20 text-white border-white/30">
+                <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 5,000+ Universities
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
-                <Globe className="w-4 h-4 mr-2" />
+              <Badge variant="secondary" className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-white/20 text-white border-white/30">
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 F1 Visa Guidance
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
-                <Award className="w-4 h-4 mr-2" />
+              <Badge variant="secondary" className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-white/20 text-white border-white/30">
+                <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 Scholarship Support
               </Badge>
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <CalendlyButton
                 text="Book Free Consultation"
                 className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-3 text-lg font-semibold"
@@ -172,7 +146,7 @@ export default function StudyAbroadUSA() {
               >
                 Start Your Application
               </Button>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -427,18 +401,21 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* Best Consultant */}
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-blue-100/50">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <Users className="w-6 h-6" />
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1D50C9] overflow-hidden relative">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+              <CardHeader className="relative">
+                <CardTitle className="text-2xl md:text-3xl text-white flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
                   Best Consultant for USA Study Visa in Pakistan
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Dunya Consultants is recognized as one of the <strong>best consultants for USA study visa in Pakistan</strong>. Their team supports students with:
+              <CardContent className="relative">
+                <p className="text-white/95 mb-6 leading-relaxed text-base md:text-lg">
+                  Dunya Consultants is recognized as one of the <strong className="text-white font-bold">best consultants for USA study visa in Pakistan</strong>. Their team supports students with:
                 </p>
-                <div className="grid md:grid-cols-2 gap-3 mb-4">
+                <div className="grid sm:grid-cols-2 gap-3 mb-6">
                   {[
                     "University selection",
                     "Application processing",
@@ -446,15 +423,30 @@ export default function StudyAbroadUSA() {
                     "Visa file preparation",
                     "Interview coaching"
                   ].map((service, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg border border-blue-200">
-                      <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{service}</span>
+                    <div key={index} className="flex items-start gap-3 p-3 md:p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                      <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-white font-medium text-sm md:text-base">{service}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-600">
-                  Learn more about <Link href="/blog/best-usa-student-visa-consultants" className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">choosing the right USA study visa consultant <ExternalLink className="w-3 h-3" /></Link> for your needs.
-                </p>
+                <div className="bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-xl p-4 md:p-5">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                        <ExternalLink className="w-5 h-5 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-white/90 text-sm mb-2">Want to learn more?</p>
+                      <Link href="/blog/best-usa-student-visa-consultants">
+                        <span className="inline-flex items-center gap-2 text-white font-bold text-base md:text-lg hover:text-orange-300 transition-colors cursor-pointer group">
+                          Choosing the Right USA Study Visa Consultant
+                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
@@ -623,15 +615,12 @@ export default function StudyAbroadUSA() {
                 </p>
               </CardHeader>
               <CardContent className="pt-6">
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {faqs.map((faq, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
                       className={`
-                        group relative rounded-xl overflow-hidden border-2 transition-all duration-300
+                        group relative rounded-xl overflow-hidden border-2 transition-all duration-200
                         ${expandedFaq === index 
                           ? 'border-[#1D50C9] shadow-lg shadow-blue-100' 
                           : 'border-gray-200 hover:border-blue-300 hover:shadow-md'
@@ -641,7 +630,7 @@ export default function StudyAbroadUSA() {
                       <button
                         onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                         className={`
-                          w-full px-5 py-4 text-left transition-all duration-300 flex items-start gap-4
+                          w-full px-4 sm:px-5 py-3 sm:py-4 text-left transition-all duration-200 flex items-start gap-3 sm:gap-4
                           ${expandedFaq === index 
                             ? 'bg-gradient-to-r from-blue-50 to-orange-50/30' 
                             : 'bg-white group-hover:bg-gray-50'
@@ -649,7 +638,7 @@ export default function StudyAbroadUSA() {
                         `}
                       >
                         <div className={`
-                          flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300
+                          flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-200
                           ${expandedFaq === index 
                             ? 'bg-[#1D50C9] text-white' 
                             : 'bg-blue-100 text-[#1D50C9] group-hover:bg-[#1D50C9] group-hover:text-white'
@@ -659,7 +648,7 @@ export default function StudyAbroadUSA() {
                         </div>
                         <div className="flex-1">
                           <h3 className={`
-                            font-semibold transition-colors duration-300
+                            font-semibold transition-colors duration-200 text-sm sm:text-base
                             ${expandedFaq === index ? 'text-[#1D50C9]' : 'text-gray-900 group-hover:text-[#1D50C9]'}
                           `}>
                             {faq.question}
@@ -667,27 +656,20 @@ export default function StudyAbroadUSA() {
                         </div>
                         <div className="flex-shrink-0">
                           {expandedFaq === index ? (
-                            <ChevronUp className="w-6 h-6 text-[#1D50C9]" />
+                            <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#1D50C9]" />
                           ) : (
-                            <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-[#1D50C9] transition-colors" />
+                            <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-[#1D50C9] transition-colors" />
                           )}
                         </div>
                       </button>
                       {expandedFaq === index && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-5 py-4 bg-white border-t-2 border-blue-100">
-                            <div className="pl-12">
-                              <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                            </div>
+                        <div className="px-4 sm:px-5 py-3 sm:py-4 bg-white border-t-2 border-blue-100">
+                          <div className="pl-0 sm:pl-12">
+                            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{faq.answer}</p>
                           </div>
-                        </motion.div>
+                        </div>
                       )}
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </CardContent>
