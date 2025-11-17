@@ -1414,10 +1414,17 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           title: 'Book Your Free Consultation', 
           description: 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.',
           buttonText: 'Book Free Consultation',
-          buttonUrl: '/consultation',
-          buttonBgColor: '#1D50C9',
-          buttonTextColor: '#ffffff',
+          buttonUrl: 'https://calendly.com/meet-dunya-consultants/20min',
+          buttonBgColor: '#eff6ff',
+          buttonTextColor: '#1d50c9',
           buttonBorderRadius: 8,
+          button2Text: 'Connect now',
+          button2Url: 'https://dunyaconsultants.com/contact',
+          button2BgColor: '#ff6a05',
+          button2TextColor: '#FFFFFF',
+          button2BorderRadius: 12,
+          button2BorderWidth: 2,
+          button2BorderColor: '',
           position 
         } as ConsultationBlock;
       case 'whatsappChannel':
