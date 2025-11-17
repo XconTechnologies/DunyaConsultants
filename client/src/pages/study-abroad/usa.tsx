@@ -453,7 +453,7 @@ export default function StudyAbroadUSA() {
                   ))}
                 </div>
                 <p className="text-sm text-gray-600">
-                  Learn more about <Link href="/blog/best-usa-student-visa-consultants"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">choosing the right USA study visa consultant <ExternalLink className="w-3 h-3" /></a></Link> for your needs.
+                  Learn more about <Link href="/blog/best-usa-student-visa-consultants" className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">choosing the right USA study visa consultant <ExternalLink className="w-3 h-3" /></Link> for your needs.
                 </p>
               </CardContent>
             </Card>
@@ -493,7 +493,7 @@ export default function StudyAbroadUSA() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  The United States is home to some of the world's most prestigious universities. Here are the <Link href="/blog/top-universities-in-the-usa"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">top universities in the USA <ExternalLink className="w-3 h-3" /></a></Link> that Pakistani students frequently choose:
+                  The United States is home to some of the world's most prestigious universities. Here are the <Link href="/blog/top-universities-in-the-usa" className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">top universities in the USA <ExternalLink className="w-3 h-3" /></Link> that Pakistani students frequently choose:
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {universities.map((university, index) => (
@@ -536,7 +536,7 @@ export default function StudyAbroadUSA() {
                   ))}
                 </div>
                 <p className="text-sm text-gray-600">
-                  For detailed information, read our comprehensive guide on <Link href="/blog/usa-student-visa-requirements"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">USA student visa requirements <ExternalLink className="w-3 h-3" /></a></Link>.
+                  For detailed information, read our comprehensive guide on <Link href="/blog/usa-student-visa-requirements" className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">USA student visa requirements <ExternalLink className="w-3 h-3" /></Link>.
                 </p>
               </CardContent>
             </Card>
@@ -610,33 +610,84 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* FAQs */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9]">
-                  Frequently Asked Questions (FAQs)
+            <Card className="border-0 shadow-sm bg-gradient-to-br from-white to-blue-50/30">
+              <CardHeader className="border-b border-blue-100 bg-gradient-to-r from-blue-50 to-orange-50/30">
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">?</span>
+                  </div>
+                  Frequently Asked Questions
                 </CardTitle>
+                <p className="text-sm text-gray-600 mt-2">
+                  Get answers to the most common questions about studying in the USA
+                </p>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
+              <CardContent className="pt-6">
+                <div className="space-y-4">
                   {faqs.map((faq, index) => (
-                    <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className={`
+                        group relative rounded-xl overflow-hidden border-2 transition-all duration-300
+                        ${expandedFaq === index 
+                          ? 'border-[#1D50C9] shadow-lg shadow-blue-100' 
+                          : 'border-gray-200 hover:border-blue-300 hover:shadow-md'
+                        }
+                      `}
+                    >
                       <button
                         onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                        className="w-full px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between gap-3"
+                        className={`
+                          w-full px-5 py-4 text-left transition-all duration-300 flex items-start gap-4
+                          ${expandedFaq === index 
+                            ? 'bg-gradient-to-r from-blue-50 to-orange-50/30' 
+                            : 'bg-white group-hover:bg-gray-50'
+                          }
+                        `}
                       >
-                        <span className="font-semibold text-gray-900">{faq.question}</span>
-                        {expandedFaq === index ? (
-                          <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                        )}
+                        <div className={`
+                          flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300
+                          ${expandedFaq === index 
+                            ? 'bg-[#1D50C9] text-white' 
+                            : 'bg-blue-100 text-[#1D50C9] group-hover:bg-[#1D50C9] group-hover:text-white'
+                          }
+                        `}>
+                          {index + 1}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className={`
+                            font-semibold transition-colors duration-300
+                            ${expandedFaq === index ? 'text-[#1D50C9]' : 'text-gray-900 group-hover:text-[#1D50C9]'}
+                          `}>
+                            {faq.question}
+                          </h3>
+                        </div>
+                        <div className="flex-shrink-0">
+                          {expandedFaq === index ? (
+                            <ChevronUp className="w-6 h-6 text-[#1D50C9]" />
+                          ) : (
+                            <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-[#1D50C9] transition-colors" />
+                          )}
+                        </div>
                       </button>
                       {expandedFaq === index && (
-                        <div className="px-4 py-3 bg-white">
-                          <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                        </div>
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 py-4 bg-white border-t-2 border-blue-100">
+                            <div className="pl-12">
+                              <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                            </div>
+                          </div>
+                        </motion.div>
                       )}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
