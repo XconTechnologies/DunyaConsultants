@@ -473,13 +473,13 @@ export default function BlogEditor() {
               buttonBgColor: data.buttonBgColor,
               buttonTextColor: data.buttonTextColor,
               buttonBorderRadius: data.buttonBorderRadius,
-              button2Text: data.button2Text,
-              button2Url: data.button2Url,
-              button2BgColor: data.button2BgColor,
-              button2TextColor: data.button2TextColor,
-              button2BorderRadius: data.button2BorderRadius,
-              button2BorderColor: data.button2BorderColor,
-              button2BorderWidth: data.button2BorderWidth
+              button2Text: data.button2Text || data.secondButtonText,
+              button2Url: data.button2Url || data.secondButtonUrl,
+              button2BgColor: data.button2BgColor || data.secondButtonBgColor,
+              button2TextColor: data.button2TextColor || data.secondButtonTextColor,
+              button2BorderRadius: data.button2BorderRadius ?? data.secondButtonBorderRadius,
+              button2BorderColor: data.button2BorderColor || data.secondButtonBorderColor,
+              button2BorderWidth: data.button2BorderWidth ?? data.secondButtonBorderWidth
             };
           case 'whatsappChannel':
             return {
@@ -1051,13 +1051,13 @@ export default function BlogEditor() {
               buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#1D50C9',
               buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
               buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8,
-              button2Text: blockData.button2Text ?? (block as any).button2Text,
-              button2Url: blockData.button2Url ?? (block as any).button2Url,
-              button2BgColor: blockData.button2BgColor ?? (block as any).button2BgColor,
-              button2TextColor: blockData.button2TextColor ?? (block as any).button2TextColor,
-              button2BorderRadius: blockData.button2BorderRadius ?? (block as any).button2BorderRadius,
-              button2BorderColor: blockData.button2BorderColor ?? (block as any).button2BorderColor,
-              button2BorderWidth: blockData.button2BorderWidth ?? (block as any).button2BorderWidth
+              button2Text: blockData.button2Text ?? blockData.secondButtonText ?? (block as any).button2Text ?? (block as any).secondButtonText,
+              button2Url: blockData.button2Url ?? blockData.secondButtonUrl ?? (block as any).button2Url ?? (block as any).secondButtonUrl,
+              button2BgColor: blockData.button2BgColor ?? blockData.secondButtonBgColor ?? (block as any).button2BgColor ?? (block as any).secondButtonBgColor,
+              button2TextColor: blockData.button2TextColor ?? blockData.secondButtonTextColor ?? (block as any).button2TextColor ?? (block as any).secondButtonTextColor,
+              button2BorderRadius: blockData.button2BorderRadius ?? blockData.secondButtonBorderRadius ?? (block as any).button2BorderRadius ?? (block as any).secondButtonBorderRadius,
+              button2BorderColor: blockData.button2BorderColor ?? blockData.secondButtonBorderColor ?? (block as any).button2BorderColor ?? (block as any).secondButtonBorderColor,
+              button2BorderWidth: blockData.button2BorderWidth ?? blockData.secondButtonBorderWidth ?? (block as any).button2BorderWidth ?? (block as any).secondButtonBorderWidth
             }
           };
         

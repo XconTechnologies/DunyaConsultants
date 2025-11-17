@@ -29,6 +29,8 @@ The application features a professional dark blue gradient design with custom br
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.
 
+**Custom Content Blocks Backward Compatibility**: Editor transformations (transformServerBlocks and transformToContentBlocks) support both legacy (secondButton*) and new (button2*) naming conventions for consultation blocks to ensure data persistence across database schema migrations. Renderers also maintain dual naming support for seamless backward compatibility.
+
 ## External Dependencies
 - `@neondatabase/serverless`: PostgreSQL connectivity.
 - `drizzle-orm`: Type-safe database operations.
