@@ -421,7 +421,8 @@ export default function StudyAbroadUSA() {
                     "Application processing",
                     "Scholarship guidance",
                     "Visa file preparation",
-                    "Interview coaching"
+                    "Interview coaching",
+                    "Pre-Departure Briefing"
                   ].map((service, index) => (
                     <div key={index} className="flex items-start gap-3 p-3 md:p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
                       <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
