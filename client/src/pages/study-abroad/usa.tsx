@@ -208,7 +208,7 @@ export default function StudyAbroadUSA() {
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Pakistani students can study in the USA by applying to an approved university, securing an I-20, paying the SEVIS fee, and attending the F1 visa interview. Dunya Consultants guides students through every step including course selection, application submission, financial documentation, interview preparation, and visa support.
                 </p>
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-6 rounded-lg border border-blue-200">
+                <div className="bg-blue-50/50 p-5 md:p-6 rounded-r-lg border-l-4 border-[#1D50C9] shadow-sm">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <Users className="w-5 h-5 text-[#1D50C9]" />
                     Study in USA for Pakistani Students
@@ -275,7 +275,7 @@ export default function StudyAbroadUSA() {
                     <span className="font-medium text-gray-900">Medium of Instruction Letter</span>
                   </div>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="bg-blue-50/50 p-4 rounded-r-lg border-l-4 border-[#1D50C9] shadow-sm">
                   <p className="text-gray-700">
                     <strong className="text-gray-900">Is PTE accepted in USA for study visa?</strong><br />
                     Yes, PTE is accepted in USA by many universities and is valid for the F1 visa.
@@ -554,7 +554,7 @@ export default function StudyAbroadUSA() {
                     <h4 className="font-semibold text-gray-900 mb-2">Off Campus</h4>
                     <p className="text-gray-700">Through OPT or CPT</p>
                   </div>
-                  <div className="bg-gradient-to-r from-blue-50 to-orange-50 p-4 rounded-lg border border-blue-200">
+                  <div className="bg-blue-50/50 p-4 rounded-r-lg border-l-4 border-[#1D50C9] shadow-sm">
                     <ul className="space-y-2 text-gray-700">
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
