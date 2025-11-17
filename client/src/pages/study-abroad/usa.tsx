@@ -232,9 +232,9 @@ export default function StudyAbroadUSA() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Pakistani students can study in the USA by applying to an approved university, securing an I-20, paying the SEVIS fee, and attending the F1 student visa interview. Dunya Consultants guides students through every step including course selection, application submission, financial documentation, interview preparation, and visa support.
+                  Pakistani students can study in the USA by applying to an approved university, securing an I-20, paying the SEVIS fee, and attending the F1 visa interview. Dunya Consultants guides students through every step including course selection, application submission, financial documentation, interview preparation, and visa support.
                 </p>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-100">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-6 rounded-lg border border-blue-200">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <Users className="w-5 h-5 text-[#1D50C9]" />
                     Study in USA for Pakistani Students
@@ -244,23 +244,23 @@ export default function StudyAbroadUSA() {
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span>High quality education</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span>Wide program selection</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span>Scholarships and assistantships</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span>Strong industry links</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span>Better career growth</span>
                     </li>
                   </ul>
@@ -284,24 +284,24 @@ export default function StudyAbroadUSA() {
                   Many American universities accept students without IELTS. Alternatives include:
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3 mb-4">
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                    <CheckCircle className="w-5 h-5 text-orange-600" />
                     <span className="font-medium text-gray-900">PTE</span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                    <CheckCircle className="w-5 h-5 text-orange-600" />
                     <span className="font-medium text-gray-900">Duolingo</span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                    <CheckCircle className="w-5 h-5 text-orange-600" />
                     <span className="font-medium text-gray-900">TOEFL</span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                    <CheckCircle className="w-5 h-5 text-orange-600" />
                     <span className="font-medium text-gray-900">Medium of Instruction Letter</span>
                   </div>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <p className="text-gray-700">
                     <strong className="text-gray-900">Is PTE accepted in USA for study visa?</strong><br />
                     Yes, PTE is accepted in USA by many universities and is valid for the F1 visa.
@@ -382,11 +382,11 @@ export default function StudyAbroadUSA() {
                   USA universities are flexible.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
                     <h4 className="font-semibold text-gray-900 mb-2">Bachelor's Degree</h4>
                     <p className="text-gray-700">Up to <strong>2 to 5 years gap</strong> is acceptable</p>
                   </div>
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <h4 className="font-semibold text-gray-900 mb-2">Master's Degree</h4>
                     <p className="text-gray-700"><strong>5 to 10 years gap</strong> can be accepted with valid justification such as work experience</p>
                   </div>
@@ -414,8 +414,8 @@ export default function StudyAbroadUSA() {
                     "Research and teaching assistantships",
                     "University scholarships"
                   ].map((option, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    <div key={index} className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                      <CheckCircle className="w-5 h-5 text-orange-600" />
                       <span className="text-gray-700">{option}</span>
                     </div>
                   ))}
@@ -427,7 +427,7 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* Best Consultant */}
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-indigo-50">
+            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-blue-100/50">
               <CardHeader>
                 <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
                   <Users className="w-6 h-6" />
@@ -438,7 +438,7 @@ export default function StudyAbroadUSA() {
                 <p className="text-gray-700 mb-4 leading-relaxed">
                   Dunya Consultants is recognized as one of the <strong>best consultants for USA study visa in Pakistan</strong>. Their team supports students with:
                 </p>
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="grid md:grid-cols-2 gap-3 mb-4">
                   {[
                     "University selection",
                     "Application processing",
@@ -452,6 +452,9 @@ export default function StudyAbroadUSA() {
                     </div>
                   ))}
                 </div>
+                <p className="text-sm text-gray-600">
+                  Learn more about <Link href="/blog/best-usa-student-visa-consultants"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">choosing the right USA study visa consultant <ExternalLink className="w-3 h-3" /></a></Link> for your needs.
+                </p>
               </CardContent>
             </Card>
 
@@ -469,7 +472,7 @@ export default function StudyAbroadUSA() {
                 </p>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {popularCourses.map((course, index) => (
-                    <div key={index} className="p-3 bg-blue-50 rounded-lg border border-blue-100 text-center">
+                    <div key={index} className="p-3 bg-blue-50 rounded-lg border border-blue-200 text-center">
                       <span className="text-gray-700 font-medium">{course}</span>
                     </div>
                   ))}
@@ -489,6 +492,9 @@ export default function StudyAbroadUSA() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  The United States is home to some of the world's most prestigious universities. Here are the <Link href="/blog/top-universities-in-the-usa"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">top universities in the USA <ExternalLink className="w-3 h-3" /></a></Link> that Pakistani students frequently choose:
+                </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {universities.map((university, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
@@ -514,7 +520,7 @@ export default function StudyAbroadUSA() {
                 <p className="text-gray-700 mb-4 leading-relaxed">
                   The USA study visa is known as the <strong>F1 visa</strong>. Students must have:
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-2 mb-4">
                   {[
                     "Valid passport",
                     "Acceptance letter and I-20",
@@ -524,11 +530,14 @@ export default function StudyAbroadUSA() {
                     "Visa interview appointment"
                   ].map((requirement, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
                       <span className="text-gray-700">{requirement}</span>
                     </div>
                   ))}
                 </div>
+                <p className="text-sm text-gray-600">
+                  For detailed information, read our comprehensive guide on <Link href="/blog/usa-student-visa-requirements"><a className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1">USA student visa requirements <ExternalLink className="w-3 h-3" /></a></Link>.
+                </p>
               </CardContent>
             </Card>
 
@@ -545,22 +554,22 @@ export default function StudyAbroadUSA() {
                   Students can work:
                 </p>
                 <div className="space-y-4">
-                  <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
                     <h4 className="font-semibold text-gray-900 mb-2">On Campus</h4>
                     <p className="text-gray-700">Up to 20 hours per week</p>
                   </div>
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <h4 className="font-semibold text-gray-900 mb-2">Off Campus</h4>
                     <p className="text-gray-700">Through OPT or CPT</p>
                   </div>
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+                  <div className="bg-gradient-to-r from-blue-50 to-orange-50 p-4 rounded-lg border border-blue-200">
                     <ul className="space-y-2 text-gray-700">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
                         <span><strong>OPT</strong> allows one year of work after studies</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-0.5 flex-shrink-0" />
                         <span><strong>STEM OPT</strong> allows up to two additional years in science and tech fields</span>
                       </li>
                     </ul>
@@ -591,8 +600,8 @@ export default function StudyAbroadUSA() {
                     "Extraordinary talent categories",
                     "Long-term residency through work experience"
                   ].map((pathway, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
-                      <TrendingUp className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                      <TrendingUp className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{pathway}</span>
                     </div>
                   ))}
@@ -633,37 +642,6 @@ export default function StudyAbroadUSA() {
               </CardContent>
             </Card>
 
-            {/* Related Resources */}
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-indigo-50">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9]">
-                  Related Resources
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <Link href="/blog/top-universities-in-the-usa">
-                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
-                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
-                      <span className="text-gray-700 hover:text-[#1D50C9]">Top Universities in the USA</span>
-                    </a>
-                  </Link>
-                  <Link href="/blog/usa-student-visa-requirements">
-                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
-                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
-                      <span className="text-gray-700 hover:text-[#1D50C9]">USA Student Visa Requirements</span>
-                    </a>
-                  </Link>
-                  <Link href="/blog/best-usa-student-visa-consultants">
-                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
-                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
-                      <span className="text-gray-700 hover:text-[#1D50C9]">Best USA Student Visa Consultants</span>
-                    </a>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
           </div>
 
           {/* Sidebar */}
@@ -678,7 +656,7 @@ export default function StudyAbroadUSA() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-lg border border-blue-200">
                   <p className="font-semibold text-gray-700 mb-1">UAN Number</p>
                   <p className="text-2xl font-bold text-[#1D50C9]">(+92) 304 1110947</p>
                 </div>
@@ -718,17 +696,17 @@ export default function StudyAbroadUSA() {
                 <CardTitle className="text-lg text-[#1D50C9]">Quick Facts</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="p-3 bg-blue-50 rounded-lg">
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-xs text-gray-600 mb-1">Tuition Range</p>
                   <p className="text-lg font-bold text-[#1D50C9]">$27,940 - $65,000</p>
                 </div>
-                <div className="p-3 bg-green-50 rounded-lg">
+                <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
                   <p className="text-xs text-gray-600 mb-1">SEVIS Fee</p>
-                  <p className="text-lg font-bold text-green-700">$350</p>
+                  <p className="text-lg font-bold text-orange-600">$350</p>
                 </div>
-                <div className="p-3 bg-purple-50 rounded-lg">
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-xs text-gray-600 mb-1">Visa Application</p>
-                  <p className="text-lg font-bold text-purple-700">$185</p>
+                  <p className="text-lg font-bold text-[#1D50C9]">$185</p>
                 </div>
               </CardContent>
             </Card>
