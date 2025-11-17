@@ -429,11 +429,13 @@ export default function StudyAbroadUSA() {
                     </div>
                   ))}
                 </div>
-                <Link href="/blog/best-usa-student-visa-consultants">
-                  <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-0">
-                    Read Our Complete Guide
-                  </Button>
-                </Link>
+                <div className="flex justify-center mt-6">
+                  <Link href="/blog/best-usa-student-visa-consultants">
+                    <Button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-0">
+                      Read Our Complete Guide
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
