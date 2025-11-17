@@ -5,92 +5,97 @@ import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { setStaticPageMeta } from "@/lib/seo";
-
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
-import CountryFlag from "@/components/CountryFlag";
-import ApplicationForm from "@/components/ApplicationForm";
+import { Link } from "wouter";
+import {
+  CheckCircle,
+  DollarSign,
+  FileText,
+  GraduationCap,
+  Globe,
+  MapPin,
+  Calendar,
+  Users,
+  Zap,
+  Award,
+  Briefcase,
+  BookOpen,
+  TrendingUp,
+  Building,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink
+} from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export default function StudyAbroadUSA() {
   useEffect(() => {
     setStaticPageMeta(
-      "Study in USA",
-      "Discover world-class education opportunities in the USA. Pakistani students benefit from flexible programs, research excellence, CPT/OPT work opportunities, and internationally recognized degrees from top American universities."
+      "Study in USA from Pakistan - Complete Guide 2024 | Dunya Consultants",
+      "Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants."
     );
   }, []);
 
-  const [showSmartTools, setShowSmartTools] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-
-  const downloadChecklist = () => {
-    const checklistText = `USA STUDY ABROAD DOCUMENT CHECKLIST
-
-Required Documents:
-• Original Passport
-• Inter Degree & Result Documents
-• Matric Degree & Result Documents
-• IELTS / PTE Score Card
-• Experience Certificate
-• BS Degree + Transcript
-• 2 Recommendation Letters
-• GRE / GMAT (Optional)
-
-Contact Information:
-UAN: (+92) 304 1110947
-Email: info@dunyaconsultants.com
-Address: Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.
-
-© Dunya Consultants - Your trusted study abroad partner`;
-
-    const blob = new Blob([checklistText], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'USA-Study-Documents-Checklist.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  };
-
-  const documentChecklist = [
-    "Original Passport",
-    "Inter Degree & Result Documents", 
-    "Matric Degree & Result Documents",
-    "IELTS / PTE Score Card",
-    "Experience Certificate",
-    "BS Degree + Transcript",
-    "2 Recommendation Letters",
-    "GRE / GMAT (Optional)"
-  ];
-
-  const whyChooseUSA = [
-    "World-recognized education system",
-    "Internationally accepted degrees", 
+  const whyStudyUSA = [
+    "Global degree recognition",
+    "Access to modern technology and research",
     "Flexible education system",
-    "Diverse Career Opportunity",
-    "Excellent support for international students",
-    "Research and training opportunities",
-    "Exclusive campus life",
-    "Travel opportunities to states",
-    "Earn while learning",
-    "Curricular Practical Training (CPT) and Optional Practical Training (OPT)"
+    "Strong internship and job market",
+    "Multicultural society",
+    "Better PR and settlement opportunities"
   ];
 
-  const visaRequirements = [
-    { title: "I-20 Certificate", description: "Certificate of Eligibility Form provided by ISSO" },
-    { title: "Letter Of Admission", description: "Letter of admission provided by Graduate Division or UCSF professional school" },
-    { title: "Financial Support Documents", description: "Current proof of support that would meet expenses for program duration" },
-    { title: "Passport Valid", description: "Passport valid for a minimum of six months into the future" },
-    { title: "Form DS-160", description: "Nonimmigrant Visa Application available at US Embassy" },
-    { title: "Photos", description: "Two photos" },
-    { title: "MRV Fee", description: "Machine Readable Visa fee" },
-    { title: "SEVIS Fee", description: "Receipt for payment of SEVIS Fee" }
+  const universities = [
+    "Avila University",
+    "LIM College",
+    "Herzing University",
+    "Webster University",
+    "Massachusetts Institute of Technology (MIT)",
+    "Stanford University",
+    "Harvard University",
+    "California Institute of Technology",
+    "University of California, Berkeley",
+    "Columbia University"
+  ];
+
+  const popularCourses = [
+    "Engineering",
+    "Computer Science",
+    "Business Administration",
+    "Data Science",
+    "Economics",
+    "Nursing",
+    "Media Studies",
+    "Cybersecurity",
+    "Artificial Intelligence"
+  ];
+
+  const faqs = [
+    {
+      question: "How can I study in the USA from Pakistan?",
+      answer: "Pakistani students can study in the USA by applying to an accredited university, securing an I-20, paying the SEVIS fee, preparing financial documents, and attending the F1 visa interview. Working with an experienced consultant like Dunya Consultants helps students complete all steps correctly and increase their visa approval chances."
+    },
+    {
+      question: "How much money is required to study in the USA for Pakistani students?",
+      answer: "The required money depends on the university and city, but students generally need enough funds to cover one year of tuition and living expenses. Financial proof includes a bank statement, sponsor letter and fee documentation. Dunya Consultants guides students on accurate budgeting and required financial documents."
+    },
+    {
+      question: "Can I study in the USA without IELTS?",
+      answer: "Yes, many USA universities accept students without IELTS. Students can apply using PTE, Duolingo, TOEFL, or a medium of instruction letter depending on the university's policy. PTE is accepted for the USA study visa in many cases."
+    },
+    {
+      question: "How much study gap is acceptable in the USA?",
+      answer: "The USA is flexible with study gaps. A gap of up to five years is usually acceptable for bachelors and up to ten years for masters if supported by valid reasons such as work experience, skills development or personal responsibilities."
+    },
+    {
+      question: "Can a Pakistani student get PR or a green card after studying in the USA?",
+      answer: "Yes, students can eventually get PR after studying in the USA through pathways like the H1B skilled work visa, employer sponsorship or exceptional talent categories. Many Pakistani graduates successfully settle in the USA after gaining professional experience."
+    }
   ];
 
   return (
@@ -99,221 +104,587 @@ Address: Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodh
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-16">
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6"
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6 backdrop-blur-sm"
             >
               <GraduationCap className="w-10 h-10" />
             </motion.div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
-              Study in <span className="text-white">USA</span>
-            </h1>
-            <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
-              Discover world-class education opportunities in the United States with over 5,000 higher education institutes
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
-                <GraduationCap className="w-5 h-5 mr-2" />
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl lg:text-5xl font-bold mb-6"
+            >
+              Study in <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">USA</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg lg:text-xl mb-8 text-white/90 leading-relaxed max-w-4xl mx-auto"
+            >
+              Your Complete Guide to Studying in the USA from Pakistan
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
+            >
+              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
+                <GraduationCap className="w-4 h-4 mr-2" />
                 5,000+ Universities
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
-                <Globe className="w-5 h-5 mr-2" />
-                World's Top Education
+              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
+                <Globe className="w-4 h-4 mr-2" />
+                F1 Visa Guidance
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
-                <Users className="w-5 h-5 mr-2" />
-                International Students Welcome
+              <Badge variant="secondary" className="px-4 py-2 text-base bg-white/20 text-white border-white/30">
+                <Award className="w-4 h-4 mr-2" />
+                Scholarship Support
               </Badge>
-            </div>
+            </motion.div>
             
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
               <CalendlyButton
                 text="Book Free Consultation"
-                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-3 text-lg font-semibold"
                 size="lg"
                 showIcon={false}
               />
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                className="border-2 border-white text-white hover:bg-white/10 px-8"
                 onClick={() => setIsPopupOpen(true)}
               >
-                Connect now
+                Start Your Application
               </Button>
-            </div>
-            <div className="mt-6 flex justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
-              >
-                <p className="text-sm font-medium">
-                  Innovation • Excellence • Opportunity
-                </p>
-              </motion.div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-4 gap-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2 space-y-8">
             
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
-                <div className="flex items-center">
-                  <div className="bg-blue-50 p-2 rounded mr-3">
-                    <DollarSign className="w-4 h-4 text-[#1D50C9]" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">$27,940 - $65,000</p>
-                    <p className="text-xs text-gray-600">Annual Tuition Range</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
-                <div className="flex items-center">
-                  <div className="bg-green-50 p-2 rounded mr-3">
-                    <FileText className="w-4 h-4 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">SEVIS $350</p>
-                    <p className="text-xs text-gray-600">+ DS-160 $185</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
-                <div className="flex items-center">
-                  <div className="bg-purple-50 p-2 rounded mr-3">
-                    <GraduationCap className="w-4 h-4 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">5,000+</p>
-                    <p className="text-xs text-gray-600">Higher Education Institutes</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Introduction */}
+            <Card className="border-0 shadow-sm">
+              <CardContent className="pt-6">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Studying in the USA is one of the smartest decisions a Pakistani student can make for their future. The United States offers world-class education, global career opportunities, and a multicultural learning environment that helps students grow personally and professionally. Pakistani students choose the USA because it provides flexible courses, strong post-study work options, and a clear pathway toward long-term settlement.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  This complete guide explains how to study in the USA from Pakistan, how much money is required, admission requirements, study gap acceptance, top universities, scholarship options, and how to get a USA study visa with the help of trusted USA study visa consultants like <a href="/contact" target="_blank" className="text-[#1D50C9] hover:underline font-medium">Dunya Consultants</a>.
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* Tuition Fee Details */}
-            <Card className="mb-6 bg-gray-50 border-0">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
-                  <DollarSign className="w-5 h-5 mr-2" />
-                  Tuition Fees
+            {/* Why Study in USA */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Zap className="w-6 h-6" />
+                  Why Study in USA
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  The USA offers a world-recognized degree, excellent job opportunities, practical learning, and a huge number of scholarships for international students, making it the top study destination for Pakistani students.
+                </p>
+                <h3 className="font-semibold text-gray-900 mb-4 text-lg">Key Reasons</h3>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {whyStudyUSA.map((reason, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 leading-relaxed">{reason}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 mt-4 italic">
+                  If you are preparing for your visa interview, this also answers the common question "Why study in USA" or "Why study in USA?" clearly.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Study in USA from Pakistan */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <BookOpen className="w-6 h-6" />
+                  Study in USA from Pakistan
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Pakistani students can study in the USA by applying to an approved university, securing an I-20, paying the SEVIS fee, and attending the F1 student visa interview. Dunya Consultants guides students through every step including course selection, application submission, financial documentation, interview preparation, and visa support.
+                </p>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-100">
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <Users className="w-5 h-5 text-[#1D50C9]" />
+                    Study in USA for Pakistani Students
+                  </h4>
+                  <p className="text-gray-700 mb-3 leading-relaxed">
+                    Every year thousands of students from Pakistan join American universities because the USA offers:
+                  </p>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <span>High quality education</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Wide program selection</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Scholarships and assistantships</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Strong industry links</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Better career growth</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-gray-600 mt-3">
+                    Pakistani students especially prefer fields like engineering, business, computer science, AI, health sciences, and economics because these areas offer higher earning potential.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Study Without IELTS */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <FileText className="w-6 h-6" />
+                  Study in USA Without IELTS
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Many American universities accept students without IELTS. Alternatives include:
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">PTE</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">Duolingo</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">TOEFL</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">Medium of Instruction Letter</span>
+                  </div>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                  <p className="text-gray-700">
+                    <strong className="text-gray-900">Is PTE accepted in USA for study visa?</strong><br />
+                    Yes, PTE is accepted in USA by many universities and is valid for the F1 visa.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Cost Requirements */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <DollarSign className="w-6 h-6" />
+                  How Much Money is Required to Study in USA
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Students need to show enough financial support to cover tuition and living costs for at least one year. The average requirement includes:
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
+                      <GraduationCap className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Tuition</h4>
+                      <p className="text-gray-600 text-sm">Community colleges are lower cost, while public and private universities vary</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Building className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Living Cost</h4>
+                      <p className="text-gray-600 text-sm">Accommodation, food, health insurance, and transport</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Bank Statement</h4>
+                      <p className="text-gray-600 text-sm">Required for visa and I-20 issuance</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* GPA Requirements */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Award className="w-6 h-6" />
+                  How Much GPA is Required to Study in USA
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 leading-relaxed">
+                  Most universities accept students with a minimum GPA of <strong>2.5 to 3.5</strong>, depending on the program. Competitive courses like engineering or medicine may require higher grades.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Study Gap */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Calendar className="w-6 h-6" />
+                  How Much Study Gap is Acceptable in USA
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  USA universities are flexible.
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">Bachelor's Degree</h4>
+                    <p className="text-gray-700">Up to <strong>2 to 5 years gap</strong> is acceptable</p>
+                  </div>
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">Master's Degree</h4>
+                    <p className="text-gray-700"><strong>5 to 10 years gap</strong> can be accepted with valid justification such as work experience</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Free/Affordable Study */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <DollarSign className="w-6 h-6" />
+                  Free Study in USA for Pakistani Students
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Students can study in the USA at very low cost or almost free through:
+                </p>
+                <div className="space-y-2">
+                  {[
+                    "Merit scholarships",
+                    "Need-based grants",
+                    "External funding",
+                    "Research and teaching assistantships",
+                    "University scholarships"
+                  ].map((option, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <span className="text-gray-700">{option}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-gray-700 mt-4 leading-relaxed">
+                  Dunya Consultants helps students identify and apply for these opportunities.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Best Consultant */}
+            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-indigo-50">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Users className="w-6 h-6" />
+                  Best Consultant for USA Study Visa in Pakistan
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Dunya Consultants is recognized as one of the <strong>best consultants for USA study visa in Pakistan</strong>. Their team supports students with:
+                </p>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {[
+                    "University selection",
+                    "Application processing",
+                    "Scholarship guidance",
+                    "Visa file preparation",
+                    "Interview coaching"
+                  ].map((service, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg border border-blue-200">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{service}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Popular Courses */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <BookOpen className="w-6 h-6" />
+                  Popular Courses to Study in USA
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  When students ask which subject is best to study in USA, the most popular fields include:
+                </p>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {popularCourses.map((course, index) => (
+                    <div key={index} className="p-3 bg-blue-50 rounded-lg border border-blue-100 text-center">
+                      <span className="text-gray-700 font-medium">{course}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-gray-700 mt-4 leading-relaxed">
+                  If you want specialized guidance for choosing a subject, Dunya Consultants can assist.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Top Universities */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Building className="w-6 h-6" />
+                  Best Universities in USA for Pakistani Students
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {universities.map((university, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="w-8 h-8 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-semibold text-sm">{index + 1}</span>
+                      </div>
+                      <span className="text-gray-700">{university}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* F1 Visa */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <FileText className="w-6 h-6" />
+                  Study Visa in USA (F1 Visa)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  The USA study visa is known as the <strong>F1 visa</strong>. Students must have:
+                </p>
+                <div className="space-y-2">
+                  {[
+                    "Valid passport",
+                    "Acceptance letter and I-20",
+                    "SEVIS fee payment",
+                    "Academic documents",
+                    "Bank statements",
+                    "Visa interview appointment"
+                  ].map((requirement, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <span className="text-gray-700">{requirement}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Work Opportunities */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <Briefcase className="w-6 h-6" />
+                  Work and Career Opportunities
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Students can work:
+                </p>
                 <div className="space-y-4">
-                  {/* Undergraduate Programs */}
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-800 mb-2">Undergraduate</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                      <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                        <h4 className="font-medium text-gray-700 text-xs mb-1">Public In-State</h4>
-                        <p className="text-lg font-bold text-[#1D50C9]">$27,940</p>
-                        <p className="text-xs text-gray-500">per year</p>
-                      </div>
-                      <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                        <h4 className="font-medium text-gray-700 text-xs mb-1">Public Out-of-State</h4>
-                        <p className="text-lg font-bold text-[#1D50C9]">$45,240</p>
-                        <p className="text-xs text-gray-500">per year</p>
-                      </div>
-                      <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                        <h4 className="font-medium text-gray-700 text-xs mb-1">Private</h4>
-                        <p className="text-lg font-bold text-[#1D50C9]">$57,570</p>
-                        <p className="text-xs text-gray-500">per year</p>
-                      </div>
-                    </div>
+                  <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">On Campus</h4>
+                    <p className="text-gray-700">Up to 20 hours per week</p>
                   </div>
-                  
-                  {/* Graduate Programs */}
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-800 mb-2">Graduate</h3>
-                    <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                      <p className="text-lg font-bold text-[#1D50C9] mb-1">$18,000 - $65,000</p>
-                      <p className="text-xs text-gray-500">per year</p>
-                    </div>
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">Off Campus</h4>
+                    <p className="text-gray-700">Through OPT or CPT</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+                    <ul className="space-y-2 text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span><strong>OPT</strong> allows one year of work after studies</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <span><strong>STEM OPT</strong> allows up to two additional years in science and tech fields</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
+                <p className="text-gray-700 mt-4 leading-relaxed">
+                  This leads to better long-term settlement options.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Why Choose USA */}
-            <Card className="mb-6 bg-gray-50 border-0">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
-                  <Zap className="w-5 h-5 mr-2" />
-                  Why Study in USA?
+            {/* Green Card */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
+                  <TrendingUp className="w-6 h-6" />
+                  Can I Get Green Card After Study in USA
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {whyChooseUSA.map((benefit, index) => (
-                    <div key={index} className="flex items-start space-x-2 p-3 bg-white rounded border border-gray-200 hover:shadow-sm transition-shadow">
-                      <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700 text-xs leading-relaxed">{benefit}</span>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Yes, students can move toward permanent residency. Common pathways include:
+                </p>
+                <div className="space-y-2">
+                  {[
+                    "H1B skilled worker visa",
+                    "Employer sponsorship",
+                    "Extraordinary talent categories",
+                    "Long-term residency through work experience"
+                  ].map((pathway, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                      <TrendingUp className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{pathway}</span>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Visa Requirements */}
-            <Card className="mb-6 bg-gray-50 border-0">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
-                  <FileText className="w-5 h-5 mr-2" />
-                  Visa Requirements
+            {/* FAQs */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#1D50C9]">
+                  Frequently Asked Questions (FAQs)
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {visaRequirements.map((req, index) => (
-                    <div key={index} className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
-                      <h4 className="font-medium text-gray-900 mb-2 text-sm">{req.title}</h4>
-                      <p className="text-gray-600 text-xs leading-relaxed">{req.description}</p>
+                <div className="space-y-3">
+                  {faqs.map((faq, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+                      <button
+                        onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        className="w-full px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between gap-3"
+                      >
+                        <span className="font-semibold text-gray-900">{faq.question}</span>
+                        {expandedFaq === index ? (
+                          <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                        )}
+                      </button>
+                      {expandedFaq === index && (
+                        <div className="px-4 py-3 bg-white">
+                          <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
+            {/* Related Resources */}
+            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-indigo-50">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#1D50C9]">
+                  Related Resources
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <Link href="/blog/top-universities-in-the-usa">
+                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
+                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
+                      <span className="text-gray-700 hover:text-[#1D50C9]">Top Universities in the USA</span>
+                    </a>
+                  </Link>
+                  <Link href="/blog/usa-student-visa-requirements">
+                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
+                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
+                      <span className="text-gray-700 hover:text-[#1D50C9]">USA Student Visa Requirements</span>
+                    </a>
+                  </Link>
+                  <Link href="/blog/best-usa-student-visa-consultants">
+                    <a className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:border-[#1D50C9] transition-colors">
+                      <ExternalLink className="w-4 h-4 text-[#1D50C9]" />
+                      <span className="text-gray-700 hover:text-[#1D50C9]">Best USA Student Visa Consultants</span>
+                    </a>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
 
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
+          <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start space-y-6">
             
             {/* Quick Contact */}
-            <Card>
+            <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
-                  <MapPin className="w-5 h-5 mr-2" />
+                <CardTitle className="text-xl text-[#1D50C9] flex items-center gap-2">
+                  <MapPin className="w-5 h-5" />
                   Get Expert Guidance
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <p className="font-semibold text-blue-900">UAN Number</p>
-                  <p className="text-xl font-bold text-[#1D50C9]">(+92) 304 1110947</p>
+                <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                  <p className="font-semibold text-gray-700 mb-1">UAN Number</p>
+                  <p className="text-2xl font-bold text-[#1D50C9]">(+92) 304 1110947</p>
                 </div>
                 
                 <ApplicationForm country="USA">
-                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1D50C9] text-white">
+                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Apply Now
                   </Button>
@@ -321,19 +692,47 @@ Address: Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodh
                 
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50"
                   onClick={() => window.open('https://wa.me/923261111947?text=Hello, I want to start my application for studying in USA. Please guide me through the process.')}
                 >
                   <Globe className="w-4 h-4 mr-2" />
-                  Start Your Application
+                  WhatsApp Us
                 </Button>
                 
-                <div className="text-center text-sm text-gray-600">
-                  <p>📧 info@dunyaconsultants.com</p>
-                  <p>📍 Dunya Consultant 106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha.</p>
+                <div className="text-sm text-gray-600 space-y-2 pt-3 border-t">
+                  <p className="flex items-start gap-2">
+                    <span>📧</span>
+                    <span>info@dunyaconsultants.com</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span>📍</span>
+                    <span>106 Sadium Road, Opposite Bajwa Trauma Centre, Sargodha</span>
+                  </p>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Quick Stats */}
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-lg text-[#1D50C9]">Quick Facts</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">Tuition Range</p>
+                  <p className="text-lg font-bold text-[#1D50C9]">$27,940 - $65,000</p>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">SEVIS Fee</p>
+                  <p className="text-lg font-bold text-green-700">$350</p>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">Visa Application</p>
+                  <p className="text-lg font-bold text-purple-700">$185</p>
+                </div>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </div>
