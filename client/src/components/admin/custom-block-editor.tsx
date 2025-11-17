@@ -89,6 +89,13 @@ export interface ConsultationBlock extends BaseBlock {
   buttonBgColor: string;
   buttonTextColor: string;
   buttonBorderRadius: number;
+  button2Text?: string;
+  button2Url?: string;
+  button2BgColor?: string;
+  button2TextColor?: string;
+  button2BorderRadius?: number;
+  button2BorderWidth?: number;
+  button2BorderColor?: string;
 }
 
 export interface WhatsAppChannelBlock extends BaseBlock {
@@ -99,6 +106,7 @@ export interface WhatsAppChannelBlock extends BaseBlock {
   buttonText: string;
   buttonBgColor: string;
   buttonTextColor: string;
+  buttonHoverColor: string;
   buttonBorderRadius: number;
 }
 
@@ -1099,6 +1107,45 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
 
 // WhatsApp Channel Block Component
 function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppChannelBlock; onChange: (block: WhatsAppChannelBlock) => void }) {
+  const [saveScope, setSaveScope] = useState<'current' | 'upcoming' | 'global'>('current');
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSaveAsDefault = async () => {
+    if (saveScope === 'current') {
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const defaults = {
+        title: block.title,
+        description: block.description,
+        channelUrl: block.channelUrl,
+        buttonText: block.buttonText,
+        buttonBgColor: block.buttonBgColor,
+        buttonTextColor: block.buttonTextColor,
+        buttonHoverColor: block.buttonHoverColor,
+        buttonBorderRadius: block.buttonBorderRadius,
+      };
+
+      const response = await fetch(`/api/admin/block-defaults/whatsappChannel/${saveScope}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ defaults }),
+      });
+
+      if (!response.ok) throw new Error('Failed to save defaults');
+
+      const result = await response.json();
+      alert(`✅ Defaults saved${saveScope === 'global' ? ` and applied to ${result.updatedPosts} existing articles` : ' for future articles'}!`);
+    } catch (error) {
+      console.error('Error saving defaults:', error);
+      alert('❌ Failed to save defaults');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div>
@@ -1177,6 +1224,24 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
               </div>
             </div>
           </div>
+
+          <div>
+            <Label className="text-xs text-gray-600 mb-1 block">Hover Color</Label>
+            <div className="flex gap-2">
+              <Input
+                type="color"
+                value={block.buttonHoverColor}
+                onChange={(e) => onChange({ ...block, buttonHoverColor: e.target.value })}
+                className="w-12 h-9 p-1 cursor-pointer"
+              />
+              <Input
+                value={block.buttonHoverColor}
+                onChange={(e) => onChange({ ...block, buttonHoverColor: e.target.value })}
+                placeholder="#1EA952"
+                className="flex-1"
+              />
+            </div>
+          </div>
           
           <div>
             <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
@@ -1189,6 +1254,55 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
               max="50"
             />
           </div>
+        </div>
+      </div>
+
+      {/* Save as Default Section */}
+      <div className="border-t pt-4 bg-blue-50 p-4 rounded">
+        <Label className="text-sm font-medium mb-3 block">Save as Default</Label>
+        <div className="space-y-3">
+          <div className="flex flex-col gap-2">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="current"
+                checked={saveScope === 'current'}
+                onChange={() => setSaveScope('current')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm">Current article only (no default)</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="upcoming"
+                checked={saveScope === 'upcoming'}
+                onChange={() => setSaveScope('upcoming')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm">Upcoming articles (new blocks will use these settings)</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="global"
+                checked={saveScope === 'global'}
+                onChange={() => setSaveScope('global')}
+                className="w-4 h-4"
+              />
+              <span className="text-sm font-medium text-orange-600">Global (update ALL existing + future articles)</span>
+            </label>
+          </div>
+          {saveScope !== 'current' && (
+            <Button
+              onClick={handleSaveAsDefault}
+              disabled={isSaving}
+              className="w-full"
+              variant="default"
+            >
+              {isSaving ? 'Saving...' : `Save as ${saveScope === 'global' ? 'Global' : 'Upcoming'} Default`}
+            </Button>
+          )}
         </div>
       </div>
       
@@ -1316,6 +1430,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           buttonText: 'Join Channel',
           buttonBgColor: '#25D366',
           buttonTextColor: '#ffffff',
+          buttonHoverColor: '#1EA952',
           buttonBorderRadius: 8,
           position 
         } as WhatsAppChannelBlock;

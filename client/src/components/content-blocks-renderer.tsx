@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
 
 interface ContentBlocksRendererProps {
@@ -601,14 +601,17 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
 
 // WhatsApp Channel Block Renderer
 function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type: 'whatsappChannel' } }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
   // Handle both new format (data.*) and old format (direct properties)
   const blockData = block as any;
   const title = blockData.data?.title || blockData.title || 'Stay Updated with Our WhatsApp Channel';
   const description = blockData.data?.description || blockData.description || 'Get instant updates on visa news, and study abroad opportunities!';
   const channelUrl = blockData.data?.channelUrl || blockData.channelUrl || 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V';
   const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Join Channel';
-  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#FFFFFF';
-  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#25D366';
+  const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#25D366';
+  const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
+  const buttonHoverColor = blockData.data?.buttonHoverColor || blockData.buttonHoverColor || '#1EA952';
   const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
 
   return (
@@ -631,13 +634,16 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
             href={channelUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:opacity-90"
+            className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             style={{ 
-              backgroundColor: buttonBgColor,
+              backgroundColor: isHovered ? buttonHoverColor : buttonBgColor,
               color: buttonTextColor,
               borderRadius: `${buttonBorderRadius}px`,
-              fontFamily: 'Inter, Lato, sans-serif !important'
+              fontFamily: 'Inter, Lato, sans-serif !important',
+              transition: 'background-color 0.3s ease'
             }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
