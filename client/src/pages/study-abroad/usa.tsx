@@ -208,9 +208,9 @@ export default function StudyAbroadUSA() {
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Pakistani students can study in the USA by applying to an approved university, securing an I-20, paying the SEVIS fee, and attending the F1 visa interview. Dunya Consultants guides students through every step including course selection, application submission, financial documentation, interview preparation, and visa support.
                 </p>
-                <div className="bg-gradient-to-r from-orange-50 to-orange-100/30 p-5 md:p-6 rounded-r-lg border-l-4 border-orange-600 shadow-sm">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-5 md:p-6 rounded-lg border border-blue-200">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                    <Users className="w-5 h-5 text-orange-600" />
+                    <Users className="w-5 h-5 text-[#1D50C9]" />
                     Study in USA for Pakistani Students
                   </h4>
                   <p className="text-gray-700 mb-3 leading-relaxed">
