@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -377,32 +378,33 @@ export default function EventsPage() {
                     <CardContent>
                       <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
                       <div className="flex gap-3">
-                        <Button
-                          onClick={() => window.location.href = `/events/${event.slug}`}
-                          variant="outline"
-                          className="flex-1 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
-                          data-testid={`button-details-${event.id}`}
+                        <Link 
+                          href={`/events/${event.slug}`} 
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm"
+                          data-testid={`link-event-details-${event.id}`}
                         >
                           See Details
-                        </Button>
+                        </Link>
                         {event.registrationEnabled !== false ? (
-                          <Button
-                            onClick={() => window.location.href = `/events/register-now?event=${event.slug}`}
-                            className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
-                            data-testid={`button-register-${event.id}`}
+                          <Link 
+                            href={`/events/register-now?event=${event.slug}`} 
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
+                            data-testid={`link-event-register-${event.id}`}
                           >
                             <span className="relative z-10">Get Started</span>
                             <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                          </Button>
+                          </Link>
                         ) : (
-                          <Button
-                            onClick={() => window.open('https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V', '_blank')}
-                            className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:animate-bob hover:scale-105 transition-all duration-300 overflow-hidden relative group"
-                            data-testid={`button-whatsapp-${event.id}`}
+                          <a 
+                            href="https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
+                            data-testid={`link-event-whatsapp-${event.id}`}
                           >
                             <span className="relative z-10">Join WhatsApp</span>
                             <span className="absolute inset-0 bg-gradient-to-r from-[#0f3a8a] to-[#1D50C9] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                          </Button>
+                          </a>
                         )}
                       </div>
                     </CardContent>
@@ -464,22 +466,21 @@ export default function EventsPage() {
                     <CardContent>
                       <p className="text-gray-600 mb-4" style={{ fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>{event.shortDescription}</p>
                       <div className="flex gap-3">
-                        <Button
-                          onClick={() => window.location.href = `/events/${event.slug}`}
-                          variant="outline"
-                          className="flex-1 bg-white border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white transition-all duration-300"
-                          data-testid={`button-details-past-${event.id}`}
+                        <Link 
+                          href={`/events/${event.slug}`} 
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-white border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm"
+                          data-testid={`link-past-event-details-${event.id}`}
                         >
                           See Details
-                        </Button>
-                        <Button
-                          onClick={() => window.location.href = `/events/${event.slug}`}
-                          className="flex-1 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 transition-transform duration-300 group"
-                          data-testid={`button-watch-highlights-${event.id}`}
+                        </Link>
+                        <Link 
+                          href={`/events/${event.slug}`} 
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-transform duration-300 rounded-md font-medium text-sm group"
+                          data-testid={`link-past-event-highlights-${event.id}`}
                         >
                           <span className="absolute inset-0 w-[200%] h-[200%] bg-gradient-to-br from-transparent via-white/50 to-transparent -translate-x-full -translate-y-full group-hover:animate-mirror-slider-infinite"></span>
                           <span className="relative z-10">Watch Highlights</span>
-                        </Button>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>

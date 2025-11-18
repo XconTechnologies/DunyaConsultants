@@ -497,51 +497,54 @@ export default function BlogList() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index, duration: 0.6 }}
               whileHover={{ y: -5 }}
-              className="group"
             >
-              <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
-                {/* Featured Image */}
-                {post.image && (
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <img loading="lazy" 
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover transition-transform hover:scale-105"
-                      style={{ objectFit: 'cover', objectPosition: 'center' }}
-                      onError={(e) => {
-                        e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
-                      }}
-                    />
-                  </div>
-                )}
-                
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:bg-[#1845B3] transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                      <Calendar className="w-4 h-4" />
-                      <span>{post.date}</span>
+              <Link 
+                href={getBlogUrl(post.slug)} 
+                className="group block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] rounded-lg"
+                data-testid={`link-blog-${post.id}`}
+              >
+                <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
+                  {/* Featured Image */}
+                  {post.image && (
+                    <div className="relative overflow-hidden rounded-t-lg">
+                      <img loading="lazy" 
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-48 object-cover transition-transform group-hover:scale-105"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        onError={(e) => {
+                          e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+                        }}
+                      />
                     </div>
+                  )}
+                  
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#1845B3] transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
                     
-                    <Link href={getBlogUrl(post.slug)}>
-                      <Button 
-                        size="sm" 
-                        className="#1D50C9 hover:bg-[#1845B3] text-white"
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-sm text-gray-500">
+                        <Calendar className="w-4 h-4" />
+                        <span>{post.date}</span>
+                      </div>
+                      
+                      <div 
+                        className="inline-flex items-center justify-center px-3 py-2 text-sm font-semibold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] group-hover:from-[#1845B3] group-hover:to-[#1D50C9] text-white rounded-md transition-all shadow-sm hover:shadow-md"
+                        data-testid={`cta-read-more-${post.id}`}
                       >
                         Read More
                         <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </div>
