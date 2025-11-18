@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import {
   Plus,
+  Edit,
   Edit2,
   Trash2,
   Eye,
@@ -24,6 +25,8 @@ import {
   X,
   User,
   Clock,
+  Calendar,
+  Tag,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -88,6 +91,7 @@ export default function AllPosts() {
   // Quick edit modal state
   const [quickEditPost, setQuickEditPost] = useState<{
     id: number;
+    title: string;
     authorId: number;
     publishedAt: string;
     categoryIds: number[];
@@ -809,6 +813,7 @@ export default function AllPosts() {
                                         const cats = postCategories[post.id] || [];
                                         setQuickEditPost({
                                           id: post.id,
+                                          title: post.title,
                                           authorId: post.authorId,
                                           publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString().split('T')[0] : '',
                                           categoryIds: cats.map((c: any) => c.id),
@@ -1085,97 +1090,134 @@ export default function AllPosts() {
 
       {/* Quick Edit Dialog */}
       <Dialog open={quickEditPost !== null} onOpenChange={(open) => !open && setQuickEditPost(null)}>
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Quick Edit</DialogTitle>
-            <DialogDescription>
-              Update the author, published date, and categories for this post
-            </DialogDescription>
-          </DialogHeader>
-          
+        <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden">
           {quickEditPost && (
-            <div className="space-y-6 py-4">
-              {/* Author Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="quick-edit-author" className="text-sm font-semibold">Author</Label>
-                <Select
-                  value={quickEditPost.authorId.toString()}
-                  onValueChange={(value) => setQuickEditPost({ ...quickEditPost, authorId: parseInt(value) })}
-                >
-                  <SelectTrigger id="quick-edit-author" className="border-gray-300">
-                    <SelectValue placeholder="Select author" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {authors.map((author: Author) => (
-                      <SelectItem key={author.id} value={author.id.toString()}>
-                        {author.username}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Published Date */}
-              <div className="space-y-2">
-                <Label htmlFor="quick-edit-date" className="text-sm font-semibold">Published Date</Label>
-                <Input
-                  id="quick-edit-date"
-                  type="date"
-                  value={quickEditPost.publishedAt}
-                  onChange={(e) => setQuickEditPost({ ...quickEditPost, publishedAt: e.target.value })}
-                  className="border-gray-300"
-                />
-              </div>
-
-              {/* Categories */}
-              <div className="space-y-2">
-                <Label className="text-sm font-semibold">Categories</Label>
-                <div className="border border-gray-300 rounded-md p-4 max-h-60 overflow-y-auto space-y-2">
-                  {allCategories.map((category: any) => (
-                    <div key={category.id} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`category-${category.id}`}
-                        checked={quickEditPost.categoryIds.includes(category.id)}
-                        onCheckedChange={(checked) => {
-                          if (checked) {
-                            setQuickEditPost({
-                              ...quickEditPost,
-                              categoryIds: [...quickEditPost.categoryIds, category.id]
-                            });
-                          } else {
-                            setQuickEditPost({
-                              ...quickEditPost,
-                              categoryIds: quickEditPost.categoryIds.filter(id => id !== category.id)
-                            });
-                          }
-                        }}
-                      />
-                      <Label htmlFor={`category-${category.id}`} className="text-sm cursor-pointer">
-                        {category.name}
-                      </Label>
-                    </div>
-                  ))}
+            <>
+              {/* Gradient Header with Post Title */}
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#2B5FD9] text-white p-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <Edit className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold mb-1">Quick Edit</h3>
+                    <p className="text-blue-100 text-sm line-clamp-2 leading-relaxed">
+                      {quickEditPost.title}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex justify-end gap-2 pt-4">
-                <Button
-                  variant="outline"
-                  onClick={() => setQuickEditPost(null)}
-                  disabled={quickEditMutation.isPending}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={() => quickEditMutation.mutate(quickEditPost)}
-                  disabled={quickEditMutation.isPending}
-                  className="bg-[#1D50C9] hover:bg-[#1845B3]"
-                >
-                  {quickEditMutation.isPending ? 'Saving...' : 'Save Changes'}
-                </Button>
+              {/* Form Content */}
+              <div className="p-6 space-y-6">
+                {/* Author Selection */}
+                <div className="space-y-2">
+                  <Label htmlFor="quick-edit-author" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <User className="w-4 h-4 text-[#1D50C9]" />
+                    Author
+                  </Label>
+                  <Select
+                    value={quickEditPost.authorId.toString()}
+                    onValueChange={(value) => setQuickEditPost({ ...quickEditPost, authorId: parseInt(value) })}
+                  >
+                    <SelectTrigger id="quick-edit-author" className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]">
+                      <SelectValue placeholder="Select author" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {authors.map((author: Author) => (
+                        <SelectItem key={author.id} value={author.id.toString()}>
+                          {author.username}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Published Date */}
+                <div className="space-y-2">
+                  <Label htmlFor="quick-edit-date" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#1D50C9]" />
+                    Published Date
+                  </Label>
+                  <Input
+                    id="quick-edit-date"
+                    type="date"
+                    value={quickEditPost.publishedAt}
+                    onChange={(e) => setQuickEditPost({ ...quickEditPost, publishedAt: e.target.value })}
+                    className="border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                  />
+                </div>
+
+                {/* Categories */}
+                <div className="space-y-2">
+                  <Label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-[#1D50C9]" />
+                    Categories
+                  </Label>
+                  <div className="border border-gray-300 rounded-lg p-4 max-h-60 overflow-y-auto bg-gray-50/50">
+                    <div className="space-y-2.5">
+                      {allCategories.map((category: any) => (
+                        <div 
+                          key={category.id} 
+                          className="flex items-center space-x-3 p-2 rounded-md hover:bg-white transition-colors"
+                        >
+                          <Checkbox
+                            id={`category-${category.id}`}
+                            checked={quickEditPost.categoryIds.includes(category.id)}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                setQuickEditPost({
+                                  ...quickEditPost,
+                                  categoryIds: [...quickEditPost.categoryIds, category.id]
+                                });
+                              } else {
+                                setQuickEditPost({
+                                  ...quickEditPost,
+                                  categoryIds: quickEditPost.categoryIds.filter(id => id !== category.id)
+                                });
+                              }
+                            }}
+                            className="data-[state=checked]:bg-[#1D50C9] data-[state=checked]:border-[#1D50C9]"
+                          />
+                          <Label 
+                            htmlFor={`category-${category.id}`} 
+                            className="text-sm cursor-pointer flex-1 font-medium text-gray-700"
+                          >
+                            {category.name}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-3 pt-2 border-t border-gray-200">
+                  <Button
+                    variant="outline"
+                    onClick={() => setQuickEditPost(null)}
+                    disabled={quickEditMutation.isPending}
+                    className="border-gray-300 hover:bg-gray-50"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => quickEditMutation.mutate(quickEditPost)}
+                    disabled={quickEditMutation.isPending}
+                    className="bg-[#1D50C9] hover:bg-[#1845B3] text-white shadow-md"
+                  >
+                    {quickEditMutation.isPending ? (
+                      <>
+                        <span className="mr-2">Saving...</span>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      </>
+                    ) : (
+                      'Save Changes'
+                    )}
+                  </Button>
+                </div>
               </div>
-            </div>
+            </>
           )}
         </DialogContent>
       </Dialog>
