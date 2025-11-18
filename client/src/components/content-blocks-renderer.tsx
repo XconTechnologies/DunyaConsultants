@@ -61,6 +61,9 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     blocksByPosition.get(pos)?.push(block);
   });
   
+  // Track which blocks have been rendered to avoid duplicates
+  const renderedBlockIds = new Set<number>();
+  
   // Add blocks at position 0 (beginning)
   if (blocksByPosition.has(0)) {
     blocksByPosition.get(0)?.forEach((block, idx) => {
@@ -69,6 +72,7 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
           {renderBlock(block)}
         </div>
       );
+      renderedBlockIds.add(block.id);
     });
   }
   
@@ -90,20 +94,22 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
             {renderBlock(block)}
           </div>
         );
+        renderedBlockIds.add(block.id);
       });
     }
   });
   
   // Add blocks at the end (position >= 999 OR position > number of elements)
-  // This ensures blocks with out-of-range positions don't disappear
+  // Only add blocks that haven't been rendered yet to avoid duplicates
   blocks.forEach((block, idx) => {
     const pos = block.position ?? 999;
-    if (pos >= 999 || pos > elements.length) {
+    if ((pos >= 999 || pos > elements.length) && !renderedBlockIds.has(block.id)) {
       contentParts.push(
         <div key={`block-end-${idx}`} className="my-6">
           {renderBlock(block)}
         </div>
       );
+      renderedBlockIds.add(block.id);
     }
   });
   
