@@ -668,8 +668,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const eventId = parseInt(req.params.eventId);
       const user = await storage.getAdminById(req.adminId!);
       
+      // Check if user has admin role (support both old single role and new multi-role system)
+      const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin';
+      
       // Admin can see all registrations
-      if (user?.role === 'admin') {
+      if (isAdmin) {
         const registrations = await storage.getEventRegistrations(eventId);
         return res.json(registrations);
       }
@@ -694,8 +697,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const user = await storage.getAdminById(req.adminId!);
       
+      // Check if user has admin role (support both old single role and new multi-role system)
+      const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin';
+      
       // Admin sees all registrations
-      if (user?.role === 'admin') {
+      if (isAdmin) {
         const registrations = await storage.getEventRegistrations();
         return res.json(registrations);
       }
@@ -1130,9 +1136,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const user = await storage.getAdminById(req.adminId);
       
+      // Check if user has admin role (support both old single role and new multi-role system)
+      const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin';
+      
       // Admin sees all QR codes, non-admin users see only their created codes
       let qrCodes;
-      if (user?.role === 'admin') {
+      if (isAdmin) {
         qrCodes = await storage.getQrCodes();
       } else {
         qrCodes = await storage.getUserQRCodes(req.adminId);
@@ -2625,8 +2634,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const user = await storage.getAdminById(req.adminId);
       
+      // Check if user has admin role (support both old single role and new multi-role system)
+      const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin';
+      
       // Admin has access to everything
-      if (user?.role === 'admin') {
+      if (isAdmin) {
         return res.json({
           hasPostAssignments: true,
           hasEventAssignments: true,
