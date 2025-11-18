@@ -568,6 +568,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     categories: post.categories || [],
     author: post.authorName || "Team Dunya Consultants",
     authorId: post.authorId,
+    authorUsername: post.authorUsername,
+    authorDisplayName: post.authorDisplayName,
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
@@ -1171,7 +1173,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
               </div>
               <div className="flex items-center">
                 <User className="w-5 h-5 mr-2" />
-                <span>{blogPost.author}</span>
+                {blogPost.authorUsername ? (
+                  <Link
+                    href={`/blog?author=${blogPost.authorUsername}`}
+                    className="hover:underline"
+                    data-testid={`link-author-${blogPost.authorUsername}`}
+                  >
+                    {blogPost.author}
+                  </Link>
+                ) : (
+                  <span>{blogPost.author}</span>
+                )}
               </div>
             </motion.div>
           </div>
