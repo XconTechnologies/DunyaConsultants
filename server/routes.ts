@@ -5255,6 +5255,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const page = req.query.page ? parseInt(req.query.page as string) : undefined;
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const syncFromProduction = req.query.sync === 'production';
+      const authorFilter = req.query.author as string | undefined;
       
       // Try to fetch from production if requested
       if (syncFromProduction) {
@@ -5298,6 +5299,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Add _source flag for local posts
       posts = posts.map(post => ({ ...post, _source: 'local' }));
+      
+      // Apply author filter if specified
+      if (authorFilter) {
+        posts = posts.filter(post => 
+          post.authorUsername === authorFilter || 
+          post.authorDisplayName?.toLowerCase() === authorFilter.toLowerCase()
+        );
+      }
       
       // Apply pagination if specified
       if (page && limit) {
