@@ -2775,11 +2775,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update admin user (roles, permissions, username, password)
+  // Update admin user (roles, permissions, username, displayName, password)
   app.put("/api/admin/users/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const userId = parseInt(req.params.id);
-      const { roles, permissions, isActive, username, password } = req.body;
+      const { roles, permissions, isActive, username, displayName, password } = req.body;
 
       if (isNaN(userId)) {
         return res.status(400).json({ message: 'Invalid user ID' });
@@ -2833,6 +2833,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (permissions !== undefined) updates.permissions = permissions;
       if (isActive !== undefined) updates.isActive = isActive;
       if (username !== undefined) updates.username = username;
+      if (displayName !== undefined) updates.displayName = displayName;
       if (password !== undefined) {
         // Hash the password before storing
         const bcrypt = await import('bcryptjs');

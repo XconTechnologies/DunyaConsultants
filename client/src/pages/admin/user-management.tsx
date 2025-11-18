@@ -218,6 +218,7 @@ export default function UserManagement() {
   const [showCreatePassword, setShowCreatePassword] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [editUsername, setEditUsername] = useState("");
+  const [editDisplayName, setEditDisplayName] = useState("");
   const [editPassword, setEditPassword] = useState("");
   const [editRoles, setEditRoles] = useState<string[]>([]);
   const [editPermissions, setEditPermissions] = useState<Record<string, boolean>>({});
@@ -616,6 +617,7 @@ export default function UserManagement() {
   const handleEditUser = (user: AdminUser) => {
     setEditingUser(user);
     setEditUsername(user.username);
+    setEditDisplayName((user as any).displayName || "");
     setEditPassword("");
     setShowEditPassword(false);
     // Initialize edit roles with legacy fallback
@@ -1041,6 +1043,16 @@ export default function UserManagement() {
                 )}
               </div>
               <div>
+                <Label htmlFor="edit-display-name">Display Name</Label>
+                <Input
+                  id="edit-display-name"
+                  value={editDisplayName}
+                  onChange={(e) => setEditDisplayName(e.target.value)}
+                  placeholder="Enter display name (shown as author in articles)"
+                />
+                <p className="text-xs text-gray-500 mt-1">This name will appear as the author name in blog articles</p>
+              </div>
+              <div>
                 <Label>Email</Label>
                 <Input value={editingUser.email} disabled className="bg-gray-100" />
                 <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
@@ -1200,6 +1212,9 @@ export default function UserManagement() {
                     if (editUsername && editUsername !== editingUser.username) {
                       updates.username = editUsername;
                     }
+                    
+                    // Add displayName (allow empty string to clear it)
+                    updates.displayName = editDisplayName;
                     
                     // Add password if provided
                     if (editPassword) {
