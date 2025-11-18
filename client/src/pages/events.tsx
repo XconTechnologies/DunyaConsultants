@@ -380,7 +380,7 @@ export default function EventsPage() {
                       <div className="flex gap-3">
                         <Link 
                           href={`/events/${event.slug}`} 
-                          className="flex-1 inline-flex items-center justify-center px-4 py-2 border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm"
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] transition-all duration-300 rounded-md font-medium text-sm"
                           data-testid={`link-event-details-${event.id}`}
                         >
                           See Details
@@ -388,7 +388,7 @@ export default function EventsPage() {
                         {event.registrationEnabled !== false ? (
                           <Link 
                             href={`/events/register-now?event=${event.slug}`} 
-                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
                             data-testid={`link-event-register-${event.id}`}
                           >
                             <span className="relative z-10">Get Started</span>
@@ -399,7 +399,7 @@ export default function EventsPage() {
                             href="https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
+                            className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] transition-all duration-300 rounded-md font-medium text-sm overflow-hidden relative group"
                             data-testid={`link-event-whatsapp-${event.id}`}
                           >
                             <span className="relative z-10">Join WhatsApp</span>
@@ -468,14 +468,14 @@ export default function EventsPage() {
                       <div className="flex gap-3">
                         <Link 
                           href={`/events/${event.slug}`} 
-                          className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-white border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-all duration-300 rounded-md font-medium text-sm"
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-white border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] transition-all duration-300 rounded-md font-medium text-sm"
                           data-testid={`link-past-event-details-${event.id}`}
                         >
                           See Details
                         </Link>
                         <Link 
                           href={`/events/${event.slug}`} 
-                          className="flex-1 inline-flex items-center justify-center px-4 py-2 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white transition-transform duration-300 rounded-md font-medium text-sm group"
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2 relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white border-0 shadow-md hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] transition-transform duration-300 rounded-md font-medium text-sm group"
                           data-testid={`link-past-event-highlights-${event.id}`}
                         >
                           <span className="absolute inset-0 w-[200%] h-[200%] bg-gradient-to-br from-transparent via-white/50 to-transparent -translate-x-full -translate-y-full group-hover:animate-mirror-slider-infinite"></span>
