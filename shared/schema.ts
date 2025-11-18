@@ -336,6 +336,7 @@ export const adminUsers = pgTable("admin_users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
+  displayName: text("display_name"),
   roles: text("roles").array().notNull().default(sql`ARRAY['editor']::text[]`),
   permissions: json("permissions").$type<{
     canCreate?: boolean;
