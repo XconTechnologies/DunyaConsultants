@@ -3892,15 +3892,18 @@ export default function Blog() {
   // URL and pagination management  
   const [location, navigate] = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
+  const [authorFilter, setAuthorFilter] = useState<string | null>(null);
   const postsPerPage = 12;
   
-  // Update currentPage when URL changes
+  // Parse URL parameters (page and author)
   useEffect(() => {
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const page = parseInt(urlParams.get('page') || '1', 10);
-      console.log('URL changed:', window.location.href, 'Parsed page:', page);
+      const author = urlParams.get('author');
+      console.log('URL changed:', window.location.href, 'Parsed page:', page, 'Author:', author);
       setCurrentPage(page);
+      setAuthorFilter(author);
       
       // Scroll to top on page change (with a small delay to allow rendering)
       setTimeout(() => {
@@ -3909,6 +3912,7 @@ export default function Blog() {
     } catch (error) {
       console.error('Error parsing page:', error);
       setCurrentPage(1);
+      setAuthorFilter(null);
     }
   }, [location]);
   
@@ -3917,19 +3921,22 @@ export default function Blog() {
     const handlePopState = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const page = parseInt(urlParams.get('page') || '1', 10);
-      console.log('Browser navigation, parsed page:', page);
+      const author = urlParams.get('author');
+      console.log('Browser navigation, parsed page:', page, 'Author:', author);
       setCurrentPage(page);
+      setAuthorFilter(author);
     };
     
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Fetch blog posts from API with caching
+  // Fetch blog posts from API with caching (with optional author filter)
   const { data: blogPostsData, isLoading } = useQuery({
-    queryKey: ['/api/blog-posts'],
+    queryKey: authorFilter ? ['/api/blog-posts', { author: authorFilter }] : ['/api/blog-posts'],
     queryFn: async () => {
-      const response = await fetch('/api/blog-posts');
+      const url = authorFilter ? `/api/blog-posts?author=${encodeURIComponent(authorFilter)}` : '/api/blog-posts';
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed to fetch blog posts: ${response.status}`);
       }
@@ -4200,6 +4207,32 @@ export default function Blog() {
               });
             })()}
           </div>
+          
+          {/* Author Filter Chip */}
+          {authorFilter && (
+            <div className="mt-4 flex items-center gap-2">
+              <span className="text-sm text-gray-600">Filtered by author:</span>
+              <Badge 
+                variant="secondary" 
+                className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white px-3 py-1 flex items-center gap-2"
+              >
+                <User className="w-3 h-3" />
+                {authorFilter}
+                <button
+                  onClick={() => {
+                    navigate('/blog');
+                    setAuthorFilter(null);
+                    resetPagination();
+                  }}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                  data-testid="clear-author-filter"
+                  aria-label="Clear author filter"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            </div>
+          )}
         </div>
 
         {/* Blog Posts Grid */}
