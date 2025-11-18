@@ -2683,12 +2683,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const allUsers = await storage.getAllAdminUsers();
       // Filter to active users with lead management permissions
-      const eligibleUsers = allUsers.filter(user => 
-        user.isActive && (
-          user.role === 'admin' || 
+      const eligibleUsers = allUsers.filter(user => {
+        const isAdmin = user.roles?.includes('admin') || user.role === 'admin';
+        return user.isActive && (
+          isAdmin || 
           (user.permissions && (user.permissions as any).canManageLeads === true)
-        )
-      );
+        );
+      });
       res.json(eligibleUsers);
     } catch (error) {
       console.error('Error fetching eligible users:', error);
@@ -6112,9 +6113,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const user = await storage.getAdminById(req.adminId!);
       
+      // Check if user has admin role (support both old single role and new multi-role system)
+      const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin';
+      
       // Admin sees all media, non-admin users see only their uploads
       let media;
-      if (user?.role === 'admin') {
+      if (isAdmin) {
         media = await storage.getMedia();
       } else {
         media = await storage.getUserMedia(req.adminId!);
