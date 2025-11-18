@@ -96,6 +96,7 @@ export default function AllPosts() {
     publishedAt: string;
     categoryIds: number[];
   } | null>(null);
+  const [categorySearchQuery, setCategorySearchQuery] = useState('');
 
   // Detect if device has hover capability
   useEffect(() => {
@@ -137,6 +138,13 @@ export default function AllPosts() {
       return () => document.removeEventListener('click', handleClickOutside);
     }
   }, [contextMenu]);
+  
+  // Reset category search when dialog closes
+  useEffect(() => {
+    if (!quickEditPost) {
+      setCategorySearchQuery('');
+    }
+  }, [quickEditPost]);
 
   // Get auth headers helper
   const getAuthHeaders = () => {
@@ -1100,7 +1108,7 @@ export default function AllPosts() {
                     <Edit className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold mb-1">Quick Edit</h3>
+                    <h3 className="text-lg font-semibold mb-1 text-white">Quick Edit</h3>
                     <p className="text-blue-100 text-sm line-clamp-2 leading-relaxed">
                       {quickEditPost.title}
                     </p>
@@ -1154,39 +1162,63 @@ export default function AllPosts() {
                     <Tag className="w-4 h-4 text-[#1D50C9]" />
                     Categories
                   </Label>
+                  
+                  {/* Category Search */}
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Search categories..."
+                      value={categorySearchQuery}
+                      onChange={(e) => setCategorySearchQuery(e.target.value)}
+                      className="pl-9 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                    />
+                  </div>
+                  
                   <div className="border border-gray-300 rounded-lg p-4 max-h-60 overflow-y-auto bg-gray-50/50">
                     <div className="space-y-2.5">
-                      {allCategories.map((category: any) => (
-                        <div 
-                          key={category.id} 
-                          className="flex items-center space-x-3 p-2 rounded-md hover:bg-white transition-colors"
-                        >
-                          <Checkbox
-                            id={`category-${category.id}`}
-                            checked={quickEditPost.categoryIds.includes(category.id)}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                setQuickEditPost({
-                                  ...quickEditPost,
-                                  categoryIds: [...quickEditPost.categoryIds, category.id]
-                                });
-                              } else {
-                                setQuickEditPost({
-                                  ...quickEditPost,
-                                  categoryIds: quickEditPost.categoryIds.filter(id => id !== category.id)
-                                });
-                              }
-                            }}
-                            className="data-[state=checked]:bg-[#1D50C9] data-[state=checked]:border-[#1D50C9]"
-                          />
-                          <Label 
-                            htmlFor={`category-${category.id}`} 
-                            className="text-sm cursor-pointer flex-1 font-medium text-gray-700"
+                      {allCategories
+                        .filter((category: any) => 
+                          category.name.toLowerCase().includes(categorySearchQuery.toLowerCase())
+                        )
+                        .map((category: any) => (
+                          <div 
+                            key={category.id} 
+                            className="flex items-center space-x-3 p-2 rounded-md hover:bg-white transition-colors"
                           >
-                            {category.name}
-                          </Label>
-                        </div>
-                      ))}
+                            <Checkbox
+                              id={`category-${category.id}`}
+                              checked={quickEditPost.categoryIds.includes(category.id)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setQuickEditPost({
+                                    ...quickEditPost,
+                                    categoryIds: [...quickEditPost.categoryIds, category.id]
+                                  });
+                                } else {
+                                  setQuickEditPost({
+                                    ...quickEditPost,
+                                    categoryIds: quickEditPost.categoryIds.filter(id => id !== category.id)
+                                  });
+                                }
+                              }}
+                              className="data-[state=checked]:bg-[#1D50C9] data-[state=checked]:border-[#1D50C9]"
+                            />
+                            <Label 
+                              htmlFor={`category-${category.id}`} 
+                              className="text-sm cursor-pointer flex-1 font-medium text-gray-700"
+                            >
+                              {category.name}
+                            </Label>
+                          </div>
+                        ))}
+                      {allCategories.filter((category: any) => 
+                        category.name.toLowerCase().includes(categorySearchQuery.toLowerCase())
+                      ).length === 0 && (
+                        <p className="text-sm text-gray-500 text-center py-4">
+                          No categories found
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
