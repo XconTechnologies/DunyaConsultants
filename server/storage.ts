@@ -1150,12 +1150,13 @@ export class DatabaseStorage implements IStorage {
         isPublished: blogPosts.isPublished,
         publishedAt: blogPosts.publishedAt,
         authorId: blogPosts.authorId,
+        authorUsername: adminUsers.username,
+        authorDisplayName: adminUsers.displayName,
         approvalStatus: blogPosts.approvalStatus,
         approvedAt: blogPosts.approvedAt,
         approverId: blogPosts.approverId,
         createdAt: blogPosts.createdAt,
         updatedAt: blogPosts.updatedAt,
-        authorName: adminUsers.username,
       })
       .from(blogPosts)
       .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
@@ -1189,7 +1190,9 @@ export class DatabaseStorage implements IStorage {
       
       return posts.map(post => ({
         ...post,
-        authorName: post.authorName || 'Dunya Consultants',
+        authorName: post.authorDisplayName || post.authorUsername || 'Dunya Consultants',
+        authorUsername: post.authorUsername,
+        authorDisplayName: post.authorDisplayName,
         categories: categoriesByPostId.get(post.id) || []
       }));
     }
@@ -1214,12 +1217,13 @@ export class DatabaseStorage implements IStorage {
       isPublished: blogPosts.isPublished,
       publishedAt: blogPosts.publishedAt,
       authorId: blogPosts.authorId,
+      authorUsername: adminUsers.username,
+      authorDisplayName: adminUsers.displayName,
       approvalStatus: blogPosts.approvalStatus,
       approvedAt: blogPosts.approvedAt,
       approverId: blogPosts.approverId,
       createdAt: blogPosts.createdAt,
       updatedAt: blogPosts.updatedAt,
-      authorName: adminUsers.username,
     })
     .from(blogPosts)
     .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
@@ -1252,7 +1256,9 @@ export class DatabaseStorage implements IStorage {
     
     return posts.map(post => ({
       ...post,
-      authorName: post.authorName || 'Dunya Consultants',
+      authorName: post.authorDisplayName || post.authorUsername || 'Dunya Consultants',
+      authorUsername: post.authorUsername,
+      authorDisplayName: post.authorDisplayName,
       categories: categoriesByPostId.get(post.id) || []
     }));
   }
@@ -1263,9 +1269,18 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getBlogPostBySlug(slug: string): Promise<any | undefined> {
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    const [result] = await db.select({
+      post: blogPosts,
+      authorUsername: adminUsers.username,
+      authorDisplayName: adminUsers.displayName,
+    })
+    .from(blogPosts)
+    .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
+    .where(eq(blogPosts.slug, slug));
     
-    if (!post) return undefined;
+    if (!result) return undefined;
+    
+    const post = result.post;
     
     // Fetch categories for this post
     const postCategories = await db.select({
@@ -1279,6 +1294,9 @@ export class DatabaseStorage implements IStorage {
     
     return {
       ...post,
+      authorUsername: result.authorUsername,
+      authorDisplayName: result.authorDisplayName,
+      authorName: result.authorDisplayName || result.authorUsername || 'Dunya Consultants',
       categories: postCategories
     };
   }
