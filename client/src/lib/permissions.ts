@@ -126,8 +126,14 @@ export function hasRole(user: AdminUser | null | undefined, role: string): boole
 export function getUserPermissions(user: AdminUser): UserPermissions {
   if (!user) return {};
   
+  // Check if user has custom permissions (non-empty object with at least one permission set)
+  const hasCustomPermissions = user.permissions && 
+    typeof user.permissions === 'object' && 
+    Object.keys(user.permissions).length > 0 &&
+    Object.values(user.permissions).some(value => value !== undefined);
+  
   // If user has custom permissions, use those
-  if (user.permissions && typeof user.permissions === 'object') {
+  if (hasCustomPermissions) {
     return user.permissions as UserPermissions;
   }
   
