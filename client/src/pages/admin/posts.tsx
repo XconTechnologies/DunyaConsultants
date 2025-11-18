@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,7 @@ import {
   Clock,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -733,48 +734,46 @@ export default function AllPosts() {
                           </TableCell>
                           <TableCell>
                             <div className="space-y-2">
-                              <div 
-                                className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors cursor-pointer"
-                                onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
-                                data-testid={`title-blog-${post.id}`}
+                              <Link 
+                                href={`/admin/blog-editor/${post.id}`}
+                                className="font-semibold text-gray-900 text-base hover:text-[#1D50C9] transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9] rounded"
+                                data-testid={`link-title-blog-${post.id}`}
                               >
                                 {post.title}
-                              </div>
+                              </Link>
                               <div className={`flex items-center gap-3 flex-wrap transition-opacity duration-200 ${hasHoverCapability ? (isHovered ? 'opacity-100' : 'opacity-0') : 'opacity-100'}`}>
                                 {post.isPublished ? (
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => window.open(postUrl, '_blank')}
-                                    data-testid={`button-view-blog-${post.id}`}
-                                    className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                                  <Link
+                                    href={postUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-testid={`link-view-blog-${post.id}`}
+                                    className="inline-flex items-center h-7 px-3 text-sm font-medium text-[#1D50C9] hover:bg-[#1D50C9]/10 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9]"
                                   >
                                     <Eye className="w-3.5 h-3.5 mr-1.5" />
                                     View
-                                  </Button>
+                                  </Link>
                                 ) : (
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => window.open(`/admin/blog-preview/${post.id}`, '_blank')}
-                                    data-testid={`button-preview-blog-${post.id}`}
-                                    className="h-7 px-3 text-purple-600 hover:bg-purple-50"
+                                  <Link
+                                    href={`/admin/blog-preview/${post.id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-testid={`link-preview-blog-${post.id}`}
+                                    className="inline-flex items-center h-7 px-3 text-sm font-medium text-purple-600 hover:bg-purple-50 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-purple-600"
                                   >
                                     <Eye className="w-3.5 h-3.5 mr-1.5" />
                                     Preview
-                                  </Button>
+                                  </Link>
                                 )}
                                 {canEditContent(adminUser) && (
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
-                                    data-testid={`button-edit-blog-${post.id}`}
-                                    className="h-7 px-3 text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                                  <Link
+                                    href={`/admin/blog-editor/${post.id}`}
+                                    data-testid={`link-edit-blog-${post.id}`}
+                                    className="inline-flex items-center h-7 px-3 text-sm font-medium text-[#1D50C9] hover:bg-[#1D50C9]/10 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9]"
                                   >
                                     <Edit2 className="w-3.5 h-3.5 mr-1.5" />
                                     Edit
-                                  </Button>
+                                  </Link>
                                 )}
                               </div>
                             </div>
