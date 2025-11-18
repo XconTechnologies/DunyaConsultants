@@ -2698,7 +2698,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create new admin user
   app.post("/api/admin/users", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
-      const { username, email, password, roles, permissions } = req.body;
+      const { username, email, displayName, password, roles, permissions } = req.body;
       
       if (!username || !email || !password || !roles || !Array.isArray(roles) || roles.length === 0) {
         return res.status(400).json({ message: 'Username, email, password, and at least one role are required' });
@@ -2727,6 +2727,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const newUser = await storage.createAdminUser({
         username,
         email,
+        displayName: displayName || null,
         password,
         roles: uniqueRoles,
         permissions: permissions || null,

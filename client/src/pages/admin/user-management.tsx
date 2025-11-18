@@ -193,6 +193,7 @@ const ROLE_CONFIG = {
 interface CreateUserFormData {
   username: string;
   email: string;
+  displayName?: string;
   password: string;
   roles: string[];
   permissions?: Record<string, boolean>;
@@ -731,6 +732,16 @@ export default function UserManagement() {
                   onChange={(e) => setCreateForm({ ...createForm, username: e.target.value })}
                   placeholder="Enter username"
                 />
+              </div>
+              <div>
+                <Label htmlFor="create-display-name">Display Name</Label>
+                <Input
+                  id="create-display-name"
+                  value={createForm.displayName || ""}
+                  onChange={(e) => setCreateForm({ ...createForm, displayName: e.target.value })}
+                  placeholder="Enter display name (shown as author in articles)"
+                />
+                <p className="text-xs text-gray-500 mt-1">This name will appear as the author name in blog articles</p>
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
