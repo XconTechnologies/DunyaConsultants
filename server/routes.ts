@@ -4335,14 +4335,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const safeFields = [
         'title', 'slug', 'excerpt', 'content', 'contentBlocks',
         'category', 'categoryIds', 'metaDescription', 'focusKeyword',
-        'featuredImage', 'featuredImageAlt', 'featuredImageTitle', 'featuredImageOriginalName'
+        'featuredImage', 'featuredImageAlt', 'featuredImageTitle', 'featuredImageOriginalName',
+        'authorId', 'publishedAt'
       ];
       
       // Build sanitized updates object from safe fields only
       const sanitizedUpdates: any = {};
       for (const field of safeFields) {
         if (req.body.hasOwnProperty(field)) {
-          sanitizedUpdates[field] = req.body[field];
+          // Parse dates for publishedAt field
+          if (field === 'publishedAt' && req.body[field]) {
+            const parsedDate = new Date(req.body[field]);
+            sanitizedUpdates[field] = isNaN(parsedDate.getTime()) ? null : parsedDate;
+          } else {
+            sanitizedUpdates[field] = req.body[field];
+          }
         }
       }
       

@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import {
   Plus,
@@ -81,6 +83,14 @@ export default function AllPosts() {
     postId: number;
     postSlug: string;
     isPublished: boolean;
+  } | null>(null);
+  
+  // Quick edit modal state
+  const [quickEditPost, setQuickEditPost] = useState<{
+    id: number;
+    authorId: number;
+    publishedAt: string;
+    categoryIds: number[];
   } | null>(null);
 
   // Detect if device has hover capability
@@ -427,6 +437,32 @@ export default function AllPosts() {
     },
   });
 
+  // Quick edit mutation
+  const quickEditMutation = useMutation({
+    mutationFn: async (data: { id: number; authorId: number; publishedAt: string; categoryIds: number[] }) => {
+      const response = await fetch(`/api/admin/blog-posts/${data.id}`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          authorId: data.authorId,
+          publishedAt: data.publishedAt,
+          categoryIds: data.categoryIds,
+        }),
+      });
+      if (!response.ok) throw new Error('Failed to update post');
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Success", description: "Post updated successfully." });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts/categories"] });
+      setQuickEditPost(null);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to update post.", variant: "destructive" });
+    },
+  });
+
   if (!authChecked) return null;
 
   return (
@@ -675,7 +711,8 @@ export default function AllPosts() {
                       )}
                     </TableHead>
                     <TableHead className="font-semibold text-gray-700">Title</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Category</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Author</TableHead>
+                    <TableHead className="font-semibold text-gray-700">Published Date</TableHead>
                     <TableHead className="font-semibold text-gray-700">Status</TableHead>
                     <TableHead className="font-semibold text-gray-700 w-24 text-center">Delete</TableHead>
                   </TableRow>
@@ -766,29 +803,53 @@ export default function AllPosts() {
                                   </Link>
                                 )}
                                 {canEditContent(adminUser) && (
-                                  <Link
-                                    href={`/admin/blog-editor/${post.id}`}
-                                    data-testid={`link-edit-blog-${post.id}`}
-                                    className="inline-flex items-center h-7 px-3 text-sm font-medium text-[#1D50C9] hover:bg-[#1D50C9]/10 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9]"
-                                  >
-                                    <Edit2 className="w-3.5 h-3.5 mr-1.5" />
-                                    Edit
-                                  </Link>
+                                  <>
+                                    <button
+                                      onClick={() => {
+                                        const cats = postCategories[post.id] || [];
+                                        setQuickEditPost({
+                                          id: post.id,
+                                          authorId: post.authorId,
+                                          publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString().split('T')[0] : '',
+                                          categoryIds: cats.map((c: any) => c.id),
+                                        });
+                                      }}
+                                      data-testid={`button-quick-edit-${post.id}`}
+                                      className="inline-flex items-center h-7 px-3 text-sm font-medium text-emerald-600 hover:bg-emerald-50 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-600"
+                                    >
+                                      <Clock className="w-3.5 h-3.5 mr-1.5" />
+                                      Quick Edit
+                                    </button>
+                                    <Link
+                                      href={`/admin/blog-editor/${post.id}`}
+                                      data-testid={`link-edit-blog-${post.id}`}
+                                      className="inline-flex items-center h-7 px-3 text-sm font-medium text-[#1D50C9] hover:bg-[#1D50C9]/10 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D50C9]"
+                                    >
+                                      <Edit2 className="w-3.5 h-3.5 mr-1.5" />
+                                      Edit
+                                    </Link>
+                                  </>
                                 )}
                               </div>
                             </div>
                           </TableCell>
                           <TableCell>
-                            <div className="flex flex-wrap gap-1">
-                              {categories.length > 0 ? (
-                                categories.map((cat: any) => (
-                                  <Badge key={cat.id} variant="outline" className="text-xs">
-                                    {cat.name}
-                                  </Badge>
-                                ))
-                              ) : (
-                                <span className="text-gray-400 text-sm">No category</span>
-                              )}
+                            <div className="text-sm text-gray-600">
+                              {post.authorName || 'Unknown'}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="text-sm text-gray-600">
+                              {post.publishedAt 
+                                ? new Date(post.publishedAt).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'short', 
+                                    day: 'numeric' 
+                                  })
+                                : post.isPublished 
+                                ? 'Not set'
+                                : '-'
+                              }
                             </div>
                           </TableCell>
                           <TableCell>
@@ -1021,6 +1082,103 @@ export default function AllPosts() {
           </div>
         );
       })()}
+
+      {/* Quick Edit Dialog */}
+      <Dialog open={quickEditPost !== null} onOpenChange={(open) => !open && setQuickEditPost(null)}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Quick Edit</DialogTitle>
+            <DialogDescription>
+              Update the author, published date, and categories for this post
+            </DialogDescription>
+          </DialogHeader>
+          
+          {quickEditPost && (
+            <div className="space-y-6 py-4">
+              {/* Author Selection */}
+              <div className="space-y-2">
+                <Label htmlFor="quick-edit-author" className="text-sm font-semibold">Author</Label>
+                <Select
+                  value={quickEditPost.authorId.toString()}
+                  onValueChange={(value) => setQuickEditPost({ ...quickEditPost, authorId: parseInt(value) })}
+                >
+                  <SelectTrigger id="quick-edit-author" className="border-gray-300">
+                    <SelectValue placeholder="Select author" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {authors.map((author: Author) => (
+                      <SelectItem key={author.id} value={author.id.toString()}>
+                        {author.username}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Published Date */}
+              <div className="space-y-2">
+                <Label htmlFor="quick-edit-date" className="text-sm font-semibold">Published Date</Label>
+                <Input
+                  id="quick-edit-date"
+                  type="date"
+                  value={quickEditPost.publishedAt}
+                  onChange={(e) => setQuickEditPost({ ...quickEditPost, publishedAt: e.target.value })}
+                  className="border-gray-300"
+                />
+              </div>
+
+              {/* Categories */}
+              <div className="space-y-2">
+                <Label className="text-sm font-semibold">Categories</Label>
+                <div className="border border-gray-300 rounded-md p-4 max-h-60 overflow-y-auto space-y-2">
+                  {allCategories.map((category: any) => (
+                    <div key={category.id} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`category-${category.id}`}
+                        checked={quickEditPost.categoryIds.includes(category.id)}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setQuickEditPost({
+                              ...quickEditPost,
+                              categoryIds: [...quickEditPost.categoryIds, category.id]
+                            });
+                          } else {
+                            setQuickEditPost({
+                              ...quickEditPost,
+                              categoryIds: quickEditPost.categoryIds.filter(id => id !== category.id)
+                            });
+                          }
+                        }}
+                      />
+                      <Label htmlFor={`category-${category.id}`} className="text-sm cursor-pointer">
+                        {category.name}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-2 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setQuickEditPost(null)}
+                  disabled={quickEditMutation.isPending}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => quickEditMutation.mutate(quickEditPost)}
+                  disabled={quickEditMutation.isPending}
+                  className="bg-[#1D50C9] hover:bg-[#1845B3]"
+                >
+                  {quickEditMutation.isPending ? 'Saving...' : 'Save Changes'}
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
