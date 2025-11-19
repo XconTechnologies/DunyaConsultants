@@ -14,8 +14,36 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
 
   const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
 
-  // If integrated mode, insert blocks at their positions within content
+  // If integrated mode AND content exists, check if we should merge or render blocks only
   if (integrated && content) {
+    // Check if content contains only placeholders or also has actual block content
+    // If content has paragraphs/headings that are ALSO in blocks, we have duplication
+    // In that case, render ONLY blocks, not content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    
+    // Count actual content elements (not placeholders)
+    const contentElements = Array.from(tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, div:not([data-block-placeholder])')).filter(el => {
+      // Filter out empty elements
+      const text = el.textContent || '';
+      return text.trim().length > 0;
+    });
+    
+    // If content has actual content elements AND we have blocks, it's likely duplication
+    // Render ONLY blocks to avoid duplication
+    if (contentElements.length > 0 && blocks.length > 0) {
+      return (
+        <div className="content-blocks-wrapper prose prose-xl max-w-none">
+          {sortedBlocks.map((block) => (
+            <div key={block.id}>
+              {renderBlock(block)}
+            </div>
+          ))}
+        </div>
+      );
+    }
+    
+    // If content has only placeholders, use integrated rendering
     return <IntegratedContentRenderer content={content} blocks={sortedBlocks} />;
   }
 
