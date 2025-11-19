@@ -5,6 +5,8 @@ import { z } from "zod";
 
 // Content Block Types for Blog Editor
 export type ContentBlock =
+  | ParagraphBlock
+  | HeadingBlock
   | FAQBlock
   | TableBlock
   | HTMLBlock
@@ -18,6 +20,21 @@ export type ContentBlock =
   | WhatsAppChannelBlock
   | TipBlock
   | ListBlock;
+
+export interface ParagraphBlock {
+  id: string;
+  type: 'paragraph';
+  position: number;
+  text: string;
+}
+
+export interface HeadingBlock {
+  id: string;
+  type: 'heading';
+  position: number;
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  text: string;
+}
 
 export interface FAQBlock {
   id: string;

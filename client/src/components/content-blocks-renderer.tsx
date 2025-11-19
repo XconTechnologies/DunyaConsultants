@@ -145,6 +145,10 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
 
 function renderBlock(block: ContentBlock) {
   switch (block.type) {
+    case 'paragraph':
+      return <ParagraphBlock block={block} />;
+    case 'heading':
+      return <HeadingBlock block={block} />;
     case 'tip':
       return <TipBlock block={block} />;
     case 'faq':
@@ -174,6 +178,133 @@ function renderBlock(block: ContentBlock) {
     default:
       return null;
   }
+}
+
+// Paragraph Block Renderer
+function ParagraphBlock({ block }: { block: ContentBlock & { type: 'paragraph' } }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const text = block.text || '';
+  
+  if (!text) {
+    return null;
+  }
+
+  // Check if text contains HTML tags
+  const hasHTMLTags = /<[^>]+>/.test(text);
+  
+  // Handle HTML content with proper style and script extraction
+  useEffect(() => {
+    if (!containerRef.current || !hasHTMLTags) return;
+    
+    const container = containerRef.current;
+    const htmlContent = text;
+    
+    // Clear previous content
+    container.innerHTML = '';
+    
+    // Create a temporary div to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    
+    // Extract and handle style tags
+    const styleTags = tempDiv.querySelectorAll('style');
+    const injectedStyles: HTMLStyleElement[] = [];
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      newStyle.setAttribute('data-paragraph-style', block.id);
+      document.head.appendChild(newStyle);
+      injectedStyles.push(newStyle);
+      styleTag.remove();
+    });
+    
+    // Extract and handle script tags
+    const scriptTags = tempDiv.querySelectorAll('script');
+    const scripts: HTMLScriptElement[] = [];
+    scriptTags.forEach(scriptTag => {
+      const newScript = document.createElement('script');
+      Array.from(scriptTag.attributes).forEach(attr => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      if (scriptTag.src) {
+        newScript.src = scriptTag.src;
+      } else {
+        newScript.textContent = scriptTag.textContent;
+      }
+      scripts.push(newScript);
+      scriptTag.remove();
+    });
+    
+    // Add remaining HTML content
+    container.innerHTML = tempDiv.innerHTML;
+    
+    // Execute scripts after DOM is ready
+    scripts.forEach(script => {
+      container.appendChild(script);
+    });
+    
+    // Cleanup function
+    return () => {
+      injectedStyles.forEach(s => s.remove());
+      const addedScripts = container.querySelectorAll('script');
+      addedScripts.forEach(s => s.remove());
+    };
+  }, [text, hasHTMLTags, block.id]);
+  
+  if (hasHTMLTags) {
+    // Render as HTML container
+    return (
+      <div 
+        ref={containerRef}
+        className="paragraph-block prose prose-xl max-w-none"
+        data-testid={`block-paragraph-${block.id}`}
+      />
+    );
+  }
+
+  // Render as plain text
+  return (
+    <p 
+      className="paragraph-block text-gray-700 leading-relaxed"
+      data-testid={`block-paragraph-${block.id}`}
+    >
+      {text}
+    </p>
+  );
+}
+
+// Heading Block Renderer
+function HeadingBlock({ block }: { block: ContentBlock & { type: 'heading' } }) {
+  const text = block.text || '';
+  const level = block.level || 2;
+  
+  if (!text) {
+    return null;
+  }
+
+  const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  
+  // Check if text contains HTML tags
+  const hasHTMLTags = /<[^>]+>/.test(text);
+  
+  if (hasHTMLTags) {
+    return (
+      <HeadingTag 
+        className="heading-block"
+        dangerouslySetInnerHTML={{ __html: text }}
+        data-testid={`block-heading-${block.id}`}
+      />
+    );
+  }
+
+  return (
+    <HeadingTag 
+      className="heading-block"
+      data-testid={`block-heading-${block.id}`}
+    >
+      {text}
+    </HeadingTag>
+  );
 }
 
 // Tip Block Renderer
