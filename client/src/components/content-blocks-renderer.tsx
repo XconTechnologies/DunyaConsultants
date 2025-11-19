@@ -750,9 +750,9 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
                 backgroundColor: button2BgColor,
                 color: button2TextColor,
                 borderRadius: `${button2BorderRadius}px`,
-                border: `${button2BorderWidth}px solid ${button2BorderColor}`,
                 fontFamily: 'Inter, Lato, sans-serif !important'
               }}
+              data-testid="consultation-button-secondary"
             >
               {button2Text}
             </a>
