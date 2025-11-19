@@ -449,7 +449,7 @@ export const blogPostCategories = pgTable("blog_post_categories", {
 // Block defaults for storing global and upcoming default settings
 export const blockDefaults = pgTable("block_defaults", {
   id: serial("id").primaryKey(),
-  blockType: text("block_type", { enum: ["consultation", "whatsappChannel", "tip", "faq"] }).notNull(),
+  blockType: text("block_type").notNull(), // Removed enum restriction to allow all block types
   scope: text("scope", { enum: ["global", "upcoming"] }).notNull(),
   defaults: json("defaults").$type<Record<string, any>>(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
