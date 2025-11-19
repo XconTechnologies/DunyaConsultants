@@ -29,6 +29,8 @@ The application features a professional dark blue gradient design with custom br
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.
 
+**Custom Content Blocks System**: The blog editor supports rich content blocks including paragraph, heading, tip, FAQ, table, HTML, button, image, YouTube, spacer, divider, schema, consultation, WhatsApp channel, and list blocks. All blocks support HTML content with intelligent style/script extraction and injection into the document head to prevent conflicts. The IntegratedContentRenderer tracks rendered block IDs to prevent duplication and seamlessly integrates custom blocks with legacy HTML content.
+
 **Custom Content Blocks Backward Compatibility**: Editor transformations (transformServerBlocks and transformToContentBlocks) support both legacy (secondButton*) and new (button2*) naming conventions for consultation blocks to ensure data persistence across database schema migrations. Renderers also maintain dual naming support for seamless backward compatibility.
 
 ## External Dependencies
