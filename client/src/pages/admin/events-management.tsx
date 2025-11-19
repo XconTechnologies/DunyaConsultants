@@ -171,23 +171,30 @@ function EventsTable({ events, handleDelete, setLocation, toggleActiveMutation, 
                 </Badge>
               </TableCell>
               <TableCell>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => toggleActiveMutation.mutate({ id: event.id, isActive: !event.isActive })}
-                  className={`rounded-lg transition-all duration-300 ${
-                    event.isActive 
-                      ? "bg-green-50 hover:bg-green-100 text-green-700" 
-                      : "bg-gray-50 hover:bg-gray-100 text-gray-400"
-                  }`}
-                  data-testid={`button-toggle-status-${event.id}`}
-                >
-                  {event.isActive ? (
-                    <Eye className="w-4 h-4" />
-                  ) : (
-                    <EyeOff className="w-4 h-4" />
+                <div className="flex items-center gap-2">
+                  {(event as any).status === "draft" && (
+                    <Badge className="bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 border-yellow-200">
+                      Draft
+                    </Badge>
                   )}
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => toggleActiveMutation.mutate({ id: event.id, isActive: !event.isActive })}
+                    className={`rounded-lg transition-all duration-300 ${
+                      event.isActive 
+                        ? "bg-green-50 hover:bg-green-100 text-green-700" 
+                        : "bg-gray-50 hover:bg-gray-100 text-gray-400"
+                    }`}
+                    data-testid={`button-toggle-status-${event.id}`}
+                  >
+                    {event.isActive ? (
+                      <Eye className="w-4 h-4" />
+                    ) : (
+                      <EyeOff className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
               </TableCell>
               <TableCell>
                 <Button

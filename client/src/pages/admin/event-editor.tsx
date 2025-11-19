@@ -71,6 +71,26 @@ const eventSchema = z.object({
   country: z.array(z.string()).optional(),
   studyLevel: z.array(z.string()).optional(),
   isActive: z.boolean().default(true),
+  status: z.enum(["draft", "published"]).default("published"),
+});
+
+// Relaxed schema for drafts - allows incomplete data
+const draftEventSchema = z.object({
+  title: z.string().optional(),
+  slug: z.string().optional(),
+  shortDescription: z.string().optional(),
+  fullDescription: z.string().optional(),
+  contentBlocks: z.array(z.any()).optional(),
+  image: z.string().optional(),
+  detailImage: z.string().optional(),
+  eventDate: z.string().optional(),
+  eventType: z.enum(["Open Day", "Expo", "IELTS Masterclass", "AGMs", "Team Meetings", "Official Representative Meetings", "Student Ambassador Program"]).optional(),
+  venue: z.string().optional(),
+  location: z.string().optional(),
+  country: z.array(z.string()).optional(),
+  studyLevel: z.array(z.string()).optional(),
+  isActive: z.boolean().default(true),
+  status: z.enum(["draft", "published"]).default("draft"),
 });
 
 type EventForm = z.infer<typeof eventSchema>;
@@ -91,6 +111,7 @@ interface Event {
   country?: string[];
   studyLevel?: string[];
   isActive: boolean;
+  status: "draft" | "published";
   createdAt: string;
   updatedAt: string;
 }
@@ -135,6 +156,7 @@ export default function EventEditor() {
       country: [],
       studyLevel: [],
       isActive: true,
+      status: "published",
     },
   });
 
@@ -227,6 +249,7 @@ export default function EventEditor() {
         country: event.country || [],
         studyLevel: event.studyLevel || [],
         isActive: event.isActive,
+        status: (event as any).status || "published",
       });
       setContentBlocks(event.contentBlocks || []);
     }
@@ -277,6 +300,32 @@ export default function EventEditor() {
 
   const onSubmit = (data: EventForm) => {
     saveMutation.mutate(data);
+  };
+
+  const handleSaveAsDraft = () => {
+    // Get current form values
+    const formData = form.getValues();
+    
+    // Validate using draft schema (allows incomplete data)
+    const result = draftEventSchema.safeParse({
+      ...formData,
+      status: "draft"
+    });
+    
+    if (!result.success) {
+      toast({
+        title: "Validation Error",
+        description: "Please check the form for errors.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Save as draft
+    saveMutation.mutate({
+      ...formData,
+      status: "draft"
+    } as EventForm);
   };
 
   const handleMediaSelect = (media: Media) => {
@@ -386,6 +435,25 @@ export default function EventEditor() {
               >
                 <Eye className="w-4 h-4 mr-2" />
                 {showPreview ? "Hide Preview" : "Preview"}
+              </Button>
+              <Button
+                onClick={handleSaveAsDraft}
+                disabled={saveMutation.isPending}
+                variant="outline"
+                className="bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm transition-all"
+                data-testid="button-save-draft"
+              >
+                {saveMutation.isPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4 mr-2" />
+                    Save as Draft
+                  </>
+                )}
               </Button>
               <Button
                 onClick={form.handleSubmit(onSubmit)}

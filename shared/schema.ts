@@ -511,6 +511,7 @@ export const events = pgTable("events", {
   studyLevel: text("study_level").array(),
   venue: text("venue"),
   isActive: boolean("is_active").default(true).notNull(),
+  status: text("status", { enum: ["draft", "published"] }).default("published").notNull(),
   registrationEnabled: boolean("registration_enabled").default(true).notNull(),
   trashedAt: timestamp("trashed_at"),
   trashedBy: integer("trashed_by").references(() => adminUsers.id),
