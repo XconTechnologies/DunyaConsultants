@@ -33,13 +33,40 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
 
 // Integrated renderer that inserts blocks at specific positions
 function IntegratedContentRenderer({ content, blocks }: { content: string; blocks: ContentBlock[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = content;
+  
+  // Extract and inject style tags into the document
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const styleTags = tempDiv.querySelectorAll('style');
+    const injectedStyles: HTMLStyleElement[] = [];
+    
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      newStyle.setAttribute('data-blog-style', 'true');
+      document.head.appendChild(newStyle);
+      injectedStyles.push(newStyle);
+    });
+    
+    // Cleanup function to remove injected styles when component unmounts
+    return () => {
+      injectedStyles.forEach(style => style.remove());
+    };
+  }, [content]);
   
   // Get all top-level child nodes (element nodes only, skip text nodes with just whitespace)
   const elements = Array.from(tempDiv.childNodes).filter(node => {
     // Keep only element nodes (nodeType === 1)
     if (node.nodeType !== 1) {
+      return false;
+    }
+    // Skip style tags as they're handled separately
+    if ((node as Element).tagName.toLowerCase() === 'style') {
       return false;
     }
     return true;
@@ -62,7 +89,7 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   });
   
   // Track which blocks have been rendered to avoid duplicates
-  const renderedBlockIds = new Set<number>();
+  const renderedBlockIds = new Set<string | number>();
   
   // Add blocks at position 0 (beginning)
   if (blocksByPosition.has(0)) {
@@ -113,7 +140,7 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     }
   });
   
-  return <div className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
+  return <div ref={containerRef} className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
 }
 
 function renderBlock(block: ContentBlock) {
