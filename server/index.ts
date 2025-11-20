@@ -212,6 +212,19 @@ let redirectCache: Map<string, { destinationUrl: string; redirectType: string; i
 let lastCacheRefresh = 0;
 const CACHE_TTL = 60000; // 60 seconds
 
+// Normalize redirect path: lowercase, trim trailing slash (but preserve query params)
+function normalizeRedirectPath(path: string): string {
+  // Split path and query string
+  const [pathname, ...queryParts] = path.split('?');
+  const queryString = queryParts.join('?'); // Re-join in case ? appears in query
+  
+  // Normalize pathname: lowercase and remove trailing slash
+  const normalizedPath = (pathname.toLowerCase().replace(/\/$/, '') || '/');
+  
+  // Return with query string if present
+  return queryString ? `${normalizedPath}?${queryString}` : normalizedPath;
+}
+
 export async function refreshRedirectCache() {
   try {
     const { storage } = await import('./storage');
@@ -219,8 +232,8 @@ export async function refreshRedirectCache() {
     
     const cache = new Map();
     for (const redirect of activeRedirects) {
-      // Normalize source path: lowercase and trim trailing slash
-      const normalizedSource = redirect.sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+      // Normalize source path: lowercase, trim trailing slash, preserve query params
+      const normalizedSource = normalizeRedirectPath(redirect.sourcePath);
       cache.set(normalizedSource, {
         destinationUrl: redirect.destinationUrl,
         redirectType: redirect.redirectType,
@@ -263,14 +276,17 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
 
   // Check for redirect with loop prevention
   if (redirectCache) {
-    const normalizedPath = req.path.toLowerCase().replace(/\/$/, '') || '/';
+    // Get full path with query string
+    const fullPath = req.path + (req.url.substring(req.path.length));
+    const normalizedPath = normalizeRedirectPath(fullPath);
     const redirect = redirectCache.get(normalizedPath);
     
     if (redirect) {
       // Extract path and host from destination URL to check for redirect loops
       try {
         const destUrl = new URL(redirect.destinationUrl, `http://${req.get('host') || 'localhost'}`);
-        const destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        const destFullPath = destUrl.pathname + destUrl.search;
+        const destNormalizedPath = normalizeRedirectPath(destFullPath);
         const destHost = destUrl.host.toLowerCase();
         
         // Only check for loops if destination is same-host
@@ -280,8 +296,8 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
         
         // Check if destination path is itself a redirect source (would create a loop)
         // Only block if it's a same-host redirect
-        if (isSameHost && redirectCache.has(destPath)) {
-          console.warn(`Redirect loop detected: ${normalizedPath} → ${redirect.destinationUrl} → ${destPath}`);
+        if (isSameHost && redirectCache.has(destNormalizedPath)) {
+          console.warn(`Redirect loop detected: ${normalizedPath} → ${redirect.destinationUrl} → ${destNormalizedPath}`);
           // Skip this redirect and pass through to avoid infinite loop
           return next();
         }

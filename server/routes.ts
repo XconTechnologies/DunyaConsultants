@@ -50,6 +50,19 @@ interface AuthenticatedRequest extends Request {
   user?: AdminUser;
 }
 
+// Normalize redirect path: lowercase, trim trailing slash (but preserve query params)
+function normalizeRedirectPath(path: string): string {
+  // Split path and query string
+  const [pathname, ...queryParts] = path.split('?');
+  const queryString = queryParts.join('?'); // Re-join in case ? appears in query
+  
+  // Normalize pathname: lowercase and remove trailing slash
+  const normalizedPath = (pathname.toLowerCase().replace(/\/$/, '') || '/');
+  
+  // Return with query string if present
+  return queryString ? `${normalizedPath}?${queryString}` : normalizedPath;
+}
+
 // Helper for shared cache headers on public API endpoints
 function applyPublicCache(res: Response, maxAge: number = 60) {
   res.set('Cache-Control', `public, max-age=${maxAge}, stale-while-revalidate=300`);
@@ -1613,8 +1626,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         createdBy: req.adminId,
       });
 
-      // Normalize source path (lowercase, trim trailing slash)
-      const normalizedSource = redirectData.sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+      // Normalize source path (lowercase, trim trailing slash, preserve query params)
+      const normalizedSource = normalizeRedirectPath(redirectData.sourcePath);
       
       // Extract destination path and host for loop detection
       let destPath: string | null = null;
@@ -1623,7 +1636,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       try {
         // Use base URL to handle both relative and absolute paths
         const destUrl = new URL(redirectData.destinationUrl, 'https://dunyaconsultants.com');
-        destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        const destFullPath = destUrl.pathname + destUrl.search;
+        destPath = normalizeRedirectPath(destFullPath);
         destHost = destUrl.host.toLowerCase(); // Normalize hostname to lowercase
         // Check if destination is on the same domain (or is relative)
         isSameHost = destHost === 'dunyaconsultants.com' || destHost === 'www.dunyaconsultants.com';
@@ -1674,7 +1688,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
               break; // External redirect - no loop possible
             }
             
-            currentPath = nextUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+            const nextFullPath = nextUrl.pathname + nextUrl.search;
+            currentPath = normalizeRedirectPath(nextFullPath);
           } catch {
             break;
           }
@@ -1772,7 +1787,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let finalDestination = redirect.destinationUrl;
       
       if (sourcePath !== undefined) {
-        const normalizedSource = sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+        const normalizedSource = normalizeRedirectPath(sourcePath);
         // Check for conflicts with other redirects
         const existing = await storage.getRedirectBySourcePath(normalizedSource);
         if (existing && existing.id !== id) {
@@ -1797,7 +1812,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       try {
         // Use base URL to handle both relative and absolute paths
         const destUrl = new URL(finalDestination, 'https://dunyaconsultants.com');
-        destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        const destFullPath = destUrl.pathname + destUrl.search;
+        destPath = normalizeRedirectPath(destFullPath);
         destHost = destUrl.host.toLowerCase(); // Normalize hostname to lowercase
         // Check if destination is on the same domain (or is relative)
         isSameHost = destHost === 'dunyaconsultants.com' || destHost === 'www.dunyaconsultants.com';
@@ -1842,7 +1858,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
               break; // External redirect - no loop possible
             }
             
-            currentPath = nextUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+            const nextFullPath = nextUrl.pathname + nextUrl.search;
+            currentPath = normalizeRedirectPath(nextFullPath);
           } catch {
             break;
           }

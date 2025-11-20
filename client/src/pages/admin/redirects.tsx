@@ -256,12 +256,12 @@ export default function RedirectsPage() {
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="/old-page"
+                              placeholder="/events/register-now?event=old-name"
                               data-testid="input-source-path"
                             />
                           </FormControl>
                           <FormDescription>
-                            The path to redirect from (e.g., /old-page)
+                            The path to redirect from. Supports query parameters (e.g., /old-page or /events/register?event=old-name)
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
