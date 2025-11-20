@@ -654,7 +654,10 @@ function SchemaBlock({ block }: { block: ContentBlock & { type: 'schema' } }) {
 
 // List Block Renderer
 function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
-  const { items = [], style = 'ul' } = block.data || {};
+  // Handle both new format (data.items) and old format (items at root)
+  const blockData = block as any;
+  const items = block.data?.items ?? blockData.items ?? [];
+  const style = block.data?.style ?? blockData.style ?? 'ul';
 
   if (!items || items.length === 0) {
     return null;

@@ -1092,6 +1092,15 @@ export default function BlogEditor() {
             }
           };
         
+        case 'list':
+          return {
+            ...baseBlock,
+            data: {
+              style: blockData.style ?? (block as any).style ?? 'ul',
+              items: blockData.items ?? (block as any).items ?? []
+            }
+          };
+        
         default:
           // For other block types, return as-is
           return block;
