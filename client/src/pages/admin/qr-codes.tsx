@@ -71,6 +71,8 @@ export default function QrCodesPage() {
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editTitle, setEditTitle] = useState("");
+  const [editingLinkId, setEditingLinkId] = useState<number | null>(null);
+  const [editLink, setEditLink] = useState("");
 
   // Auth check
   useEffect(() => {
@@ -258,6 +260,39 @@ export default function QrCodesPage() {
       toast({
         title: "Error",
         description: "Failed to update QR code title",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Update QR code link mutation
+  const updateLinkMutation = useMutation({
+    mutationFn: async ({ id, link }: { id: number; link: string }) => {
+      const response = await fetch(`/api/admin/qr-codes/${id}`, {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ link }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update QR code link');
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/qr-codes"] });
+      setEditingLinkId(null);
+      setEditLink("");
+      toast({
+        title: "Success",
+        description: "QR code link updated successfully. QR code will be regenerated.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update QR code link",
         variant: "destructive",
       });
     },
@@ -531,15 +566,87 @@ export default function QrCodesPage() {
                           )}
                         </TableCell>
                         <TableCell>
-                          <a 
-                            href={qr.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-[#1D50C9] hover:text-[#1845B3] hover:underline flex items-center gap-1 font-medium transition-colors"
-                          >
-                            {qr.link.substring(0, 40)}...
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
+                          {editingLinkId === qr.id ? (
+                            <div className="flex items-center gap-2">
+                              <Input
+                                value={editLink}
+                                onChange={(e) => setEditLink(e.target.value)}
+                                className="h-8"
+                                autoFocus
+                                placeholder="https://example.com"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    if (editLink && editLink.startsWith('http')) {
+                                      updateLinkMutation.mutate({ id: qr.id, link: editLink });
+                                    } else {
+                                      toast({
+                                        title: "Invalid URL",
+                                        description: "Link must start with http:// or https://",
+                                        variant: "destructive",
+                                      });
+                                    }
+                                  } else if (e.key === 'Escape') {
+                                    setEditingLinkId(null);
+                                    setEditLink("");
+                                  }
+                                }}
+                              />
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-green-600 hover:text-green-700 hover:bg-green-50"
+                                onClick={() => {
+                                  if (editLink && editLink.startsWith('http')) {
+                                    updateLinkMutation.mutate({ id: qr.id, link: editLink });
+                                  } else {
+                                    toast({
+                                      title: "Invalid URL",
+                                      description: "Link must start with http:// or https://",
+                                      variant: "destructive",
+                                    });
+                                  }
+                                }}
+                                disabled={updateLinkMutation.isPending}
+                              >
+                                <Check className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                onClick={() => {
+                                  setEditingLinkId(null);
+                                  setEditLink("");
+                                }}
+                              >
+                                <XIcon className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <a 
+                                href={qr.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-[#1D50C9] hover:text-[#1845B3] hover:underline flex items-center gap-1 font-medium transition-colors"
+                              >
+                                {qr.link.length > 40 ? qr.link.substring(0, 40) + '...' : qr.link}
+                                <ExternalLink className="h-3.5 w-3.5" />
+                              </a>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-[#1D50C9] hover:text-[#1845B3] hover:bg-blue-50"
+                                onClick={() => {
+                                  setEditingLinkId(qr.id);
+                                  setEditLink(qr.link);
+                                }}
+                                title="Edit link"
+                              >
+                                <Pencil className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          )}
                         </TableCell>
                         <TableCell>
                           <Badge className="bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 border border-purple-200 shadow-sm">

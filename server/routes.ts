@@ -1190,10 +1190,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const id = parseInt(req.params.id);
-      const { title } = req.body;
+      const { title, link } = req.body;
 
-      if (!title || typeof title !== 'string') {
-        return res.status(400).json({ message: "Title is required" });
+      // Validate at least one field is provided
+      if (!title && !link) {
+        return res.status(400).json({ message: "Title or link is required" });
+      }
+
+      // Validate title if provided
+      if (title !== undefined && typeof title !== 'string') {
+        return res.status(400).json({ message: "Title must be a string" });
+      }
+
+      // Validate link if provided
+      if (link !== undefined && (typeof link !== 'string' || !link.startsWith('http'))) {
+        return res.status(400).json({ message: "Link must be a valid URL starting with http:// or https://" });
       }
 
       const qrCode = await storage.getQrCode(id);
@@ -1202,7 +1213,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      const updatedQrCode = await storage.updateQrCode(id, { title });
+      // Build update object with only provided fields
+      const updateData: Partial<Pick<QrCode, 'title' | 'link'>> = {};
+      if (title !== undefined) updateData.title = title;
+      if (link !== undefined) updateData.link = link;
+
+      const updatedQrCode = await storage.updateQrCode(id, updateData);
+      
+      // If link was updated, regenerate QR code image
+      if (link !== undefined) {
+        const fullUrl = `${process.env.REPL_SLUG ? `https://${process.env.REPL_SLUG}.${process.env.REPLIT_DOMAINS?.split(',')[0] || 'replit.app'}` : 'http://localhost:5000'}/qr/${id}`;
+        const qrImageDataUrl = await QRCode.toDataURL(fullUrl, {
+          width: 512,
+          margin: 2,
+          color: {
+            dark: '#1D50C9',
+            light: '#FFFFFF'
+          }
+        });
+        
+        await storage.updateQrCodeImage(id, qrImageDataUrl);
+      }
+      
       res.json(updatedQrCode);
     } catch (error) {
       console.error("Error updating QR code:", error);
