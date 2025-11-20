@@ -695,7 +695,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   // Handle both new format (data.*) and old format (direct properties)
   const blockData = block as any;
   const title = blockData.data?.title || blockData.title || 'Book Your Free Consultation';
-  const description = blockData.data?.description || blockData.description || 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors.';
+  const description = blockData.data?.description || blockData.description || 'Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.';
   
   // Primary button
   const buttonText = blockData.data?.buttonText || blockData.buttonText || 'Book Free Consultation';
@@ -713,55 +713,130 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   const button2BorderWidth = blockData.data?.secondButtonBorderWidth ?? blockData.data?.button2BorderWidth ?? blockData.secondButtonBorderWidth ?? blockData.button2BorderWidth ?? 2;
   const button2BorderColor = blockData.data?.secondButtonBorderColor || blockData.data?.button2BorderColor || blockData.secondButtonBorderColor || blockData.button2BorderColor || '#FFFFFF';
 
+  const whiteTextStyle = {
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    textShadow: 'none',
+    opacity: 1,
+    fontFamily: 'Inter, Lato, sans-serif',
+    WebkitTextFillColor: '#FFFFFF',
+    MozTextFillColor: '#FFFFFF'
+  };
+
   return (
     <div className="my-8 w-full max-w-5xl mx-auto" data-block-type="consultation">
-      <div className="rounded-[32px] bg-gradient-to-br from-[#0A5DFF] via-[#0D4FDE] to-[#0A3DB5] px-8 py-12 text-white text-center flex flex-col items-center gap-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-semibold leading-tight text-white mb-4" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>{title}</h2>
-          <p className="max-w-3xl text-base md:text-lg text-white/90 mx-auto" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>{description}</p>
-        </div>
+      <div 
+        className="rounded-2xl p-8 lg:p-12 text-center shadow-xl"
+        style={{ 
+          background: 'linear-gradient(135deg, #1D50C9 0%, #1845B3 100%)',
+          '--text-color': '#ffffff'
+        } as React.CSSProperties}
+      >
+        <h2 style={{
+          ...whiteTextStyle,
+          fontSize: '2.5rem',
+          fontWeight: 'bold',
+          marginBottom: '1.5rem',
+          lineHeight: '1.2',
+          display: 'block'
+        }}>
+          {title}
+        </h2>
+        
+        <p style={{
+          ...whiteTextStyle,
+          fontSize: '1.125rem',
+          marginBottom: '2rem',
+          lineHeight: '1.6',
+          maxWidth: '48rem',
+          margin: '0 auto 2rem auto',
+          display: 'block'
+        }}>
+          {description}
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-          <div className="flex flex-col items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-white/15 flex items-center justify-center text-white shadow-[0_10px_30px_rgba(10,61,181,0.35)]">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="flex flex-col items-center space-y-3">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={whiteTextStyle}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <h3 className="text-white font-semibold text-lg" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>20 Minutes Session</h3>
-            <p className="text-white/80 text-sm" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
+            <h3 style={{
+              ...whiteTextStyle,
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+              display: 'block'
+            }}>
+              20 Minutes Session
+            </h3>
+            <p style={{
+              ...whiteTextStyle,
+              fontSize: '0.875rem',
+              textAlign: 'center',
+              display: 'block'
+            }}>
+              Comprehensive consultation covering all aspects of your study abroad plans
+            </p>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-white/15 flex items-center justify-center text-white shadow-[0_10px_30px_rgba(10,61,181,0.35)]">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center space-y-3">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={whiteTextStyle}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <h3 className="text-white font-semibold text-lg" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>Expert Advisors</h3>
-            <p className="text-white/80 text-sm" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>Connect with certified education consultants with years of experience</p>
+            <h3 style={{
+              ...whiteTextStyle,
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+              display: 'block'
+            }}>
+              Expert Advisors
+            </h3>
+            <p style={{
+              ...whiteTextStyle,
+              fontSize: '0.875rem',
+              textAlign: 'center',
+              display: 'block'
+            }}>
+              Connect with certified education consultants with years of experience
+            </p>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-white/15 flex items-center justify-center text-white shadow-[0_10px_30px_rgba(10,61,181,0.35)]">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center space-y-3">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={whiteTextStyle}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-white font-semibold text-lg" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>Personalized Plan</h3>
-            <p className="text-white/80 text-sm" style={{ fontFamily: 'Inter, Lato, sans-serif !important' }}>Get a customized roadmap tailored to your goals and requirements</p>
+            <h3 style={{
+              ...whiteTextStyle,
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+              display: 'block'
+            }}>
+              Personalized Plan
+            </h3>
+            <p style={{
+              ...whiteTextStyle,
+              fontSize: '0.875rem',
+              textAlign: 'center',
+              display: 'block'
+            }}>
+              Get a customized roadmap tailored to your goals and requirements
+            </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href={buttonUrl}
             target={buttonUrl?.startsWith('http') ? '_blank' : undefined}
             rel={buttonUrl?.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="inline-flex items-center justify-center px-8 py-4 font-bold bg-white text-[#0A3DB5] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+            className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
             style={{ 
-              borderRadius: `${buttonBorderRadius}px`,
-              fontFamily: 'Inter, Lato, sans-serif !important'
+              fontFamily: 'Inter, Lato, sans-serif'
             }}
             data-testid="consultation-button-primary"
           >
@@ -772,10 +847,9 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
               href={button2Url}
               target={button2Url?.startsWith('http') ? '_blank' : undefined}
               rel={button2Url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="inline-flex items-center justify-center px-8 py-4 font-bold border border-white text-white hover:bg-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+              className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
               style={{ 
-                borderRadius: `${button2BorderRadius}px`,
-                fontFamily: 'Inter, Lato, sans-serif !important'
+                fontFamily: 'Inter, Lato, sans-serif'
               }}
               data-testid="consultation-button-secondary"
             >
