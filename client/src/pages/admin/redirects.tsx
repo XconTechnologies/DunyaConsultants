@@ -99,14 +99,6 @@ export default function RedirectsPage() {
     }
   }, [setLocation]);
 
-  const getAuthHeaders = () => {
-    const token = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
-    return {
-      'Content-Type': 'application/json',
-      ...(token && { 'Authorization': `Bearer ${token}` })
-    };
-  };
-
   const { data: redirects = [], isLoading } = useQuery<Redirect[]>({
     queryKey: ["/api/admin/redirects"],
     enabled: authChecked && !!adminUser,
@@ -124,11 +116,7 @@ export default function RedirectsPage() {
 
   const createMutation = useMutation({
     mutationFn: async (data: RedirectFormData) => 
-      apiRequest('/api/admin/redirects', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: getAuthHeaders(),
-      }),
+      apiRequest('POST', '/api/admin/redirects', data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/redirects"] });
       toast({
@@ -149,11 +137,7 @@ export default function RedirectsPage() {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<RedirectFormData> }) =>
-      apiRequest(`/api/admin/redirects/${id}`, {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-        headers: getAuthHeaders(),
-      }),
+      apiRequest('PATCH', `/api/admin/redirects/${id}`, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/redirects"] });
       setEditingId(null);
@@ -176,11 +160,7 @@ export default function RedirectsPage() {
 
   const trashMutation = useMutation({
     mutationFn: async (id: number) =>
-      apiRequest(`/api/admin/redirects/${id}/trash`, {
-        method: 'POST',
-        body: JSON.stringify({ reason: "Deleted from admin" }),
-        headers: getAuthHeaders(),
-      }),
+      apiRequest('POST', `/api/admin/redirects/${id}/trash`, { reason: "Deleted from admin" }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/redirects"] });
       toast({
