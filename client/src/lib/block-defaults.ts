@@ -11,6 +11,7 @@ export const HARDCODED_DEFAULTS = {
     buttonBgColor: '#FFFFFF',
     buttonTextColor: '#1D50C9',
     buttonBorderRadius: 12,
+    buttonFontSize: 18,
     // Secondary button - Orange with white text
     button2Text: 'Connect now',
     button2Url: '/contact',
@@ -19,6 +20,7 @@ export const HARDCODED_DEFAULTS = {
     button2BorderRadius: 12,
     button2BorderWidth: 0,
     button2BorderColor: '#f97316',
+    button2FontSize: 18,
   } as Partial<ConsultationBlock['data']>,
   
   whatsappChannel: {
@@ -30,6 +32,7 @@ export const HARDCODED_DEFAULTS = {
     buttonTextColor: '#1D50C9',
     buttonHoverColor: '#EAF0FB',
     buttonBorderRadius: 8,
+    buttonFontSize: 18,
   } as Partial<WhatsAppChannelBlock['data']>,
   
   tip: {

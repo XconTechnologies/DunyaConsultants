@@ -713,6 +713,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   const buttonBgColor = blockData.data?.buttonBgColor || blockData.buttonBgColor || '#FFFFFF';
   const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#1D50C9';
   const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 12;
+  const buttonFontSize = blockData.data?.buttonFontSize ?? blockData.buttonFontSize ?? 18;
   
   // Secondary button (optional) - support both naming conventions
   const button2Text = blockData.data?.secondButtonText || blockData.data?.button2Text || blockData.secondButtonText || blockData.button2Text;
@@ -722,6 +723,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
   const button2BorderRadius = blockData.data?.secondButtonBorderRadius ?? blockData.data?.button2BorderRadius ?? blockData.secondButtonBorderRadius ?? blockData.button2BorderRadius ?? 12;
   const button2BorderWidth = blockData.data?.secondButtonBorderWidth ?? blockData.data?.button2BorderWidth ?? blockData.secondButtonBorderWidth ?? blockData.button2BorderWidth ?? 2;
   const button2BorderColor = blockData.data?.secondButtonBorderColor || blockData.data?.button2BorderColor || blockData.secondButtonBorderColor || blockData.button2BorderColor || '#FFFFFF';
+  const button2FontSize = blockData.data?.button2FontSize ?? blockData.button2FontSize ?? 18;
 
   const whiteTextStyle = {
     color: '#FFFFFF',
@@ -844,9 +846,10 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
             href={buttonUrl}
             target={buttonUrl?.startsWith('http') ? '_blank' : undefined}
             rel={buttonUrl?.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center font-medium text-[18px]"
+            className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center font-medium"
             style={{ 
-              fontFamily: 'Inter, Lato, sans-serif'
+              fontFamily: 'Inter, Lato, sans-serif',
+              fontSize: `${buttonFontSize}px`
             }}
             data-testid="consultation-button-primary"
           >
@@ -857,9 +860,10 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
               href={button2Url}
               target={button2Url?.startsWith('http') ? '_blank' : undefined}
               rel={button2Url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="bg-[#f97316] hover:bg-[#ea580c] hover:text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-[#ffffff] font-medium text-[18px]"
+              className="bg-[#f97316] text-white hover:bg-[#ea580c] hover:text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center font-medium"
               style={{ 
-                fontFamily: 'Inter, Lato, sans-serif'
+                fontFamily: 'Inter, Lato, sans-serif',
+                fontSize: `${button2FontSize}px`
               }}
               data-testid="consultation-button-secondary"
             >
@@ -886,6 +890,7 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
   const buttonTextColor = blockData.data?.buttonTextColor || blockData.buttonTextColor || '#ffffff';
   const buttonHoverColor = blockData.data?.buttonHoverColor || blockData.buttonHoverColor || '#1EA952';
   const buttonBorderRadius = blockData.data?.buttonBorderRadius ?? blockData.buttonBorderRadius ?? 8;
+  const buttonFontSize = blockData.data?.buttonFontSize ?? blockData.buttonFontSize ?? 18;
 
   return (
     <div className="my-8 w-full max-w-4xl mx-auto" data-block-type="whatsappChannel">
@@ -912,6 +917,7 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
               backgroundColor: isHovered ? '#EAF0FB' : '#FFFFFF',
               color: '#1D50C9',
               borderRadius: `${buttonBorderRadius}px`,
+              fontSize: `${buttonFontSize}px`,
               fontFamily: 'Inter, Lato, sans-serif !important',
               transition: 'background-color 0.3s ease'
             }}

@@ -89,6 +89,7 @@ export interface ConsultationBlock extends BaseBlock {
   buttonBgColor: string;
   buttonTextColor: string;
   buttonBorderRadius: number;
+  buttonFontSize?: number;
   button2Text?: string;
   button2Url?: string;
   button2BgColor?: string;
@@ -96,6 +97,7 @@ export interface ConsultationBlock extends BaseBlock {
   button2BorderRadius?: number;
   button2BorderWidth?: number;
   button2BorderColor?: string;
+  button2FontSize?: number;
 }
 
 export interface WhatsAppChannelBlock extends BaseBlock {
@@ -108,6 +110,7 @@ export interface WhatsAppChannelBlock extends BaseBlock {
   buttonTextColor: string;
   buttonHoverColor: string;
   buttonBorderRadius: number;
+  buttonFontSize?: number;
 }
 
 export interface TipBlock extends BaseBlock {
@@ -806,6 +809,7 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
         buttonBgColor: block.buttonBgColor,
         buttonTextColor: block.buttonTextColor,
         buttonBorderRadius: block.buttonBorderRadius,
+        buttonFontSize: block.buttonFontSize,
         button2Text: block.button2Text,
         button2Url: block.button2Url,
         button2BgColor: block.button2BgColor,
@@ -813,6 +817,7 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
         button2BorderRadius: block.button2BorderRadius,
         button2BorderWidth: block.button2BorderWidth,
         button2BorderColor: block.button2BorderColor,
+        button2FontSize: block.button2FontSize,
       };
 
       const response = await fetch(`/api/admin/block-defaults/consultation/${saveScope}`, {
@@ -914,16 +919,29 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
             </div>
           </div>
           
-          <div>
-            <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
-            <Input
-              type="number"
-              value={block.buttonBorderRadius || 12}
-              onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
-              placeholder="12"
-              min="0"
-              max="50"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
+              <Input
+                type="number"
+                value={block.buttonBorderRadius || 12}
+                onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
+                placeholder="12"
+                min="0"
+                max="50"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Font Size (px)</Label>
+              <Input
+                type="number"
+                value={block.buttonFontSize || 18}
+                onChange={(e) => onChange({ ...block, buttonFontSize: parseInt(e.target.value) || 0 })}
+                placeholder="18"
+                min="10"
+                max="32"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -989,7 +1007,7 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
             </div>
           </div>
           
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
               <Input
@@ -1001,6 +1019,20 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
                 max="50"
               />
             </div>
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Font Size (px)</Label>
+              <Input
+                type="number"
+                value={block.button2FontSize || 18}
+                onChange={(e) => onChange({ ...block, button2FontSize: parseInt(e.target.value) || 0 })}
+                placeholder="18"
+                min="10"
+                max="32"
+              />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <Label className="text-xs text-gray-600 mb-1 block">Border Width (px)</Label>
               <Input
@@ -1083,7 +1115,8 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
             style={{
               backgroundColor: block.buttonBgColor || '#FFFFFF',
               color: block.buttonTextColor || '#1D50C9',
-              borderRadius: `${block.buttonBorderRadius || 12}px`
+              borderRadius: `${block.buttonBorderRadius || 12}px`,
+              fontSize: `${block.buttonFontSize || 18}px`
             }}
           >
             {block.buttonText || 'Primary Button'}
@@ -1095,6 +1128,7 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
                 backgroundColor: block.button2BgColor || '#f97316',
                 color: block.button2TextColor || '#FFFFFF',
                 borderRadius: `${block.button2BorderRadius || 12}px`,
+                fontSize: `${block.button2FontSize || 18}px`,
                 border: block.button2BorderWidth ? `${block.button2BorderWidth}px solid ${block.button2BorderColor || '#FFFFFF'}` : 'none'
               }}
             >
@@ -1128,6 +1162,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
         buttonTextColor: block.buttonTextColor,
         buttonHoverColor: block.buttonHoverColor,
         buttonBorderRadius: block.buttonBorderRadius,
+        buttonFontSize: block.buttonFontSize,
       };
 
       const response = await fetch(`/api/admin/block-defaults/whatsappChannel/${saveScope}`, {
@@ -1245,16 +1280,29 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
             </div>
           </div>
           
-          <div>
-            <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
-            <Input
-              type="number"
-              value={block.buttonBorderRadius}
-              onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
-              placeholder="8"
-              min="0"
-              max="50"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Border Radius (px)</Label>
+              <Input
+                type="number"
+                value={block.buttonBorderRadius}
+                onChange={(e) => onChange({ ...block, buttonBorderRadius: parseInt(e.target.value) || 0 })}
+                placeholder="8"
+                min="0"
+                max="50"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-600 mb-1 block">Font Size (px)</Label>
+              <Input
+                type="number"
+                value={block.buttonFontSize || 18}
+                onChange={(e) => onChange({ ...block, buttonFontSize: parseInt(e.target.value) || 0 })}
+                placeholder="18"
+                min="10"
+                max="32"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -1315,7 +1363,8 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
           style={{
             backgroundColor: block.buttonBgColor || '#FFFFFF',
             color: block.buttonTextColor || '#1D50C9',
-            borderRadius: `${block.buttonBorderRadius}px`
+            borderRadius: `${block.buttonBorderRadius}px`,
+            fontSize: `${block.buttonFontSize || 18}px`
           }}
         >
           <MessageCircle className="w-4 h-4" />
@@ -1420,6 +1469,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           buttonBgColor: '#eff6ff',
           buttonTextColor: '#1d50c9',
           buttonBorderRadius: 8,
+          buttonFontSize: 18,
           button2Text: 'Connect now',
           button2Url: 'https://dunyaconsultants.com/contact',
           button2BgColor: '#ff6a05',
@@ -1427,6 +1477,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           button2BorderRadius: 12,
           button2BorderWidth: 2,
           button2BorderColor: '',
+          button2FontSize: 18,
           position 
         } as ConsultationBlock;
       case 'whatsappChannel':
@@ -1441,6 +1492,7 @@ export default function CustomBlockEditor({ blocks, onChange, onHtmlView }: Cust
           buttonTextColor: '#ffffff',
           buttonHoverColor: '#1EA952',
           buttonBorderRadius: 8,
+          buttonFontSize: 18,
           position 
         } as WhatsAppChannelBlock;
     }

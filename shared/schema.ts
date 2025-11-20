@@ -155,6 +155,7 @@ export interface ConsultationBlock {
     buttonBgColor?: string;
     buttonTextColor?: string;
     buttonBorderRadius?: number;
+    buttonFontSize?: number;
     // Secondary button
     button2Text?: string;
     button2Url?: string;
@@ -163,6 +164,7 @@ export interface ConsultationBlock {
     button2BorderRadius?: number;
     button2BorderWidth?: number;
     button2BorderColor?: string;
+    button2FontSize?: number;
   };
 }
 
@@ -179,6 +181,7 @@ export interface WhatsAppChannelBlock {
     buttonTextColor?: string;
     buttonHoverColor?: string;
     buttonBorderRadius?: number;
+    buttonFontSize?: number;
   };
 }
 

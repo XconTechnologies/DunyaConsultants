@@ -473,13 +473,15 @@ export default function BlogEditor() {
               buttonBgColor: data.buttonBgColor,
               buttonTextColor: data.buttonTextColor,
               buttonBorderRadius: data.buttonBorderRadius,
+              buttonFontSize: data.buttonFontSize,
               button2Text: data.button2Text || data.secondButtonText,
               button2Url: data.button2Url || data.secondButtonUrl,
               button2BgColor: data.button2BgColor || data.secondButtonBgColor,
               button2TextColor: data.button2TextColor || data.secondButtonTextColor,
               button2BorderRadius: data.button2BorderRadius ?? data.secondButtonBorderRadius,
               button2BorderColor: data.button2BorderColor || data.secondButtonBorderColor,
-              button2BorderWidth: data.button2BorderWidth ?? data.secondButtonBorderWidth
+              button2BorderWidth: data.button2BorderWidth ?? data.secondButtonBorderWidth,
+              button2FontSize: data.button2FontSize
             };
           case 'whatsappChannel':
             return {
@@ -491,7 +493,8 @@ export default function BlogEditor() {
               buttonBgColor: data.buttonBgColor,
               buttonTextColor: data.buttonTextColor,
               buttonHoverColor: data.buttonHoverColor,
-              buttonBorderRadius: data.buttonBorderRadius
+              buttonBorderRadius: data.buttonBorderRadius,
+              buttonFontSize: data.buttonFontSize
             };
           case 'faq':
             return { ...baseBlock, items: data.questions || [] };
@@ -1051,13 +1054,15 @@ export default function BlogEditor() {
               buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#1D50C9',
               buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
               buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8,
+              buttonFontSize: blockData.buttonFontSize ?? (block as any).buttonFontSize ?? 18,
               button2Text: blockData.button2Text ?? blockData.secondButtonText ?? (block as any).button2Text ?? (block as any).secondButtonText,
               button2Url: blockData.button2Url ?? blockData.secondButtonUrl ?? (block as any).button2Url ?? (block as any).secondButtonUrl,
               button2BgColor: blockData.button2BgColor ?? blockData.secondButtonBgColor ?? (block as any).button2BgColor ?? (block as any).secondButtonBgColor,
               button2TextColor: blockData.button2TextColor ?? blockData.secondButtonTextColor ?? (block as any).button2TextColor ?? (block as any).secondButtonTextColor,
               button2BorderRadius: blockData.button2BorderRadius ?? blockData.secondButtonBorderRadius ?? (block as any).button2BorderRadius ?? (block as any).secondButtonBorderRadius,
               button2BorderColor: blockData.button2BorderColor ?? blockData.secondButtonBorderColor ?? (block as any).button2BorderColor ?? (block as any).secondButtonBorderColor,
-              button2BorderWidth: blockData.button2BorderWidth ?? blockData.secondButtonBorderWidth ?? (block as any).button2BorderWidth ?? (block as any).secondButtonBorderWidth
+              button2BorderWidth: blockData.button2BorderWidth ?? blockData.secondButtonBorderWidth ?? (block as any).button2BorderWidth ?? (block as any).secondButtonBorderWidth,
+              button2FontSize: blockData.button2FontSize ?? (block as any).button2FontSize ?? 18
             }
           };
         
@@ -1072,7 +1077,8 @@ export default function BlogEditor() {
               buttonBgColor: blockData.buttonBgColor ?? (block as any).buttonBgColor ?? '#25D366',
               buttonTextColor: blockData.buttonTextColor ?? (block as any).buttonTextColor ?? '#ffffff',
               buttonHoverColor: blockData.buttonHoverColor ?? (block as any).buttonHoverColor ?? '#1EA952',
-              buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8
+              buttonBorderRadius: blockData.buttonBorderRadius ?? (block as any).buttonBorderRadius ?? 8,
+              buttonFontSize: blockData.buttonFontSize ?? (block as any).buttonFontSize ?? 18
             }
           };
         
