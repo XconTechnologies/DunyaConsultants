@@ -730,19 +730,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/scan-attendance", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const { token } = req.body;
+      console.log("[Scan Attendance] Request from admin:", req.adminId, "token length:", token?.length);
       
       if (!token) {
+        console.log("[Scan Attendance] No token provided in request body");
         return res.status(400).json({ success: false, message: "QR token is required" });
       }
 
       const registration = await storage.markAttendance(token);
       
       if (!registration) {
+        console.log("[Scan Attendance] Registration not found for token:", token.substring(0, 10) + "...");
         return res.status(404).json({ success: false, message: "Invalid QR code or registration not found" });
       }
 
+      console.log("[Scan Attendance] Found registration:", registration.id, "Name:", registration.name, "Already attended:", registration.isAttended);
+
       if (registration.isAttended && registration.attendedAt && 
           new Date(registration.attendedAt).getTime() < Date.now() - 60000) {
+        console.log("[Scan Attendance] Already scanned over 1 minute ago");
         return res.json({ 
           success: true, 
           message: "Attendance already marked",
@@ -751,6 +757,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
+      console.log("[Scan Attendance] Marking attendance successful");
       res.json({ 
         success: true, 
         message: "Attendance marked successfully! User is now eligible for prize.",

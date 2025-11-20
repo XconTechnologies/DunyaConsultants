@@ -27,6 +27,8 @@ export default function QRScannerPage() {
   const [lastScan, setLastScan] = useState<any>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [debugMode, setDebugMode] = useState(false);
+  const [lastError, setLastError] = useState<string>("");
   const { toast } = useToast();
   const scannerRef = useRef<any | null>(null);
 
@@ -57,6 +59,9 @@ export default function QRScannerPage() {
   const scanMutation = useMutation({
     mutationFn: async (token: string) => {
       const adminToken = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
+      console.log("[QR Scanner] Attempting to scan with token:", token.substring(0, 10) + "...");
+      console.log("[QR Scanner] Admin token present:", !!adminToken);
+      
       const response = await fetch("/api/admin/scan-attendance", {
         method: "POST",
         headers: {
@@ -66,12 +71,17 @@ export default function QRScannerPage() {
         body: JSON.stringify({ token })
       });
       
+      console.log("[QR Scanner] Response status:", response.status);
+      
       if (!response.ok) {
         const error = await response.json();
+        console.error("[QR Scanner] Scan failed:", error);
         throw new Error(error.message || "Failed to scan");
       }
       
-      return response.json();
+      const result = await response.json();
+      console.log("[QR Scanner] Scan successful:", result);
+      return result;
     },
     onSuccess: (data) => {
       setLastScan(data);
@@ -93,6 +103,7 @@ export default function QRScannerPage() {
     },
     onError: (error: any) => {
       const message = error.message || "Invalid QR code";
+      setLastError(message);
       toast({
         title: "Scan Failed",
         description: message,
@@ -344,14 +355,24 @@ export default function QRScannerPage() {
         {/* Instructions */}
         <Card className="mt-6 border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
           <CardHeader>
-            <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Scanning Instructions</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-[#1D50C9] bg-clip-text text-transparent">Scanning Instructions</CardTitle>
+              <Button
+                onClick={() => setDebugMode(!debugMode)}
+                variant="outline"
+                size="sm"
+                data-testid="button-toggle-debug"
+              >
+                {debugMode ? "Hide" : "Show"} Debug Info
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 text-sm text-gray-600">
               <ol className="list-decimal list-inside space-y-2 font-medium">
                 <li>Ask the attendee to show their QR code (from email or registration confirmation)</li>
-                <li>Use a QR code scanner app to scan the code, or manually enter the token</li>
-                <li>Paste the scanned token into the input field above</li>
+                <li>Use a QR code scanner app to scan the code, or click the camera button to scan directly</li>
+                <li>Paste the scanned data into the input field above (the app will extract the token automatically)</li>
                 <li>Click "Scan & Mark Attendance" or press Enter</li>
                 <li>The attendee will be automatically marked as attended and eligible for the prize</li>
                 <li>Prizes will be distributed 7-10 days after the event</li>
@@ -363,6 +384,38 @@ export default function QRScannerPage() {
                   you'll see an "Already Scanned" message.
                 </p>
               </div>
+              
+              {/* Debug Information */}
+              {debugMode && (
+                <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="font-bold text-yellow-900 mb-2">Debug Information</p>
+                  <div className="space-y-2 text-xs font-mono">
+                    <div>
+                      <strong>Auth Token Present:</strong> {localStorage.getItem("adminToken") || localStorage.getItem("userToken") ? "✓ Yes" : "✗ No"}
+                    </div>
+                    <div>
+                      <strong>Current User:</strong> {adminUser?.username || "Unknown"}
+                    </div>
+                    <div>
+                      <strong>Last Token Scanned:</strong> {qrToken || lastScan?.registration?.token ? (qrToken || lastScan?.registration?.token).substring(0, 20) + "..." : "None"}
+                    </div>
+                    {lastError && (
+                      <div className="text-red-600">
+                        <strong>Last Error:</strong> {lastError}
+                      </div>
+                    )}
+                    <div className="mt-2 pt-2 border-t border-yellow-300">
+                      <strong>Test Token Format:</strong>
+                      <div className="mt-1 p-2 bg-white rounded">
+                        {`{"registrationId":123,"token":"abc...","eventId":1,"timestamp":"..."}`}
+                      </div>
+                      <p className="text-yellow-700 mt-1">
+                        The QR code should contain JSON data. The scanner will automatically extract the token field.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
