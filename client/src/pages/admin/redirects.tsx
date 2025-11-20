@@ -261,7 +261,7 @@ export default function RedirectsPage() {
                             />
                           </FormControl>
                           <FormDescription>
-                            The path to redirect from. Supports query parameters (e.g., /old-page or /events/register?event=old-name)
+                            Enter only the path (not the full URL). Must start with /. Example: /events/register?event=old-name
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
