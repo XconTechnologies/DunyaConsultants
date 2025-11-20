@@ -19,7 +19,8 @@ import {
   Mail,
   FileEdit,
   Building2,
-  Globe
+  Globe,
+  ArrowRightLeft
 } from "lucide-react";
 import { 
   isAdmin
@@ -140,6 +141,12 @@ const sidebarItems: SidebarItem[] = [
     href: "/admin/url-shortener",
     icon: Link2,
     description: "Create and manage short URLs"
+  },
+  {
+    title: "Redirects",
+    href: "/admin/redirects",
+    icon: ArrowRightLeft,
+    description: "Manage URL redirects"
   },
   {
     title: "Icons",
