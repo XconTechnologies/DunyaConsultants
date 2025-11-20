@@ -1202,7 +1202,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
                 <Input
                   value={block.buttonBgColor}
                   onChange={(e) => onChange({ ...block, buttonBgColor: e.target.value })}
-                  placeholder="#25D366"
+                  placeholder="#FFFFFF"
                   className="flex-1"
                 />
               </div>
@@ -1220,7 +1220,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
                 <Input
                   value={block.buttonTextColor}
                   onChange={(e) => onChange({ ...block, buttonTextColor: e.target.value })}
-                  placeholder="#ffffff"
+                  placeholder="#1D50C9"
                   className="flex-1"
                 />
               </div>
@@ -1228,7 +1228,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
           </div>
 
           <div>
-            <Label className="text-xs text-gray-600 mb-1 block">Hover Color</Label>
+            <Label className="text-xs text-gray-600 mb-1 block">Hover Background Color</Label>
             <div className="flex gap-2">
               <Input
                 type="color"
@@ -1239,7 +1239,7 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
               <Input
                 value={block.buttonHoverColor}
                 onChange={(e) => onChange({ ...block, buttonHoverColor: e.target.value })}
-                placeholder="#1EA952"
+                placeholder="#EAF0FB"
                 className="flex-1"
               />
             </div>
@@ -1311,10 +1311,10 @@ function WhatsAppChannelBlockComponent({ block, onChange }: { block: WhatsAppCha
       <div className="mt-4 p-3 bg-gray-50 rounded border">
         <p className="text-xs text-gray-600 mb-2 font-medium">Preview:</p>
         <button 
-          className="px-6 py-3 font-semibold transition-all flex items-center gap-2"
+          className="px-6 py-3 font-medium transition-all flex items-center gap-2"
           style={{
-            backgroundColor: block.buttonBgColor,
-            color: block.buttonTextColor,
+            backgroundColor: block.buttonBgColor || '#FFFFFF',
+            color: block.buttonTextColor || '#1D50C9',
             borderRadius: `${block.buttonBorderRadius}px`
           }}
         >

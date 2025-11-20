@@ -27,7 +27,8 @@ export const HARDCODED_DEFAULTS = {
     channelUrl: 'https://whatsapp.com/channel/0029VbAnwfe8qIzremjcqn2V',
     buttonText: 'Join Channel',
     buttonBgColor: '#FFFFFF',
-    buttonTextColor: '#25D366',
+    buttonTextColor: '#1D50C9',
+    buttonHoverColor: '#EAF0FB',
     buttonBorderRadius: 8,
   } as Partial<WhatsAppChannelBlock['data']>,
   

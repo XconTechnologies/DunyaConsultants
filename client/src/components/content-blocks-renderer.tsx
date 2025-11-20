@@ -907,10 +907,10 @@ function WhatsAppChannelBlockRenderer({ block }: { block: ContentBlock & { type:
             href={channelUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             style={{ 
-              backgroundColor: isHovered ? buttonHoverColor : buttonBgColor,
-              color: buttonTextColor,
+              backgroundColor: isHovered ? '#EAF0FB' : '#FFFFFF',
+              color: '#1D50C9',
               borderRadius: `${buttonBorderRadius}px`,
               fontFamily: 'Inter, Lato, sans-serif !important',
               transition: 'background-color 0.3s ease'
