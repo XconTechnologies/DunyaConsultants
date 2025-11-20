@@ -11,14 +11,14 @@ export const HARDCODED_DEFAULTS = {
     buttonBgColor: '#FFFFFF',
     buttonTextColor: '#1D50C9',
     buttonBorderRadius: 12,
-    // Secondary button - Transparent with border
+    // Secondary button - Orange with white text
     button2Text: 'Connect now',
     button2Url: '/contact',
-    button2BgColor: 'rgba(255, 255, 255, 0.2)',
+    button2BgColor: '#f97316',
     button2TextColor: '#FFFFFF',
     button2BorderRadius: 12,
-    button2BorderWidth: 2,
-    button2BorderColor: '#FFFFFF',
+    button2BorderWidth: 0,
+    button2BorderColor: '#f97316',
   } as Partial<ConsultationBlock['data']>,
   
   whatsappChannel: {

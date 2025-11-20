@@ -957,14 +957,14 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
               <div className="flex gap-2">
                 <Input
                   type="color"
-                  value={block.button2BgColor || 'rgba(255, 255, 255, 0.2)'}
+                  value={block.button2BgColor || '#f97316'}
                   onChange={(e) => onChange({ ...block, button2BgColor: e.target.value })}
                   className="w-12 h-9 p-1 cursor-pointer"
                 />
                 <Input
-                  value={block.button2BgColor || 'rgba(255, 255, 255, 0.2)'}
+                  value={block.button2BgColor || '#f97316'}
                   onChange={(e) => onChange({ ...block, button2BgColor: e.target.value })}
-                  placeholder="rgba(255, 255, 255, 0.2)"
+                  placeholder="#f97316"
                   className="flex-1"
                 />
               </div>
@@ -1079,7 +1079,7 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
         <p className="text-xs text-gray-600 mb-2 font-medium">Preview:</p>
         <div className="flex flex-wrap gap-3">
           <button 
-            className="px-6 py-3 font-semibold transition-all"
+            className="px-6 py-3 font-medium transition-all"
             style={{
               backgroundColor: block.buttonBgColor || '#FFFFFF',
               color: block.buttonTextColor || '#1D50C9',
@@ -1090,12 +1090,12 @@ function ConsultationBlockComponent({ block, onChange }: { block: ConsultationBl
           </button>
           {block.button2Text && (
             <button 
-              className="px-6 py-3 font-semibold transition-all"
+              className="px-6 py-3 font-medium transition-all"
               style={{
-                backgroundColor: block.button2BgColor || 'rgba(255, 255, 255, 0.2)',
+                backgroundColor: block.button2BgColor || '#f97316',
                 color: block.button2TextColor || '#FFFFFF',
                 borderRadius: `${block.button2BorderRadius || 12}px`,
-                border: `${block.button2BorderWidth || 2}px solid ${block.button2BorderColor || '#FFFFFF'}`
+                border: block.button2BorderWidth ? `${block.button2BorderWidth}px solid ${block.button2BorderColor || '#FFFFFF'}` : 'none'
               }}
             >
               {block.button2Text}
