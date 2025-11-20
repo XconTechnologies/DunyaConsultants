@@ -327,61 +327,111 @@ ul.list-content > li {
   margin: 0.5em 0;
 }
 
-.ql-editor ol > li,
-.blog-content ol > li,
-.prose ol > li,
-article ol > li,
-ol.list-content > li {
-  list-style-type: decimal;
-  margin: 0.5em 0;
-}
-
-/* Nested lists (2nd level) */
+/* Nested lists (2nd level) - Unordered: square boxes */
 .ql-editor ul ul,
 .blog-content ul ul,
 .prose ul ul,
 article ul ul,
 ul.list-content ul {
-  list-style-type: circle;
+  list-style-type: square;
   margin: 0.25em 0;
   padding-left: 1.5em;
 }
 
-.ql-editor ul ol,
+/* Nested ordered lists - Use CSS counters for hierarchical numbering */
+.ql-editor ol,
+.blog-content ol,
+.prose ol,
+article ol,
+ol.list-content {
+  counter-reset: item;
+  list-style-type: none;
+}
+
+.ql-editor ol > li,
+.blog-content ol > li,
+.prose ol > li,
+article ol > li,
+ol.list-content > li {
+  counter-increment: item;
+  list-style-type: none;
+  margin: 0.5em 0;
+}
+
+.ql-editor ol > li::before,
+.blog-content ol > li::before,
+.prose ol > li::before,
+article ol > li::before,
+ol.list-content > li::before {
+  content: counter(item) ". ";
+  color: #1D50C9;
+  font-weight: 500;
+  margin-right: 0.5em;
+}
+
 .ql-editor ol ol,
-.blog-content ul ol,
 .blog-content ol ol,
-.prose ul ol,
 .prose ol ol,
-article ul ol,
 article ol ol,
-ul.list-content ol,
 ol.list-content ol {
-  list-style-type: lower-alpha;
+  counter-reset: subitem;
   margin: 0.25em 0;
   padding-left: 1.5em;
 }
 
-/* Third level nested lists */
+.ql-editor ol ol > li,
+.blog-content ol ol > li,
+.prose ol ol > li,
+article ol ol > li,
+ol.list-content ol > li {
+  counter-increment: subitem;
+}
+
+.ql-editor ol ol > li::before,
+.blog-content ol ol > li::before,
+.prose ol ol > li::before,
+article ol ol > li::before,
+ol.list-content ol > li::before {
+  content: counter(item) "." counter(subitem) " ";
+  color: #1D50C9;
+  font-weight: 500;
+  margin-right: 0.5em;
+}
+
+.ql-editor ol ol ol,
+.blog-content ol ol ol,
+.prose ol ol ol,
+article ol ol ol,
+ol.list-content ol ol {
+  counter-reset: subsubitem;
+}
+
+.ql-editor ol ol ol > li,
+.blog-content ol ol ol > li,
+.prose ol ol ol > li,
+article ol ol ol > li,
+ol.list-content ol ol > li {
+  counter-increment: subsubitem;
+}
+
+.ql-editor ol ol ol > li::before,
+.blog-content ol ol ol > li::before,
+.prose ol ol ol > li::before,
+article ol ol ol > li::before,
+ol.list-content ol ol > li::before {
+  content: counter(item) "." counter(subitem) "." counter(subsubitem) " ";
+  color: #1D50C9;
+  font-weight: 500;
+  margin-right: 0.5em;
+}
+
+/* Third level nested unordered lists - circles */
 .ql-editor ul ul ul,
 .blog-content ul ul ul,
 .prose ul ul ul,
 article ul ul ul,
 ul.list-content ul ul {
-  list-style-type: square;
-}
-
-.ql-editor ul ol ol,
-.ql-editor ol ol ol,
-.blog-content ul ol ol,
-.blog-content ol ol ol,
-.prose ul ol ol,
-.prose ol ol ol,
-article ul ol ol,
-article ol ol ol,
-ul.list-content ol ol,
-ol.list-content ol ol {
-  list-style-type: lower-roman;
+  list-style-type: circle;
 }
 
 /* All list item markers - brand blue color */
@@ -392,6 +442,40 @@ article li::marker,
 ul.list-content li::marker,
 ol.list-content li::marker {
   color: #1D50C9;
+}
+
+/* Links in lists - ensure proper styling */
+.ql-editor li a,
+.blog-content li a,
+.prose li a,
+article li a,
+ul.list-content li a,
+ol.list-content li a,
+.ql-editor li span[onclick],
+.blog-content li span[onclick],
+.prose li span[onclick],
+article li span[onclick],
+ul.list-content li span[onclick],
+ol.list-content li span[onclick],
+.ql-editor li button,
+.blog-content li button,
+.prose li button,
+article li button,
+ul.list-content li button,
+ol.list-content li button {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ql-editor li a:hover,
+.blog-content li a:hover,
+.prose li a:hover,
+article li a:hover,
+ul.list-content li a:hover,
+ol.list-content li a:hover {
+  color: #1D50C9;
+  text-decoration: underline;
 }
 
 /* Custom HTML blocks - ensure scripts execute properly */

@@ -690,6 +690,8 @@ function HtmlBlockComponent({ block, onChange }: { block: HtmlBlock; onChange: (
         onChange={(e) => onChange({ ...block, html: e.target.value })}
         placeholder="Enter HTML code..."
         className="min-h-[150px] font-mono text-sm"
+        autoFocus={!block.html}
+        data-block-id={block.id}
       />
       {block.showPreview && (
         <div className="border border-gray-300 rounded p-4 bg-gray-50">

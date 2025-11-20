@@ -663,14 +663,21 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
   const renderListItems = (listItems: any[], depth = 0) => {
     return listItems.map((item: any, index: number) => {
       // Remove leading bullets or numbers from text if present
-      const cleanText = (item.text || '')
+      let cleanText = (item.text || '')
         .replace(/^[•●○■□▪▫◆◇‣⁃∙⦿⦾]+\s*/g, '') // Remove bullet points
         .replace(/^\d+\.\s*/g, '') // Remove numbered list markers
         .trim();
 
+      // Check if text contains HTML tags
+      const hasHTMLTags = /<[^>]+>/.test(cleanText);
+
       return (
         <li key={item.id || index}>
-          {cleanText}
+          {hasHTMLTags ? (
+            <span dangerouslySetInnerHTML={{ __html: cleanText }} />
+          ) : (
+            cleanText
+          )}
           {item.children && item.children.length > 0 && (
             style === 'ol' ? (
               <ol>{renderListItems(item.children, depth + 1)}</ol>
