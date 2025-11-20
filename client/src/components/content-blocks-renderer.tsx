@@ -857,7 +857,7 @@ function ConsultationBlock({ block }: { block: ContentBlock & { type: 'consultat
               href={button2Url}
               target={button2Url?.startsWith('http') ? '_blank' : undefined}
               rel={button2Url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="bg-[#f97316] hover:bg-[#ea580c] hover:text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-[#ffffff] font-medium"
+              className="bg-[#f97316] hover:bg-[#ea580c] hover:text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-[#ffffff] font-medium text-[18px]"
               style={{ 
                 fontFamily: 'Inter, Lato, sans-serif'
               }}
