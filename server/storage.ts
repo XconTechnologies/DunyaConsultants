@@ -1,7 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, eventAssignments, leadAssignments, editingSessions, editRequests,
-  categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, backupConfigs, backupHistory,
+  categories, blogPostCategories, events, eventRegistrations, qrCodes, shortUrls, redirects, backupConfigs, backupHistory,
   customForms, formFields, customFormSubmissions, branchIcons, universityIcons, blockDefaults,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
@@ -17,6 +17,7 @@ import {
   type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
   type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration,
   type QrCode, type InsertQrCode, type ShortUrl, type InsertShortUrl,
+  type Redirect, type InsertRedirect,
   type BackupConfig, type InsertBackupConfig, type BackupHistory, type InsertBackupHistory,
   type CustomForm, type InsertCustomForm, type FormField, type InsertFormField,
   type CustomFormSubmission, type InsertCustomFormSubmission,
@@ -82,6 +83,19 @@ export interface IStorage {
   trashShortUrl(id: number, trashedBy: number, reason?: string): Promise<ShortUrl>;
   restoreShortUrl(id: number): Promise<ShortUrl>;
   getTrashedShortUrls(): Promise<ShortUrl[]>;
+  
+  // URL Redirect Management
+  createRedirect(redirect: InsertRedirect): Promise<Redirect>;
+  getRedirects(): Promise<Redirect[]>;
+  getActiveRedirects(): Promise<Redirect[]>;
+  getRedirect(id: number): Promise<Redirect | undefined>;
+  getRedirectBySourcePath(sourcePath: string): Promise<Redirect | undefined>;
+  updateRedirect(id: number, data: Partial<Omit<InsertRedirect, 'createdBy'>>, updatedBy: number): Promise<Redirect>;
+  incrementRedirectHit(id: number): Promise<Redirect>;
+  trashRedirect(id: number, trashedBy: number, reason?: string): Promise<Redirect>;
+  restoreRedirect(id: number): Promise<Redirect>;
+  getTrashedRedirects(): Promise<Redirect[]>;
+  deleteRedirect(id: number): Promise<void>;
   
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
@@ -696,6 +710,91 @@ export class DatabaseStorage implements IStorage {
       .from(shortUrls)
       .where(sql`${shortUrls.trashedAt} IS NOT NULL`)
       .orderBy(desc(shortUrls.trashedAt));
+  }
+
+  // URL Redirect Management
+  async createRedirect(insertRedirect: InsertRedirect): Promise<Redirect> {
+    const [redirect] = await db.insert(redirects).values(insertRedirect).returning();
+    return redirect;
+  }
+
+  async getRedirects(): Promise<Redirect[]> {
+    return await db.select()
+      .from(redirects)
+      .where(sql`${redirects.trashedAt} IS NULL`)
+      .orderBy(desc(redirects.createdAt));
+  }
+
+  async getActiveRedirects(): Promise<Redirect[]> {
+    return await db.select()
+      .from(redirects)
+      .where(sql`${redirects.trashedAt} IS NULL AND ${redirects.isActive} = true`)
+      .orderBy(desc(redirects.createdAt));
+  }
+
+  async getRedirect(id: number): Promise<Redirect | undefined> {
+    const [redirect] = await db.select().from(redirects).where(eq(redirects.id, id));
+    return redirect || undefined;
+  }
+
+  async getRedirectBySourcePath(sourcePath: string): Promise<Redirect | undefined> {
+    const [redirect] = await db.select()
+      .from(redirects)
+      .where(sql`${redirects.sourcePath} = ${sourcePath} AND ${redirects.trashedAt} IS NULL AND ${redirects.isActive} = true`);
+    return redirect || undefined;
+  }
+
+  async updateRedirect(id: number, data: Partial<Omit<InsertRedirect, 'createdBy'>>, updatedBy: number): Promise<Redirect> {
+    const [redirect] = await db.update(redirects)
+      .set({ ...data, updatedBy, updatedAt: new Date() })
+      .where(eq(redirects.id, id))
+      .returning();
+    return redirect;
+  }
+
+  async incrementRedirectHit(id: number): Promise<Redirect> {
+    const [redirect] = await db.update(redirects)
+      .set({ hitCount: sql`${redirects.hitCount} + 1` })
+      .where(eq(redirects.id, id))
+      .returning();
+    return redirect;
+  }
+
+  async trashRedirect(id: number, trashedBy: number, reason?: string): Promise<Redirect> {
+    const [redirect] = await db.update(redirects)
+      .set({ 
+        trashedAt: new Date(), 
+        trashedBy, 
+        trashReason: reason || 'Moved to trash',
+        isActive: false
+      })
+      .where(eq(redirects.id, id))
+      .returning();
+    return redirect;
+  }
+
+  async restoreRedirect(id: number): Promise<Redirect> {
+    const [redirect] = await db.update(redirects)
+      .set({ 
+        trashedAt: null, 
+        trashedBy: null, 
+        trashReason: null,
+        isActive: true
+      })
+      .where(eq(redirects.id, id))
+      .returning();
+    return redirect;
+  }
+
+  async getTrashedRedirects(): Promise<Redirect[]> {
+    return await db.select()
+      .from(redirects)
+      .where(sql`${redirects.trashedAt} IS NOT NULL`)
+      .orderBy(desc(redirects.trashedAt));
+  }
+
+  async deleteRedirect(id: number): Promise<void> {
+    await db.delete(redirects).where(eq(redirects.id, id));
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {

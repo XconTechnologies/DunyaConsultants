@@ -613,6 +613,27 @@ export const shortUrls = pgTable("short_urls", {
   createdByIdx: index("short_urls_created_by_idx").on(table.createdBy),
 }));
 
+// URL Redirects for permanent/temporary URL redirections
+export const redirects = pgTable("redirects", {
+  id: serial("id").primaryKey(),
+  sourcePath: text("source_path").notNull().unique(), // Path to redirect from (e.g., "/old-page")
+  destinationUrl: text("destination_url").notNull(), // Full URL or path to redirect to
+  redirectType: text("redirect_type", { enum: ["permanent", "temporary"] }).default("permanent").notNull(), // 301 or 302
+  isActive: boolean("is_active").default(true).notNull(), // Enable/disable redirect
+  hitCount: integer("hit_count").default(0).notNull(), // Track redirect usage
+  createdBy: integer("created_by").references(() => adminUsers.id).notNull(),
+  updatedBy: integer("updated_by").references(() => adminUsers.id),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  sourcePathIdx: uniqueIndex("redirects_source_path_idx").on(table.sourcePath),
+  createdByIdx: index("redirects_created_by_idx").on(table.createdBy),
+  isActiveIdx: index("redirects_is_active_idx").on(table.isActive),
+}));
+
 // Admin Notifications
 export const adminNotifications = pgTable("admin_notifications", {
   id: serial("id").primaryKey(),
@@ -948,6 +969,19 @@ export const insertShortUrlSchema = createInsertSchema(shortUrls).omit({
   lastAccessedAt: true,
 });
 
+export const insertRedirectSchema = createInsertSchema(redirects).omit({
+  id: true,
+  hitCount: true,
+  trashedAt: true,
+  trashedBy: true,
+  trashReason: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  sourcePath: z.string().min(1, "Source path is required").regex(/^\//, "Source path must start with /"),
+  destinationUrl: z.string().url("Must be a valid URL or path"),
+});
+
 export const insertAdminNotificationSchema = createInsertSchema(adminNotifications).omit({
   id: true,
   isRead: true,
@@ -1119,6 +1153,8 @@ export type InsertQrCode = z.infer<typeof insertQrCodeSchema>;
 export type QrCode = typeof qrCodes.$inferSelect;
 export type InsertShortUrl = z.infer<typeof insertShortUrlSchema>;
 export type ShortUrl = typeof shortUrls.$inferSelect;
+export type InsertRedirect = z.infer<typeof insertRedirectSchema>;
+export type Redirect = typeof redirects.$inferSelect;
 export type InsertAdminNotification = z.infer<typeof insertAdminNotificationSchema>;
 export type AdminNotification = typeof adminNotifications.$inferSelect;
 export type InsertBackupConfig = z.infer<typeof insertBackupConfigSchema>;

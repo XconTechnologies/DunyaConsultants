@@ -207,6 +207,107 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+// URL Redirect middleware with caching
+let redirectCache: Map<string, { destinationUrl: string; redirectType: string; id: number }> | null = null;
+let lastCacheRefresh = 0;
+const CACHE_TTL = 60000; // 60 seconds
+
+export async function refreshRedirectCache() {
+  try {
+    const { storage } = await import('./storage');
+    const activeRedirects = await storage.getActiveRedirects();
+    
+    const cache = new Map();
+    for (const redirect of activeRedirects) {
+      // Normalize source path: lowercase and trim trailing slash
+      const normalizedSource = redirect.sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+      cache.set(normalizedSource, {
+        destinationUrl: redirect.destinationUrl,
+        redirectType: redirect.redirectType,
+        id: redirect.id,
+      });
+    }
+    
+    redirectCache = cache;
+    lastCacheRefresh = Date.now();
+  } catch (error) {
+    console.error('Failed to refresh redirect cache:', error);
+  }
+}
+
+app.use(async (req: Request, res: Response, next: NextFunction) => {
+  // Skip redirects for:
+  // - API endpoints
+  // - Admin pages
+  // - Static assets
+  // - Short URLs (/s/:code)
+  // - QR code redirects (/qr/:id)
+  if (
+    req.path.startsWith('/api/') ||
+    req.path.startsWith('/admin') ||
+    req.path.startsWith('/assets/') ||
+    req.path.startsWith('/attached_assets/') ||
+    req.path.startsWith('/qr-codes/') ||
+    req.path.startsWith('/s/') ||
+    req.path.startsWith('/qr/') ||
+    req.path.startsWith('/objects/') ||
+    req.path.match(/\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot|webp)$/)
+  ) {
+    return next();
+  }
+
+  // Refresh cache if needed
+  if (!redirectCache || (Date.now() - lastCacheRefresh > CACHE_TTL)) {
+    await refreshRedirectCache();
+  }
+
+  // Check for redirect with loop prevention
+  if (redirectCache) {
+    const normalizedPath = req.path.toLowerCase().replace(/\/$/, '') || '/';
+    const redirect = redirectCache.get(normalizedPath);
+    
+    if (redirect) {
+      // Extract path and host from destination URL to check for redirect loops
+      try {
+        const destUrl = new URL(redirect.destinationUrl, `http://${req.get('host') || 'localhost'}`);
+        const destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        const destHost = destUrl.host.toLowerCase();
+        
+        // Only check for loops if destination is same-host
+        const isSameHost = destHost === 'dunyaconsultants.com' || 
+                          destHost === 'www.dunyaconsultants.com' ||
+                          destHost === req.get('host')?.toLowerCase();
+        
+        // Check if destination path is itself a redirect source (would create a loop)
+        // Only block if it's a same-host redirect
+        if (isSameHost && redirectCache.has(destPath)) {
+          console.warn(`Redirect loop detected: ${normalizedPath} → ${redirect.destinationUrl} → ${destPath}`);
+          // Skip this redirect and pass through to avoid infinite loop
+          return next();
+        }
+      } catch (error) {
+        console.error('Error parsing redirect destination URL:', error);
+      }
+
+      // Increment hit count asynchronously (non-blocking)
+      setImmediate(async () => {
+        try {
+          const { storage } = await import('./storage');
+          await storage.incrementRedirectHit(redirect.id);
+        } catch (error) {
+          console.error('Failed to increment redirect hit:', error);
+        }
+      });
+
+      // Perform redirect (301 permanent or 302 temporary)
+      const statusCode = redirect.redirectType === 'permanent' ? 301 : 302;
+      return res.redirect(statusCode, redirect.destinationUrl);
+    }
+  }
+
+  next();
+});
+
 (async () => {
   const server = await registerRoutes(app);
 

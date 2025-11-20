@@ -7,6 +7,7 @@ import {
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
   insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema, insertQrCodeSchema, insertShortUrlSchema, InsertShortUrl, consultations,
+  insertRedirectSchema, InsertRedirect,
   blogPosts, adminUsers, categories
 } from "@shared/schema";
 import { db } from "./db";
@@ -1595,6 +1596,365 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching trashed short URLs:", error);
       res.status(500).json({ message: "Failed to fetch trashed short URLs" });
+    }
+  });
+
+  // ===== URL REDIRECT MANAGEMENT =====
+
+  // Create redirect (Admin only)
+  app.post("/api/admin/redirects", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const redirectData = insertRedirectSchema.parse({
+        ...req.body,
+        createdBy: req.adminId,
+      });
+
+      // Normalize source path (lowercase, trim trailing slash)
+      const normalizedSource = redirectData.sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+      
+      // Extract destination path and host for loop detection
+      let destPath: string | null = null;
+      let destHost: string | null = null;
+      let isSameHost = false;
+      try {
+        // Use base URL to handle both relative and absolute paths
+        const destUrl = new URL(redirectData.destinationUrl, 'https://dunyaconsultants.com');
+        destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        destHost = destUrl.host.toLowerCase(); // Normalize hostname to lowercase
+        // Check if destination is on the same domain (or is relative)
+        isSameHost = destHost === 'dunyaconsultants.com' || destHost === 'www.dunyaconsultants.com';
+      } catch (error) {
+        console.error('Error parsing destination URL for loop check:', error);
+      }
+
+      // Check for self-referential redirect (only for same-host destinations)
+      if (destPath && isSameHost && normalizedSource === destPath) {
+        return res.status(400).json({ message: "Source and destination cannot be the same" });
+      }
+
+      // Check for existing redirect with same source path
+      const existing = await storage.getRedirectBySourcePath(normalizedSource);
+      if (existing) {
+        return res.status(409).json({ message: "A redirect with this source path already exists" });
+      }
+
+      // Check for redirect loops (only for same-host destinations)
+      if (destPath && isSameHost) {
+        // Walk the redirect chain to detect multi-hop loops
+        const visited = new Set<string>([normalizedSource]);
+        let currentPath = destPath;
+        let maxHops = 5;
+        
+        while (maxHops > 0) {
+          if (visited.has(currentPath)) {
+            return res.status(400).json({ 
+              message: "This would create a redirect loop. The destination path eventually redirects back to the source." 
+            });
+          }
+          
+          const nextRedirect = await storage.getRedirectBySourcePath(currentPath);
+          if (!nextRedirect) {
+            break; // Chain ends here
+          }
+          // Consider both active and inactive redirects in chain (inactive ones could become loops)
+          
+          visited.add(currentPath);
+          
+          // Parse next destination
+          try {
+            const nextUrl = new URL(nextRedirect.destinationUrl, 'https://dunyaconsultants.com');
+            const nextHost = nextUrl.host.toLowerCase(); // Normalize hostname to lowercase
+            const nextIsSameHost = nextHost === 'dunyaconsultants.com' || nextHost === 'www.dunyaconsultants.com';
+            
+            if (!nextIsSameHost) {
+              break; // External redirect - no loop possible
+            }
+            
+            currentPath = nextUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+          } catch {
+            break;
+          }
+          
+          maxHops--;
+        }
+        
+        if (maxHops === 0) {
+          return res.status(400).json({ 
+            message: "Redirect chain is too long (max 5 hops). This may indicate a complex loop." 
+          });
+        }
+      }
+
+      const redirect = await storage.createRedirect({
+        ...redirectData,
+        sourcePath: normalizedSource,
+      });
+
+      // Refresh redirect cache to ensure immediate consistency
+      setImmediate(async () => {
+        const { refreshRedirectCache } = await import('./index');
+        await refreshRedirectCache();
+      });
+
+      res.status(201).json(redirect);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Invalid redirect data", 
+          errors: error.errors 
+        });
+      }
+      console.error("Error creating redirect:", error);
+      res.status(500).json({ message: "Failed to create redirect" });
+    }
+  });
+
+  // Get all redirects (Admin only)
+  app.get("/api/admin/redirects", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const redirects = await storage.getRedirects();
+      res.json(redirects);
+    } catch (error) {
+      console.error("Error fetching redirects:", error);
+      res.status(500).json({ message: "Failed to fetch redirects" });
+    }
+  });
+
+  // Get single redirect (Admin only)
+  app.get("/api/admin/redirects/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const redirect = await storage.getRedirect(id);
+      
+      if (!redirect) {
+        return res.status(404).json({ message: "Redirect not found" });
+      }
+
+      res.json(redirect);
+    } catch (error) {
+      console.error("Error fetching redirect:", error);
+      res.status(500).json({ message: "Failed to fetch redirect" });
+    }
+  });
+
+  // Update redirect (Admin only)
+  app.patch("/api/admin/redirects/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const { sourcePath, destinationUrl, redirectType, isActive } = req.body;
+
+      const redirect = await storage.getRedirect(id);
+      if (!redirect) {
+        return res.status(404).json({ message: "Redirect not found" });
+      }
+
+      // Build update object
+      const updateData: Partial<Omit<InsertRedirect, 'createdBy'>> = {};
+      
+      // Determine final source and destination for loop checking
+      let finalSource = redirect.sourcePath;
+      let finalDestination = redirect.destinationUrl;
+      
+      if (sourcePath !== undefined) {
+        const normalizedSource = sourcePath.toLowerCase().replace(/\/$/, '') || '/';
+        // Check for conflicts with other redirects
+        const existing = await storage.getRedirectBySourcePath(normalizedSource);
+        if (existing && existing.id !== id) {
+          return res.status(409).json({ message: "Another redirect with this source path already exists" });
+        }
+        updateData.sourcePath = normalizedSource;
+        finalSource = normalizedSource;
+      }
+      
+      if (destinationUrl !== undefined) {
+        updateData.destinationUrl = destinationUrl;
+        finalDestination = destinationUrl;
+      }
+      
+      if (redirectType !== undefined) updateData.redirectType = redirectType;
+      if (isActive !== undefined) updateData.isActive = isActive;
+
+      // Check for redirect loops
+      let destPath: string | null = null;
+      let destHost: string | null = null;
+      let isSameHost = false;
+      try {
+        // Use base URL to handle both relative and absolute paths
+        const destUrl = new URL(finalDestination, 'https://dunyaconsultants.com');
+        destPath = destUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+        destHost = destUrl.host.toLowerCase(); // Normalize hostname to lowercase
+        // Check if destination is on the same domain (or is relative)
+        isSameHost = destHost === 'dunyaconsultants.com' || destHost === 'www.dunyaconsultants.com';
+      } catch (error) {
+        console.error('Error parsing destination URL for loop check:', error);
+      }
+
+      // Check for self-referential redirect (only for same-host destinations)
+      if (destPath && isSameHost && finalSource === destPath) {
+        return res.status(400).json({ message: "Source and destination cannot be the same" });
+      }
+
+      // Check for redirect loops (only for same-host destinations)
+      if (destPath && isSameHost) {
+        // Walk the redirect chain to detect multi-hop loops
+        const visited = new Set<string>([finalSource]);
+        let currentPath = destPath;
+        let maxHops = 5;
+        
+        while (maxHops > 0) {
+          if (visited.has(currentPath)) {
+            return res.status(400).json({ 
+              message: "This would create a redirect loop. The destination path eventually redirects back to the source." 
+            });
+          }
+          
+          const nextRedirect = await storage.getRedirectBySourcePath(currentPath);
+          if (!nextRedirect || nextRedirect.id === id) {
+            break; // Chain ends here or points to self
+          }
+          // Consider both active and inactive redirects in chain (inactive ones could be reactivated)
+          
+          visited.add(currentPath);
+          
+          // Parse next destination
+          try {
+            const nextUrl = new URL(nextRedirect.destinationUrl, 'https://dunyaconsultants.com');
+            const nextHost = nextUrl.host.toLowerCase(); // Normalize hostname to lowercase
+            const nextIsSameHost = nextHost === 'dunyaconsultants.com' || nextHost === 'www.dunyaconsultants.com';
+            
+            if (!nextIsSameHost) {
+              break; // External redirect - no loop possible
+            }
+            
+            currentPath = nextUrl.pathname.toLowerCase().replace(/\/$/, '') || '/';
+          } catch {
+            break;
+          }
+          
+          maxHops--;
+        }
+        
+        if (maxHops === 0) {
+          return res.status(400).json({ 
+            message: "Redirect chain is too long (max 5 hops). This may indicate a complex loop." 
+          });
+        }
+      }
+
+      const updatedRedirect = await storage.updateRedirect(id, updateData, req.adminId);
+      
+      // Refresh redirect cache to ensure immediate consistency
+      setImmediate(async () => {
+        const { refreshRedirectCache } = await import('./index');
+        await refreshRedirectCache();
+      });
+      
+      res.json(updatedRedirect);
+    } catch (error) {
+      console.error("Error updating redirect:", error);
+      res.status(500).json({ message: "Failed to update redirect" });
+    }
+  });
+
+  // Trash redirect (Admin only)
+  app.post("/api/admin/redirects/:id/trash", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const { reason } = req.body;
+
+      const redirect = await storage.trashRedirect(id, req.adminId, reason);
+      
+      // Refresh redirect cache to ensure immediate consistency
+      setImmediate(async () => {
+        const { refreshRedirectCache } = await import('./index');
+        await refreshRedirectCache();
+      });
+      
+      res.json(redirect);
+    } catch (error) {
+      console.error("Error trashing redirect:", error);
+      res.status(500).json({ message: "Failed to trash redirect" });
+    }
+  });
+
+  // Restore redirect (Admin only)
+  app.post("/api/admin/redirects/:id/restore", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      const redirect = await storage.restoreRedirect(id);
+      
+      // Refresh redirect cache to ensure immediate consistency
+      setImmediate(async () => {
+        const { refreshRedirectCache } = await import('./index');
+        await refreshRedirectCache();
+      });
+      
+      res.json(redirect);
+    } catch (error) {
+      console.error("Error restoring redirect:", error);
+      res.status(500).json({ message: "Failed to restore redirect" });
+    }
+  });
+
+  // Delete redirect permanently (Admin only)
+  app.delete("/api/admin/redirects/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const id = parseInt(req.params.id);
+      await storage.deleteRedirect(id);
+      
+      // Refresh redirect cache to ensure immediate consistency
+      setImmediate(async () => {
+        const { refreshRedirectCache } = await import('./index');
+        await refreshRedirectCache();
+      });
+      
+      res.json({ message: "Redirect deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting redirect:", error);
+      res.status(500).json({ message: "Failed to delete redirect" });
+    }
+  });
+
+  // Get trashed redirects (Admin only)
+  app.get("/api/admin/redirects/trashed", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.adminId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const redirects = await storage.getTrashedRedirects();
+      res.json(redirects);
+    } catch (error) {
+      console.error("Error fetching trashed redirects:", error);
+      res.status(500).json({ message: "Failed to fetch trashed redirects" });
     }
   });
 
