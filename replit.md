@@ -25,6 +25,7 @@ The application features a professional dark blue gradient design with custom br
 - **Icon Management System**: Tabbed admin interface for managing and reordering branch and university icons with CRUD operations, visibility toggles, and WebP conversion.
 - **SEO & Social Media Integration**: Server-side social meta tags, automatic featured image fallback, and production cache headers.
 - **Featured Image Management System**: Dual-storage support for featured images (local at `/public/uploads/articles/` and object storage at `/objects/uploads/`), full public URLs, smart URL normalization, environment-aware URL generation, auto-optimization (WebP conversion, sizing, compression), and robust error handling.
+- **URL Redirect Management System**: Comprehensive redirect management with 301/302 support, multi-hop loop prevention (5-hop depth limit), case-insensitive hostname checking, in-memory caching with 60s TTL and immediate invalidation after mutations, asynchronous hit tracking, and admin UI for CRUD operations with inline editing.
 
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.
