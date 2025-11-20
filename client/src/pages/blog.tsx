@@ -3270,7 +3270,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 {/* Featured Image */}
                                 <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
                                   <SmartImage 
-                                    src={blog.image || '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'} 
+                                    src={blog.image || '/attached_assets/blog-fallback-image_1763626649553.jpg'} 
                                     alt={blog.title}
                                     className="transition-transform hover:scale-105"
                                     style={{ 

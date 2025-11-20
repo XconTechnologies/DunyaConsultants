@@ -198,7 +198,7 @@ export function normalizeFeaturedImageUrl(imageUrl: string | null | undefined): 
         ? 'https://dunyaconsultants.com'
         : `http://localhost:${import.meta.env.VITE_PORT || 5000}`;
     
-    const fallbackImage = `${BASE_URL}/attached_assets/generated_images/Blog_placeholder_image_201b6785.png`;
+    const fallbackImage = `${BASE_URL}/attached_assets/blog-fallback-image_1763626649553.jpg`;
     
     // Return fallback for empty/null URLs
     if (!imageUrl || imageUrl.trim() === '') {
@@ -256,7 +256,7 @@ export function normalizeFeaturedImageUrl(imageUrl: string | null | undefined): 
   } catch (error) {
     // Fallback to static path if any error occurs
     console.error('Error normalizing featured image URL:', error);
-    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+    return '/attached_assets/blog-fallback-image_1763626649553.jpg';
   }
 }
 

@@ -415,7 +415,7 @@ export default function BlogsCarouselSection() {
                           className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                            e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+                            e.currentTarget.src = '/attached_assets/blog-fallback-image_1763626649553.jpg';
                           }}
                         />
                       </div>

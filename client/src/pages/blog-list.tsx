@@ -15,7 +15,7 @@ import { RefreshCw, Database, Globe } from "lucide-react";
 // Unified image src normalization function (same as other components)
 const normalizeImageSrc = (image: string) => {
   if (!image || image.trim() === '') {
-    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'; // fallback for empty images
+    return '/attached_assets/blog-fallback-image_1763626649553.jpg'; // fallback for empty images
   }
   const trimmed = image.trim();
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
@@ -513,7 +513,7 @@ export default function BlogList() {
                         className="w-full h-48 object-cover transition-transform group-hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         onError={(e) => {
-                          e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+                          e.currentTarget.src = '/attached_assets/blog-fallback-image_1763626649553.jpg';
                         }}
                       />
                     </div>

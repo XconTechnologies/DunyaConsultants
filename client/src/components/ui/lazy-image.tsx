@@ -6,7 +6,7 @@ import {
   isUploadedImage 
 } from '@/lib/image-utils';
 
-const FALLBACK_PLACEHOLDER = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+const FALLBACK_PLACEHOLDER = '/attached_assets/blog-fallback-image_1763626649553.jpg';
 
 interface LazyImageProps {
   src: string;

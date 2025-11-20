@@ -12,7 +12,7 @@ import type { Event } from "@shared/schema";
 // Unified image src normalization function (same as blog)
 const normalizeImageSrc = (image: string) => {
   if (!image || image.trim() === '') {
-    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+    return '/attached_assets/blog-fallback-image_1763626649553.jpg';
   }
   const trimmed = image.trim();
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
