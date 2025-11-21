@@ -20,7 +20,7 @@ The application features a professional dark blue gradient design with custom br
 ### Feature Specifications
 - **Client Interaction**: Contact management, testimonials system, interactive study abroad journey, consultation booking with real-time calendar, and WhatsApp integration.
 - **Information & Tools**: Smart tools (Cost Calculator, Course Match, Document Checklist), dynamic display of office locations and university partners, test preparation pages (IELTS, PTE, TOEFL, Duolingo), extensive SEO-optimized blog, and comprehensive study destination guides.
-- **Event Management**: System for managing events with registration forms.
+- **Event Management**: System for managing events with registration forms, QR code-based check-in, and dual-field content display (short description for hero/SEO, excerpt for post-banner ticker).
 - **Enterprise-Level CMS**: Multi-user authentication, multi-role system with granular permissions, dynamic permission refresh, post-level access control, user management with display name support for author attribution, an enhanced blog editor with SEO settings, three-state approval workflow, and blocks mode with race condition prevention.
 - **Icon Management System**: Tabbed admin interface for managing and reordering branch and university icons with CRUD operations, visibility toggles, and WebP conversion.
 - **SEO & Social Media Integration**: Server-side social meta tags, automatic featured image fallback, and production cache headers.

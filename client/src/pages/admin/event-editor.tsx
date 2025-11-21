@@ -60,6 +60,7 @@ const eventSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
   shortDescription: z.string().min(1, "Short description is required"),
+  excerpt: z.string().optional(),
   fullDescription: z.string().min(1, "Description is required"),
   contentBlocks: z.array(z.any()).optional(),
   image: z.string().min(1, "Thumbnail is required"),
@@ -79,6 +80,7 @@ const draftEventSchema = z.object({
   title: z.string().optional(),
   slug: z.string().optional(),
   shortDescription: z.string().optional(),
+  excerpt: z.string().optional(),
   fullDescription: z.string().optional(),
   contentBlocks: z.array(z.any()).optional(),
   image: z.string().optional(),
@@ -100,6 +102,7 @@ interface Event {
   title: string;
   slug: string;
   shortDescription: string;
+  excerpt?: string;
   fullDescription: string;
   contentBlocks?: ContentBlock[];
   image: string;
@@ -145,6 +148,7 @@ export default function EventEditor() {
       title: "",
       slug: "",
       shortDescription: "",
+      excerpt: "",
       fullDescription: "",
       contentBlocks: [],
       image: "",
@@ -238,6 +242,7 @@ export default function EventEditor() {
         title: event.title,
         slug: event.slug,
         shortDescription: event.shortDescription,
+        excerpt: event.excerpt || "",
         fullDescription: event.fullDescription,
         contentBlocks: event.contentBlocks || [],
         image: event.image,
@@ -522,17 +527,38 @@ export default function EventEditor() {
               <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
                 <CardHeader>
                   <CardTitle className="text-gray-800">Short Description</CardTitle>
+                  <p className="text-sm text-gray-500 mt-1">Displayed in hero section and meta description</p>
                 </CardHeader>
                 <CardContent>
                   <Textarea
                     {...form.register("shortDescription")}
-                    placeholder="Brief event description"
+                    placeholder="Brief event description for hero section and SEO"
                     rows={3}
                     className="border-[#dadada]"
                     data-testid="input-short-description"
                   />
                   {form.formState.errors.shortDescription && (
                     <p className="text-sm text-red-600 mt-1">{form.formState.errors.shortDescription.message}</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Excerpt */}
+              <Card className="shadow-lg hover:shadow-xl transition-shadow border-0">
+                <CardHeader>
+                  <CardTitle className="text-gray-800">Excerpt</CardTitle>
+                  <p className="text-sm text-gray-500 mt-1">Displayed in orange ticker after banner image (optional)</p>
+                </CardHeader>
+                <CardContent>
+                  <Textarea
+                    {...form.register("excerpt")}
+                    placeholder="Additional details shown after the banner image"
+                    rows={3}
+                    className="border-[#dadada]"
+                    data-testid="input-excerpt"
+                  />
+                  {form.formState.errors.excerpt && (
+                    <p className="text-sm text-red-600 mt-1">{form.formState.errors.excerpt.message}</p>
                   )}
                 </CardContent>
               </Card>

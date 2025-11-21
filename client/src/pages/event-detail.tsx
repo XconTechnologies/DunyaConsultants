@@ -297,8 +297,8 @@ export default function EventDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Short Description with Left Border */}
-                {event.shortDescription && (
+                {/* Excerpt with Left Border - Orange Ticker */}
+                {event.excerpt && (
                   <div className="mb-8">
                     <div 
                       className="px-4 py-4 md:px-6 md:py-5 rounded-xl shadow-lg"
@@ -308,7 +308,7 @@ export default function EventDetailPage() {
                       }}
                     >
                       <p className="text-gray-800 text-base md:text-lg font-medium leading-relaxed text-left">
-                        {event.shortDescription}
+                        {event.excerpt}
                       </p>
                     </div>
                   </div>

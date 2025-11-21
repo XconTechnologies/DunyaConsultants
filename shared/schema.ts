@@ -503,6 +503,7 @@ export const events = pgTable("events", {
   title: text("title").notNull(),
   slug: text("slug").notNull().unique(),
   shortDescription: text("short_description").notNull(),
+  excerpt: text("excerpt"),
   fullDescription: text("full_description").notNull(),
   contentBlocks: json("content_blocks").$type<ContentBlock[]>(),
   image: text("image").notNull(), // Thumbnail
