@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { db } from './db';
-import { blogPosts } from '@shared/schema';
+import { blogPosts, events } from '@shared/schema';
 import { eq, and } from 'drizzle-orm';
 import { extractFirstImage } from './image-extractor';
 
@@ -399,6 +399,38 @@ export async function socialMetaMiddleware(req: Request, res: Response, next: Ne
           type: 'article',
           siteName: 'Dunya Consultants'
         });
+      }
+    }
+    // Handle event pages
+    else if (path.match(/^\/events\/([a-z0-9-]+)$/)) {
+      const eventMatch = path.match(/^\/events\/([a-z0-9-]+)$/);
+      if (eventMatch) {
+        const slug = eventMatch[1];
+        
+        const eventResult = await db
+          .select()
+          .from(events)
+          .where(and(
+            eq(events.slug, slug),
+            eq(events.isActive, true)
+          ))
+          .limit(1);
+
+        if (eventResult.length > 0) {
+          const event = eventResult[0];
+          const title = event.title;
+          const description = event.shortDescription || event.excerpt || '';
+          const image = event.detailImage || event.image || DEFAULT_FEATURED_IMAGE;
+
+          metaTags = generateMetaTags({
+            title: `${title} - Dunya Consultants`,
+            description,
+            image,
+            url: fullUrl,
+            type: 'event',
+            siteName: 'Dunya Consultants'
+          });
+        }
       }
     }
     // Handle static pages (with fallback for any unmatched routes)
