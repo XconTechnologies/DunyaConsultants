@@ -772,6 +772,9 @@ export default function BlogEditor() {
         formValues.status = 'published';
       }
       
+      // Ensure categoryIds is included in autosave (from state)
+      formValues.categoryIds = selectedCategoryIds;
+      
       // Set blocks snapshot for blocks mode
       if (editorMode === 'blocks') {
         const blocksSnapshot = JSON.stringify(customBlocks);
@@ -1128,6 +1131,9 @@ export default function BlogEditor() {
     try {
       // Capture the blocks being saved before mutation
       pendingSaveSnapshotRef.current = null;
+      
+      // Ensure categoryIds is included in submission (from state)
+      data.categoryIds = selectedCategoryIds;
       
       // If in Blocks mode, convert custom blocks to HTML
       if (editorMode === 'blocks' && customBlocks.length > 0) {
@@ -1799,6 +1805,9 @@ export default function BlogEditor() {
                   
                   const formValues = getValues();
                   console.log('Current form values:', formValues);
+                  
+                  // Ensure categoryIds is included in save draft (from state)
+                  formValues.categoryIds = selectedCategoryIds;
                   
                   // Set as draft
                   formValues.isPublished = false;
