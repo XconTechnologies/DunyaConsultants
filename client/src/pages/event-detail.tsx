@@ -166,9 +166,18 @@ export default function EventDetailPage() {
 
   useEffect(() => {
     if (event) {
+      // Get the full URL for the event image
+      const imageUrl = event.detailImage || event.image;
+      const fullImageUrl = imageUrl?.startsWith('http') 
+        ? imageUrl 
+        : `${window.location.origin}${imageUrl}`;
+      
       setMetaTags({
         title: event.title,
-        shortDescription: event.shortDescription
+        description: event.shortDescription,
+        image: fullImageUrl,
+        url: window.location.href,
+        type: "event"
       });
     }
   }, [event]);
