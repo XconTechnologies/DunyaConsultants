@@ -257,6 +257,13 @@ export default function EventEditor() {
         status: (event as any).status || "published",
       });
       setContentBlocks(event.contentBlocks || []);
+      // Initialize HTML content with the full description (preserves styles/scripts)
+      setHtmlContent(event.fullDescription || '');
+      // If content has styles or scripts, start in HTML mode
+      const hasStyleOrScript = /<style|<script/i.test(event.fullDescription || '');
+      if (hasStyleOrScript) {
+        setEditorMode('html');
+      }
     }
   }, [event, isEditing, form]);
 
@@ -304,12 +311,21 @@ export default function EventEditor() {
   });
 
   const onSubmit = (data: EventForm) => {
+    // If in HTML mode, ensure we're using the latest HTML content
+    if (editorMode === 'html') {
+      data.fullDescription = htmlContent;
+    }
     saveMutation.mutate(data);
   };
 
   const handleSaveAsDraft = () => {
     // Get current form values
     const formData = form.getValues();
+    
+    // If in HTML mode, ensure we're using the latest HTML content
+    if (editorMode === 'html') {
+      formData.fullDescription = htmlContent;
+    }
     
     // Validate using draft schema (allows incomplete data)
     const result = draftEventSchema.safeParse({
@@ -359,9 +375,25 @@ export default function EventEditor() {
 
   const handleEditorModeChange = (mode: 'rich' | 'html' | 'preview') => {
     if (mode === 'html' && editorMode === 'rich') {
+      // Switching from Rich Text to HTML - transfer content
       const currentContent = form.watch('fullDescription') || '';
       setHtmlContent(currentContent);
     } else if (mode === 'rich' && editorMode === 'html') {
+      // Switching from HTML to Rich Text - check for style/script tags
+      const hasStyleOrScript = /<style|<script/i.test(htmlContent);
+      if (hasStyleOrScript) {
+        toast({
+          title: "Warning: Styles and Scripts Detected",
+          description: "Switching to Rich Text mode will remove <style> and <script> tags. Use HTML or Preview mode to preserve them.",
+          variant: "destructive",
+        });
+        // Don't switch mode - stay in HTML
+        return;
+      }
+      // Safe to switch - no styles or scripts
+      form.setValue('fullDescription', htmlContent);
+    } else if (mode === 'preview' && editorMode === 'html') {
+      // Moving from HTML to preview - ensure form has latest HTML content
       form.setValue('fullDescription', htmlContent);
     }
     setEditorMode(mode);
