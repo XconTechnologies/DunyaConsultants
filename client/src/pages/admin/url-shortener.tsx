@@ -39,7 +39,8 @@ import {
   BarChart3,
   RefreshCw,
   Eye,
-  Activity
+  Activity,
+  Pencil
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -362,8 +363,8 @@ export default function UrlShortenerPage() {
                       <p className="text-xs text-gray-500">Optional: Add a descriptive title for easier management</p>
                     </div>
 
-                    <div className="space-y-2">
-                      {!editingUrl && (
+                    {!editingUrl ? (
+                      <div className="space-y-2">
                         <div className="flex items-center space-x-2 mb-2">
                           <Switch
                             id="useCustomCode"
@@ -378,31 +379,37 @@ export default function UrlShortenerPage() {
                           />
                           <Label htmlFor="useCustomCode">Use custom short code</Label>
                         </div>
-                      )}
-                      <Label htmlFor="shortCode">Short Code</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="shortCode"
-                          {...form.register("shortCode")}
-                          placeholder="abc123"
-                          disabled={!!editingUrl || !useCustomCode}
-                          data-testid="input-short-code"
-                        />
-                        {!editingUrl && !useCustomCode && (
-                          <Button type="button" variant="outline" onClick={generateShortCode} data-testid="button-generate-code">
-                            <RefreshCw className="w-4 h-4" />
-                          </Button>
+                        <Label htmlFor="shortCode">Short Code</Label>
+                        <div className="flex gap-2">
+                          <Input
+                            id="shortCode"
+                            {...form.register("shortCode")}
+                            placeholder="abc123"
+                            disabled={!useCustomCode}
+                            data-testid="input-short-code"
+                          />
+                          {!useCustomCode && (
+                            <Button type="button" variant="outline" onClick={generateShortCode} data-testid="button-generate-code">
+                              <RefreshCw className="w-4 h-4" />
+                            </Button>
+                          )}
+                        </div>
+                        {form.formState.errors.shortCode && (
+                          <p className="text-sm text-red-600">{form.formState.errors.shortCode.message}</p>
                         )}
-                      </div>
-                      {form.formState.errors.shortCode && (
-                        <p className="text-sm text-red-600">{form.formState.errors.shortCode.message}</p>
-                      )}
-                      {!editingUrl && (
                         <p className="text-sm text-gray-500">
                           Your short URL will be: {window.location.origin}/s/{form.watch("shortCode") || "code"}
                         </p>
-                      )}
-                    </div>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <Label>Short Code (Cannot be changed)</Label>
+                        <div className="bg-gray-100 px-3 py-2 rounded border border-gray-300">
+                          <p className="text-sm font-mono text-gray-700">/s/{editingUrl.shortCode}</p>
+                        </div>
+                        <p className="text-xs text-gray-500">Short codes are permanent and cannot be modified</p>
+                      </div>
+                    )}
 
                     <div className="flex items-center space-x-2">
                       <Switch
@@ -602,9 +609,9 @@ export default function UrlShortenerPage() {
                                   size="sm"
                                   onClick={() => handleEdit(url)}
                                   data-testid={`button-edit-${url.id}`}
-                                  title="Edit URL"
+                                  title="Edit destination URL"
                                 >
-                                  <Eye className="w-4 h-4" />
+                                  <Pencil className="w-4 h-4" />
                                 </Button>
                                 <Button
                                   variant="ghost"
