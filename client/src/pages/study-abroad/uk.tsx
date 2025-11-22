@@ -245,7 +245,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                       Learn More: Living in UK as International Student
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -300,7 +299,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Visa Interview Tips
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -310,7 +308,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Student Visa Requirements
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -347,7 +344,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                       Explore Popular Courses to Study in UK
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -405,7 +401,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                       Complete Guide: Bank Statement for UK Visa
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -455,7 +450,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       Duolingo Accepted Universities
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -465,7 +459,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       MOI Accepted Universities
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -558,7 +551,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Visa Ratio from Pakistan
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -568,7 +560,6 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Immigration White Paper 2025
-                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
