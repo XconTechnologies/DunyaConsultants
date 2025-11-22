@@ -156,6 +156,42 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
     description: 'Discover study opportunities in Turkey. Scholarships, universities, and experiencing Turkish culture.',
     image: '/attached_assets/turkey-flag.jpg'
   },
+  // Study Abroad Pages (new URLs)
+  '/study-abroad/usa': {
+    title: 'Study in USA from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants.',
+    image: '/attached_assets/usa-flag.jpg'
+  },
+  '/study-abroad/uk': {
+    title: 'Study in the UK: Step-by-Step Guide for Pakistani Students',
+    description: 'Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation.',
+    image: '/attached_assets/uk-flag.jpg'
+  },
+  '/study-abroad/canada': {
+    title: 'Study in Canada',
+    description: 'Study in Canada - Ranked 3rd in Life Quality Index. Pakistani students can work while studying, get post-graduation work permits, pathway to PR within 3 years, and access to 223 universities with affordable living costs.',
+    image: '/attached_assets/canada-flag.jpg'
+  },
+  '/study-abroad/australia': {
+    title: 'Study in Australia',
+    description: 'Study in Australia with world-class education and post-study work rights (2-4 years). Pakistani students benefit from globally recognized degrees, multicultural society, work opportunities, and pathway to permanent residency.',
+    image: '/attached_assets/australia-flag.jpg'
+  },
+  '/study-abroad/finland': {
+    title: 'Study in Finland',
+    description: 'Experience Nordic excellence with Finland\'s world-class education system. Pakistani students benefit from research-focused programs, innovation hubs, EU education advantages, and beautiful Scandinavian lifestyle with English-taught courses.',
+    image: '/attached_assets/finland-flag.jpg'
+  },
+  '/study-abroad/belgium': {
+    title: 'Study in Belgium',
+    description: 'Study in Belgium at the heart of Europe. Pakistani students enjoy multilingual education, affordable tuition, EU job market access, rich cultural heritage, and excellent research opportunities in historic European cities.',
+    image: '/attached_assets/belgium-flag.jpg'
+  },
+  '/study-abroad/turkey': {
+    title: 'Study in Turkey',
+    description: 'Bridge between Europe and Asia - Study in Turkey with affordable tuition ($3,500-6,000/year), modern facilities, Turkish government scholarships, and rich cultural heritage. Gateway to international opportunities for Pakistani students.',
+    image: '/attached_assets/turkey-flag.jpg'
+  },
   '/test-prep/ielts': {
     title: 'IELTS Preparation - Dunya Consultants',
     description: 'Expert IELTS preparation courses. Achieve your target band score with our comprehensive training program.',
@@ -317,7 +353,7 @@ function getPageMeta(path: string): { title: string; description: string; image:
   }
 
   // Pattern matching for dynamic routes
-  if (path.startsWith('/destinations/')) {
+  if (path.startsWith('/destinations/') || path.startsWith('/study-abroad/')) {
     return {
       title: 'Study Abroad Destinations - Dunya Consultants',
       description: 'Explore study abroad destinations with expert guidance from Dunya Consultants.',
