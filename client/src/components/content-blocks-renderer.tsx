@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
+import { normalizeFeaturedImageUrl, extractAltText } from "@/lib/image-utils";
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
@@ -571,13 +572,30 @@ function ImageBlock({ block }: { block: ContentBlock & { type: 'image' } }) {
     right: 'text-right',
   };
 
+  // Normalize the image URL to handle /objects/uploads/... paths
+  const normalizedUrl = normalizeFeaturedImageUrl(url);
+  
+  // Use provided alt text or extract from filename
+  const imageAlt = alt || extractAltText(url) || 'Blog image';
+
   return (
-    <div className={`image-block ${alignmentStyles[alignment as keyof typeof alignmentStyles] || 'text-center'}`}>
+    <div className={`image-block my-6 ${alignmentStyles[alignment as keyof typeof alignmentStyles] || 'text-center'}`}>
       <img
-        src={url}
-        alt={alt || ''}
-        style={{ width: width || '100%', maxWidth: '100%', height: 'auto' }}
-        className="inline-block"
+        loading="lazy"
+        src={normalizedUrl}
+        alt={imageAlt}
+        style={{ 
+          width: width || '100%', 
+          maxWidth: '100%', 
+          height: 'auto' 
+        }}
+        className="w-full h-auto rounded-lg shadow-sm"
+        onError={(e) => {
+          const img = e.currentTarget;
+          // Hide image on error instead of showing broken image
+          img.style.display = 'none';
+          console.error('Failed to load image:', normalizedUrl);
+        }}
       />
     </div>
   );

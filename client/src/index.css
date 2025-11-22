@@ -1056,11 +1056,14 @@ p[class*="text-gray-700"] a:hover {
 .blog-content img,
 .prose img,
 .html-block img,
-.integrated-content img {
+.integrated-content img,
+.image-block img {
   border-radius: 8px !important;
   max-width: 100%;
   height: auto;
   margin: 1rem 0;
+  display: block;
+  width: 100%;
 }
 
 /* Buttons - Primary CTA buttons */
