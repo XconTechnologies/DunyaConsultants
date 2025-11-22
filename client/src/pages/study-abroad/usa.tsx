@@ -101,15 +101,15 @@ export default function StudyAbroadUSA() {
   ];
 
   const popularCourses = [
-    { name: "Engineering", demand: "High", icon: "🔧" },
-    { name: "Computer Science", demand: "Very High", icon: "💻" },
-    { name: "Business Administration", demand: "High", icon: "📊" },
-    { name: "Data Science", demand: "Very High", icon: "📈" },
-    { name: "Economics", demand: "Medium", icon: "💰" },
-    { name: "Nursing", demand: "High", icon: "🏥" },
-    { name: "Media Studies", demand: "Medium", icon: "📺" },
-    { name: "Cybersecurity", demand: "Very High", icon: "🔒" },
-    { name: "Artificial Intelligence", demand: "Very High", icon: "🤖" }
+    { name: "Engineering", demand: "High" },
+    { name: "Computer Science", demand: "Very High" },
+    { name: "Business Administration", demand: "High" },
+    { name: "Data Science", demand: "Very High" },
+    { name: "Economics", demand: "Medium" },
+    { name: "Nursing", demand: "High" },
+    { name: "Media Studies", demand: "Medium" },
+    { name: "Cybersecurity", demand: "Very High" },
+    { name: "Artificial Intelligence", demand: "Very High" }
   ];
 
   const faqs = [
@@ -443,16 +443,16 @@ export default function StudyAbroadUSA() {
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {[
-                    { name: "Merit Scholarships", icon: "🏆" },
-                    { name: "Need-based Grants", icon: "💰" },
-                    { name: "External Funding", icon: "🌟" },
-                    { name: "Research Assistantships", icon: "🔬" },
-                    { name: "Teaching Assistantships", icon: "👨‍🏫" },
-                    { name: "University Scholarships", icon: "🎓" }
+                    "Merit Scholarships",
+                    "Need-based Grants",
+                    "External Funding",
+                    "Research Assistantships",
+                    "Teaching Assistantships",
+                    "University Scholarships"
                   ].map((option, index) => (
                     <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-amber-200 hover:border-amber-400 hover:shadow-lg transition-all duration-300" data-testid={`scholarship-option-${index}`}>
-                      <span className="text-2xl">{option.icon}</span>
-                      <span className="text-gray-700 font-medium">{option.name}</span>
+                      <CheckCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium">{option}</span>
                     </div>
                   ))}
                 </div>
@@ -476,8 +476,10 @@ export default function StudyAbroadUSA() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {popularCourses.map((course, index) => (
                     <div key={index} className="group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-indigo-300 hover:shadow-xl transition-all duration-300" data-testid={`course-card-${index}`}>
-                      <div className="flex items-start justify-between mb-3">
-                        <span className="text-3xl">{course.icon}</span>
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors">
+                          {course.name}
+                        </h3>
                         <Badge className={`${
                           course.demand === 'Very High' ? 'bg-green-500' :
                           course.demand === 'High' ? 'bg-blue-500' :
@@ -486,9 +488,6 @@ export default function StudyAbroadUSA() {
                           {course.demand}
                         </Badge>
                       </div>
-                      <h3 className="font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors">
-                        {course.name}
-                      </h3>
                     </div>
                   ))}
                 </div>
