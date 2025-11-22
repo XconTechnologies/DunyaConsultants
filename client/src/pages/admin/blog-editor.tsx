@@ -772,9 +772,6 @@ export default function BlogEditor() {
         formValues.status = 'published';
       }
       
-      // Ensure categoryIds is included in autosave (from state)
-      formValues.categoryIds = selectedCategoryIds;
-      
       // Set blocks snapshot for blocks mode
       if (editorMode === 'blocks') {
         const blocksSnapshot = JSON.stringify(customBlocks);
@@ -784,6 +781,9 @@ export default function BlogEditor() {
         formValues.contentBlocks = transformToContentBlocks(customBlocks) as any;
         formValues.content = blocksToHtml(customBlocks);
       }
+      
+      console.log('Autosave - categoryIds from form:', formValues.categoryIds);
+      console.log('Autosave - selectedCategoryIds from state:', selectedCategoryIds);
       
       await saveMutation.mutateAsync(formValues);
       
@@ -1119,6 +1119,8 @@ export default function BlogEditor() {
 
   const onSubmit = async (data: BlogForm) => {
     console.log('Form submitted with data:', data);
+    console.log('categoryIds from form:', data.categoryIds);
+    console.log('selectedCategoryIds from state:', selectedCategoryIds);
     
     // Clear autosave timer for manual save
     if (autosaveTimerRef.current) {
@@ -1131,9 +1133,6 @@ export default function BlogEditor() {
     try {
       // Capture the blocks being saved before mutation
       pendingSaveSnapshotRef.current = null;
-      
-      // Ensure categoryIds is included in submission (from state)
-      data.categoryIds = selectedCategoryIds;
       
       // If in Blocks mode, convert custom blocks to HTML
       if (editorMode === 'blocks' && customBlocks.length > 0) {
@@ -1805,9 +1804,8 @@ export default function BlogEditor() {
                   
                   const formValues = getValues();
                   console.log('Current form values:', formValues);
-                  
-                  // Ensure categoryIds is included in save draft (from state)
-                  formValues.categoryIds = selectedCategoryIds;
+                  console.log('Save Draft - categoryIds from form:', formValues.categoryIds);
+                  console.log('Save Draft - selectedCategoryIds from state:', selectedCategoryIds);
                   
                   // Set as draft
                   formValues.isPublished = false;
