@@ -237,14 +237,16 @@ export default function StudyAbroadUK() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex justify-center">
                   <a 
                     href="https://dunyaconsultants.com/blog/living-in-uk-as-international-student"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm"
                   >
-                    Learn more about living in UK as an international student <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      Learn More: Living in UK as International Student
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
@@ -290,22 +292,26 @@ export default function StudyAbroadUK() {
                     </li>
                   </ul>
                 </div>
-                <div className="mt-4 space-y-2">
+                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/blog/uk-study-visa-interview-questions-tips"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    UK Study Visa Interview Questions and Tips <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      UK Visa Interview Tips
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                   <a 
                     href="https://dunyaconsultants.com/2024/09/24/uk-student-visa-requirements"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    Complete UK Student Visa Requirements <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      UK Student Visa Requirements
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
@@ -333,14 +339,16 @@ export default function StudyAbroadUK() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex justify-center">
                   <a 
                     href="https://dunyaconsultants.com/blog/courses-to-study-in-uk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm"
                   >
-                    Explore popular courses to study in the UK <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      Explore Popular Courses to Study in UK
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
@@ -389,14 +397,16 @@ export default function StudyAbroadUK() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex justify-center">
                   <a 
                     href="https://dunyaconsultants.com/2024/08/12/a-complete-guide-to-bank-statement-for-uk-visa"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm"
                   >
-                    Complete Guide to Bank Statement for UK Visa <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      Complete Guide: Bank Statement for UK Visa
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
@@ -437,22 +447,26 @@ export default function StudyAbroadUK() {
                     <strong className="text-gray-900">Note:</strong> Some institutions may accept a Medium of Instruction (MOI) letter from your previous school or university as proof of English proficiency.
                   </p>
                 </div>
-                <div className="mt-4 space-y-2">
+                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/2024/10/07/duolingo-english-test-accepted-university-in-uk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    Duolingo English Test Accepted Universities in UK <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      Duolingo Accepted Universities
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                   <a 
                     href="https://dunyaconsultants.com/2024/10/23/moi-accepted-universities-in-uk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    MOI Accepted Universities in UK <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      MOI Accepted Universities
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
@@ -536,22 +550,26 @@ export default function StudyAbroadUK() {
                     </ul>
                   </div>
                 </div>
-                <div className="mt-4 space-y-2">
+                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/2024/12/27/uk-student-visa-ratio-from-pakistan"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    UK Student Visa Ratio from Pakistan <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      UK Visa Ratio from Pakistan
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                   <a 
                     href="https://dunyaconsultants.com/blog/uk-immigration-white-paper-2025-what-it-means-for-visas-and-settlement"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1D50C9] hover:underline font-medium inline-flex items-center gap-1 text-sm block"
                   >
-                    UK Immigration White Paper 2025 - What It Means for Visas <ExternalLink className="w-3 h-3" />
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                      UK Immigration White Paper 2025
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
                   </a>
                 </div>
               </CardContent>
