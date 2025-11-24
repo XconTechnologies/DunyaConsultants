@@ -36,7 +36,8 @@ export default function StudyAbroadUK() {
   useEffect(() => {
     setStaticPageMeta(
       "Study in the UK: Step-by-Step Guide for Pakistani Students",
-      "Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation."
+      "Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation.",
+      "/uploads/study-in-the-uk.jpg"
     );
 
     const faqSchema = {
@@ -441,16 +442,14 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Study Gap Acceptance */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
-                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                    Study Gap Acceptance
-                  </span>
+            <Card className="border-0 shadow-lg overflow-hidden bg-white">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  Study Gap Acceptance
                 </CardTitle>
-                <p className="text-gray-600 text-base sm:text-lg">
-                  Flexibility for students with education gaps
-                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
@@ -480,16 +479,14 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Scholarships */}
-            <Card className="border-0 shadow-sm">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-50 via-white to-orange-50/30">
               <CardHeader>
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
-                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                    Scholarships Available
-                  </span>
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-white" />
+                  </div>
+                  Scholarships for UK Studies
                 </CardTitle>
-                <p className="text-gray-600 text-base sm:text-lg">
-                  Funding opportunities for Pakistani students
-                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed text-lg">
@@ -512,16 +509,14 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Popular Courses */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
-                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                    Popular Courses
-                  </span>
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50/30 border-b border-blue-100">
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                    <BookOpen className="w-6 h-6 text-white" />
+                  </div>
+                  Popular Courses in the UK
                 </CardTitle>
-                <p className="text-gray-600 text-base sm:text-lg">
-                  Top programs chosen by Pakistani students
-                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
@@ -567,16 +562,14 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Top Universities */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
-                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                    Top UK Universities
-                  </span>
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                    <Building className="w-6 h-6 text-white" />
+                  </div>
+                  Top Universities in the UK
                 </CardTitle>
-                <p className="text-gray-600 text-base sm:text-lg">
-                  World-class institutions accepting Pakistani students
-                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -638,16 +631,14 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Work and Career Opportunities */}
-            <Card className="border-0 shadow-sm">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30">
               <CardHeader>
-                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
-                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                    Work & Career Opportunities
-                  </span>
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                    <Briefcase className="w-6 h-6 text-white" />
+                  </div>
+                  Work & Career Opportunities
                 </CardTitle>
-                <p className="text-gray-600 text-base sm:text-lg">
-                  Post-study work options in the UK
-                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed text-lg">
