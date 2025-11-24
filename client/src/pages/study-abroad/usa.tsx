@@ -166,16 +166,16 @@ export default function StudyAbroadUSA() {
             
             {/* Stats Pills */}
             <div className="flex flex-wrap justify-center gap-3 mb-10">
-              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
-                <Building className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:border-orange-400 hover:bg-white/25 hover:shadow-orange-500/50 transition-all duration-300 shadow-lg">
+                <Building className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-400" />
                 5,000+ Universities
               </Badge>
-              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
-                <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:border-orange-400 hover:bg-white/25 hover:shadow-orange-500/50 transition-all duration-300 shadow-lg">
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-400" />
                 F1 Visa Support
               </Badge>
-              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
-                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:border-orange-400 hover:bg-white/25 hover:shadow-orange-500/50 transition-all duration-300 shadow-lg">
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-400" />
                 Post Study Work Opportunities
               </Badge>
             </div>
