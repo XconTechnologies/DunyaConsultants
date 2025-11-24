@@ -403,7 +403,7 @@ export default function StudyAbroadUSA() {
                   {[
                     { icon: GraduationCap, title: "Tuition Fees", desc: "Varies by institution type - community colleges are more affordable", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: Building, title: "Living Expenses", desc: "Accommodation, food, health insurance, and transportation", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: FileText, title: "Financial Proof", desc: "Bank statements and sponsor documentation required", color: "from-orange-500 to-red-500" }
+                    { icon: FileText, title: "Financial Proof", desc: "Bank statements and sponsor documentation required", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
                     <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-lg transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
