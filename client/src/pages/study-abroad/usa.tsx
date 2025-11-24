@@ -200,16 +200,93 @@ export default function StudyAbroadUSA() {
           </div>
         </div>
 
-        {/* Decorative Wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-auto" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="rgb(249, 250, 251)"/>
-          </svg>
+      </section>
+
+      {/* Homepage Stats Cards Section */}
+      <section className="bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 py-12 sm:py-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Students Placed */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-students">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  2,500+
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  Students Placed
+                </div>
+                <div className="text-xs text-gray-500">
+                  Success Stories
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* University Partners */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-partners">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  50+
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  University Partners
+                </div>
+                <div className="text-xs text-gray-500">
+                  Global Network
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Countries Covered */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-countries">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  15+
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  Countries Covered
+                </div>
+                <div className="text-xs text-gray-500">
+                  Global Reach
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Expert Counselors */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-counselors">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <Star className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  200+
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  Expert Counselors
+                </div>
+                <div className="text-xs text-gray-500">
+                  Professional Team
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Stats Section - Modern Glass Cards */}
-      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-16">
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 mb-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((stat, index) => (
             <Card key={index} className="group border-0 shadow-xl bg-white/80 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid={`stat-card-${index}`}>
