@@ -734,13 +734,10 @@ export default function StudyAbroadUSA() {
       <Footer />
 
       {/* Consultation Form Popup */}
-      {isPopupOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsPopupOpen(false)}>
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <CompactConsultationForm onClose={() => setIsPopupOpen(false)} />
-          </div>
-        </div>
-      )}
+      <CompactConsultationForm 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </div>
   );
 }
