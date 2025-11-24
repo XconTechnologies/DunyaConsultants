@@ -202,10 +202,9 @@ export default function StudyAbroadUSA() {
 
       </section>
 
-      {/* Homepage Stats Cards Section */}
-      <section className="bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 py-12 sm:py-16">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {/* Homepage Stats Cards Section - Overlapping */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Students Placed */}
             <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-students">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
@@ -282,29 +281,6 @@ export default function StudyAbroadUSA() {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Section - Modern Glass Cards */}
-      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 mb-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {stats.map((stat, index) => (
-            <Card key={index} className="group border-0 shadow-xl bg-white/80 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid={`stat-card-${index}`}>
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-              <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${stat.color} mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xs sm:text-sm text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
       </section>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
