@@ -325,15 +325,17 @@ export default function StudyAbroadUK() {
               </CardContent>
             </Card>
 
-            {/* Why Study in UK - Modern Icon Grid */}
-            <Card className="border-0 shadow-lg overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white" data-testid="why-study-uk-card">
-              <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-transparent border-b border-blue-100">
-                <CardTitle className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-white" />
-                  </div>
-                  Why Study in UK
+            {/* Why Study in UK */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Why Study in the UK?
+                  </span>
                 </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Discover what makes the UK a top choice for international students
+                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-8 leading-relaxed text-lg">
@@ -354,9 +356,7 @@ export default function StudyAbroadUK() {
                           <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-[#1D50C9] transition-colors">
                             {reason.title}
                           </h3>
-                          <p className="text-sm text-gray-600">
-                            {reason.desc}
-                          </p>
+                          <p className="text-gray-600 text-sm leading-relaxed">{reason.desc}</p>
                         </div>
                       </div>
                     </div>
@@ -378,14 +378,16 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Application Process */}
-            <Card className="border-0 shadow-lg overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white">
-              <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-transparent border-b border-blue-100">
-                <CardTitle className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
-                  </div>
-                  How to Study in the UK from Pakistan
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    How to Study in the UK from Pakistan
+                  </span>
                 </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Your complete step-by-step application guide
+                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 leading-relaxed mb-6 text-lg">
@@ -444,15 +446,17 @@ export default function StudyAbroadUK() {
               </CardContent>
             </Card>
 
-            {/* English Language Requirements - Modern Pill Design */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-50 via-white to-orange-50/30" data-testid="english-requirements-card">
+            {/* English Language Requirements */}
+            <Card className="border-0 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
-                  </div>
-                  English Language Requirements
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    English Language Requirements
+                  </span>
                 </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  IELTS and alternative test options for UK universities
+                </p>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
