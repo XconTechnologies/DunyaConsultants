@@ -370,8 +370,7 @@ export default function StudyAbroadUSA() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                   {["PTE", "Duolingo", "TOEFL", "MOI Letter"].map((test, index) => (
                     <div key={index} className="group relative" data-testid={`test-option-${index}`}>
-                      <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl blur-sm opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-                      <div className="relative bg-white p-4 rounded-2xl border-2 border-orange-200 text-center hover:border-orange-400 hover:shadow-lg transition-all duration-300">
+                      <div className="relative bg-white p-4 rounded-2xl border-2 border-orange-200 text-center hover:border-orange-400 shadow-[0_4px_12px_rgba(249,115,22,0.3)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
                         <div className="font-semibold text-gray-900 text-sm sm:text-base">{test}</div>
                       </div>
                     </div>
