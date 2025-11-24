@@ -39,7 +39,8 @@ export default function StudyAbroadUSA() {
   useEffect(() => {
     setStaticPageMeta(
       "Study in USA from Pakistan - Complete Guide 2024 | Dunya Consultants",
-      "Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants."
+      "Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants.",
+      "/objects/uploads/study-in-the-usa_1763961982261_811b2918.webp"
     );
 
     // Add FAQ schema for SEO

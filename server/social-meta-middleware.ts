@@ -160,7 +160,7 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
   '/study-abroad/usa': {
     title: 'Study in USA from Pakistan - Complete Guide 2024 | Dunya Consultants',
     description: 'Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants.',
-    image: '/attached_assets/usa-flag.jpg'
+    image: '/objects/uploads/study-in-the-usa_1763961982261_811b2918.webp'
   },
   '/study-abroad/uk': {
     title: 'Study in the UK: Step-by-Step Guide for Pakistani Students',
