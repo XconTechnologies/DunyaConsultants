@@ -175,8 +175,8 @@ export default function StudyAbroadUSA() {
                 F1 Visa Support
               </Badge>
               <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
-                <Award className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                $100B+ Scholarships
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Post Study Work Opportunities
               </Badge>
             </div>
             
