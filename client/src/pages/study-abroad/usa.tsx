@@ -208,9 +208,9 @@ export default function StudyAbroadUSA() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Students Placed */}
             <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-students">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
                   <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
@@ -246,9 +246,9 @@ export default function StudyAbroadUSA() {
 
             {/* Countries Covered */}
             <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-countries">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
                   <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
@@ -265,9 +265,9 @@ export default function StudyAbroadUSA() {
 
             {/* Expert Counselors */}
             <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-counselors">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
                   <Star className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
@@ -335,7 +335,7 @@ export default function StudyAbroadUSA() {
                       data-testid={`reason-card-${index}`}
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D50C9]/10 to-[#1845B3]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <reason.icon className="w-6 h-6 text-[#1D50C9]" />
                         </div>
                         <div className="flex-1">
@@ -388,7 +388,7 @@ export default function StudyAbroadUSA() {
 
             {/* Cost Requirements - Modern Financial Card */}
             <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="cost-requirements-card">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-6 text-white">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 text-white">
                 <CardTitle className="text-2xl flex items-center gap-3">
                   <DollarSign className="w-8 h-8" />
                   Financial Requirements
@@ -401,11 +401,11 @@ export default function StudyAbroadUSA() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { icon: GraduationCap, title: "Tuition Fees", desc: "Varies by institution type - community colleges are more affordable", color: "from-blue-500 to-cyan-500" },
-                    { icon: Building, title: "Living Expenses", desc: "Accommodation, food, health insurance, and transportation", color: "from-purple-500 to-pink-500" },
+                    { icon: GraduationCap, title: "Tuition Fees", desc: "Varies by institution type - community colleges are more affordable", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: Building, title: "Living Expenses", desc: "Accommodation, food, health insurance, and transportation", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: FileText, title: "Financial Proof", desc: "Bank statements and sponsor documentation required", color: "from-orange-500 to-red-500" }
                   ].map((item, index) => (
-                    <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300" data-testid={`cost-item-${index}`}>
+                    <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-lg transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         <item.icon className="w-7 h-7 text-white" />
                       </div>
@@ -420,21 +420,21 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* GPA Requirements - Clean Modern Card */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 via-white to-pink-50/30" data-testid="gpa-requirements-card">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="gpa-requirements-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
                   Academic Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
-                <div className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-purple-200 shadow-sm">
-                  <Star className="w-12 h-12 text-purple-600 flex-shrink-0" />
+                <div className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-blue-200 shadow-sm">
+                  <Star className="w-12 h-12 text-[#1D50C9] flex-shrink-0" />
                   <div>
                     <p className="text-gray-700 leading-relaxed">
-                      Most universities accept students with a minimum GPA of <span className="font-bold text-purple-700">2.5 to 3.5</span>, depending on the program.
+                      Most universities accept students with a minimum GPA of <span className="font-bold text-[#1D50C9]">2.5 to 3.5</span>, depending on the program.
                     </p>
                     <p className="text-sm text-gray-600 mt-2">
                       Competitive courses like engineering or medicine may require higher grades.
@@ -446,9 +446,9 @@ export default function StudyAbroadUSA() {
 
             {/* Study Gap - Split Design */}
             <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="study-gap-card">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50/50 border-b border-blue-100">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <Calendar className="w-6 h-6 text-white" />
                   </div>
                   Study Gap Acceptance
@@ -470,22 +470,22 @@ export default function StudyAbroadUSA() {
                   </div>
                   <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl border-2 border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                         <Award className="w-5 h-5 text-white" />
                       </div>
                       <h4 className="font-bold text-gray-900 text-lg">Master's</h4>
                     </div>
-                    <p className="text-gray-700"><span className="font-bold text-blue-700">5-10 years gap</span> accepted with valid justification</p>
+                    <p className="text-gray-700"><span className="font-bold text-[#1D50C9]">5-10 years gap</span> accepted with valid justification</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Scholarships - Premium Card */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-amber-50 via-white to-yellow-50/30" data-testid="scholarships-card">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-50 via-white to-orange-50/30" data-testid="scholarships-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
                   Free Study in USA
@@ -504,8 +504,8 @@ export default function StudyAbroadUSA() {
                     "Teaching Assistantships",
                     "University Scholarships"
                   ].map((option, index) => (
-                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-amber-200 hover:border-amber-400 hover:shadow-lg transition-all duration-300" data-testid={`scholarship-option-${index}`}>
-                      <CheckCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300" data-testid={`scholarship-option-${index}`}>
+                      <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{option}</span>
                     </div>
                   ))}
@@ -515,9 +515,9 @@ export default function StudyAbroadUSA() {
 
             {/* Popular Courses - Modern Grid with Demand Indicator */}
             <Card className="border-0 shadow-lg bg-white" data-testid="popular-courses-card">
-              <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50/50 border-b border-indigo-100">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <BookOpen className="w-6 h-6 text-white" />
                   </div>
                   Popular Courses
@@ -529,14 +529,14 @@ export default function StudyAbroadUSA() {
                 </p>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {popularCourses.map((course, index) => (
-                    <div key={index} className="group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-indigo-300 hover:shadow-xl transition-all duration-300" data-testid={`course-card-${index}`}>
+                    <div key={index} className="group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-xl transition-all duration-300" data-testid={`course-card-${index}`}>
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-[#1D50C9] transition-colors">
                           {course.name}
                         </h3>
                         <Badge className={`${
-                          course.demand === 'Very High' ? 'bg-green-500' :
-                          course.demand === 'High' ? 'bg-blue-500' :
+                          course.demand === 'Very High' ? 'bg-orange-500' :
+                          course.demand === 'High' ? 'bg-[#1D50C9]' :
                           'bg-gray-500'
                         } text-white text-xs px-2 py-1`}>
                           {course.demand}
@@ -549,10 +549,10 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* Top Universities - Premium List */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-slate-50 via-white to-slate-50/30" data-testid="universities-card">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-50 via-white to-gray-50/30" data-testid="universities-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <Building className="w-6 h-6 text-white" />
                   </div>
                   Top Universities
@@ -561,9 +561,9 @@ export default function StudyAbroadUSA() {
               <CardContent className="p-6 sm:p-8">
                 <div className="grid sm:grid-cols-2 gap-3">
                   {universities.map((university, index) => (
-                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-slate-400 hover:shadow-lg transition-all duration-300" data-testid={`university-item-${index}`}>
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center flex-shrink-0">
-                        <Building className="w-4 h-4 text-slate-600" />
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-[#1D50C9]/30 hover:shadow-lg transition-all duration-300" data-testid={`university-item-${index}`}>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center flex-shrink-0">
+                        <Building className="w-4 h-4 text-[#1D50C9]" />
                       </div>
                       <span className="text-gray-700 font-medium text-sm">{university}</span>
                     </div>
@@ -622,7 +622,7 @@ export default function StudyAbroadUSA() {
             <Card className="border-0 shadow-lg bg-white" data-testid="faqs-card">
               <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
                 <CardTitle className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <FileText className="w-6 h-6 text-white" />
                   </div>
                   Frequently Asked Questions
