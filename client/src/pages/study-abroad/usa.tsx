@@ -331,7 +331,7 @@ export default function StudyAbroadUSA() {
                   {whyStudyUSA.map((reason, index) => (
                     <div 
                       key={index} 
-                      className="group p-5 bg-white rounded-2xl shadow-md hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300 cursor-pointer"
+                      className="group p-5 bg-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300 cursor-pointer"
                       data-testid={`reason-card-${index}`}
                     >
                       <div className="flex items-start gap-4">
@@ -370,7 +370,7 @@ export default function StudyAbroadUSA() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                   {["PTE", "Duolingo", "TOEFL", "MOI Letter"].map((test, index) => (
                     <div key={index} className="group relative" data-testid={`test-option-${index}`}>
-                      <div className="relative bg-white p-4 rounded-2xl text-center shadow-md hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
+                      <div className="relative bg-white p-4 rounded-2xl text-center shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
                         <div className="font-semibold text-gray-900 text-sm sm:text-base">{test}</div>
                       </div>
                     </div>
@@ -404,7 +404,7 @@ export default function StudyAbroadUSA() {
                     { icon: Building, title: "Living Expenses", desc: "Accommodation, food, health insurance, and transportation", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: FileText, title: "Financial Proof", desc: "Bank statements and sponsor documentation required", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
-                    <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-md hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
+                    <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         <item.icon className="w-7 h-7 text-white" />
                       </div>
@@ -429,7 +429,7 @@ export default function StudyAbroadUSA() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
-                <div className="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-md">
+                <div className="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)]">
                   <Star className="w-12 h-12 text-[#1D50C9] flex-shrink-0" />
                   <div>
                     <p className="text-gray-700 leading-relaxed">
@@ -458,7 +458,7 @@ export default function StudyAbroadUSA() {
                   USA universities are highly flexible with study gaps:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl shadow-md hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
+                  <div className="group p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
                         <GraduationCap className="w-5 h-5 text-white" />
@@ -467,7 +467,7 @@ export default function StudyAbroadUSA() {
                     </div>
                     <p className="text-gray-700">Up to <span className="font-bold text-orange-700">2-5 years gap</span> is acceptable</p>
                   </div>
-                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-md hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                         <Award className="w-5 h-5 text-white" />
@@ -503,7 +503,7 @@ export default function StudyAbroadUSA() {
                     "Teaching Assistantships",
                     "University Scholarships"
                   ].map((option, index) => (
-                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-md hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300" data-testid={`scholarship-option-${index}`}>
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300" data-testid={`scholarship-option-${index}`}>
                       <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{option}</span>
                     </div>
@@ -528,10 +528,10 @@ export default function StudyAbroadUSA() {
                 </p>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {popularCourses.map((course, index) => (
-                    <div key={index} className={`group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-md transition-all duration-300 ${
-                      course.demand === 'Very High' ? 'hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)]' :
-                      course.demand === 'High' ? 'hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)]' : 
-                      'hover:shadow-lg'
+                    <div key={index} className={`group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl transition-all duration-300 ${
+                      course.demand === 'Very High' ? 'shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)]' :
+                      course.demand === 'High' ? 'shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)]' : 
+                      'shadow-md hover:shadow-lg'
                     }`} data-testid={`course-card-${index}`}>
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-gray-900 group-hover:text-[#1D50C9] transition-colors">
@@ -564,7 +564,7 @@ export default function StudyAbroadUSA() {
               <CardContent className="p-6 sm:p-8">
                 <div className="grid sm:grid-cols-2 gap-3">
                   {universities.map((university, index) => (
-                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-md hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`university-item-${index}`}>
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`university-item-${index}`}>
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center flex-shrink-0">
                         <Building className="w-4 h-4 text-[#1D50C9]" />
                       </div>
