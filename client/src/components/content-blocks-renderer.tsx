@@ -155,11 +155,33 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     }
   });
   
-  // Add blocks at the end (position >= 999 OR position > number of elements)
+  // If there are no content elements, we need to render blocks with positions 1-998 here
+  // Otherwise they would incorrectly fall into the "end" section
+  if (elements.length === 0) {
+    // Sort block positions and render blocks with positions 1-998
+    const positions = Array.from(blocksByPosition.keys()).filter(pos => pos > 0 && pos < 999).sort((a, b) => a - b);
+    positions.forEach(pos => {
+      const blocksAtPos = blocksByPosition.get(pos);
+      if (blocksAtPos) {
+        blocksAtPos.forEach((block, idx) => {
+          if (!renderedBlockIds.has(block.id)) {
+            contentParts.push(
+              <div key={`block-${pos}-${idx}`} className="my-6">
+                {renderBlock(block)}
+              </div>
+            );
+            renderedBlockIds.add(block.id);
+          }
+        });
+      }
+    });
+  }
+  
+  // Add blocks at the end (position >= 999 only)
   // Only add blocks that haven't been rendered yet to avoid duplicates
   blocks.forEach((block, idx) => {
     const pos = block.position ?? 999;
-    if ((pos >= 999 || pos > elements.length) && !renderedBlockIds.has(block.id)) {
+    if (pos >= 999 && !renderedBlockIds.has(block.id)) {
       contentParts.push(
         <div key={`block-end-${idx}`} className="my-6">
           {renderBlock(block)}
