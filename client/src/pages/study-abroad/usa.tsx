@@ -458,7 +458,7 @@ export default function StudyAbroadUSA() {
                   USA universities are highly flexible with study gaps:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300">
+                  <div className="group p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl border-2 border-orange-200 hover:border-orange-400 hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
                         <GraduationCap className="w-5 h-5 text-white" />
@@ -503,7 +503,7 @@ export default function StudyAbroadUSA() {
                     "Teaching Assistantships",
                     "University Scholarships"
                   ].map((option, index) => (
-                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300" data-testid={`scholarship-option-${index}`}>
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-orange-200 hover:border-orange-400 hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300" data-testid={`scholarship-option-${index}`}>
                       <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{option}</span>
                     </div>
@@ -529,7 +529,9 @@ export default function StudyAbroadUSA() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {popularCourses.map((course, index) => (
                     <div key={index} className={`group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 transition-all duration-300 ${
-                      course.demand === 'High' ? 'hover:border-[#1D50C9]/30 hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)]' : 'hover:border-gray-300 hover:shadow-lg'
+                      course.demand === 'Very High' ? 'hover:border-orange-300 hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)]' :
+                      course.demand === 'High' ? 'hover:border-[#1D50C9]/30 hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)]' : 
+                      'hover:border-gray-300 hover:shadow-lg'
                     }`} data-testid={`course-card-${index}`}>
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-gray-900 group-hover:text-[#1D50C9] transition-colors">
