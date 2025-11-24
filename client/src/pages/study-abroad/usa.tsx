@@ -733,24 +733,11 @@ export default function StudyAbroadUSA() {
 
       <Footer />
 
-      {/* Application Form Popup */}
+      {/* Consultation Form Popup */}
       {isPopupOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center rounded-t-2xl z-10">
-              <h2 className="text-2xl font-bold text-gray-900">Start Your Application</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsPopupOpen(false)}
-                className="hover:bg-gray-100 rounded-full"
-              >
-                ✕
-              </Button>
-            </div>
-            <div className="p-6">
-              <ApplicationForm />
-            </div>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsPopupOpen(false)}>
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
+            <CompactConsultationForm onClose={() => setIsPopupOpen(false)} />
           </div>
         </div>
       )}
