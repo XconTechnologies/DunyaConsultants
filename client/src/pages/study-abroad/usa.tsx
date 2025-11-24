@@ -331,7 +331,7 @@ export default function StudyAbroadUSA() {
                   {whyStudyUSA.map((reason, index) => (
                     <div 
                       key={index} 
-                      className="group p-5 bg-white rounded-2xl border border-gray-200 hover:border-[#1D50C9]/50 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                      className="group p-5 bg-white rounded-2xl border border-gray-200 hover:border-[#1D50C9]/50 hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300 cursor-pointer"
                       data-testid={`reason-card-${index}`}
                     >
                       <div className="flex items-start gap-4">
