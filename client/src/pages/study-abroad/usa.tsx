@@ -701,7 +701,7 @@ export default function StudyAbroadUSA() {
             </Card>
 
             {/* Quick Facts Card */}
-            <Card className="border-0 shadow-lg bg-white" data-testid="quick-facts-card">
+            <Card className="border-0 shadow-lg bg-white sticky top-[430px]" data-testid="quick-facts-card">
               <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
                 <CardTitle className="text-lg text-gray-900 flex items-center gap-2">
                   <Clock className="w-5 h-5 text-[#1D50C9]" />
