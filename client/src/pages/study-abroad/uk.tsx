@@ -25,7 +25,8 @@ import {
   ChevronUp,
   ExternalLink,
   Clock,
-  Shield
+  Shield,
+  Star
 } from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
@@ -38,7 +39,6 @@ export default function StudyAbroadUK() {
       "Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation."
     );
 
-    // Add FAQ schema for SEO
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -68,12 +68,12 @@ export default function StudyAbroadUK() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   const whyStudyUK = [
-    "World-renowned universities like Oxford and Cambridge",
-    "Shorter degree programs (3-year Bachelor's, 1-year Master's)",
-    "High-quality education with global recognition",
-    "Multicultural environment with students from 200+ countries",
-    "Strong post-study work opportunities (2-year Graduate Visa)",
-    "Rich cultural heritage and historical landmarks"
+    { icon: Building, title: "World-Class Universities", desc: "Study at prestigious institutions like Oxford and Cambridge" },
+    { icon: Clock, title: "Shorter Programs", desc: "3-year Bachelor's and 1-year Master's degrees" },
+    { icon: Award, title: "Global Recognition", desc: "High-quality education recognized worldwide" },
+    { icon: Users, title: "Multicultural", desc: "Students from 200+ countries" },
+    { icon: Briefcase, title: "Post-Study Work", desc: "2-year Graduate Visa opportunities" },
+    { icon: Globe, title: "Rich Culture", desc: "Historical landmarks and cultural heritage" }
   ];
 
   const universities = [
@@ -90,15 +90,15 @@ export default function StudyAbroadUK() {
   ];
 
   const popularCourses = [
-    "Engineering",
-    "Business Administration",
-    "Computer Science",
-    "Medicine",
-    "Law",
-    "Economics",
-    "Architecture",
-    "Data Science",
-    "Artificial Intelligence"
+    { name: "Engineering", demand: "High" },
+    { name: "Business Administration", demand: "Very High" },
+    { name: "Computer Science", demand: "Very High" },
+    { name: "Medicine", demand: "High" },
+    { name: "Law", demand: "High" },
+    { name: "Economics", demand: "High" },
+    { name: "Architecture", demand: "High" },
+    { name: "Data Science", demand: "Very High" },
+    { name: "Artificial Intelligence", demand: "Very High" }
   ];
 
   const faqs = [
@@ -169,7 +169,7 @@ export default function StudyAbroadUK() {
                 130+ Universities
               </Badge>
               <Badge variant="secondary" className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-white/20 text-white border-white/30">
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 2-Year Work Visa
               </Badge>
               <Badge variant="secondary" className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base bg-white/20 text-white border-white/30">
@@ -206,11 +206,11 @@ export default function StudyAbroadUK() {
             
             {/* Introduction */}
             <Card className="border-0 shadow-sm">
-              <CardContent className="pt-6">
-                <p className="text-gray-700 leading-relaxed mb-4">
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 leading-relaxed mb-4 text-lg">
                   Studying in the UK is a life-changing decision that offers numerous academic, professional, and personal benefits for Pakistani students. With world-renowned universities, a diverse and vibrant cultural scene, and numerous post-graduation opportunities, the UK has become one of the most sought-after destinations for higher education.
                 </p>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed text-lg">
                   This complete guide provides you with everything you need to know about studying in the UK, including the application process, visa requirements, scholarships, top universities, and career opportunities with trusted guidance from <a href="/contact" className="text-[#1D50C9] hover:underline font-medium">Dunya Consultants</a>.
                 </p>
               </CardContent>
@@ -219,25 +219,41 @@ export default function StudyAbroadUK() {
             {/* Why Study in UK */}
             <Card className="border-0 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <Zap className="w-6 h-6" />
-                  Why Study in the UK?
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Why Study in the UK?
+                  </span>
                 </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  The UK has consistently ranked as one of the best destinations for international students due to its world-class education system, cultural diversity, and global job market connections. Here are some key reasons why Pakistani students choose to study in the UK:
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Discover what makes the UK a top choice for international students
                 </p>
-                <h3 className="font-semibold text-gray-900 mb-4 text-lg">Key Reasons</h3>
-                <div className="grid md:grid-cols-2 gap-3">
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-8 leading-relaxed text-lg">
+                  The UK offers world-class education, cultural diversity, excellent job opportunities, and strong post-graduation work options for international students.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
                   {whyStudyUK.map((reason, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
-                      <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700 leading-relaxed">{reason}</span>
+                    <div 
+                      key={index} 
+                      className="group p-5 bg-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300 cursor-pointer"
+                      data-testid={`reason-card-${index}`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D50C9]/10 to-[#1845B3]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <reason.icon className="w-6 h-6 text-[#1D50C9]" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-[#1D50C9] transition-colors">
+                            {reason.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{reason.desc}</p>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 flex justify-center">
+                <div className="mt-6 flex justify-center">
                   <a 
                     href="https://dunyaconsultants.com/blog/living-in-uk-as-international-student"
                     target="_blank"
@@ -245,6 +261,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                       Learn More: Living in UK as International Student
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -254,44 +271,48 @@ export default function StudyAbroadUK() {
             {/* Application Process */}
             <Card className="border-0 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <BookOpen className="w-6 h-6" />
-                  How to Study in the UK from Pakistan
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    How to Study in the UK from Pakistan
+                  </span>
                 </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Your complete step-by-step application guide
+                </p>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed mb-4">
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 leading-relaxed mb-6 text-lg">
                   For Pakistani students aspiring to study in the UK, the process begins with research and ends with a successful visa interview. Here's a step-by-step guide on how to navigate the application process:
                 </p>
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-5 md:p-6 rounded-lg border border-blue-200">
-                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-6 rounded-2xl">
+                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-lg">
                     <Users className="w-5 h-5 text-[#1D50C9]" />
                     Application Steps
                   </h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span><strong>Step 1:</strong> Choose the right course and university that aligns with your interests and career goals</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span><strong>Step 2:</strong> Apply online through UCAS (undergraduate) or directly to university (postgraduate)</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span><strong>Step 3:</strong> Secure your offer and receive CAS (Confirmation of Acceptance for Studies)</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span><strong>Step 4:</strong> Apply for Tier 4 student visa with required documents</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span><strong>Step 5:</strong> Demonstrate sufficient funds for tuition and living expenses</span>
                     </li>
                   </ul>
                 </div>
-                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/blog/uk-study-visa-interview-questions-tips"
                     target="_blank"
@@ -299,6 +320,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Visa Interview Tips
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -308,99 +330,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Student Visa Requirements
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Top Universities */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <Building className="w-6 h-6" />
-                  Top Universities in the UK for Pakistani Students
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Choosing the right university is crucial for your academic and professional growth. Here are some of the most popular universities in the UK for Pakistani students:
-                </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {universities.map((university, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                      <div className="w-8 h-8 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-semibold text-sm">{index + 1}</span>
-                      </div>
-                      <span className="text-gray-700">{university}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 flex justify-center">
-                  <a 
-                    href="https://dunyaconsultants.com/blog/courses-to-study-in-uk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                      Explore Popular Courses to Study in UK
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Financial Requirements */}
-            <Card className="border-0 shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <DollarSign className="w-6 h-6" />
-                  Financial Requirements: How Much Money Do You Need?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Studying in the UK can be expensive, but various funding options can make it more affordable. Here's a breakdown of the financial requirements:
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
-                      <GraduationCap className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Tuition Fees</h4>
-                      <p className="text-gray-600 text-sm">£10,000 to £20,000 per year for undergraduate</p>
-                      <p className="text-gray-600 text-sm">£12,000 to £30,000 per year for postgraduate</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
-                      <Building className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Living Costs</h4>
-                      <p className="text-gray-600 text-sm">£1,023 per month outside London</p>
-                      <p className="text-gray-600 text-sm">£1,334 per month in London</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center flex-shrink-0">
-                      <Award className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Scholarships Available</h4>
-                      <p className="text-gray-600 text-sm">Chevening, Commonwealth, and university-specific scholarships</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 flex justify-center">
-                  <a 
-                    href="https://dunyaconsultants.com/2024/08/12/a-complete-guide-to-bank-statement-for-uk-visa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                      Complete Guide: Bank Statement for UK Visa
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -410,39 +340,34 @@ export default function StudyAbroadUK() {
             {/* English Language Requirements */}
             <Card className="border-0 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <FileText className="w-6 h-6" />
-                  IELTS or Alternative Tests for Pakistani Students
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    English Language Requirements
+                  </span>
                 </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  For Pakistani students, English proficiency is an essential requirement for studying in the UK. While IELTS is the most widely accepted test, some universities may also accept alternative tests:
+                <p className="text-gray-600 text-base sm:text-lg">
+                  IELTS and alternative test options for UK universities
                 </p>
-                <div className="grid sm:grid-cols-2 gap-3 mb-4">
-                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                    <CheckCircle className="w-5 h-5 text-orange-600" />
-                    <span className="font-medium text-gray-900">IELTS</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                    <CheckCircle className="w-5 h-5 text-orange-600" />
-                    <span className="font-medium text-gray-900">TOEFL</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                    <CheckCircle className="w-5 h-5 text-orange-600" />
-                    <span className="font-medium text-gray-900">PTE</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                    <CheckCircle className="w-5 h-5 text-orange-600" />
-                    <span className="font-medium text-gray-900">Duolingo English Test</span>
-                  </div>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Many UK universities accept students without IELTS. Here are your alternatives:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                  {["PTE", "Duolingo", "TOEFL", "MOI Letter"].map((test, index) => (
+                    <div key={index} className="group relative" data-testid={`test-option-${index}`}>
+                      <div className="relative bg-white p-4 rounded-2xl text-center shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
+                        <div className="font-semibold text-gray-900 text-sm sm:text-base">{test}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="bg-gradient-to-r from-orange-50 to-orange-100/30 p-4 rounded-r-lg border-l-4 border-orange-600 shadow-sm">
-                  <p className="text-gray-700">
+                <div className="bg-gradient-to-r from-orange-100 to-red-100/50 p-5 rounded-2xl shadow-sm">
+                  <p className="text-gray-700 font-medium">
                     <strong className="text-gray-900">Note:</strong> Some institutions may accept a Medium of Instruction (MOI) letter from your previous school or university as proof of English proficiency.
                   </p>
                 </div>
-                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/2024/10/07/duolingo-english-test-accepted-university-in-uk"
                     target="_blank"
@@ -450,6 +375,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       Duolingo Accepted Universities
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -459,8 +385,209 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       MOI Accepted Universities
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Financial Requirements */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Cost of Studying in the UK
+                  </span>
+                </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Financial requirements and funding options
+                </p>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Understanding the financial commitment is crucial for planning your UK education:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: GraduationCap, title: "Tuition Fees", desc: "£10,000-£20,000/year (UG) | £12,000-£30,000/year (PG)", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: Building, title: "Living Expenses", desc: "£1,023/month outside London | £1,334/month in London", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: FileText, title: "Financial Proof", desc: "Bank statements showing tuition + living costs required", color: "from-[#1D50C9] to-[#1845B3]" }
+                  ].map((item, index) => (
+                    <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
+                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <item.icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 text-lg mb-1">{item.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <a 
+                    href="https://dunyaconsultants.com/2024/08/12/a-complete-guide-to-bank-statement-for-uk-visa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      Complete Guide: Bank Statement for UK Visa
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Study Gap Acceptance */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Study Gap Acceptance
+                  </span>
+                </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Flexibility for students with education gaps
+                </p>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  UK universities are flexible with study gaps when combined with relevant work experience:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                        <GraduationCap className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-lg">Bachelor's</h4>
+                    </div>
+                    <p className="text-gray-700">Up to <span className="font-bold text-[#1D50C9]">2-3 years gap</span> is acceptable</p>
+                  </div>
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                        <Award className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-lg">Master's</h4>
+                    </div>
+                    <p className="text-gray-700"><span className="font-bold text-[#1D50C9]">5-10 years gap</span> accepted with valid justification</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Scholarships */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Scholarships Available
+                  </span>
+                </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Funding opportunities for Pakistani students
+                </p>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Several scholarship options are available to help fund your UK education:
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {[
+                    "Chevening Scholarships",
+                    "Commonwealth Scholarships",
+                    "University-Specific Scholarships",
+                    "Merit-Based Awards"
+                  ].map((option, index) => (
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300" data-testid={`scholarship-option-${index}`}>
+                      <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium">{option}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Popular Courses */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Popular Courses
+                  </span>
+                </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Top programs chosen by Pakistani students
+                </p>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Top programs chosen by Pakistani students for their high earning potential:
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {popularCourses.map((course, index) => (
+                    <div key={index} className={`group relative overflow-hidden p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl transition-all duration-300 ${
+                      course.demand === 'Very High' ? 'shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)]' :
+                      course.demand === 'High' ? 'shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)]' : 
+                      'shadow-md hover:shadow-lg'
+                    }`} data-testid={`course-card-${index}`}>
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-[#1D50C9] transition-colors">
+                          {course.name}
+                        </h3>
+                        {course.demand && (
+                          <span className={`text-xs font-bold px-2 py-1 rounded-full ${
+                            course.demand === 'Very High' ? 'bg-orange-100 text-orange-700' :
+                            course.demand === 'High' ? 'bg-blue-100 text-[#1D50C9]' : 
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {course.demand}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <a 
+                    href="https://dunyaconsultants.com/blog/courses-to-study-in-uk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      Explore Popular Courses to Study in UK
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Top Universities */}
+            <Card className="border-0 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Top UK Universities
+                  </span>
+                </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  World-class institutions accepting Pakistani students
+                </p>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {universities.map((university, index) => (
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`university-item-${index}`}>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center flex-shrink-0">
+                        <Building className="w-4 h-4 text-[#1D50C9]" />
+                      </div>
+                      <span className="text-gray-700 font-medium text-sm">{university}</span>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -503,6 +630,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-0">
                       Learn Why We're the Best UK Consultants
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
@@ -512,25 +640,29 @@ export default function StudyAbroadUK() {
             {/* Work and Career Opportunities */}
             <Card className="border-0 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center gap-2">
-                  <Briefcase className="w-6 h-6" />
-                  Work and Career Opportunities After Studying in the UK
+                <CardTitle className="text-2xl sm:text-3xl font-bold mb-2">
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Work & Career Opportunities
+                  </span>
                 </CardTitle>
+                <p className="text-gray-600 text-base sm:text-lg">
+                  Post-study work options in the UK
+                </p>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4 leading-relaxed">
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
                   The UK provides several opportunities for international students to gain work experience during and after their studies:
                 </p>
                 <div className="space-y-4">
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">During Studies</h4>
+                  <div className="p-5 bg-gradient-to-r from-orange-50 to-orange-100/50 rounded-2xl shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-lg">During Studies</h4>
                     <p className="text-gray-700">Work up to 20 hours per week during term time and full-time during holidays</p>
                   </div>
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Graduate Route Visa</h4>
+                  <div className="p-5 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-lg">Graduate Route Visa</h4>
                     <p className="text-gray-700">2 years for Bachelor's/Master's graduates, 3 years for PhD graduates</p>
                   </div>
-                  <div className="bg-gradient-to-r from-orange-50 to-orange-100/30 p-4 rounded-r-lg border-l-4 border-orange-600 shadow-sm">
+                  <div className="bg-gradient-to-r from-orange-100 to-red-100/50 p-5 rounded-2xl shadow-sm">
                     <ul className="space-y-2 text-gray-700">
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
@@ -543,7 +675,7 @@ export default function StudyAbroadUK() {
                     </ul>
                   </div>
                 </div>
-                <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                   <a 
                     href="https://dunyaconsultants.com/2024/12/27/uk-student-visa-ratio-from-pakistan"
                     target="_blank"
@@ -551,6 +683,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Visa Ratio from Pakistan
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                   <a 
@@ -560,6 +693,7 @@ export default function StudyAbroadUK() {
                   >
                     <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1642a8] hover:to-[#14398a] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                       UK Immigration White Paper 2025
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 </div>
