@@ -458,14 +458,14 @@ export default function StudyAbroadUSA() {
                   USA universities are highly flexible with study gaps:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-2xl shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                         <GraduationCap className="w-5 h-5 text-white" />
                       </div>
                       <h4 className="font-bold text-gray-900 text-lg">Bachelor's</h4>
                     </div>
-                    <p className="text-gray-700">Up to <span className="font-bold text-orange-700">2-5 years gap</span> is acceptable</p>
+                    <p className="text-gray-700">Up to <span className="font-bold text-[#1D50C9]">2-5 years gap</span> is acceptable</p>
                   </div>
                   <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
