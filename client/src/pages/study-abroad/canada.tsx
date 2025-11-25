@@ -299,9 +299,9 @@ export default function StudyAbroadCanada() {
                     Canada has become one of the top destinations for international students, especially from Pakistan. The Canadian education system focuses on innovation, critical thinking, and practical skills, making it a hub for academic excellence.
                   </p>
                   <div className="mt-6 flex justify-center">
-                    <Link href="/2024/12/02/jobs-in-canada-for-pakistani-students">
+                    <Link href="/2024/11/20/canada-student-visa-for-pakistani">
                       <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                        Explore Job Opportunities in Canada
+                        Learn About Canada Student Visa
                       </Button>
                     </Link>
                   </div>
@@ -447,13 +447,6 @@ export default function StudyAbroadCanada() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 flex justify-center">
-                  <Link href="/2024/11/20/canada-student-visa-for-pakistani">
-                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                      Learn About Canada Student Visa
-                    </Button>
-                  </Link>
-                </div>
               </CardContent>
             </Card>
 
@@ -490,6 +483,13 @@ export default function StudyAbroadCanada() {
                     </div>
                     <p className="text-gray-700">Apply for PR through <span className="font-bold text-[#1D50C9]">Express Entry</span> after gaining Canadian work experience</p>
                   </div>
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <Link href="/2024/12/02/jobs-in-canada-for-pakistani-students">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                      Explore Job Opportunities in Canada
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
