@@ -88,7 +88,8 @@ export default function Navigation() {
             { name: "Finland", href: "/study-abroad/finland", description: "Free education & innovation hub" },
             { name: "Australia", href: "/study-abroad/australia", description: "High quality of life & education" },
             { name: "Belgium", href: "/study-abroad/belgium", description: "European excellence & diversity" },
-            { name: "Turkey", href: "/study-abroad/turkey", description: "Cultural bridge & affordable education" }
+            { name: "Turkey", href: "/study-abroad/turkey", description: "Cultural bridge & affordable education" },
+            { name: "Others", href: "/study-abroad", description: "View all study destinations" }
           ]
         }
       ],
@@ -523,6 +524,14 @@ export default function Navigation() {
                               </button>
                             </Link>
                           ))}
+                          <Link href="/study-abroad">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-[#1D50C9] font-medium hover:text-[#1845B3] transition-colors duration-200 py-2"
+                            >
+                              Others →
+                            </button>
+                          </Link>
                         </div>
                       )}
                       {item.name === "Test Prep" && expandedMobileMenu === item.name && (
