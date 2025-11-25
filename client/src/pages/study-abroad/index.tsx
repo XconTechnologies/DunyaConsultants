@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,9 +17,11 @@ import {
   Star,
   Sparkles,
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  Rocket
 } from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
+import CompactConsultationForm from "@/components/compact-consultation-form";
 
 const destinations = [
   {
@@ -102,6 +104,8 @@ const stats = [
 ];
 
 export default function StudyAbroadIndex() {
+  const [showConsultationForm, setShowConsultationForm] = useState(false);
+  
   useEffect(() => {
     setStaticPageMeta(
       "Study Abroad Destinations | Dunya Consultants",
@@ -162,6 +166,15 @@ export default function StudyAbroadIndex() {
                 size="lg"
                 showIcon={false}
               />
+              <Button
+                onClick={() => setShowConsultationForm(true)}
+                className="bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300"
+                size="lg"
+                data-testid="connect-now-button"
+              >
+                <Rocket className="w-5 h-5 mr-2" />
+                Connect Now
+              </Button>
             </div>
           </div>
         </div>
@@ -305,6 +318,12 @@ export default function StudyAbroadIndex() {
       </section>
 
       <Footer />
+
+      {/* Consultation Form Popup */}
+      <CompactConsultationForm
+        isOpen={showConsultationForm}
+        onClose={() => setShowConsultationForm(false)}
+      />
     </div>
   );
 }
