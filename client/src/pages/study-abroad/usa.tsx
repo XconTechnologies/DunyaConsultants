@@ -310,6 +310,13 @@ export default function StudyAbroadUSA() {
                     Pakistani students choose the USA because it provides flexible courses, strong post-study work options, and a clear pathway toward long-term settlement. This complete guide explains how to study in the USA from Pakistan, costs, requirements, and visa processes.
                   </p>
                 </div>
+                <div className="flex justify-center mt-6">
+                  <Link href="/blog/how-to-get-the-usa-student-visa">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" data-testid="link-usa-visa-guide">
+                      How to Get the USA Student Visa
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
@@ -415,6 +422,13 @@ export default function StudyAbroadUSA() {
                     </div>
                   ))}
                 </div>
+                <div className="flex justify-center mt-6">
+                  <Link href="/blog/cost-of-studying-in-the-usa-for-students">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" data-testid="link-usa-cost-guide">
+                      Cost of Studying in the USA for Students
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
@@ -476,6 +490,13 @@ export default function StudyAbroadUSA() {
                     </div>
                     <p className="text-gray-700"><span className="font-bold text-[#1D50C9]">5-10 years gap</span> accepted with valid justification</p>
                   </div>
+                </div>
+                <div className="flex justify-center mt-6">
+                  <Link href="/blog/usa-student-visa-requirements">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" data-testid="link-usa-visa-requirements">
+                      USA Student Visa Requirements
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -572,6 +593,13 @@ export default function StudyAbroadUSA() {
                     </div>
                   ))}
                 </div>
+                <div className="flex justify-center mt-6">
+                  <Link href="/blog/top-universities-in-the-usa">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" data-testid="link-top-universities">
+                      Top Universities in the USA
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
@@ -612,9 +640,8 @@ export default function StudyAbroadUSA() {
                 </div>
                 <div className="flex justify-center">
                   <Link href="/blog/best-usa-student-visa-consultants">
-                    <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-4 rounded-xl shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 border-0 text-lg">
-                      Read Our Complete Guide
-                      <ExternalLink className="w-5 h-5 ml-2" />
+                    <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-3 rounded-xl shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 border-0" data-testid="link-best-consultants">
+                      Best USA Student Visa Consultants
                     </Button>
                   </Link>
                 </div>
