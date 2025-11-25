@@ -12,26 +12,29 @@ import {
   FileText,
   GraduationCap,
   Globe,
+  MapPin,
   Calendar,
   Users,
   Zap,
   Award,
   Briefcase,
   BookOpen,
+  TrendingUp,
   Building,
   ChevronDown,
-  Clock,
-  Shield,
+  ChevronUp,
+  ExternalLink,
   Star,
   Sparkles,
-  Rocket,
+  Clock,
   Target,
-  Castle,
-  Home,
-  MapPin
+  Rocket,
+  Shield,
+  Castle
 } from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export default function StudyAbroadBelgium() {
   useEffect(() => {
@@ -69,13 +72,20 @@ export default function StudyAbroadBelgium() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
+  const stats = [
+    { icon: Building, label: "Universities", value: "15+", color: "from-blue-500 to-cyan-500" },
+    { icon: Users, label: "Students Globally", value: "50K+", color: "from-purple-500 to-pink-500" },
+    { icon: Award, label: "Scholarships", value: "€10M+", color: "from-orange-500 to-red-500" },
+    { icon: Briefcase, label: "Avg. Salary", value: "€45K+", color: "from-green-500 to-emerald-500" }
+  ];
+
   const whyStudyBelgium = [
-    { icon: Building, title: "World-Class Education", desc: "Home to top universities like KU Leuven, Ghent University, and University of Brussels" },
-    { icon: Globe, title: "English-Taught Programs", desc: "Wide range of Bachelor's and Master's programs taught entirely in English" },
-    { icon: Users, title: "Multicultural Environment", desc: "Heart of Europe offering a melting pot of cultures and enriching experiences" },
-    { icon: DollarSign, title: "Affordable Tuition", desc: "Lower tuition fees compared to UK or US with reasonable living costs" },
-    { icon: Briefcase, title: "Post-Study Work Permits", desc: "Gain valuable work experience with post-graduation work opportunities" },
-    { icon: MapPin, title: "Central EU Location", desc: "Gateway to European job market and travel opportunities" }
+    { icon: Globe, title: "World-Class Education", desc: "Top universities like KU Leuven & Ghent" },
+    { icon: Rocket, title: "Heart of Europe", desc: "Gateway to EU job market & travel" },
+    { icon: Target, title: "English Programs", desc: "Wide range of English-taught courses" },
+    { icon: Briefcase, title: "Work Opportunities", desc: "Post-study work permits available" },
+    { icon: Users, title: "Multicultural", desc: "Diverse international environment" },
+    { icon: TrendingUp, title: "Affordable Fees", desc: "Lower costs than UK or US" }
   ];
 
   const universities = [
@@ -94,7 +104,7 @@ export default function StudyAbroadBelgium() {
   const popularCourses = [
     { name: "Engineering", demand: "Very High" },
     { name: "Computer Science", demand: "Very High" },
-    { name: "Business & Management", demand: "High" },
+    { name: "Business Administration", demand: "High" },
     { name: "Law", demand: "High" },
     { name: "Medicine", demand: "Very High" },
     { name: "Architecture", demand: "High" },
@@ -114,7 +124,7 @@ export default function StudyAbroadBelgium() {
     },
     {
       question: "How to Apply for a Study Visa in Belgium?",
-      answer: "After receiving your university offer, you can apply for a student visa (Type D) by submitting your acceptance letter, proof of funds, passport, health insurance, and other required documents to the Belgian embassy."
+      answer: "After receiving your university offer, you can apply for a student visa (Type D) by submitting your acceptance letter, proof of funds (€670/month), passport, health insurance, and other required documents to the Belgian embassy."
     },
     {
       question: "What Are the Requirements to Study in Belgium?",
@@ -151,7 +161,7 @@ export default function StudyAbroadBelgium() {
             </h1>
             
             <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
-              Your Path to High-Quality Education and Global Career Opportunities
+              Your Path to High-Quality Education & Global Career Opportunities
             </p>
             
             {/* Stats Pills */}
@@ -162,11 +172,11 @@ export default function StudyAbroadBelgium() {
               </Badge>
               <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
                 <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                No IELTS Options
+                Type D Visa Support
               </Badge>
               <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
-                <Castle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Heart of Europe
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Post Study Work Opportunities
               </Badge>
             </div>
             
@@ -174,43 +184,78 @@ export default function StudyAbroadBelgium() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <CalendlyButton
                 text="Book Free Consultation"
-                className="bg-white text-[#1D50C9] hover:bg-blue-50 font-bold px-8 py-4 rounded-2xl text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 hover:scale-105 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300"
                 size="lg"
                 showIcon={false}
               />
               <Button 
-                size="lg"
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-white/50 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 hover:scale-105 transition-all duration-300 shadow-xl"
                 onClick={() => setIsPopupOpen(true)}
-                className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 font-semibold px-8 py-4 rounded-2xl text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 w-full sm:w-auto"
               >
-                Connect Now
+                <Rocket className="w-5 h-5 mr-2" />
+                Start Application
               </Button>
-            </div>
-
-            {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <span className="text-sm font-medium">Culture • Quality • Innovation</span>
             </div>
           </div>
         </div>
+
       </section>
 
-      {/* Stats Section */}
-      <section className="relative -mt-10 z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-            {/* Tuition Fees */}
-            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-tuition">
+      {/* Homepage Stats Cards Section - Overlapping */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Students Placed */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-students">
               <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <CardContent className="p-4 sm:p-6 text-center relative">
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
-                  €900-€8K
+                  500+
                 </div>
                 <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                  Yearly Tuition
+                  Students Placed
+                </div>
+                <div className="text-xs text-gray-500">
+                  Success Stories
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* University Partners */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-partners">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  15+
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  University Partners
+                </div>
+                <div className="text-xs text-gray-500">
+                  Top Institutions
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Countries Covered */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-countries">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <CardContent className="p-4 sm:p-6 text-center relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                  <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
+                  €900
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+                  Min Tuition/Year
                 </div>
                 <div className="text-xs text-gray-500">
                   Affordable Education
@@ -218,46 +263,8 @@ export default function StudyAbroadBelgium() {
               </CardContent>
             </Card>
 
-            {/* Living Cost */}
-            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-living">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-              <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <Home className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
-                  €700-€1.2K
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                  Monthly Living
-                </div>
-                <div className="text-xs text-gray-500">
-                  Reasonable Costs
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Universities */}
-            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-universities">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-              <CardContent className="p-4 sm:p-6 text-center relative">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
-                  15+
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                  Top Universities
-                </div>
-                <div className="text-xs text-gray-500">
-                  World-Class Institutions
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Visa Success */}
-            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-visa">
+            {/* Expert Counselors */}
+            <Card className="group border-0 shadow-xl bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden relative" data-testid="homepage-stat-counselors">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <CardContent className="p-4 sm:p-6 text-center relative">
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500">
@@ -291,8 +298,8 @@ export default function StudyAbroadBelgium() {
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Study in Belgium?</h2>
-                    <p className="text-gray-600">Your Gateway to European Excellence and Career Growth</p>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose Belgium?</h2>
+                    <p className="text-gray-600">Transform Your Future with European Excellence</p>
                   </div>
                 </div>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -302,13 +309,6 @@ export default function StudyAbroadBelgium() {
                   <p>
                     Belgium is home to some of Europe's top universities, including KU Leuven, Ghent University, and the University of Brussels. Known for their strong academic reputation and international programs, Belgian universities offer students the chance to pursue education in engineering, law, medicine, business, and more.
                   </p>
-                  <div className="mt-6 flex justify-center">
-                    <Link href="/study-abroad">
-                      <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                        Explore All Study Destinations
-                      </Button>
-                    </Link>
-                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -365,10 +365,10 @@ export default function StudyAbroadBelgium() {
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  Many Belgian universities allow international students to study without IELTS if they meet other criteria. Here's how to study in Belgium without IELTS:
+                  Many Belgian universities accept students without IELTS. Here are your alternatives:
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                  {["TOEFL", "PTE", "Duolingo", "MOI Letter"].map((test, index) => (
+                  {["PTE", "Duolingo", "TOEFL", "MOI Letter"].map((test, index) => (
                     <div key={index} className="group relative" data-testid={`test-option-${index}`}>
                       <div className="relative bg-white p-4 rounded-2xl text-center shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
                         <div className="font-semibold text-gray-900 text-sm sm:text-base">{test}</div>
@@ -390,19 +390,18 @@ export default function StudyAbroadBelgium() {
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 text-white">
                 <CardTitle className="text-2xl flex items-center gap-3">
                   <DollarSign className="w-8 h-8" />
-                  How Much Does It Cost to Study in Belgium?
+                  Financial Requirements
                 </CardTitle>
                 <p className="text-white/90 mt-2">Understand the investment needed for your Belgian education</p>
               </div>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  The cost of studying in Belgium can vary depending on the level of study and the university. Here's a breakdown of typical costs:
+                  The cost of studying in Belgium can vary depending on the level of study and the university:
                 </p>
                 <div className="space-y-4">
                   {[
                     { icon: GraduationCap, title: "Bachelor's Programs", desc: "€900–€4,000 per year (for non-EU students)", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: Award, title: "Master's Programs", desc: "€1,000–€8,000 per year (for non-EU students)", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: BookOpen, title: "Doctoral Programs", desc: "€1,000–€6,000 per year (for non-EU students)", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: Building, title: "Living Expenses", desc: "€700–€1,200 per month (Brussels is generally more expensive)", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
                     <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
@@ -419,70 +418,39 @@ export default function StudyAbroadBelgium() {
               </CardContent>
             </Card>
 
-            {/* Application Process */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="application-process-card">
-              <CardHeader>
+            {/* Study Gap - Split Design */}
+            <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="study-gap-card">
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <Target className="w-6 h-6 text-white" />
+                    <Calendar className="w-6 h-6 text-white" />
                   </div>
-                  How to Study in Belgium: Step-by-Step Guide
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 sm:p-8">
-                <div className="space-y-4">
-                  {[
-                    { step: "1", title: "Choose Your Program and University", desc: "Research Belgian universities and their offered programs across engineering, business, computer science, medicine, and law" },
-                    { step: "2", title: "Check Admission Requirements", desc: "Make sure you meet the academic requirements. Some programs may require language proficiency tests" },
-                    { step: "3", title: "Submit Your Application", desc: "Apply directly to the university or through official Belgian application portals with all required documents" },
-                    { step: "4", title: "Apply for Student Visa", desc: "Once accepted, apply for a Type D student visa at the Belgian embassy with acceptance letter and proof of funds" },
-                    { step: "5", title: "Plan Your Finances", desc: "Ensure you have €670 per month in funds to cover living expenses as required for visa approval" }
-                  ].map((item, index) => (
-                    <div key={index} className="group flex items-start gap-4 p-5 bg-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">{item.step}</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Visa Application Process */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="visa-application-card">
-              <CardHeader>
-                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
-                  </div>
-                  How to Apply for Study Visa in Belgium
+                  Study Gap Acceptance
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  To study in Belgium, you will need a student visa (Type D). Here's the process:
+                  Belgian universities are flexible with study gaps:
                 </p>
-                <div className="space-y-4">
-                  {[
-                    { step: "1", title: "Get an Offer from a University", desc: "You need to first be accepted into a program at a Belgian university" },
-                    { step: "2", title: "Prepare Your Documents", desc: "Acceptance letter, passport, proof of sufficient funds (€670/month), proof of health insurance, and language proficiency" },
-                    { step: "3", title: "Apply for the Visa", desc: "Submit your visa application to the Belgian embassy in Pakistan. Be prepared to pay the visa fee and attend an interview if required" },
-                    { step: "4", title: "Wait for Processing", desc: "The visa process may take several weeks, so plan ahead and submit your application early" }
-                  ].map((item, index) => (
-                    <div key={index} className="group flex items-start gap-4 p-5 bg-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">{item.step}</span>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                        <GraduationCap className="w-5 h-5 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                      </div>
+                      <h4 className="font-bold text-gray-900 text-lg">Bachelor's</h4>
                     </div>
-                  ))}
+                    <p className="text-gray-700">Up to <span className="font-bold text-[#1D50C9]">2-3 years gap</span> is generally accepted</p>
+                  </div>
+                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                        <Award className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-lg">Master's</h4>
+                    </div>
+                    <p className="text-gray-700"><span className="font-bold text-[#1D50C9]">5-10 years gap</span> may be accepted with strong justification</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -494,7 +462,7 @@ export default function StudyAbroadBelgium() {
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
-                  Scholarships for Pakistani Students
+                  Scholarships to Study in Belgium
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
@@ -515,12 +483,6 @@ export default function StudyAbroadBelgium() {
                       <span className="text-gray-700 font-medium">{option}</span>
                     </div>
                   ))}
-                </div>
-                <div className="mt-6 bg-gradient-to-r from-orange-100 to-red-100/50 p-5 rounded-2xl shadow-sm">
-                  <p className="text-gray-700 font-medium">
-                    <strong className="text-gray-900">VLIR-UOS Scholarships</strong><br />
-                    <span className="text-gray-600">Offered to students from specific countries including Pakistan, these scholarships cover full tuition and living costs for studying in Belgium.</span>
-                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -564,78 +526,79 @@ export default function StudyAbroadBelgium() {
               </CardContent>
             </Card>
 
-            {/* Top Universities - Modern Chips */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="universities-card">
+            {/* Top Universities - Premium List */}
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-50 via-white to-gray-50/30" data-testid="universities-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <Building className="w-6 h-6 text-white" />
                   </div>
-                  Top Universities in Belgium
+                  Top Universities
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
-                <div className="flex flex-wrap gap-3">
-                  {universities.map((uni, index) => (
-                    <Badge 
-                      key={index} 
-                      className="bg-white text-[#1D50C9] border border-[#1D50C9]/20 px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] hover:bg-[#1D50C9] hover:text-white transition-all duration-300 cursor-pointer"
-                      data-testid={`university-chip-${index}`}
-                    >
-                      {uni}
-                    </Badge>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {universities.map((university, index) => (
+                    <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`university-item-${index}`}>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center flex-shrink-0">
+                        <Building className="w-4 h-4 text-[#1D50C9]" />
+                      </div>
+                      <span className="text-gray-700 font-medium text-sm">{university}</span>
+                    </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Post-Study Work & Immigration */}
-            <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="post-study-work-card">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
-                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <Briefcase className="w-6 h-6 text-white" />
+            {/* Best Consultant - Premium Highlight Card */}
+            <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0d2a5e] overflow-hidden relative" data-testid="consultant-card">
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+              <CardHeader className="relative">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/30 shadow-2xl">
+                    <Shield className="w-8 h-8 text-white" />
                   </div>
-                  Post-Study Work & Immigration
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 sm:p-8">
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Belgium offers post-graduation work permits, allowing students to gain work experience in the country after completing their studies:
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                        <Briefcase className="w-5 h-5 text-white" />
-                      </div>
-                      <Badge className="bg-[#1D50C9] text-white text-xs px-2 py-1">Work Permit</Badge>
-                    </div>
-                    <p className="text-gray-700">Post-study work permit allows you to <span className="font-bold text-[#1D50C9]">gain valuable work experience</span> and build your professional network</p>
-                  </div>
-                  <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                        <Home className="w-5 h-5 text-white" />
-                      </div>
-                      <Badge className="bg-[#1D50C9] text-white text-xs px-2 py-1">Permanent Residency</Badge>
-                    </div>
-                    <p className="text-gray-700">Apply for PR after <span className="font-bold text-[#1D50C9]">working in Belgium</span> for a certain period</p>
+                  <div>
+                    <CardTitle className="text-2xl md:text-3xl text-white mb-1">
+                      Best Belgium Study Visa Consultants
+                    </CardTitle>
+                    <p className="text-white/80 text-sm">Expert Guidance for Your European Dream</p>
                   </div>
                 </div>
-                <div className="mt-6 bg-gradient-to-r from-blue-100 to-blue-100/50 p-5 rounded-2xl shadow-sm">
-                  <p className="text-gray-700 font-medium">
-                    <strong className="text-gray-900">Part-Time Work</strong><br />
-                    <span className="text-gray-600">Students can work up to 20 hours per week during studies, helping to cover living expenses and gain valuable work experience.</span>
-                  </p>
+              </CardHeader>
+              <CardContent className="relative p-6 sm:p-8">
+                <p className="text-white/95 mb-8 leading-relaxed text-base md:text-lg">
+                  Dunya Consultants is recognized as one of the <strong className="text-white font-bold">best consultants for Belgium study visa in Pakistan</strong>. Our expert team provides comprehensive support:
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                  {[
+                    { icon: Target, text: "University Selection" },
+                    { icon: FileText, text: "Application Processing" },
+                    { icon: Award, text: "Scholarship Guidance" },
+                    { icon: Shield, text: "Visa File Preparation" },
+                    { icon: Users, text: "Interview Coaching" },
+                    { icon: Rocket, text: "Pre-Departure Briefing" }
+                  ].map((service, index) => (
+                    <div key={index} className="group flex items-start gap-3 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                      <service.icon className="w-6 h-6 text-orange-300 flex-shrink-0 mt-0.5" />
+                      <span className="text-white font-medium">{service.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-center">
+                  <Link href="/contact">
+                    <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-4 rounded-xl shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 border-0 text-lg">
+                      Contact Us Today
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
 
-            {/* FAQ Section - Modern Accordion */}
-            <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="faq-card">
-              <CardHeader className="bg-gradient-to-r from-[#1D50C9]/5 to-transparent border-b border-blue-100">
-                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+            {/* FAQs - Modern Accordion */}
+            <Card className="border-0 shadow-lg bg-white" data-testid="faqs-card">
+              <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
+                <CardTitle className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
                     <FileText className="w-6 h-6 text-white" />
                   </div>
@@ -647,19 +610,30 @@ export default function StudyAbroadBelgium() {
                   {faqs.map((faq, index) => (
                     <div 
                       key={index} 
-                      className="bg-gradient-to-r from-gray-50 to-white rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(29,80,201,0.1)] hover:shadow-[0_4px_12px_rgba(29,80,201,0.2)] transition-all duration-300"
+                      className="group border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-[#1D50C9]/30 transition-all duration-300"
                       data-testid={`faq-item-${index}`}
                     >
                       <button
                         onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50/50 transition-colors"
+                        className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 bg-white hover:bg-gray-50 transition-colors duration-200"
                       >
-                        <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
-                        <ChevronDown className={`w-5 h-5 text-[#1D50C9] flex-shrink-0 transition-transform duration-300 ${expandedFaq === index ? 'rotate-180' : ''}`} />
+                        <div className="flex items-start gap-4 flex-1">
+                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D50C9]/10 to-[#1845B3]/10 flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="font-bold text-[#1D50C9]">{index + 1}</span>
+                          </div>
+                          <span className="font-semibold text-gray-900 text-base sm:text-lg group-hover:text-[#1D50C9] transition-colors">
+                            {faq.question}
+                          </span>
+                        </div>
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center transition-transform duration-300 ${expandedFaq === index ? 'rotate-180 bg-[#1D50C9]' : ''}`}>
+                          <ChevronDown className={`w-5 h-5 ${expandedFaq === index ? 'text-white' : 'text-gray-600'}`} />
+                        </div>
                       </button>
                       {expandedFaq === index && (
-                        <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                          {faq.answer}
+                        <div className="px-5 sm:px-6 pb-5 sm:pb-6 bg-gradient-to-br from-blue-50/50 to-white">
+                          <div className="pl-12 pr-4">
+                            <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -668,135 +642,79 @@ export default function StudyAbroadBelgium() {
               </CardContent>
             </Card>
 
-            {/* CTA Section */}
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0d2a5e] text-white overflow-hidden relative" data-testid="cta-section">
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
-              <CardContent className="p-8 sm:p-12 text-center relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-xl rounded-2xl mb-6 border border-white/20">
-                  <Rocket className="w-8 h-8" />
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
-                <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                  Join thousands of successful students who have achieved their dreams of studying in Belgium with Dunya Consultants.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <CalendlyButton
-                    text="Book Free Consultation"
-                    className="bg-white text-[#1D50C9] hover:bg-blue-50 font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    size="lg"
-                    showIcon={false}
-                  />
-                  <Link href="/contact">
-                    <Button className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/20 font-semibold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full sm:w-auto">
-                      Contact Us
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
           </div>
-          
-          {/* Sidebar */}
+
+          {/* Sidebar - Sticky Modern Cards */}
           <div className="lg:col-span-1 space-y-6">
             
             {/* Quick Contact Card */}
-            <Card className="border-0 shadow-xl sticky top-24 bg-white overflow-hidden" data-testid="quick-contact-card">
-              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 text-white">
-                <h3 className="text-xl font-bold flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white sticky top-24" data-testid="quick-contact-card">
+              <CardHeader>
+                <CardTitle className="text-xl text-white flex items-center gap-2">
+                  <Sparkles className="w-6 h-6" />
                   Get Expert Guidance
-                </h3>
-                <p className="text-white/80 text-sm mt-1">Start your Belgium journey today</p>
-              </div>
-              <CardContent className="p-6 space-y-4">
-                <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl">
-                  <p className="text-sm text-gray-600 mb-1">UAN Number</p>
-                  <p className="text-xl font-bold text-[#1D50C9]">(+92) 304 1110947</p>
-                </div>
-                
-                <CalendlyButton
-                  text="Book Free Consultation"
-                  className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  size="default"
-                  showIcon={false}
-                />
-                
-                <Button 
-                  variant="outline" 
-                  className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white font-semibold py-3 rounded-xl transition-all duration-300"
-                  onClick={() => window.open('https://wa.me/923261111947?text=Hello, I want to start my application for studying in Belgium. Please guide me through the process.')}
-                >
-                  Chat on WhatsApp
-                </Button>
-                
-                <div className="text-center text-sm text-gray-600 pt-4 border-t border-gray-100">
-                  <p className="mb-2">info@dunyaconsultants.com</p>
-                  <p className="text-xs">106 Stadium Road, Opposite Bajwa Trauma Centre, Sargodha</p>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 mb-6 leading-relaxed">
+                  Ready to start your Belgium study journey? Our expert consultants are here to help you every step of the way.
+                </p>
+                <div className="space-y-3">
+                  <CalendlyButton
+                    text="Book Free Consultation"
+                    className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                    size="lg"
+                    showIcon={false}
+                  />
+                  <Button 
+                    className="w-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/30 font-semibold shadow-lg"
+                    size="lg"
+                    onClick={() => setIsPopupOpen(true)}
+                  >
+                    <Rocket className="w-5 h-5 mr-2" />
+                    Start Application
+                  </Button>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Why Choose Dunya */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-50 via-white to-orange-50/30" data-testid="why-choose-dunya-card">
-              <CardHeader>
+            {/* Quick Facts Card */}
+            <Card className="border-0 shadow-lg bg-white sticky top-[430px]" data-testid="quick-facts-card">
+              <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
                 <CardTitle className="text-lg text-gray-900 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-orange-600" />
-                  Why Choose Dunya?
+                  <Clock className="w-5 h-5 text-[#1D50C9]" />
+                  Quick Facts
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                {[
-                  "95% Visa Success Rate",
-                  "Expert Belgium Counselors",
-                  "Complete Application Support",
-                  "Scholarship Assistance",
-                  "Pre-Departure Guidance"
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-xl shadow-[0_2px_8px_rgba(249,115,22,0.15)] hover:shadow-[0_4px_12px_rgba(249,115,22,0.25)] transition-all duration-300">
-                    <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
-                    <span className="text-sm font-medium text-gray-700">{item}</span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Quick Links */}
-            <Card className="border-0 shadow-lg bg-white" data-testid="quick-links-card">
-              <CardHeader>
-                <CardTitle className="text-lg text-gray-900 flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-[#1D50C9]" />
-                  Explore More Destinations
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {[
-                  { name: "Study in UK", href: "/study-abroad/uk" },
-                  { name: "Study in USA", href: "/study-abroad/usa" },
-                  { name: "Study in Canada", href: "/study-abroad/canada" },
-                  { name: "Study in Australia", href: "/study-abroad/australia" },
-                  { name: "Study in Finland", href: "/study-abroad/finland" }
-                ].map((link, index) => (
-                  <Link key={index} href={link.href}>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-[#1D50C9] hover:text-white transition-all duration-300 cursor-pointer group">
-                      <span className="text-sm font-medium">{link.name}</span>
-                      <ChevronDown className="w-4 h-4 -rotate-90 group-hover:translate-x-1 transition-transform" />
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  {[
+                    { label: "Visa Type", value: "Type D Student Visa" },
+                    { label: "English Test", value: "IELTS/PTE/TOEFL" },
+                    { label: "Min. Funds", value: "€670/month" },
+                    { label: "Study Gap", value: "Up to 10 years" },
+                    { label: "Work Rights", value: "20 hrs/week" }
+                  ].map((fact, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-xl border border-gray-200">
+                      <span className="text-sm text-gray-600 font-medium">{fact.label}</span>
+                      <span className="text-sm text-gray-900 font-semibold">{fact.value}</span>
                     </div>
-                  </Link>
-                ))}
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
           </div>
+
         </div>
       </div>
 
       <Footer />
-      
+
       {/* Consultation Form Popup */}
       <CompactConsultationForm 
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
       />
     </div>
   );
