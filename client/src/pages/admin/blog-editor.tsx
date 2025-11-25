@@ -319,6 +319,11 @@ export default function BlogEditor() {
     queryKey: [`/api/admin/blog-posts/${blogId}/categories`],
     enabled: isEditing && blogId !== undefined && !isNaN(blogId),
   });
+  
+  // Create a stable reference for postCategory IDs to prevent infinite loops
+  const postCategoryIds = useMemo(() => {
+    return postCategories.map((cat: any) => cat.id);
+  }, [postCategories.map((cat: any) => cat.id).join(',')]);
 
   // Form setup
   const form = useForm<BlogForm>({
@@ -540,13 +545,19 @@ export default function BlogEditor() {
 
   // EFFECT 2: Category Synchronization
   // Waits for BOTH blogPost AND categories to load before setting categoryIds
+  // Only runs ONCE per post load to avoid overwriting user selections
+  const categoriesLoadedRef = useRef<number | null>(null);
+  
   useEffect(() => {
     if (!blogPost || !isEditing) return;
     if (categories.length === 0) return; // Wait for categories to load
     
+    // Only load categories once per post (prevent infinite updates)
+    if (categoriesLoadedRef.current === blogPost.id) return;
+    
     // Priority order for category source:
     // 1. justSavedCategoriesRef (categories we just saved)
-    // 2. postCategories query results
+    // 2. postCategoryIds (stable reference from junction table query)
     // 3. blogPost.categoryIds (from form reset)
     let categoryIds: number[] = [];
     
@@ -554,9 +565,9 @@ export default function BlogEditor() {
       // Use saved categories and clear the ref
       categoryIds = justSavedCategoriesRef.current;
       justSavedCategoriesRef.current = [];
-    } else if (postCategories.length > 0) {
-      // Use categories from junction table query
-      categoryIds = postCategories.map((cat: any) => cat.id);
+    } else if (postCategoryIds.length > 0) {
+      // Use categories from junction table query (stable reference)
+      categoryIds = postCategoryIds;
     } else if (blogPost.categoryIds && blogPost.categoryIds.length > 0) {
       // Fallback to categoryIds from blogPost
       categoryIds = blogPost.categoryIds;
@@ -568,8 +579,11 @@ export default function BlogEditor() {
       const normalizedIds = normalizeCategoryIds(categoryIds, categories);
       setSelectedCategoryIds(normalizedIds);
       setValue('categoryIds', normalizedIds);
+      
+      // Mark categories as loaded for this post
+      categoriesLoadedRef.current = blogPost.id;
     }
-  }, [blogPost?.id, blogPost?.categoryIds, categories, postCategories, isEditing]);
+  }, [blogPost?.id, categories.length, postCategoryIds.join(','), isEditing]);
 
   // EFFECT 3: PublishedAt Synchronization
   // Set publishedAt separately after blogPost loads (like categories)
