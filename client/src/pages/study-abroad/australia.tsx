@@ -299,9 +299,9 @@ export default function StudyAbroadAustralia() {
                     Australia is home to some of the world's best universities, including the University of Melbourne, Australian National University (ANU), and the University of Sydney. These institutions offer cutting-edge research, innovative programs, and a high standard of teaching.
                   </p>
                   <div className="mt-6 flex justify-center">
-                    <Link href="/study-abroad">
+                    <Link href="/blog/how-to-apply-for-student-visa">
                       <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                        Explore All Study Destinations
+                        How to Apply for Student Visa
                       </Button>
                     </Link>
                   </div>
@@ -378,6 +378,13 @@ export default function StudyAbroadAustralia() {
                     <span className="text-gray-600">If you have completed your previous education in English, many Australian universities may waive the IELTS requirement. Some universities also offer their own English proficiency tests.</span>
                   </p>
                 </div>
+                <div className="mt-6 flex justify-center">
+                  <Link href="/2024/08/29/cheapest-universities-in-australia-for-international-students-without-ielts">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                      Cheapest Universities Without IELTS
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
@@ -447,6 +454,13 @@ export default function StudyAbroadAustralia() {
                     </div>
                   ))}
                 </div>
+                <div className="mt-6 flex justify-center">
+                  <Link href="/blog/australia-student-visa-requirements">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                      Australia Student Visa Requirements
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
@@ -510,13 +524,6 @@ export default function StudyAbroadAustralia() {
                     </div>
                     <p className="text-gray-700">Apply for PR through <span className="font-bold text-[#1D50C9]">Skilled Migration Program</span></p>
                   </div>
-                </div>
-                <div className="mt-6 flex justify-center">
-                  <Link href="/blog">
-                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                      Explore Career Opportunities
-                    </Button>
-                  </Link>
                 </div>
               </CardContent>
             </Card>
