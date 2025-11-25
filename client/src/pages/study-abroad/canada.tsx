@@ -128,7 +128,6 @@ export default function StudyAbroadCanada() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50">
       <Navigation />
-      
       {/* Modern Hero Section with Animated Background */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0d2a5e] text-white pt-32 pb-20 overflow-hidden">
         {/* Animated Background Pattern */}
@@ -191,7 +190,6 @@ export default function StudyAbroadCanada() {
         </div>
 
       </section>
-
       {/* Homepage Stats Cards Section - Overlapping */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -272,7 +270,6 @@ export default function StudyAbroadCanada() {
             </Card>
           </div>
       </section>
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid lg:grid-cols-3 gap-8">
           
@@ -300,9 +297,7 @@ export default function StudyAbroadCanada() {
                   </p>
                   <div className="mt-6 flex justify-center">
                     <Link href="/2024/11/20/canada-student-visa-for-pakistani">
-                      <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                        Learn About Canada Student Visa
-                      </Button>
+                      <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Learn More About Canada Student Visa</Button>
                     </Link>
                   </div>
                 </div>
@@ -755,9 +750,7 @@ export default function StudyAbroadCanada() {
 
         </div>
       </div>
-
       <Footer />
-
       {/* Consultation Form Popup */}
       <CompactConsultationForm 
         isOpen={isPopupOpen} 
