@@ -296,7 +296,7 @@ export default function StudyAbroadFinland() {
                   <p>
                     Studying in Finland offers a unique blend of academic excellence, cultural richness, and career possibilities. Finland's education system is globally recognized for its innovative teaching methods, high academic standards, and emphasis on student well-being.
                   </p>
-                  <div className="mt-6">
+                  <div className="mt-6 flex justify-center">
                     <Link href="/blog/study-in-finland">
                       <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         Read Our Complete Guide
