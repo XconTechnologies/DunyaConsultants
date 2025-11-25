@@ -12,18 +12,14 @@ import {
   FileText,
   GraduationCap,
   Globe,
-  MapPin,
   Calendar,
   Users,
   Zap,
   Award,
   Briefcase,
   BookOpen,
-  TrendingUp,
   Building,
   ChevronDown,
-  ChevronUp,
-  ExternalLink,
   Clock,
   Shield,
   Star,
@@ -300,11 +296,13 @@ export default function StudyAbroadFinland() {
                   <p>
                     Studying in Finland offers a unique blend of academic excellence, cultural richness, and career possibilities. Finland's education system is globally recognized for its innovative teaching methods, high academic standards, and emphasis on student well-being.
                   </p>
-                  <p>
-                    <Link href="/blog/study-in-finland" className="text-[#1D50C9] hover:underline font-medium">
-                      Read our complete guide to studying in Finland →
+                  <div className="mt-6">
+                    <Link href="/blog/study-in-finland">
+                      <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        Read Our Complete Guide
+                      </Button>
                     </Link>
-                  </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -447,12 +445,12 @@ export default function StudyAbroadFinland() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 p-4 bg-blue-50 rounded-xl">
-                  <p className="text-gray-700">
-                    <Link href="/2025/01/20/finland-online-visa-application-from-pakistan" className="text-[#1D50C9] hover:underline font-medium">
-                      Learn more about the Finland online visa application process from Pakistan →
-                    </Link>
-                  </p>
+                <div className="mt-6 flex justify-center">
+                  <Link href="/2025/01/20/finland-online-visa-application-from-pakistan">
+                    <Button className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#0d2a5e] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                      Learn About Visa Application Process
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -631,7 +629,6 @@ export default function StudyAbroadFinland() {
                   <Link href="/contact">
                     <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-4 rounded-xl shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 border-0 text-lg">
                       Contact Us Today
-                      <ExternalLink className="w-5 h-5 ml-2" />
                     </Button>
                   </Link>
                 </div>
