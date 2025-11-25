@@ -24,6 +24,12 @@ const normalizeImageSrc = (image: string) => {
   if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
     return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
   }
+  if (trimmed.startsWith('/objects/') || trimmed.startsWith('objects/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/uploads/') || trimmed.startsWith('uploads/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
   return `/api/uploads/${trimmed}`;
 };
 
