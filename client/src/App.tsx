@@ -101,6 +101,7 @@ const FormSubmissions = lazy(() => import("@/pages/admin/form-submissions"));
 
 
 // Lazy-load Study Abroad Pages
+const StudyAbroadIndex = lazy(() => import("@/pages/study-abroad/index"));
 const StudyAbroadUSA = lazy(() => import("@/pages/study-abroad/usa"));
 const StudyAbroadUK = lazy(() => import("@/pages/study-abroad/uk"));
 const StudyAbroadCanada = lazy(() => import("@/pages/study-abroad/canada"));
@@ -166,6 +167,7 @@ function Router() {
       <Route path="/about/team" component={TeamPage} />
       
       {/* Study Abroad Routes */}
+      <Route path="/study-abroad" component={StudyAbroadIndex} />
       <Route path="/study-abroad/usa" component={StudyAbroadUSA} />
       <Route path="/study-abroad/uk" component={StudyAbroadUK} />
       <Route path="/study-abroad/canada" component={StudyAbroadCanada} />
