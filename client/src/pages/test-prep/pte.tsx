@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Award, Clock, Users, CheckCircle, BookOpen, FileText, Headphones, Mic } from "lucide-react";
+import { Award, Clock, CheckCircle, BookOpen, FileText, Headphones, Mic, Sparkles, Target, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -13,6 +13,7 @@ import { setStaticPageMeta } from "@/lib/seo";
 
 export default function PTE() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [expandedSection, setExpandedSection] = useState<number | null>(null);
   
   useEffect(() => {
     setStaticPageMeta(
@@ -20,290 +21,330 @@ export default function PTE() {
       "Prepare for PTE Academic with expert coaching. Computer-based English test accepted by thousands of universities worldwide. Fast results and flexible test dates."
     );
   }, []);
+
   const testSections = [
     {
       title: "Speaking",
       duration: "77-93 minutes",
       icon: Mic,
       description: "Personal introduction, read aloud, repeat sentence, describe image, re-tell lecture",
-      tasks: ["Personal Introduction", "Read Aloud", "Repeat Sentence", "Describe Image", "Re-tell Lecture", "Answer Short Question"]
+      tasks: ["Personal Introduction", "Read Aloud", "Repeat Sentence", "Describe Image", "Re-tell Lecture", "Answer Short Question"],
+      color: "from-blue-500 to-blue-600"
     },
     {
       title: "Writing",
       duration: "77-93 minutes",
       icon: FileText,
       description: "Summarize written text, essay writing",
-      tasks: ["Summarize Written Text", "Essay Writing"]
+      tasks: ["Summarize Written Text", "Essay Writing"],
+      color: "from-blue-500 to-blue-600"
     },
     {
       title: "Reading",
       duration: "32-41 minutes",
       icon: BookOpen,
       description: "Multiple choice, re-order paragraphs, fill in the blanks",
-      tasks: ["Multiple Choice Single Answer", "Multiple Choice Multiple Answers", "Re-order Paragraphs", "Fill in the Blanks", "Reading & Writing Fill in the Blanks"]
+      tasks: ["Multiple Choice Single Answer", "Multiple Choice Multiple Answers", "Re-order Paragraphs", "Fill in the Blanks"],
+      color: "from-blue-500 to-blue-600"
     },
     {
       title: "Listening",
       duration: "45-57 minutes",
       icon: Headphones,
       description: "Summarize spoken text, multiple choice, fill the blanks, highlight correct summary",
-      tasks: ["Summarize Spoken Text", "Multiple Choice", "Fill in the Blanks", "Highlight Correct Summary", "Select Missing Word", "Highlight Incorrect Words", "Write from Dictation"]
+      tasks: ["Summarize Spoken Text", "Multiple Choice", "Fill in the Blanks", "Highlight Correct Summary"],
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
-  
-
   const scoreRequirements = [
-    { level: "Competent English", score: "65+ overall", description: "For most Australian visa applications" },
-    { level: "Proficient English", score: "79+ overall", description: "For skilled migration and professional registration" },
-    { level: "Superior English", score: "89+ overall", description: "For maximum immigration points" },
-    { level: "Academic Requirements", score: "58-79", description: "Varies by university and program level" }
+    { level: "Competent", score: "65+", description: "Australian visa applications", badge: "blue" },
+    { level: "Proficient", score: "79+", description: "Skilled migration", badge: "blue" },
+    { level: "Superior", score: "89+", description: "Immigration points", badge: "blue" },
+    { level: "Academic", score: "58-79", description: "University programs", badge: "blue" }
   ];
 
   const tips = [
-    {
-      title: "Practice Regularly",
-      description: "Consistent daily practice with PTE format questions and time management"
-    },
-    {
-      title: "Computer Familiarity",
-      description: "Get comfortable with computer-based testing and typing skills"
-    },
-    {
-      title: "Template Learning",
-      description: "Master templates for speaking and writing tasks to save time"
-    },
-    {
-      title: "Vocabulary Building",
-      description: "Focus on academic vocabulary and collocations commonly used in PTE"
-    },
-    {
-      title: "Mock Tests",
-      description: "Take regular full-length mock tests to build stamina and confidence"
-    },
-    {
-      title: "Time Management",
-      description: "Practice completing tasks within the allocated time limits"
-    }
+    { title: "Practice Regularly", description: "Consistent daily practice with PTE format questions and time management", icon: Target },
+    { title: "Computer Familiarity", description: "Get comfortable with computer-based testing and typing skills", icon: Zap },
+    { title: "Template Learning", description: "Master templates for speaking and writing tasks to save time", icon: BookOpen },
+    { title: "Vocabulary Building", description: "Focus on academic vocabulary and collocations commonly used in PTE", icon: Sparkles },
+    { title: "Mock Tests", description: "Take regular full-length mock tests to build stamina and confidence", icon: Target },
+    { title: "Time Management", description: "Practice completing tasks within the allocated time limits", icon: Clock }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      {/* Enhanced Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-14 sm:w-20 h-14 sm:h-20 bg-white/10 rounded-full mb-4 sm:mb-6"
+              className="inline-flex items-center justify-center w-14 sm:w-20 h-14 sm:h-20 bg-white/15 rounded-full mb-4 sm:mb-6 border border-white/20 backdrop-blur-sm"
             >
               <Award className="w-7 sm:w-10 h-7 sm:h-10" />
             </motion.div>
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 pb-2">
               PTE Academic
             </h1>
-            <p className="text-base sm:text-lg md:text-2xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
-              Computer-based English test trusted by thousands of universities and organizations worldwide
+            <p className="text-base sm:text-lg md:text-2xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2 leading-relaxed">
+              Master the computer-based English test trusted by thousands of universities worldwide
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center px-2 sm:px-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-4 mb-8">
               <CalendlyButton
                 text="Book Free Consultation"
-                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-8 py-3 text-lg font-semibold transform hover:scale-105 transition-transform"
                 size="lg"
                 showIcon={false}
               />
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                className="border-white text-white hover:bg-white/20 w-full sm:w-auto transform hover:scale-105 transition-transform"
                 onClick={() => setIsPopupOpen(true)}
               >
                 Connect now
               </Button>
             </div>
-            <div className="mt-6 flex justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
-              >
-                <p className="text-sm font-medium">
-                  Computer-Based • Fast Results • Trusted
-                </p>
-              </motion.div>
-            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto text-center"
+            >
+              {[
+                { label: "Computer-Based", icon: "💻" },
+                { label: "Fast Results", icon: "⚡" },
+                { label: "Trusted", icon: "✓" }
+              ].map((item, i) => (
+                <div key={i} className="bg-white/10 backdrop-blur-sm rounded-lg px-2 sm:px-4 py-2 sm:py-3 border border-white/20">
+                  <p className="text-xs sm:text-sm font-medium">{item.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Test Format Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                PTE Test{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Format
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Understanding the PTE Academic test format and sections
-              </p>
-            </motion.div>
-          </div>
+      {/* Modern Test Format Section */}
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Test <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">Format</span>
+            </h2>
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Master each section of the PTE Academic exam
+            </p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {testSections.map((section, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={itemVariants}
+                className="group"
               >
-                <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
-                        <section.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl">{section.title}</CardTitle>
-                        <CardDescription className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          {section.duration}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">{section.description}</p>
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-gray-900">Task Types:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {section.tasks.map((task, taskIndex) => (
-                          <Badge key={taskIndex} variant="secondary" className="text-xs">
-                            {task}
-                          </Badge>
-                        ))}
+                <div 
+                  className="relative h-full bg-white rounded-2xl border border-blue-100 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10"
+                  onClick={() => setExpandedSection(expandedSection === index ? null : index)}
+                >
+                  <div className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${section.color}`}></div>
+                  
+                  <div className="relative p-6 sm:p-8">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start gap-4 flex-1">
+                        <motion.div 
+                          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                          whileHover={{ scale: 1.1, rotate: 10 }}
+                        >
+                          <section.icon className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
+                        </motion.div>
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">{section.title}</h3>
+                          <div className="flex items-center gap-2 text-blue-600 font-semibold">
+                            <Clock className="w-4 h-4" />
+                            <span className="text-sm">{section.duration}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+
+                    <p className="text-gray-600 mb-4 text-sm sm:text-base">{section.description}</p>
+
+                    <motion.div
+                      animate={{ height: expandedSection === index ? "auto" : 0, opacity: expandedSection === index ? 1 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-4 border-t border-blue-100">
+                        <h4 className="font-semibold text-gray-900 mb-3 text-sm">Task Types:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {section.tasks.map((task, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ scale: 0.8, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              transition={{ delay: i * 0.05 }}
+                            >
+                              <Badge className="bg-blue-50 text-blue-700 border border-blue-200 text-xs hover:bg-blue-100 transition-colors">
+                                {task}
+                              </Badge>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    <div className="mt-4 text-blue-600 font-semibold text-sm flex items-center gap-1 cursor-pointer group">
+                      <span>{expandedSection === index ? "Show less" : "View details"}</span>
+                      <motion.div animate={{ rotate: expandedSection === index ? 180 : 0 }}>
+                        ↓
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Consultation Booking Section */}
       <ConsultationBookingSection />
 
-      
+      {/* Modern Score Requirements */}
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Score <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">Requirements</span>
+            </h2>
+            <p className="text-base sm:text-xl text-gray-600">Understanding PTE score levels</p>
+          </motion.div>
 
-      {/* Score Requirements Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Score{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Requirements
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Understanding PTE score requirements for different purposes
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {scoreRequirements.map((requirement, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="text-center border-blue-100 hover:border-blue-300 transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{requirement.level}</CardTitle>
-                    <div className="text-3xl font-bold #1845B3">{requirement.score}</div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">{requirement.description}</p>
-                  </CardContent>
-                </Card>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {scoreRequirements.map((req, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-blue-100 overflow-hidden group hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative">
+                    <Badge className="mb-4 bg-blue-100 text-blue-700 border border-blue-300">{req.badge}</Badge>
+                    <div className="text-4xl sm:text-5xl font-bold text-[#1D50C9] mb-2">{req.score}</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{req.level}</h3>
+                    <p className="text-sm text-gray-600">{req.description}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Tips Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Expert{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Tips
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Professional advice to maximize your PTE score
-              </p>
-            </motion.div>
-          </div>
+      {/* Modern Tips Section */}
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Expert <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">Tips</span>
+            </h2>
+            <p className="text-base sm:text-xl text-gray-600">Proven strategies to maximize your score</p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {tips.map((tip, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-5 sm:p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
+                variants={itemVariants}
+                whileHover={{ y: -8 }}
+                className="group"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-white" />
+                <div className="relative bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 sm:p-8 border border-blue-200 overflow-hidden h-full shadow-md hover:shadow-xl hover:shadow-blue-500/15 transition-all duration-300">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-blue-200/20 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                  
+                  <div className="relative">
+                    <motion.div 
+                      className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center mb-4 shadow-lg"
+                      whileHover={{ scale: 1.15, rotate: -10 }}
+                    >
+                      <tip.icon className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
+                    </motion.div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{tip.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{tip.description}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{tip.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{tip.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <Footer />
       
-      {/* Consultation Form Popup */}
       <CompactConsultationForm 
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
