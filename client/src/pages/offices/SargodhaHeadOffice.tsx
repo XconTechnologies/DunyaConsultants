@@ -209,7 +209,7 @@ export default function SargodhaHeadOffice() {
             </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             {/* Left Side - Trust Reasons */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -256,11 +256,11 @@ export default function SargodhaHeadOffice() {
                   <img loading="lazy" 
                     src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
                     alt="Dunya Consultants Sargodha Office - Student Consultation Area with International Flags"
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-32 sm:h-40 lg:h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -270,7 +270,7 @@ export default function SargodhaHeadOffice() {
                     <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
                       alt="Dunya Consultants Sargodha - Active Consultation Sessions"
-                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-24 sm:h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
                   
@@ -283,7 +283,7 @@ export default function SargodhaHeadOffice() {
                     <img loading="lazy" 
                       src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
                       alt="Dunya Consultants Sargodha - Professional Counseling Environment"
-                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-24 sm:h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
                 </div>
@@ -381,7 +381,7 @@ export default function SargodhaHeadOffice() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -476,21 +476,21 @@ export default function SargodhaHeadOffice() {
             className="max-w-4xl mx-auto"
           >
             <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
-              <CardContent className="p-12 text-center relative">
+              <CardContent className="p-6 sm:p-8 lg:p-12 text-center relative">
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
                 <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
                 
                 <div className="relative">
-                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
-                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                  <BookOpen className="w-14 sm:w-20 h-14 sm:h-20 mx-auto mb-4 sm:mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: 'clamp(1.25rem, 5vw, 1.875rem)', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
                     Ready to Start Your IELTS Journey?
                   </div>
-                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-base sm:text-lg lg:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
                     Join hundreds of successful students who achieved their target scores with our expert guidance and proven teaching methods.
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                     <Button size="lg" onClick={() => setIsFormOpen(true)} className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold" data-testid="office-free-consultation">
                       <BookOpen className="w-5 h-5 mr-2" />
                       Enroll Now
@@ -526,15 +526,15 @@ export default function SargodhaHeadOffice() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
             {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
-                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+              <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                     Questions
