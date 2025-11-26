@@ -216,11 +216,11 @@ export default function StudyAbroadIndex() {
             <Link key={index} href={`/study-abroad/${destination.slug}`}>
               <Card className="group border-0 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer h-full bg-white hover:-translate-y-2" data-testid={`destination-card-${destination.slug}`}>
                 {/* Image Container */}
-                <div className="relative h-48 sm:h-56 overflow-hidden">
+                <div className="relative overflow-hidden">
                   <img 
                     src={destination.image} 
                     alt={`Study in ${destination.name}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full max-w-full object-cover group-hover:scale-110 transition-transform duration-700"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop`;
