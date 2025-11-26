@@ -35,7 +35,7 @@ export default function StudyAbroadFinland() {
     setStaticPageMeta(
       "Study in Finland with Dunya Consultants: Global Education & Career Growth",
       "Learn how to study in Finland with Dunya Consultants, offering affordable tuition, no IELTS required, and numerous career opportunities. Start your journey toward higher education today.",
-      "/uploads/study-in-finland.jpg"
+      "/attached_assets/study-in-finland_1764135342075.jpg"
     );
 
     const faqSchema = {

@@ -66,7 +66,7 @@ const destinations = [
   {
     name: "Finland",
     slug: "finland",
-    image: "/uploads/study-in-finland.jpg",
+    image: "/attached_assets/study-in-finland_1764135342075.jpg",
     description: "Free or low-cost education with innovative teaching methods and high living standards.",
     tuition: "€0-18K/year",
     universities: "40+",
