@@ -40,7 +40,7 @@ export default function StudyAbroadUK() {
     setStaticPageMeta(
       "Study in the UK: Step-by-Step Guide for Pakistani Students",
       "Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation.",
-      "/uploads/study-in-the-uk.jpg"
+      "/attached_assets/study-in-the-uk_1764135296704.jpg"
     );
 
     const faqSchema = {

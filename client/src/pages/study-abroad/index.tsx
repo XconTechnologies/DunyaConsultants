@@ -36,7 +36,7 @@ const destinations = [
   {
     name: "UK",
     slug: "uk",
-    image: "/uploads/study-in-the-uk.jpg",
+    image: "/attached_assets/study-in-the-uk_1764135296704.jpg",
     description: "Prestigious British education with world-renowned universities like Oxford and Cambridge.",
     tuition: "£10K-38K/year",
     universities: "160+",
