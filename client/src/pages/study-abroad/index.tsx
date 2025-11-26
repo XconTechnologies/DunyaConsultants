@@ -17,8 +17,7 @@ import {
   Star,
   Sparkles,
   ArrowRight,
-  ChevronRight,
-  Rocket
+  ChevronRight
 } from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
@@ -168,12 +167,11 @@ export default function StudyAbroadIndex() {
               />
               <Button
                 onClick={() => setShowConsultationForm(true)}
-                className="bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300"
+                className="bg-[#1D50C9] hover:bg-[#1845B3] text-white hover:scale-105 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 rounded-full"
                 size="lg"
                 data-testid="connect-now-button"
               >
-                <Rocket className="w-5 h-5 mr-2" />
-                Connect Now
+                Connect now
               </Button>
             </div>
           </div>
