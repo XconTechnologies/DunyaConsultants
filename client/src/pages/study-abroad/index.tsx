@@ -46,7 +46,7 @@ const destinations = [
   {
     name: "Canada",
     slug: "canada",
-    image: "/uploads/study-in-canada.jpg",
+    image: "/attached_assets/study-in-canada_1764135350963.jpg",
     description: "Welcoming immigration policies, high quality of life, and pathway to permanent residency.",
     tuition: "CAD 15K-35K/year",
     universities: "100+",
