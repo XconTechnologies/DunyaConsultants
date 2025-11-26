@@ -226,24 +226,20 @@ export default function StudyAbroadIndex() {
                       target.src = `https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop`;
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   
                   {/* Highlight Badge */}
                   <Badge className={`absolute top-4 right-4 ${destination.highlightColor} text-white px-3 py-1 text-xs font-semibold shadow-lg`}>
                     {destination.highlight}
                   </Badge>
-                  
-                  {/* Country Name Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-center gap-2">
-                      Study in {destination.name}
-                      <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
-                    </h3>
-                  </div>
                 </div>
 
                 {/* Content */}
                 <CardContent className="p-5 sm:p-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                    Study in {destination.name}
+                    <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                  </h3>
+                  
                   <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
                     {destination.description}
                   </p>
