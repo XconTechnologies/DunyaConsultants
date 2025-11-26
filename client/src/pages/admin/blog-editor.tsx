@@ -932,10 +932,18 @@ export default function BlogEditor() {
       // Clear pending changes flag
       hasPendingChangesRef.current = false;
       
-      // IMPORTANT: Preserve selected categories before invalidating queries
-      // Categories are stored in junction table and won't be in the refetched blogPost
-      const currentCategories = selectedCategoryIds;
-      justSavedCategoriesRef.current = currentCategories;
+      // CRITICAL FIX: Use categoryIds from response to immediately restore selected categories
+      // This ensures categories persist after save without relying on background queries
+      if (data.categoryIds && Array.isArray(data.categoryIds)) {
+        console.log('Restoring categories from save response:', data.categoryIds);
+        setSelectedCategoryIds(data.categoryIds);
+        setValue('categoryIds', data.categoryIds);
+        justSavedCategoriesRef.current = data.categoryIds;
+      } else {
+        // Fallback: preserve current categories in case response is missing
+        const currentCategories = selectedCategoryIds;
+        justSavedCategoriesRef.current = currentCategories;
+      }
       
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
       if (isEditing) {

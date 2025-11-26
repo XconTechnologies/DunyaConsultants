@@ -4684,9 +4684,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } as any);
       
       // Handle category assignments if provided
+      let savedCategoryIds: number[] = [];
       if (req.body.categoryIds && Array.isArray(req.body.categoryIds) && req.body.categoryIds.length > 0) {
         try {
           await storage.updateBlogPostCategories(post.id, req.body.categoryIds);
+          savedCategoryIds = req.body.categoryIds;
         } catch (categoryError) {
           console.error('Failed to assign categories to new post:', categoryError);
           // Don't fail the entire operation if category assignment fails
@@ -4723,7 +4725,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         })
       });
       
-      res.status(201).json(post);
+      // Include categoryIds in response for frontend to use
+      res.status(201).json({ ...post, categoryIds: savedCategoryIds });
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ message: 'Invalid blog post data', errors: error.errors });
@@ -4897,12 +4900,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const post = await storage.updateBlogPost(id, sanitizedUpdates);
       
       // Update category assignments after updating the post
+      let savedCategoryIds: number[] = [];
       if (categoryIds !== undefined && Array.isArray(categoryIds)) {
         try {
           await storage.updateBlogPostCategories(id, categoryIds);
+          savedCategoryIds = categoryIds;
         } catch (categoryError) {
           console.error('Failed to update categories for post:', categoryError);
           // Don't fail the entire operation if category assignment fails
+        }
+      } else {
+        // If no categories provided, fetch existing ones
+        try {
+          const existingCategories = await storage.getBlogPostCategories(id);
+          savedCategoryIds = existingCategories.map(cat => cat.id);
+        } catch (err) {
+          console.error('Failed to fetch existing categories:', err);
         }
       }
       
@@ -4931,7 +4944,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         })
       });
       
-      res.json(post);
+      // Include categoryIds in response for frontend to use
+      res.json({ ...post, categoryIds: savedCategoryIds });
     } catch (error) {
       console.error('Blog post update error:', error);
       res.status(500).json({ message: 'Failed to update blog post' });
