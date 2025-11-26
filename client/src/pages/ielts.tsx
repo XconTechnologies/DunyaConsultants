@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Award, Clock, CheckCircle, BookOpen, PenTool, Headphones, MessageSquare, Sparkles, Target, Zap, Lightbulb } from "lucide-react";
+import { Award, Clock, CheckCircle, BookOpen, PenTool, Headphones, MessageSquare, Sparkles, Target, Zap, Lightbulb, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/navigation";
