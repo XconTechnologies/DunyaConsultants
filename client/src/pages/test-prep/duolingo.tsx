@@ -130,25 +130,25 @@ export default function Duolingo() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-24 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6">
-              <Award className="w-5 h-5 mr-2" />
-              <span className="text-sm font-medium">Duolingo English Test</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-4 sm:mb-6">
+              <Award className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
+              <span className="text-xs sm:text-sm font-medium">Duolingo English Test</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Duolingo English Test
             </h1>
-            <p className="text-lg md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-2xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
               Online English proficiency test accepted by 4,000+ universities worldwide
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center px-2 sm:px-4">
               <CalendlyButton
                 text="Book Free Consultation"
                 className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
@@ -201,7 +201,7 @@ export default function Duolingo() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
             {testSections.map((section, index) => (
               <motion.div
                 key={index}
@@ -268,14 +268,14 @@ export default function Duolingo() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
+                className="bg-white rounded-xl p-5 sm:p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
               >
                 <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
@@ -311,7 +311,7 @@ export default function Duolingo() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {scoreRequirements.map((requirement, index) => (
               <motion.div
                 key={index}
