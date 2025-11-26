@@ -148,9 +148,13 @@ export default function PTE() {
                 { label: "Fast Results", icon: "⚡" },
                 { label: "Trusted", icon: "✓" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/10 backdrop-blur-sm rounded-lg px-2 sm:px-4 py-2 sm:py-3 border border-white/20">
-                  <p className="text-xs sm:text-sm font-medium">{item.label}</p>
-                </div>
+                <motion.div 
+                  key={i} 
+                  whileHover={{ scale: 1.05, translateY: -2 }}
+                  className="bg-white/15 backdrop-blur-md rounded-full px-3 sm:px-5 py-2.5 sm:py-3 border border-white/40 hover:border-white/70 transition-all duration-300 shadow-lg shadow-white/10"
+                >
+                  <p className="text-xs sm:text-sm font-semibold whitespace-nowrap">{item.label}</p>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
