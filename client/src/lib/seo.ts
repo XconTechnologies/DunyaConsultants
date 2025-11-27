@@ -110,10 +110,16 @@ export function setStaticPageMeta(
   // Get current page URL for og:url
   const url = window.location.href;
   
+  // Convert relative image URLs to absolute URLs for social media sharing
+  let absoluteImage = image;
+  if (image && !image.startsWith('http')) {
+    absoluteImage = window.location.origin + image;
+  }
+  
   setMetaTags({
     title,
     description,
-    image,
+    image: absoluteImage,
     url,
     siteName
   });
