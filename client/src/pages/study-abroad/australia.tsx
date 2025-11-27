@@ -31,13 +31,14 @@ import {
 } from "lucide-react";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
+import australiaHeroImage from "@assets/study-in-australia_1764218661050.jpg";
 
 export default function StudyAbroadAustralia() {
   useEffect(() => {
     setStaticPageMeta(
       "Study in Australia with Dunya Consultants: Your Path to Success",
       "Study in Australia with Dunya Consultants for affordable education, scholarships, and career opportunities. Learn how to apply without IELTS and start your academic journey.",
-      "/uploads/study-in-australia.jpg"
+      australiaHeroImage
     );
 
     const faqSchema = {
