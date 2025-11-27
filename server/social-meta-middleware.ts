@@ -168,29 +168,29 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
     image: '/attached_assets/uk-flag.jpg'
   },
   '/study-abroad/canada': {
-    title: 'Study in Canada',
-    description: 'Study in Canada - Ranked 3rd in Life Quality Index. Pakistani students can work while studying, get post-graduation work permits, pathway to PR within 3 years, and access to 223 universities with affordable living costs.',
-    image: '/attached_assets/canada-flag.jpg'
+    title: 'Study in Canada from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Study in Canada with post-graduation work permits, pathway to permanent residency within 3 years, and access to 223+ universities. Expert guidance from Dunya Consultants for Pakistani students on visas, scholarships, and affordable living costs.',
+    image: '/attached_assets/study-in-canada_1764135350963.jpg'
   },
   '/study-abroad/australia': {
-    title: 'Study in Australia',
-    description: 'Study in Australia with world-class education and post-study work rights (2-4 years). Pakistani students benefit from globally recognized degrees, multicultural society, work opportunities, and pathway to permanent residency.',
-    image: '/attached_assets/australia-flag.jpg'
+    title: 'Study in Australia from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Study in Australia with world-class education, post-study work rights (2-4 years), globally recognized degrees, and pathway to permanent residency. Expert visa guidance, scholarship information, and application support from Dunya Consultants.',
+    image: '/uploads/articles/study-in-australia_1764218661050.jpg'
   },
   '/study-abroad/finland': {
-    title: 'Study in Finland',
-    description: 'Experience Nordic excellence with Finland\'s world-class education system. Pakistani students benefit from research-focused programs, innovation hubs, EU education advantages, and beautiful Scandinavian lifestyle with English-taught courses.',
-    image: '/attached_assets/finland-flag.jpg'
+    title: 'Study in Finland from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Experience Nordic excellence with Finland\'s tuition-free education, innovative research programs, EU education advantages, and beautiful Scandinavian lifestyle. Expert guidance from Dunya Consultants for Pakistani students seeking quality education abroad.',
+    image: '/attached_assets/study-in-finland_1764135342075.jpg'
   },
   '/study-abroad/belgium': {
-    title: 'Study in Belgium',
-    description: 'Study in Belgium at the heart of Europe. Pakistani students enjoy multilingual education, affordable tuition, EU job market access, rich cultural heritage, and excellent research opportunities in historic European cities.',
-    image: '/attached_assets/belgium-flag.jpg'
+    title: 'Study in Belgium from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Study in Belgium at the heart of Europe with affordable tuition, EU job market access, rich cultural heritage, and excellent research opportunities. Dunya Consultants guides Pakistani students through visas, scholarships, and university admissions.',
+    image: '/uploads/articles/study-in-belgium_1764218756180.jpg'
   },
   '/study-abroad/turkey': {
-    title: 'Study in Turkey',
-    description: 'Bridge between Europe and Asia - Study in Turkey with affordable tuition ($3,500-6,000/year), modern facilities, Turkish government scholarships, and rich cultural heritage. Gateway to international opportunities for Pakistani students.',
-    image: '/attached_assets/turkey-flag.jpg'
+    title: 'Study in Turkey from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Study in Turkey with affordable tuition, fully-funded scholarships, modern universities (200+), and rich cultural heritage bridging Europe and Asia. Expert support from Dunya Consultants for Pakistani students on visas, admissions, and career opportunities.',
+    image: '/uploads/articles/study-in-turkey_1764218954918.jpg'
   },
   '/test-prep/ielts': {
     title: 'IELTS Preparation - Dunya Consultants',
