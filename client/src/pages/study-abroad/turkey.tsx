@@ -36,13 +36,14 @@ import {
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 import ApplicationForm from "@/components/ApplicationForm";
+import turkeyHeroImage from "@assets/study-in-turkey_1764218954918.jpg";
 
 export default function StudyAbroadTurkey() {
   useEffect(() => {
     setStaticPageMeta(
       "Study in Turkey with Dunya Consultants: Your Path to Global Education",
       "Explore studying in Turkey with Dunya Consultants. Scholarships, affordable tuition fees, and no IELTS requirement. Apply for your student visa today!",
-      "/uploads/study-in-turkey.jpg"
+      turkeyHeroImage
     );
 
     const faqSchema = {
