@@ -35,13 +35,14 @@ import {
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 import ApplicationForm from "@/components/ApplicationForm";
+import belgiumHeroImage from "@assets/study-in-belgium_1764218756180.jpg";
 
 export default function StudyAbroadBelgium() {
   useEffect(() => {
     setStaticPageMeta(
       "Study in Belgium with Dunya Consultants: Your Path to Global Education",
       "Explore study opportunities in Belgium with Dunya Consultants. Scholarships, affordable tuition, and no IELTS requirements. Apply for your study visa today!",
-      "/uploads/study-in-belgium.jpg"
+      belgiumHeroImage
     );
 
     const faqSchema = {
