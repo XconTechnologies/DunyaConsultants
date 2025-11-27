@@ -40,8 +40,8 @@ import ApplicationForm from "@/components/ApplicationForm";
 export default function StudyAbroadTurkey() {
   useEffect(() => {
     setStaticPageMeta(
-      "Study in Turkey Guide for Students",
-      "Discover how to study in Turkey with clear entry steps, course options, and living details. Helpful support for international students.",
+      "Study in Turkey with Dunya Consultants: Your Path to Global Education",
+      "Explore studying in Turkey with Dunya Consultants. Scholarships, affordable tuition fees, and no IELTS requirement. Apply for your student visa today!",
       "/uploads/articles/study-in-turkey_1764218954918.jpg"
     );
 

@@ -35,8 +35,8 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 export default function StudyAbroadCanada() {
   useEffect(() => {
     setStaticPageMeta(
-      "Study in Canada Guide for Students",
-      "Understand the process to study in Canada, including planning, costs, and programs. Simple support for student applicants.",
+      "Study in Canada with Dunya Consultants: Your Path to Global Education",
+      "Start your academic journey in Canada with Dunya Consultants. Get expert guidance on study visas, scholarships, and affordable tuition options for International students.",
       "/attached_assets/study-in-canada_1764135350963.jpg"
     );
 

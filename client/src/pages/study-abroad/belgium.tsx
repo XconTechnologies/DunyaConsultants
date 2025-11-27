@@ -39,8 +39,8 @@ import ApplicationForm from "@/components/ApplicationForm";
 export default function StudyAbroadBelgium() {
   useEffect(() => {
     setStaticPageMeta(
-      "Study in Belgium Guide for Students",
-      "Learn the process to study in Belgium, including entry steps, top fields, and living details. Straightforward guidance for students.",
+      "Study in Belgium with Dunya Consultants: Your Path to Global Education",
+      "Explore study opportunities in Belgium with Dunya Consultants. Scholarships, affordable tuition, and no IELTS requirements. Apply for your study visa today!",
       "/uploads/articles/study-in-belgium_1764218756180.jpg"
     );
 

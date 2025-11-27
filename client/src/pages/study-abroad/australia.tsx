@@ -35,8 +35,8 @@ import CompactConsultationForm from "@/components/compact-consultation-form";
 export default function StudyAbroadAustralia() {
   useEffect(() => {
     setStaticPageMeta(
-      "Study in Australia Guide for International Students",
-      "Explore study in Australia requirements, top courses, costs, and application steps. Helpful guidance for students planning their move.",
+      "Study in Australia with Dunya Consultants: Your Path to Success",
+      "Study in Australia with Dunya Consultants for affordable education, scholarships, and career opportunities. Learn how to apply without IELTS and start your academic journey.",
       "/uploads/articles/study-in-australia_1764218661050.jpg"
     );
 
