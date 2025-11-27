@@ -84,6 +84,11 @@ app.use('/qr-codes', express.static('public/qr-codes',
   isProduction ? { maxAge: '365d', immutable: true } : {}
 ));
 
+// Serve uploads statically (long cache in production only)
+app.use('/uploads', express.static('public/uploads',
+  isProduction ? { maxAge: '365d', immutable: true } : {}
+));
+
 // Serve robots.txt before other routes
 app.get("/robots.txt", (req, res) => {
   res.setHeader('Content-Type', 'text/plain');

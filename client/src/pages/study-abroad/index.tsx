@@ -56,7 +56,7 @@ const destinations = [
   {
     name: "Australia",
     slug: "australia",
-    image: "/attached_assets/study-in-australia_1764218661050.jpg",
+    image: "/uploads/articles/study-in-australia_1764218661050.jpg",
     description: "World-class education with post-study work visa and excellent quality of life.",
     tuition: "AUD 20K-45K/year",
     universities: "43+",
@@ -76,7 +76,7 @@ const destinations = [
   {
     name: "Belgium",
     slug: "belgium",
-    image: "/attached_assets/study-in-belgium_1764218756180.jpg",
+    image: "/uploads/articles/study-in-belgium_1764218756180.jpg",
     description: "Heart of Europe with affordable tuition, multicultural environment, and EU job market access.",
     tuition: "€900-8K/year",
     universities: "15+",
@@ -86,7 +86,7 @@ const destinations = [
   {
     name: "Turkey",
     slug: "turkey",
-    image: "/attached_assets/study-in-turkey_1764218954918.jpg",
+    image: "/uploads/articles/study-in-turkey_1764218954918.jpg",
     description: "Bridge between East and West with fully-funded Türkiye Scholarships and rich cultural heritage.",
     tuition: "€1K-7K/year",
     universities: "200+",

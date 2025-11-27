@@ -41,7 +41,7 @@ export default function StudyAbroadBelgium() {
     setStaticPageMeta(
       "Study in Belgium with Dunya Consultants: Your Path to Global Education",
       "Explore study opportunities in Belgium with Dunya Consultants. Scholarships, affordable tuition, and no IELTS requirements. Apply for your study visa today!",
-      "/attached_assets/study-in-belgium_1764218756180.jpg"
+      "/uploads/articles/study-in-belgium_1764218756180.jpg"
     );
 
     const faqSchema = {
