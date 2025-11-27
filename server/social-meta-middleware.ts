@@ -163,9 +163,9 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
     image: '/objects/uploads/study-in-the-usa_1763961982261_811b2918.webp'
   },
   '/study-abroad/uk': {
-    title: 'Study in the UK: Step-by-Step Guide for Pakistani Students',
-    description: 'Find out how Pakistani students can successfully apply to UK universities. Learn about scholarships, visa processes, and career opportunities post-graduation.',
-    image: '/attached_assets/uk-flag.jpg'
+    title: 'Study in the UK from Pakistan - Complete Guide 2024 | Dunya Consultants',
+    description: 'Study in UK from Pakistan with expert visa guidance, scholarship information, and university admission support. Learn about fees, requirements, post-study work rights, and pathway to permanent residency from Dunya Consultants.',
+    image: '/uploads/articles/study-in-the-uk_1764135296704.jpg'
   },
   '/study-abroad/canada': {
     title: 'Study in Canada from Pakistan - Complete Guide 2024 | Dunya Consultants',
