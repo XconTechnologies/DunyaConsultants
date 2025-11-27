@@ -37,7 +37,7 @@ export default function StudyAbroadAustralia() {
     setStaticPageMeta(
       "Study in Australia with Dunya Consultants: Your Path to Success",
       "Study in Australia with Dunya Consultants for affordable education, scholarships, and career opportunities. Learn how to apply without IELTS and start your academic journey.",
-      "/uploads/articles/study-in-australia_1764218661050.jpg"
+      "/attached_assets/study-in-australia_1764218661050.jpg"
     );
 
     const faqSchema = {

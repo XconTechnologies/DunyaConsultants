@@ -42,7 +42,7 @@ export default function StudyAbroadTurkey() {
     setStaticPageMeta(
       "Study in Turkey with Dunya Consultants: Your Path to Global Education",
       "Explore studying in Turkey with Dunya Consultants. Scholarships, affordable tuition fees, and no IELTS requirement. Apply for your student visa today!",
-      "/uploads/articles/study-in-turkey_1764218954918.jpg"
+      "/attached_assets/study-in-turkey_1764218954918.jpg"
     );
 
     const faqSchema = {
