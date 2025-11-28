@@ -157,6 +157,11 @@ const STATIC_PAGE_META: { [key: string]: { title: string; description: string; i
     image: '/attached_assets/turkey-flag.jpg'
   },
   // Study Abroad Pages (new URLs)
+  '/study-abroad': {
+    title: 'Study Abroad Destinations - Explore World-Class Education | Dunya Consultants',
+    description: 'Explore world-class education opportunities across the globe with Dunya Consultants. Discover study destinations (USA, UK, Canada, Australia, Finland, Belgium, Turkey) with comprehensive guides, expert visa support, and scholarship information.',
+    image: '/uploads/articles/study-destinations_1764306405868.jpg'
+  },
   '/study-abroad/usa': {
     title: 'Study in USA from Pakistan - Complete Guide 2024 | Dunya Consultants',
     description: 'Complete guide to study in USA from Pakistan. Learn about USA student visa requirements, costs, scholarships, top universities, work opportunities, and expert guidance from best USA study visa consultants.',
