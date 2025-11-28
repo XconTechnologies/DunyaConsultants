@@ -1684,35 +1684,6 @@ export default function BlogEditor() {
                 {isPublished ? "Published" : "Draft"}
               </Badge>
               
-              {/* Autosave status indicator */}
-              {isEditing && blogId && (
-                <div className="text-sm flex items-center space-x-2">
-                  {autosaveState === 'idle' && !hasPendingChangesRef.current && (
-                    <span className="text-green-600 flex items-center">
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      All changes saved
-                    </span>
-                  )}
-                  {autosaveState === 'pending' && (
-                    <span className="text-gray-500">Unsaved changes...</span>
-                  )}
-                  {autosaveState === 'saving' && (
-                    <span className="text-blue-600 flex items-center">
-                      <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-                      Saving...
-                    </span>
-                  )}
-                  {autosaveState === 'error' && (
-                    <span className="text-red-600 flex items-center">
-                      <AlertTriangle className="w-4 h-4 mr-1" />
-                      Error saving
-                    </span>
-                  )}
-                </div>
-              )}
-              
               {isEditing && blogPost?.id && (
                 <Button
                   variant="outline"
