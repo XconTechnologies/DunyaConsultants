@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useLocation, useRoute } from "wouter";
+import { motion } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -22,7 +23,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle, Blocks
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus, Settings, Search, ChevronRight, ChevronLeft, Code2, Wand2, Table as TableIcon, HelpCircle, Blocks, AlertCircle, CheckCircle2
 } from "lucide-react";
 import CustomBlockEditor from '@/components/admin/custom-block-editor';
 import type { Block } from '@/components/admin/custom-block-editor';
@@ -247,6 +248,7 @@ export default function BlogEditor() {
   const hasUnsavedChangesRef = useRef<boolean>(false);
   const saveInFlightRef = useRef<boolean>(false);
   const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
+  const [isSavingFromDialog, setIsSavingFromDialog] = useState(false);
   const justSavedCategoriesRef = useRef<number[]>([]);
   
   // Link dialog state
@@ -2935,34 +2937,93 @@ export default function BlogEditor() {
         </DialogContent>
       </Dialog>
 
-      {/* Unsaved Changes Dialog */}
+      {/* Unsaved Changes Dialog - Enhanced & Interactive */}
       <AlertDialog open={showUnsavedDialog} onOpenChange={setShowUnsavedDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
-            <AlertDialogDescription>
-              You have unsaved changes. Do you want to save them before leaving?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel 
-              onClick={() => {
-                hasUnsavedChangesRef.current = false;
-                setShowUnsavedDialog(false);
-              }}
-            >
-              Exit Without Save
-            </AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={() => {
-                setShowUnsavedDialog(false);
-                handleSubmit(onSubmit)();
-              }}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              Save Edits
-            </AlertDialogAction>
-          </AlertDialogFooter>
+        <AlertDialogContent className="sm:max-w-md border-2 border-amber-200 bg-gradient-to-br from-white to-amber-50 shadow-2xl">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <AlertDialogHeader className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <motion.div
+                  animate={{ rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="flex-shrink-0"
+                >
+                  <AlertCircle className="w-6 h-6 text-amber-600" />
+                </motion.div>
+                <div className="space-y-1 flex-1">
+                  <AlertDialogTitle className="text-lg font-bold text-gray-900">Hold on! 🛑</AlertDialogTitle>
+                  <AlertDialogDescription className="text-sm text-gray-700">
+                    You have <span className="font-semibold text-amber-700">unsaved changes</span> that will be lost if you leave now.
+                  </AlertDialogDescription>
+                </div>
+              </div>
+            </AlertDialogHeader>
+
+            <div className="px-6 py-3 bg-amber-100 rounded-lg border border-amber-200 text-sm text-amber-900 space-y-1">
+              <p className="font-medium">💡 Quick reminder:</p>
+              <p className="text-xs">Save your work to keep all the edits you just made</p>
+            </div>
+
+            <AlertDialogFooter className="space-x-3 pt-6">
+              <AlertDialogCancel 
+                onClick={() => {
+                  hasUnsavedChangesRef.current = false;
+                  setShowUnsavedDialog(false);
+                  setIsSavingFromDialog(false);
+                }}
+                className="border-gray-300 hover:bg-gray-100"
+                disabled={isSavingFromDialog}
+              >
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: isSavingFromDialog ? 0.5 : 1 }}
+                >
+                  Exit Without Save
+                </motion.span>
+              </AlertDialogCancel>
+              
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <AlertDialogAction 
+                  onClick={() => {
+                    setIsSavingFromDialog(true);
+                    setShowUnsavedDialog(false);
+                    handleSubmit(onSubmit)().finally(() => {
+                      setIsSavingFromDialog(false);
+                    });
+                  }}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg"
+                  disabled={isSavingFromDialog}
+                  data-testid="button-save-from-dialog"
+                >
+                  {isSavingFromDialog ? (
+                    <motion.div className="flex items-center space-x-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Saving...</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      className="flex items-center space-x-2"
+                      whileHover={{ x: 2 }}
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Save Edits</span>
+                    </motion.div>
+                  )}
+                </AlertDialogAction>
+              </motion.div>
+            </AlertDialogFooter>
+
+            <div className="pt-2 text-center text-xs text-gray-500">
+              ⌨️ Tip: Press <kbd className="px-2 py-1 bg-gray-200 rounded text-gray-700">Escape</kbd> to exit without saving
+            </div>
+          </motion.div>
         </AlertDialogContent>
       </AlertDialog>
     </div>
