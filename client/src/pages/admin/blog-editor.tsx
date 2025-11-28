@@ -29,6 +29,7 @@ import type { Block } from '@/components/admin/custom-block-editor';
 import { blocksToHtml } from '@/lib/blocks-to-html';
 import { htmlToBlocks } from '@/lib/html-to-blocks';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
 import MediaSelectionModal from "@/components/admin/media-selection-modal";
@@ -242,14 +243,11 @@ export default function BlogEditor() {
   // Track the snapshot of blocks being saved for use in onSuccess callback
   const pendingSaveSnapshotRef = useRef<string | null>(null);
   
-  // Autosave controller refs
-  const autosaveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  // Track unsaved changes for close/refresh warning
+  const hasUnsavedChangesRef = useRef<boolean>(false);
   const saveInFlightRef = useRef<boolean>(false);
-  const saveIntentRef = useRef<'manual' | 'autosave'>('manual');
-  const hasPendingChangesRef = useRef<boolean>(false);
-  const [autosaveState, setAutosaveState] = useState<'idle' | 'pending' | 'saving' | 'error'>('idle');
+  const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
   const justSavedCategoriesRef = useRef<number[]>([]);
-  const isUpdatingFormFromAutosaveRef = useRef<boolean>(false);
   
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
@@ -746,130 +744,41 @@ export default function BlogEditor() {
     }
   };
 
-  // Autosave controller functions (must be defined before useEffect hooks that use them)
-  const markDirty = useCallback(() => {
-    // Only track changes for existing posts (has ID)
-    if (!blogId) return;
-    
-    hasPendingChangesRef.current = true;
-    setAutosaveState('pending');
-    
-    // Reset the 10-second timer
-    if (autosaveTimerRef.current) {
-      clearTimeout(autosaveTimerRef.current);
-    }
-    
-    // Don't set timer if save is in flight
-    if (saveInFlightRef.current) return;
-    
-    autosaveTimerRef.current = setTimeout(() => {
-      triggerAutosave();
-    }, 10000); // 10 seconds of inactivity
-  }, [blogId]);
-  
-  const triggerAutosave = useCallback(async () => {
-    // Don't autosave if no pending changes or no ID or save in flight
-    if (!hasPendingChangesRef.current || !blogId || saveInFlightRef.current) {
-      return;
-    }
-    
-    console.log('Autosave triggered');
-    saveIntentRef.current = 'autosave';
-    setAutosaveState('saving');
-    
-    try {
-      const formValues = getValues();
-      
-      // If post is published, ensure autosave also publishes
-      const currentIsPublished = formValues.isPublished || blogPost?.isPublished;
-      if (currentIsPublished) {
-        formValues.isPublished = true;
-        formValues.status = 'published';
-      }
-      
-      // Set blocks snapshot for blocks mode
-      if (editorMode === 'blocks') {
-        const blocksSnapshot = JSON.stringify(customBlocks);
-        pendingSaveSnapshotRef.current = blocksSnapshot;
-        
-        // Mark that we're updating form from autosave to prevent re-triggering watch
-        isUpdatingFormFromAutosaveRef.current = true;
-        
-        // Transform blocks to ContentBlock schema format (same as manual save)
-        formValues.contentBlocks = transformToContentBlocks(customBlocks) as any;
-        formValues.content = blocksToHtml(customBlocks);
-        
-        // Give time for form update to complete before clearing flag
-        setTimeout(() => {
-          isUpdatingFormFromAutosaveRef.current = false;
-        }, 50);
-      }
-      
-      console.log('Autosave - categoryIds from form:', formValues.categoryIds);
-      console.log('Autosave - selectedCategoryIds from state:', selectedCategoryIds);
-      
-      await saveMutation.mutateAsync(formValues);
-      
-      // Success
-      hasPendingChangesRef.current = false;
-      setAutosaveState('idle');
-    } catch (error) {
-      console.error('Autosave failed:', error);
-      setAutosaveState('error');
-      // Don't clear pending changes on error - user can manually save
-    }
-  }, [blogId, getValues, customBlocks, editorMode, blogPost]);
+  // Mark form as having unsaved changes
+  const markUnsavedChanges = useCallback(() => {
+    hasUnsavedChangesRef.current = true;
+  }, []);
 
-  // Watch content for changes and mark dirty for autosave
+  // Track form changes for unsaved warning
   useEffect(() => {
-    const subscription = watch((value) => {
-      // Skip if this is a programmatic update from autosave
-      if (isUpdatingFormFromAutosaveRef.current) {
-        return;
-      }
-      
-      console.log('Form content changed:', value.content?.length || 0, 'characters');
-      console.log('Raw blog post content:', value.content);
-      
-      // Mark as dirty when form changes (for autosave)
-      markDirty();
+    const subscription = watch(() => {
+      markUnsavedChanges();
     });
     return () => subscription.unsubscribe();
-  }, [watch, markDirty]);
+  }, [watch, markUnsavedChanges]);
   
-  // Watch blocks changes for autosave
+  // Track block changes for unsaved warning
   useEffect(() => {
-    // Only mark dirty for block changes (not initial load)
     if (editorMode === 'blocks' && customBlocks.length > 0) {
       const currentSnapshot = JSON.stringify(customBlocks);
       if (lastSavedBlocksRef.current !== currentSnapshot) {
-        blocksModifiedRef.current = true;
-        markDirty();
+        markUnsavedChanges();
       }
     }
-  }, [customBlocks, editorMode, markDirty]);
+  }, [customBlocks, editorMode, markUnsavedChanges]);
   
-  // beforeunload warning for unsaved changes
+  // Show dialog when trying to close/refresh with unsaved changes
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (hasPendingChangesRef.current) {
+      if (hasUnsavedChangesRef.current) {
         e.preventDefault();
-        e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
-        return e.returnValue;
+        e.returnValue = '';
+        setShowUnsavedDialog(true);
       }
     };
     
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
-  
-  // Cleanup autosave timer on unmount
-  useEffect(() => {
-    return () => {
-      if (autosaveTimerRef.current) {
-        clearTimeout(autosaveTimerRef.current);
-      }
-    };
   }, []);
 
   // Handle mode switching - convert between HTML and blocks
@@ -929,8 +838,6 @@ export default function BlogEditor() {
       return response.json();
     },
     onSuccess: async (data) => {
-      const isAutosave = saveIntentRef.current === 'autosave';
-      
       // Update refs BEFORE refetch to prevent race condition
       if (pendingSaveSnapshotRef.current && editorMode === 'blocks') {
         const currentBlocksSnapshot = JSON.stringify(customBlocks);
@@ -943,8 +850,8 @@ export default function BlogEditor() {
         pendingSaveSnapshotRef.current = null; // Clear after processing
       }
       
-      // Clear pending changes flag
-      hasPendingChangesRef.current = false;
+      // Clear unsaved changes flag after successful save
+      hasUnsavedChangesRef.current = false;
       
       // PERMANENT FIX: Save categories to database immediately after blog post save
       const categoryIds = selectedCategoryIds;
@@ -989,47 +896,31 @@ export default function BlogEditor() {
         queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${data.id}/categories`] });
       }
       
-      // Only show toast for manual saves, not autosaves
-      if (!isAutosave) {
-        toast({
-          title: "Success!",
-          description: isPublished ? "Blog post published successfully!" : "Blog post saved as draft!",
-          className: "bg-green-500 text-white",
-        });
-      }
+      toast({
+        title: "Success!",
+        description: isPublished ? "Blog post published successfully!" : "Blog post saved as draft!",
+        className: "bg-green-500 text-white",
+      });
 
       if (!isEditing && data.id) {
         setLocation(`/admin/blog-editor/${data.id}`);
       } else {
         // Refetch to get latest data
-        // Categories will be restored by the useEffect that watches postCategories
         refetch();
       }
       
-      // Release mutex lock and reset intent
+      // Release mutex lock
       saveInFlightRef.current = false;
-      saveIntentRef.current = 'manual';
     },
     onError: (error: any) => {
-      const isAutosave = saveIntentRef.current === 'autosave';
+      toast({
+        title: "Error",
+        description: error.message || "Failed to save blog post",
+        variant: "destructive",
+      });
       
-      // Only show error toast for manual saves
-      if (!isAutosave) {
-        toast({
-          title: "Error",
-          description: error.message || "Failed to save blog post",
-          variant: "destructive",
-        });
-      }
-      
-      // Release mutex lock and reset intent
+      // Release mutex lock
       saveInFlightRef.current = false;
-      saveIntentRef.current = 'manual';
-      
-      // Set error state for autosave
-      if (isAutosave) {
-        setAutosaveState('error');
-      }
     },
   });
 
@@ -1199,9 +1090,6 @@ export default function BlogEditor() {
         // Capture snapshot of blocks being saved
         pendingSaveSnapshotRef.current = JSON.stringify(customBlocks);
         
-        // Mark that we're updating form from manual save to prevent re-triggering watch
-        isUpdatingFormFromAutosaveRef.current = true;
-        
         // Convert blocks to HTML
         const html = blocksToHtml(customBlocks);
         data.content = html;
@@ -1210,11 +1098,6 @@ export default function BlogEditor() {
         if ('contentBlocks' in data) {
           data.contentBlocks = transformToContentBlocks(customBlocks) as any;
         }
-        
-        // Clear flag after updates
-        setTimeout(() => {
-          isUpdatingFormFromAutosaveRef.current = false;
-        }, 50);
       }
       
       await saveMutation.mutateAsync(data);
@@ -3080,6 +2963,37 @@ export default function BlogEditor() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Unsaved Changes Dialog */}
+      <AlertDialog open={showUnsavedDialog} onOpenChange={setShowUnsavedDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have unsaved changes. Do you want to save them before leaving?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => {
+                hasUnsavedChangesRef.current = false;
+                setShowUnsavedDialog(false);
+              }}
+            >
+              Exit Without Save
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={() => {
+                setShowUnsavedDialog(false);
+                handleSubmit(onSubmit)();
+              }}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              Save Edits
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
