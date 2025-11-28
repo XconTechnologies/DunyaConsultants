@@ -249,6 +249,7 @@ export default function BlogEditor() {
   const hasPendingChangesRef = useRef<boolean>(false);
   const [autosaveState, setAutosaveState] = useState<'idle' | 'pending' | 'saving' | 'error'>('idle');
   const justSavedCategoriesRef = useRef<number[]>([]);
+  const isUpdatingFormFromAutosaveRef = useRef<boolean>(false);
   
   // Link dialog state
   const [showLinkDialog, setShowLinkDialog] = useState(false);
@@ -791,9 +792,17 @@ export default function BlogEditor() {
         const blocksSnapshot = JSON.stringify(customBlocks);
         pendingSaveSnapshotRef.current = blocksSnapshot;
         
+        // Mark that we're updating form from autosave to prevent re-triggering watch
+        isUpdatingFormFromAutosaveRef.current = true;
+        
         // Transform blocks to ContentBlock schema format (same as manual save)
         formValues.contentBlocks = transformToContentBlocks(customBlocks) as any;
         formValues.content = blocksToHtml(customBlocks);
+        
+        // Give time for form update to complete before clearing flag
+        setTimeout(() => {
+          isUpdatingFormFromAutosaveRef.current = false;
+        }, 50);
       }
       
       console.log('Autosave - categoryIds from form:', formValues.categoryIds);
@@ -814,6 +823,11 @@ export default function BlogEditor() {
   // Watch content for changes and mark dirty for autosave
   useEffect(() => {
     const subscription = watch((value) => {
+      // Skip if this is a programmatic update from autosave
+      if (isUpdatingFormFromAutosaveRef.current) {
+        return;
+      }
+      
       console.log('Form content changed:', value.content?.length || 0, 'characters');
       console.log('Raw blog post content:', value.content);
       
@@ -1185,6 +1199,9 @@ export default function BlogEditor() {
         // Capture snapshot of blocks being saved
         pendingSaveSnapshotRef.current = JSON.stringify(customBlocks);
         
+        // Mark that we're updating form from manual save to prevent re-triggering watch
+        isUpdatingFormFromAutosaveRef.current = true;
+        
         // Convert blocks to HTML
         const html = blocksToHtml(customBlocks);
         data.content = html;
@@ -1193,6 +1210,11 @@ export default function BlogEditor() {
         if ('contentBlocks' in data) {
           data.contentBlocks = transformToContentBlocks(customBlocks) as any;
         }
+        
+        // Clear flag after updates
+        setTimeout(() => {
+          isUpdatingFormFromAutosaveRef.current = false;
+        }, 50);
       }
       
       await saveMutation.mutateAsync(data);
