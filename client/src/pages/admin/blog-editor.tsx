@@ -1075,13 +1075,6 @@ export default function BlogEditor() {
     console.log('categoryIds from form:', data.categoryIds);
     console.log('selectedCategoryIds from state:', selectedCategoryIds);
     
-    // Clear autosave timer for manual save
-    if (autosaveTimerRef.current) {
-      clearTimeout(autosaveTimerRef.current);
-      autosaveTimerRef.current = null;
-    }
-    saveIntentRef.current = 'manual';
-    
     setIsSaving(true);
     try {
       // Capture the blocks being saved before mutation
@@ -1109,7 +1102,8 @@ export default function BlogEditor() {
   };
 
   // Handle category selection/deselection with automatic parent/child management
-  const handleCategoryToggle = (categoryId: number, isSelected: boolean) => {
+  // Categories are saved immediately when selected (for existing posts)
+  const handleCategoryToggle = async (categoryId: number, isSelected: boolean) => {
     let newSelectedIds: number[];
     
     if (isSelected) {
@@ -1129,6 +1123,25 @@ export default function BlogEditor() {
     
     setSelectedCategoryIds(newSelectedIds);
     setValue('categoryIds', newSelectedIds);
+    
+    // OPTIMIZATION: Save categories immediately for existing posts
+    if (isEditing && blogId) {
+      try {
+        const token = localStorage.getItem('adminToken');
+        await fetch(`/api/admin/blog-posts/${blogId}/categories`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ categoryIds: newSelectedIds }),
+        });
+        console.log('Categories saved immediately:', newSelectedIds);
+        justSavedCategoriesRef.current = newSelectedIds;
+      } catch (error) {
+        console.error('Error saving categories:', error);
+      }
+    }
   };
 
   // Handle image upload
