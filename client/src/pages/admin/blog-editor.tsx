@@ -1716,34 +1716,11 @@ export default function BlogEditor() {
                 type="button"
                 disabled={isSaving || isImageUploading}
                 className="flex items-center space-x-2 bg-[#1D50C9] hover:bg-[#1642a8] text-white"
-                onClick={async () => {
-                  console.log('Save Draft button clicked');
-                  
-                  // Clear autosave timer for manual save
-                  if (autosaveTimerRef.current) {
-                    clearTimeout(autosaveTimerRef.current);
-                    autosaveTimerRef.current = null;
-                  }
-                  saveIntentRef.current = 'manual';
-                  
+                onClick={() => {
                   const formValues = getValues();
-                  console.log('Current form values:', formValues);
-                  console.log('Save Draft - categoryIds from form:', formValues.categoryIds);
-                  console.log('Save Draft - selectedCategoryIds from state:', selectedCategoryIds);
-                  
-                  // Set as draft
                   formValues.isPublished = false;
                   formValues.status = 'draft';
-                  
-                  // Submit directly without validation
-                  setIsSaving(true);
-                  try {
-                    await saveMutation.mutateAsync(formValues);
-                  } catch (error) {
-                    console.error('Save draft error:', error);
-                  } finally {
-                    setIsSaving(false);
-                  }
+                  saveMutation.mutate(formValues);
                 }}
                 data-testid="save-draft-blog"
               >
@@ -1756,17 +1733,14 @@ export default function BlogEditor() {
               </Button>
               {canPublishContent(adminUser) && (
                 <Button
-                  type="submit"
-                  form="blog-form"
+                  type="button"
                   disabled={isSaving || isImageUploading}
                   className="flex items-center space-x-2 ml-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
-                  onClick={(e) => {
-                    console.log('Publish button clicked');
+                  onClick={() => {
                     const formValues = getValues();
                     
                     // Validate required fields for publishing
                     if (!formValues.title || !formValues.slug || !formValues.excerpt || !formValues.content) {
-                      e.preventDefault();
                       toast({
                         title: "Missing Required Fields",
                         description: "Title, slug, excerpt, and content are required for publishing.",
@@ -1775,8 +1749,9 @@ export default function BlogEditor() {
                       return;
                     }
                     
-                    setValue('isPublished', true);
-                    setValue('status', 'published');
+                    formValues.isPublished = true;
+                    formValues.status = 'published';
+                    saveMutation.mutate(formValues);
                   }}
                   data-testid="publish-blog"
                 >
