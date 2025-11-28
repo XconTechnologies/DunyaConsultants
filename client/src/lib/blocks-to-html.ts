@@ -30,7 +30,7 @@ function blockToHtml(block: Block): string {
       return block.html; // Don't escape HTML blocks
     
     case 'faq':
-      return renderFaq(block.items);
+      return renderFaq(block.items, (block as any).id);
     
     case 'tip':
       return renderTip(block);
@@ -95,29 +95,68 @@ function renderTable(data: string[][]): string {
 }
 
 function renderTip(block: TipBlock): string {
-  // Return lightweight placeholder instead of full HTML
-  // This will be replaced with the React component during rendering
-  return `<div data-block-placeholder="tip" data-block-id="${(block as any).id || 'unknown'}"></div>`;
+  // Include full block data as JSON for proper rendering
+  const blockData = {
+    id: (block as any).id || 'unknown',
+    type: 'tip',
+    prefix: block.prefix || '',
+    text: block.text || ''
+  };
+  return `<div data-block-placeholder="tip" data-block-id="${blockData.id}" data-block-data='${JSON.stringify(blockData).replace(/'/g, "&#39;")}'></div>`;
 }
 
-function renderFaq(items: FaqItem[]): string {
-  // Return lightweight placeholder instead of full HTML
-  // This will be replaced with the React component during rendering
-  // Note: We need to get the block ID from somewhere - for now use a timestamp
-  const blockId = `faq_${Date.now()}`;
-  return `<div data-block-placeholder="faq" data-block-id="${blockId}"></div>`;
+function renderFaq(items: FaqItem[], blockId?: string): string {
+  // Include full block data as JSON for proper rendering
+  const id = blockId || `faq_${Date.now()}`;
+  const blockData = {
+    id: id,
+    type: 'faq',
+    items: items || []
+  };
+  return `<div data-block-placeholder="faq" data-block-id="${id}" data-block-data='${JSON.stringify(blockData).replace(/'/g, "&#39;")}'></div>`;
 }
 
 function renderConsultation(block: ConsultationBlock): string {
-  // Return lightweight placeholder instead of full HTML
-  // This will be replaced with the React component during rendering
-  return `<div data-block-placeholder="consultation" data-block-id="${(block as any).id || 'unknown'}"></div>`;
+  // Include full block data as JSON for proper rendering
+  const blockData = {
+    id: (block as any).id || 'unknown',
+    type: 'consultation',
+    title: block.title || '',
+    description: block.description || '',
+    buttonText: block.buttonText || '',
+    buttonUrl: block.buttonUrl || '',
+    buttonBgColor: block.buttonBgColor || '#1D50C9',
+    buttonTextColor: block.buttonTextColor || '#ffffff',
+    buttonBorderRadius: block.buttonBorderRadius ?? 8,
+    buttonFontSize: block.buttonFontSize ?? 18,
+    button2Text: block.button2Text || '',
+    button2Url: block.button2Url || '',
+    button2BgColor: block.button2BgColor || '',
+    button2TextColor: block.button2TextColor || '',
+    button2BorderRadius: block.button2BorderRadius ?? 12,
+    button2BorderWidth: block.button2BorderWidth ?? 2,
+    button2BorderColor: block.button2BorderColor || '',
+    button2FontSize: block.button2FontSize ?? 18
+  };
+  return `<div data-block-placeholder="consultation" data-block-id="${blockData.id}" data-block-data='${JSON.stringify(blockData).replace(/'/g, "&#39;")}'></div>`;
 }
 
 function renderWhatsAppChannel(block: WhatsAppChannelBlock): string {
-  // Return lightweight placeholder instead of full HTML
-  // This will be replaced with the React component during rendering
-  return `<div data-block-placeholder="whatsappChannel" data-block-id="${(block as any).id || 'unknown'}"></div>`;
+  // Include full block data as JSON for proper rendering
+  const blockData = {
+    id: (block as any).id || 'unknown',
+    type: 'whatsappChannel',
+    title: block.title || '',
+    description: block.description || '',
+    channelUrl: block.channelUrl || '',
+    buttonText: block.buttonText || '',
+    buttonBgColor: block.buttonBgColor || '#25D366',
+    buttonTextColor: block.buttonTextColor || '#ffffff',
+    buttonHoverColor: block.buttonHoverColor || '#1EA952',
+    buttonBorderRadius: block.buttonBorderRadius ?? 8,
+    buttonFontSize: block.buttonFontSize ?? 18
+  };
+  return `<div data-block-placeholder="whatsappChannel" data-block-id="${blockData.id}" data-block-data='${JSON.stringify(blockData).replace(/'/g, "&#39;")}'></div>`;
 }
 
 function escapeHtml(text: string): string {

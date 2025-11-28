@@ -134,12 +134,58 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   
   // Add content elements with blocks inserted after them
   elements.forEach((el, index) => {
-    contentParts.push(
-      <div 
-        key={`content-${index}`} 
-        dangerouslySetInnerHTML={{ __html: el.outerHTML }}
-      />
-    );
+    // Check if this element is a block placeholder
+    const placeholderType = el.getAttribute('data-block-placeholder');
+    if (placeholderType) {
+      // Parse the block data from the data-block-data attribute
+      const blockDataStr = el.getAttribute('data-block-data');
+      if (blockDataStr) {
+        try {
+          const blockData = JSON.parse(blockDataStr.replace(/&#39;/g, "'"));
+          const blockId = el.getAttribute('data-block-id') || blockData.id;
+          
+          // Don't render if already rendered
+          if (!renderedBlockIds.has(blockId)) {
+            const syntheticBlock = {
+              ...blockData,
+              data: blockData // Ensure data property is set for renderers that expect it
+            } as ContentBlock;
+            
+            contentParts.push(
+              <div key={`placeholder-${index}-${blockId}`} className="my-6">
+                {renderBlock(syntheticBlock)}
+              </div>
+            );
+            renderedBlockIds.add(blockId);
+          }
+        } catch (e) {
+          console.error('Failed to parse block data:', e);
+          // Fallback: render as raw HTML
+          contentParts.push(
+            <div 
+              key={`content-${index}`} 
+              dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+            />
+          );
+        }
+      } else {
+        // No block data, skip or render placeholder
+        contentParts.push(
+          <div 
+            key={`content-${index}`} 
+            dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+          />
+        );
+      }
+    } else {
+      // Regular content element
+      contentParts.push(
+        <div 
+          key={`content-${index}`} 
+          dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+        />
+      );
+    }
     
     // Insert blocks after this element
     const blocksAfter = blocksByPosition.get(index + 1);
