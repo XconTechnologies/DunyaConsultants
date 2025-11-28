@@ -10,29 +10,36 @@ interface ContentBlocksRendererProps {
 
 export default function ContentBlocksRenderer({ blocks, content = '', integrated = false }: ContentBlocksRendererProps) {
   if (!blocks || blocks.length === 0) {
+    // No blocks but has content - render content directly
+    if (content) {
+      return <IntegratedContentRenderer content={content} blocks={[]} />;
+    }
     return null;
   }
 
   const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
 
-  // If integrated mode AND content exists, check if we should merge or render blocks only
+  // If integrated mode AND content exists, use IntegratedContentRenderer
+  // which properly handles both HTML content and block placeholders
   if (integrated && content) {
-    // Check if content contains only placeholders or also has actual block content
-    // If content has paragraphs/headings that are ALSO in blocks, we have duplication
-    // In that case, render ONLY blocks, not content
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = content;
     
-    // Count actual content elements (not placeholders)
-    const contentElements = Array.from(tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, div:not([data-block-placeholder])')).filter(el => {
-      // Filter out empty elements
+    // Check if blocks contain ALL content types (paragraph, heading, list, etc.)
+    // or just special blocks (tip, consultation, whatsapp, faq)
+    const hasFullContent = sortedBlocks.some(block => 
+      block.type === 'paragraph' || block.type === 'heading' || block.type === 'list'
+    );
+    
+    // Count actual content elements in HTML (not placeholders)
+    const contentElements = Array.from(tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, div:not([data-block-placeholder])')).filter(el => {
       const text = el.textContent || '';
       return text.trim().length > 0;
     });
     
-    // If content has actual content elements AND we have blocks, it's likely duplication
-    // Render ONLY blocks to avoid duplication
-    if (contentElements.length > 0 && blocks.length > 0) {
+    // If blocks have full content (paragraphs, headings) AND HTML also has content,
+    // this is duplication - render ONLY blocks
+    if (hasFullContent && contentElements.length > 0) {
       return (
         <div className="content-blocks-wrapper prose prose-xl max-w-none">
           {sortedBlocks.map((block) => (
@@ -44,7 +51,9 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
       );
     }
     
-    // If content has only placeholders, use integrated rendering
+    // Otherwise, use integrated rendering to merge HTML content with block placeholders
+    // This handles cases where blocks only contain special blocks (tip, consultation, etc.)
+    // and regular content (paragraphs, headings) is in the HTML
     return <IntegratedContentRenderer content={content} blocks={sortedBlocks} />;
   }
 
