@@ -914,7 +914,7 @@ export default function BlogEditor() {
       const response = await apiRequest(method, url, data);
       return response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       const isAutosave = saveIntentRef.current === 'autosave';
       
       // Update refs BEFORE refetch to prevent race condition
@@ -932,6 +932,31 @@ export default function BlogEditor() {
       // Clear pending changes flag
       hasPendingChangesRef.current = false;
       
+      // PERMANENT FIX: Save categories to database immediately after blog post save
+      const categoryIds = selectedCategoryIds;
+      if (categoryIds.length > 0 && data.id) {
+        try {
+          const token = localStorage.getItem('adminToken');
+          const categoryResponse = await fetch(`/api/admin/blog-posts/${data.id}/categories`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ categoryIds }),
+          });
+          
+          if (categoryResponse.ok) {
+            const categoryData = await categoryResponse.json();
+            console.log('Categories saved successfully:', categoryData);
+            // Mark categories as saved
+            justSavedCategoriesRef.current = categoryIds;
+          }
+        } catch (error) {
+          console.error('Error saving categories:', error);
+        }
+      }
+      
       // CRITICAL FIX: Use categoryIds from response to immediately restore selected categories
       // This ensures categories persist after save without relying on background queries
       if (data.categoryIds && Array.isArray(data.categoryIds)) {
@@ -939,16 +964,15 @@ export default function BlogEditor() {
         setSelectedCategoryIds(data.categoryIds);
         setValue('categoryIds', data.categoryIds);
         justSavedCategoriesRef.current = data.categoryIds;
-      } else {
+      } else if (categoryIds.length > 0) {
         // Fallback: preserve current categories in case response is missing
-        const currentCategories = selectedCategoryIds;
-        justSavedCategoriesRef.current = currentCategories;
+        justSavedCategoriesRef.current = categoryIds;
       }
       
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog-posts'] });
-      if (isEditing) {
-        queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}`] });
-        queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${blogId}/categories`] });
+      if (isEditing || data.id) {
+        queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${data.id}`] });
+        queryClient.invalidateQueries({ queryKey: [`/api/admin/blog-posts/${data.id}/categories`] });
       }
       
       // Only show toast for manual saves, not autosaves
