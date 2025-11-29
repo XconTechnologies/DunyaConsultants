@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
 import { normalizeFeaturedImageUrl, extractAltText } from "@/lib/image-utils";
-import { Copy, Check } from "lucide-react";
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 
@@ -783,7 +782,6 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   const blockData = block as any;
   const code = block.data?.code ?? blockData.code ?? '';
   const language = block.data?.language ?? blockData.language ?? '';
-  const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -796,52 +794,18 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
     }
   }, [code, language]);
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy code:', err);
-    }
-  };
-
   if (!code) {
     return null;
   }
 
-  const languageLabel = language ? language.charAt(0).toUpperCase() + language.slice(1) : 'Code';
   const langClass = language ? `language-${language.toLowerCase()}` : '';
 
   return (
-    <div className="code-block my-6 rounded-lg overflow-hidden shadow-lg border border-gray-600" data-testid={`code-block-${block.id}`}>
-      <div className="bg-gray-800 text-gray-300 text-sm px-4 py-2 flex items-center justify-between">
-        <span className="font-medium">{languageLabel}</span>
-        <button
-          onClick={handleCopy}
-          className="flex items-center gap-1 text-xs hover:text-white transition-colors px-2 py-1 rounded hover:bg-gray-700"
-          title="Copy code"
-          data-testid="copy-code-button"
-        >
-          {copied ? (
-            <>
-              <Check className="w-4 h-4 text-green-400" />
-              <span className="text-green-400">Copied!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="w-4 h-4" />
-              <span>Copy</span>
-            </>
-          )}
-        </button>
-      </div>
-      <pre className={`bg-[#2d2d2d] p-4 overflow-x-auto m-0 text-sm leading-relaxed ${langClass}`}>
-        <code ref={codeRef} className={langClass}>
-          {code}
-        </code>
-      </pre>
-    </div>
+    <pre className={`bg-[#2d2d2d] p-4 overflow-x-auto my-4 text-sm leading-relaxed rounded-lg ${langClass}`}>
+      <code ref={codeRef} className={langClass}>
+        {code}
+      </code>
+    </pre>
   );
 }
 
