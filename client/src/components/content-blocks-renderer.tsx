@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
 import { normalizeFeaturedImageUrl, extractAltText } from "@/lib/image-utils";
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
@@ -777,36 +775,65 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
   );
 }
 
-// Code Block Renderer with Syntax Highlighting
+// Code Block Renderer - Executes HTML/CSS/JS code
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   const blockData = block as any;
   const code = block.data?.code ?? blockData.code ?? '';
-  const language = block.data?.language ?? blockData.language ?? '';
-  const codeRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (codeRef.current && code) {
-      try {
-        Prism.highlightElement(codeRef.current);
-      } catch (err) {
-        console.log('Syntax highlighting failed:', err);
+    if (!containerRef.current || !code) return;
+
+    const container = containerRef.current;
+    container.innerHTML = '';
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = code;
+
+    const styleTags = tempDiv.querySelectorAll('style');
+    const injectedStyles: HTMLStyleElement[] = [];
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      newStyle.setAttribute('data-code-block-style', block.id);
+      document.head.appendChild(newStyle);
+      injectedStyles.push(newStyle);
+      styleTag.remove();
+    });
+
+    const scriptTags = tempDiv.querySelectorAll('script');
+    const scripts: HTMLScriptElement[] = [];
+    scriptTags.forEach(scriptTag => {
+      const newScript = document.createElement('script');
+      Array.from(scriptTag.attributes).forEach(attr => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      if (scriptTag.src) {
+        newScript.src = scriptTag.src;
+      } else {
+        newScript.textContent = scriptTag.textContent;
       }
-    }
-  }, [code, language]);
+      scripts.push(newScript);
+      scriptTag.remove();
+    });
+
+    container.innerHTML = tempDiv.innerHTML;
+
+    scripts.forEach(script => {
+      document.body.appendChild(script);
+    });
+
+    return () => {
+      injectedStyles.forEach(style => style.remove());
+      scripts.forEach(script => script.remove());
+    };
+  }, [code, block.id]);
 
   if (!code) {
     return null;
   }
 
-  const langClass = language ? `language-${language.toLowerCase()}` : '';
-
-  return (
-    <pre className={`bg-[#2d2d2d] p-4 overflow-x-auto my-4 text-sm leading-relaxed rounded-lg ${langClass}`}>
-      <code ref={codeRef} className={langClass}>
-        {code}
-      </code>
-    </pre>
-  );
+  return <div ref={containerRef} className="code-block-rendered my-4" />;
 }
 
 // Consultation Block Renderer
