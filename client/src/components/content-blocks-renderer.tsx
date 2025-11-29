@@ -933,9 +933,11 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
       jsLength: jsCode.join('\n').length
     });
 
+    // Escape </script> tags in user JS to prevent breaking the HTML
+    const escapedJsCode = jsCode.join('\n').replace(/<\/script>/gi, '<\\/script>');
+    
     // Build the complete HTML document for the iframe
-    const iframeContent = `
-<!DOCTYPE html>
+    const iframeContent = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -952,35 +954,54 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
   </style>
 </head>
 <body>
-  ${htmlCode.join('\n')}
+  <div id="app-root">${htmlCode.join('\n')}</div>
   <script>
     console.log('IFRAME: Script starting...');
+    window.onerror = function(msg, url, line, col, error) {
+      console.error('IFRAME ERROR:', msg, 'at line', line);
+      return false;
+    };
     
     // Send height to parent for auto-resize
     function sendHeight() {
-      const height = document.body.scrollHeight;
+      var height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 200);
       console.log('IFRAME: Sending height:', height);
-      window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
+      try {
+        window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
+      } catch(e) {
+        console.error('IFRAME: postMessage failed:', e);
+      }
     }
     
-    // Send height after DOM and images are loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('IFRAME: DOMContentLoaded');
-      setTimeout(sendHeight, 100);
-    });
+    // Send height immediately
+    sendHeight();
+    
+    // Send height after DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('IFRAME: DOMContentLoaded');
+        sendHeight();
+      });
+    } else {
+      console.log('IFRAME: DOM already loaded');
+      sendHeight();
+    }
+    
     window.addEventListener('load', function() {
       console.log('IFRAME: Window loaded');
-      setTimeout(sendHeight, 200);
+      sendHeight();
     });
     
     // Observe DOM changes and resize
-    const resizeObserver = new ResizeObserver(sendHeight);
-    resizeObserver.observe(document.body);
+    if (typeof ResizeObserver !== 'undefined') {
+      var resizeObserver = new ResizeObserver(sendHeight);
+      resizeObserver.observe(document.body);
+    }
     
     // Execute the user's JavaScript
     console.log('IFRAME: About to execute user JS...');
     try {
-      ${jsCode.join('\n')}
+      ${escapedJsCode}
       console.log('IFRAME: User JS executed successfully');
     } catch (e) {
       console.error('IFRAME: Code execution error:', e);
@@ -988,6 +1009,7 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
     
     // Send final height after scripts run
     setTimeout(sendHeight, 500);
+    setTimeout(sendHeight, 1000);
   </script>
 </body>
 </html>`;
@@ -1016,9 +1038,13 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
     return <div className="combined-code-executor my-8 p-4 bg-gray-100 rounded-lg">Loading interactive content...</div>;
   }
 
+  // Generate a stable key based on srcdoc length to force iframe recreation
+  const iframeKey = `code-executor-${srcdoc.length}`;
+  
   return (
     <div className="combined-code-executor my-8">
       <iframe
+        key={iframeKey}
         ref={iframeRef}
         title="Executable Code"
         className="w-full border-0 rounded-lg bg-white shadow-lg"
@@ -1027,8 +1053,9 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
           minHeight: '200px',
           maxHeight: '2000px'
         }}
-        sandbox="allow-scripts allow-same-origin"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
         srcDoc={srcdoc}
+        onLoad={() => console.log('CombinedCodeExecutor: iframe onLoad fired')}
       />
     </div>
   );
