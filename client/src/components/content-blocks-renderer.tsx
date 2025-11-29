@@ -85,6 +85,14 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = content;
   
+  // Check if blocks already contain structural content (paragraphs, headings, lists)
+  // If so, we should NOT render duplicate content from HTML
+  const blocksHaveStructuralContent = blocks.some(block => 
+    block.type === 'paragraph' || block.type === 'heading' || block.type === 'list'
+  );
+  
+  console.log('IntegratedContentRenderer: blocksHaveStructuralContent =', blocksHaveStructuralContent);
+  
   // Extract and inject style tags into the document
   useEffect(() => {
     if (!containerRef.current) return;
@@ -127,6 +135,56 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   // Debug: Log element count and types
   console.log(`IntegratedContentRenderer: Found ${elements.length} top-level elements`, 
     elements.map((el, i) => `${i}: ${el.tagName}`).join(', '));
+  
+  // Tags that are structural content (would be duplicated if blocks already have them)
+  const structuralTags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'div'];
+  
+  // If blocks have structural content, only extract code blocks from HTML
+  // and render blocks as the main content
+  if (blocksHaveStructuralContent) {
+    // Extract only code blocks from HTML (for execution)
+    elements.forEach((el) => {
+      if (el.tagName.toLowerCase() === 'pre') {
+        const codeEl = el.querySelector('code');
+        if (codeEl) {
+          const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
+          if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
+            console.log('Collecting code block:', language, 'length:', codeEl.textContent?.length);
+            collectedCodeBlocks.push({
+              code: codeEl.textContent || '',
+              language: language
+            });
+          }
+        }
+      }
+    });
+    
+    // Render all blocks in order
+    const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
+    sortedBlocks.forEach((block, idx) => {
+      contentParts.push(
+        <div key={`block-${idx}`} className="my-6">
+          {renderBlock(block)}
+        </div>
+      );
+    });
+    
+    // Add combined code executor at the end if there are collected code blocks
+    if (collectedCodeBlocks.length > 0) {
+      console.log('Rendering CombinedCodeExecutor with', collectedCodeBlocks.length, 'code blocks');
+      contentParts.push(
+        <CombinedCodeExecutor 
+          key="combined-code-executor" 
+          codeBlocks={collectedCodeBlocks} 
+        />
+      );
+    }
+    
+    return <div ref={containerRef} className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
+  }
+  
+  // If blocks don't have structural content, use the original logic
+  // (render HTML content with blocks inserted at positions)
   
   // Group blocks by position
   const blocksByPosition = new Map<number, ContentBlock[]>();
@@ -830,16 +888,16 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
   );
 }
 
-// Code Block Renderer - Executes HTML/CSS/JS code
-// CombinedCodeExecutor - collects all HTML, CSS, JS code blocks and executes them in order
+// Code Block Renderer - Executes HTML/CSS/JS code using iframe for proper script execution
+// CombinedCodeExecutor - collects all HTML, CSS, JS code blocks and executes them in an iframe
 function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string; language: string }> }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [iframeHeight, setIframeHeight] = useState(400);
 
   useEffect(() => {
-    if (!containerRef.current || codeBlocks.length === 0) return;
+    if (!iframeRef.current || codeBlocks.length === 0) return;
 
-    const container = containerRef.current;
-    container.innerHTML = '';
+    const iframe = iframeRef.current;
     
     // Separate code by type
     const htmlCode: string[] = [];
@@ -856,69 +914,96 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
       }
     });
     
-    // 1. First, inject CSS into head
-    const injectedStyles: HTMLStyleElement[] = [];
-    if (cssCode.length > 0) {
-      const styleEl = document.createElement('style');
-      styleEl.textContent = cssCode.join('\n');
-      styleEl.setAttribute('data-executable-code', 'true');
-      document.head.appendChild(styleEl);
-      injectedStyles.push(styleEl);
+    // Build the complete HTML document for the iframe
+    const iframeContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      padding: 16px; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    ${cssCode.join('\n')}
+  </style>
+</head>
+<body>
+  ${htmlCode.join('\n')}
+  <script>
+    // Send height to parent for auto-resize
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
     }
     
-    // 2. Then, render HTML into the container
-    if (htmlCode.length > 0) {
-      const combinedHtml = htmlCode.join('\n');
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = combinedHtml;
-      
-      // Extract inline styles from HTML
-      const styleTags = tempDiv.querySelectorAll('style');
-      styleTags.forEach(styleTag => {
-        const newStyle = document.createElement('style');
-        newStyle.textContent = styleTag.textContent;
-        newStyle.setAttribute('data-executable-code', 'true');
-        document.head.appendChild(newStyle);
-        injectedStyles.push(newStyle);
-        styleTag.remove();
-      });
-      
-      // Extract inline scripts (will be executed later)
-      const inlineScripts: string[] = [];
-      const scriptTags = tempDiv.querySelectorAll('script');
-      scriptTags.forEach(scriptTag => {
-        if (scriptTag.textContent) {
-          inlineScripts.push(scriptTag.textContent);
-        }
-        scriptTag.remove();
-      });
-      
-      container.innerHTML = tempDiv.innerHTML;
-      
-      // Add inline scripts to JS execution queue
-      jsCode.push(...inlineScripts);
+    // Send height after DOM and images are loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(sendHeight, 100);
+    });
+    window.addEventListener('load', function() {
+      setTimeout(sendHeight, 200);
+    });
+    
+    // Observe DOM changes and resize
+    const resizeObserver = new ResizeObserver(sendHeight);
+    resizeObserver.observe(document.body);
+    
+    // Execute the user's JavaScript
+    try {
+      ${jsCode.join('\n')}
+    } catch (e) {
+      console.error('Code execution error:', e);
     }
     
-    // 3. Finally, execute JavaScript after a delay to ensure DOM is ready
-    const scripts: HTMLScriptElement[] = [];
-    if (jsCode.length > 0) {
-      setTimeout(() => {
-        const combinedJs = jsCode.join('\n');
-        const scriptEl = document.createElement('script');
-        scriptEl.textContent = combinedJs;
-        scriptEl.setAttribute('data-executable-code', 'true');
-        document.body.appendChild(scriptEl);
-        scripts.push(scriptEl);
-      }, 100); // Small delay to ensure DOM is fully rendered
+    // Send final height after scripts run
+    setTimeout(sendHeight, 500);
+  </script>
+</body>
+</html>`;
+
+    // Write content to iframe
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (iframeDoc) {
+      iframeDoc.open();
+      iframeDoc.write(iframeContent);
+      iframeDoc.close();
     }
+    
+    // Listen for height messages from iframe
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'iframeHeight' && typeof event.data.height === 'number') {
+        setIframeHeight(Math.max(200, event.data.height + 32));
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
     
     return () => {
-      injectedStyles.forEach(style => style.remove());
-      scripts.forEach(script => script.remove());
+      window.removeEventListener('message', handleMessage);
     };
   }, [codeBlocks]);
 
-  return <div ref={containerRef} className="combined-code-executor" />;
+  console.log('CombinedCodeExecutor rendering iframe with height:', iframeHeight);
+
+  return (
+    <div className="combined-code-executor my-8">
+      <iframe
+        ref={iframeRef}
+        title="Executable Code"
+        className="w-full border-0 rounded-lg bg-white"
+        style={{ 
+          height: `${iframeHeight}px`,
+          minHeight: '200px',
+          maxHeight: '2000px'
+        }}
+        sandbox="allow-scripts allow-same-origin"
+      />
+    </div>
+  );
 }
 
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
