@@ -14,8 +14,8 @@ function blockToHtml(block: Block): string {
       return `<p>${block.text}</p>`;
     
     case 'code':
-      const language = block.language ? ` class="language-${escapeHtml(block.language)}"` : '';
-      return `<pre><code${language}>${escapeHtml(block.code)}</code></pre>`;
+      // Output code as raw HTML to be executed/rendered
+      return block.code;
     
     case 'list':
       return renderList(block.items, block.style);
