@@ -255,6 +255,8 @@ function renderBlock(block: ContentBlock) {
       return <SchemaBlock block={block} />;
     case 'list':
       return <ListBlock block={block} />;
+    case 'code':
+      return <CodeBlock block={block} />;
     case 'consultation':
       return <ConsultationBlock block={block} />;
     case 'whatsappChannel':
@@ -770,6 +772,32 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
     <ol className="list-content">{renderListItems(items)}</ol>
   ) : (
     <ul className="list-content">{renderListItems(items)}</ul>
+  );
+}
+
+// Code Block Renderer
+function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
+  const blockData = block as any;
+  const code = block.data?.code ?? blockData.code ?? '';
+  const language = block.data?.language ?? blockData.language ?? '';
+
+  if (!code) {
+    return null;
+  }
+
+  return (
+    <div className="code-block my-4">
+      {language && (
+        <div className="bg-gray-800 text-gray-300 text-xs px-4 py-2 rounded-t-lg font-mono">
+          {language}
+        </div>
+      )}
+      <pre className={`bg-gray-900 text-gray-100 p-4 overflow-x-auto ${language ? 'rounded-b-lg' : 'rounded-lg'}`}>
+        <code className={language ? `language-${language}` : ''}>
+          {code}
+        </code>
+      </pre>
+    </div>
   );
 }
 

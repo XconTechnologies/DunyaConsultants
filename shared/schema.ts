@@ -19,7 +19,8 @@ export type ContentBlock =
   | ConsultationBlock
   | WhatsAppChannelBlock
   | TipBlock
-  | ListBlock;
+  | ListBlock
+  | CodeBlock;
 
 export interface ParagraphBlock {
   id: string;
@@ -206,6 +207,16 @@ export interface ListBlock {
       text: string;
       children?: any[];
     }>;
+  };
+}
+
+export interface CodeBlock {
+  id: string;
+  type: 'code';
+  position: number;
+  data: {
+    code: string;
+    language?: string;
   };
 }
 

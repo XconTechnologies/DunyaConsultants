@@ -1063,6 +1063,15 @@ export default function BlogEditor() {
             }
           };
         
+        case 'code':
+          return {
+            ...baseBlock,
+            data: {
+              code: blockData.code ?? (block as any).code ?? '',
+              language: blockData.language ?? (block as any).language ?? ''
+            }
+          };
+        
         default:
           // For other block types, return as-is
           return block;
