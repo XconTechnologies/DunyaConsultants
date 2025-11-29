@@ -190,10 +190,13 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
       // Check if this is a <pre><code> element that should be executed as HTML
       if (el.tagName.toLowerCase() === 'pre') {
         const codeEl = el.querySelector('code');
+        console.log('Found <pre> element, codeEl:', codeEl, 'className:', codeEl?.className);
         if (codeEl) {
           const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
+          console.log('Detected language:', language, 'from className:', codeEl.className);
           // If it's HTML, CSS, or JavaScript code, execute it
           if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
+            console.log('Executing code block with language:', language, 'code length:', codeEl.textContent?.length);
             // Unescape the HTML entities and execute
             contentParts.push(
               <ExecutableCodeBlock 
