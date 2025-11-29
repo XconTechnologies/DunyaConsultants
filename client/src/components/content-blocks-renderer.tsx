@@ -893,27 +893,46 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
 function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string; language: string }> }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeHeight, setIframeHeight] = useState(400);
+  const [srcdoc, setSrcdoc] = useState('');
 
   useEffect(() => {
-    if (!iframeRef.current || codeBlocks.length === 0) return;
+    if (codeBlocks.length === 0) return;
 
     const iframe = iframeRef.current;
     
-    // Separate code by type
+    // Helper function to decode HTML entities
+    const decodeHtmlEntities = (text: string): string => {
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = text;
+      return textarea.value;
+    };
+    
+    // Separate code by type and decode HTML entities
     const htmlCode: string[] = [];
     const cssCode: string[] = [];
     const jsCode: string[] = [];
     
     codeBlocks.forEach(({ code, language }) => {
+      // Decode HTML entities (e.g., &lt; -> <, &gt; -> >, &amp; -> &)
+      const decodedCode = decodeHtmlEntities(code);
+      console.log(`CombinedCodeExecutor: ${language} code sample (first 200 chars):`, decodedCode.substring(0, 200));
+      
       if (language === 'html') {
-        htmlCode.push(code);
+        htmlCode.push(decodedCode);
       } else if (language === 'css') {
-        cssCode.push(code);
+        cssCode.push(decodedCode);
       } else if (language === 'javascript' || language === 'js') {
-        jsCode.push(code);
+        jsCode.push(decodedCode);
       }
     });
     
+    // Log what we're about to put in the iframe
+    console.log('CombinedCodeExecutor: Building iframe with', {
+      htmlLength: htmlCode.join('\n').length,
+      cssLength: cssCode.join('\n').length,
+      jsLength: jsCode.join('\n').length
+    });
+
     // Build the complete HTML document for the iframe
     const iframeContent = `
 <!DOCTYPE html>
@@ -927,6 +946,7 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
       margin: 0; 
       padding: 16px; 
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
     }
     ${cssCode.join('\n')}
   </style>
@@ -934,17 +954,22 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
 <body>
   ${htmlCode.join('\n')}
   <script>
+    console.log('IFRAME: Script starting...');
+    
     // Send height to parent for auto-resize
     function sendHeight() {
       const height = document.body.scrollHeight;
+      console.log('IFRAME: Sending height:', height);
       window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
     }
     
     // Send height after DOM and images are loaded
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('IFRAME: DOMContentLoaded');
       setTimeout(sendHeight, 100);
     });
     window.addEventListener('load', function() {
+      console.log('IFRAME: Window loaded');
       setTimeout(sendHeight, 200);
     });
     
@@ -953,10 +978,12 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
     resizeObserver.observe(document.body);
     
     // Execute the user's JavaScript
+    console.log('IFRAME: About to execute user JS...');
     try {
       ${jsCode.join('\n')}
+      console.log('IFRAME: User JS executed successfully');
     } catch (e) {
-      console.error('Code execution error:', e);
+      console.error('IFRAME: Code execution error:', e);
     }
     
     // Send final height after scripts run
@@ -965,17 +992,13 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
 </body>
 </html>`;
 
-    // Write content to iframe
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (iframeDoc) {
-      iframeDoc.open();
-      iframeDoc.write(iframeContent);
-      iframeDoc.close();
-    }
+    // Set srcdoc to inject content into iframe
+    setSrcdoc(iframeContent);
     
     // Listen for height messages from iframe
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === 'iframeHeight' && typeof event.data.height === 'number') {
+        console.log('CombinedCodeExecutor: Received height message:', event.data.height);
         setIframeHeight(Math.max(200, event.data.height + 32));
       }
     };
@@ -987,20 +1010,25 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
     };
   }, [codeBlocks]);
 
-  console.log('CombinedCodeExecutor rendering iframe with height:', iframeHeight);
+  console.log('CombinedCodeExecutor rendering iframe with height:', iframeHeight, 'srcdoc length:', srcdoc.length);
+
+  if (!srcdoc) {
+    return <div className="combined-code-executor my-8 p-4 bg-gray-100 rounded-lg">Loading interactive content...</div>;
+  }
 
   return (
     <div className="combined-code-executor my-8">
       <iframe
         ref={iframeRef}
         title="Executable Code"
-        className="w-full border-0 rounded-lg bg-white"
+        className="w-full border-0 rounded-lg bg-white shadow-lg"
         style={{ 
           height: `${iframeHeight}px`,
           minHeight: '200px',
           maxHeight: '2000px'
         }}
         sandbox="allow-scripts allow-same-origin"
+        srcDoc={srcdoc}
       />
     </div>
   );
