@@ -1239,7 +1239,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* If contentBlocks exist, use integrated rendering to insert blocks at their positions */}
+                  {/* Always use ContentBlocksRenderer to handle code blocks properly */}
                   {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
                     <ContentBlocksRenderer 
                       blocks={blogPost.contentBlocks} 
@@ -1247,59 +1247,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       content={sanitizedHTMLContent}
                     />
                   ) : isHTMLContent ? (
-                    /* Handle HTML content without content blocks */
-                    <div 
-                      className="blog-content prose prose-xl max-w-none" 
-                      dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
-                      ref={(el) => {
-                        if (el) {
-                          setTimeout(() => {
-                            // Skip FAQ initialization for HTML content to prevent clearing the content
-                            // HTML content already has its own FAQ structure if needed
-                            
-                            // Execute inline and internal scripts safely
-                            const scripts = el.querySelectorAll('script:not([data-executed])');
-                            scripts.forEach((oldScript) => {
-                              try {
-                                // Skip if already executed
-                                if (oldScript.hasAttribute('data-executed')) return;
-                                
-                                const scriptContent = oldScript.textContent || oldScript.innerHTML;
-                                
-                                // Skip empty scripts
-                                if (!scriptContent || scriptContent.trim() === '') {
-                                  oldScript.setAttribute('data-executed', 'true');
-                                  return;
-                                }
-                                
-                                // Validate script content - skip if it contains HTML tags
-                                if (scriptContent.includes('<') && scriptContent.includes('>')) {
-                                  console.warn('Skipping invalid script with HTML content');
-                                  oldScript.setAttribute('data-executed', 'true');
-                                  return;
-                                }
-                                
-                                // Mark as executed
-                                oldScript.setAttribute('data-executed', 'true');
-                                
-                                // Execute safely
-                                try {
-                                  const scriptFunction = new Function(scriptContent);
-                                  scriptFunction();
-                                } catch (execError) {
-                                  console.warn('Script execution error:', execError);
-                                }
-                              } catch (error) {
-                                console.warn('Error processing script in ref:', error);
-                                if (oldScript) oldScript.setAttribute('data-executed', 'true');
-                              }
-                            });
-                            
-                            // Execute inline styles (already working via dangerouslySetInnerHTML)
-                            // Internal CSS in <style> tags will automatically work
-                          }, 100);
-                        }
-                      }}
+                    /* Handle HTML content without content blocks - use ContentBlocksRenderer for code execution */
+                    <ContentBlocksRenderer 
+                      blocks={[]} 
+                      integrated={true} 
+                      content={contentSections[0]?.content || ''}
                     />
                   ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">

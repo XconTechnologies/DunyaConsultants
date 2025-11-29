@@ -9,9 +9,12 @@ interface ContentBlocksRendererProps {
 }
 
 export default function ContentBlocksRenderer({ blocks, content = '', integrated = false }: ContentBlocksRendererProps) {
+  console.log('ContentBlocksRenderer called:', { blocksLength: blocks?.length, contentLength: content?.length, integrated });
+  
   if (!blocks || blocks.length === 0) {
     // No blocks but has content - render content directly
     if (content) {
+      console.log('ContentBlocksRenderer: Rendering with IntegratedContentRenderer (no blocks)');
       return <IntegratedContentRenderer content={content} blocks={[]} />;
     }
     return null;
@@ -20,10 +23,13 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
   const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
 
   // If integrated mode AND content exists, use IntegratedContentRenderer
-  // which properly handles both HTML content and block placeholders
+  // which properly handles both HTML content, block placeholders, and code block execution
   if (integrated && content) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = content;
+    
+    // Check if HTML content has code blocks that need execution
+    const hasCodeBlocks = tempDiv.querySelectorAll('pre code[class*="language-"]').length > 0;
     
     // Check if blocks contain ALL content types (paragraph, heading, list, etc.)
     // or just special blocks (tip, consultation, whatsapp, faq)
@@ -37,9 +43,10 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
       return text.trim().length > 0;
     });
     
-    // If blocks have full content (paragraphs, headings) AND HTML also has content,
-    // this is duplication - render ONLY blocks
-    if (hasFullContent && contentElements.length > 0) {
+    // Always use IntegratedContentRenderer if there are code blocks to execute
+    // Otherwise, if blocks have full content AND HTML also has content, this is duplication
+    if (hasFullContent && contentElements.length > 0 && !hasCodeBlocks) {
+      console.log('ContentBlocksRenderer: Rendering blocks only (no code blocks detected)');
       return (
         <div className="content-blocks-wrapper prose prose-xl max-w-none">
           {sortedBlocks.map((block) => (
@@ -51,9 +58,9 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
       );
     }
     
-    // Otherwise, use integrated rendering to merge HTML content with block placeholders
-    // This handles cases where blocks only contain special blocks (tip, consultation, etc.)
-    // and regular content (paragraphs, headings) is in the HTML
+    // Use integrated rendering to merge HTML content with block placeholders
+    // This handles code block execution AND cases where blocks only contain special blocks
+    console.log('ContentBlocksRenderer: Using IntegratedContentRenderer (hasCodeBlocks:', hasCodeBlocks, ')');
     return <IntegratedContentRenderer content={content} blocks={sortedBlocks} />;
   }
 
@@ -71,6 +78,8 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
 
 // Integrated renderer that inserts blocks at specific positions
 function IntegratedContentRenderer({ content, blocks }: { content: string; blocks: ContentBlock[] }) {
+  console.log('IntegratedContentRenderer called:', { contentLength: content?.length, blocksLength: blocks?.length });
+  
   const containerRef = useRef<HTMLDivElement>(null);
   
   const tempDiv = document.createElement('div');
@@ -111,6 +120,9 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   }) as Element[];
   
   const contentParts: JSX.Element[] = [];
+  
+  // Collect all code blocks that should be executed together
+  const collectedCodeBlocks: Array<{ code: string; language: string }> = [];
   
   // Debug: Log element count and types
   console.log(`IntegratedContentRenderer: Found ${elements.length} top-level elements`, 
@@ -190,21 +202,16 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
       // Check if this is a <pre><code> element that should be executed as HTML
       if (el.tagName.toLowerCase() === 'pre') {
         const codeEl = el.querySelector('code');
-        console.log('Found <pre> element, codeEl:', codeEl, 'className:', codeEl?.className);
         if (codeEl) {
           const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
-          console.log('Detected language:', language, 'from className:', codeEl.className);
-          // If it's HTML, CSS, or JavaScript code, execute it
+          // If it's HTML, CSS, or JavaScript code, collect it for combined execution
           if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
-            console.log('Executing code block with language:', language, 'code length:', codeEl.textContent?.length);
-            // Unescape the HTML entities and execute
-            contentParts.push(
-              <ExecutableCodeBlock 
-                key={`code-${index}`} 
-                code={codeEl.textContent || ''} 
-                language={language}
-              />
-            );
+            console.log('Collecting code block:', language, 'length:', codeEl.textContent?.length);
+            collectedCodeBlocks.push({
+              code: codeEl.textContent || '',
+              language: language
+            });
+            // Don't render anything here - will render combined at the end
           } else {
             // Regular code block - render as-is
             contentParts.push(
@@ -260,6 +267,17 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
       renderedBlockIds.add(block.id);
     }
   });
+  
+  // Add combined code executor at the end if there are collected code blocks
+  if (collectedCodeBlocks.length > 0) {
+    console.log('Rendering CombinedCodeExecutor with', collectedCodeBlocks.length, 'code blocks');
+    contentParts.push(
+      <CombinedCodeExecutor 
+        key="combined-code-executor" 
+        codeBlocks={collectedCodeBlocks} 
+      />
+    );
+  }
   
   return <div ref={containerRef} className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
 }
@@ -813,94 +831,94 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
 }
 
 // Code Block Renderer - Executes HTML/CSS/JS code
-// ExecutableCodeBlock - renders code from <pre><code> elements as executable HTML/CSS/JS
-function ExecutableCodeBlock({ code, language }: { code: string; language: string }) {
+// CombinedCodeExecutor - collects all HTML, CSS, JS code blocks and executes them in order
+function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string; language: string }> }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [combinedCode, setCombinedCode] = useState('');
-
-  // Collect all code blocks from the page with the same language type
-  useEffect(() => {
-    // This handles the old format where code was saved in <pre><code> tags
-    setCombinedCode(code);
-  }, [code]);
 
   useEffect(() => {
-    if (!containerRef.current || !combinedCode) return;
+    if (!containerRef.current || codeBlocks.length === 0) return;
 
     const container = containerRef.current;
     container.innerHTML = '';
-
-    // For CSS, inject as style tag
-    if (language === 'css') {
+    
+    // Separate code by type
+    const htmlCode: string[] = [];
+    const cssCode: string[] = [];
+    const jsCode: string[] = [];
+    
+    codeBlocks.forEach(({ code, language }) => {
+      if (language === 'html') {
+        htmlCode.push(code);
+      } else if (language === 'css') {
+        cssCode.push(code);
+      } else if (language === 'javascript' || language === 'js') {
+        jsCode.push(code);
+      }
+    });
+    
+    // 1. First, inject CSS into head
+    const injectedStyles: HTMLStyleElement[] = [];
+    if (cssCode.length > 0) {
       const styleEl = document.createElement('style');
-      styleEl.textContent = combinedCode;
+      styleEl.textContent = cssCode.join('\n');
       styleEl.setAttribute('data-executable-code', 'true');
       document.head.appendChild(styleEl);
-      return () => {
-        styleEl.remove();
-      };
+      injectedStyles.push(styleEl);
     }
-
-    // For JavaScript, execute as script
-    if (language === 'javascript' || language === 'js') {
-      const scriptEl = document.createElement('script');
-      scriptEl.textContent = combinedCode;
-      scriptEl.setAttribute('data-executable-code', 'true');
-      document.body.appendChild(scriptEl);
-      return () => {
-        scriptEl.remove();
-      };
-    }
-
-    // For HTML, render directly with style and script extraction
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = combinedCode;
-
-    const styleTags = tempDiv.querySelectorAll('style');
-    const injectedStyles: HTMLStyleElement[] = [];
-    styleTags.forEach(styleTag => {
-      const newStyle = document.createElement('style');
-      newStyle.textContent = styleTag.textContent;
-      newStyle.setAttribute('data-executable-code', 'true');
-      document.head.appendChild(newStyle);
-      injectedStyles.push(newStyle);
-      styleTag.remove();
-    });
-
-    const scriptTags = tempDiv.querySelectorAll('script');
-    const scripts: HTMLScriptElement[] = [];
-    scriptTags.forEach(scriptTag => {
-      const newScript = document.createElement('script');
-      Array.from(scriptTag.attributes).forEach(attr => {
-        newScript.setAttribute(attr.name, attr.value);
+    
+    // 2. Then, render HTML into the container
+    if (htmlCode.length > 0) {
+      const combinedHtml = htmlCode.join('\n');
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = combinedHtml;
+      
+      // Extract inline styles from HTML
+      const styleTags = tempDiv.querySelectorAll('style');
+      styleTags.forEach(styleTag => {
+        const newStyle = document.createElement('style');
+        newStyle.textContent = styleTag.textContent;
+        newStyle.setAttribute('data-executable-code', 'true');
+        document.head.appendChild(newStyle);
+        injectedStyles.push(newStyle);
+        styleTag.remove();
       });
-      if (scriptTag.src) {
-        newScript.src = scriptTag.src;
-      } else {
-        newScript.textContent = scriptTag.textContent;
-      }
-      scripts.push(newScript);
-      scriptTag.remove();
-    });
-
-    container.innerHTML = tempDiv.innerHTML;
-
-    scripts.forEach(script => {
-      document.body.appendChild(script);
-    });
-
+      
+      // Extract inline scripts (will be executed later)
+      const inlineScripts: string[] = [];
+      const scriptTags = tempDiv.querySelectorAll('script');
+      scriptTags.forEach(scriptTag => {
+        if (scriptTag.textContent) {
+          inlineScripts.push(scriptTag.textContent);
+        }
+        scriptTag.remove();
+      });
+      
+      container.innerHTML = tempDiv.innerHTML;
+      
+      // Add inline scripts to JS execution queue
+      jsCode.push(...inlineScripts);
+    }
+    
+    // 3. Finally, execute JavaScript after a delay to ensure DOM is ready
+    const scripts: HTMLScriptElement[] = [];
+    if (jsCode.length > 0) {
+      setTimeout(() => {
+        const combinedJs = jsCode.join('\n');
+        const scriptEl = document.createElement('script');
+        scriptEl.textContent = combinedJs;
+        scriptEl.setAttribute('data-executable-code', 'true');
+        document.body.appendChild(scriptEl);
+        scripts.push(scriptEl);
+      }, 100); // Small delay to ensure DOM is fully rendered
+    }
+    
     return () => {
       injectedStyles.forEach(style => style.remove());
       scripts.forEach(script => script.remove());
     };
-  }, [combinedCode, language]);
+  }, [codeBlocks]);
 
-  // CSS and JS blocks don't render visible content
-  if (language === 'css' || language === 'javascript' || language === 'js') {
-    return <div ref={containerRef} className="hidden" />;
-  }
-
-  return <div ref={containerRef} className="executable-code-block" />;
+  return <div ref={containerRef} className="combined-code-executor" />;
 }
 
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
