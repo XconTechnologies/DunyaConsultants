@@ -437,16 +437,25 @@ function ParagraphBlock({ block }: { block: ContentBlock & { type: 'paragraph' }
     // Add remaining HTML content
     container.innerHTML = tempDiv.innerHTML;
     
-    // Execute scripts after DOM is ready
+    // Execute scripts after DOM is ready - must append to document.body for execution
+    const appendedScripts: HTMLScriptElement[] = [];
     scripts.forEach(script => {
-      container.appendChild(script);
+      // Create a new script element to ensure it executes
+      const execScript = document.createElement('script');
+      execScript.setAttribute('data-paragraph-script', block.id);
+      if (script.src) {
+        execScript.src = script.src;
+      } else if (script.textContent) {
+        execScript.textContent = script.textContent;
+      }
+      document.body.appendChild(execScript);
+      appendedScripts.push(execScript);
     });
     
     // Cleanup function
     return () => {
       injectedStyles.forEach(s => s.remove());
-      const addedScripts = container.querySelectorAll('script');
-      addedScripts.forEach(s => s.remove());
+      appendedScripts.forEach(s => s.remove());
     };
   }, [text, hasHTMLTags, block.id]);
   
@@ -1042,23 +1051,22 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
   const iframeKey = `code-executor-${srcdoc.length}`;
   
   return (
-    <div className="combined-code-executor my-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-      <div className="text-sm text-gray-500 mb-2">Interactive Content ({srcdoc.length} chars)</div>
+    <div className="combined-code-executor my-8">
       <iframe
         key={iframeKey}
         ref={iframeRef}
         title="Executable Code"
-        className="w-full rounded-lg bg-white"
+        className="w-full rounded-lg bg-white shadow-lg"
         style={{ 
           height: `${iframeHeight}px`,
           minHeight: '400px',
           maxHeight: '2000px',
-          border: '2px solid #3b82f6',
+          border: '1px solid #e5e7eb',
           display: 'block'
         }}
         sandbox="allow-scripts allow-popups allow-forms"
         srcDoc={srcdoc}
-        onLoad={() => console.log('CombinedCodeExecutor: iframe onLoad fired, srcdoc length:', srcdoc.length)}
+        onLoad={() => console.log('CombinedCodeExecutor: iframe onLoad fired')}
       />
     </div>
   );
@@ -1078,6 +1086,7 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = code;
 
+    // Extract and inject styles into document head
     const styleTags = tempDiv.querySelectorAll('style');
     const injectedStyles: HTMLStyleElement[] = [];
     styleTags.forEach(styleTag => {
@@ -1089,31 +1098,38 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
       styleTag.remove();
     });
 
+    // Extract scripts for later execution
     const scriptTags = tempDiv.querySelectorAll('script');
-    const scripts: HTMLScriptElement[] = [];
+    const scriptContents: Array<{ src?: string; content?: string }> = [];
     scriptTags.forEach(scriptTag => {
-      const newScript = document.createElement('script');
-      Array.from(scriptTag.attributes).forEach(attr => {
-        newScript.setAttribute(attr.name, attr.value);
-      });
       if (scriptTag.src) {
-        newScript.src = scriptTag.src;
-      } else {
-        newScript.textContent = scriptTag.textContent;
+        scriptContents.push({ src: scriptTag.src });
+      } else if (scriptTag.textContent) {
+        scriptContents.push({ content: scriptTag.textContent });
       }
-      scripts.push(newScript);
       scriptTag.remove();
     });
 
+    // Add HTML content
     container.innerHTML = tempDiv.innerHTML;
 
-    scripts.forEach(script => {
-      document.body.appendChild(script);
+    // Execute scripts by creating new elements and appending to body
+    const appendedScripts: HTMLScriptElement[] = [];
+    scriptContents.forEach(({ src, content }) => {
+      const execScript = document.createElement('script');
+      execScript.setAttribute('data-code-block-script', block.id);
+      if (src) {
+        execScript.src = src;
+      } else if (content) {
+        execScript.textContent = content;
+      }
+      document.body.appendChild(execScript);
+      appendedScripts.push(execScript);
     });
 
     return () => {
       injectedStyles.forEach(style => style.remove());
-      scripts.forEach(script => script.remove());
+      appendedScripts.forEach(script => script.remove());
     };
   }, [code, block.id]);
 
