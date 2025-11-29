@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
 import { normalizeFeaturedImageUrl, extractAltText } from "@/lib/image-utils";
 import { Copy, Check } from "lucide-react";
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
@@ -776,12 +778,23 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
   );
 }
 
-// Code Block Renderer with Copy Functionality
+// Code Block Renderer with Syntax Highlighting
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   const blockData = block as any;
   const code = block.data?.code ?? blockData.code ?? '';
   const language = block.data?.language ?? blockData.language ?? '';
   const [copied, setCopied] = useState(false);
+  const codeRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (codeRef.current && code) {
+      try {
+        Prism.highlightElement(codeRef.current);
+      } catch (err) {
+        console.log('Syntax highlighting failed:', err);
+      }
+    }
+  }, [code, language]);
 
   const handleCopy = async () => {
     try {
@@ -798,6 +811,7 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   }
 
   const languageLabel = language ? language.charAt(0).toUpperCase() + language.slice(1) : 'Code';
+  const langClass = language ? `language-${language.toLowerCase()}` : '';
 
   return (
     <div className="code-block my-6 rounded-lg overflow-hidden shadow-lg border border-gray-600" data-testid={`code-block-${block.id}`}>
@@ -822,8 +836,10 @@ function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
           )}
         </button>
       </div>
-      <pre className="bg-[#1e1e1e] text-[#d4d4d4] p-4 overflow-x-auto m-0 text-sm leading-relaxed font-mono whitespace-pre-wrap break-words">
-        <code>{code}</code>
+      <pre className={`bg-[#2d2d2d] p-4 overflow-x-auto m-0 text-sm leading-relaxed ${langClass}`}>
+        <code ref={codeRef} className={langClass}>
+          {code}
+        </code>
       </pre>
     </div>
   );
