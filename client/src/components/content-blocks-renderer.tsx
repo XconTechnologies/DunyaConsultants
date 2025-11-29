@@ -1042,20 +1042,23 @@ function CombinedCodeExecutor({ codeBlocks }: { codeBlocks: Array<{ code: string
   const iframeKey = `code-executor-${srcdoc.length}`;
   
   return (
-    <div className="combined-code-executor my-8">
+    <div className="combined-code-executor my-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="text-sm text-gray-500 mb-2">Interactive Content ({srcdoc.length} chars)</div>
       <iframe
         key={iframeKey}
         ref={iframeRef}
         title="Executable Code"
-        className="w-full border-0 rounded-lg bg-white shadow-lg"
+        className="w-full rounded-lg bg-white"
         style={{ 
           height: `${iframeHeight}px`,
-          minHeight: '200px',
-          maxHeight: '2000px'
+          minHeight: '400px',
+          maxHeight: '2000px',
+          border: '2px solid #3b82f6',
+          display: 'block'
         }}
-        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        sandbox="allow-scripts allow-popups allow-forms"
         srcDoc={srcdoc}
-        onLoad={() => console.log('CombinedCodeExecutor: iframe onLoad fired')}
+        onLoad={() => console.log('CombinedCodeExecutor: iframe onLoad fired, srcdoc length:', srcdoc.length)}
       />
     </div>
   );
