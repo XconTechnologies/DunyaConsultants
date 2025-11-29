@@ -29,7 +29,13 @@ export default function ContentBlocksRenderer({ blocks, content = '', integrated
     tempDiv.innerHTML = content;
     
     // Check if HTML content has code blocks that need execution
-    const hasCodeBlocks = tempDiv.querySelectorAll('pre code[class*="language-"]').length > 0;
+    const hasCodeBlocksInHtml = tempDiv.querySelectorAll('pre code[class*="language-"]').length > 0;
+    
+    // Check if blocks array contains code blocks
+    const hasCodeBlocksInBlocks = sortedBlocks.some(block => block.type === 'code');
+    
+    // Combined check for code blocks
+    const hasCodeBlocks = hasCodeBlocksInHtml || hasCodeBlocksInBlocks;
     
     // Check if blocks contain ALL content types (paragraph, heading, list, etc.)
     // or just special blocks (tip, consultation, whatsapp, faq)
@@ -142,14 +148,16 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   // If blocks have structural content, only extract code blocks from HTML
   // and render blocks as the main content
   if (blocksHaveStructuralContent) {
-    // Extract only code blocks from HTML (for execution)
+    // Collect code blocks from HTML content (for execution in iframe)
+    // NOTE: In structural mode, HTML content is not rendered, only blocks
+    // So we just collect the code but don't insert placeholder here
     elements.forEach((el) => {
       if (el.tagName.toLowerCase() === 'pre') {
         const codeEl = el.querySelector('code');
         if (codeEl) {
           const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
           if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
-            console.log('Collecting code block:', language, 'length:', codeEl.textContent?.length);
+            console.log('Collecting code block from HTML:', language, 'length:', codeEl.textContent?.length);
             collectedCodeBlocks.push({
               code: codeEl.textContent || '',
               language: language
@@ -159,9 +167,37 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
       }
     });
     
-    // Render all blocks in order
+    // Track where to insert the iframe placeholder
+    let iframePlaceholderIdx = -1;
+    
+    // Render all blocks in order, collecting code blocks for iframe execution
     const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
     sortedBlocks.forEach((block, idx) => {
+      // If this is a code block with HTML/CSS/JS, collect it for iframe execution
+      if (block.type === 'code') {
+        const blockData = block as any;
+        const code = block.data?.code ?? blockData.code ?? '';
+        const language = (block.data?.language ?? blockData.language ?? '').toLowerCase();
+        
+        if (code && (language === 'html' || language === 'css' || language === 'javascript' || language === 'js')) {
+          console.log('Collecting code block from blocks array:', language, 'length:', code.length);
+          collectedCodeBlocks.push({
+            code: code,
+            language: language
+          });
+          
+          // Mark where the iframe should be inserted (at first code block's position)
+          if (iframePlaceholderIdx === -1) {
+            iframePlaceholderIdx = contentParts.length;
+            contentParts.push(
+              <div key={`code-executor-placeholder-${idx}`} data-code-executor-position={idx} />
+            );
+          }
+          return; // Don't render this block directly - it will go to the iframe
+        }
+      }
+      
+      // Render other blocks normally
       contentParts.push(
         <div key={`block-${idx}`} className="my-6">
           {renderBlock(block)}
@@ -169,15 +205,32 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
       );
     });
     
-    // Add combined code executor at the end if there are collected code blocks
+    // Handle code execution
     if (collectedCodeBlocks.length > 0) {
       console.log('Rendering CombinedCodeExecutor with', collectedCodeBlocks.length, 'code blocks');
-      contentParts.push(
-        <CombinedCodeExecutor 
-          key="combined-code-executor" 
-          codeBlocks={collectedCodeBlocks} 
-        />
-      );
+      
+      if (iframePlaceholderIdx !== -1) {
+        // Replace placeholder with the actual CombinedCodeExecutor
+        const placeholderIdx = contentParts.findIndex(
+          part => part.props?.['data-code-executor-position'] !== undefined
+        );
+        if (placeholderIdx !== -1) {
+          contentParts[placeholderIdx] = (
+            <CombinedCodeExecutor 
+              key="combined-code-executor" 
+              codeBlocks={collectedCodeBlocks} 
+            />
+          );
+        }
+      } else {
+        // No code block in blocks array, but HTML code was collected - append at end
+        contentParts.push(
+          <CombinedCodeExecutor 
+            key="combined-code-executor" 
+            codeBlocks={collectedCodeBlocks} 
+          />
+        );
+      }
     }
     
     return <div ref={containerRef} className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
@@ -185,6 +238,38 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   
   // If blocks don't have structural content, use the original logic
   // (render HTML content with blocks inserted at positions)
+  
+  // Track if we've inserted the code executor placeholder
+  let codeExecutorInsertedAlt = false;
+  let codeExecutorPlaceholderKey = '';
+  
+  // Helper function to check if a block should be collected for iframe execution
+  const shouldCollectForIframe = (block: ContentBlock): boolean => {
+    if (block.type !== 'code') return false;
+    const blockData = block as any;
+    const language = (block.data?.language ?? blockData.language ?? '').toLowerCase();
+    return language === 'html' || language === 'css' || language === 'javascript' || language === 'js';
+  };
+  
+  // Helper function to collect a code block and insert placeholder if first
+  const collectCodeBlock = (block: ContentBlock, keyPrefix: string) => {
+    const blockData = block as any;
+    const code = block.data?.code ?? blockData.code ?? '';
+    const language = (block.data?.language ?? blockData.language ?? '').toLowerCase();
+    if (code) {
+      console.log('Collecting code block for iframe:', language, 'length:', code.length);
+      collectedCodeBlocks.push({ code, language });
+      
+      // Insert placeholder at first code block position
+      if (!codeExecutorInsertedAlt) {
+        codeExecutorPlaceholderKey = `code-executor-placeholder-${keyPrefix}`;
+        contentParts.push(
+          <div key={codeExecutorPlaceholderKey} data-code-executor-position-alt="true" />
+        );
+        codeExecutorInsertedAlt = true;
+      }
+    }
+  };
   
   // Group blocks by position
   const blocksByPosition = new Map<number, ContentBlock[]>();
@@ -202,6 +287,12 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   // Add blocks at position 0 (beginning)
   if (blocksByPosition.has(0)) {
     blocksByPosition.get(0)?.forEach((block, idx) => {
+      // Collect code blocks for iframe execution instead of rendering
+      if (shouldCollectForIframe(block)) {
+        collectCodeBlock(block, `0-${idx}`);
+        renderedBlockIds.add(block.id);
+        return;
+      }
       contentParts.push(
         <div key={`block-0-${idx}`} className="my-6">
           {renderBlock(block)}
@@ -264,12 +355,19 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
           const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
           // If it's HTML, CSS, or JavaScript code, collect it for combined execution
           if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
-            console.log('Collecting code block:', language, 'length:', codeEl.textContent?.length);
+            console.log('Collecting code block from HTML:', language, 'length:', codeEl.textContent?.length);
             collectedCodeBlocks.push({
               code: codeEl.textContent || '',
               language: language
             });
-            // Don't render anything here - will render combined at the end
+            // Insert placeholder at position of first HTML code block
+            if (!codeExecutorInsertedAlt) {
+              codeExecutorPlaceholderKey = `code-executor-placeholder-html-${index}`;
+              contentParts.push(
+                <div key={codeExecutorPlaceholderKey} data-code-executor-position-alt="true" />
+              );
+              codeExecutorInsertedAlt = true;
+            }
           } else {
             // Regular code block - render as-is
             contentParts.push(
@@ -302,6 +400,12 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     const blocksAfter = blocksByPosition.get(index + 1);
     if (blocksAfter) {
       blocksAfter.forEach((block, idx) => {
+        // Collect code blocks for iframe execution instead of rendering
+        if (shouldCollectForIframe(block)) {
+          collectCodeBlock(block, `${index + 1}-${idx}`);
+          renderedBlockIds.add(block.id);
+          return;
+        }
         contentParts.push(
           <div key={`block-${index + 1}-${idx}`} className="my-6">
             {renderBlock(block)}
@@ -317,6 +421,12 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
   blocks.forEach((block, idx) => {
     const pos = block.position ?? 999;
     if ((pos >= 999 || pos > elements.length) && !renderedBlockIds.has(block.id)) {
+      // Collect code blocks for iframe execution instead of rendering
+      if (shouldCollectForIframe(block)) {
+        collectCodeBlock(block, `end-${idx}`);
+        renderedBlockIds.add(block.id);
+        return;
+      }
       contentParts.push(
         <div key={`block-end-${idx}`} className="my-6">
           {renderBlock(block)}
@@ -326,15 +436,21 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     }
   });
   
-  // Add combined code executor at the end if there are collected code blocks
-  if (collectedCodeBlocks.length > 0) {
+  // Replace the placeholder with the actual CombinedCodeExecutor
+  if (collectedCodeBlocks.length > 0 && codeExecutorInsertedAlt) {
     console.log('Rendering CombinedCodeExecutor with', collectedCodeBlocks.length, 'code blocks');
-    contentParts.push(
-      <CombinedCodeExecutor 
-        key="combined-code-executor" 
-        codeBlocks={collectedCodeBlocks} 
-      />
+    // Find the placeholder index and replace it
+    const placeholderIdx = contentParts.findIndex(
+      part => part.props?.['data-code-executor-position-alt'] !== undefined
     );
+    if (placeholderIdx !== -1) {
+      contentParts[placeholderIdx] = (
+        <CombinedCodeExecutor 
+          key="combined-code-executor" 
+          codeBlocks={collectedCodeBlocks} 
+        />
+      );
+    }
   }
   
   return <div ref={containerRef} className="integrated-content prose prose-xl max-w-none">{contentParts}</div>;
