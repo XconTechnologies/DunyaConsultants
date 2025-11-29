@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "@shared/schema";
 import { normalizeFeaturedImageUrl, extractAltText } from "@/lib/image-utils";
+import { Copy, Check } from "lucide-react";
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
@@ -775,27 +776,54 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
   );
 }
 
-// Code Block Renderer
+// Code Block Renderer with Copy Functionality
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   const blockData = block as any;
   const code = block.data?.code ?? blockData.code ?? '';
   const language = block.data?.language ?? blockData.language ?? '';
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
+  };
 
   if (!code) {
     return null;
   }
 
+  const languageLabel = language ? language.charAt(0).toUpperCase() + language.slice(1) : 'Code';
+
   return (
-    <div className="code-block my-4">
-      {language && (
-        <div className="bg-gray-800 text-gray-300 text-xs px-4 py-2 rounded-t-lg font-mono">
-          {language}
-        </div>
-      )}
-      <pre className={`bg-gray-900 text-gray-100 p-4 overflow-x-auto ${language ? 'rounded-b-lg' : 'rounded-lg'}`}>
-        <code className={language ? `language-${language}` : ''}>
-          {code}
-        </code>
+    <div className="code-block my-6 rounded-lg overflow-hidden shadow-lg border border-gray-600" data-testid={`code-block-${block.id}`}>
+      <div className="bg-gray-800 text-gray-300 text-sm px-4 py-2 flex items-center justify-between">
+        <span className="font-medium">{languageLabel}</span>
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-1 text-xs hover:text-white transition-colors px-2 py-1 rounded hover:bg-gray-700"
+          title="Copy code"
+          data-testid="copy-code-button"
+        >
+          {copied ? (
+            <>
+              <Check className="w-4 h-4 text-green-400" />
+              <span className="text-green-400">Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-4 h-4" />
+              <span>Copy</span>
+            </>
+          )}
+        </button>
+      </div>
+      <pre className="bg-[#1e1e1e] text-[#d4d4d4] p-4 overflow-x-auto m-0 text-sm leading-relaxed font-mono whitespace-pre-wrap break-words">
+        <code>{code}</code>
       </pre>
     </div>
   );
