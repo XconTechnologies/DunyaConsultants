@@ -187,13 +187,47 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
         );
       }
     } else {
-      // Regular content element
-      contentParts.push(
-        <div 
-          key={`content-${index}`} 
-          dangerouslySetInnerHTML={{ __html: el.outerHTML }}
-        />
-      );
+      // Check if this is a <pre><code> element that should be executed as HTML
+      if (el.tagName.toLowerCase() === 'pre') {
+        const codeEl = el.querySelector('code');
+        if (codeEl) {
+          const language = codeEl.className?.match(/language-(\w+)/)?.[1]?.toLowerCase();
+          // If it's HTML, CSS, or JavaScript code, execute it
+          if (language === 'html' || language === 'css' || language === 'javascript' || language === 'js') {
+            // Unescape the HTML entities and execute
+            contentParts.push(
+              <ExecutableCodeBlock 
+                key={`code-${index}`} 
+                code={codeEl.textContent || ''} 
+                language={language}
+              />
+            );
+          } else {
+            // Regular code block - render as-is
+            contentParts.push(
+              <div 
+                key={`content-${index}`} 
+                dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+              />
+            );
+          }
+        } else {
+          contentParts.push(
+            <div 
+              key={`content-${index}`} 
+              dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+            />
+          );
+        }
+      } else {
+        // Regular content element
+        contentParts.push(
+          <div 
+            key={`content-${index}`} 
+            dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+          />
+        );
+      }
     }
     
     // Insert blocks after this element
@@ -776,6 +810,96 @@ function ListBlock({ block }: { block: ContentBlock & { type: 'list' } }) {
 }
 
 // Code Block Renderer - Executes HTML/CSS/JS code
+// ExecutableCodeBlock - renders code from <pre><code> elements as executable HTML/CSS/JS
+function ExecutableCodeBlock({ code, language }: { code: string; language: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [combinedCode, setCombinedCode] = useState('');
+
+  // Collect all code blocks from the page with the same language type
+  useEffect(() => {
+    // This handles the old format where code was saved in <pre><code> tags
+    setCombinedCode(code);
+  }, [code]);
+
+  useEffect(() => {
+    if (!containerRef.current || !combinedCode) return;
+
+    const container = containerRef.current;
+    container.innerHTML = '';
+
+    // For CSS, inject as style tag
+    if (language === 'css') {
+      const styleEl = document.createElement('style');
+      styleEl.textContent = combinedCode;
+      styleEl.setAttribute('data-executable-code', 'true');
+      document.head.appendChild(styleEl);
+      return () => {
+        styleEl.remove();
+      };
+    }
+
+    // For JavaScript, execute as script
+    if (language === 'javascript' || language === 'js') {
+      const scriptEl = document.createElement('script');
+      scriptEl.textContent = combinedCode;
+      scriptEl.setAttribute('data-executable-code', 'true');
+      document.body.appendChild(scriptEl);
+      return () => {
+        scriptEl.remove();
+      };
+    }
+
+    // For HTML, render directly with style and script extraction
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = combinedCode;
+
+    const styleTags = tempDiv.querySelectorAll('style');
+    const injectedStyles: HTMLStyleElement[] = [];
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      newStyle.setAttribute('data-executable-code', 'true');
+      document.head.appendChild(newStyle);
+      injectedStyles.push(newStyle);
+      styleTag.remove();
+    });
+
+    const scriptTags = tempDiv.querySelectorAll('script');
+    const scripts: HTMLScriptElement[] = [];
+    scriptTags.forEach(scriptTag => {
+      const newScript = document.createElement('script');
+      Array.from(scriptTag.attributes).forEach(attr => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      if (scriptTag.src) {
+        newScript.src = scriptTag.src;
+      } else {
+        newScript.textContent = scriptTag.textContent;
+      }
+      scripts.push(newScript);
+      scriptTag.remove();
+    });
+
+    container.innerHTML = tempDiv.innerHTML;
+
+    scripts.forEach(script => {
+      document.body.appendChild(script);
+    });
+
+    return () => {
+      injectedStyles.forEach(style => style.remove());
+      scripts.forEach(script => script.remove());
+    };
+  }, [combinedCode, language]);
+
+  // CSS and JS blocks don't render visible content
+  if (language === 'css' || language === 'javascript' || language === 'js') {
+    return <div ref={containerRef} className="hidden" />;
+  }
+
+  return <div ref={containerRef} className="executable-code-block" />;
+}
+
 function CodeBlock({ block }: { block: ContentBlock & { type: 'code' } }) {
   const blockData = block as any;
   const code = block.data?.code ?? blockData.code ?? '';
