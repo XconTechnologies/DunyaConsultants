@@ -409,15 +409,15 @@ export default function StudyAbroadUK() {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span><strong>Step 3:</strong> Secure your offer and receive CAS (Confirmation of Acceptance for Studies)</span>
+                      <span><strong>Step 3:</strong> Demonstrate sufficient funds for tuition and living expenses</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span><strong>Step 4:</strong> Apply for Tier 4 student visa with required documents</span>
+                      <span><strong>Step 4:</strong> Secure your offer and receive CAS (Confirmation of Acceptance for Studies)</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span><strong>Step 5:</strong> Demonstrate sufficient funds for tuition and living expenses</span>
+                      <span><strong>Step 5:</strong> Apply for Tier 4 student visa with required documents</span>
                     </li>
                   </ul>
                 </div>
