@@ -76,7 +76,7 @@ export default function StudyAbroadUK() {
     { icon: Clock, title: "Shorter Programs", desc: "3-year Bachelor's and 1-year Master's degrees" },
     { icon: Award, title: "Global Recognition", desc: "High-quality education recognized worldwide" },
     { icon: Users, title: "Multicultural", desc: "Students from 200+ countries" },
-    { icon: Briefcase, title: "Post-Study Work", desc: "2-year Graduate Visa opportunities" },
+    { icon: Briefcase, title: "Post-Study Work", desc: "Graduate Route visa (18 months from Jan 2027, 3 years for PhD)" },
     { icon: Globe, title: "Rich Culture", desc: "Historical landmarks and cultural heritage" }
   ];
 
@@ -116,7 +116,7 @@ export default function StudyAbroadUK() {
     },
     {
       question: "What is the cost of studying in the UK for Pakistani students?",
-      answer: "Tuition fees range from £10,000 to £20,000/year. Living costs are around £1,023/month outside London and £1,334/month in London."
+      answer: "Tuition fees range from £10,000 to £20,000/year. From 11 November 2025, living costs are £1,171/month outside London (£10,539 total for 9 months) and £1,529/month in London (£13,761 total for 9 months)."
     },
     {
       question: "Do I need IELTS to study in the UK?",
@@ -128,11 +128,11 @@ export default function StudyAbroadUK() {
     },
     {
       question: "Can I work while studying in the UK?",
-      answer: "Yes, students can work 20 hours/week during term time and full-time during holidays. After graduation, the Graduate Route Visa allows 2 years of work."
+      answer: "Yes, students can work 20 hours/week during term time and full-time during holidays. After graduation, the Graduate Route Visa allows 18 months of work for Bachelor's/Master's graduates (from Jan 2027) or 3 years for PhD graduates."
     },
     {
       question: "How much money do I need to show for a UK student visa?",
-      answer: "You need to show funds for tuition and £1,023/month for living costs (outside London) or £1,334/month (London)."
+      answer: "From 11 November 2025, you need to show funds for tuition plus £1,171/month outside London (£10,539 total for 9 months) or £1,529/month in London (£13,761 total for 9 months). Funds must be held for 28 consecutive days."
     },
     {
       question: "What are the best universities in the UK for Pakistani students?",
@@ -140,7 +140,7 @@ export default function StudyAbroadUK() {
     },
     {
       question: "Can I get permanent residency after studying in the UK?",
-      answer: "Yes, the Graduate Route Visa allows up to 2 years of work, after which you can apply for a skilled worker visa to gain permanent residency."
+      answer: "Yes, the Graduate Route Visa allows 18 months of work for Bachelor's/Master's graduates (from Jan 2027) or 3 years for PhD graduates, after which you can apply for a skilled worker visa to gain permanent residency."
     },
     {
       question: "Is there flexibility regarding study gaps for Pakistani students applying to UK universities?",
@@ -520,8 +520,8 @@ export default function StudyAbroadUK() {
                 <div className="space-y-4">
                   {[
                     { icon: GraduationCap, title: "Tuition Fees", desc: "£10,000-£20,000/year (UG) | £12,000-£30,000/year (PG)", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: Building, title: "Living Expenses", desc: "£1,023/month outside London | £1,334/month in London", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: FileText, title: "Financial Proof", desc: "Bank statements showing tuition + living costs required", color: "from-[#1D50C9] to-[#1845B3]" }
+                    { icon: Building, title: "Living Expenses (From 11 Nov 2025)", desc: "£1,171/month outside London (£10,539 total) | £1,529/month in London (£13,761 total)", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: FileText, title: "Financial Proof", desc: "Bank statements showing tuition + living costs, held for 28 consecutive days", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
                     <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -758,8 +758,10 @@ export default function StudyAbroadUK() {
                     <p className="text-gray-700">Work up to 20 hours per week during term time and full-time during holidays</p>
                   </div>
                   <div className="p-5 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl shadow-sm">
-                    <h4 className="font-semibold text-gray-900 mb-2 text-lg">Graduate Route Visa</h4>
-                    <p className="text-gray-700">2 years for Bachelor's/Master's graduates, 3 years for PhD graduates</p>
+                    <h4 className="font-semibold text-gray-900 mb-2 text-lg">Graduate Route Visa (Updated from 1 Jan 2027)</h4>
+                    <p className="text-gray-700 mb-2"><strong>Bachelor's/Master's:</strong> 18 months (reduced from 2 years)</p>
+                    <p className="text-gray-700 mb-2"><strong>PhD/Doctoral:</strong> 3 years (unchanged)</p>
+                    <p className="text-sm text-orange-700 bg-orange-50 p-2 rounded-lg mt-2"><strong>Note:</strong> Students applying before 1 January 2027 will still receive the full 2-year Graduate Route visa.</p>
                   </div>
                   <div className="bg-gradient-to-r from-orange-100 to-red-100/50 p-5 rounded-2xl shadow-sm">
                     <ul className="space-y-2 text-gray-700">
@@ -932,12 +934,14 @@ export default function StudyAbroadUK() {
                   <p className="text-lg font-bold text-[#1D50C9]">£10,000 - £30,000</p>
                 </div>
                 <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <p className="text-xs text-gray-600 mb-1">Living Cost (Outside London)</p>
-                  <p className="text-lg font-bold text-orange-600">£1,023/month</p>
+                  <p className="text-xs text-gray-600 mb-1">Living Cost (From Nov 2025)</p>
+                  <p className="text-base font-bold text-orange-600">£1,171/month (Outside London)</p>
+                  <p className="text-sm text-orange-500">£1,529/month (London)</p>
                 </div>
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                  <p className="text-xs text-gray-600 mb-1">Work Visa After Studies</p>
-                  <p className="text-lg font-bold text-[#1D50C9]">2 Years</p>
+                  <p className="text-xs text-gray-600 mb-1">Graduate Route Visa (From Jan 2027)</p>
+                  <p className="text-base font-bold text-[#1D50C9]">18 Months (Bachelor's/Master's)</p>
+                  <p className="text-sm text-blue-500">3 Years (PhD)</p>
                 </div>
               </CardContent>
             </Card>
