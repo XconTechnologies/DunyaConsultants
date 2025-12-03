@@ -182,7 +182,7 @@ app.use((req, res, next) => {
 });
 
 // Early Hints middleware - sends Link headers for critical resources to enable browser preloading
-app.use(async (req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   // Only for HTML page requests (not API or static assets)
   if (!req.path.startsWith('/api/') && 
       !req.path.startsWith('/assets/') && 
@@ -204,25 +204,6 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
         // LCP image for homepage only
         '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; fetchpriority=high'
       );
-    }
-    
-    // Preload event image for event registration page
-    if (req.path === '/events/register-now') {
-      const eventSlug = req.query.event as string;
-      if (eventSlug) {
-        try {
-          const { storage } = await import('./storage');
-          const event = await storage.getEventBySlug(eventSlug);
-          if (event) {
-            const imageUrl = event.detailImage || event.image;
-            if (imageUrl) {
-              linkHeaders.push(`<${imageUrl}>; rel=preload; as=image; fetchpriority=high`);
-            }
-          }
-        } catch (error) {
-          // Silently fail - LCP optimization is non-critical
-        }
-      }
     }
     
     res.setHeader('Link', linkHeaders.join(', '));
@@ -360,30 +341,10 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
   });
 
   // Dynamic canonical URL injection middleware - runs for ALL requests
-  app.use(async (req: Request, res: Response, next: NextFunction) => {
+  app.use((req: Request, res: Response, next: NextFunction) => {
     // Only intercept HTML requests, not API or assets
     if (req.path.startsWith('/api/') || req.path.startsWith('/assets/') || req.path.startsWith('/attached_assets/') || req.path.match(/\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
       return next();
-    }
-
-    // Pre-fetch event image for LCP optimization
-    let lcpPreloadTag = '';
-    if (req.path === '/events/register-now') {
-      const eventSlug = req.query.event as string;
-      if (eventSlug) {
-        try {
-          const { storage } = await import('./storage');
-          const event = await storage.getEventBySlug(eventSlug);
-          if (event) {
-            const imageUrl = event.detailImage || event.image;
-            if (imageUrl) {
-              lcpPreloadTag = `\n    <!-- LCP Image Preload -->\n    <link rel="preload" as="image" href="${imageUrl}" fetchpriority="high" />`;
-            }
-          }
-        } catch (error) {
-          // Silently fail - LCP optimization is non-critical
-        }
-      }
     }
 
     // Intercept response to inject dynamic meta tags
@@ -398,7 +359,7 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
 
         const dynamicMetaTags = `
     <!-- Canonical URL for proper domain attribution -->
-    <link rel="canonical" href="${fullUrl}" />${lcpPreloadTag}
+    <link rel="canonical" href="${fullUrl}" />
     
     <!-- Facebook Domain Verification -->
     <meta property="fb:app_id" content="1131878482257088" />
