@@ -295,7 +295,8 @@ export default function EventRegistration() {
                 className="w-full h-full object-cover border-[5px] border-white rounded-lg"
                 width={800}
                 height={333}
-                fetchPriority="high"
+                // @ts-ignore - fetchpriority is valid HTML attribute
+                fetchpriority="high"
                 decoding="async"
               />
             </div>
