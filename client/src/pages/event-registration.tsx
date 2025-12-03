@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useLocation } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -14,22 +14,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Loader2, Calendar, MapPin, GraduationCap, CheckCircle2 } from "lucide-react";
+import { Loader2, Calendar, MapPin, GraduationCap } from "lucide-react";
 import type { Event } from "@shared/schema";
-import dunyaLogo from "@assets/dunya-logo-blue.png";
 import logoImageWhite from "@assets/logo-white.webp";
 import { setStaticPageMeta } from "@/lib/seo";
 import EventRegisterButton from "@/components/EventRegisterButton";
+
+const Dialog = lazy(() => import("@/components/ui/dialog").then(m => ({ default: m.Dialog })));
+const DialogContent = lazy(() => import("@/components/ui/dialog").then(m => ({ default: m.DialogContent })));
+const DialogDescription = lazy(() => import("@/components/ui/dialog").then(m => ({ default: m.DialogDescription })));
+const DialogHeader = lazy(() => import("@/components/ui/dialog").then(m => ({ default: m.DialogHeader })));
+const DialogTitle = lazy(() => import("@/components/ui/dialog").then(m => ({ default: m.DialogTitle })));
+const CheckCircle2 = lazy(() => import("lucide-react").then(m => ({ default: m.CheckCircle2 })));
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -495,14 +494,15 @@ export default function EventRegistration() {
         </div>
       </div>
 
-      {/* Success Modal */}
-      <Dialog open={showSuccessModal} onOpenChange={(open) => {
-        setShowSuccessModal(open);
-        if (!open) {
-          // Redirect to homepage when modal is closed
-          setLocation("/");
-        }
-      }}>
+      {/* Success Modal - Lazy loaded for better performance */}
+      {showSuccessModal && (
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-white" /></div>}>
+          <Dialog open={showSuccessModal} onOpenChange={(open) => {
+            setShowSuccessModal(open);
+            if (!open) {
+              setLocation("/");
+            }
+          }}>
         <DialogContent className="sm:max-w-md border-[#dadada] p-0 gap-0">
           <DialogHeader className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] px-6 py-6 rounded-t-lg">
             <div className="text-center mb-4">
@@ -846,7 +846,9 @@ export default function EventRegistration() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+          </Dialog>
+        </Suspense>
+      )}
     </div>
   );
 }
