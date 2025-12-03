@@ -66,10 +66,18 @@ const studyDestinations = [
   "Other"
 ];
 
+function getInitialEventSlug(): string {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("event") || "";
+  }
+  return "";
+}
+
 export default function EventRegistration() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const [eventSlug, setEventSlug] = useState<string>("");
+  const [eventSlug, setEventSlug] = useState<string>(getInitialEventSlug);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
@@ -79,14 +87,6 @@ export default function EventRegistration() {
       "Event Registration",
       "Register for study abroad events and seminars. Secure your spot at university fairs, webinars and counseling sessions across Pakistan."
     );
-  }, []);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("event");
-    if (slug) {
-      setEventSlug(slug);
-    }
   }, []);
 
   // Fetch all upcoming events for dropdown
@@ -175,16 +175,15 @@ export default function EventRegistration() {
     window.history.pushState({}, '', `/events/register-now?event=${slug}`);
   };
 
-  if (eventsLoading || eventLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-[#1D50C9]" />
-      </div>
-    );
-  }
-
-  // Show event selector if no event is selected
+  // Show event selector if no event is selected (wait for events list only in this case)
   if (!eventSlug) {
+    if (eventsLoading) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-[#1D50C9]" />
+        </div>
+      );
+    }
     const upcomingEvents = allEvents?.filter(e => new Date(e.eventDate) >= new Date()) || [];
     
     return (
@@ -227,6 +226,15 @@ export default function EventRegistration() {
             </Select>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  // Show loading state while event details are being fetched
+  if (eventLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-[#1D50C9]" />
       </div>
     );
   }
@@ -280,12 +288,15 @@ export default function EventRegistration() {
             )}
           </div>
           {(event.detailImage || event.image) && (
-            <div className="rounded-lg overflow-hidden mb-6 shadow-lg bg-white">
+            <div className="rounded-lg overflow-hidden mb-6 shadow-lg bg-white" style={{ aspectRatio: '2.4/1' }}>
               <img 
                 src={event.detailImage || event.image} 
                 alt={event.title} 
-                className="w-full aspect-[2.4/1] object-cover border-[5px] border-white rounded-lg"
-                loading="lazy"
+                className="w-full h-full object-cover border-[5px] border-white rounded-lg"
+                width={800}
+                height={333}
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           )}
