@@ -81,7 +81,7 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
           <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-2 sm:p-3 min-w-[45px] sm:min-w-[55px] text-center">
             <div className="text-lg sm:text-xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
-          <div className="text-xs text-gray-600 mt-1">{item.label}</div>
+          <div className="text-xs text-gray-600 group-hover:text-white transition-colors mt-1">{item.label}</div>
         </div>
       ))}
     </div>
