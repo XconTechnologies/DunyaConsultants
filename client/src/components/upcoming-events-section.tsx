@@ -70,14 +70,14 @@ function CountdownTimer({ eventDate }: { eventDate: Date }) {
   }, [eventDate]);
 
   return (
-    <div className="flex gap-2 sm:gap-3 justify-center lg:justify-end">
+    <div className="flex gap-2 sm:gap-3 justify-center lg:justify-end group-hover:[transform:none]">
       {[
         { label: "Days", value: timeRemaining.days },
         { label: "Hours", value: timeRemaining.hours },
         { label: "Minutes", value: timeRemaining.minutes },
         { label: "Seconds", value: timeRemaining.seconds },
       ].map((item) => (
-        <div key={item.label} className="flex flex-col items-center">
+        <div key={item.label} className="flex flex-col items-center group-hover:scale-100">
           <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-2 sm:p-3 min-w-[45px] sm:min-w-[55px] text-center">
             <div className="text-lg sm:text-xl font-bold">{item.value.toString().padStart(2, "0")}</div>
           </div>
