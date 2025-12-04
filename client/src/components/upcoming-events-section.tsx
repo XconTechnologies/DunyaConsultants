@@ -145,7 +145,7 @@ export default function UpcomingEventsSection() {
 
         {/* Full-Width Landscape Events */}
         <div className="space-y-4 md:space-y-6">
-          {upcomingEvents.map((event, index) => (
+          {upcomingEvents.slice(0, 5).map((event, index) => (
             <motion.div
               key={`${event.id}-${index}`}
               initial={{ opacity: 0, y: 20 }}
