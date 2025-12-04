@@ -202,9 +202,7 @@ export default function UpcomingEventsSection() {
 
                     {/* Right: Countdown above Button */}
                     <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
-                      <div className="hidden lg:block">
-                        <CountdownTimer eventDate={new Date(event.eventDate)} />
-                      </div>
+                      <CountdownTimer eventDate={new Date(event.eventDate)} />
                       <Button 
                         size="sm"
                         className="text-xs sm:text-sm bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 whitespace-nowrap"
