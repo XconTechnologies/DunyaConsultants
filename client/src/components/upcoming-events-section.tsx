@@ -157,28 +157,28 @@ export default function UpcomingEventsSection() {
                 <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-landscape-${event.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6">
-                    {/* Left: Image with Badge below */}
-                    <div className="flex flex-col gap-2 flex-shrink-0">
-                      <div className="relative w-full md:w-48 h-40 md:h-32 overflow-hidden rounded-lg shadow-sm">
-                        <SmartImage
-                          src={normalizeImageSrc(event.image)}
-                          alt={event.title}
-                          width={192}
-                          height={128}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                      </div>
-                      <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm w-fit">
-                        {event.eventType}
-                      </Badge>
+                    {/* Left: Image */}
+                    <div className="relative w-full md:w-48 h-40 md:h-32 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
+                      <SmartImage
+                        src={normalizeImageSrc(event.image)}
+                        alt={event.title}
+                        width={192}
+                        height={128}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
 
                     {/* Middle: Content */}
                     <div className="flex-1 flex flex-col justify-between min-w-0">
                       <div>
-                        <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3" style={{ color: '#2563eb' }} data-testid="text-event-title">
-                          {event.title}
-                        </h3>
+                        <div className="flex items-start gap-3 mb-2 md:mb-3">
+                          <h3 className="text-lg md:text-xl font-bold flex-1" style={{ color: '#2563eb' }} data-testid="text-event-title">
+                            {event.title}
+                          </h3>
+                          <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm flex-shrink-0">
+                            {event.eventType}
+                          </Badge>
+                        </div>
                         
                         <div className="space-y-1 md:space-y-2">
                           <div className="flex items-center text-gray-600 text-sm md:text-base">
