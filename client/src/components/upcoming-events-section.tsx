@@ -171,14 +171,12 @@ export default function UpcomingEventsSection() {
                     {/* Middle: Content */}
                     <div className="flex-1 flex flex-col justify-between min-w-0">
                       <div>
-                        <div className="flex items-start gap-3 mb-2 md:mb-3">
-                          <h3 className="text-lg md:text-xl font-bold flex-1" style={{ color: '#2563eb' }} data-testid="text-event-title">
-                            {event.title}
-                          </h3>
-                          <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm flex-shrink-0">
-                            {event.eventType}
-                          </Badge>
-                        </div>
+                        <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#2563eb' }} data-testid="text-event-title">
+                          {event.title}
+                        </h3>
+                        <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm mb-2 md:mb-3 w-fit">
+                          {event.eventType}
+                        </Badge>
                         
                         <div className="space-y-1 md:space-y-2">
                           <div className="flex items-center text-gray-600 text-sm md:text-base">
