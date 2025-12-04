@@ -2786,7 +2786,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { formType, formData } = req.body;
       
+      // Save to consultations table (leads) for dashboard visibility
+      let savedLead = null;
+      try {
+        const consultationData = {
+          name: formData.fullName || formData.name || '',
+          fullName: formData.fullName || formData.name || '',
+          email: formData.email || '',
+          phone: formData.phone || formData.whatsappNumber || '',
+          whatsappNumber: formData.whatsappNumber || formData.phone || '',
+          city: formData.city || '',
+          educationLevel: formData.educationLevel || '',
+          fieldOfStudy: formData.fieldOfStudy || '',
+          preferredCountry: formData.interestedCountry || formData.preferredCountry || formData.country || '',
+          preferredIntake: formData.preferredIntake || '',
+          message: formData.message || formData.additionalInfo || '',
+          additionalInfo: formData.message || formData.additionalInfo || '',
+          source: formType || 'website',
+          status: 'pending' as const,
+        };
+        
+        savedLead = await storage.createConsultation(consultationData);
+        console.log('Lead saved to database:', savedLead.id);
+      } catch (dbError) {
+        console.error('Failed to save lead to database:', dbError);
+        // Continue with email even if database save fails
+      }
+      
       if (!resend) {
+        // Even without email, if we saved to database, consider it a success
+        if (savedLead) {
+          return res.json({ 
+            success: true, 
+            message: "Form submitted successfully (saved to leads)",
+            leadId: savedLead.id
+          });
+        }
         return res.status(500).json({ 
           success: false, 
           message: "Email service not configured. Please check RESEND_API_KEY." 
@@ -2795,7 +2830,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Generate email content based on form type
       const emailContent = generateFormEmailHTML(formType, formData);
-      const subject = `New ${formType} Submission - ${formData.name || 'Anonymous'}`;
+      const subject = `New ${formType} Submission - ${formData.name || formData.fullName || 'Anonymous'}`;
 
       const emailOptions = {
         from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
@@ -2812,6 +2847,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: true, 
         message: "Form submitted successfully",
         emailId: result.data?.id || `resend_${Date.now()}`,
+        leadId: savedLead?.id,
         debug: result
       });
     } catch (error) {
