@@ -157,20 +157,20 @@ export default function UpcomingEventsSection() {
                 <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group border-0 relative bg-white" data-testid={`event-landscape-${event.id}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-shimmer pointer-events-none"></div>
                   <div className="flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6">
-                    {/* Left: Image */}
-                    <div className="relative w-full md:w-48 h-40 md:h-32 flex-shrink-0 overflow-hidden rounded-lg shadow-sm">
-                      <SmartImage
-                        src={normalizeImageSrc(event.image)}
-                        alt={event.title}
-                        width={192}
-                        height={128}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute top-2 left-2 md:top-3 md:left-3">
-                        <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm">
-                          {event.eventType}
-                        </Badge>
+                    {/* Left: Image with Badge below */}
+                    <div className="flex flex-col gap-2 flex-shrink-0">
+                      <div className="relative w-full md:w-48 h-40 md:h-32 overflow-hidden rounded-lg shadow-sm">
+                        <SmartImage
+                          src={normalizeImageSrc(event.image)}
+                          alt={event.title}
+                          width={192}
+                          height={128}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                       </div>
+                      <Badge className="bg-blue-600 text-white shadow-md text-xs sm:text-sm w-fit">
+                        {event.eventType}
+                      </Badge>
                     </div>
 
                     {/* Middle: Content */}
@@ -202,8 +202,8 @@ export default function UpcomingEventsSection() {
                       </div>
                     </div>
 
-                    {/* Right: Countdown & Button */}
-                    <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 flex-shrink-0">
+                    {/* Right: Countdown above Button */}
+                    <div className="flex flex-col items-center gap-4 flex-shrink-0">
                       <div className="hidden lg:block">
                         <CountdownTimer eventDate={new Date(event.eventDate)} />
                       </div>
