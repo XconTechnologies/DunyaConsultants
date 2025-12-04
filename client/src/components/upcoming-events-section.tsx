@@ -174,11 +174,14 @@ export default function UpcomingEventsSection() {
                         <h3 className="text-sm sm:text-base md:text-xl font-bold mb-1 sm:mb-2 line-clamp-2" style={{ color: '#2563eb' }} data-testid="text-event-title" title={event.title}>
                           {event.title}
                         </h3>
-                        <Badge className="bg-blue-600 text-white shadow-md text-xs mb-1 sm:mb-2 md:mb-3 w-fit">
+                        
+                        {/* Badge - Desktop Only */}
+                        <Badge className="hidden md:inline-block bg-blue-600 text-white shadow-md text-xs mb-1 sm:mb-2 md:mb-3 w-fit">
                           {event.eventType}
                         </Badge>
                         
-                        <div className="space-y-0.5 sm:space-y-1 md:space-y-2 hidden sm:block">
+                        {/* Date and Venue */}
+                        <div className="space-y-0.5 sm:space-y-1 md:space-y-2">
                           <div className="flex items-center text-gray-600 text-xs sm:text-sm md:text-base">
                             <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-blue-600 flex-shrink-0" />
                             <span data-testid="text-event-date" className="break-words line-clamp-1">
@@ -191,7 +194,7 @@ export default function UpcomingEventsSection() {
                             </span>
                           </div>
                           {event.venue && (
-                            <div className="flex items-center text-gray-600 text-xs sm:text-sm md:text-base">
+                            <div className="hidden sm:flex items-center text-gray-600 text-xs sm:text-sm md:text-base">
                               <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-blue-600 flex-shrink-0" />
                               <span data-testid="text-event-venue" className="break-words line-clamp-1 text-xs sm:text-sm">{event.venue}</span>
                             </div>
@@ -200,7 +203,19 @@ export default function UpcomingEventsSection() {
                       </div>
                     </div>
 
-                    {/* Right: Countdown above Button - Desktop Only */}
+                    {/* Right: Mobile Button OR Desktop Countdown + Button */}
+                    {/* Mobile Only - See Details Button */}
+                    <div className="flex md:hidden flex-col items-center justify-center gap-1 flex-shrink-0">
+                      <Button 
+                        size="sm"
+                        className="text-xs bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 whitespace-nowrap"
+                        data-testid="button-see-details-mobile"
+                      >
+                        See Details
+                      </Button>
+                    </div>
+
+                    {/* Desktop Only - Countdown above Button */}
                     <div className="hidden md:flex flex-col items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
                       <CountdownTimer eventDate={new Date(event.eventDate)} />
                       <Button 
