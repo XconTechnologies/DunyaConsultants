@@ -169,7 +169,7 @@ export default function UpcomingEventsSection() {
                     </div>
 
                     {/* Middle: Content */}
-                    <div className="flex-1 flex flex-col justify-between min-w-0">
+                    <div className="flex-1 flex flex-col justify-between min-w-0 pl-2 sm:pl-3 md:pl-4 pt-1 sm:pt-2 md:pt-3">
                       <div>
                         <h3 className="text-sm sm:text-base md:text-xl font-bold mb-1 sm:mb-2 line-clamp-2" style={{ color: '#2563eb' }} data-testid="text-event-title" title={event.title}>
                           {event.title}
