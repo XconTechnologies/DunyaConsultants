@@ -200,8 +200,8 @@ export default function UpcomingEventsSection() {
                       </div>
                     </div>
 
-                    {/* Right: Countdown above Button */}
-                    <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+                    {/* Right: Countdown above Button - Mobile Only */}
+                    <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0 md:hidden">
                       <CountdownTimer eventDate={new Date(event.eventDate)} />
                       <Button 
                         size="sm"
