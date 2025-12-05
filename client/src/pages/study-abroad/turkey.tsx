@@ -369,26 +369,29 @@ export default function StudyAbroadTurkey() {
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
                     <FileText className="w-6 h-6 text-white" />
                   </div>
-                  Study in Turkey Without IELTS
+                  Study in Turkey Without IELTS & PTE
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Yes, it is possible to study in Turkey without IELTS! Many Turkish universities offer English-taught programs that do not require IELTS scores. Here are your alternatives:
+                <p className="text-gray-700 mb-6 leading-relaxed font-semibold text-lg text-orange-700">
+                  ✓ IELTS and PTE are NOT Required!
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                  {["TOEFL", "PTE", "Duolingo", "MOI Letter"].map((test, index) => (
-                    <div key={index} className="group relative" data-testid={`test-option-${index}`}>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Turkish universities accept students without IELTS or PTE scores. You can apply directly with proof of English proficiency through alternative methods:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                  {["MOI Letter", "Duolingo", "TOEFL", "University Test", "Previous Education", "Language Certificate"].map((option, index) => (
+                    <div key={index} className="group relative" data-testid={`admission-option-${index}`}>
                       <div className="relative bg-white p-4 rounded-2xl text-center shadow-[0_2px_8px_rgba(249,115,22,0.2)] hover:shadow-[0_6px_16px_rgba(249,115,22,0.4)] transition-all duration-300">
-                        <div className="font-semibold text-gray-900 text-sm sm:text-base">{test}</div>
+                        <div className="font-semibold text-gray-900 text-xs sm:text-sm">{option}</div>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="bg-gradient-to-r from-orange-100 to-red-100/50 p-5 rounded-2xl shadow-sm">
                   <p className="text-gray-700 font-medium">
-                    <strong className="text-gray-900">University-Specific Tests Available</strong><br />
-                    <span className="text-gray-600">If you've studied your previous education in English, some universities may waive the IELTS requirement and accept a Medium of Instruction letter. Some universities in Turkey may also offer their own tests to evaluate your English proficiency.</span>
+                    <strong className="text-gray-900">✓ No University or Embassy Interview Required</strong><br />
+                    <span className="text-gray-600">The application process is straightforward - submit your documents, get accepted, and apply for your visa. No interviews needed at the university or embassy!</span>
                   </p>
                 </div>
               </CardContent>
@@ -409,9 +412,9 @@ export default function StudyAbroadTurkey() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { icon: GraduationCap, title: "Undergraduate Programs", desc: "€1,000–€5,000 per year", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: Award, title: "Master's Programs", desc: "€1,500–€7,000 per year", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: Building, title: "Living Expenses", desc: "€400–€700 per month (depending on the city)", color: "from-[#1D50C9] to-[#1845B3]" }
+                    { icon: GraduationCap, title: "Bachelor Programs (Annually)", desc: "$3,500 onwards | Initial Deposit: $1,000", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: Award, title: "Master's Programs (Whole Program)", desc: "$3,500 onwards | Initial Deposit: $1,000–$2,500", color: "from-[#1D50C9] to-[#1845B3]" },
+                    { icon: Building, title: "Bank Statement Requirement", desc: "$7,000 (Can be from Parents, Siblings, or Relatives) - Sponsor must be a filer", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
                     <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
