@@ -4817,11 +4817,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
           if (field === 'publishedAt' && req.body[field]) {
             const parsedDate = new Date(req.body[field]);
             sanitizedUpdates[field] = isNaN(parsedDate.getTime()) ? null : parsedDate;
-          } else {
+          } else if (req.body[field] !== undefined) {
             sanitizedUpdates[field] = req.body[field];
           }
         }
       }
+      
+      // Remove any remaining undefined values to prevent Drizzle timestamp errors
+      Object.keys(sanitizedUpdates).forEach(key => {
+        if (sanitizedUpdates[key] === undefined) {
+          delete sanitizedUpdates[key];
+        }
+      });
       
       // Handle slug generation if title changed
       if (sanitizedUpdates.title && !sanitizedUpdates.slug) {
