@@ -591,11 +591,6 @@ export default function StudyAbroadTurkey() {
                     { 
                       title: "Spring Intake", 
                       month: "January",
-                      programs: "Bachelor & Masters"
-                    },
-                    { 
-                      title: "Short Intake", 
-                      month: "Throughout Year",
                       programs: "Masters Only"
                     }
                   ].map((intake, index) => (
