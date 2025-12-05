@@ -523,7 +523,7 @@ export default function StudyAbroadTurkey() {
 
             {/* Study Medicine in Turkey - Special Card */}
             <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="medicine-card">
-              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 rounded-t-2xl">
                 <CardTitle className="text-2xl text-white flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
                     <Stethoscope className="w-6 h-6 text-[#1D50C9]" />
