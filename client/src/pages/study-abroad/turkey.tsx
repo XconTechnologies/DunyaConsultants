@@ -566,6 +566,68 @@ export default function StudyAbroadTurkey() {
               </CardContent>
             </Card>
 
+            {/* Intake Dates - Modern Card */}
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 via-white to-purple-50/30" data-testid="intake-dates-card">
+              <CardHeader>
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  Intake Dates
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Turkish universities offer multiple intake periods throughout the year to accommodate international students:
+                </p>
+                
+                <div className="space-y-4">
+                  {[
+                    { 
+                      title: "Fall Intake", 
+                      month: "September",
+                      programs: "Bachelor & Masters",
+                      icon: "🍂"
+                    },
+                    { 
+                      title: "Spring Intake", 
+                      month: "January",
+                      programs: "Bachelor & Masters",
+                      icon: "🌸"
+                    },
+                    { 
+                      title: "Short Intake", 
+                      month: "Throughout Year",
+                      programs: "Masters Only",
+                      icon: "⚡"
+                    }
+                  ].map((intake, index) => (
+                    <div key={index} className="group p-6 bg-gradient-to-br from-purple-50 to-indigo-50/50 rounded-2xl shadow-[0_2px_8px_rgba(147,51,234,0.15)] hover:shadow-[0_6px_16px_rgba(147,51,234,0.3)] transition-all duration-300" data-testid={`intake-item-${index}`}>
+                      <div className="flex items-start gap-4">
+                        <div className="text-3xl mt-1">{intake.icon}</div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-gray-900 text-lg mb-2">{intake.title}</h3>
+                          <p className="text-gray-600 mb-2 flex items-center gap-2">
+                            <span className="font-semibold text-[#1D50C9]">{intake.month}</span>
+                          </p>
+                          <p className="text-sm text-gray-700 bg-white/60 inline-block px-3 py-1 rounded-lg font-medium">
+                            {intake.programs}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 p-5 bg-gradient-to-r from-purple-100 to-indigo-100/50 rounded-2xl shadow-sm border-l-4 border-purple-500">
+                  <p className="text-gray-700 font-medium">
+                    <strong className="text-gray-900">💡 Pro Tip:</strong><br />
+                    <span className="text-gray-600">Apply 3-4 months before your preferred intake date to ensure sufficient time for visa processing and document preparation. Early applications may also increase scholarship opportunities.</span>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Visa Application Process */}
             <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="visa-process-card">
               <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-50/50 border-b border-blue-100">
