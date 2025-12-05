@@ -581,7 +581,7 @@ export default function StudyAbroadTurkey() {
                   Turkish universities offer multiple intake periods throughout the year to accommodate international students:
                 </p>
                 
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
                     { 
                       title: "Fall Intake", 
