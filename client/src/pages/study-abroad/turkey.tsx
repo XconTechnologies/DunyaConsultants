@@ -120,11 +120,11 @@ export default function StudyAbroadTurkey() {
   const faqs = [
     {
       question: "How Much Does It Cost to Study in Turkey from Pakistan?",
-      answer: "The cost of studying in Turkey ranges from €1,000 to €7,000 per year for tuition fees. Living expenses can range from €400 to €700 per month depending on the city."
+      answer: "The cost of studying in Turkey ranges from $4,000 to $28,000 per year for tuition fees. Living expenses can range from $440 to $770 per month depending on the city."
     },
     {
       question: "Can I Study Medicine in Turkey?",
-      answer: "Yes, Turkey offers medical programs (MBBS) at an affordable cost compared to many countries. Tuition fees range from €5,000 to €15,000 per year, and many universities offer courses in English."
+      answer: "Yes, Turkey offers medical programs (MBBS) at an affordable cost compared to many countries. Tuition fees range from $20,000 to $35,000 per year, and many universities offer courses in English."
     },
     {
       question: "How Can I Get a Scholarship to Study in Turkey?",
@@ -256,7 +256,7 @@ export default function StudyAbroadTurkey() {
                   <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-600 mb-1 sm:mb-2">
-                  €1,000
+                  $4,000
                 </div>
                 <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
                   Min Tuition/Year
@@ -543,7 +543,7 @@ export default function StudyAbroadTurkey() {
                       </div>
                       <h4 className="font-bold text-gray-900 text-lg">Affordable Tuition</h4>
                     </div>
-                    <p className="text-gray-700">Tuition fees ranging from <span className="font-bold text-[#1D50C9]">€5,000 to €15,000</span> per year</p>
+                    <p className="text-gray-700">Tuition fees ranging from <span className="font-bold text-[#1D50C9]">$20,000 to $35,000</span> per year</p>
                   </div>
                   <div className="group p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
