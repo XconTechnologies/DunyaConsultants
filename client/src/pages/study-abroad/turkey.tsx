@@ -952,8 +952,8 @@ export default function StudyAbroadTurkey() {
                   {[
                     { label: "Visa Type", value: "Student Residence" },
                     { label: "English Test", value: "IELTS/TOEFL/PTE" },
-                    { label: "Tuition Range", value: "€1K - €7K/year" },
-                    { label: "Living Cost", value: "€400-700/month" },
+                    { label: "Tuition Range", value: "$3.5K - $16K/year" },
+                    { label: "Living Cost", value: "$440-770/month" },
                     { label: "Scholarship", value: "Türkiye Burslari" }
                   ].map((fact, index) => (
                     <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-xl border border-gray-200">
