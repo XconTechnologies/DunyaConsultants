@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Plus, Trash2, GripVertical, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -562,6 +562,70 @@ function TableBlockEditor({ block, updateBlock }: any) {
 
 // HTML Block Editor
 function HTMLBlockEditor({ block, updateBlock }: any) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (!containerRef.current || !block.data?.html) return;
+    
+    const container = containerRef.current;
+    const htmlContent = block.data.html;
+    
+    // Clear previous content
+    container.innerHTML = '';
+    
+    // Create a temporary div to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    
+    // Extract and handle style tags
+    const styleTags = tempDiv.querySelectorAll('style');
+    styleTags.forEach(styleTag => {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleTag.textContent;
+      container.appendChild(newStyle);
+      styleTag.remove();
+    });
+    
+    // Extract and handle script tags
+    const scriptTags = tempDiv.querySelectorAll('script');
+    const scripts: HTMLScriptElement[] = [];
+    scriptTags.forEach(scriptTag => {
+      const newScript = document.createElement('script');
+      
+      // Copy all attributes
+      Array.from(scriptTag.attributes).forEach(attr => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      // Copy script content
+      if (scriptTag.src) {
+        newScript.src = scriptTag.src;
+      } else {
+        newScript.textContent = scriptTag.textContent;
+      }
+      
+      scripts.push(newScript);
+      scriptTag.remove();
+    });
+    
+    // Add remaining HTML content
+    container.innerHTML += tempDiv.innerHTML;
+    
+    // Execute scripts after DOM is ready
+    scripts.forEach(script => {
+      container.appendChild(script);
+    });
+    
+    // Cleanup function
+    return () => {
+      // Remove any added scripts and styles when component unmounts
+      const addedScripts = container.querySelectorAll('script');
+      const addedStyles = container.querySelectorAll('style');
+      addedScripts.forEach(s => s.remove());
+      addedStyles.forEach(s => s.remove());
+    };
+  }, [block.data?.html]);
+  
   return (
     <div className="space-y-4">
       <div>
@@ -579,8 +643,8 @@ function HTMLBlockEditor({ block, updateBlock }: any) {
         <div>
           <Label>Live Preview</Label>
           <div 
+            ref={containerRef}
             className="border rounded-md p-4 bg-white min-h-[100px]"
-            dangerouslySetInnerHTML={{ __html: block.data.html }}
           />
         </div>
       )}
