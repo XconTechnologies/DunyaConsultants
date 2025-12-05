@@ -90,16 +90,19 @@ export default function StudyAbroadTurkey() {
   ];
 
   const universities = [
-    "Boğaziçi University",
-    "Koç University",
-    "Istanbul Technical University",
-    "Sabancı University",
-    "Middle East Technical University",
-    "Hacettepe University",
-    "Istanbul University",
-    "Ankara University",
-    "Bilkent University",
-    "Özyeğin University"
+    "Atlas University",
+    "Arel University",
+    "Isik University",
+    "Gelisim University",
+    "Altinbas University",
+    "Kultur University",
+    "Beykoz University",
+    "Beykent University",
+    "Uskudar University",
+    "Halic University",
+    "Dogus University",
+    "Aydin University",
+    "Bahçeşehir University"
   ];
 
   const popularCourses = [
