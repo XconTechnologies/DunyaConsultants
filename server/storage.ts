@@ -1406,8 +1406,34 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateBlogPost(id: number, updates: Partial<BlogPost>): Promise<BlogPost> {
+    // Filter out any invalid values to prevent Drizzle timestamp errors
+    const sanitizedUpdates: Record<string, any> = {};
+    
+    // List of timestamp fields that need special handling
+    const timestampFields = ['publishedAt', 'verifiedAt', 'approvedAt', 'trashedAt', 'updatedAt', 'createdAt'];
+    
+    for (const [key, value] of Object.entries(updates)) {
+      // Skip undefined values
+      if (value === undefined) continue;
+      
+      // For timestamp fields, only include if it's a valid Date or null
+      if (timestampFields.includes(key)) {
+        if (value === null || (value instanceof Date && !isNaN(value.getTime()))) {
+          sanitizedUpdates[key] = value;
+        }
+        // Skip invalid timestamp values
+        continue;
+      }
+      
+      // Include all other non-undefined values
+      sanitizedUpdates[key] = value;
+    }
+    
+    // Always update the updatedAt timestamp
+    sanitizedUpdates.updatedAt = new Date();
+    
     const [post] = await db.update(blogPosts)
-      .set({ ...updates, updatedAt: new Date() })
+      .set(sanitizedUpdates)
       .where(eq(blogPosts.id, id))
       .returning();
     return post;
