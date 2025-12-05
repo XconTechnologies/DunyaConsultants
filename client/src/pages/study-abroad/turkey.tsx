@@ -417,7 +417,7 @@ export default function StudyAbroadTurkey() {
                   {[
                     { icon: GraduationCap, title: "Bachelor Programs (Annually)", desc: "$3,500 onwards | Initial Deposit: $1,000", color: "from-[#1D50C9] to-[#1845B3]" },
                     { icon: Award, title: "Master's Programs (Whole Program)", desc: "$3,500 onwards | Initial Deposit: $1,000–$2,500", color: "from-[#1D50C9] to-[#1845B3]" },
-                    { icon: Building, title: "Bank Statement Requirement", desc: "$7,000 (Can be from Parents, Siblings, or Relatives) - Sponsor must be a filer", color: "from-[#1D50C9] to-[#1845B3]" }
+                    { icon: Building, title: "Bank Statement Requirement", desc: "$7,000 (Can be from Parents, Siblings) - Sponsor must be a filer", color: "from-[#1D50C9] to-[#1845B3]" }
                   ].map((item, index) => (
                     <div key={index} className="group flex items-start gap-4 p-5 bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-[0_2px_8px_rgba(29,80,201,0.15)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.3)] transition-all duration-300" data-testid={`cost-item-${index}`}>
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
