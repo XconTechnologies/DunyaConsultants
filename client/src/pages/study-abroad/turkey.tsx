@@ -523,14 +523,14 @@ export default function StudyAbroadTurkey() {
 
             {/* Study Medicine in Turkey - Special Card */}
             <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="medicine-card">
-              <CardHeader>
-                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
-                    <Stethoscope className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6">
+                <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+                    <Stethoscope className="w-6 h-6 text-[#1D50C9]" />
                   </div>
                   Study Medicine and MBBS in Turkey
                 </CardTitle>
-              </CardHeader>
+              </div>
               <CardContent className="p-6 sm:p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
                   Turkey is an increasingly popular destination for international students wishing to study medicine (MBBS). Here's why you should consider studying medicine in Turkey:
