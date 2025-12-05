@@ -598,6 +598,115 @@ export default function StudyAbroadTurkey() {
               </CardContent>
             </Card>
 
+            {/* Required Documents for Visa - Comprehensive Card */}
+            <Card className="border-0 shadow-lg overflow-hidden bg-white" data-testid="required-documents-card">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 text-white">
+                <CardTitle className="text-2xl flex items-center gap-3">
+                  <FileText className="w-8 h-8" />
+                  Required Documents for Turkey Student Visa
+                </CardTitle>
+                <p className="text-white/90 mt-2">Complete checklist of all documents needed for your visa application</p>
+              </div>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-8 leading-relaxed">
+                  Ensure you have all required documents ready before submitting your visa application at the Turkish consulate:
+                </p>
+                
+                <div className="space-y-6">
+                  {/* Personal Documents */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#1D50C9] text-white text-xs font-bold flex items-center justify-center">1</div>
+                      Personal Documents
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {["Valid Passport", "2 White Background Pictures (5x5)", "NTN Number"].map((doc, index) => (
+                        <div key={index} className="group flex items-center gap-3 p-4 bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.1)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.2)] transition-all duration-300" data-testid={`personal-doc-${index}`}>
+                          <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                          <span className="text-gray-700 font-medium text-sm">{doc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Financial Documents */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#1D50C9] text-white text-xs font-bold flex items-center justify-center">2</div>
+                      Financial Documents
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {["Bank Statement (20 Lac)", "Bank Maintenance Certificate", "2 Year Tax Returns", "Fee Receipt"].map((doc, index) => (
+                        <div key={index} className="group flex items-center gap-3 p-4 bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.1)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.2)] transition-all duration-300" data-testid={`financial-doc-${index}`}>
+                          <DollarSign className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                          <span className="text-gray-700 font-medium text-sm">{doc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Employment/Business Documents */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#1D50C9] text-white text-xs font-bold flex items-center justify-center">3</div>
+                      Employment/Business Documents
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                        <p className="text-gray-700 font-medium text-sm">
+                          <strong className="text-[#1D50C9]">For Job Applicants:</strong> Employment Letter & 3 Months Salary Slip
+                        </p>
+                      </div>
+                      <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                        <p className="text-gray-700 font-medium text-sm">
+                          <strong className="text-[#1D50C9]">For Business Owners:</strong> Business Letterhead
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* University & Support Documents */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#1D50C9] text-white text-xs font-bold flex items-center justify-center">4</div>
+                      University & Support Documents
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {["Final Acceptance Letter", "FRC (Financial Requirement Certificate)", "Affidavit of Support"].map((doc, index) => (
+                        <div key={index} className="group flex items-center gap-3 p-4 bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.1)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.2)] transition-all duration-300" data-testid={`support-doc-${index}`}>
+                          <GraduationCap className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                          <span className="text-gray-700 font-medium text-sm">{doc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Travel & Application Documents */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#1D50C9] text-white text-xs font-bold flex items-center justify-center">5</div>
+                      Travel & Application Documents
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {["One Way Flight Reservation", "Hotel Reservation", "Visa Application Form (Filled at Anatolia Office)", "Cover Letter", "Supporting Email"].map((doc, index) => (
+                        <div key={index} className="group flex items-center gap-3 p-4 bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(29,80,201,0.1)] hover:shadow-[0_6px_16px_rgba(29,80,201,0.2)] transition-all duration-300" data-testid={`travel-doc-${index}`}>
+                          <CheckCircle className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                          <span className="text-gray-700 font-medium text-sm">{doc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-5 bg-gradient-to-r from-blue-100 to-blue-100/50 rounded-2xl shadow-sm border-l-4 border-[#1D50C9]">
+                  <p className="text-gray-700 font-medium">
+                    <strong className="text-gray-900">📋 Important Note:</strong><br />
+                    <span className="text-gray-600">Have all documents prepared well in advance. The visa application form should be filled at the Anatolia Office. Keep copies of all documents for your records. Missing or incomplete documents may delay your visa processing.</span>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Scholarships - Premium Card */}
             <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-50 via-white to-orange-50/30" data-testid="scholarships-card">
               <CardHeader>
