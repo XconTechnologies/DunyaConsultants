@@ -74,7 +74,7 @@ export default function StudyAbroadTurkey() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   const stats = [
-    { icon: Building, label: "Universities", value: "200+", color: "from-blue-500 to-cyan-500" },
+    { icon: Building, label: "Partner Universities", value: "13", color: "from-blue-500 to-cyan-500" },
     { icon: Users, label: "Int'l Students", value: "200K+", color: "from-purple-500 to-pink-500" },
     { icon: Award, label: "Scholarships", value: "Full Funded", color: "from-orange-500 to-red-500" },
     { icon: Briefcase, label: "Avg. Salary", value: "$30K+", color: "from-green-500 to-emerald-500" }
@@ -172,7 +172,7 @@ export default function StudyAbroadTurkey() {
             <div className="flex flex-wrap justify-center gap-3 mb-10">
               <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
                 <Building className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                200+ Universities
+                13 Partner Universities
               </Badge>
               <Badge variant="secondary" className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 transition-all duration-300 shadow-lg">
                 <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
