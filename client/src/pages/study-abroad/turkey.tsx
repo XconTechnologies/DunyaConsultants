@@ -430,6 +430,94 @@ export default function StudyAbroadTurkey() {
               </CardContent>
             </Card>
 
+            {/* Work Opportunities - Modern Card */}
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 via-white to-green-50/30" data-testid="work-opportunities-card">
+              <CardHeader>
+                <CardTitle className="text-2xl text-gray-900 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                    <Briefcase className="w-6 h-6 text-white" />
+                  </div>
+                  Work While Studying in Turkey
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Turkey offers excellent work opportunities for international students to earn while studying and gain valuable work experience:
+                </p>
+                
+                {/* Work Hours Section */}
+                <div className="mb-8">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-green-600" />
+                    Permitted Work Hours
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="group p-5 bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl shadow-[0_2px_8px_rgba(34,197,94,0.2)] hover:shadow-[0_6px_16px_rgba(34,197,94,0.4)] transition-all duration-300" data-testid="bachelor-work-hours">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                          <GraduationCap className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-bold text-gray-900">Bachelor Students</h4>
+                      </div>
+                      <p className="text-gray-700 mb-2"><span className="font-semibold text-green-700">20 hours per week</span></p>
+                      <p className="text-xs text-gray-600 italic">*First year officially not allowed</p>
+                    </div>
+                    
+                    <div className="group p-5 bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl shadow-[0_2px_8px_rgba(34,197,94,0.2)] hover:shadow-[0_6px_16px_rgba(34,197,94,0.4)] transition-all duration-300" data-testid="master-work-hours">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                          <Award className="w-5 h-5 text-white" />
+                        </div>
+                        <h4 className="font-bold text-gray-900">Master Students</h4>
+                      </div>
+                      <p className="text-gray-700"><span className="font-semibold text-green-700">30 hours per week</span></p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Job Opportunities Section */}
+                <div className="mb-8">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                    <Briefcase className="w-5 h-5 text-green-600" />
+                    Popular Job Opportunities
+                  </h3>
+                  <p className="text-gray-600 mb-4">More opportunities available for those with good English language skills:</p>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {["Call Center", "Tourism Department", "Hospitality & Hoteling", "Skill-Based Jobs", "Customer Service", "English Tutoring"].map((job, index) => (
+                      <div key={index} className="group flex items-center gap-3 p-4 bg-white rounded-xl shadow-[0_2px_8px_rgba(34,197,94,0.15)] hover:shadow-[0_6px_16px_rgba(34,197,94,0.3)] transition-all duration-300" data-testid={`job-option-${index}`}>
+                        <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                        <span className="text-gray-700 font-medium">{job}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Wages Section */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                    <DollarSign className="w-5 h-5 text-green-600" />
+                    Wage Range
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="p-5 bg-gradient-to-r from-green-100 to-emerald-100/50 rounded-2xl shadow-sm" data-testid="minimum-wage">
+                      <p className="text-gray-700 font-medium">
+                        <strong className="text-gray-900">Minimum Wage:</strong><br />
+                        <span className="text-lg font-bold text-green-700">20,000 - 22,000 Turkish Lira</span><br />
+                        <span className="text-sm text-gray-600">($680 - $700 USD)</span>
+                      </p>
+                    </div>
+                    <div className="p-5 bg-gradient-to-r from-green-100 to-emerald-100/50 rounded-2xl shadow-sm" data-testid="maximum-wage">
+                      <p className="text-gray-700 font-medium">
+                        <strong className="text-gray-900">Maximum Wage:</strong><br />
+                        <span className="text-lg font-bold text-green-700">30,000 - 40,000 Turkish Lira</span><br />
+                        <span className="text-sm text-gray-600">($1,500 - $2,000 USD)</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Study Medicine in Turkey - Special Card */}
             <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 via-white to-blue-50/30" data-testid="medicine-card">
               <CardHeader>
