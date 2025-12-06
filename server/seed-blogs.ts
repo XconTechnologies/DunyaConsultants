@@ -418,23 +418,18 @@ Universities in Turkey for international students also provide support services 
 
 Here are the top universities in Turkey for international students:
 
-1. Atlas University
-2. Arel University
+1. Arel University
+2. Beykoz University
 3. Isik University
-4. Gelisim University
-5. Altinbas University
+4. Atlas University
+5. Kent University
 6. Kultur University
-7. Beykoz University
-8. Beykent University
-9. Uskudar University
-10. Halic University
-11. Dogus University
-12. Aydin University
-13. Bahçeşehir University
-14. Kent University
-15. Okan University
-16. Kadir Has University
-17. Ozyegin University
+7. Okan University
+8. Altinbas University
+9. Kadir Has University
+10. Beykent University
+11. Gelisim University
+12. Ozyegin University
 
 ## Why Education in Turkey is Best for Pakistani Students?
 

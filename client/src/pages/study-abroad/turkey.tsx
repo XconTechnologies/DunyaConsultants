@@ -74,7 +74,7 @@ export default function StudyAbroadTurkey() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   const stats = [
-    { icon: Building, label: "Partner Universities", value: "17", color: "from-blue-500 to-cyan-500" },
+    { icon: Building, label: "Partner Universities", value: "12", color: "from-blue-500 to-cyan-500" },
     { icon: Users, label: "Int'l Students", value: "200K+", color: "from-purple-500 to-pink-500" },
     { icon: Award, label: "Scholarships", value: "Full Funded", color: "from-orange-500 to-red-500" },
     { icon: Briefcase, label: "Avg. Salary", value: "$30K+", color: "from-green-500 to-emerald-500" }
@@ -90,22 +90,17 @@ export default function StudyAbroadTurkey() {
   ];
 
   const universities = [
-    "Atlas University",
     "Arel University",
-    "Isik University",
-    "Gelisim University",
-    "Altinbas University",
-    "Kultur University",
     "Beykoz University",
-    "Beykent University",
-    "Uskudar University",
-    "Halic University",
-    "Dogus University",
-    "Aydin University",
-    "Bahçeşehir University",
+    "Isik University",
+    "Atlas University",
     "Kent University",
+    "Kultur University",
     "Okan University",
+    "Altinbas University",
     "Kadir Has University",
+    "Beykent University",
+    "Gelisim University",
     "Ozyegin University"
   ];
 
