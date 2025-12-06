@@ -61,18 +61,7 @@ export default function OptimizedImage({
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isLoaded ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
-      className="relative"
-    >
-      {!isLoaded && (
-        <div 
-          className={`absolute inset-0 bg-gray-200 animate-pulse ${className}`}
-          style={{ width, height }}
-        />
-      )}
+    <div className="relative">
       <img
         ref={imgRef}
         src={src}
@@ -82,10 +71,10 @@ export default function OptimizedImage({
         height={height}
         loading={loading}
         style={{ 
-          opacity: isLoaded ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out'
+          opacity: isLoaded ? 1 : 0.8,
+          transition: 'opacity 0.2s ease-in'
         }}
       />
-    </motion.div>
+    </div>
   );
 }

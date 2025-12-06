@@ -13,10 +13,10 @@ if (typeof window !== 'undefined') {
     }
   });
   
-  // Track LCP (Largest Contentful Paint) - target <2.5s
+  // Track LCP (Largest Contentful Paint) - target <2s
   const lcpObserver = new PerformanceObserver((list) => {
     for (const entry of list.getEntries()) {
-      console.log('✓ LCP:', Math.round(entry.startTime) + 'ms', entry.startTime < 2500 ? '✅ GOOD' : entry.startTime < 4000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
+      console.log('✓ LCP:', Math.round(entry.startTime) + 'ms', entry.startTime < 2000 ? '✅ GOOD' : entry.startTime < 3000 ? '⚠️ NEEDS IMPROVEMENT' : '❌ POOR');
     }
   });
   

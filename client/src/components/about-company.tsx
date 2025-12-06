@@ -53,7 +53,7 @@ export default function AboutCompany() {
               height={600}
               loading="eager"
               fetchpriority="high"
-              decoding="async"
+              decoding="sync"
               className="w-full h-auto object-cover rounded-2xl"
             />
           </div>
