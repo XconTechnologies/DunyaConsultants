@@ -1,0 +1,49 @@
+Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warning
+dunyaconsultants.com/:362 
+            
+            
+           GET https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2 net::ERR_ABORTED 404 (Not Found)Understand this error
+dunyaconsultants.com/:369 
+            
+            
+           GET https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2 net::ERR_ABORTED 404 (Not Found)Understand this error
+data:application/oc…:1 Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "application/octet-stream". Strict MIME type checking is enforced for module scripts per HTML spec.Understand this error
+share-modal.js:1 Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+    at share-modal.js:1:135
+(anonymous) @ share-modal.js:1
+setTimeout
+(anonymous) @ share-modal.js:1Understand this error
+index-Dsh2rzDY.js:268 script loaded
+index-Dsh2rzDY.js:268 ✓ TTFB: 115ms ✅ GOOD
+index-Dsh2rzDY.js:268 ✓ FCP (fallback): 1812ms ⚠️ NEEDS IMPROVEMENT
+index-Dsh2rzDY.js:268 ✓ FCP: 1812ms ⚠️ NEEDS IMPROVEMENT
+index-Dsh2rzDY.js:268 ✓ INP: 960ms ❌ POOR
+main.js:1 {xkKZ4: 'g'}
+requests.js:1 
+            
+            
+           GET https://dunyaconsultants.com/api/admin/categories 401 (Unauthorized)
+(anonymous) @ requests.js:1
+(anonymous) @ index-Dsh2rzDY.js:49
+s @ index-Dsh2rzDY.js:49
+b @ index-Dsh2rzDY.js:49
+start @ index-Dsh2rzDY.js:49
+fetch @ index-Dsh2rzDY.js:49
+Ls @ index-Dsh2rzDY.js:49
+onSubscribe @ index-Dsh2rzDY.js:49
+subscribe @ index-Dsh2rzDY.js:49
+(anonymous) @ index-Dsh2rzDY.js:49
+v0 @ index-Dsh2rzDY.js:39
+$l @ index-Dsh2rzDY.js:41
+_o @ index-Dsh2rzDY.js:41
+(anonymous) @ index-Dsh2rzDY.js:41
+C @ index-Dsh2rzDY.js:26
+M @ index-Dsh2rzDY.js:26Understand this error
+iasbadgeid.js:9 script loaded
+share-modal.js:1 Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+    at share-modal.js:1:135
+(anonymous) @ share-modal.js:1
+setTimeout
+(anonymous) @ share-modal.js:1Understand this error
+dunyaconsultants.com/:1 The resource https://dunyaconsultants.com/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+dunyaconsultants.com/:1 The resource https://dunyaconsultants.com/attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

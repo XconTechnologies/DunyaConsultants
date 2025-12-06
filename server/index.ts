@@ -198,13 +198,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       '<https://fonts.gstatic.com>; rel=preconnect; crossorigin'
     ];
     
-    // Only preload homepage hero image on root path
-    if (req.path === '/' || req.path === '') {
-      linkHeaders.push(
-        // LCP image for homepage only
-        '</attached_assets/best-study-abroad-consultants-in-pakistan_1757420372210.webp>; rel=preload; as=image; fetchpriority=high'
-      );
-    }
+    // Image preload removed to prevent preload warnings - images load naturally with priority rendering
     
     res.setHeader('Link', linkHeaders.join(', '));
   }
