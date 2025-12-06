@@ -6767,6 +6767,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             else if (ext === '.pdf') mimeType = 'application/pdf';
             else if (ext === '.doc') mimeType = 'application/msword';
             else if (ext === '.docx') mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            else if (ext === '.js' || ext === '.mjs') mimeType = 'text/javascript';
+            else if (ext === '.jsx' || ext === '.tsx' || ext === '.ts') mimeType = 'text/javascript';
+            else if (ext === '.css') mimeType = 'text/css';
 
             const media = await storage.createMedia({
               filename,
@@ -8859,6 +8862,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
               else if (ext === '.gif') mimeType = 'image/gif';
               else if (ext === '.webp') mimeType = 'image/webp';
               else if (ext === '.svg') mimeType = 'image/svg+xml';
+              else if (ext === '.js' || ext === '.mjs') mimeType = 'text/javascript';
+              else if (ext === '.css') mimeType = 'text/css';
               
               // Create media entry
               const media = await storage.createMedia({

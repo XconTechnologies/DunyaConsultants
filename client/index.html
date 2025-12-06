@@ -352,24 +352,9 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
 
-    <!-- Restore critical module preload for faster JS hydration -->
-    <link rel="modulepreload" href="/src/main.tsx" />
+    <!-- Module preload moved to vite for better optimization -->
 
-    <!-- Preload critical fonts only (Google Fonts CDN) -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2"
-      crossorigin
-    />
+    <!-- Font preload removed - fonts declared inline with display:swap for better performance -->
 
     <!-- Inline only critical font declaration for FCP -->
     <style>

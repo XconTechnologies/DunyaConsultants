@@ -17,14 +17,24 @@ export default function Footer() {
     const existingScript = document.querySelector('script[src="https://www-cdn.icef.com/scripts/iasbadgeid.js"]');
     
     if (!existingScript) {
-      // Load ICEF badge script only if not already loaded
-      const script = document.createElement('script');
-      script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
-      script.async = true;
-      script.defer = true;
-      script.crossOrigin = 'anonymous';
-      script.id = 'icef-badge-script'; // Add ID for easier identification
-      document.body.appendChild(script);
+      try {
+        // Load ICEF badge script only if not already loaded
+        const script = document.createElement('script');
+        script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
+        script.async = true;
+        script.defer = true;
+        script.crossOrigin = 'anonymous';
+        script.id = 'icef-badge-script';
+        
+        // Add error handling for failed script load
+        script.onerror = () => {
+          console.warn('Failed to load ICEF badge script');
+        };
+        
+        document.body.appendChild(script);
+      } catch (error) {
+        console.warn('Failed to append ICEF badge script:', error);
+      }
     }
   }, []);
 
