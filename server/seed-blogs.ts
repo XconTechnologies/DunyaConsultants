@@ -431,6 +431,10 @@ Here are the top universities in Turkey for international students:
 11. Dogus University
 12. Aydin University
 13. Bahçeşehir University
+14. Kent University
+15. Okan University
+16. Kadir Has University
+17. Ozyegin University
 
 ## Why Education in Turkey is Best for Pakistani Students?
 
