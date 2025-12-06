@@ -13,29 +13,33 @@ import logoImageWhite from "@assets/logo-white.webp";
 
 export default function Footer() {
   useEffect(() => {
-    // Check if ICEF script is already loaded
-    const existingScript = document.querySelector('script[src="https://www-cdn.icef.com/scripts/iasbadgeid.js"]');
-    
-    if (!existingScript) {
+    // Defer ICEF script loading to avoid blocking page render
+    const timer = setTimeout(() => {
       try {
-        // Load ICEF badge script only if not already loaded
-        const script = document.createElement('script');
-        script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
-        script.async = true;
-        script.defer = true;
-        script.crossOrigin = 'anonymous';
-        script.id = 'icef-badge-script';
+        // Check if ICEF script is already loaded
+        const existingScript = document.querySelector('script[src="https://www-cdn.icef.com/scripts/iasbadgeid.js"]');
         
-        // Add error handling for failed script load
-        script.onerror = () => {
-          console.warn('Failed to load ICEF badge script');
-        };
-        
-        document.body.appendChild(script);
+        if (!existingScript) {
+          const script = document.createElement('script');
+          script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
+          script.async = true;
+          script.defer = true;
+          script.crossOrigin = 'anonymous';
+          script.id = 'icef-badge-script';
+          
+          // Wrap in error handler to prevent page breaking
+          script.onerror = () => {
+            console.warn('Failed to load ICEF badge script');
+          };
+          
+          document.body.appendChild(script);
+        }
       } catch (error) {
-        console.warn('Failed to append ICEF badge script:', error);
+        console.warn('Failed to load ICEF badge:', error);
       }
-    }
+    }, 2000); // Load after 2 seconds
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -219,6 +223,9 @@ export default function Footer() {
             <p className="text-blue-100 text-sm">
               © 2025 Developed by <a href="https://xcontechnologies.com/" target="_blank" rel="nofollow noopener noreferrer" className="text-white hover:text-blue-200 transition-colors duration-300">XCon Technologies</a>. All rights reserved.
             </p>
+            
+            {/* ICEF Badge Container - Required for ICEF script */}
+            <div id="iasBadge" data-account-id="1738" className="mt-4 min-h-[40px] flex items-center justify-center"></div>
           </div>
         </div>
       </div>
