@@ -138,21 +138,18 @@ export default function StatsBanner() {
 
   return (
     <div className="relative min-h-[400px] overflow-hidden" style={{ background: `linear-gradient(135deg, #1e293b 0%, #2764E8 50%, #1e50c7 100%)` }}>
-      {/* Animated Background */}
+      {/* Animated Background - Simplified for mobile performance */}
       <div className="absolute inset-0">
-        {/* Gradient Orbs */}
-        <div className="absolute top-10 -left-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute top-0 -right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute -bottom-10 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000" style={{ backgroundColor: '#2764E8' }}></div>
+        {/* Gradient Orbs - Hidden on mobile for better LCP */}
+        <div className="absolute top-10 -left-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 hidden md:block" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute top-0 -right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 hidden lg:block" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute -bottom-10 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 hidden lg:block" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-15 hidden lg:block" style={{ backgroundColor: '#2764E8' }}></div>
         
-        {/* Dynamic Grid */}
-        <div className="absolute inset-0 opacity-[0.07]">
+        {/* Dynamic Grid - Hidden on mobile */}
+        <div className="absolute inset-0 opacity-[0.07] hidden md:block">
           <div className="absolute inset-0" style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-            `,
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
             backgroundSize: '60px 60px'
           }} />
         </div>
@@ -434,11 +431,11 @@ export default function StatsBanner() {
             </div>
           </div>
 
-          {/* Mobile: 2x2 grid then 1 centered */}
+          {/* Mobile: Show only 2 most important stats for faster LCP */}
           <div className="md:hidden">
-            {/* First 4 items in 2x2 grid */}
+            {/* Show only first 2 most important items for better mobile performance */}
             <div className="grid grid-cols-2 gap-2">
-              {stats.slice(0, 4).map((stat, index) => {
+              {stats.slice(0, 2).map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
                   <div
@@ -488,10 +485,10 @@ export default function StatsBanner() {
               })}
             </div>
             
-            {/* 5th item centered */}
-            <div className="flex justify-center mt-2">
-              {stats.slice(4, 5).map((stat, index) => {
-                const actualIndex = index + 4;
+            {/* Additional 2 items centered - lazy load on mobile */}
+            <div className="flex justify-center gap-2 mt-2">
+              {stats.slice(2, 4).map((stat, index) => {
+                const actualIndex = index + 2;
                 const IconComponent = stat.icon;
                 return (
                   <div

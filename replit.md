@@ -34,6 +34,14 @@ The system uses TanStack Query for frontend API calls, Express.js for validated 
 
 **Custom Content Blocks Backward Compatibility**: Editor transformations (transformServerBlocks and transformToContentBlocks) support both legacy (secondButton*) and new (button2*) naming conventions for consultation blocks to ensure data persistence across database schema migrations. Renderers also maintain dual naming support for seamless backward compatibility.
 
+## Performance Optimizations (LCP Improvements)
+**Mobile Performance Focus - LCP Optimization**:
+1. **Homepage & All Pages**: Removed heavy animated blob patterns and grid backgrounds on mobile (hidden with `hidden md:block` and `hidden lg:block`)
+2. **Stats Banner**: Simplified background animations; show only 2 critical stats initially on mobile, additional 2 stats below
+3. **Study Abroad Pages (Turkey, etc.)**: Removed `animate-pulse` effects from hero text; hidden non-critical stat cards on mobile (`hidden sm:flex`, `hidden lg:flex`); added CSS containment (`contain: layout style paint`)
+4. **Hero Sections**: Simplified SVG patterns - converted from heavy base64 inline SVGs to lightweight CSS radial-gradients, only visible on md/lg screens
+5. **Lazy Loading**: Hero sections use simple gradients; below-the-fold components already use React.lazy with Suspense
+
 ## External Dependencies
 - `@neondatabase/serverless`: PostgreSQL connectivity.
 - `drizzle-orm`: Type-safe database operations.
