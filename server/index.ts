@@ -8,6 +8,28 @@ import { join } from "path";
 
 const app = express();
 
+// Subdomain detection and routing middleware
+// Main domain: dunyaconsultants.com → Frontend only (no admin pages)
+// Admin subdomain: admin.dunyaconsultants.com → Full app including admin
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const host = req.get('host') || '';
+  const isAdminSubdomain = host.startsWith('admin.') || host.includes('admin-');
+  
+  // Attach subdomain info to request for later use
+  (req as any).isAdminSubdomain = isAdminSubdomain;
+  (req as any).mainDomain = host.replace(/^admin\./, '').replace(/-admin\./, '.');
+  
+  // If accessing /admin* paths on main domain, redirect to admin subdomain
+  if (!isAdminSubdomain && req.path.startsWith('/admin')) {
+    const adminHost = host.includes(':') 
+      ? `admin.${host.split(':')[0]}:${host.split(':')[1]}` 
+      : `admin.${host}`;
+    return res.redirect(301, `${req.protocol}://${adminHost}${req.originalUrl}`);
+  }
+  
+  next();
+});
+
 // 301 Redirect from www to non-www (security-hardened)
 app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.get('host');
