@@ -27,6 +27,18 @@ The application features a professional dark blue gradient design with custom br
 - **Featured Image Management System**: Dual-storage support for featured images (local at `/public/uploads/articles/` and object storage at `/objects/uploads/`), full public URLs, smart URL normalization, environment-aware URL generation, auto-optimization (WebP conversion, sizing, compression), and robust error handling.
 - **URL Redirect Management System**: Comprehensive redirect management with 301/302 support, multi-hop loop prevention (5-hop depth limit), case-insensitive hostname checking, in-memory caching with 60s TTL and immediate invalidation after mutations, asynchronous hit tracking, and admin UI for CRUD operations with inline editing.
 
+### Subdomain Architecture (CMS Separation)
+The application uses subdomain-based routing to separate the CMS from the public frontend for improved performance:
+- **Main Domain** (dunyaconsultants.com): Serves only the public frontend (no admin pages)
+- **Admin Subdomain** (admin.dunyaconsultants.com): Serves the full CMS dashboard
+
+**Implementation Details**:
+- Express middleware in `server/index.ts` detects hostname and attaches `req.isAdminSubdomain` flag
+- `/admin/*` paths on main domain automatically redirect (301) to admin subdomain
+- `/api/admin/*` routes return 403 on main domain (security protection)
+- Domain detection uses typed utilities in `server/types.ts` with configurable domain lists
+- Both domains point to the same Replit deployment; routing is handled server-side
+
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.
 

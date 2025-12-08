@@ -5,6 +5,8 @@ import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { isAdminHost, getMainDomain, getAdminHost } from "./types";
+import "./types";
 
 const app = express();
 
@@ -13,18 +15,19 @@ const app = express();
 // Admin subdomain: admin.dunyaconsultants.com → Full app including admin
 app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.get('host') || '';
-  const isAdminSubdomain = host.startsWith('admin.') || host.includes('admin-');
+  const isAdmin = isAdminHost(host);
   
-  // Attach subdomain info to request for later use
-  (req as any).isAdminSubdomain = isAdminSubdomain;
-  (req as any).mainDomain = host.replace(/^admin\./, '').replace(/-admin\./, '.');
+  // Attach typed subdomain info to request
+  req.isAdminSubdomain = isAdmin;
+  req.mainDomain = getMainDomain(host);
   
   // If accessing /admin* paths on main domain, redirect to admin subdomain
-  if (!isAdminSubdomain && req.path.startsWith('/admin')) {
-    const adminHost = host.includes(':') 
-      ? `admin.${host.split(':')[0]}:${host.split(':')[1]}` 
-      : `admin.${host}`;
-    return res.redirect(301, `${req.protocol}://${adminHost}${req.originalUrl}`);
+  if (!isAdmin && req.path.startsWith('/admin')) {
+    const adminHost = getAdminHost(host);
+    const xForwardedProto = req.get('x-forwarded-proto');
+    const protocol = xForwardedProto?.split(',')[0] || (req.secure ? 'https' : req.protocol) || 'https';
+    log(`Admin redirect: ${host}${req.path} → ${adminHost}${req.originalUrl}`);
+    return res.redirect(301, `${protocol}://${adminHost}${req.originalUrl}`);
   }
   
   next();

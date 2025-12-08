@@ -2,6 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { seedBlogPosts } from "./seed-blogs";
+import "./types";
 import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
@@ -262,6 +263,17 @@ async function initializeAdmin() {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Admin API protection middleware - blocks admin API access on public domain
+  app.use('/api/admin', (req: Request, res: Response, next: NextFunction) => {
+    if (!req.isAdminSubdomain) {
+      return res.status(403).json({ 
+        error: 'Admin API access restricted to admin subdomain',
+        redirect: 'Please access admin features via admin.dunyaconsultants.com'
+      });
+    }
+    next();
+  });
+
   // Health check endpoint (doesn't require database)
   app.head("/api", (req, res) => {
     res.status(200).end();
