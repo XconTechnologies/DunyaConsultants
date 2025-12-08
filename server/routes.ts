@@ -1310,7 +1310,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
 
       // Generate PNG dynamically
-      const png = await QRCode.toDataURL(redirectUrl, {
+      const buffer = await QRCode.toBuffer(redirectUrl, {
         errorCorrectionLevel: 'H',
         type: 'image/png',
         width: 400,
@@ -1321,12 +1321,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
 
-      // Convert data URL to buffer
-      const base64Data = png.replace(/^data:image\/png;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
+      // Sanitize filename - remove special characters
+      const safeFilename = qrCode.title
+        .replace(/[^a-z0-9]/gi, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase()
+        .substring(0, 50);
 
       res.setHeader('Content-Type', 'image/png');
-      res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.png"`);
+      res.setHeader('Content-Disposition', `attachment; filename="qr-${safeFilename}.png"`);
       res.send(buffer);
     } catch (error) {
       console.error("Error downloading QR code:", error);
@@ -1364,8 +1367,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
 
+      // Sanitize filename - remove special characters
+      const safeFilename = qrCode.title
+        .replace(/[^a-z0-9]/gi, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase()
+        .substring(0, 50);
+
       res.setHeader('Content-Type', 'image/svg+xml');
-      res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.svg"`);
+      res.setHeader('Content-Disposition', `attachment; filename="qr-${safeFilename}.svg"`);
       res.send(svg);
     } catch (error) {
       console.error("Error downloading QR code:", error);
