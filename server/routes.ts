@@ -1303,21 +1303,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "QR code not found" });
       }
 
-      if (!qrCode.qrImageUrl) {
-        return res.status(404).json({ message: "QR code image not found" });
-      }
+      // Generate redirect URL that will track scans (same as preview)
+      const baseUrl = process.env.REPLIT_DOMAINS
+        ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}`
+        : 'http://localhost:5000';
+      const redirectUrl = `${baseUrl}/qr/${qrCode.id}`;
 
-      // Serve the existing QR code image file (strip leading slash for proper path resolution)
-      const imagePath = qrCode.qrImageUrl.replace(/^\//, '');
-      const filepath = path.join(process.cwd(), 'public', imagePath);
-      
-      if (!fs.existsSync(filepath)) {
-        return res.status(404).json({ message: "QR code image file not found" });
-      }
+      // Generate PNG dynamically
+      const png = await QRCode.toDataURL(redirectUrl, {
+        errorCorrectionLevel: 'H',
+        type: 'image/png',
+        width: 400,
+        margin: 2,
+        color: {
+          dark: '#1D50C9',
+          light: '#FFFFFF'
+        }
+      });
+
+      // Convert data URL to buffer
+      const base64Data = png.replace(/^data:image\/png;base64,/, '');
+      const buffer = Buffer.from(base64Data, 'base64');
 
       res.setHeader('Content-Type', 'image/png');
       res.setHeader('Content-Disposition', `attachment; filename="qr-${qrCode.title.replace(/\s+/g, '-').toLowerCase()}.png"`);
-      res.sendFile(filepath);
+      res.send(buffer);
     } catch (error) {
       console.error("Error downloading QR code:", error);
       res.status(500).json({ message: "Failed to download QR code" });
