@@ -5,33 +5,8 @@ import { setupVite, serveStatic, log } from "./vite";
 import { socialMetaMiddleware } from "./social-meta-middleware";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { isAdminHost, getMainDomain, getAdminHost } from "./types";
-import "./types";
 
 const app = express();
-
-// Subdomain detection and routing middleware
-// Main domain: dunyaconsultants.com → Frontend only (no admin pages)
-// Admin subdomain: admin.dunyaconsultants.com → Full app including admin
-app.use((req: Request, res: Response, next: NextFunction) => {
-  const host = req.get('host') || '';
-  const isAdmin = isAdminHost(host);
-  
-  // Attach typed subdomain info to request
-  req.isAdminSubdomain = isAdmin;
-  req.mainDomain = getMainDomain(host);
-  
-  // If accessing /admin* paths on main domain, redirect to admin subdomain
-  if (!isAdmin && req.path.startsWith('/admin')) {
-    const adminHost = getAdminHost(host);
-    const xForwardedProto = req.get('x-forwarded-proto');
-    const protocol = xForwardedProto?.split(',')[0] || (req.secure ? 'https' : req.protocol) || 'https';
-    log(`Admin redirect: ${host}${req.path} → ${adminHost}${req.originalUrl}`);
-    return res.redirect(301, `${protocol}://${adminHost}${req.originalUrl}`);
-  }
-  
-  next();
-});
 
 // 301 Redirect from www to non-www (security-hardened)
 app.use((req: Request, res: Response, next: NextFunction) => {
