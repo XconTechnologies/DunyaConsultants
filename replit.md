@@ -30,14 +30,15 @@ The application features a professional dark blue gradient design with custom br
 ### Subdomain Architecture (CMS Separation)
 The application uses subdomain-based routing to separate the CMS from the public frontend for improved performance:
 - **Main Domain** (dunyaconsultants.com): Serves only the public frontend (no admin pages)
-- **Admin Subdomain** (admin.dunyaconsultants.com): Serves the full CMS dashboard
+- **CMS Subdomain** (cms.dunyaconsultants.com): Serves the full CMS dashboard
 
 **Implementation Details**:
 - Express middleware in `server/index.ts` detects hostname and attaches `req.isAdminSubdomain` flag
-- `/admin/*` paths on main domain automatically redirect (301) to admin subdomain
+- `/admin/*` paths on main domain automatically redirect (301) to CMS subdomain
 - `/api/admin/*` routes return 403 on main domain (security protection)
-- Domain detection uses typed utilities in `server/types.ts` with configurable domain lists
+- Domain detection uses typed utilities in `server/types.ts` with strict allowlist (no substring matching)
 - Both domains point to the same Replit deployment; routing is handled server-side
+- Configuration: Set `CMS_DOMAINS` environment variable to add additional allowed CMS domains
 
 ### System Design Choices
 The system uses TanStack Query for frontend API calls, Express.js for validated backend routes, and Drizzle ORM for type-safe database queries. JSON is the standard for client-server communication. React components update based on query states, and there's automatic scroll-to-top on page transitions. The dashboard redirects all users to `/admin/dashboard`.
