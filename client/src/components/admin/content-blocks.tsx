@@ -132,6 +132,9 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
             <DropdownMenuItem onClick={() => addBlock('schema')}>
               Schema Block (SEO)
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => addBlock('code')}>
+              Code Block
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -256,6 +259,8 @@ function getDefaultDataForType(type: ContentBlock['type']): any {
       return { thickness: 1, width: '100%' };
     case 'schema':
       return { schemaJson: '{}' };
+    case 'code':
+      return { code: '// Enter your code here...', language: 'javascript' };
     default:
       return {};
   }
@@ -283,6 +288,8 @@ function renderBlockEditor(block: ContentBlock, updateBlock: (blockId: string, d
       return <DividerBlockEditor block={block} updateBlock={updateBlock} />;
     case 'schema':
       return <SchemaBlockEditor block={block} updateBlock={updateBlock} />;
+    case 'code':
+      return <CodeBlockEditor block={block} updateBlock={updateBlock} />;
     default:
       return null;
   }
@@ -863,6 +870,67 @@ function SchemaBlockEditor({ block, updateBlock }: any) {
       <p className="text-xs text-gray-500 mt-2">
         This block is only visible to search engine crawlers, not to users.
       </p>
+    </div>
+  );
+}
+
+// Code Block Editor
+function CodeBlockEditor({ block, updateBlock }: any) {
+  const languageOptions = [
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'typescript', label: 'TypeScript' },
+    { value: 'html', label: 'HTML' },
+    { value: 'css', label: 'CSS' },
+    { value: 'python', label: 'Python' },
+    { value: 'java', label: 'Java' },
+    { value: 'csharp', label: 'C#' },
+    { value: 'cpp', label: 'C++' },
+    { value: 'go', label: 'Go' },
+    { value: 'rust', label: 'Rust' },
+    { value: 'php', label: 'PHP' },
+    { value: 'ruby', label: 'Ruby' },
+    { value: 'sql', label: 'SQL' },
+    { value: 'bash', label: 'Bash/Shell' },
+    { value: 'json', label: 'JSON' },
+    { value: 'yaml', label: 'YAML' },
+    { value: 'markdown', label: 'Markdown' },
+    { value: 'plaintext', label: 'Plain Text' },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label>Language</Label>
+        <Select
+          value={block.data.language || 'javascript'}
+          onValueChange={(value) => updateBlock(block.id, { language: value })}
+        >
+          <SelectTrigger className="w-full" data-testid="select-code-language">
+            <SelectValue placeholder="Select language..." />
+          </SelectTrigger>
+          <SelectContent>
+            {languageOptions.map((lang) => (
+              <SelectItem key={lang.value} value={lang.value}>
+                {lang.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div>
+        <Label>Code</Label>
+        <Textarea
+          value={block.data.code || ''}
+          onChange={(e) => updateBlock(block.id, { code: e.target.value })}
+          placeholder="Enter your code here..."
+          rows={12}
+          className="font-mono text-sm bg-gray-900 text-gray-100"
+          data-testid="textarea-code-content"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Code will be displayed with syntax highlighting based on the selected language.
+        </p>
+      </div>
     </div>
   );
 }

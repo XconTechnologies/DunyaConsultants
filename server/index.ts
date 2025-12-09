@@ -154,12 +154,12 @@ app.use((req, res, next) => {
   };
   
   // Override writeHead to add Server-Timing header before headers are sent
-  const originalWriteHead = res.writeHead;
-  res.writeHead = function(...args: any[]) {
+  const originalWriteHead = res.writeHead.bind(res);
+  res.writeHead = function(this: Response, statusCode: number, ...rest: any[]) {
     const duration = Date.now() - start;
     res.setHeader('Server-Timing', `total;dur=${duration}`);
-    return originalWriteHead.apply(this, args);
-  } as any;
+    return originalWriteHead(statusCode, ...rest);
+  };
 
   res.on("finish", () => {
     const duration = Date.now() - start;
