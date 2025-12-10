@@ -41,14 +41,29 @@ export const initGA = () => {
 
 // Track page views - useful for single-page applications
 export const trackPageView = (url: string) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined') return;
   
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  if (!measurementId) return;
+  // Ensure dataLayer exists
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
   
-  window.gtag('config', measurementId, {
-    page_path: url
+  // Track to Google Tag Manager
+  window.dataLayer.push({
+    event: 'page_view',
+    page_path: url,
+    page_title: document.title
   });
+  
+  // Also track to Google Analytics if gtag is available
+  if (window.gtag) {
+    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+    if (measurementId) {
+      window.gtag('config', measurementId, {
+        page_path: url
+      });
+    }
+  }
 };
 
 // Track events

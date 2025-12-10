@@ -10,9 +10,8 @@ export const useAnalytics = () => {
   const prevLocationRef = useRef<string>(location);
   
   useEffect(() => {
-    if (location !== prevLocationRef.current) {
-      trackPageView(location);
-      prevLocationRef.current = location;
-    }
+    // Track initial page view
+    trackPageView(location);
+    prevLocationRef.current = location;
   }, [location]);
 };
