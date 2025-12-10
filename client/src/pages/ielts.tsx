@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
 import CompactConsultationForm from "@/components/compact-consultation-form";
 import { setStaticPageMeta } from "@/lib/seo";
@@ -341,6 +342,9 @@ export default function IELTS() {
           </motion.div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
 
       <Footer />
       
