@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
@@ -71,6 +71,14 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
+
+  // Dispatch custom event when popup opens
+  useEffect(() => {
+    if (isOpen) {
+      const popupEvent = new Event("popup_opened");
+      window.dispatchEvent(popupEvent);
+    }
+  }, [isOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -146,15 +154,13 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
       });
 
       if (response.ok) {
-        trackEvent("consultation_form_submitted", {
-          countries: formData.interestedCountries.join(", "),
-          hasLanguageTest: formData.hasLanguageTest
-        });
+        // Dispatch custom event when form is submitted successfully
+        const formEvent = new Event("popup_form_submit");
+        window.dispatchEvent(formEvent);
         
-        trackConsultationBooking({
-          whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
-          email: formData.email
-        });
+        trackEvent("consultation_form_submitted", "engagement", formData.interestedCountries.join(", "));
+        
+        trackConsultationBooking();
 
         setShowThankYou(true);
         
