@@ -255,6 +255,9 @@ export default function IELTS() {
         </div>
       </section>
 
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       {/* Modern Band Requirements */}
       <section className="py-16 sm:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -342,9 +345,6 @@ export default function IELTS() {
           </motion.div>
         </div>
       </section>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
 
       <Footer />
       
