@@ -86,3 +86,20 @@ export const trackContactForm = () => {
 export const trackBlogView = (blogTitle: string) => {
   trackEvent('blog_view', 'content', blogTitle);
 };
+
+// Track Google Ads conversion for form submissions
+export const trackAdConversion = () => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  
+  // Google Ads conversion tracking
+  window.gtag('config', 'AW-11367448924');
+  
+  // Track as a conversion event
+  window.gtag('event', 'conversion', {
+    'send_to': 'AW-11367448924/YOUR_CONVERSION_LABEL'
+  });
+  
+  if (import.meta.env.DEV) {
+    console.log('Google Ads conversion tracked');
+  }
+};

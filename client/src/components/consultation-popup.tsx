@@ -6,7 +6,7 @@ import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whats
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
 import { FloatingLabelSelect } from "@/components/ui/floating-label-select";
 import { motion } from "framer-motion";
-import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
+import { trackEvent, trackConsultationBooking, trackAdConversion } from "@/lib/analytics";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface ConsultationPopupProps {
@@ -161,6 +161,8 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
         trackEvent("consultation_form_submitted", "engagement", formData.interestedCountries.join(", "));
         
         trackConsultationBooking();
+        
+        trackAdConversion();
 
         setShowThankYou(true);
         

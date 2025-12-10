@@ -6,7 +6,7 @@ import { FloatingLabelWhatsAppInput } from "@/components/ui/floating-label-whats
 import { FloatingLabelTextarea } from "@/components/ui/floating-label-textarea";
 import { FloatingLabelSelect } from "@/components/ui/floating-label-select";
 import { motion } from "framer-motion";
-import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
+import { trackEvent, trackConsultationBooking, trackAdConversion } from "@/lib/analytics";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface CompactConsultationFormProps {
@@ -235,16 +235,11 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
       });
 
       if (response.ok) {
-        trackEvent("consultation_form_submitted", {
-          countries: formData.interestedCountries.join(", "),
-          hasLanguageTest: formData.hasLanguageTest,
-          source: getPageSource()
-        });
+        trackEvent("consultation_form_submitted", "engagement", formData.interestedCountries.join(", "));
         
-        trackConsultationBooking({
-          whatsappNumber: `${formData.countryCode}${formData.whatsappNumber}`,
-          email: formData.email
-        });
+        trackConsultationBooking();
+        
+        trackAdConversion();
 
         setShowThankYou(true);
         
