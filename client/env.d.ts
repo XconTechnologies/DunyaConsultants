@@ -7,3 +7,10 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+// Google Tag Manager dataLayer type declaration
+declare global {
+  interface Window {
+    dataLayer: Record<string, unknown>[];
+  }
+}
