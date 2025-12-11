@@ -4,6 +4,7 @@ import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
+import { setStaticPageMeta } from '@/lib/seo';
 
 interface BlogPost {
   id: number;
@@ -40,6 +41,21 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
 
     fetchBlogPost();
   }, []);
+
+  // Set page title when blog post loads
+  useEffect(() => {
+    if (blogPost) {
+      setStaticPageMeta(
+        blogPost.title,
+        blogPost.excerpt || 'IELTS preparation tips and tricks for Pakistani students. Expert advice from Dunya Consultants.'
+      );
+    } else {
+      setStaticPageMeta(
+        'IELTS Preparation Tips and Tricks',
+        'Expert IELTS preparation tips and tricks for Pakistani students. Get guidance from Dunya Consultants.'
+      );
+    }
+  }, [blogPost]);
 
   if (loading) {
     return (
