@@ -3869,6 +3869,18 @@ export default function Blog() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  // Set page title for blog listing page
+  useEffect(() => {
+    // Only set this title when viewing the blog listing, not individual posts
+    if (!match && !simpleMatch && !directMatch) {
+      setMetaTags({
+        title: 'Study Abroad Blog',
+        description: 'Expert insights, tips, and guides for your international education journey. Discover study abroad advice from Dunya Consultants.',
+        siteName: 'Dunya Consultants'
+      });
+    }
+  }, [match, simpleMatch, directMatch]);
+
   // Fetch blog posts from API with caching (with optional author filter)
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: authorFilter ? ['/api/blog-posts', { author: authorFilter }] : ['/api/blog-posts'],

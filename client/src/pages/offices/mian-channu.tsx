@@ -71,6 +71,7 @@ export default function MianChannuOffice() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to All Offices
               </Button>
+            </Link>
           </div>
           
           <motion.div
