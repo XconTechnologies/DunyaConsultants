@@ -41,6 +41,12 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
       const result = await response.json();
 
       if (result.success) {
+        // Push generic_form_success event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'generic_form_success'
+        });
+        
         setFormData({
           name: '',
           phone: '',

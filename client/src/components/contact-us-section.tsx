@@ -53,6 +53,12 @@ export default function ContactUsSection() {
       });
 
       if (response.ok) {
+        // Push generic_form_success event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'generic_form_success'
+        });
+        
         // Track successful contact form submission
         trackContactForm();
         trackEvent('contact_form_success', 'conversion', formData.preferredCountry || 'unknown');

@@ -154,6 +154,12 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
       });
 
       if (response.ok) {
+        // Push generic_form_success event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'generic_form_success'
+        });
+        
         // Dispatch custom event when form is submitted successfully
         const formEvent = new Event("popup_form_submit");
         window.dispatchEvent(formEvent);

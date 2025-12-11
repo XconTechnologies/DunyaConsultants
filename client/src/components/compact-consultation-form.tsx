@@ -235,6 +235,12 @@ export default function CompactConsultationForm({ isOpen, onClose, defaultCountr
       });
 
       if (response.ok) {
+        // Push generic_form_success event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'generic_form_success'
+        });
+        
         trackEvent("consultation_form_submitted", "engagement", formData.interestedCountries.join(", "));
         
         trackConsultationBooking();
