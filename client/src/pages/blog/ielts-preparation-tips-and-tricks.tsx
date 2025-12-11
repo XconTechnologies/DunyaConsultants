@@ -4,7 +4,7 @@ import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
-import { setStaticPageMeta } from '@/lib/seo';
+import { setMetaTags } from '@/lib/seo';
 
 interface BlogPost {
   id: number;
@@ -16,6 +16,10 @@ interface BlogPost {
   category: string;
   tags: string[];
   featured_image?: string;
+  metaTitle?: string;
+  meta_title?: string;
+  metaDescription?: string;
+  meta_description?: string;
 }
 
 const IELTSPreparationTipsAndTricks: React.FC = () => {
@@ -42,18 +46,25 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
     fetchBlogPost();
   }, []);
 
-  // Set page title when blog post loads
+  // Set page title when blog post loads - uses metaTitle if available
   useEffect(() => {
     if (blogPost) {
-      setStaticPageMeta(
-        blogPost.title,
-        blogPost.excerpt || 'IELTS preparation tips and tricks for Pakistani students. Expert advice from Dunya Consultants.'
-      );
+      const metaTitle = blogPost.metaTitle || blogPost.meta_title;
+      const metaDescription = blogPost.metaDescription || blogPost.meta_description;
+      
+      setMetaTags({
+        title: blogPost.title,
+        metaTitle: metaTitle,
+        description: blogPost.excerpt,
+        metaDescription: metaDescription,
+        siteName: 'Dunya Consultants'
+      });
     } else {
-      setStaticPageMeta(
-        'IELTS Preparation Tips and Tricks',
-        'Expert IELTS preparation tips and tricks for Pakistani students. Get guidance from Dunya Consultants.'
-      );
+      setMetaTags({
+        title: 'IELTS Preparation Tips and Tricks',
+        description: 'Expert IELTS preparation tips and tricks for Pakistani students. Get guidance from Dunya Consultants.',
+        siteName: 'Dunya Consultants'
+      });
     }
   }, [blogPost]);
 
