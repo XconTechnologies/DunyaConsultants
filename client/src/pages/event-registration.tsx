@@ -427,13 +427,14 @@ export default function EventRegistration() {
               )}
             </div>
 
-            {/* Study Destinations - Multiple Select */}
+            {/* Study Destinations - Multiple Select (shows only countries selected for this event) */}
+            {((event?.country && event.country.length > 0) || (!event && studyDestinations.length > 0)) && (
             <div>
               <Label className="text-gray-700 font-medium mb-3 block">
                 Study Destinations
               </Label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 border border-[#dadada] rounded-lg bg-white">
-                {studyDestinations.map((destination) => {
+                {(event?.country && event.country.length > 0 ? event.country : studyDestinations).map((destination) => {
                   const isChecked = watchedValues.destinations?.includes(destination);
                   
                   return (
@@ -465,6 +466,7 @@ export default function EventRegistration() {
                 <p className="text-red-500 text-sm mt-1">{form.formState.errors.destinations.message}</p>
               )}
             </div>
+            )}
 
             {/* Submit and Cancel Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
