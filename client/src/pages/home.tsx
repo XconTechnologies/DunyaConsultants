@@ -37,8 +37,8 @@ const SectionSkeleton = () => (
 export default function Home() {
   useEffect(() => {
     setStaticPageMeta(
-      'Home',
-      'Your trusted partner for studying abroad. Expert visa consultation, university applications, test preparation, and end-to-end support for international students from Pakistan.'
+      'Dunya Consultants | Study Abroad & Visa',
+      'Dunya Consultants helps you study abroad with visa guidance, university admissions, scholarships, and IELTS or PTE prep. Book a free consult.'
     );
   }, []);
 
